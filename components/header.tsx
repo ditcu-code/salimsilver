@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
@@ -16,16 +16,38 @@ const navigation = [
 ]
 
 export default function Header() {
+  const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const pathname = usePathname()
+  const [isHeroCondensed, setIsHeroCondensed] = useState(pathname !== "/")
+  const lastScrollYRef = useRef(0)
+
+  useEffect(() => {
+    setIsHeroCondensed(pathname !== "/")
+  }, [pathname])
+
+  useEffect(() => {
+    const handleHeroCondensedChange = (event: Event) => {
+      if (pathname !== "/") return
+      const detail = (event as CustomEvent<{ condensed: boolean }>).detail
+      if (typeof detail?.condensed === "boolean") {
+        setIsHeroCondensed(detail.condensed)
+        if (detail.condensed) setIsVisible(true)
+      }
+    }
+
+    window.addEventListener("hero-condensed-change", handleHeroCondensedChange as EventListener)
+    return () =>
+      window.removeEventListener("hero-condensed-change", handleHeroCondensedChange as EventListener)
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       const isMobile = window.innerWidth < 768 // Check if device is mobile
+      const lastScrollY = lastScrollYRef.current
+      const isHome = pathname === "/"
       
       // Update scrolled state
       if (currentScrollY > 10) {
@@ -34,36 +56,40 @@ export default function Header() {
         setIsScrolled(false)
       }
 
-      // Handle header visibility - only hide after 20px scroll on mobile
-      if (isMobile) {
-        if (currentScrollY > 20 && currentScrollY > lastScrollY) {
-          // Scrolling down and past 20px
-          setIsVisible(false)
-        } else {
-          // Scrolling up or before 20px
-          setIsVisible(true)
-        }
+      let nextVisible = true
+
+      if (isHome) {
+        // Hide while the hero is expanded, reveal once it condenses
+        nextVisible = isHeroCondensed
+      } else if (isMobile) {
+        // Handle header visibility - only hide after 20px scroll on mobile
+        nextVisible = !(currentScrollY > 20 && currentScrollY > lastScrollY)
       } else {
         // Desktop behavior
-        if (currentScrollY > lastScrollY) {
-          setIsVisible(false)
-        } else {
-          setIsVisible(true)
-        }
+        nextVisible = currentScrollY <= lastScrollY
       }
 
-      setLastScrollY(currentScrollY)
+      lastScrollYRef.current = currentScrollY
+      setIsVisible(nextVisible)
     }
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
+  }, [isHeroCondensed, pathname])
+
+  const heroHidden = pathname === "/" && !isHeroCondensed
 
   return (
     <header
       className={`fixed top-2 left-2 right-2 z-50 transition-all duration-300 header-height ${
         isScrolled ? "bg-background backdrop-blur-md shadow-sm" : "bg-transparent"
-      } ${!isVisible ? "-translate-y-[80px]" : "translate-y-0"}`}
+      } ${
+        heroHidden
+          ? "-translate-y-[80px] opacity-0 pointer-events-none"
+          : !isVisible
+            ? "-translate-y-[80px]"
+            : "translate-y-0"
+      }`}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
         <div className="flex justify-between items-center h-full">

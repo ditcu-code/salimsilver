@@ -2,7 +2,14 @@
 
 import * as React from "react"
 import { VariantProps, cva } from "class-variance-authority"
-import { motion, HTMLMotionProps, MotionValue, useScroll, useTransform } from "framer-motion"
+import {
+  motion,
+  HTMLMotionProps,
+  MotionValue,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -55,12 +62,18 @@ function useContainerScrollContext() {
 const ContainerScroll = ({
   children,
   className,
+  onProgressChange,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+}: React.HTMLAttributes<HTMLDivElement> & { onProgressChange?: (value: number) => void }) => {
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: scrollRef,
   })
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    onProgressChange?.(latest)
+  })
+
   return (
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
       <div
@@ -93,14 +106,14 @@ const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
     const { scrollYProgress } = useContainerScrollContext()
     const translate = useTransform(
       scrollYProgress,
-      [0.1, 0.9],
-      ["-35%", "0%"],
+      [0, 0.9],
+      ["0%", "-35%"],
       { clamp: true }
     )
     const scale = useTransform(
       scrollYProgress,
       [0, 0.9],
-      [0.5, 1],
+      [1, 0.5],
       { clamp: true }
     )
 
@@ -120,21 +133,36 @@ const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
 )
 BentoCell.displayName = "BentoCell"
 
-const ContainerScale = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
-  ({ className, style, ...props }, ref) => {
+interface ContainerScaleProps extends HTMLMotionProps<"div"> {
+  appearAt?: number
+}
+
+const ContainerScale = React.forwardRef<HTMLDivElement, ContainerScaleProps>(
+  ({ className, style, appearAt, ...props }, ref) => {
     const { scrollYProgress } = useContainerScrollContext()
-    const opacity = useTransform(
-      scrollYProgress,
-      [0, 0.5],
-      [1, 0],
-      { clamp: true }
-    )
-    const scale = useTransform(
-      scrollYProgress,
-      [0, 0.5],
-      [1, 0],
-      { clamp: true }
-    )
+    const clampedAppearAt =
+      typeof appearAt === "number"
+        ? Math.min(Math.max(appearAt, 0), 1)
+        : undefined
+
+    const opacityRange =
+      clampedAppearAt !== undefined
+        ? [Math.max(0, clampedAppearAt - 0.05), Math.min(1, clampedAppearAt + 0.05)]
+        : [0, 0.5]
+    const opacityOutput = clampedAppearAt !== undefined ? [0, 1] : [1, 0]
+
+    const scaleRange =
+      clampedAppearAt !== undefined
+        ? [Math.max(0, clampedAppearAt - 0.05), Math.min(1, clampedAppearAt + 0.25)]
+        : [0, 0.5]
+    const scaleOutput = clampedAppearAt !== undefined ? [0.9, 1] : [1, 0]
+
+    const opacity = useTransform(scrollYProgress, opacityRange, opacityOutput, {
+      clamp: true,
+    })
+    const scale = useTransform(scrollYProgress, scaleRange, scaleOutput, {
+      clamp: true,
+    })
 
     const position = useTransform(scrollYProgress, (pos) =>
       pos >= 0.6 ? "absolute" : "fixed"

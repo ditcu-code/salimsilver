@@ -13,9 +13,6 @@ import { LayoutGridDemo } from "@/components/layout-image-grid"
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Spacer for header */}
-      <div className="header-height"></div>
-
       {/* Hero Section with Slider */}
       <HeroGalleryScroll />
 
