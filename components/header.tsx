@@ -1,12 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 import { ThemeToggle } from "./theme-toggle"
-import Logo from "./logo"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -98,7 +97,7 @@ export default function Header() {
             {/* <Logo /> */}
             <Link
               href="/"
-              className={`font-old-london p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors ${
+              className={`font-cormorantGaramond p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors ${
                 isScrolled || pathname !== "/" ? "text-primary" : "text-primary"
               }`}
             >
@@ -170,7 +169,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-4 py-3 text-3xl font-old-london ${
+                  className={`block px-4 py-3 text-3xl font-cormorantGaramond ${
                     pathname === item.href ? "text-primary font-medium" : "text-foreground hover:text-primary/80"
                   }`}
                   onClick={() => setIsMenuOpen(false)}

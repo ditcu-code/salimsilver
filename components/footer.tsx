@@ -1,10 +1,9 @@
 "use client"
 
-import Link from "next/link"
-import { Instagram, Twitter, Facebook, Youtube, Linkedin, Github } from "lucide-react"
-import { ThemeToggle } from "./theme-toggle"
 import { motion } from "framer-motion"
-import Logo from "./logo"
+import { Facebook, Github, Instagram, Twitter, Youtube } from "lucide-react"
+import Link from "next/link"
+import { ThemeToggle } from "./theme-toggle"
 import useDisableRightClick from './useDisableRightClick'; // Adjust the import path as necessary
 
 export default function Footer() {
@@ -28,7 +27,7 @@ export default function Footer() {
         >
           <div className="flex items-center gap-3 mb-4">
             {/* <Logo /> */}
-            <Link href="/" className="font-old-london text-2xl font-bold inline-block text-foreground">
+            <Link href="/" className="font-cormorantGaramond text-2xl font-bold inline-block text-foreground">
               X100
             </Link>
           </div>

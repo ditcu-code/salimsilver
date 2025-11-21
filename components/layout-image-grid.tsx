@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import React, { useState } from "react";
 
 type Card = {
   id: number;
@@ -14,7 +13,7 @@ type Card = {
 const SkeletonOne = () => {
   return (
     <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
+      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
         Tokyo Nights
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -27,7 +26,7 @@ const SkeletonOne = () => {
 const SkeletonTwo = () => {
   return (
     <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
+      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
         Urban Portraits
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -40,7 +39,7 @@ const SkeletonTwo = () => {
 const SkeletonThree = () => {
   return (
     <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
+      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
         New Zealand
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -53,7 +52,7 @@ const SkeletonThree = () => {
 const SkeletonFour = () => {
   return (
     <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
+      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
         Iceland
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">

@@ -1,15 +1,22 @@
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import Header from "@/components/header"
 import Footer from "@/components/footer"
-import SoundEffects from "@/components/sound-effects"
+import Header from "@/components/header"
 import SafariThemeColor from "@/components/safari-theme-color"
+import SoundEffects from "@/components/sound-effects"
+import { ThemeProvider } from "@/components/theme-provider"
+import type { Metadata } from "next"
+import { Cormorant_Garamond, Lato } from "next/font/google"
+import "./globals.css"
 
-const inter = Inter({
+const lato = Lato({
+  weight: ["100", "300", "400", "700", "900"],
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-lato",
+})
+
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant-garamond",
+  weight: ["300", "400", "500", "600", "700"],
 })
 
 export const metadata: Metadata = {
@@ -24,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={`${lato.variable} ${cormorantGaramond.variable}`} suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SafariThemeColor />

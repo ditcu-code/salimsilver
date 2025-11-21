@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-inter: "Inter", sans-serif;
-  --font-old-london: "Old London";
+  --font-lato: "Lato", sans-serif;
+  --font-cormorant-garamond: "Cormorant Garamond", serif;
 }
 
 @layer utilities {
@@ -172,31 +172,18 @@ body.sounds-muted a {
 }
 
 /* Font family */
-@font-face {
-  font-family: "Old London";
-  src: url("/fonts/Old London Font.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-         }
-    
          h1,
          h2,
          h3,
          h4,
          h5,
          h6 {
-           font-family: var(--font-old-london);
+           font-family: var(--font-cormorant-garamond);
            font-weight: 400;
            font-style: normal;
            font-display: swap;
            letter-spacing: 0.07em;
          }
-
-/* Font family */
-.font-old-london {
-  font-family: var(--font-old-london);
-}
 
 /* Dynamic frame layout */
 @media (max-width: 768px) {
