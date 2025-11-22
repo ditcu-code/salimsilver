@@ -14,10 +14,10 @@ const SkeletonOne = () => {
   return (
     <div>
       <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
-        Tokyo Nights
+        Handcrafted Rings
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Exploring the vibrant nightlife and neon-lit streets of Tokyo's urban landscape.
+        Discover our collection of intricate silver rings, each piece telling a story of Balinese tradition.
       </p>
     </div>
   );
@@ -27,10 +27,10 @@ const SkeletonTwo = () => {
   return (
     <div>
       <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
-        Urban Portraits
+        Artisan Necklaces
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Capturing the essence of city life through intimate street photography and urban portraiture.
+        Elegant silver necklaces featuring bold pendants and delicate chains, perfect for any occasion.
       </p>
     </div>
   );
@@ -40,10 +40,10 @@ const SkeletonThree = () => {
   return (
     <div>
       <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
-        New Zealand
+        Silver Bracelets
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Documenting the raw beauty and untamed wilderness of New Zealand's landscapes.
+        Hand-woven and solid silver bracelets that combine modern style with timeless craftsmanship.
       </p>
     </div>
   );
@@ -53,10 +53,10 @@ const SkeletonFour = () => {
   return (
     <div>
       <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
-        Iceland
+        Statement Earrings
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Capturing the ethereal beauty of Iceland's dramatic landscapes and natural wonders.
+        From subtle studs to dramatic drops, our earrings are designed to captivate and inspire.
       </p>
     </div>
   );
@@ -67,25 +67,25 @@ const cards = [
     id: 1,
     content: <SkeletonOne />,
     className: "md:col-span-2",
-    thumbnail: "/Tokyo/tokyo-22.webp",
+    thumbnail: "/images/rings-cover.png",
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
-    thumbnail: "/Urban Portraits/urban-portraits-1.jpg",
+    thumbnail: "/images/necklaces-cover.png",
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
-    thumbnail: "/new zealand/new-zealand-18.jpg",
+    thumbnail: "/images/bracelets-cover.png",
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
-    thumbnail: "/Iceland/iceland-1.jpg",
+    thumbnail: "/images/hero-background.png",
   },
 ];
 
