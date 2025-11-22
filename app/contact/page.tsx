@@ -138,7 +138,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border-[1px] border-border bg-secondary/30">
+      <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border border-border bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             className="text-3xl text-center mb-12 font-cormorantGaramond"
