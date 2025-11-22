@@ -26,48 +26,67 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-    --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 0%;
+    /* Light Mode - Cream/Gold/Charcoal */
+    --background: 40 20% 97%; /* Light Cream */
+    --foreground: 220 20% 10%; /* Deep Charcoal */
+    
+    --card: 40 20% 97%;
+    --card-foreground: 220 20% 10%;
+    
+    --popover: 40 20% 97%;
+    --popover-foreground: 220 20% 10%;
+    
+    --primary: 220 20% 10%; /* Deep Charcoal */
+    --primary-foreground: 45 30% 90%; /* Soft Gold/Cream */
+    
+    --secondary: 45 20% 90%; /* Soft Beige */
+    --secondary-foreground: 220 20% 10%;
+    
+    --muted: 40 10% 94%;
+    --muted-foreground: 220 10% 40%;
+    
+    --accent: 45 40% 60%; /* Gold Accent */
+    --accent-foreground: 220 20% 10%;
+    
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 0%;
-    --radius: 0.5rem;
+    
+    --border: 45 10% 85%;
+    --input: 45 10% 85%;
+    --ring: 220 20% 10%;
+    
+    --radius: 0.25rem; /* Sharper corners for elegance */
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
+    /* Dark Mode - Midnight/Gold */
+    --background: 220 25% 10%; /* Midnight Blue/Charcoal */
+    --foreground: 45 20% 90%; /* Soft Cream */
+    
+    --card: 220 25% 12%;
+    --card-foreground: 45 20% 90%;
+    
+    --popover: 220 25% 10%;
+    --popover-foreground: 45 20% 90%;
+    
+    --primary: 45 30% 80%; /* Muted Gold */
+    --primary-foreground: 220 25% 10%;
+    
+    --secondary: 220 20% 20%;
+    --secondary-foreground: 45 20% 90%;
+    
+    --muted: 220 20% 20%;
+    --muted-foreground: 45 10% 70%;
+    
+    --accent: 45 40% 50%; /* Gold */
+    --accent-foreground: 220 25% 10%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 45 20% 90%;
+    
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 45 30% 80%;
   }
 }
 

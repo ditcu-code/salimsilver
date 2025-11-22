@@ -14,11 +14,11 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
 const IMAGES = [
-  "/Morocco/cover.webp",
-  "/new zealand/cover.jpg",
-  "/Tokyo/cover.jpg",
-  "/Bali/cover.jpeg",
-  "/Iceland/cover.jpg",
+  "/images/hero-background.png",
+  "/images/rings-cover.png",
+  "/images/necklaces-cover.png",
+  "/images/bracelets-cover.png",
+  "/images/hero-background.png",
 ]
 
 const NAV_REVEAL_PROGRESS = 0.55
@@ -59,21 +59,20 @@ export function HeroGalleryScroll() {
 
       <ContainerScale className="relative z-10 text-center" appearAt={NAV_REVEAL_PROGRESS}>
         <motion.h1
-          className="max-w-xl text-5xl tracking-tighter text-primary text-backdrop-invert"
+          className="max-w-4xl text-5xl md:text-7xl tracking-tighter text-primary text-backdrop-invert font-cormorantGaramond"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          X100
+          Salim Silver
         </motion.h1>
         <motion.p
-          className="my-6 max-w-xl text-primary "
+          className="my-6 max-w-xl text-primary text-lg md:text-xl font-light"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          A Next.js portfolio for professional photographers, designed to flawlessly showcase
-          powerful visual stories.{" "}
+          Handcrafted silver jewelry that tells a story of elegance and tradition.
         </motion.p>
         <div className="flex items-center flex-col md:flex-row justify-center gap-4">
           <motion.div
@@ -81,8 +80,8 @@ export function HeroGalleryScroll() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <AnimatedButton href="/showcase" variant="outline" icon={<ArrowRight size={16} />}>
-              Showcase
+            <AnimatedButton href="/catalog" variant="outline" icon={<ArrowRight size={16} />}>
+              View Catalog
             </AnimatedButton>
           </motion.div>
           <motion.div
@@ -91,7 +90,7 @@ export function HeroGalleryScroll() {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <AnimatedButton href="/about" variant="outline" icon={<ArrowRight size={16} />}>
-              About
+              Our Story
             </AnimatedButton>
           </motion.div>
         </div>

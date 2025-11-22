@@ -3,7 +3,7 @@ import Header from "@/components/header"
 import SafariThemeColor from "@/components/safari-theme-color"
 import SoundEffects from "@/components/sound-effects"
 import { ThemeProvider } from "@/components/theme-provider"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Lato } from "next/font/google"
 import "./globals.css"
 
@@ -20,12 +20,14 @@ const cormorantGaramond = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: "X100 | Next.js Theme for Photographers",
-  description: "A Next.js portfolio for professional photographers, designed to flawlessly showcase powerful visual stories.",
-  // Set initial theme-color meta tag for iOS Safari
+  title: "Salim Silver | Handcrafted Balinese Jewelry",
+  description: "Discover the elegance of handcrafted silver jewelry from Bali. Rings, necklaces, and bracelets made with tradition and passion.",
+}
+
+export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: light)', color: '#FDFBF7' },
+    { media: '(prefers-color-scheme: dark)', color: '#1A1A1A' },
   ],
 }
 

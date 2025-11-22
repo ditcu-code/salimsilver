@@ -2,6 +2,13 @@
 
 import { useEffect, useState, useRef } from "react"
 
+const soundFiles = [
+  "/sounds/metal-plate-hit-1.mp3",
+  "/sounds/metal-plate-hit-4.mp3",
+  "/sounds/metal-plate-hit-5.mp3",
+  "/sounds/metal-plate-hit-6.mp3",
+]
+
 // Helper function to detect mobile devices
 function isMobileDevice() {
   if (typeof window === 'undefined') return false
@@ -11,44 +18,59 @@ function isMobileDevice() {
   ) || (window.innerWidth <= 768)
 }
 
-// Singleton for audio element to prevent multiple instances
-let globalAudioElement: HTMLAudioElement | null = null
+// Singleton for audio elements to prevent multiple instances
+let globalAudioElements: HTMLAudioElement[] = []
 let globalAudioContainer: HTMLDivElement | null = null
 let setupComplete = false
 
-// Create a singleton audio element that can be reused across the app
-function getOrCreateAudioElement(): HTMLAudioElement | null {
+function getRandomAudioElement(
+  audioElements: HTMLAudioElement[] | null,
+): HTMLAudioElement | null {
+  if (!audioElements?.length) return null
+
+  const randomIndex = Math.floor(Math.random() * audioElements.length)
+  return audioElements[randomIndex]
+}
+
+// Create a singleton set of audio elements that can be reused across the app
+function getOrCreateAudioElements(): HTMLAudioElement[] | null {
   // Early return if we're in a mobile environment
   if (typeof window !== 'undefined' && isMobileDevice()) {
     return null
   }
 
   // Return existing instance if already created
-  if (globalAudioElement) {
-    return globalAudioElement
+  if (globalAudioElements.length) {
+    return globalAudioElements
   }
 
   try {
-    // First time setup - create container and audio element
+    // First time setup - create container and audio elements
     if (!globalAudioContainer) {
       globalAudioContainer = document.createElement('div')
       globalAudioContainer.style.display = 'none'
       document.body.appendChild(globalAudioContainer)
     }
 
-    globalAudioElement = document.createElement('audio')
-    globalAudioElement.src = "/Fuji Camera Shutter Sound.mp3"
-    globalAudioElement.preload = "auto"
-    globalAudioElement.style.display = "none"
-    globalAudioElement.setAttribute('playsinline', 'true')
-    globalAudioElement.setAttribute('webkit-playsinline', 'true')
-    globalAudioElement.volume = 0.4
-    
-    // Append to container
-    globalAudioContainer.appendChild(globalAudioElement)
+    if (!globalAudioContainer) return null
+    const container = globalAudioContainer
+
+    globalAudioElements = soundFiles.map((source) => {
+      const audioElement = document.createElement('audio')
+      audioElement.src = source
+      audioElement.preload = "auto"
+      audioElement.style.display = "none"
+      audioElement.setAttribute('playsinline', 'true')
+      audioElement.setAttribute('webkit-playsinline', 'true')
+      audioElement.volume = 0.4
+
+      container.appendChild(audioElement)
+      return audioElement
+    })
+
     setupComplete = true
     
-    return globalAudioElement
+    return globalAudioElements
   } catch (error) {
     console.warn("Error creating audio singleton:", error)
     return null
@@ -60,7 +82,7 @@ export default function SoundEffects() {
   // Track if sound is enabled
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const audioRef = useRef<HTMLAudioElement[] | null>(null)
 
   useEffect(() => {
     // Check if device is mobile on mount
@@ -68,8 +90,8 @@ export default function SoundEffects() {
     setIsMobile(mobile)
     
     if (!mobile && !audioRef.current) {
-      // Use the singleton audio element
-      audioRef.current = getOrCreateAudioElement()
+      // Use the singleton audio elements
+      audioRef.current = getOrCreateAudioElements()
     }
 
     // Also listen for resize events in case of orientation changes
@@ -94,10 +116,13 @@ export default function SoundEffects() {
 
       // Only play sound for links
       if (link && !link.classList.contains("no-sound")) {
+        const audio = getRandomAudioElement(audioRef.current)
+        if (!audio) return
+
         try {
           // Reset and play
-          audioRef.current.currentTime = 0
-          audioRef.current.play().catch((err) => {
+          audio.currentTime = 0
+          audio.play().catch((err) => {
             console.warn("Could not play sound, disabling sound effects:", err)
             setSoundEnabled(false)
           })
@@ -117,8 +142,8 @@ export default function SoundEffects() {
     }
   }, [soundEnabled, isMobile])
 
-  // Don't render anything - we're using the singleton audio element
-  // that was created in the useEffect
+  // Don't render anything - we're using the singleton audio elements
+  // that were created in the useEffect
   return null
 }
 
@@ -127,7 +152,7 @@ export function cleanupAudioSingleton() {
   if (globalAudioContainer && globalAudioContainer.parentNode) {
     try {
       globalAudioContainer.parentNode.removeChild(globalAudioContainer)
-      globalAudioElement = null
+      globalAudioElements = []
       globalAudioContainer = null
       setupComplete = false
     } catch (e) {
@@ -142,11 +167,12 @@ export function useShutterSound() {
   
   useEffect(() => {
     // Check if device is mobile on mount
-    setIsMobile(isMobileDevice())
+    const mobile = isMobileDevice()
+    setIsMobile(mobile)
     
-    // Initialize the audio element if not mobile and not already setup
-    if (!isMobileDevice() && !setupComplete) {
-      getOrCreateAudioElement()
+    // Initialize the audio elements if not mobile and not already setup
+    if (!mobile && !setupComplete) {
+      getOrCreateAudioElements()
     }
   }, [])
 
@@ -155,8 +181,11 @@ export function useShutterSound() {
     // Don't play sounds on mobile
     if (isMobile) return
     
-    // Get the singleton audio element
-    const audio = globalAudioElement
+    // Get one of the singleton audio elements
+    const audioElements = globalAudioElements.length
+      ? globalAudioElements
+      : getOrCreateAudioElements()
+    const audio = getRandomAudioElement(audioElements)
     if (!audio) return
 
     try {

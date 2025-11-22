@@ -1,17 +1,17 @@
-# Next.js Photography Portfolio | X100
+# Salim Silver | Handcrafted Balinese Jewelry
 
-![X100 - Next.js Photography Portfolio](https://github.com/lilxyzz/x100/blob/main/public/X100-cover.webp)
+![Salim Silver](public/images/hero-background.png)
 
-A modern, responsive photography portfolio built with Next.js 15+, featuring dynamic collections, smooth animations, and a beautiful dark/light theme.
-
-I created this theme as I’ve been considering purchasing a camera recently, and it aligned with some ideas I wanted to explore. I may contribute further updates in the future, but can’t make any guarantees at this stage. Enjoy 🤙
+A premium jewelry catalog and company profile website built with Next.js 15+, featuring a sophisticated design system, dynamic product filtering, and smooth animations.
 
 ## 🌟 Features
 
-- **Dynamic Photo Collections**: Automatically loads and displays photos from organized folders
-- **Responsive Design**: Fully responsive layout optimized for all devices
-- **Dark/Light Theme**: Elegant theme switching with smooth transitions
-- **Modern Animations**: Powered by Framer Motion for smooth interactions
+- **Jewelry Catalog**: Browse handcrafted collections with a masonry-style grid layout.
+- **Category Filtering**: Filter products by type (Rings, Necklaces, Bracelets).
+- **Premium Aesthetic**: Custom design system with elegant typography and color palette.
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop.
+- **Dark/Light Theme**: Sophisticated theme switching with gold accents.
+- **Modern Animations**: Powered by Framer Motion for a luxurious feel.
 
 ## 🚀 Tech Stack
 
@@ -20,16 +20,15 @@ I created this theme as I’ve been considering purchasing a camera recently, an
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **Icons**: Lucide Icons
-- **Formspree**: Contact Form
-- **React Photo Album**: [Masonry Layout](https://react-photo-album.com/examples/masonry)
+- **Gallery**: React Photo Album
 
 ## 🛠️ Setup Instructions
 
 1. **Clone the repository**
 
    ```bash
-   git clone [https://github.com/lilxyzz/x100]
-   cd x100
+   git clone [repository-url]
+   cd salimsilver
    ```
 
 2. **Install dependencies**
@@ -49,53 +48,29 @@ I created this theme as I’ve been considering purchasing a camera recently, an
 
 Open http://localhost:3000 with your browser to see the result.
 
-## 📸 Photo Collections
+## 💎 Collections
 
-The portfolio is organized into collections:
+The catalog is organized into core jewelry collections:
 
-- Urban Portraits
-- Tokyo
-- New Zealand
-- Iceland
-- Bali
-- Morocco
+- **Rings**: Handcrafted silver rings with intricate details.
+- **Necklaces**: Statement pieces and delicate chains.
+- **Bracelets**: Artisan cuffs and woven designs.
 
-Each collection should be placed in its corresponding folder in the `public` directory. Update image Validation /scripts/validate-images.ts
+Collection data is managed in `lib/collections.ts`.
 
-## 🎨 Theme Customization
+## 🎨 Customization
 
-### Colors
+### Design System
 
-The theme colors are defined in `globals.css` using CSS variables. Modify the root variables to customize the color scheme:
+The theme uses a premium color palette defined in `app/globals.css`:
+- **Light Mode**: Light Cream background, Deep Charcoal text, Gold accents.
+- **Dark Mode**: Midnight Blue background, Soft Cream text, Muted Gold accents.
 
-```css
-:root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 0%;
-  /* ... other color variables */
-}
-```
+### Typography
 
-## 🌓 Dark Mode
-
-The theme toggle is implemented using `next-themes` and includes:
-
-- System preference detection
-- Smooth transitions
-- Persistent theme selection
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive with breakpoints:
-
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
+- **Headings**: Cormorant Garamond (Serif)
+- **Body**: Lato (Sans-serif)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+This project is licensed under the MIT License.

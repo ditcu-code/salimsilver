@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Facebook, Github, Instagram, Twitter, Youtube } from "lucide-react"
+import { Facebook, Instagram, Twitter } from "lucide-react"
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
 import useDisableRightClick from './useDisableRightClick'; // Adjust the import path as necessary
@@ -28,16 +28,15 @@ export default function Footer() {
           <div className="flex items-center gap-3 mb-4">
             {/* <Logo /> */}
             <Link href="/" className="font-cormorantGaramond text-2xl font-bold inline-block text-foreground">
-              X100
+              Salim Silver
             </Link>
           </div>
           <p className="text-muted-foreground max-w-md mb-6 max-w-xs">
-            Capturing moments and telling stories through the lens. Professional photography services for all your
-            needs.
+            Handcrafted silver jewelry that tells a story of elegance and tradition. Timeless pieces for the modern soul.
           </p>
           <div className="flex space-x-4 items-center">
             <motion.a
-              href="https://github.com/lilxyzz"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -48,7 +47,7 @@ export default function Footer() {
               <span className="sr-only">Instagram</span>
             </motion.a>
             <motion.a
-              href="https://github.com/lilxyzz"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -59,7 +58,7 @@ export default function Footer() {
               <span className="sr-only">Twitter</span>
             </motion.a>
             <motion.a
-              href="https://github.com/lilxyzz"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -69,39 +68,6 @@ export default function Footer() {
               <Facebook size={20} />
               <span className="sr-only">Facebook</span>
             </motion.a>
-              <motion.a
-                href="https://github.com/lilxyzz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Youtube size={20} />
-                <span className="sr-only">Youtube</span>
-            </motion.a>
-             {/* <motion.a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin size={20} />
-                <span className="sr-only">Linkedin</span>
-            </motion.a> */}
-             <motion.a
-                href="https://github.com/lilxyzz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github size={20} />
-                <span className="sr-only">Github</span>
-              </motion.a> 
             <ThemeToggle />
           </div>
         </motion.div>
@@ -115,13 +81,18 @@ export default function Footer() {
           <h3 className="section-title text-2xl mb-4">Quick Links</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/showcase" className="text-muted-foreground hover:text-primary transition-colors">
-                Showcase
+              <Link href="/catalog" className="text-muted-foreground hover:text-primary transition-colors">
+                Catalog
+              </Link>
+            </li>
+            <li>
+              <Link href="/collections" className="text-muted-foreground hover:text-primary transition-colors">
+                Collections
               </Link>
             </li>
             <li>
               <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
-                About
+                About Us
               </Link>
             </li>
             <li>
@@ -141,10 +112,9 @@ export default function Footer() {
           <h3 className="section-title text-2xl mb-4">Contact</h3>
           <ul className="space-y-2 text-muted-foreground">
             <h4 className="text-primary">Email</h4>
-            <a href="mailto:contact@x100.com"><li>contact@x100.com</li></a> 
-            {/* <li>Phone: +1 (555) 123-4567</li> */}
+            <a href="mailto:hello@salimsilver.com"><li>hello@salimsilver.com</li></a> 
             <h4 className="text-primary">Location</h4>
-            <li>39.1569° S, 175.6321° E</li>
+            <li>Bali, Indonesia</li>
           </ul>
         </motion.div>
       </div>
@@ -157,8 +127,7 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          © {new Date().getFullYear()} <Link href="https://travislord.xyz" target="_blank"
-                rel="noopener noreferrer" className="hover:text-primary transition-colors">TL</Link>. All rights reserved. 🕸️
+          © {new Date().getFullYear()} Salim Silver. All rights reserved.
         </motion.p>
       </div>
     </motion.footer>

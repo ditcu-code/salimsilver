@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
-import { ArrowRight, Camera, Globe, Award, Users } from "lucide-react"
-import { motion } from "framer-motion"
 import AnimatedButton from "@/components/animated-button"
+import { motion } from "framer-motion"
+import { ArrowRight, Award, Globe, Users } from "lucide-react"
+import Image from "next/image"
 
 export default function AboutPage() {
   return (
@@ -11,8 +11,8 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src="/Iceland/iceland-7.jpg?height=800&width=1920"
-          alt="About X100"
+          src="/images/hero-background.png"
+          alt="About Salim Silver"
           fill
           priority
           className="object-cover"
@@ -24,8 +24,8 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl text-white mb-4">About Me</h1>
-          <p className="text-white/90 text-lg max-w-2xl">The story behind the lens</p>
+          <h1 className="text-4xl md:text-5xl text-white mb-4 font-cormorantGaramond">Our Story</h1>
+          <p className="text-white/90 text-lg max-w-2xl">Crafting timeless elegance since 2010</p>
         </motion.div>
       </section>
       <div className="header-height"></div>
@@ -41,8 +41,8 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <Image
-              src="/Iceland/iceland-12.jpg?height=1200&width=800"
-              alt="Photographer portrait"
+              src="/images/rings-cover.png"
+              alt="Jewelry craftsmanship"
               fill
               className="object-cover"
             />
@@ -53,36 +53,31 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-6">The Journey</h2>
+            <h2 className="text-3xl md:text-4xl mb-6 font-cormorantGaramond">The Heritage</h2>
             <p className="text-primary mb-4">
-              I'm a professional photographer with over 10 years of experience capturing moments around the world. My
-              passion for photography began during a backpacking trip through Southeast Asia, where I discovered the
-              power of visual storytelling.
+              Salim Silver was born from a deep appreciation for the ancient art of Balinese silver crafting. 
+              Nestled in the cultural heart of Bali, our workshop is a place where tradition meets modern design.
             </p>
             <p className="text-primary mb-4">
-              Since then, I've traveled to over 30 countries, documenting landscapes, cultures, and urban environments.
-              My work has been featured in publications like National Geographic, Condé Nast Traveler, and Vogue.
+              Our founder, Salim, began his journey as an apprentice to master silversmiths, learning the intricate 
+              techniques of granulation and filigree that define our signature style.
             </p>
             <p className="text-primary mb-6">
-              I believe that photography has the power to connect people across cultures and inspire a deeper
-              appreciation for our world. Each image I create aims to tell a story and evoke emotion.
+              Today, we work with a collective of local artisans to create pieces that are not just jewelry, 
+              but wearable art that honors our heritage.
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2">
-                <Camera size={20} className="text-primary" />
-                <span className="text-primary">Fujifilm x100vi & Leica M10</span>
+                <Award size={20} className="text-primary" />
+                <span className="text-primary">Master Craftsmanship</span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe size={20} className="text-primary" />
-                <span className="text-primary">30+ Countries</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award size={20} className="text-primary" />
-                <span className="text-primary">Award-winning</span>
+                <span className="text-primary">Ethically Sourced</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users size={20} className="text-primary" />
-                <span className="text-primary">Workshops & Mentoring</span>
+                <span className="text-primary">Artisan Collective</span>
               </div>
             </div>
           </motion.div>
@@ -93,30 +88,30 @@ export default function AboutPage() {
       <section className="py-16 px-4 md:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.h2
-            className="text-3xl md:text-4xl mb-8 text-center"
+            className="text-3xl md:text-4xl mb-8 text-center font-cormorantGaramond"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            My Philosophy
+            Our Values
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Authenticity",
+                title: "Tradition",
                 description:
-                  "I believe in capturing authentic moments that tell real stories. My approach focuses on finding beauty in truth rather than manufacturing perfect scenes.",
+                  "We are dedicated to preserving the ancient techniques of Balinese silversmithing, ensuring these skills are passed down to future generations.",
               },
               {
-                title: "Connection",
+                title: "Quality",
                 description:
-                  "Photography creates connections - between viewer and subject, between cultures, and between people. I strive to foster these connections through my work.",
+                  "We use only the finest 925 sterling silver and ethically sourced gemstones. Every piece is inspected to ensure it meets our high standards.",
               },
               {
-                title: "Respect",
+                title: "Sustainability",
                 description:
-                  "I approach every environment and subject with deep respect. This means respecting cultures, natural spaces, and the stories I'm privileged to capture.",
+                  "We are committed to sustainable practices, from responsible sourcing of materials to minimizing waste in our workshop.",
               },
             ].map((item, index) => (
               <motion.div
@@ -139,45 +134,39 @@ export default function AboutPage() {
       {/* Timeline */}
       <section className="py-16 px-4 md:px-8 max-w-5xl mx-auto">
         <motion.h2
-          className="text-3xl md:text-4xl mb-12 text-center"
+          className="text-3xl md:text-4xl mb-12 text-center font-cormorantGaramond"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          My Journey
+          Our Journey
         </motion.h2>
         <div className="space-y-12">
           {[
             {
-              year: "2013",
-              title: "First Exhibition",
+              year: "2010",
+              title: "The Beginning",
               description:
-                "Hosted my first photography exhibition in New York, featuring landscapes from across North America.",
+                "Salim opens his first small workshop in Celuk, Bali, focusing on traditional designs.",
             },
             {
               year: "2015",
-              title: "National Geographic Feature",
+              title: "Expanding Horizons",
               description:
-                "My series on indigenous communities was featured in National Geographic, marking a significant milestone in my career.",
+                "We launched our first international collection, bringing Balinese craftsmanship to a global audience.",
             },
             {
               year: "2018",
-              title: "Photography Book",
+              title: "The Collective",
               description:
-                'Published my first photography book, "Perspectives," showcasing a decade of travel photography.',
-            },
-            {
-              year: "2020",
-              title: "Photography Workshops",
-              description:
-                "Began offering photography workshops and mentoring programs to share knowledge and techniques with aspiring photographers.",
+                "Established the Artisan Collective to support and train local silversmiths.",
             },
             {
               year: "Present",
-              title: "Ongoing Projects",
+              title: "Modern Legacy",
               description:
-                "Currently working on long-term documentary projects focused on environmental conservation and cultural preservation.",
+                "Continuing to innovate while honoring tradition, creating pieces for the modern soul.",
             },
           ].map((item, index) => (
             <motion.div
@@ -201,7 +190,7 @@ export default function AboutPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border-[1px] border-border">
+      <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border-[1px] border-border bg-secondary/30">
         <motion.div
           className="max-w-7xl mx-auto text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -209,12 +198,12 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary text-3xl md:text-4xl mb-6">Collaborate?</h2>
+          <h2 className="text-primary text-3xl md:text-4xl mb-6 font-cormorantGaramond">Visit Our Workshop</h2>
           <p className="text-primary max-w-2xl mx-auto mb-8">
-            Whether you're looking for prints, licensing, or a custom photography project, feel free to get in touch.
+            Experience the magic of silver crafting firsthand. Book a tour or a jewelry-making class.
           </p>
           <AnimatedButton href="/contact" variant="primary" icon={<ArrowRight size={18} />}>
-            Get in Touch
+            Book a Visit
           </AnimatedButton>
         </motion.div>
       </section>

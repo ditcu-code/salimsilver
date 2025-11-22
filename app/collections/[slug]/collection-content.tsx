@@ -1,14 +1,14 @@
 "use client"
 
-import Image from "next/image"
+import AnimatedButton from "@/components/animated-button"
+import FeaturedCollections from "@/components/featured-collections"
 import { PhotoGallery } from "@/components/photo-gallery"
 import TagList from "@/components/tag-list"
-import { motion } from "framer-motion"
 import type { Collection } from "@/lib/types"
-import { useEffect } from "react"
-import FeaturedCollections from "@/components/featured-collections"
-import AnimatedButton from "@/components/animated-button"
+import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { useEffect } from "react"
 
 interface Props {
   collection: Collection
@@ -72,9 +72,9 @@ export function CollectionContent({ collection }: Props) {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4">Featured Collections</h2>
+            <h2 className="text-primary text-3xl md:text-4xl mb-4 font-cormorantGaramond">Featured Collections</h2>
             <p className="text-primary max-w-2xl mx-auto">
-              Explore some of my most popular photography collections from around the world
+              Explore our other handcrafted collections
             </p>
           </motion.div>
           <FeaturedCollections />
@@ -85,7 +85,7 @@ export function CollectionContent({ collection }: Props) {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <AnimatedButton href="/showcase" variant="primary" icon={<ArrowRight size={18} />}>
+            <AnimatedButton href="/catalog" variant="primary" icon={<ArrowRight size={18} />}>
               View All Collections
             </AnimatedButton>
           </motion.div>
