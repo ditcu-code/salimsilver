@@ -25,7 +25,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-5xl text-white mb-4 font-cormorantGaramond">Our Story</h1>
-          <p className="text-white/90 text-lg max-w-2xl">Crafting timeless elegance since 2010</p>
+          <p className="text-white/90 text-lg max-w-2xl">Crafting timeless elegance since 1990</p>
         </motion.div>
       </section>
       <div className="header-height"></div>
@@ -55,16 +55,16 @@ export default function AboutPage() {
           >
             <h2 className="text-3xl md:text-4xl mb-6 font-cormorantGaramond">The Heritage</h2>
             <p className="text-primary mb-4">
-              Salim Silver was born from a deep appreciation for the ancient art of Balinese silver crafting. 
-              Nestled in the cultural heart of Bali, our workshop is a place where tradition meets modern design.
+              Salim Silver is a guardian of heritage in Kotagede, the historic capital of the Mataram Sultanate. 
+              Our workshop is a "living museum" where the ancient art of Javanese silver crafting is preserved and renewed.
             </p>
             <p className="text-primary mb-4">
-              Our founder, Salim, began his journey as an apprentice to master silversmiths, learning the intricate 
-              techniques of granulation and filigree that define our signature style.
+              Our founder, Priyo Jatmiko Salim, is a UGM alumnus who inherited the family business in 1987. 
+              He has dedicated his life to mastering and revitalizing the intricate techniques of Repoussé (embossing) and Filigree.
             </p>
             <p className="text-primary mb-6">
-              Today, we work with a collective of local artisans to create pieces that are not just jewelry, 
-              but wearable art that honors our heritage.
+              Today, we continue to create pieces that are not just jewelry, but wearable art that honors our heritage 
+              while embracing the future of design.
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2">
@@ -101,7 +101,7 @@ export default function AboutPage() {
               {
                 title: "Tradition",
                 description:
-                  "We are dedicated to preserving the ancient techniques of Balinese silversmithing, ensuring these skills are passed down to future generations.",
+                  "We are dedicated to the renewal of Kotagede's silver traditions, ensuring these skills are not just preserved but evolved for the future.",
               },
               {
                 title: "Quality",
@@ -145,28 +145,28 @@ export default function AboutPage() {
         <div className="space-y-12">
           {[
             {
-              year: "2010",
-              title: "The Beginning",
+              year: "1987",
+              title: "The Inheritance",
               description:
-                "Salim opens his first small workshop in Celuk, Bali, focusing on traditional designs.",
+                "Priyo Jatmiko Salim inherits the family silver handicraft business, beginning a new chapter.",
             },
             {
-              year: "2015",
-              title: "Expanding Horizons",
+              year: "1990",
+              title: "Official Establishment",
               description:
-                "We launched our first international collection, bringing Balinese craftsmanship to a global audience.",
+                "Salim Silver is formally established, marking the transition to a modern enterprise.",
             },
             {
-              year: "2018",
-              title: "The Collective",
+              year: "1998",
+              title: "Resilience",
               description:
-                "Established the Artisan Collective to support and train local silversmiths.",
+                "Navigating the Asian Financial Crisis by focusing on high-quality exports to international markets.",
             },
             {
               year: "Present",
-              title: "Modern Legacy",
+              title: "Living Museum",
               description:
-                "Continuing to innovate while honoring tradition, creating pieces for the modern soul.",
+                "Continuing as a bastion of heritage, creating 'art for the future' in the heart of Kotagede.",
             },
           ].map((item, index) => (
             <motion.div

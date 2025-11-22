@@ -1,4 +1,4 @@
-# Salim Silver | Handcrafted Balinese Jewelry
+# Salim Silver | Handcrafted Javanese Jewelry
 
 ![Salim Silver](public/images/hero-background.png)
 

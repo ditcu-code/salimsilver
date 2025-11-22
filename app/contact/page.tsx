@@ -72,7 +72,7 @@ export default function ContactPage() {
                 {
                   icon: <MapPin className="text-primary mt-1" size={20} />,
                   title: "Workshop",
-                  content: "Celuk, Bali, Indonesia",
+                  content: "Kotagede, Yogyakarta, Indonesia",
                 },
                 {
                   icon: <Phone className="text-primary mt-1" size={20} />,

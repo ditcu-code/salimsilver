@@ -114,7 +114,7 @@ export default function Footer() {
             <h4 className="text-primary">Email</h4>
             <a href="mailto:hello@salimsilver.com"><li>hello@salimsilver.com</li></a> 
             <h4 className="text-primary">Location</h4>
-            <li>Bali, Indonesia</li>
+            <li>Kotagede, Yogyakarta</li>
           </ul>
         </motion.div>
       </div>

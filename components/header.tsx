@@ -114,7 +114,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className={`${
-                  pathname === item.href ? "text-primary font-medium border-b-[1px] border-border" : "hover:text-primary/80"
+                  pathname === item.href ? "text-primary font-semibold border-b-[1px] border-border" : "hover:text-primary/80"
                 } ${
                   isScrolled || pathname !== "/" ? "text-foreground" : "text-primary"
                 } px-1 py-2 text-sm transition-colors`}

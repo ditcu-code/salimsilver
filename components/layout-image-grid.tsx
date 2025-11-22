@@ -17,7 +17,7 @@ const SkeletonOne = () => {
         Handcrafted Rings
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Discover our collection of intricate silver rings, each piece telling a story of Balinese tradition.
+        Discover our collection of intricate silver rings, each piece telling a story of Javanese tradition.
       </p>
     </div>
   );

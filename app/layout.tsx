@@ -20,8 +20,8 @@ const cormorantGaramond = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: "Salim Silver | Handcrafted Balinese Jewelry",
-  description: "Discover the elegance of handcrafted silver jewelry from Bali. Rings, necklaces, and bracelets made with tradition and passion.",
+  title: "Salim Silver | Handcrafted Javanese Jewelry",
+  description: "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
 }
 
 export const viewport: Viewport = {

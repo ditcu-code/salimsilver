@@ -34,7 +34,7 @@ const collections: Collection[] = [
     title: "Rings",
     description: "Handcrafted silver rings",
     fullDescription:
-      "Our collection of handcrafted silver rings features intricate designs inspired by traditional Balinese craftsmanship. Each piece is a unique statement of elegance.",
+      "Our collection of handcrafted silver rings features intricate designs inspired by traditional Javanese craftsmanship. Each piece is a unique statement of elegance.",
     coverImage: "/images/rings-cover.png",
     tags: ["Silver", "Rings", "Handcrafted"],
     featured: true,
