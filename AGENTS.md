@@ -13,7 +13,6 @@
 - `yarn build`: Dry-run image validation, then produces the production build.
 - `yarn start`: Serves the prebuilt app.
 - `yarn lint`: Runs the Next.js ESLint config.
-- `yarn validate-images`: Full image validation; use before committing new or updated photos.
 
 ## Coding Style & Naming Conventions
 - Language: TypeScript + React function components; add `"use client"` only where required.
