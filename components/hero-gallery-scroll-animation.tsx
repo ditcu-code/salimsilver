@@ -3,9 +3,11 @@
 import * as React from "react"
 import { VariantProps, cva } from "class-variance-authority"
 import {
+  animate,
   motion,
   HTMLMotionProps,
   MotionValue,
+  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTransform,
@@ -110,11 +112,28 @@ const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
       ["0%", "-35%"],
       { clamp: true }
     )
-    const scale = useTransform(
+    const baseScale = useTransform(
       scrollYProgress,
       [0, 0.9],
       [1, 0.5],
       { clamp: true }
+    )
+    const appearProgress = useMotionValue(0)
+
+    React.useEffect(() => {
+      const controls = animate(appearProgress, 1, {
+        duration: 0.8,
+        ease: "easeOut",
+      })
+
+      return () => controls.stop()
+    }, [appearProgress])
+
+    const appearScale = useTransform(appearProgress, [0, 1], [0.9, 1])
+    const opacity = useTransform(appearProgress, [0, 1], [0, 1])
+    const scale = useTransform(
+      [baseScale, appearScale],
+      ([scrollValue, appearValue]) => Number(scrollValue) * Number(appearValue)
     )
 
     return (
@@ -124,6 +143,7 @@ const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
         style={{
           translate,
           scale,
+          opacity,
           ...style,
         }}
         {...props}
