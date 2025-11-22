@@ -1,14 +1,14 @@
 "use client"
 
-import type React from "react"
-import { useState, useCallback, useEffect, useRef } from "react"
+import type { Photo } from "@/lib/types"
+import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
+import { Camera, ChevronLeft, ChevronRight, X } from "lucide-react"
 import Image from "next/image"
+import type React from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import PhotoAlbum from "react-photo-album"
 import "react-photo-album/masonry.css"
-import { X, ChevronLeft, ChevronRight, Camera } from "lucide-react"
-import type { Photo } from "@/lib/types"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
 
 interface PhotoGalleryProps {
   photos: Photo[]
@@ -196,29 +196,18 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
     <>
       <style jsx global>{`
         .react-photo-album--photo-container {
-          position: relative !important;
           overflow: hidden;
-          border-radius: 20px !important;
+          border-radius: 20px;
           cursor: pointer;
           transition: transform 0.3s;
         }
 
-        .react-photo-album--image {
-          border-radius: 20px !important;
+        .react-photo-album--photo {
+          border-radius: 20px;
         }
 
         .react-photo-album--photo-container:hover {
           transform: scale(1.02);
-          border-radius: 20px !important;
-        }
-
-        .react-photo-album--photo {
-          display: block !important;
-          box-sizing: border-box !important;
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover !important;
-          border-radius: 20px !important;
         }
 
         .photo-metadata {
@@ -253,38 +242,11 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
           opacity: 1;
         }
 
-        /* Ensure masonry layout maintains aspect ratio */
-        .react-photo-album--photo-container > div {
-          width: 100% !important;
-          height: 100% !important;
-          position: relative !important;
-        }
-
-        /* Force image to fill container */
-        .react-photo-album--photo-container img {
-          position: absolute !important;
-          top: 0 !important;
-          left: 0 !important;
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover !important;
-          border-radius: 20px !important;
-        }
-
         /* Mobile styles */
         @media (max-width: 768px) {
           .react-photo-album {
             columns: 1 !important;
           }
-        }
-
-        /* Additional styles for Next.js Image wrapper */
-        .next-js-img-wrapper {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 20px !important;
-          overflow: hidden;
         }
       `}</style>
 
