@@ -21,7 +21,7 @@ const IMAGES = [
   "/images/hero-background.png",
 ]
 
-const NAV_REVEAL_PROGRESS = 0.55
+const NAV_REVEAL_PROGRESS = 1
 
 export function HeroGalleryScroll() {
   const isCondensedRef = useRef(false)

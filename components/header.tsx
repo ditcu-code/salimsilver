@@ -98,17 +98,17 @@ export default function Header() {
             {/* <Logo /> */}
             <Link
               href="/"
-              className={`font-cormorantGaramond p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors ${
+              className={`font-cormorantGaramond p-3 text-2xl duration-300 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors ${
                 isScrolled || pathname !== "/" ? "text-primary" : "text-primary"
               }`}
             >
-              X100
+              Salim Silver
             </Link>
           </div>
         
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors">
+          <nav className="absolute left-1/2 hidden h-10 -translate-x-1/2 transform items-center justify-center space-x-8 rounded-full bg-background/90 p-3 text-2xl text-primary transition-colors duration-300 md:flex">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -130,7 +130,7 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background text-primary transition-colors">
+          <div className="flex h-10 items-center justify-center rounded-full bg-background text-primary transition-colors duration-300 md:hidden">
             <motion.button
               whileTap={{ scale: 0.95 }}
               type="button"

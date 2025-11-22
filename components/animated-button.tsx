@@ -6,12 +6,13 @@ import { useShutterSound } from "./sound-effects"
 import { cva } from "class-variance-authority"
 
 interface AnimatedButtonProps {
-  href: string
+  href?: string
   children: ReactNode
   icon?: ReactNode
   variant?: "primary" | "secondary" | "outline"
   className?: string
   onClick?: () => void
+  type?: "button" | "submit" | "reset"
 }
 
 const buttonVariants = cva(
@@ -50,6 +51,7 @@ export default function AnimatedButton({
   variant = "primary",
   className = "",
   onClick,
+  type = "button",
 }: AnimatedButtonProps) {
   const baseStyles = "btn inline-flex items-center gap-2 rounded-full transition-colors"
   const { playShutterSound } = useShutterSound()
@@ -74,10 +76,25 @@ export default function AnimatedButton({
     if (onClick) onClick()
   }
 
-  return (
-    <Link href={href} className={`group ${baseStyles} ${variantStyles[variant]} ${className}`} onClick={handleClick}>
+  const sharedClasses = `group ${baseStyles} ${variantStyles[variant]} ${className}`
+  const content = (
+    <>
       <span>{children}</span>
       {icon && <span className="btn-icon overflow-hidden">{icon}</span>}
-    </Link>
+    </>
+  )
+
+  if (href) {
+    return (
+      <Link href={href} className={sharedClasses} onClick={handleClick}>
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <button type={type} className={sharedClasses} onClick={handleClick}>
+      {content}
+    </button>
   )
 }

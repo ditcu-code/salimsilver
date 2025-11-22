@@ -31,7 +31,7 @@ export default function Footer() {
               Salim Silver
             </Link>
           </div>
-          <p className="text-muted-foreground max-w-md mb-6 max-w-xs">
+          <p className="text-muted-foreground max-w-md mb-6">
             Handcrafted silver jewelry that tells a story of elegance and tradition. Timeless pieces for the modern soul.
           </p>
           <div className="flex space-x-4 items-center">

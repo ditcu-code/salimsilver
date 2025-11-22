@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 
-interface Frame {
+export interface Frame {
   id: number
   video: string
   defaultPos: { x: number; y: number; w: number; h: number }
@@ -15,6 +15,13 @@ interface Frame {
   borderSize: number
   isHovered: boolean
 }
+
+type FrameStyleOptions = Pick<
+  Frame,
+  "corner" | "edgeHorizontal" | "edgeVertical" | "mediaSize" | "borderThickness" | "borderSize"
+>
+
+export type FrameConfig = Omit<Frame, keyof FrameStyleOptions> & Partial<FrameStyleOptions>
 
 interface FrameComponentProps {
   video: string
@@ -157,11 +164,20 @@ function FrameComponent({
 }
 
 interface DynamicFrameLayoutProps {
-  frames: Frame[]
+  frames: FrameConfig[]
   className?: string
   showFrames?: boolean
   hoverSize?: number
   gapSize?: number
+}
+
+const defaultFrameOptions: Required<FrameStyleOptions> = {
+  corner: "",
+  edgeHorizontal: "",
+  edgeVertical: "",
+  mediaSize: 1,
+  borderThickness: 0,
+  borderSize: 100,
 }
 
 export function DynamicFrameLayout({ 
@@ -171,7 +187,12 @@ export function DynamicFrameLayout({
   hoverSize = 6,
   gapSize = 20
 }: DynamicFrameLayoutProps) {
-  const [frames] = useState<Frame[]>(initialFrames)
+  const [frames] = useState<Frame[]>(() =>
+    initialFrames.map((frame) => ({
+      ...defaultFrameOptions,
+      ...frame,
+    }))
+  )
   const [hovered, setHovered] = useState<{ row: number; col: number } | null>(null)
 
   const getRowSizes = () => {
