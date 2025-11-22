@@ -2,7 +2,7 @@
 
 import AnimatedButton from "@/components/animated-button"
 import FeaturedCollections from "@/components/featured-collections"
-import { HeroGalleryScroll } from "@/components/hero-gallery-scroll"
+import { HeroGallery } from "@/components/hero-gallery"
 import { LayoutGridDemo } from "@/components/layout-image-grid"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with Slider */}
-      <HeroGalleryScroll />
+      <HeroGallery />
 
       {/* Hero Section with Slider 
       <HeroSlider />*/}

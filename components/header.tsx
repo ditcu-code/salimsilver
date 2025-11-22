@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { ThemeToggle } from "./theme-toggle"
 
 const navigation = [
@@ -19,76 +19,22 @@ export default function Header() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
-  const [isHeroCondensed, setIsHeroCondensed] = useState(pathname !== "/")
-  const lastScrollYRef = useRef(0)
-
-  useEffect(() => {
-    setIsHeroCondensed(pathname !== "/")
-  }, [pathname])
-
-  useEffect(() => {
-    const handleHeroCondensedChange = (event: Event) => {
-      if (pathname !== "/") return
-      const detail = (event as CustomEvent<{ condensed: boolean }>).detail
-      if (typeof detail?.condensed === "boolean") {
-        setIsHeroCondensed(detail.condensed)
-        if (detail.condensed) setIsVisible(true)
-      }
-    }
-
-    window.addEventListener("hero-condensed-change", handleHeroCondensedChange as EventListener)
-    return () =>
-      window.removeEventListener("hero-condensed-change", handleHeroCondensedChange as EventListener)
-  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-      const isMobile = window.innerWidth < 768 // Check if device is mobile
-      const lastScrollY = lastScrollYRef.current
-      const isHome = pathname === "/"
-      
-      // Update scrolled state
-      if (currentScrollY > 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-
-      let nextVisible = true
-
-      if (isHome) {
-        // Hide while the hero is expanded, reveal once it condenses
-        nextVisible = isHeroCondensed
-      } else if (isMobile) {
-        // Handle header visibility - only hide after 20px scroll on mobile
-        nextVisible = !(currentScrollY > 20 && currentScrollY > lastScrollY)
-      } else {
-        // Desktop behavior
-        nextVisible = currentScrollY <= lastScrollY
-      }
-
-      lastScrollYRef.current = currentScrollY
-      setIsVisible(nextVisible)
+      setIsScrolled(currentScrollY > 10)
     }
 
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [isHeroCondensed, pathname])
-
-  const heroHidden = pathname === "/" && !isHeroCondensed
+  }, [])
 
   return (
     <header
-      className={`fixed top-2 left-2 right-2 z-50 transition-all duration-300 header-height ${
+      className={`fixed top-5 left-2 right-2 z-50 transition-all duration-300 header-height ${
         isScrolled ? "bg-background backdrop-blur-md shadow-sm" : "bg-transparent"
-      } ${
-        heroHidden
-          ? "-translate-y-[80px] opacity-0 pointer-events-none"
-          : !isVisible
-            ? "-translate-y-[80px]"
-            : "translate-y-0"
       }`}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
@@ -105,10 +51,9 @@ export default function Header() {
               Salim Silver
             </Link>
           </div>
-        
 
           {/* Desktop Navigation - Centered */}
-          <nav className="absolute left-1/2 hidden h-10 -translate-x-1/2 transform items-center justify-center space-x-8 rounded-full bg-background/90 p-3 text-2xl text-primary transition-colors duration-300 md:flex">
+          <nav className="absolute left-1/2 hidden h-10 -translate-x-1/2 transform items-center justify-center space-x-8 rounded-full bg-background/90 px-6 text-2xl text-primary transition-colors duration-300 md:flex">
             {navigation.map((item) => (
               <Link
                 key={item.name}
