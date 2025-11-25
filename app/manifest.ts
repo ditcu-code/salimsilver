@@ -2,13 +2,13 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'X100 Photographer Portfolio',
-    short_name: 'X100',
-    description: 'A Next.js portfolio for professional photographers, designed to flawlessly showcase powerful visual stories.',
+    name: 'Salim Silver | Handcrafted Javanese Jewelry',
+    short_name: 'Salim Silver',
+    description: 'Discover handcrafted silver rings, necklaces, and bracelets from Kotagede, Yogyakarta.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#000000',
-    theme_color: '#000000',
+    background_color: '#FDFBF7',
+    theme_color: '#1A1A1A',
     icons: [
       {
         src: '/favicon.ico',
