@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Facebook, Instagram, Twitter } from "lucide-react"
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
-import useDisableRightClick from './useDisableRightClick'; // Adjust the import path as necessary
+import useDisableRightClick from '../hooks/useDisableRightClick'; // Adjust the import path as necessary
 
 export default function Footer() {
   useDisableRightClick(); // Apply the hook to disable right-click on images
