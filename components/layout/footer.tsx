@@ -127,12 +127,16 @@ export default function Footer() {
         >
           <h3 className="section-title text-2xl mb-4">Contact</h3>
           <ul className="space-y-2 text-muted-foreground">
-            <h4 className="text-primary">Email</h4>
-            <a href="mailto:hello@salimsilver.com">
-              <li>hello@salimsilver.com</li>
-            </a>
-            <h4 className="text-primary">Location</h4>
-            <li>Kotagede, Yogyakarta</li>
+            <div>
+              <h4 className="text-primary">Email</h4>
+              <a href="mailto:hello@salimsilver.com">
+                <li>hello@salimsilver.com</li>
+              </a>
+            </div>
+            <div>
+              <h4 className="text-primary">Location</h4>
+              <li>Kotagede, Yogyakarta</li>
+            </div>
           </ul>
         </motion.div>
       </div>
