@@ -4,7 +4,7 @@ import SafariThemeColor from "@/components/features/safari-theme-color"
 import SoundEffects from "@/components/features/sound-effects"
 import { ThemeProvider } from "@/components/features/theme-provider"
 import type { Metadata, Viewport } from "next"
-import { Cormorant_Garamond, Lato } from "next/font/google"
+import { GFS_Didot, Lato } from "next/font/google"
 import "./globals.css"
 
 const lato = Lato({
@@ -13,10 +13,11 @@ const lato = Lato({
   variable: "--font-lato",
 })
 
-const cormorantGaramond = Cormorant_Garamond({
+// Display/heading font. Swap here for future updates.
+const gfsDidot = GFS_Didot({
   subsets: ["latin"],
-  variable: "--font-cormorant-garamond",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-display",
+  weight: ["400"],
 })
 
 export const metadata: Metadata = {
@@ -53,7 +54,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${lato.variable} ${cormorantGaramond.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${lato.variable} ${gfsDidot.variable}`} suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SafariThemeColor />

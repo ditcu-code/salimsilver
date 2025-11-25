@@ -12,7 +12,7 @@ export default function TimelineSection() {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h2 className="text-4xl md:text-5xl mb-4 font-cormorantGaramond">Our Journey</h2>
+        <h2 className="text-4xl md:text-5xl mb-4 font-display">Our Journey</h2>
         <p className="text-primary/80 max-w-2xl mx-auto">
           From a humble family workshop to a guardian of Kotagede's silver heritage.
         </p>
@@ -67,12 +67,12 @@ export default function TimelineSection() {
               {/* Content Side */}
               <div className="w-full md:w-1/2 pl-12 md:px-16">
                 <div className={`relative w-full flex flex-col ${index % 2 === 0 ? "md:items-start md:text-left" : "md:items-end md:text-right"}`}>
-                  <span className={`text-6xl md:text-8xl font-cormorantGaramond text-primary/10 absolute -z-10 select-none transform -translate-y-8 md:-translate-y-12 max-md:right-0 ${
+                  <span className={`text-6xl md:text-8xl font-display text-primary/10 absolute -z-10 select-none transform -translate-y-8 md:-translate-y-12 max-md:right-0 ${
                     index % 2 === 0 ? "md:right-0" : "md:left-0"
                   }`}>
                     {item.year}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-cormorantGaramond mb-3 text-primary">{item.title}</h3>
+                  <h3 className="text-2xl md:text-3xl font-display mb-3 text-primary">{item.title}</h3>
                   <p className="text-primary/80 leading-relaxed max-w-md">
                     {item.description}
                   </p>

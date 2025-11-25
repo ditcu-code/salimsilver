@@ -29,7 +29,7 @@ export default function Footer() {
             {/* <Logo /> */}
             <Link
               href="/"
-              className="font-cormorantGaramond text-2xl font-bold inline-block text-foreground"
+              className="font-display text-2xl font-bold inline-block text-foreground"
             >
               Salim Silver
             </Link>

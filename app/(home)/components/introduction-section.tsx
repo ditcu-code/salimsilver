@@ -15,7 +15,7 @@ export default function IntroductionSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl mb-6 font-cormorantGaramond">The Art of Silver Craftsmanship</h2>
+          <h2 className="text-3xl md:text-4xl mb-6 font-display">The Art of Silver Craftsmanship</h2>
           <p className="text-primary-secondary mb-6">
             At Salim Silver, we believe that jewelry is more than just an accessory; it is an expression of art and tradition.
             Our pieces are handcrafted by skilled artisans in Kotagede, Yogyakarta, preserving a legacy of renewal and design.

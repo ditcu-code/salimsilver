@@ -7,7 +7,7 @@ export default function ValuesSection() {
     <section className="py-16 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
         <motion.h2
-          className="text-3xl md:text-4xl mb-8 text-center font-cormorantGaramond"
+          className="text-3xl md:text-4xl mb-8 text-center font-display"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

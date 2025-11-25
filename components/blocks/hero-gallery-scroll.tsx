@@ -67,7 +67,7 @@ export function HeroGalleryScroll() {
 
       <ContainerScale className="relative z-10 text-center" appearAt={NAV_REVEAL_PROGRESS}>
         <motion.h1
-          className="max-w-4xl text-5xl md:text-7xl tracking-tighter text-primary text-backdrop-invert font-cormorantGaramond"
+          className="max-w-4xl text-5xl md:text-7xl tracking-tighter text-primary text-backdrop-invert font-display"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}

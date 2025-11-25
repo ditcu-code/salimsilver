@@ -28,7 +28,7 @@ export default function BioSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl mb-6 font-cormorantGaramond">The Heritage</h2>
+          <h2 className="text-3xl md:text-4xl mb-6 font-display">The Heritage</h2>
           <p className="text-primary mb-4">
             Salim Silver is a guardian of heritage in Kotagede, the historic capital of the Mataram Sultanate. 
             Our workshop is a "living museum" where the ancient art of Javanese silver crafting is preserved and renewed.

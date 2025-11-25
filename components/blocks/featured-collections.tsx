@@ -107,7 +107,7 @@ export default function FeaturedCollections({
             viewport={{ once: true }}
           >
             {title && (
-              <h2 className="text-primary text-3xl md:text-4xl mb-4 font-cormorantGaramond">
+              <h2 className="text-primary text-3xl md:text-4xl mb-4 font-display">
                 {title}
               </h2>
             )}

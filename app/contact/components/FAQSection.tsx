@@ -7,7 +7,7 @@ export default function FAQSection() {
     <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border border-border bg-secondary/30">
       <div className="max-w-5xl mx-auto">
         <motion.h2
-          className="text-3xl text-center mb-12 font-cormorantGaramond"
+          className="text-3xl text-center mb-12 font-display"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

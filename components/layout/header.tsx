@@ -48,10 +48,8 @@ export default function Header() {
             {/* <Logo /> */}
             <Link
               href="/"
-              className={`font-cormorantGaramond p-3 text-2xl duration-300 h-10 flex items-center justify-center rounded-full transition-all ${
-                isScrolled
-                  ? "bg-transparent text-primary"
-                  : `${glassClasses} text-primary`
+              className={`font-display p-3 text-2xl duration-300 h-10 flex items-center justify-center rounded-full transition-all ${
+                isScrolled ? "bg-transparent text-primary" : `${glassClasses} text-primary`
               }`}
             >
               Salim Silver
@@ -95,9 +93,7 @@ export default function Header() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               type="button"
-              className={`${
-                isScrolled || pathname !== "/" ? "text-primary" : "text-primary"
-              } p-2`}
+              className={`${isScrolled || pathname !== "/" ? "text-primary" : "text-primary"} p-2`}
               onClick={() => setIsMenuOpen(true)}
             >
               <span className="sr-only">Open menu</span>
@@ -133,7 +129,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-8 py-3 text-4xl font-cormorantGaramond transition-all duration-300 ${
+                  className={`block px-8 py-3 text-4xl font-display transition-all duration-300 ${
                     pathname === item.href
                       ? "text-primary font-medium scale-110"
                       : "text-foreground/80 hover:text-primary hover:scale-105"

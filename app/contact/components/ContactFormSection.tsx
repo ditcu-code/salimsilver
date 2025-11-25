@@ -11,7 +11,7 @@ export default function ContactFormSection() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
-      <h2 className="text-2xl mb-6 font-cormorantGaramond">Send a Message</h2>
+      <h2 className="text-2xl mb-6 font-display">Send a Message</h2>
       <ContactForm />
     </motion.div>
   )

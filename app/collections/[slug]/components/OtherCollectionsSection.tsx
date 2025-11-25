@@ -16,7 +16,7 @@ export default function OtherCollectionsSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary text-3xl md:text-4xl mb-4 font-cormorantGaramond">Featured Collections</h2>
+          <h2 className="text-primary text-3xl md:text-4xl mb-4 font-display">Featured Collections</h2>
           <p className="text-primary max-w-2xl mx-auto">
             Explore our other handcrafted collections
           </p>

@@ -13,7 +13,7 @@ type Card = {
 const SkeletonOne = () => {
   return (
     <div>
-      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
+      <p className="font-display font-bold md:text-4xl text-xl text-white">
         Handcrafted Rings
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -26,7 +26,7 @@ const SkeletonOne = () => {
 const SkeletonTwo = () => {
   return (
     <div>
-      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
+      <p className="font-display font-bold md:text-4xl text-xl text-white">
         Artisan Necklaces
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -39,7 +39,7 @@ const SkeletonTwo = () => {
 const SkeletonThree = () => {
   return (
     <div>
-      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
+      <p className="font-display font-bold md:text-4xl text-xl text-white">
         Silver Bracelets
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -52,7 +52,7 @@ const SkeletonThree = () => {
 const SkeletonFour = () => {
   return (
     <div>
-      <p className="font-cormorantGaramond font-bold md:text-4xl text-xl text-white">
+      <p className="font-display font-bold md:text-4xl text-xl text-white">
         Statement Earrings
       </p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">

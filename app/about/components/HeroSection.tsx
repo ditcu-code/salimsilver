@@ -20,7 +20,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-4xl md:text-5xl text-white mb-4 font-cormorantGaramond">Our Story</h1>
+        <h1 className="text-4xl md:text-5xl text-white mb-4 font-display">Our Story</h1>
         <p className="text-white/90 text-lg max-w-2xl">Crafting timeless elegance since 1990</p>
       </motion.div>
     </section>
