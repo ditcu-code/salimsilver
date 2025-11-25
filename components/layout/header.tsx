@@ -31,10 +31,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Liquid glass effect classes
+  const glassClasses = "bg-background/60 backdrop-blur-xl border border-white/20 shadow-lg"
+  const transparentClasses = "bg-transparent border-transparent shadow-none"
+
   return (
     <header
-      className={`fixed top-5 left-2 right-2 z-50 transition-all duration-300 header-height ${
-        isScrolled ? "bg-background backdrop-blur-md shadow-sm" : "bg-transparent"
+      className={`fixed top-5 left-2 right-2 z-50 transition-all duration-500 ease-in-out header-height ${
+        isScrolled ? glassClasses : transparentClasses
       }`}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
@@ -44,8 +48,10 @@ export default function Header() {
             {/* <Logo /> */}
             <Link
               href="/"
-              className={`font-cormorantGaramond p-3 text-2xl duration-300 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors ${
-                isScrolled || pathname !== "/" ? "text-primary" : "text-primary"
+              className={`font-cormorantGaramond p-3 text-2xl duration-300 h-10 flex items-center justify-center rounded-full transition-all ${
+                isScrolled
+                  ? "bg-transparent text-primary"
+                  : `${glassClasses} text-primary`
               }`}
             >
               Salim Silver
@@ -53,13 +59,19 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation - Centered */}
-          <nav className="absolute left-1/2 hidden h-10 -translate-x-1/2 transform items-center justify-center space-x-8 rounded-full bg-background/90 px-6 text-2xl text-primary transition-colors duration-300 md:flex">
+          <nav
+            className={`absolute left-1/2 hidden h-10 -translate-x-1/2 transform items-center justify-center space-x-8 rounded-full px-6 text-2xl text-primary transition-all duration-300 md:flex ${
+              isScrolled ? "bg-transparent" : glassClasses
+            }`}
+          >
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 className={`${
-                  pathname === item.href ? "text-primary font-semibold border-b border-border" : "hover:text-primary/80"
+                  pathname === item.href
+                    ? "text-primary font-semibold border-b border-primary/50"
+                    : "hover:text-primary/80"
                 } ${
                   isScrolled || pathname !== "/" ? "text-foreground" : "text-primary"
                 } px-1 py-2 text-sm transition-colors`}
@@ -75,11 +87,17 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex h-10 items-center justify-center rounded-full bg-background text-primary transition-colors duration-300 md:hidden">
+          <div
+            className={`flex h-10 items-center justify-center rounded-full text-primary transition-all duration-300 md:hidden ${
+              isScrolled ? "bg-transparent" : glassClasses
+            }`}
+          >
             <motion.button
               whileTap={{ scale: 0.95 }}
               type="button"
-              className={`${isScrolled || pathname !== "/" ? "text-primary" : "text-primary"} p-2`}
+              className={`${
+                isScrolled || pathname !== "/" ? "text-primary" : "text-primary"
+              } p-2`}
               onClick={() => setIsMenuOpen(true)}
             >
               <span className="sr-only">Open menu</span>
@@ -97,33 +115,35 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-0 z-100 bg-primary-foreground backdrop-blur-lg flex flex-col min-h-screen rounded-3xl border-border border "
+            className="fixed inset-0 z-100 bg-background/80 backdrop-blur-2xl flex flex-col min-h-screen"
           >
             <div className="p-4 flex justify-end">
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 type="button"
-                className="text-foreground p-2"
+                className="text-foreground p-2 rounded-full bg-background/50 backdrop-blur-md border border-white/10"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
                 <X className="h-6 w-6" aria-hidden="true" />
               </motion.button>
             </div>
-            <nav className="flex-1 flex flex-col items-center pt-32">
+            <nav className="flex-1 flex flex-col items-center pt-32 space-y-6">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-4 py-3 text-3xl font-cormorantGaramond ${
-                    pathname === item.href ? "text-primary font-medium" : "text-foreground hover:text-primary/80"
+                  className={`block px-8 py-3 text-4xl font-cormorantGaramond transition-all duration-300 ${
+                    pathname === item.href
+                      ? "text-primary font-medium scale-110"
+                      : "text-foreground/80 hover:text-primary hover:scale-105"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <div className="mt-4">
+              <div className="mt-8">
                 <ThemeToggle />
               </div>
             </nav>

@@ -27,7 +27,7 @@ export default function CategoryFilters({ categories, activeCategory, onCategory
           key={category.id}
           onClick={() => onCategoryChange(category.id)}
           className={cn(
-            "px-6 py-2 rounded-full text-sm transition-all duration-300",
+            "px-6 py-2 rounded-full text-sm transition-all duration-300 cursor-pointer",
             activeCategory === category.id
               ? "bg-primary text-primary-foreground shadow-md"
               : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
