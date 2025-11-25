@@ -36,7 +36,7 @@ export function ContactForm({ className }: ContactFormProps) {
           id="name"
           name="name"
           required
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
       </div>
       <div>
@@ -48,7 +48,7 @@ export function ContactForm({ className }: ContactFormProps) {
           id="email"
           name="email"
           required
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
         <ValidationError 
           prefix="Email" 
@@ -65,7 +65,7 @@ export function ContactForm({ className }: ContactFormProps) {
           name="message"
           required
           rows={4}
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
         <ValidationError 
           prefix="Message" 
