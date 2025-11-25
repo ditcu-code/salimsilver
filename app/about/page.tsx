@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import CTASection from "@/components/cta-section"
+import CTASection from "@/components/blocks/cta-section"
 
 import BioSection from "./components/BioSection"
 import HeroSection from "./components/HeroSection"

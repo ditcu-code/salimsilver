@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import FeaturedCollections from "@/components/featured-collections"
+import FeaturedCollections from "@/components/blocks/featured-collections"
 
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"

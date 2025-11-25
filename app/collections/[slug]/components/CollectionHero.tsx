@@ -1,6 +1,6 @@
 "use client"
 
-import TagList from "@/components/tag-list"
+import TagList from "@/components/blocks/tag-list"
 import { motion } from "framer-motion"
 import Image from "next/image"
 

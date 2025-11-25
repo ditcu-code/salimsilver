@@ -4,7 +4,7 @@ import Image from "next/image"
 import { type ReactNode } from "react"
 
 import AnimatedButton from "@/components/animated-button"
-import { BentoGrid } from "@/components/hero-gallery-scroll-animation"
+import { BentoGrid } from "@/components/blocks/hero-gallery-scroll-animation"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 

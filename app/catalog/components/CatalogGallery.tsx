@@ -1,6 +1,6 @@
 "use client"
 
-import { PhotoGallery } from "@/components/photo-gallery"
+import { PhotoGallery } from "@/components/blocks/photo-gallery"
 import { Photo } from "@/lib/types"
 import { motion } from "framer-motion"
 

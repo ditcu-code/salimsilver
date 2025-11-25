@@ -1,7 +1,7 @@
 "use client"
 
 import AnimatedButton from "@/components/animated-button"
-import FeaturedCollections from "@/components/featured-collections"
+import FeaturedCollections from "@/components/blocks/featured-collections"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 

@@ -9,7 +9,7 @@ import {
   BentoGrid,
   ContainerScale,
   ContainerScroll,
-} from "@/components/hero-gallery-scroll-animation"
+} from "./hero-gallery-scroll-animation"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"

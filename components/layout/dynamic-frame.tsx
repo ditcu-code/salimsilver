@@ -1,6 +1,6 @@
 "use client"
 
-import { DynamicFrameLayout, type FrameConfig } from "@/components/ui/dynamic-frame-layout"
+import { DynamicFrameLayout, type FrameConfig } from "./dynamic-frame-layout"
 
 const dynamicFrames: FrameConfig[] = [
   {

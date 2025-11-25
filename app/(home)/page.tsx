@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 
-import CTASection from "@/components/cta-section"
-import FeaturedCollections from "@/components/featured-collections"
+import CTASection from "@/components/blocks/cta-section"
+import FeaturedCollections from "@/components/blocks/featured-collections"
 import { HeroGallery } from "@/app/(home)/components/hero-gallery"
 import IntroductionSection from "@/app/(home)/components/introduction-section"
-import { LayoutGridDemo } from "@/components/layout-image-grid"
+import { LayoutGridDemo } from "@/components/layout/layout-image-grid"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
 

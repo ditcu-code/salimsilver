@@ -1,6 +1,6 @@
 "use client"
 
-import { ContactForm } from "@/components/contact-form"
+import { ContactForm } from "@/components/features/contact-form"
 import { motion } from "framer-motion"
 
 export default function ContactFormSection() {
