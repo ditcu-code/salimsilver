@@ -62,7 +62,7 @@ export default function Home() {
       <LayoutGridDemo />
 
        {/* Call to Action */}
-      <section className="z-10 min-w-[90%] justify-self-center mr-4 ml-4 py-20 lg:my-20 sm:mt-0 sm:mb-20 md:px-8 px-2 rounded-3xl border-[1px] border-border bg-secondary/30">
+      <section className="z-10 min-w-[90%] justify-self-center mr-4 ml-4 py-20 lg:my-20 sm:mt-0 sm:mb-20 md:px-8 px-2 rounded-3xl border border-border bg-secondary/30">
         <motion.div
           className="max-w-7xl mx-auto text-center"
           initial={{ opacity: 0, y: 20 }}
