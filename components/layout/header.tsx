@@ -48,7 +48,7 @@ export default function Header() {
             {/* <Logo /> */}
             <Link
               href="/"
-              className={`font-display p-3 text-2xl duration-300 h-10 flex items-center justify-center rounded-full transition-all ${
+              className={`p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all ${
                 isScrolled ? "bg-transparent text-primary" : `${glassClasses} text-primary`
               }`}
             >
