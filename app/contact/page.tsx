@@ -1,10 +1,11 @@
 "use client"
 
+import FeaturedCollections from "@/components/featured-collections"
+
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
-import FeaturedCollectionsSection from "./components/FeaturedCollectionsSection"
 
 export default function ContactPage() {
   return (
@@ -20,8 +21,13 @@ export default function ContactPage() {
       </section>
 
       <FAQSection />
-      <FeaturedCollectionsSection />
+      <FeaturedCollections
+        title="Featured Collections"
+        description="Explore our latest creations"
+        ctaLabel="View All Collections"
+        ctaHref="/catalog"
+        sectionClassName="mt-20 mb-20 py-20"
+      />
     </div>
   )
 }
-
