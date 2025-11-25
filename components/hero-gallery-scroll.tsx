@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef } from "react"
+import Image from "next/image"
 
 import AnimatedButton from "@/components/animated-button"
 import {
@@ -14,11 +15,11 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
 const IMAGES = [
-  "/images/hero-background.png",
-  "/images/rings-cover.png",
-  "/images/necklaces-cover.png",
-  "/images/bracelets-cover.png",
-  "/images/hero-background.png",
+  { src: "/images/hero-background.png", alt: "Handcrafted silver jewelry displayed on woven fabric" },
+  { src: "/images/rings-cover.png", alt: "Close-up of ornate silver rings from Salim Silver" },
+  { src: "/images/necklaces-cover.png", alt: "Silver necklaces with intricate Javanese motifs" },
+  { src: "/images/bracelets-cover.png", alt: "Engraved silver bracelets from the collection" },
+  { src: "/images/hero-background.png", alt: "Handcrafted silver jewelry displayed on woven fabric" },
 ]
 
 const NAV_REVEAL_PROGRESS = 1
@@ -50,9 +51,16 @@ export function HeroGalleryScroll() {
   return (
     <ContainerScroll className="h-[125vh]" onProgressChange={handleProgressChange}>
       <BentoGrid className="sticky left-0 top-0 z-0 h-screen w-full p-4">
-        {IMAGES.map((imageUrl, index) => (
-          <BentoCell key={index} className="overflow-hidden rounded-3xl shadow-xl">
-            <img className="size-full object-cover object-center" src={imageUrl} alt="" />
+        {IMAGES.map((image, index) => (
+          <BentoCell key={index} className="relative overflow-hidden rounded-3xl shadow-xl">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="object-cover object-center"
+              priority={index === 0}
+            />
           </BentoCell>
         ))}
       </BentoGrid>
@@ -103,9 +111,16 @@ export function HeroDemo1() {
   return (
     <ContainerScroll className="h-[350vh]">
       <BentoGrid className="sticky left-0 top-0 z-0 h-screen w-full p-4">
-        {IMAGES.map((imageUrl, index) => (
-          <BentoCell key={index} className="overflow-hidden rounded-3xl shadow-xl">
-            <img className="size-full object-cover object-center" src={imageUrl} alt="" />
+        {IMAGES.map((image, index) => (
+          <BentoCell key={index} className="relative overflow-hidden rounded-3xl shadow-xl">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="object-cover object-center"
+              priority={index === 0}
+            />
           </BentoCell>
         ))}
       </BentoGrid>
@@ -135,14 +150,15 @@ export function HeroDemo2() {
   return (
     <ContainerScroll className="h-[350vh]">
       <BentoGrid variant="fourCells" className="sticky left-0 top-0 h-svh w-full p-4">
-        {IMAGES.filter((_, index) => index <= 3).map((imageUrl, index) => (
-          <BentoCell key={index} className="overflow-hidden rounded-3xl shadow-xl">
-            <img
-              className="size-full object-cover object-center"
-              width="100%"
-              height="100%"
-              src={imageUrl}
-              alt=""
+        {IMAGES.filter((_, index) => index <= 3).map((image, index) => (
+          <BentoCell key={index} className="relative overflow-hidden rounded-3xl shadow-xl">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="object-cover object-center"
+              priority={index === 0}
             />
           </BentoCell>
         ))}
@@ -170,14 +186,15 @@ export function HeroDemo3() {
   return (
     <ContainerScroll className="h-[350vh] bg-slate-900 text-slate-100">
       <BentoGrid variant="threeCells" className="sticky left-0 top-0 h-svh w-full p-4">
-        {IMAGES.filter((_, index) => index <= 2).map((imageUrl, index) => (
-          <BentoCell key={index} className="overflow-hidden rounded-3xl shadow-xl">
-            <img
-              className="size-full object-cover object-center"
-              width="100%"
-              height="100%"
-              src={imageUrl}
-              alt=""
+        {IMAGES.filter((_, index) => index <= 2).map((image, index) => (
+          <BentoCell key={index} className="relative overflow-hidden rounded-3xl shadow-xl">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="object-cover object-center"
+              priority={index === 0}
             />
           </BentoCell>
         ))}

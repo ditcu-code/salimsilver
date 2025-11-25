@@ -1,10 +1,33 @@
-"use client"
+import type { Metadata } from "next"
 
 import CTASection from "@/components/cta-section"
 import FeaturedCollections from "@/components/featured-collections"
 import { HeroGallery } from "@/app/(home)/components/hero-gallery"
 import IntroductionSection from "@/app/(home)/components/introduction-section"
 import { LayoutGridDemo } from "@/components/layout-image-grid"
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
+
+export const metadata: Metadata = {
+  title: "Handcrafted Javanese Silver Jewelry",
+  description:
+    "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
+  alternates: {
+    canonical: `${baseUrl}/`,
+  },
+  openGraph: {
+    title: "Handcrafted Javanese Silver Jewelry",
+    description:
+      "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
+    url: `${baseUrl}/`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Handcrafted Javanese Silver Jewelry",
+    description:
+      "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
+  },
+}
 
 export default function Home() {
   return (

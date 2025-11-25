@@ -1,4 +1,4 @@
-"use client"
+import type { Metadata } from "next"
 
 import FeaturedCollections from "@/components/featured-collections"
 
@@ -6,6 +6,29 @@ import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
+
+export const metadata: Metadata = {
+  title: "Contact Salim Silver",
+  description:
+    "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
+  alternates: {
+    canonical: `${baseUrl}/contact`,
+  },
+  openGraph: {
+    title: "Contact Salim Silver",
+    description:
+      "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
+    url: `${baseUrl}/contact`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Salim Silver",
+    description:
+      "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
+  },
+}
 
 export default function ContactPage() {
   return (

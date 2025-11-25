@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { type ReactNode } from "react"
 
 import AnimatedButton from "@/components/animated-button"
@@ -8,11 +9,11 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
 const IMAGES = [
-  "/images/hero-background.png",
-  "/images/rings-cover.png",
-  "/images/necklaces-cover.png",
-  "/images/bracelets-cover.png",
-  "/images/hero-background.png",
+  { src: "/images/hero-background.png", alt: "Handcrafted silver jewelry displayed on woven fabric" },
+  { src: "/images/rings-cover.png", alt: "Close-up of ornate silver rings from Salim Silver" },
+  { src: "/images/necklaces-cover.png", alt: "Silver necklaces with intricate Javanese motifs" },
+  { src: "/images/bracelets-cover.png", alt: "Engraved silver bracelets from the collection" },
+  { src: "/images/hero-background.png", alt: "Handcrafted silver jewelry displayed on woven fabric" },
 ]
 
 function FullBentoCell({
@@ -24,7 +25,7 @@ function FullBentoCell({
 }) {
   return (
     <motion.div
-      className={className}
+      className={`relative ${className ?? ""}`}
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -38,9 +39,16 @@ export function HeroGallery() {
   return (
     <div className="relative h-screen w-full overflow-hidden">
       <BentoGrid className="absolute inset-0 z-0 h-full w-full p-4">
-        {IMAGES.map((imageUrl, index) => (
+        {IMAGES.map((image, index) => (
           <FullBentoCell key={index} className="overflow-hidden rounded-3xl shadow-xl">
-            <img className="size-full object-cover object-center" src={imageUrl} alt="" />
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="object-cover object-center"
+              priority={index === 0}
+            />
           </FullBentoCell>
         ))}
       </BentoGrid>

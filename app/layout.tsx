@@ -20,8 +20,28 @@ const cormorantGaramond = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: "Salim Silver | Handcrafted Javanese Jewelry",
-  description: "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"),
+  title: {
+    default: "Salim Silver | Handcrafted Javanese Jewelry",
+    template: "%s | Salim Silver",
+  },
+  description:
+    "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
+  openGraph: {
+    title: "Salim Silver | Handcrafted Javanese Jewelry",
+    description:
+      "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "Salim Silver",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Salim Silver | Handcrafted Javanese Jewelry",
+    description:
+      "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
+  },
 }
 
 export const viewport: Viewport = {
