@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-import { ThemeToggle } from "./theme-toggle"
+import { ThemeToggle } from "../features/theme-toggle"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -40,7 +40,7 @@ export default function Header() {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
         <div className="flex justify-between items-center h-full">
           {/* Logo and Brand */}
-          <div className="flex-shrink-0 flex items-center gap-3">
+          <div className="shrink-0 flex items-center gap-3">
             {/* <Logo /> */}
             <Link
               href="/"
@@ -59,7 +59,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className={`${
-                  pathname === item.href ? "text-primary font-semibold border-b-[1px] border-border" : "hover:text-primary/80"
+                  pathname === item.href ? "text-primary font-semibold border-b border-border" : "hover:text-primary/80"
                 } ${
                   isScrolled || pathname !== "/" ? "text-foreground" : "text-primary"
                 } px-1 py-2 text-sm transition-colors`}
@@ -70,7 +70,7 @@ export default function Header() {
           </nav>
 
           {/* Theme Toggle at the end of the header */}
-          <div className="flex-shrink-0 md:block toggle-container">
+          <div className="shrink-0 md:block toggle-container">
             <ThemeToggle />
           </div>
 
@@ -97,7 +97,7 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-0 z-[100] bg-primary-foreground backdrop-blur-lg flex flex-col min-h-screen rounded-3xl border-border border-[1px] "
+            className="fixed inset-0 z-100 bg-primary-foreground backdrop-blur-lg flex flex-col min-h-screen rounded-3xl border-border border "
           >
             <div className="p-4 flex justify-end">
               <motion.button

@@ -1,9 +1,7 @@
 "use client"
 
-import { useState } from 'react'
-import { useForm, ValidationError } from '@formspree/react'
-import { ContactFormData } from '@/lib/types'
-import { cn } from '@/lib/utils'
+import { useForm, ValidationError } from "@formspree/react"
+import { cn } from "@/lib/utils"
 
 interface ContactFormProps {
   className?: string
@@ -11,11 +9,6 @@ interface ContactFormProps {
 
 export function ContactForm({ className }: ContactFormProps) {
   const [state, handleSubmit] = useForm("xxxxxxxx") // Replace with your Formspree project ID
-  const [success, setSuccess] = useState(false)
-
-  const handleSuccess = () => {
-    setSuccess(true)
-  }
 
   if (state.succeeded) {
     return (
@@ -27,7 +20,7 @@ export function ContactForm({ className }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className={cn('space-y-6', className)}>
-      {state.errors && state.errors.length > 0 && (
+      {Array.isArray(state.errors) && state.errors.length > 0 && (
         <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
           {state.errors.map((error) => (
             <p key={error.field}>{error.message}</p>
@@ -43,7 +36,7 @@ export function ContactForm({ className }: ContactFormProps) {
           id="name"
           name="name"
           required
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border-[1px] focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         />
       </div>
       <div>
@@ -72,7 +65,7 @@ export function ContactForm({ className }: ContactFormProps) {
           name="message"
           required
           rows={4}
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border-[1px] focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         />
         <ValidationError 
           prefix="Message" 

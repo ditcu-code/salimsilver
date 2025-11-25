@@ -1,9 +1,9 @@
 "use client"
 
-import type { ReactNode } from "react"
-import Link from "next/link"
-import { useShutterSound } from "./sound-effects"
 import { cva } from "class-variance-authority"
+import Link from "next/link"
+import type { ReactNode } from "react"
+import { useShutterSound } from "./features/sound-effects"
 
 interface AnimatedButtonProps {
   href?: string
@@ -25,8 +25,7 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 border-none",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground border-none",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 border-none",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 border-none",
         ghost: "hover:bg-accent hover:text-accent-foreground border-none",
         link: "text-primary underline-offset-4 hover:underline border-none",
       },
@@ -41,7 +40,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 )
 
 export default function AnimatedButton({
@@ -57,7 +56,8 @@ export default function AnimatedButton({
   const { playShutterSound } = useShutterSound()
 
   const variantStyles = {
-    primary: "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-secondary px-6 py-3",
+    primary:
+      "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-secondary px-6 py-3",
     secondary:
       "bg-white text-black hover:bg-white/90 dark:bg-gray-800 dark:text-white dark:hover:bg-gray/90 px-6 py-3",
     outline:

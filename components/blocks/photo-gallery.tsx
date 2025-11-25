@@ -407,7 +407,7 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
               {validPhotos.map((photo, index) => (
                 <div
                   key={`thumb-${index}`}
-                  className={`relative flex-shrink-0 mx-1 cursor-pointer transition-all duration-200 ${
+                  className={`relative shrink-0 mx-1 cursor-pointer transition-all duration-200 ${
                     index === currentPhotoIndex
                       ? "border-2 border-white scale-110 z-10"
                       : "border border-transparent opacity-60 hover:opacity-100"

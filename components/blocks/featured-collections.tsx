@@ -1,15 +1,13 @@
 "use client"
 
+import AnimatedButton from "@/components/animated-button"
+import { getFeaturedCollections } from "@/lib/collections"
+import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
-import AnimatedButton from "@/components/animated-button"
-import { getFeaturedCollections } from "@/lib/collections"
-import { cn } from "@/lib/utils"
-
-import { useShutterSound } from "./sound-effects"
+import { useShutterSound } from "../features/sound-effects"
 
 interface FeaturedCollectionsProps {
   title?: string
@@ -44,7 +42,11 @@ export default function FeaturedCollections({
           viewport={{ once: true }}
           className="h-full"
         >
-          <Link href={`/collections/${collection.slug}`} className="group block h-full" onClick={playShutterSound}>
+          <Link
+            href={`/collections/${collection.slug}`}
+            className="group block h-full"
+            onClick={playShutterSound}
+          >
             <div className="relative h-full overflow-hidden bg-black rounded-lg shadow-md">
               {/* Image container with overlay */}
               <div className="relative h-80 w-full overflow-hidden">
@@ -104,7 +106,11 @@ export default function FeaturedCollections({
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {title && <h2 className="text-primary text-3xl md:text-4xl mb-4 font-cormorantGaramond">{title}</h2>}
+            {title && (
+              <h2 className="text-primary text-3xl md:text-4xl mb-4 font-cormorantGaramond">
+                {title}
+              </h2>
+            )}
             {description && <p className="text-primary max-w-2xl mx-auto">{description}</p>}
           </motion.div>
         )}

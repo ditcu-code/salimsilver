@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight } from "lucide-react"
 import { getAllCollections } from "@/lib/collections"
-import { useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
-import { useShutterSound } from "./sound-effects"
+import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useShutterSound } from "../features/sound-effects"
 
 export default function CollectionGrid() {
   const collections = getAllCollections()
@@ -73,7 +73,11 @@ export default function CollectionGrid() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className="w-full"
             >
-              <Link href={`/collections/${group[0].slug}`} className="group block" onClick={playShutterSound}>
+              <Link
+                href={`/collections/${group[0].slug}`}
+                className="group block"
+                onClick={playShutterSound}
+              >
                 <div className="relative overflow-hidden bg-black rounded-lg shadow-lg">
                   {/* Image container with overlay */}
                   <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden">
@@ -83,7 +87,7 @@ export default function CollectionGrid() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:opacity-90"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
                   </div>
 
                   {/* Content positioned at the bottom */}
@@ -133,7 +137,11 @@ export default function CollectionGrid() {
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
                   className="h-full"
                 >
-                  <Link href={`/collections/${collection.slug}`} className="group block h-full" onClick={playShutterSound}>
+                  <Link
+                    href={`/collections/${collection.slug}`}
+                    className="group block h-full"
+                    onClick={playShutterSound}
+                  >
                     <div className="relative h-full overflow-hidden bg-black rounded-lg shadow-md">
                       {/* Image container with overlay */}
                       <div className="relative h-80 w-full overflow-hidden">
@@ -143,7 +151,7 @@ export default function CollectionGrid() {
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:opacity-80"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300" />
                       </div>
 
                       {/* Content positioned at the bottom */}
