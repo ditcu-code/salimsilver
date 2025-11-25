@@ -1,13 +1,13 @@
 "use client"
 
-import useDisableRightClick from "@/hooks/useDisableRightClick";
-import { motion } from "framer-motion";
-import { Facebook, Instagram, Twitter } from "lucide-react";
-import Link from "next/link";
-import { ThemeToggle } from "../features/theme-toggle";
+import useDisableRightClick from "@/hooks/useDisableRightClick"
+import { motion } from "framer-motion"
+import { Instagram } from "lucide-react"
+import Link from "next/link"
+import { ThemeToggle } from "../features/theme-toggle"
 
 export default function Footer() {
-  useDisableRightClick(); // Apply the hook to disable right-click on images
+  useDisableRightClick() // Apply the hook to disable right-click on images
 
   return (
     <motion.footer
@@ -27,16 +27,20 @@ export default function Footer() {
         >
           <div className="flex items-center gap-3 mb-4">
             {/* <Logo /> */}
-            <Link href="/" className="font-cormorantGaramond text-2xl font-bold inline-block text-foreground">
+            <Link
+              href="/"
+              className="font-cormorantGaramond text-2xl font-bold inline-block text-foreground"
+            >
               Salim Silver
             </Link>
           </div>
           <p className="text-muted-foreground max-w-md mb-6">
-            Handcrafted silver jewelry that tells a story of elegance and tradition. Timeless pieces for the modern soul.
+            Handcrafted silver jewelry that tells a story of elegance and tradition. Timeless pieces
+            for the modern soul.
           </p>
           <div className="flex space-x-4 items-center">
             <motion.a
-              href="#"
+              href="https://www.instagram.com/salimsilverofficial/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -46,7 +50,7 @@ export default function Footer() {
               <Instagram size={20} />
               <span className="sr-only">Instagram</span>
             </motion.a>
-            <motion.a
+            {/* <motion.a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
@@ -67,7 +71,7 @@ export default function Footer() {
             >
               <Facebook size={20} />
               <span className="sr-only">Facebook</span>
-            </motion.a>
+            </motion.a> */}
             <ThemeToggle />
           </div>
         </motion.div>
@@ -81,22 +85,34 @@ export default function Footer() {
           <h3 className="section-title text-2xl mb-4">Quick Links</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/catalog" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                href="/catalog"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 Catalog
               </Link>
             </li>
             <li>
-              <Link href="/collections" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                href="/collections"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 Collections
               </Link>
             </li>
             <li>
-              <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                href="/about"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                href="/contact"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 Contact
               </Link>
             </li>
@@ -112,7 +128,9 @@ export default function Footer() {
           <h3 className="section-title text-2xl mb-4">Contact</h3>
           <ul className="space-y-2 text-muted-foreground">
             <h4 className="text-primary">Email</h4>
-            <a href="mailto:hello@salimsilver.com"><li>hello@salimsilver.com</li></a> 
+            <a href="mailto:hello@salimsilver.com">
+              <li>hello@salimsilver.com</li>
+            </a>
             <h4 className="text-primary">Location</h4>
             <li>Kotagede, Yogyakarta</li>
           </ul>
