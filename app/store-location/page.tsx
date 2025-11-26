@@ -163,7 +163,6 @@ export default function StoreLocationPage() {
                 "Thursday",
                 "Friday",
                 "Saturday",
-                "Sunday",
               ],
               opens: "08:00",
               closes: "16:00",

@@ -43,6 +43,31 @@ export default function AboutPage() {
         ctaLabel="Book a Visit"
         ctaHref="/contact"
       />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            mainEntity: {
+              "@type": "JewelryStore",
+              name: "Salim Silver",
+              description: "Artisans crafting Javanese-inspired silver jewelry in Kotagede.",
+              image: `${baseUrl}/images/hero-background.png`,
+              telephone: "+62 896 7197 7699",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Kebohan KG 3/547, Purbayan, Kotagede",
+                addressLocality: "Yogyakarta City",
+                addressRegion: "Special Region of Yogyakarta",
+                postalCode: "55173",
+                addressCountry: "ID",
+              },
+            },
+          }),
+        }}
+      />
     </div>
   )
 }

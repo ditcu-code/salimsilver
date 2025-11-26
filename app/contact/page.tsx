@@ -4,7 +4,6 @@ import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
-import StoreLocationSection from "./components/StoreLocationSection"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
 
@@ -42,8 +41,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <StoreLocationSection />
-
       <FAQSection />
       {/* <FeaturedCollections
         title="Featured Collections"
@@ -52,6 +49,37 @@ export default function ContactPage() {
         ctaHref="/catalog"
         sectionClassName="mt-20 mb-20 py-20"
       /> */}
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            mainEntity: {
+              "@type": "JewelryStore",
+              name: "Salim Silver",
+              image: `${baseUrl}/images/hero-background.png`,
+              telephone: "+62 896 7197 7699",
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+62 896 7197 7699",
+                contactType: "customer service",
+                areaServed: "ID",
+                availableLanguage: ["English", "Indonesian"],
+              },
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Kebohan KG 3/547, Purbayan, Kotagede",
+                addressLocality: "Yogyakarta City",
+                addressRegion: "Special Region of Yogyakarta",
+                postalCode: "55173",
+                addressCountry: "ID",
+              },
+            },
+          }),
+        }}
+      />
     </div>
   )
 }

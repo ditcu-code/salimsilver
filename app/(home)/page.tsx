@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
-import CTASection from "@/components/blocks/cta-section"
-import FeaturedCollections from "@/components/blocks/featured-collections"
 import { HeroGallery } from "@/app/(home)/components/hero-gallery"
 import IntroductionSection from "@/app/(home)/components/introduction-section"
+import CTASection from "@/components/blocks/cta-section"
+import FeaturedCollections from "@/components/blocks/featured-collections"
 import { LayoutGridDemo } from "@/components/layout/layout-image-grid"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
@@ -62,6 +62,48 @@ export default function Home() {
         ctaLabel="View All Collections"
         ctaHref="/catalog"
         sectionClassName="lg:mt-32 mb-32 z-10 mt-20"
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "JewelryStore",
+            name: "Salim Silver",
+            image: `${baseUrl}/images/hero-background.png`,
+            "@id": `${baseUrl}`,
+            url: baseUrl,
+            telephone: "+62 896 7197 7699",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Kebohan KG 3/547, Purbayan, Kotagede",
+              addressLocality: "Yogyakarta City",
+              addressRegion: "Special Region of Yogyakarta",
+              postalCode: "55173",
+              addressCountry: "ID",
+            },
+            sameAs: ["https://www.instagram.com/salimsilverofficial/"],
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: -7.8273171,
+              longitude: 110.4019932,
+            },
+            openingHoursSpecification: {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+              ],
+              opens: "08:00",
+              closes: "16:00",
+            },
+          }),
+        }}
       />
     </div>
   )

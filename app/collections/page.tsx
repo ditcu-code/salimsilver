@@ -32,6 +32,20 @@ export default function CollectionsPage() {
         <CollectionsHeader />
         <FeaturedCollections />
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Collections",
+            description:
+              "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
+            url: `${baseUrl}/collections`,
+          }),
+        }}
+      />
     </div>
   )
 }

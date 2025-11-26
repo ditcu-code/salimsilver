@@ -26,5 +26,22 @@ export const metadata: Metadata = {
 }
 
 export default function CatalogPage() {
-  return <CatalogPageClient />
+  return (
+    <>
+      <CatalogPageClient />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Jewelry Catalog",
+            description:
+              "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
+            url: `${baseUrl}/catalog`,
+          }),
+        }}
+      />
+    </>
+  )
 }
