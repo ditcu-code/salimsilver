@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 
-import FeaturedCollections from "@/components/blocks/featured-collections"
-
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
+import StoreLocationSection from "./components/StoreLocationSection"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
 
@@ -43,14 +42,16 @@ export default function ContactPage() {
         </div>
       </section>
 
+      <StoreLocationSection />
+
       <FAQSection />
-      <FeaturedCollections
+      {/* <FeaturedCollections
         title="Featured Collections"
         description="Explore our latest creations"
         ctaLabel="View All Collections"
         ctaHref="/catalog"
         sectionClassName="mt-20 mb-20 py-20"
-      />
+      /> */}
     </div>
   )
 }

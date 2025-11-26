@@ -13,6 +13,8 @@ interface AnimatedButtonProps {
   className?: string
   onClick?: () => void
   type?: "button" | "submit" | "reset"
+  target?: string
+  rel?: string
 }
 
 const buttonVariants = cva(
@@ -51,6 +53,8 @@ export default function AnimatedButton({
   className = "",
   onClick,
   type = "button",
+  target,
+  rel,
 }: AnimatedButtonProps) {
   const baseStyles = "btn inline-flex items-center gap-2 rounded-full transition-colors"
   const { playShutterSound } = useShutterSound()
@@ -86,7 +90,7 @@ export default function AnimatedButton({
 
   if (href) {
     return (
-      <Link href={href} className={sharedClasses} onClick={handleClick}>
+      <Link href={href} className={sharedClasses} onClick={handleClick} target={target} rel={rel}>
         {content}
       </Link>
     )

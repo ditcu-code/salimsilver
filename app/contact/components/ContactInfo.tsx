@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Instagram, Mail, MapPin, Phone } from "lucide-react"
+import { Instagram, Mail, Phone } from "lucide-react"
 
 export default function ContactInfo() {
   return (
@@ -36,11 +36,6 @@ export default function ContactInfo() {
             icon: <Mail className="text-primary mt-1" size={20} />,
             title: "Email",
             content: "hello@salimsilver.com",
-          },
-          {
-            icon: <MapPin className="text-primary mt-1" size={20} />,
-            title: "Workshop",
-            content: "Kotagede, Yogyakarta, Indonesia",
           },
           {
             icon: <Phone className="text-primary mt-1" size={20} />,
