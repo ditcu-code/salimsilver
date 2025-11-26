@@ -15,10 +15,9 @@ export default function StoreLocationSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-display mb-6">Visit Our Workshop</h2>
+          <h2 className="text-3xl md:text-4xl font-display mb-6">Location Details</h2>
           <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
-            Experience the artistry firsthand. Visit our workshop in the historic district of
-            Kotagede, where our master silversmiths craft each piece with passion and precision.
+            We are located in the heart of Kotagede, the historic silver district of Yogyakarta.
           </p>
 
           <div className="flex items-start gap-4 mb-6">
@@ -45,6 +44,7 @@ export default function StoreLocationSection() {
             <AnimatedButton
               href="https://maps.google.com/maps/dir//Salim+Silver+Kebohan+KG+3%2F547+Purbayan+Kotagede,+Yogyakarta+City,+Special+Region+of+Yogyakarta+55173/@-7.8272881,110.4018794,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x2e7a571440134b63:0x5c7989d8a5177cca"
               target="_blank"
+              rel="noopener noreferrer"
               variant="primary"
               icon={<ArrowRight size={18} />}
             >

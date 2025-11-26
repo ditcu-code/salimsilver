@@ -102,6 +102,14 @@ export default function Footer() {
             </li>
             <li>
               <Link
+                href="/store-location"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Store Location
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/about"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
@@ -114,14 +122,6 @@ export default function Footer() {
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Contact
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/store-location"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Store Location
               </Link>
             </li>
           </ul>
