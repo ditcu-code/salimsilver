@@ -1,17 +1,17 @@
 "use client"
 
-import * as React from "react"
 import { VariantProps, cva } from "class-variance-authority"
 import {
-  animate,
-  motion,
   HTMLMotionProps,
   MotionValue,
+  animate,
+  motion,
   useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTransform,
 } from "framer-motion"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -38,8 +38,16 @@ const bentoGridVariants = cva(
         [&>*:nth-child(2)]:col-span-2
         [&>*:nth-child(3)]:col-span-2
       `,
+        hero: `
+          grid-cols-1 md:grid-cols-3 grid-rows-4 md:grid-rows-2
+          [&>*:nth-child(1)]:col-span-1 md:[&>*:nth-child(1)]:col-span-2 md:[&>*:nth-child(1)]:row-span-1
+          [&>*:nth-child(2)]:col-span-1 md:[&>*:nth-child(2)]:col-span-1 md:[&>*:nth-child(2)]:row-span-2
+          [&>*:nth-child(3)]:col-span-1 md:[&>*:nth-child(3)]:col-span-1 md:[&>*:nth-child(3)]:row-span-1
+          [&>*:nth-child(4)]:col-span-1 md:[&>*:nth-child(4)]:col-span-1 md:[&>*:nth-child(4)]:row-span-1
+        `,
       },
     },
+
     defaultVariants: {
       variant: "default",
     },
@@ -266,4 +274,5 @@ export function ParallaxImage({
   )
 }
 
-export { ContainerScroll, BentoGrid, BentoCell, ContainerScale }
+export { BentoCell, BentoGrid, ContainerScale, ContainerScroll }
+

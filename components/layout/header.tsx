@@ -31,14 +31,15 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Liquid glass effect classes
-  const glassClasses = "bg-background/60 backdrop-blur-xl border border-white/20 shadow-lg"
+  // Solid header styling
+  const solidClasses = "bg-background border border-border"
+  const solidBorderlessClasses = "bg-background"
   const transparentClasses = "bg-transparent border-transparent shadow-none"
 
   return (
     <header
-      className={`fixed top-5 left-2 right-2 z-50 transition-all duration-500 ease-in-out header-height ${
-        isScrolled ? glassClasses : transparentClasses
+      className={`fixed top-5 left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-500 ease-in-out header-height ${
+        isScrolled ? solidClasses : transparentClasses
       }`}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
@@ -49,7 +50,7 @@ export default function Header() {
             <Link
               href="/"
               className={`p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all ${
-                isScrolled ? "bg-transparent text-primary" : `${glassClasses} text-primary`
+                isScrolled ? "bg-transparent text-primary" : `${solidBorderlessClasses} text-primary`
               }`}
             >
               Salim Silver
@@ -59,7 +60,7 @@ export default function Header() {
           {/* Desktop Navigation - Centered */}
           <nav
             className={`absolute left-1/2 hidden h-10 -translate-x-1/2 transform items-center justify-center space-x-8 rounded-full px-6 text-2xl text-primary transition-all duration-300 md:flex ${
-              isScrolled ? "bg-transparent" : glassClasses
+              isScrolled ? "bg-transparent" : solidBorderlessClasses
             }`}
           >
             {navigation.map((item) => (
@@ -87,7 +88,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <div
             className={`flex h-10 items-center justify-center rounded-full text-primary transition-all duration-300 md:hidden ${
-              isScrolled ? "bg-transparent" : glassClasses
+              isScrolled ? "bg-transparent" : solidBorderlessClasses
             }`}
           >
             <motion.button
