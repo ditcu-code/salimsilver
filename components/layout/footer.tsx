@@ -29,7 +29,7 @@ export default function Footer() {
             {/* <Logo /> */}
             <Link
               href="/"
-              className="font-display text-2xl font-bold inline-block text-foreground"
+              className="font-display text-2xl inline-block text-foreground"
             >
               Salim Silver
             </Link>
@@ -116,6 +116,14 @@ export default function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link
+                href="/store-location"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Store Location
+              </Link>
+            </li>
           </ul>
         </motion.div>
 
@@ -127,16 +135,16 @@ export default function Footer() {
         >
           <h3 className="section-title text-2xl mb-4">Contact</h3>
           <ul className="space-y-2 text-muted-foreground">
-            <div>
+            <li>
               <h4 className="text-primary">Email</h4>
               <a href="mailto:hello@salimsilver.com">
-                <li>hello@salimsilver.com</li>
+                <p>hello@salimsilver.com</p>
               </a>
-            </div>
-            <div>
+            </li>
+            <li>
               <h4 className="text-primary">Location</h4>
-              <li>Kotagede, Yogyakarta</li>
-            </div>
+              <p>Kotagede, Yogyakarta</p>
+            </li>
           </ul>
         </motion.div>
       </div>
