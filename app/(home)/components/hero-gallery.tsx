@@ -59,6 +59,7 @@ export function HeroGallery() {
             fill
             className="object-cover object-center"
             fetchPriority="high"
+            loading="lazy"
           />
         </FullBentoCell>
 
