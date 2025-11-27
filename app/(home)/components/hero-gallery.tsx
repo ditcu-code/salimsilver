@@ -59,7 +59,7 @@ export function HeroGallery() {
             fill
             className="object-cover object-center"
             fetchPriority="high"
-            loading="lazy"
+            loading="eager"
           />
         </FullBentoCell>
 
@@ -84,7 +84,8 @@ export function HeroGallery() {
             />
           </div>
           <div className="text-sm md:text-base text-right text-foreground/80 max-w-[200px]">
-            Crafted by Salim's artisans, each piece channels Javanese heritage into refined, modern elegance.
+            Crafted by Salim's artisans, each piece channels Javanese heritage into refined, modern
+            elegance.
           </div>
         </FullBentoCell>
       </BentoGrid>
