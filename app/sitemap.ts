@@ -9,5 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/catalog`, lastModified: new Date() },
     { url: `${baseUrl}/collections`, lastModified: new Date() },
     { url: `${baseUrl}/contact`, lastModified: new Date() },
+    { url: `${baseUrl}/store-location`, lastModified: new Date() },
   ]
 }
