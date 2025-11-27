@@ -3,6 +3,8 @@ import SafariThemeColor from "@/components/features/safari-theme-color"
 import { ThemeProvider } from "@/components/features/theme-provider"
 import Footer from "@/components/layout/footer"
 import Header from "@/components/layout/header"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata, Viewport } from "next"
 import { GFS_Didot, Lato } from "next/font/google"
 import "./globals.css"
@@ -47,8 +49,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FDFBF7' },
-    { media: '(prefers-color-scheme: dark)', color: '#1A1A1A' },
+    { media: "(prefers-color-scheme: light)", color: "#FDFBF7" },
+    { media: "(prefers-color-scheme: dark)", color: "#1A1A1A" },
   ],
 }
 
@@ -64,6 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </AppProviders>
         </ThemeProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
