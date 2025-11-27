@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+export const dynamic = 'force-static'
+
 import { HeroGallery } from "@/app/(home)/components/hero-gallery"
 import IntroductionSection from "@/app/(home)/components/introduction-section"
 import CTASection from "@/components/blocks/cta-section"
