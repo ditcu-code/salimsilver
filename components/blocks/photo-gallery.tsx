@@ -85,22 +85,6 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
     setError('Failed to load some images. Please try refreshing the page.')
   }, [])
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center p-8 text-red-500">
-        <p>{error}</p>
-      </div>
-    )
-  }
-
-  if (validPhotos.length === 0) {
-    return (
-      <div className="flex items-center justify-center p-8 text-gray-500">
-        <p>No photos available</p>
-      </div>
-    )
-  }
-
   // Format photos for the PhotoAlbum component
   const photoAlbumPhotos = validPhotos.map((photo, index) => {
     const metadata = {
@@ -193,6 +177,22 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
     } else if (x > (width * 2) / 3) {
       goToNext()
     }
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center p-8 text-red-500">
+        <p>{error}</p>
+      </div>
+    )
+  }
+
+  if (validPhotos.length === 0) {
+    return (
+      <div className="flex items-center justify-center p-8 text-gray-500">
+        <p>No photos available</p>
+      </div>
+    )
   }
 
   return (

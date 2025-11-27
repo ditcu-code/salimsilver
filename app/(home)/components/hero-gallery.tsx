@@ -6,20 +6,6 @@ import { type ReactNode } from "react"
 import { BentoGrid } from "@/components/blocks/hero-gallery-scroll-animation"
 import { motion } from "framer-motion"
 
-const IMAGES = [
-  {
-    src: "/images/hero-background.png",
-    alt: "Handcrafted silver jewelry displayed on woven fabric",
-  },
-  { src: "/images/rings-cover.png", alt: "Close-up of ornate silver rings from Salim Silver" },
-  { src: "/images/necklaces-cover.png", alt: "Silver necklaces with intricate Javanese motifs" },
-  { src: "/images/bracelets-cover.png", alt: "Engraved silver bracelets from the collection" },
-  {
-    src: "/images/hero-background.png",
-    alt: "Handcrafted silver jewelry displayed on woven fabric",
-  },
-]
-
 function FullBentoCell({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <motion.div
@@ -84,7 +70,7 @@ export function HeroGallery() {
             />
           </div>
           <div className="text-sm md:text-base text-right text-foreground/80 max-w-[200px]">
-            Crafted by Salim's artisans, each piece channels Javanese heritage into refined, modern
+            Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
             elegance.
           </div>
         </FullBentoCell>

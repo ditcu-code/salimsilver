@@ -11,6 +11,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
+import Image from "next/image"
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -263,16 +264,15 @@ export function ParallaxImage({
 
   return (
     <motion.div
-      className={className}
+      className={cn("relative", className)}
       style={{
         y: useTransform(progress, [0, 1], [0, -100 * position]),
       }}
       {...props}
     >
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
+      <Image src={src} alt={alt} fill className="object-cover" sizes="100vw" />
     </motion.div>
   )
 }
 
 export { BentoCell, BentoGrid, ContainerScale, ContainerScroll }
-

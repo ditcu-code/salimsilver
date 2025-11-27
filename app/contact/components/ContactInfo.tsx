@@ -13,7 +13,7 @@ export default function ContactInfo() {
       <h1 className="text-4xl md:text-5xl mb-6 font-display">Get in Touch</h1>
       <p className="text-primary/60 mb-8 max-w-md">
         Whether you have a question about a piece, want to discuss a custom design, or just want to
-        say hello, we're here to help.
+        say hello, we are here to help.
       </p>
 
       <motion.div

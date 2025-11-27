@@ -14,7 +14,7 @@ export default function TimelineSection() {
       >
         <h2 className="text-4xl md:text-5xl mb-4 font-display">Our Journey</h2>
         <p className="text-primary/80 max-w-2xl mx-auto">
-          From a humble family workshop to a guardian of Kotagede's silver heritage.
+          From a humble family workshop to a guardian of Kotagede silver heritage.
         </p>
       </motion.div>
 

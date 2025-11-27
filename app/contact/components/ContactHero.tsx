@@ -21,7 +21,7 @@ export default function ContactHero() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-4xl md:text-5xl text-white mb-4 font-display">Contact Us</h1>
-        <p className="text-white/90 text-lg max-w-2xl">We'd love to hear from you</p>
+        <p className="text-white/90 text-lg max-w-2xl">We would love to hear from you</p>
       </motion.div>
     </section>
   )
