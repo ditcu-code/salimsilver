@@ -5,7 +5,6 @@ import { type ReactNode } from "react"
 
 import { BentoGrid } from "@/components/blocks/hero-gallery-scroll-animation"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
 
 const IMAGES = [
   {
@@ -59,7 +58,7 @@ export function HeroGallery() {
             alt="Model wearing statement gold hoop earrings"
             fill
             className="object-cover object-center"
-            priority
+            fetchPriority="high"
           />
         </FullBentoCell>
 
