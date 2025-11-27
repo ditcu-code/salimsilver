@@ -1,8 +1,8 @@
+import { AppProviders } from "@/components/features/app-providers"
+import SafariThemeColor from "@/components/features/safari-theme-color"
+import { ThemeProvider } from "@/components/features/theme-provider"
 import Footer from "@/components/layout/footer"
 import Header from "@/components/layout/header"
-import SafariThemeColor from "@/components/features/safari-theme-color"
-import SoundEffects from "@/components/features/sound-effects"
-import { ThemeProvider } from "@/components/features/theme-provider"
 import type { Metadata, Viewport } from "next"
 import { GFS_Didot, Lato } from "next/font/google"
 import "./globals.css"
@@ -58,10 +58,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SafariThemeColor />
-          <SoundEffects />
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <AppProviders>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </AppProviders>
         </ThemeProvider>
       </body>
     </html>
