@@ -161,13 +161,16 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
   // Scroll thumbnails to center the current photo
   useEffect(() => {
     if (lightboxOpen && thumbnailsRef.current) {
-      const thumbnailWidth = 80
-      const scrollPosition =
-        currentPhotoIndex * thumbnailWidth - thumbnailsRef.current.clientWidth / 2 + thumbnailWidth / 2
+      requestAnimationFrame(() => {
+        if (!thumbnailsRef.current) return
+        const thumbnailWidth = 80
+        const scrollPosition =
+          currentPhotoIndex * thumbnailWidth - thumbnailsRef.current.clientWidth / 2 + thumbnailWidth / 2
 
-      thumbnailsRef.current.scrollTo({
-        left: scrollPosition,
-        behavior: "smooth",
+        thumbnailsRef.current.scrollTo({
+          left: scrollPosition,
+          behavior: "smooth",
+        })
       })
     }
   }, [currentPhotoIndex, lightboxOpen])

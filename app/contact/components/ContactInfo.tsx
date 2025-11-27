@@ -40,7 +40,7 @@ export default function ContactInfo() {
           {
             icon: <Phone className="text-primary mt-1" size={20} />,
             title: "Phone",
-            content: "+62 812 3456 7890",
+            content: "+62 896 7197 7699",
           },
         ].map((item) => (
           <motion.div
