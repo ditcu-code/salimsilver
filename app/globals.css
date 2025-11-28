@@ -129,6 +129,9 @@
 /* Add some spacing for the fixed header */
 main {
   padding-top: 0;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Animation utilities */
