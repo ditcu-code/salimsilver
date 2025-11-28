@@ -59,7 +59,9 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-5 left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-500 ease-in-out header-height",
-        isScrolled ? "bg-background border border-border" : "bg-transparent border border-transparent"
+        isScrolled
+          ? "bg-background border border-border"
+          : "bg-transparent border border-transparent",
       )}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
@@ -75,7 +77,11 @@ export default function Header() {
               <ThemeToggle />
             </div>
 
-            <MobileMenuButton isOpen={isMenuOpen} isScrolled={isScrolled} onOpen={() => setIsMenuOpen(true)} />
+            <MobileMenuButton
+              isOpen={isMenuOpen}
+              isScrolled={isScrolled}
+              onOpen={() => setIsMenuOpen(true)}
+            />
           </div>
         </div>
       </div>
@@ -92,7 +98,7 @@ function Brand({ isScrolled }: { isScrolled: boolean }) {
         href="/"
         className={cn(
           "p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all",
-          isScrolled ? "bg-transparent" : "bg-background"
+          isScrolled ? "bg-transparent" : "bg-background",
         )}
       >
         Salim Silver
@@ -116,7 +122,7 @@ function DesktopNavigation({
     <nav
       className={cn(
         "hidden h-10 items-center justify-center space-x-8 rounded-full px-6 transition-all duration-300 md:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2",
-        isScrolled ? "bg-transparent" : "bg-background"
+        isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
       {navigation.map((item) => {
@@ -129,7 +135,7 @@ function DesktopNavigation({
             className={cn(
               "px-1 py-2 text-sm transition-colors border-b border-transparent",
               baseTone,
-              isActive ? "text-primary font-semibold border-primary/50" : "hover:text-primary/80"
+              isActive ? "text-primary font-semibold border-primary/50" : "hover:text-primary/80",
             )}
           >
             {item.name}
@@ -153,7 +159,7 @@ function MobileMenuButton({
     <div
       className={cn(
         "flex h-10 items-center justify-center rounded-full text-primary transition-all duration-300 md:hidden",
-        isScrolled ? "bg-transparent" : "bg-background"
+        isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
       <motion.button
@@ -205,7 +211,7 @@ function MobileMenu({
               <X className="h-6 w-6" aria-hidden="true" />
             </motion.button>
           </div>
-          <nav className="flex-1 flex flex-col items-center pt-32 space-y-6">
+          <nav className="flex flex-col items-center py-10 space-y-6">
             {navigation.map((item) => {
               const isActive = pathname === item.href
 
@@ -216,8 +222,8 @@ function MobileMenu({
                   className={cn(
                     "block px-8 py-3 text-4xl font-display transition-all duration-300",
                     isActive
-                      ? "text-primary font-medium scale-110"
-                      : "text-foreground/80 hover:text-primary hover:scale-105"
+                      ? "text-primary font-medium scale-110 border-b-2 border-border"
+                      : "text-foreground/80 hover:text-primary hover:scale-105",
                   )}
                   onClick={onClose}
                 >
@@ -225,9 +231,6 @@ function MobileMenu({
                 </Link>
               )
             })}
-            <div className="mt-8">
-              <ThemeToggle />
-            </div>
           </nav>
         </motion.div>
       )}
