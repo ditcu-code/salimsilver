@@ -53,67 +53,67 @@
 
 @layer base {
   :root {
-    /* Light Mode - Cream/Gold/Charcoal */
-    --background: 40 20% 97%; /* Light Cream */
-    --foreground: 220 20% 10%; /* Deep Charcoal */
+    /* Light Mode - Warm/Brick Red */
+    --background: 40 20% 98%; /* Warm Cream */
+    --foreground: 10 20% 10%; /* Dark Red-Black */
     
-    --card: 40 20% 97%;
-    --card-foreground: 220 20% 10%;
+    --card: 40 20% 98%;
+    --card-foreground: 10 20% 10%;
     
-    --popover: 40 20% 97%;
-    --popover-foreground: 220 20% 10%;
+    --popover: 40 20% 98%;
+    --popover-foreground: 10 20% 10%;
     
-    --primary: 220 20% 10%; /* Deep Charcoal */
-    --primary-foreground: 45 30% 90%; /* Soft Gold/Cream */
+    --primary: 10 78% 25%; /* Deep Brick Red (#701F0E) */
+    --primary-foreground: 40 20% 98%; /* Warm Cream */
     
-    --secondary: 45 20% 90%; /* Soft Beige */
-    --secondary-foreground: 220 20% 10%;
+    --secondary: 10 20% 92%; /* Pale Reddish Beige */
+    --secondary-foreground: 10 20% 10%;
     
-    --muted: 40 10% 94%;
-    --muted-foreground: 220 10% 40%;
+    --muted: 10 10% 94%;
+    --muted-foreground: 10 10% 40%;
     
-    --accent: 45 40% 60%; /* Gold Accent */
-    --accent-foreground: 220 20% 10%;
+    --accent: 10 30% 85%; /* Soft Red Accent */
+    --accent-foreground: 10 20% 10%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 45 10% 85%;
-    --input: 45 10% 85%;
-    --ring: 220 20% 10%;
+    --border: 10 10% 85%;
+    --input: 10 10% 85%;
+    --ring: 10 78% 25%;
     
-    --radius: 0.25rem; /* Sharper corners for elegance */
+    --radius: 0.25rem;
   }
 
   .dark {
-    /* Dark Mode - Midnight/Gold */
-    --background: 220 25% 10%; /* Midnight Blue/Charcoal */
-    --foreground: 45 20% 90%; /* Soft Cream */
+    /* Dark Mode - Deep Warm/Red */
+    --background: 10 15% 5%; /* Very Dark Warm Grey/Red */
+    --foreground: 40 20% 90%; /* Soft Cream */
     
-    --card: 220 25% 12%;
-    --card-foreground: 45 20% 90%;
+    --card: 10 15% 7%;
+    --card-foreground: 40 20% 90%;
     
-    --popover: 220 25% 10%;
-    --popover-foreground: 45 20% 90%;
+    --popover: 10 15% 5%;
+    --popover-foreground: 40 20% 90%;
     
-    --primary: 45 30% 80%; /* Muted Gold */
-    --primary-foreground: 220 25% 10%;
+    --primary: 10 70% 45%; /* Lighter Red for visibility */
+    --primary-foreground: 10 15% 5%;
     
-    --secondary: 220 20% 20%;
-    --secondary-foreground: 45 20% 90%;
+    --secondary: 10 20% 15%; /* Dark Reddish Grey */
+    --secondary-foreground: 40 20% 90%;
     
-    --muted: 220 20% 20%;
-    --muted-foreground: 45 10% 70%;
+    --muted: 10 20% 15%;
+    --muted-foreground: 10 10% 65%;
     
-    --accent: 45 40% 50%; /* Gold */
-    --accent-foreground: 220 25% 10%;
+    --accent: 10 30% 25%; /* Dark Red Accent */
+    --accent-foreground: 40 20% 90%;
     
     --destructive: 0 62% 30%;
-    --destructive-foreground: 45 20% 90%;
+    --destructive-foreground: 40 20% 90%;
     
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 45 30% 80%;
+    --border: 10 20% 20%;
+    --input: 10 20% 20%;
+    --ring: 10 70% 45%;
   }
 }
 
@@ -200,7 +200,7 @@ body.sounds-muted a {
 
 /* Button styles */
 .btn {
-  @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;
+  @apply transition-colors;
 }
 
 /* Input styles */
