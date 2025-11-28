@@ -28,7 +28,7 @@ export default function IntroductionSection() {
           </AnimatedButton>
         </motion.div>
         <motion.div
-          className="relative h-[500px] rounded-2xl overflow-hidden"
+          className="relative h-[500px] rounded-2xl overflow-hidden max-sm:hidden"
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
