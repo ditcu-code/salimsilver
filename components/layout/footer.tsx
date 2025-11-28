@@ -27,10 +27,7 @@ export default function Footer() {
         >
           <div className="flex items-center gap-3 mb-4">
             {/* <Logo /> */}
-            <Link
-              href="/"
-              className="font-display text-2xl inline-block text-foreground"
-            >
+            <Link href="/" className="font-display text-2xl inline-block text-foreground">
               Salim Silver
             </Link>
           </div>
@@ -142,8 +139,10 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <h4 className="text-primary">Location</h4>
-              <p>Kotagede, Yogyakarta</p>
+              <h4 className="text-primary">Phone</h4>
+              <a href="tel:+6289671977699">
+                <p>+62 896 7197 7699</p>
+              </a>
             </li>
           </ul>
         </motion.div>

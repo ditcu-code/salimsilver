@@ -16,11 +16,11 @@ export default function IntroductionSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl mb-6 font-display">The Art of Silver Craftsmanship</h2>
-          <p className="text-primary-secondary mb-6">
+          <p className="text-muted-foreground mb-6">
             At Salim Silver, we believe that jewelry is more than just an accessory; it is an expression of art and tradition.
             Our pieces are handcrafted by skilled artisans in Kotagede, Yogyakarta, preserving a legacy of renewal and design.
           </p>
-          <p className="text-primary-secondary mb-8">
+          <p className="text-muted-foreground mb-8">
             From intricate filigree rings to bold statement necklaces, every item in our collection tells a unique story.
           </p>
           <AnimatedButton href="/about" variant="outline" icon={<ArrowRight size={16} />}>

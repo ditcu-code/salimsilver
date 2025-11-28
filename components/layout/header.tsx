@@ -89,7 +89,7 @@ function Brand({ isScrolled }: { isScrolled: boolean }) {
       <Link
         href="/"
         className={cn(
-          "p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all text-primary",
+          "p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all",
           isScrolled ? "bg-transparent" : "bg-background"
         )}
       >

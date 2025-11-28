@@ -107,11 +107,11 @@ export default function FeaturedCollections({
             viewport={{ once: true }}
           >
             {title && (
-              <h2 className="text-primary text-3xl md:text-4xl mb-4 font-display">
+              <h2 className="text-3xl md:text-4xl mb-4 font-display">
                 {title}
               </h2>
             )}
-            {description && <p className="text-primary max-w-2xl mx-auto">{description}</p>}
+            {description && <p className="text-muted-foreground max-w-2xl mx-auto">{description}</p>}
           </motion.div>
         )}
         {grid}

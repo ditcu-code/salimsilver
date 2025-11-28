@@ -69,7 +69,7 @@ export function HeroGallery() {
               className="object-cover object-center"
             />
           </div>
-          <div className="text-sm md:text-base text-right text-foreground/80 max-w-[200px]">
+          <div className="text-sm md:text-base text-right text-muted-foreground max-w-[200px]">
             Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
             elegance.
           </div>
