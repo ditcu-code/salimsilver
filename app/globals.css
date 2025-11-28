@@ -53,67 +53,67 @@
 
 @layer base {
   :root {
-    /* Light Mode - Warm/Brick Red */
+    /* Light Mode - Warm Brown */
     --background: 40 20% 98%; /* Warm Cream */
-    --foreground: 10 20% 10%; /* Dark Red-Black */
+    --foreground: 20 20% 10%; /* Dark Brown-Black */
     
     --card: 40 20% 98%;
-    --card-foreground: 10 20% 10%;
+    --card-foreground: 20 20% 10%;
     
     --popover: 40 20% 98%;
-    --popover-foreground: 10 20% 10%;
+    --popover-foreground: 20 20% 10%;
     
-    --primary: 10 78% 25%; /* Deep Brick Red (#701F0E) */
+    --primary: 20 29% 18%; /* Dark Brown (#3C2A21) */
     --primary-foreground: 40 20% 98%; /* Warm Cream */
     
-    --secondary: 10 20% 92%; /* Pale Reddish Beige */
-    --secondary-foreground: 10 20% 10%;
+    --secondary: 20 20% 92%; /* Pale Brownish Beige */
+    --secondary-foreground: 20 20% 10%;
     
-    --muted: 10 10% 94%;
-    --muted-foreground: 10 10% 40%;
+    --muted: 20 10% 94%;
+    --muted-foreground: 20 10% 40%;
     
-    --accent: 10 30% 85%; /* Soft Red Accent */
-    --accent-foreground: 10 20% 10%;
+    --accent: 20 30% 85%; /* Soft Brown Accent */
+    --accent-foreground: 20 20% 10%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 10 10% 85%;
-    --input: 10 10% 85%;
-    --ring: 10 78% 25%;
+    --border: 20 10% 85%;
+    --input: 20 10% 85%;
+    --ring: 20 29% 18%;
     
     --radius: 0.25rem;
   }
 
   .dark {
-    /* Dark Mode - Deep Warm/Red */
-    --background: 10 15% 5%; /* Very Dark Warm Grey/Red */
+    /* Dark Mode - Deep Warm Brown */
+    --background: 20 15% 5%; /* Very Dark Warm Brown */
     --foreground: 40 20% 90%; /* Soft Cream */
     
-    --card: 10 15% 7%;
+    --card: 20 15% 7%;
     --card-foreground: 40 20% 90%;
     
-    --popover: 10 15% 5%;
+    --popover: 20 15% 5%;
     --popover-foreground: 40 20% 90%;
     
-    --primary: 10 70% 45%; /* Lighter Red for visibility */
-    --primary-foreground: 10 15% 5%;
+    --primary: 20 30% 45%; /* Lighter Brown for visibility */
+    --primary-foreground: 20 15% 5%;
     
-    --secondary: 10 20% 15%; /* Dark Reddish Grey */
+    --secondary: 20 20% 15%; /* Dark Brownish Grey */
     --secondary-foreground: 40 20% 90%;
     
-    --muted: 10 20% 15%;
-    --muted-foreground: 10 10% 65%;
+    --muted: 20 20% 15%;
+    --muted-foreground: 20 10% 65%;
     
-    --accent: 10 30% 25%; /* Dark Red Accent */
+    --accent: 20 30% 25%; /* Dark Brown Accent */
     --accent-foreground: 40 20% 90%;
     
     --destructive: 0 62% 30%;
     --destructive-foreground: 40 20% 90%;
     
-    --border: 10 20% 20%;
-    --input: 10 20% 20%;
-    --ring: 10 70% 45%;
+    --border: 20 20% 20%;
+    --input: 20 20% 20%;
+    --ring: 20 30% 45%;
   }
 }
 
