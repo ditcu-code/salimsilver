@@ -78,7 +78,7 @@ export function ContactForm({ className }: ContactFormProps) {
           type="submit"
           disabled={state.submitting}
           className={cn(
-            'w-full rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white dark:text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
+            'w-full rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white dark:text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer',
             state.submitting && 'cursor-not-allowed opacity-50'
           )}
         >
