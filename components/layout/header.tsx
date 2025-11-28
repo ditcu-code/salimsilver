@@ -63,8 +63,10 @@ export default function Header() {
       )}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
-        <div className="flex items-center justify-between h-full">
-          <Brand isScrolled={isScrolled} />
+        <div className="flex items-center h-full relative gap-4">
+          <div className="mr-auto">
+            <Brand isScrolled={isScrolled} />
+          </div>
 
           <DesktopNavigation isHome={isHome} isScrolled={isScrolled} pathname={pathname} />
 
@@ -113,7 +115,7 @@ function DesktopNavigation({
   return (
     <nav
       className={cn(
-        "absolute left-1/2 hidden h-10 -translate-x-1/2 transform items-center justify-center space-x-8 rounded-full px-6 text-2xl transition-all duration-300 md:flex",
+        "hidden h-10 items-center justify-center space-x-8 rounded-full px-6 transition-all duration-300 md:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2",
         isScrolled ? "bg-transparent" : "bg-background"
       )}
     >
