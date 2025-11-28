@@ -1,8 +1,8 @@
 "use client"
 
-import type { ReactNode } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import type { ReactNode } from "react"
 
 import AnimatedButton from "@/components/animated-button"
 import { cn } from "@/lib/utils"
@@ -39,7 +39,7 @@ export default function CTASection({
       className={cn(
         "rounded-3xl border border-border bg-secondary/30",
         resolvedPaddingClasses,
-        resolvedSectionClasses
+        resolvedSectionClasses,
       )}
     >
       <motion.div

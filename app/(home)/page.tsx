@@ -54,7 +54,7 @@ export default function Home() {
         description="Looking for a unique piece or interested in stocking our jewelry? We offer custom design services and wholesale partnerships."
         ctaLabel="Inquire Now"
         ctaHref="/contact"
-        sectionClassName="min-w-[90%] justify-self-center mr-4 ml-4 py-20 lg:my-20 sm:mt-0 sm:mb-20 z-10"
+        sectionClassName="min-w-[90%] justify-self-center mx-8 py-20 lg:my-20 sm:mt-0 sm:mb-20 z-10"
         paddingClassName="px-2 md:px-8"
       />
 

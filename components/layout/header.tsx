@@ -59,7 +59,7 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-5 left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-500 ease-in-out header-height",
-        isScrolled ? "bg-background border border-border" : "bg-transparent border-transparent shadow-none"
+        isScrolled ? "bg-background border border-border" : "bg-transparent border border-transparent"
       )}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
@@ -89,7 +89,7 @@ function Brand({ isScrolled }: { isScrolled: boolean }) {
       <Link
         href="/"
         className={cn(
-          "p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all",
+          "py-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all",
           isScrolled ? "bg-transparent" : "bg-background"
         )}
       >
