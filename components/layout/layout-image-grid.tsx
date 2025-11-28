@@ -1,66 +1,60 @@
-"use client";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+"use client"
+import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
+import React, { useState } from "react"
 
 type Card = {
-  id: number;
-  content: React.ReactNode;
-  className: string;
-  thumbnail: string;
-};
+  id: number
+  content: React.ReactNode
+  className: string
+  thumbnail: string
+}
 
 const SkeletonOne = () => {
   return (
     <div>
-      <p className="font-display font-bold md:text-4xl text-xl text-white">
-        Handcrafted Rings
-      </p>
+      <p className="font-display font-bold md:text-4xl text-xl text-white">Handcrafted Rings</p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Discover our collection of intricate silver rings, each piece telling a story of Javanese tradition.
+        Discover our collection of intricate silver rings, each piece telling a story of Javanese
+        tradition.
       </p>
     </div>
-  );
-};
+  )
+}
 
 const SkeletonTwo = () => {
   return (
     <div>
-      <p className="font-display font-bold md:text-4xl text-xl text-white">
-        Artisan Necklaces
-      </p>
+      <p className="font-display font-bold md:text-4xl text-xl text-white">Artisan Necklaces</p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Elegant silver necklaces featuring bold pendants and delicate chains, perfect for any occasion.
+        Elegant silver necklaces featuring bold pendants and delicate chains, perfect for any
+        occasion.
       </p>
     </div>
-  );
-};
+  )
+}
 
 const SkeletonThree = () => {
   return (
     <div>
-      <p className="font-display font-bold md:text-4xl text-xl text-white">
-        Silver Bracelets
-      </p>
+      <p className="font-display font-bold md:text-4xl text-xl text-white">Silver Bracelets</p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
         Hand-woven and solid silver bracelets that combine modern style with timeless craftsmanship.
       </p>
     </div>
-  );
-};
+  )
+}
 
 const SkeletonFour = () => {
   return (
     <div>
-      <p className="font-display font-bold md:text-4xl text-xl text-white">
-        Statement Earrings
-      </p>
+      <p className="font-display font-bold md:text-4xl text-xl text-white">Statement Earrings</p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
         From subtle studs to dramatic drops, our earrings are designed to captivate and inspire.
       </p>
     </div>
-  );
-};
+  )
+}
 
 const cards = [
   {
@@ -87,24 +81,24 @@ const cards = [
     className: "md:col-span-2",
     thumbnail: "/images/hero-background.png",
   },
-];
+]
 
 export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
-  const [selected, setSelected] = useState<Card | null>(null);
-  const [lastSelected, setLastSelected] = useState<Card | null>(null);
+  const [selected, setSelected] = useState<Card | null>(null)
+  const [lastSelected, setLastSelected] = useState<Card | null>(null)
 
   const handleClick = (card: Card) => {
-    setLastSelected(selected);
-    setSelected(card);
-  };
+    setLastSelected(selected)
+    setSelected(card)
+  }
 
   const handleOutsideClick = () => {
-    setLastSelected(selected);
-    setSelected(null);
-  };
+    setLastSelected(selected)
+    setSelected(null)
+  }
 
   return (
-    <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3 max-w-8xl mx-auto gap-4 relative">
+    <div className="w-full h-full p-8 grid grid-cols-1 md:grid-cols-3 max-w-8xl mx-auto gap-4 relative">
       {cards.map((card, i) => (
         <div key={i} className={cn(card.className, "cursor-pointer")}>
           <motion.div
@@ -116,7 +110,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
                 ? "rounded-3xl cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                 : lastSelected?.id === card.id
                 ? "z-40 bg-white rounded-3xl h-full w-full"
-                : "bg-white rounded-3xl h-full w-full"
+                : "bg-white rounded-3xl h-full w-full",
             )}
             layoutId={`card-${card.id}`}
           >
@@ -129,13 +123,13 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
         onClick={handleOutsideClick}
         className={cn(
           "absolute h-full w-full left-0 top-0  opacity-0 z-10",
-          selected?.id ? "pointer-events-auto" : "pointer-events-none"
+          selected?.id ? "pointer-events-auto" : "pointer-events-none",
         )}
         animate={{ opacity: selected?.id ? 0.3 : 0 }}
       />
     </div>
-  );
-};
+  )
+}
 
 const ImageComponent = ({ card }: { card: Card }) => {
   return (
@@ -145,12 +139,12 @@ const ImageComponent = ({ card }: { card: Card }) => {
       height="500"
       width="500"
       className={cn(
-        "object-cover object-center absolute inset-0 h-full w-full transition-transform duration-200 group-hover:scale-110"
+        "object-cover object-center absolute inset-0 h-full w-full transition-transform duration-200 group-hover:scale-110",
       )}
       alt="thumbnail"
     />
-  );
-};
+  )
+}
 
 const SelectedCard = ({ selected }: { selected: Card | null }) => {
   return (
@@ -171,13 +165,13 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
         {selected?.content}
       </motion.div>
     </div>
-  );
-};
+  )
+}
 
 export function LayoutGridDemo() {
   return (
     <div className="h-screen py-20 w-full">
       <LayoutGrid cards={cards} />
     </div>
-  );
+  )
 }
