@@ -38,9 +38,9 @@ export default function AnimatedButton({
     primary:
       "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-secondary px-6 py-3",
     secondary:
-      "bg-white text-black hover:bg-white/90 hover:text-black dark:bg-gray-800 dark:text-white dark:hover:bg-gray/90 px-6 py-3",
+      "bg-secondary text-black hover:bg-white/90 hover:text-black dark:bg-gray-800 dark:text-white dark:hover:bg-gray/90 px-6 py-3",
     outline:
-      "border border-black bg-transparent text-primary hover:text-primary-foreground hover:border-primary px-6 py-3",
+      "border border-primary bg-transparent text-primary hover:text-primary-foreground hover:border-secondary px-6 py-3",
   }
 
   const handleClick = () => {

@@ -9,7 +9,7 @@ export default function BioSection() {
     <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
-          className="relative h-[600px] rounded-2xl overflow-hidden"
+          className="relative h-[600px] rounded-3xl overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

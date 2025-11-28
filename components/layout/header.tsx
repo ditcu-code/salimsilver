@@ -97,7 +97,7 @@ function Brand({ isScrolled }: { isScrolled: boolean }) {
       <Link
         href="/"
         className={cn(
-          "p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-full transition-all",
+          "p-3 text-2xl font-display duration-300 h-10 flex items-center justify-center rounded-3xl transition-all",
           isScrolled ? "bg-transparent" : "bg-background",
         )}
       >
@@ -121,7 +121,7 @@ function DesktopNavigation({
   return (
     <nav
       className={cn(
-        "hidden h-10 items-center justify-center space-x-8 rounded-full px-6 transition-all duration-300 md:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2",
+        "hidden h-10 items-center justify-center space-x-8 rounded-3xl px-6 transition-all duration-300 md:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2",
         isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
@@ -158,7 +158,7 @@ function MobileMenuButton({
   return (
     <div
       className={cn(
-        "flex h-10 items-center justify-center rounded-full text-primary transition-all duration-300 md:hidden",
+        "flex h-10 items-center justify-center rounded-3xl  text-primary transition-all duration-300 md:hidden",
         isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
@@ -204,7 +204,7 @@ function MobileMenu({
             <motion.button
               whileTap={{ scale: 0.95 }}
               type="button"
-              className="text-foreground p-2 rounded-full bg-background/50 backdrop-blur-md border border-white/10"
+              className="text-foreground p-2 rounded-3xl bg-background/50 backdrop-blur-md border border-white/10"
               onClick={onClose}
             >
               <span className="sr-only">Close menu</span>

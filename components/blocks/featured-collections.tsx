@@ -47,7 +47,7 @@ export default function FeaturedCollections({
             className="group block h-full"
             onClick={playShutterSound}
           >
-            <div className="relative h-full overflow-hidden bg-black rounded-lg shadow-md">
+            <div className="relative h-full overflow-hidden bg-black rounded-3xl shadow-md">
               {/* Image container with overlay */}
               <div className="relative h-80 w-full overflow-hidden">
                 <Image

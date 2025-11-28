@@ -1,7 +1,7 @@
 "use client"
 
-import { useForm, ValidationError } from "@formspree/react"
 import { cn } from "@/lib/utils"
+import { useForm, ValidationError } from "@formspree/react"
 
 interface ContactFormProps {
   className?: string
@@ -36,7 +36,7 @@ export function ContactForm({ className }: ContactFormProps) {
           id="name"
           name="name"
           required
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
+          className="mt-1 block w-full rounded-xl border border-border px-3 py-2 focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
       </div>
       <div>
@@ -48,7 +48,7 @@ export function ContactForm({ className }: ContactFormProps) {
           id="email"
           name="email"
           required
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
+          className="mt-1 block w-full rounded-xl border border-border px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
         <ValidationError 
           prefix="Email" 
@@ -65,7 +65,7 @@ export function ContactForm({ className }: ContactFormProps) {
           name="message"
           required
           rows={4}
-          className="mt-1 block w-full rounded-md border border-border px-3 py-2 shadow-sm focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
+          className="mt-1 block w-full rounded-xl border border-border px-3 py-2 focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
         <ValidationError 
           prefix="Message" 
@@ -78,7 +78,7 @@ export function ContactForm({ className }: ContactFormProps) {
           type="submit"
           disabled={state.submitting}
           className={cn(
-            'w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white dark:text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
+            'w-full rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white dark:text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
             state.submitting && 'cursor-not-allowed opacity-50'
           )}
         >

@@ -3,10 +3,9 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import type { ReactNode } from "react"
 
+import AnimatedButton from "@/components/animated-button"
 import CTASection from "@/components/blocks/cta-section"
 import StoreLocationSection from "@/components/blocks/store-location-section"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
 
@@ -55,9 +54,9 @@ export default function StoreLocationPage() {
             Step into the heart of Kotagede and witness the artistry behind every piece.
           </p>
           <div className="mt-8">
-             <Button asChild size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-8">
-              <Link href="#location">Get Directions</Link>
-            </Button>
+             <AnimatedButton href="#location" variant="primary" className="px-8">
+              Get Directions
+            </AnimatedButton>
           </div>
         </div>
       </section>
@@ -76,7 +75,7 @@ export default function StoreLocationPage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card/60 p-8 shadow-sm backdrop-blur">
+            <div className="rounded-3xl border border-border bg-card/60 p-8 shadow-sm backdrop-blur">
               <h3 className="text-xl font-display mb-4">What to expect</h3>
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-start gap-3">
@@ -182,7 +181,7 @@ interface InfoCardProps {
 
 function InfoCard({ icon, title, description }: InfoCardProps) {
   return (
-    <div className="flex gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/20">
+    <div className="flex gap-4 rounded-3xl border border-border bg-card p-5 transition-colors hover:border-primary/20">
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
         {icon}
       </div>

@@ -24,7 +24,7 @@ export function HeroGallery() {
     <div className="relative min-h-screen w-full overflow-hidden bg-linear-to-br from-background via-secondary/30 to-background pt-24 pb-12 px-4 md:px-8">
       <BentoGrid variant="hero" className="h-full w-full gap-4 md:gap-6">
         {/* Cell 1: Title and Text (Top Left) */}
-        <FullBentoCell className="flex flex-col justify-center items-start p-8 md:p-12 bg-background rounded-4xl">
+        <FullBentoCell className="flex flex-col justify-center items-start p-8 md:p-12 bg-background rounded-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 2: Large Portrait Image (Right) */}
-        <FullBentoCell className="relative overflow-hidden rounded-4xl h-full min-h-[400px]">
+        <FullBentoCell className="relative overflow-hidden rounded-3xl h-full min-h-[400px]">
           <Image
             src="/images/hero-background.png" // Using existing image as placeholder for the model with hoop earrings
             alt="Model wearing statement gold hoop earrings"
@@ -50,7 +50,7 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 3: Portrait Image (Bottom Left) */}
-        <FullBentoCell className="relative overflow-hidden rounded-4xl min-h-[300px]">
+        <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px]">
           <Image
             src="/images/rings-cover.png" // Using existing image
             alt="Model wearing gold earrings"
@@ -60,7 +60,7 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 4: Landscape/Text Cell (Bottom Middle) */}
-        <FullBentoCell className="relative overflow-hidden rounded-4xl min-h-[300px] bg-secondary/50 flex flex-col justify-between p-6 items-end">
+        <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px] bg-secondary/50 flex flex-col justify-between p-6 items-end">
           <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-4">
             <Image
               src="/images/necklaces-cover.png"
