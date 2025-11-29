@@ -25,15 +25,15 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-col mb-6">
             {/* <Logo /> */}
             <Link href="/" className="font-display text-2xl inline-block text-foreground">
               Salim Silver
             </Link>
+            <span className="italic text-xs text-muted-foreground pl-4">Heritage Forged by Hand.</span>
           </div>
-          <p className="text-muted-foreground max-w-md mb-6">
-            Handcrafted silver jewelry that tells a story of elegance and tradition. Timeless pieces
-            for the modern soul.
+          <p className="text-muted-foreground text-md max-w-md mb-6">
+            Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
           </p>
           <div className="flex space-x-4 items-center">
             <motion.a
