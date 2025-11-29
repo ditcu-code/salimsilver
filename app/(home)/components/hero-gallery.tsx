@@ -60,7 +60,7 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 4: Landscape/Text Cell (Bottom Middle) */}
-        <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px] bg-secondary/50 flex flex-col justify-between p-6 items-end">
+        <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px] bg-secondary flex flex-col justify-between p-6 items-end">
           <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-4">
             <Image
               src="/images/necklaces-cover.png"
