@@ -56,61 +56,61 @@
     /* Light Mode - Warm Brown */
     --background: #fafaf6; /* Warm Cream */
     --foreground: #323130; /* Dark Brown-Black */
-    
+
     --card: #fafaf6;
     --card-foreground: #1f1b19;
-    
+
     --popover: #fafaf6;
     --popover-foreground: #1f1b19;
-    
+
     --primary: #3c2a21; /* Dark Brown (#3C2A21) */
     --primary-foreground: #fafaf6; /* Warm Cream */
-    
+
     --secondary: #efe9e7; /* Pale Brownish Beige */
     --secondary-foreground: #1f1b19;
-    
+
     --muted: #f2efee;
-    --muted-foreground: #5B554D;
-    
+    --muted-foreground: #5b554d;
+
     --accent: #dccdc9; /* Soft Brown Accent */
     --accent-foreground: #1f1b19;
-    
+
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
-    
+
     --border: #dcd8d6;
     --input: #dcd8d6;
     --ring: #3c2a21;
-    
+
     --radius: 0.25rem;
   }
 
   .dark {
     /* Dark Mode - Deep Warm Brown */
-    --background: #1A120B; /* Very Dark Warm Brown (#1A120B) */
+    --background: #1a120b; /* Very Dark Warm Brown (#1A120B) */
     --foreground: #e6e4e0; /* Soft Cream */
-    
+
     --card: #21170e;
     --card-foreground: #e6e4e0;
-    
-    --popover: #1A120B;
+
+    --popover: #1a120b;
     --popover-foreground: #e6e4e0;
-    
+
     --primary: #956a58; /* Lighter Brown for visibility */
     --primary-foreground: #0f0d0c;
-    
-    --secondary: #2e2926; /* Dark Brownish Grey */
+
+    --secondary: #271a13; /* Dark Brownish Grey */
     --secondary-foreground: #e6e4e0;
-    
+
     --muted: #2e2926;
     --muted-foreground: #b7ada9;
-    
+
     --accent: #533e35; /* Dark Brown Accent */
     --accent-foreground: #e6e4e0;
-    
+
     --destructive: #7f1d1d;
     --destructive-foreground: #e6e4e0;
-    
+
     --border: #3d3632;
     --input: #3d3632;
     --ring: #956a58;
@@ -161,7 +161,7 @@ main {
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
-  
+
   border-radius: 20px;
 }
 
