@@ -21,7 +21,7 @@ function FullBentoCell({ children, className }: { children: ReactNode; className
 
 export function HeroGallery() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-linear-to-br from-background via-secondary/30 to-background pt-24 pb-12 px-4 md:px-8">
+    <div className="relative w-full overflow-hidden bg-linear-to-br from-background via-secondary/30 to-background pt-24 pb-12 px-4 md:px-8">
       <BentoGrid variant="hero" className="h-full w-full gap-4 md:gap-6">
         {/* Cell 1: Title and Text (Top Left) */}
         <FullBentoCell className="flex flex-col justify-center items-start p-8 md:p-12 bg-background rounded-3xl">
