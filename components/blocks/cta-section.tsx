@@ -31,7 +31,7 @@ export default function CTASection({
   containerClassName = "max-w-7xl mx-auto text-center",
 }: CTASectionProps) {
   const resolvedSectionClasses =
-    sectionClassName ?? "min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20"
+    sectionClassName ?? "min-w-[90%] justify-self-center mr-4 ml-4 py-12 my-12 md:py-20 md:my-20"
   const resolvedPaddingClasses = paddingClassName ?? "px-4 md:px-8"
 
   return (

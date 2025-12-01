@@ -10,6 +10,7 @@ export default function IntroductionSection() {
     <section id="introduction" className="mt-32 mb-20 sm:py-0 py-20 px-4 md:px-8 max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
+          className="order-2 md:order-1"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -28,7 +29,7 @@ export default function IntroductionSection() {
           </AnimatedButton>
         </motion.div>
         <motion.div
-          className="relative h-[500px] rounded-3xl overflow-hidden max-sm:hidden"
+          className="relative h-[300px] md:h-[500px] rounded-3xl overflow-hidden order-1 md:order-2"
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}

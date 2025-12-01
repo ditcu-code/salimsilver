@@ -32,7 +32,7 @@ export default function FeaturedCollections({
   const shouldRenderSection = Boolean(title || description || (ctaLabel && ctaHref))
 
   const grid = (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 md:pb-0 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
       {collections.map((collection, index) => (
         <motion.div
           key={collection.slug}
@@ -40,7 +40,7 @@ export default function FeaturedCollections({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
           viewport={{ once: true }}
-          className="h-full"
+          className="h-full min-w-[85vw] snap-center md:min-w-0"
         >
           <Link
             href={`/collections/${collection.slug}`}
