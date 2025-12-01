@@ -9,7 +9,7 @@ export default function BioSection() {
     <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
-          className="relative h-[600px] rounded-3xl overflow-hidden"
+          className="relative h-[400px] md:h-[600px] rounded-3xl overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -45,7 +45,7 @@ export default function BioSection() {
               honors our heritage while embracing the future of design.
             </p>
           </div>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col md:flex-row flex-wrap gap-4">
             <div className="flex items-center gap-2">
               <Award size={20} className="text-primary" />
               <span className="text-primary">Master Craftsmanship</span>
