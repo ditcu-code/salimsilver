@@ -248,7 +248,7 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
         /* Mobile styles */
         @media (max-width: 768px) {
           .react-photo-album {
-            columns: 1 !important;
+            columns: 2 !important;
           }
         }
       `}</style>
@@ -259,7 +259,7 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
             photos={photoAlbumPhotos}
             layout="masonry"
             columns={(containerWidth) => {
-              if (containerWidth < 768) return 1;
+              if (containerWidth < 768) return 2;
               return 3;
             }}
             spacing={24}
