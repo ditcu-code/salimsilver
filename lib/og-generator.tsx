@@ -18,6 +18,79 @@ async function loadGoogleFont(font: string, text: string) {
   throw new Error("failed to load font data")
 }
 
+const styles = {
+  container: {
+    fontFamily: '"Lato", sans-serif',
+    display: "flex",
+    width: "100%",
+    height: "100%",
+    color: "#fdfbf7",
+    position: "relative",
+    overflow: "hidden",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+  },
+  contentWrapper: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    padding: "80px 96px",
+    zIndex: 10,
+  },
+  contentInner: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 26,
+    maxWidth: 780,
+  },
+  brand: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: 22,
+    letterSpacing: 6,
+    textTransform: "uppercase",
+    color: "rgba(253, 251, 247, 0.85)",
+  },
+  title: {
+    fontFamily: '"Cormorant Garamond", serif',
+    fontSize: 80,
+    lineHeight: 1,
+    fontWeight: 700,
+    textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+  },
+  description: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: 28,
+    lineHeight: 1.35,
+    color: "rgba(253, 251, 247, 0.95)",
+    textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+  },
+  footer: {
+    fontFamily: '"Lato", sans-serif',
+    display: "flex",
+    alignItems: "center",
+    gap: 14,
+    marginTop: 12,
+    color: "rgba(253, 251, 247, 0.9)",
+    fontSize: 22,
+    letterSpacing: 2,
+  },
+  footerLine: {
+    width: 60,
+    height: 2,
+    backgroundColor: "rgba(253, 251, 247, 0.6)",
+  },
+} as const
+
 export async function generateOgImage(title: string, description: string) {
   const bgPath = join(process.cwd(), "public/images/og-background.jpg")
   const bgBuffer = readFileSync(bgPath)
@@ -33,99 +106,24 @@ export async function generateOgImage(title: string, description: string) {
     (
       <div
         style={{
-          fontFamily: '"Lato", sans-serif',
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          color: "#fdfbf7",
-          position: "relative",
-          overflow: "hidden",
+          ...styles.container,
           backgroundImage: `url(${bgBase64})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
       >
         {/* Dark Overlay */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-          }}
-        />
+        <div style={styles.overlay} />
 
         {/* Content Wrapper */}
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            height: "100%",
-            padding: "80px 96px",
-            zIndex: 10,
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 26,
-              maxWidth: 780,
-            }}
-          >
-            <div
-              style={{
-                fontFamily: '"Lato", sans-serif',
-                fontSize: 22,
-                letterSpacing: 6,
-                textTransform: "uppercase",
-                color: "rgba(253, 251, 247, 0.85)",
-              }}
-            >
-              Salim Silver
-            </div>
+        <div style={styles.contentWrapper}>
+          <div style={styles.contentInner}>
+            <div style={styles.brand}>Salim Silver</div>
 
-            <div
-              style={{
-                fontFamily: '"Cormorant Garamond", serif',
-                fontSize: 80,
-                lineHeight: 1,
-                fontWeight: 700,
-                textShadow: "0 2px 10px rgba(0,0,0,0.3)",
-              }}
-            >
-              {title}
-            </div>
+            <div style={styles.title}>{title}</div>
 
-            <div
-              style={{
-                fontFamily: '"Lato", sans-serif',
-                fontSize: 28,
-                lineHeight: 1.35,
-                color: "rgba(253, 251, 247, 0.95)",
-                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-              }}
-            >
-              {description}
-            </div>
+            <div style={styles.description}>{description}</div>
 
-            <div
-              style={{
-                fontFamily: '"Lato", sans-serif',
-                display: "flex",
-                alignItems: "center",
-                gap: 14,
-                marginTop: 12,
-                color: "rgba(253, 251, 247, 0.9)",
-                fontSize: 22,
-                letterSpacing: 2,
-              }}
-            >
-              <div style={{ width: 60, height: 2, backgroundColor: "rgba(253, 251, 247, 0.6)" }} />
+            <div style={styles.footer}>
+              <div style={styles.footerLine} />
               <span>Kotagede - Yogyakarta</span>
             </div>
           </div>
