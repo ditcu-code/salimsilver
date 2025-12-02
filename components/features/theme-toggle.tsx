@@ -1,9 +1,9 @@
 "use client"
+import { useShutterSound } from "@/hooks/use-shutter-sound"
+import { motion } from "framer-motion"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import { useShutterSound } from "./sound-effects"
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()

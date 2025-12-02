@@ -1,5 +1,6 @@
 "use client"
 
+import { useShutterSound } from "@/hooks/use-shutter-sound"
 import { getAllCollections } from "@/lib/collections"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
@@ -7,7 +8,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { useShutterSound } from "../features/sound-effects"
 
 export default function CollectionGrid() {
   const collections = getAllCollections()

@@ -4,7 +4,7 @@ import { LazyMotion, domAnimation } from "framer-motion"
 import dynamic from "next/dynamic"
 import { ReactNode } from "react"
 
-const SoundEffects = dynamic(() => import("@/components/features/sound-effects"), {
+const SoundEffects = dynamic(() => import("@/hooks/use-shutter-sound"), {
   ssr: false,
 })
 

@@ -1,9 +1,9 @@
 "use client"
 
+import { useShutterSound } from "@/hooks/use-shutter-sound"
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 import { type MouseEvent, type ReactNode, useState } from "react"
-import { useShutterSound } from "./features/sound-effects"
 
 interface AnimatedButtonProps {
   href?: string

@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import AnimatedButton from '@/components/ui/animated-button'
 import { motion } from 'framer-motion'
-import AnimatedButton from '@/components/animated-button'
 import { ArrowLeft } from 'lucide-react'
+import { useEffect } from 'react'
 
 export default function Error({
   error,

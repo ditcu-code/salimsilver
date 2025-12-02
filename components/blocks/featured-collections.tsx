@@ -1,13 +1,13 @@
 "use client"
 
-import AnimatedButton from "@/components/animated-button"
+import AnimatedButton from "@/components/ui/animated-button"
+import { useShutterSound } from "@/hooks/use-shutter-sound"
 import { getFeaturedCollections } from "@/lib/collections"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useShutterSound } from "../features/sound-effects"
 
 interface FeaturedCollectionsProps {
   title?: string

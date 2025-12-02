@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const soundFiles = [
   "/sounds/metal-plate-hit-1.mp3",
+  "/sounds/metal-plate-hit-2.mp3",
+  "/sounds/metal-plate-hit-3.mp3",
   "/sounds/metal-plate-hit-4.mp3",
-  "/sounds/metal-plate-hit-5.mp3",
-  "/sounds/metal-plate-hit-6.mp3",
 ]
 
 // Helper function to detect mobile devices
