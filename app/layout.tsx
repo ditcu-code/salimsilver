@@ -40,18 +40,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Salim Silver",
-    images: {
-      url: `${BASE_URL}/opengraph-image.jpg`,
-      width: 1200,
-      height: 630,
-      alt: "Salim Silver | Handcrafted Javanese Jewelry",
-    },
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Salim Silver | Handcrafted Javanese Jewelry",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Salim Silver | Handcrafted Javanese Jewelry",
     description:
       "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
+    images: ["/opengraph-image"],
   },
 }
 

@@ -24,12 +24,22 @@ export const metadata: Metadata = {
     description:
       "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
     url: `${baseUrl}/`,
+    images: [
+      {
+        url: `${baseUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Handcrafted Javanese Silver Jewelry",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Handcrafted Javanese Silver Jewelry",
     description:
       "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
+    images: [`${baseUrl}/opengraph-image`],
   },
 }
 
