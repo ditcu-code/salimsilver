@@ -9,7 +9,7 @@ export const contentType = "image/png"
 
 export default async function OpengraphImage() {
   return await generateOgImage(
-    "Handcrafted Javanese Jewelry",
-    "Heritage silver pieces made by artisans in Kotagede, Yogyakarta. Rings, necklaces, and bracelets crafted with intention."
+    "Our Catalog",
+    "Explore our complete collection of handcrafted silver jewelry. From intricate rings to statement necklaces, find your perfect piece."
   )
 }
