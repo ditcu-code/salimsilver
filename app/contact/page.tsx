@@ -5,7 +5,9 @@ import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
+import { BASE_URL } from "@/lib/constants"
+
+const baseUrl = BASE_URL
 
 export const metadata: Metadata = {
   title: "Contact Salim Silver",

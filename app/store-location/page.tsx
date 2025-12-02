@@ -7,7 +7,9 @@ import CTASection from "@/components/blocks/cta-section"
 import StoreLocationSection from "@/components/blocks/store-location-section"
 import AnimatedButton from "@/components/ui/animated-button"
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
+import { BASE_URL } from "@/lib/constants"
+
+const baseUrl = BASE_URL
 
 export const metadata: Metadata = {
   title: "Visit Salim Silver | Store Location",

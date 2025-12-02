@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next"
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
+import { BASE_URL } from "@/lib/constants"
+
+const baseUrl = BASE_URL
 
 export default function robots(): MetadataRoute.Robots {
   return {

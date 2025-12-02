@@ -8,7 +8,9 @@ import CTASection from "@/components/blocks/cta-section"
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { LayoutGridDemo } from "@/components/layout/layout-image-grid"
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
+import { BASE_URL } from "@/lib/constants"
+
+const baseUrl = BASE_URL
 
 export const metadata: Metadata = {
   title: "Handcrafted Javanese Silver Jewelry",

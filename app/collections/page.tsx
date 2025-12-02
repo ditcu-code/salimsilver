@@ -3,7 +3,9 @@ import type { Metadata } from "next"
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import CollectionsHeader from "./components/CollectionsHeader"
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"
+import { BASE_URL } from "@/lib/constants"
+
+const baseUrl = BASE_URL
 
 export const metadata: Metadata = {
   title: "Collections",
