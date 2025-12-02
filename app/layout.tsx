@@ -23,7 +23,13 @@ const gfsDidot = GFS_Didot({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.salimsilver.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL
+      ? process.env.NEXT_PUBLIC_SITE_URL
+      : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000"
+  ),
   title: {
     default: "Salim Silver | Handcrafted Javanese Jewelry",
     template: "%s | Salim Silver",
@@ -31,6 +37,7 @@ export const metadata: Metadata = {
   description:
     "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
   openGraph: {
+    // Note: The global OG image is automatically set by app/opengraph-image.jpg
     title: "Salim Silver | Handcrafted Javanese Jewelry",
     description:
       "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
@@ -38,7 +45,6 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Salim Silver",
-    images: "/opengraph-image.jpg",
   },
   twitter: {
     card: "summary_large_image",
