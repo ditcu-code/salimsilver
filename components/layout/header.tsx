@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { StoreLocationButton } from "../features/store-location-button"
 import { ThemeToggle } from "../features/theme-toggle"
 
 type NavItem = {
@@ -73,6 +74,9 @@ export default function Header() {
           <DesktopNavigation isHome={isHome} isScrolled={isScrolled} pathname={pathname} />
 
           <div className="flex items-center gap-2">
+            <div className="shrink-0 md:block toggle-container">
+              <StoreLocationButton />
+            </div>
             <div className="shrink-0 md:block toggle-container">
               <ThemeToggle />
             </div>
@@ -231,6 +235,9 @@ function MobileMenu({
                 </Link>
               )
             })}
+            <div className="mt-4">
+              <StoreLocationButton />
+            </div>
           </nav>
         </motion.div>
       )}
