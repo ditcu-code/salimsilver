@@ -39,7 +39,6 @@ export async function generateOgImage(title: string, description: string) {
           height: "100%",
           color: "#fdfbf7",
           position: "relative",
-          padding: "80px 96px",
           overflow: "hidden",
           backgroundImage: `url(${bgBase64})`,
           backgroundSize: "cover",
@@ -58,67 +57,77 @@ export async function generateOgImage(title: string, description: string) {
           }}
         />
 
-        {/* Content */}
+        {/* Content Wrapper */}
         <div
           style={{
             position: "relative",
             display: "flex",
             flexDirection: "column",
-            gap: 26,
-            maxWidth: 780,
+            width: "100%",
+            height: "100%",
+            padding: "80px 96px",
             zIndex: 10,
           }}
         >
           <div
             style={{
-              fontFamily: '"Lato", sans-serif',
-              fontSize: 22,
-              letterSpacing: 6,
-              textTransform: "uppercase",
-              color: "rgba(253, 251, 247, 0.85)",
-            }}
-          >
-            Salim Silver
-          </div>
-
-          <div
-            style={{
-              fontFamily: '"Cormorant Garamond", serif',
-              fontSize: 80,
-              lineHeight: 1,
-              fontWeight: 700,
-              textShadow: "0 2px 10px rgba(0,0,0,0.3)",
-            }}
-          >
-            {title}
-          </div>
-
-          <div
-            style={{
-              fontFamily: '"Lato", sans-serif',
-              fontSize: 28,
-              lineHeight: 1.35,
-              color: "rgba(253, 251, 247, 0.95)",
-              textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-            }}
-          >
-            {description}
-          </div>
-
-          <div
-            style={{
-              fontFamily: '"Lato", sans-serif',
               display: "flex",
-              alignItems: "center",
-              gap: 14,
-              marginTop: 12,
-              color: "rgba(253, 251, 247, 0.9)",
-              fontSize: 22,
-              letterSpacing: 2,
+              flexDirection: "column",
+              gap: 26,
+              maxWidth: 780,
             }}
           >
-            <div style={{ width: 60, height: 2, backgroundColor: "rgba(253, 251, 247, 0.6)" }} />
-            <span>Kotagede - Yogyakarta</span>
+            <div
+              style={{
+                fontFamily: '"Lato", sans-serif',
+                fontSize: 22,
+                letterSpacing: 6,
+                textTransform: "uppercase",
+                color: "rgba(253, 251, 247, 0.85)",
+              }}
+            >
+              Salim Silver
+            </div>
+
+            <div
+              style={{
+                fontFamily: '"Cormorant Garamond", serif',
+                fontSize: 80,
+                lineHeight: 1,
+                fontWeight: 700,
+                textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+              }}
+            >
+              {title}
+            </div>
+
+            <div
+              style={{
+                fontFamily: '"Lato", sans-serif',
+                fontSize: 28,
+                lineHeight: 1.35,
+                color: "rgba(253, 251, 247, 0.95)",
+                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+              }}
+            >
+              {description}
+            </div>
+
+            <div
+              style={{
+                fontFamily: '"Lato", sans-serif',
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                marginTop: 12,
+                color: "rgba(253, 251, 247, 0.9)",
+                fontSize: 22,
+                letterSpacing: 2,
+              }}
+            >
+              <div style={{ width: 60, height: 2, backgroundColor: "rgba(253, 251, 247, 0.6)" }} />
+              <span>Kotagede - Yogyakarta</span>
+            </div>
           </div>
         </div>
       </div>
