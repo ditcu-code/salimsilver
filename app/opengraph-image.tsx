@@ -14,11 +14,18 @@ export default async function OpengraphImage() {
   const bgBuffer = readFileSync(bgPath)
   const bgBase64 = `data:image/jpeg;base64,${bgBuffer.toString("base64")}`
 
+  // Load fonts
+  // We fetch specific weights: Cormorant Garamond Bold (700) and Lato Regular (400)
+  const [cormorantFont, latoFont] = await Promise.all([
+    fetch(new URL("https://github.com/google/fonts/raw/main/ofl/cormorantgaramond/CormorantGaramond-Bold.ttf", import.meta.url)).then((res) => res.arrayBuffer()),
+    fetch(new URL("https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf", import.meta.url)).then((res) => res.arrayBuffer()),
+  ])
+
   return new ImageResponse(
     (
       <div
         style={{
-          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontFamily: '"Lato", sans-serif', // Default to Lato
           display: "flex",
           width: "100%",
           height: "100%",
@@ -67,6 +74,7 @@ export default async function OpengraphImage() {
         >
           <div
             style={{
+              fontFamily: '"Lato", sans-serif',
               fontSize: 22,
               letterSpacing: 6,
               textTransform: "uppercase",
@@ -78,8 +86,9 @@ export default async function OpengraphImage() {
 
           <div
             style={{
-              fontSize: 70,
-              lineHeight: 1.05,
+              fontFamily: '"Cormorant Garamond", serif',
+              fontSize: 80, // Increased slightly for the serif font
+              lineHeight: 1,
               fontWeight: 700,
               textShadow: "0 2px 10px rgba(0,0,0,0.3)",
             }}
@@ -89,6 +98,7 @@ export default async function OpengraphImage() {
 
           <div
             style={{
+              fontFamily: '"Lato", sans-serif',
               fontSize: 28,
               lineHeight: 1.35,
               color: "rgba(253, 251, 247, 0.95)",
@@ -100,6 +110,7 @@ export default async function OpengraphImage() {
 
           <div
             style={{
+              fontFamily: '"Lato", sans-serif',
               display: "flex",
               alignItems: "center",
               gap: 14,
@@ -117,6 +128,20 @@ export default async function OpengraphImage() {
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: "Cormorant Garamond",
+          data: cormorantFont,
+          style: "normal",
+          weight: 700,
+        },
+        {
+          name: "Lato",
+          data: latoFont,
+          style: "normal",
+          weight: 400,
+        },
+      ],
     },
   )
 }
