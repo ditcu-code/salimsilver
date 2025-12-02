@@ -41,22 +41,11 @@ export async function generateOgImage(title: string, description: string) {
           position: "relative",
           padding: "80px 96px",
           overflow: "hidden",
+          backgroundImage: `url(${bgBase64})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        {/* Background Image */}
-        <img
-          src={bgBase64}
-          alt="Background"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-
         {/* Dark Overlay */}
         <div
           style={{
