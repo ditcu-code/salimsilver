@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Salim Silver",
+    images: "/opengraph-image.jpg",
   },
   twitter: {
     card: "summary_large_image",
