@@ -68,7 +68,7 @@ The theme uses a premium color palette defined in `app/globals.css`:
 
 ### Typography
 
-- **Headings**: GFS Didot (Serif)
+- **Headings**: Cormorant Garamond (Serif)
 - **Body**: Lato (Sans-serif)
 
 ## 📄 License

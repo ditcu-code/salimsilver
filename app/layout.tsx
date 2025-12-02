@@ -6,7 +6,7 @@ import Header from "@/components/layout/header"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata, Viewport } from "next"
-import { GFS_Didot, Lato } from "next/font/google"
+import { Cormorant_Garamond, Lato } from "next/font/google"
 import "./globals.css"
 
 const lato = Lato({
@@ -16,10 +16,10 @@ const lato = Lato({
 })
 
 // Display/heading font. Swap here for future updates.
-const gfsDidot = GFS_Didot({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
 })
 
 import { BASE_URL } from "@/lib/constants"
@@ -68,7 +68,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${lato.variable} ${gfsDidot.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${lato.variable} ${cormorantGaramond.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <SafariThemeColor />

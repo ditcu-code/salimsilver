@@ -20,7 +20,7 @@ Follows Next.js App Router conventions.
 - `(home)/`: Root landing page.
 - `catalog/`: Product catalog with filtering.
 - `collections/[slug]/`: Dynamic individual collection pages.
-- `layout.tsx`: Root layout containing `AppProviders`, `ThemeProvider`, and global font configurations (`Lato` and `GFS Didot`).
+- `layout.tsx`: Root layout containing `AppProviders`, `ThemeProvider`, and global font configurations (`Lato` and `Cormorant Garamond`).
 
 ### `components/`
 Organized by scope and reusability:
@@ -53,7 +53,7 @@ Organized by scope and reusability:
 5.  **Icons:** Import from `lucide-react`.
 
 ## Key Design Tokens (from `globals.css`)
-- **Fonts:** `Lato` (Sans-serif) for body, `GFS Didot` (Serif) for headings.
+- **Fonts:** `Lato` (Sans-serif) for body, `Cormorant Garamond` (Serif) for headings.
 - **Colors:**
     - `background`: Warm Cream (`#fafaf6`) / Dark Brown (`#1a120b`)
     - `primary`: Dark Brown (`#3c2a21`) / Lighter Brown (`#956a58`)

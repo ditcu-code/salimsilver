@@ -27,7 +27,7 @@ export default function Footer() {
         >
           <div className="flex flex-col mb-6">
             {/* <Logo /> */}
-            <Link href="/" className="font-display text-2xl inline-block text-foreground">
+            <Link href="/" className="font-display font-semibold text-2xl inline-block text-foreground">
               Salim Silver
             </Link>
             <span className="italic text-xs text-muted-foreground pl-4">Heritage Forged by Hand.</span>
