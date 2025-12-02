@@ -2,11 +2,11 @@ import type { Metadata } from "next"
 
 export const dynamic = 'force-static'
 
-import { HeroGallery } from "@/app/(home)/components/hero-gallery"
-import IntroductionSection from "@/app/(home)/components/introduction-section"
 import CTASection from "@/components/blocks/cta-section"
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { LayoutGridDemo } from "@/components/layout/layout-image-grid"
+import { HeroGallery } from "./components/hero-gallery"
+import IntroductionSection from "./components/introduction-section"
 
 import { BASE_URL } from "@/lib/constants"
 

@@ -1,8 +1,6 @@
 import { AppProviders } from "@/components/features/app-providers"
 import SafariThemeColor from "@/components/features/safari-theme-color"
 import { ThemeProvider } from "@/components/features/theme-provider"
-import Footer from "@/components/layout/footer"
-import Header from "@/components/layout/header"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata, Viewport } from "next"
@@ -77,9 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <SafariThemeColor />
           <AppProviders>
-            <Header />
-            <main>{children}</main>
-            <Footer />
+            {children}
           </AppProviders>
         </ThemeProvider>
         <SpeedInsights />
