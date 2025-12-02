@@ -9,16 +9,31 @@ export const size = {
 }
 export const contentType = "image/png"
 
+// Robust font fetching function
+async function loadGoogleFont(font: string, text: string) {
+  const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(text)}`
+  const css = await (await fetch(url)).text()
+  const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/)
+
+  if (resource) {
+    const response = await fetch(resource[1])
+    if (response.status == 200) {
+      return await response.arrayBuffer()
+    }
+  }
+
+  throw new Error("failed to load font data")
+}
+
 export default async function OpengraphImage() {
   const bgPath = join(process.cwd(), "public/images/og-background.jpg")
   const bgBuffer = readFileSync(bgPath)
   const bgBase64 = `data:image/jpeg;base64,${bgBuffer.toString("base64")}`
 
-  // Load fonts
-  // We fetch specific weights: Cormorant Garamond Bold (700) and Lato Regular (400)
+  // Load fonts using the helper to ensure we get a valid TTF/OTF
   const [cormorantFont, latoFont] = await Promise.all([
-    fetch(new URL("https://github.com/google/fonts/raw/main/ofl/cormorantgaramond/CormorantGaramond-Bold.ttf", import.meta.url)).then((res) => res.arrayBuffer()),
-    fetch(new URL("https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf", import.meta.url)).then((res) => res.arrayBuffer()),
+    loadGoogleFont("Cormorant Garamond:wght@700", "Handcrafted Javanese Jewelry"),
+    loadGoogleFont("Lato:wght@400", "Salim Silver Heritage silver pieces made by artisans in Kotagede, Yogyakarta. Rings, necklaces, and bracelets crafted with intention. Kotagede - Yogyakarta"),
   ])
 
   return new ImageResponse(
