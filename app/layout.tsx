@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Salim Silver",
     images: {
-      url: "/opengraph-image.jpg",
+      url: `${BASE_URL}/opengraph-image.png`,
       width: 1200,
       height: 630,
       alt: "Salim Silver | Handcrafted Javanese Jewelry",
