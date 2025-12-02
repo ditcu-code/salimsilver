@@ -4,20 +4,18 @@ import CatalogPageClient from "./page.client"
 
 import { BASE_URL } from "@/lib/constants"
 
-const baseUrl = BASE_URL
-
 export const metadata: Metadata = {
   title: "Jewelry Catalog",
   description:
     "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
   alternates: {
-    canonical: `${baseUrl}/catalog`,
+    canonical: `${BASE_URL}/catalog`,
   },
   openGraph: {
     title: "Jewelry Catalog",
     description:
       "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
-    url: `${baseUrl}/catalog`,
+    url: `${BASE_URL}/catalog`,
   },
   twitter: {
     card: "summary_large_image",
@@ -40,7 +38,7 @@ export default function CatalogPage() {
             name: "Jewelry Catalog",
             description:
               "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
-            url: `${baseUrl}/catalog`,
+            url: `${BASE_URL}/catalog`,
           }),
         }}
       />

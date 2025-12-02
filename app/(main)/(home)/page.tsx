@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-export const dynamic = 'force-static'
+export const dynamic = "force-static"
 
 import CTASection from "@/components/blocks/cta-section"
 import FeaturedCollections from "@/components/blocks/featured-collections"
@@ -10,23 +10,21 @@ import IntroductionSection from "./components/introduction-section"
 
 import { BASE_URL } from "@/lib/constants"
 
-const baseUrl = BASE_URL
-
 export const metadata: Metadata = {
   title: "Handcrafted Javanese Silver Jewelry",
   description:
     "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
   alternates: {
-    canonical: `${baseUrl}/`,
+    canonical: `${BASE_URL}/`,
   },
   openGraph: {
     title: "Handcrafted Javanese Silver Jewelry",
     description:
       "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
-    url: `${baseUrl}/`,
+    url: `${BASE_URL}/`,
     images: [
       {
-        url: `${baseUrl}/opengraph-image`,
+        url: `${BASE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Handcrafted Javanese Silver Jewelry",
@@ -39,7 +37,7 @@ export const metadata: Metadata = {
     title: "Handcrafted Javanese Silver Jewelry",
     description:
       "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
-    images: [`${baseUrl}/opengraph-image`],
+    images: [`${BASE_URL}/opengraph-image`],
   },
 }
 
@@ -60,7 +58,7 @@ export default function Home() {
       {/* Layout Grid Section */}
       <LayoutGridDemo />
 
-       {/* Call to Action */}
+      {/* Call to Action */}
       <CTASection
         title="Custom Designs & Wholesale"
         description="Looking for a unique piece or interested in stocking our jewelry? We offer custom design services and wholesale partnerships."
@@ -83,9 +81,9 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "JewelryStore",
             name: "Salim Silver",
-            image: `${baseUrl}/images/hero-background.png`,
-            "@id": `${baseUrl}`,
-            url: baseUrl,
+            image: `${BASE_URL}/images/hero-background.png`,
+            "@id": `${BASE_URL}`,
+            url: BASE_URL,
             telephone: "+62 896 7197 7699",
             address: {
               "@type": "PostalAddress",
@@ -103,14 +101,7 @@ export default function Home() {
             },
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
-              dayOfWeek: [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-              ],
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
               opens: "08:00",
               closes: "16:00",
             },

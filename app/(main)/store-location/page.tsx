@@ -9,20 +9,18 @@ import AnimatedButton from "@/components/ui/animated-button"
 
 import { BASE_URL } from "@/lib/constants"
 
-const baseUrl = BASE_URL
-
 export const metadata: Metadata = {
   title: "Visit Salim Silver | Store Location",
   description:
     "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a studio tour.",
   alternates: {
-    canonical: `${baseUrl}/store-location`,
+    canonical: `${BASE_URL}/store-location`,
   },
   openGraph: {
     title: "Visit Salim Silver | Store Location",
     description:
       "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a studio tour.",
-    url: `${baseUrl}/store-location`,
+    url: `${BASE_URL}/store-location`,
   },
   twitter: {
     card: "summary_large_image",
@@ -49,14 +47,12 @@ export default function StoreLocationPage() {
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
             Store Location
           </p>
-          <h1 className="mb-6 text-5xl font-display md:text-7xl">
-            Visit Our Workshop
-          </h1>
+          <h1 className="mb-6 text-5xl font-display md:text-7xl">Visit Our Workshop</h1>
           <p className="mx-auto max-w-2xl text-lg text-white/90 md:text-xl leading-relaxed">
             Step into the heart of Kotagede and witness the artistry behind every piece.
           </p>
           <div className="mt-8">
-             <AnimatedButton href="#location" variant="primary" className="px-8">
+            <AnimatedButton href="#location" variant="primary" className="px-8">
               Get Directions
             </AnimatedButton>
           </div>
@@ -71,9 +67,9 @@ export default function StoreLocationPage() {
             <div>
               <h2 className="text-3xl font-display mb-4">Experience the Craft</h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Discover where every Salim Silver piece comes to life. Step into our Kotagede workshop,
-                see the tools we use each day, and pick up your order directly from the artisans who
-                crafted it.
+                Discover where every Salim Silver piece comes to life. Step into our Kotagede
+                workshop, see the tools we use each day, and pick up your order directly from the
+                artisans who crafted it.
               </p>
             </div>
 
@@ -90,7 +86,9 @@ export default function StoreLocationPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                  <span>Pick up online orders or discuss custom designs in person with our designers</span>
+                  <span>
+                    Pick up online orders or discuss custom designs in person with our designers
+                  </span>
                 </li>
               </ul>
             </div>
@@ -138,9 +136,9 @@ export default function StoreLocationPage() {
             "@context": "https://schema.org",
             "@type": "JewelryStore",
             name: "Salim Silver",
-            image: `${baseUrl}/images/hero-background.png`,
-            "@id": `${baseUrl}/store-location`,
-            url: `${baseUrl}/store-location`,
+            image: `${BASE_URL}/images/hero-background.png`,
+            "@id": `${BASE_URL}/store-location`,
+            url: `${BASE_URL}/store-location`,
             telephone: "+62 896 7197 7699",
             address: {
               "@type": "PostalAddress",
@@ -157,14 +155,7 @@ export default function StoreLocationPage() {
             },
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
-              dayOfWeek: [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-              ],
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
               opens: "08:00",
               closes: "16:00",
             },
@@ -188,7 +179,9 @@ function InfoCard({ icon, title, description }: InfoCardProps) {
         {icon}
       </div>
       <div>
-        <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted-foreground">{title}</p>
+        <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+          {title}
+        </p>
         <div className="text-foreground font-medium">{description}</div>
       </div>
     </div>

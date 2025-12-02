@@ -9,20 +9,18 @@ import ValuesSection from "./components/ValuesSection"
 
 import { BASE_URL } from "@/lib/constants"
 
-const baseUrl = BASE_URL
-
 export const metadata: Metadata = {
   title: "About Salim Silver",
   description:
     "Meet Salim Silver: artisans crafting Javanese-inspired silver jewelry in Kotagede. Discover our heritage, values, and craftsmanship.",
   alternates: {
-    canonical: `${baseUrl}/about`,
+    canonical: `${BASE_URL}/about`,
   },
   openGraph: {
     title: "About Salim Silver",
     description:
       "Meet Salim Silver: artisans crafting Javanese-inspired silver jewelry in Kotagede. Discover our heritage, values, and craftsmanship.",
-    url: `${baseUrl}/about`,
+    url: `${BASE_URL}/about`,
   },
   twitter: {
     card: "summary_large_image",
@@ -56,7 +54,7 @@ export default function AboutPage() {
               "@type": "JewelryStore",
               name: "Salim Silver",
               description: "Artisans crafting Javanese-inspired silver jewelry in Kotagede.",
-              image: `${baseUrl}/images/hero-background.png`,
+              image: `${BASE_URL}/images/hero-background.png`,
               telephone: "+62 896 7197 7699",
               address: {
                 "@type": "PostalAddress",

@@ -7,20 +7,18 @@ import FAQSection from "./components/FAQSection"
 
 import { BASE_URL } from "@/lib/constants"
 
-const baseUrl = BASE_URL
-
 export const metadata: Metadata = {
   title: "Contact Salim Silver",
   description:
     "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
   alternates: {
-    canonical: `${baseUrl}/contact`,
+    canonical: `${BASE_URL}/contact`,
   },
   openGraph: {
     title: "Contact Salim Silver",
     description:
       "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
-    url: `${baseUrl}/contact`,
+    url: `${BASE_URL}/contact`,
   },
   twitter: {
     card: "summary_large_image",
@@ -61,7 +59,7 @@ export default function ContactPage() {
             mainEntity: {
               "@type": "JewelryStore",
               name: "Salim Silver",
-              image: `${baseUrl}/images/hero-background.png`,
+              image: `${BASE_URL}/images/hero-background.png`,
               telephone: "+62 896 7197 7699",
               contactPoint: {
                 "@type": "ContactPoint",

@@ -5,19 +5,18 @@ import CollectionsHeader from "./components/CollectionsHeader"
 
 import { BASE_URL } from "@/lib/constants"
 
-const baseUrl = BASE_URL
-
 export const metadata: Metadata = {
   title: "Collections",
-  description: "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
+  description:
+    "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
   alternates: {
-    canonical: `${baseUrl}/collections`,
+    canonical: `${BASE_URL}/collections`,
   },
   openGraph: {
     title: "Collections",
     description:
       "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
-    url: `${baseUrl}/collections`,
+    url: `${BASE_URL}/collections`,
   },
   twitter: {
     card: "summary_large_image",
@@ -44,7 +43,7 @@ export default function CollectionsPage() {
             name: "Collections",
             description:
               "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
-            url: `${baseUrl}/collections`,
+            url: `${BASE_URL}/collections`,
           }),
         }}
       />
