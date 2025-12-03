@@ -68,7 +68,7 @@ export default function Header() {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
         <div className="flex items-center h-full relative gap-4">
           <div className="mr-auto">
-            <Brand isScrolled={isScrolled} />
+            <Brand isScrolled={isScrolled} pathname={pathname} />
           </div>
 
           <DesktopNavigation isHome={isHome} isScrolled={isScrolled} pathname={pathname} />
@@ -92,7 +92,10 @@ export default function Header() {
   )
 }
 
-function Brand({ isScrolled }: { isScrolled: boolean }) {
+function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string }) {
+  const isDarkHeroPage = ["/contact", "/about"].includes(pathname)
+  const shouldInvert = isScrolled || !isDarkHeroPage
+
   return (
     <div className="shrink-0 flex items-center gap-3">
       <Link
@@ -107,7 +110,10 @@ function Brand({ isScrolled }: { isScrolled: boolean }) {
           alt="Salim Silver"
           width={150}
           height={40}
-          className="h-10 w-auto object-contain"
+          className={cn(
+            "h-10 w-auto object-contain dark:invert-0 transition-all duration-300",
+            shouldInvert ? "invert" : "invert-0",
+          )}
           priority
         />
       </Link>

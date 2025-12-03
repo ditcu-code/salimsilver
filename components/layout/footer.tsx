@@ -68,7 +68,7 @@ export default function Footer() {
                 alt="Salim Silver"
                 width={150}
                 height={40}
-                className="h-12 w-auto object-contain"
+                className="h-12 w-auto object-contain dark:invert-0 invert"
               />
             </Link>
             <span className="text-[0.7rem] text-muted-foreground self-end -mt-2 mr-2">Heritage Forged by Hand</span>

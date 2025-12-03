@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 export default function ContactFormSection() {
   return (
     <motion.div
-      className="bg-primary dark:bg-primary-foreground p-8 rounded-3xl shadow-sm border border-border"
+      className="bg-primary-foreground p-8 rounded-3xl shadow-sm border border-border"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
