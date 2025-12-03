@@ -1,32 +1,36 @@
 "use client"
 
+import { submitContactForm } from "@/app/actions"
 import { cn } from "@/lib/utils"
-import { useForm, ValidationError } from "@formspree/react"
+import { useActionState, useEffect, useRef } from "react"
+import { toast } from "sonner"
 
 interface ContactFormProps {
   className?: string
 }
 
-export function ContactForm({ className }: ContactFormProps) {
-  const [state, handleSubmit] = useForm("xxxxxxxx") // Replace with your Formspree project ID
+const initialState = {
+  message: "",
+  errors: undefined,
+  fields: undefined,
+  success: false,
+}
 
-  if (state.succeeded) {
-    return (
-      <div className="rounded-md bg-green-50 p-4 text-sm text-green-700">
-        Thank you for your message! We will get back to you soon.
-      </div>
-    )
-  }
+export function ContactForm({ className }: ContactFormProps) {
+  const [state, formAction, isPending] = useActionState(submitContactForm, initialState)
+  const formRef = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (state?.success) {
+      toast.success("Message sent successfully!")
+      formRef.current?.reset()
+    } else if (state?.message && !state.success) {
+      toast.error(state.message)
+    }
+  }, [state])
 
   return (
-    <form onSubmit={handleSubmit} className={cn('space-y-6', className)}>
-      {Array.isArray(state.errors) && state.errors.length > 0 && (
-        <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
-          {state.errors.map((error) => (
-            <p key={error.field}>{error.message}</p>
-          ))}
-        </div>
-      )}
+    <form ref={formRef} action={formAction} className={cn('space-y-6', className)}>
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-primary">
           Name
@@ -36,8 +40,12 @@ export function ContactForm({ className }: ContactFormProps) {
           id="name"
           name="name"
           required
+          defaultValue={state?.fields?.name}
           className="mt-1 block w-full rounded-xl border border-border px-3 py-2 focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
+        {state?.errors?.name && (
+          <p className="mt-1 text-sm text-red-500">{state.errors.name[0]}</p>
+        )}
       </div>
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-primary">
@@ -48,13 +56,12 @@ export function ContactForm({ className }: ContactFormProps) {
           id="email"
           name="email"
           required
+          defaultValue={state?.fields?.email}
           className="mt-1 block w-full rounded-xl border border-border px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
-        <ValidationError 
-          prefix="Email" 
-          field="email"
-          errors={state.errors}
-        />
+        {state?.errors?.email && (
+          <p className="mt-1 text-sm text-red-500">{state.errors.email[0]}</p>
+        )}
       </div>
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-primary">
@@ -65,24 +72,23 @@ export function ContactForm({ className }: ContactFormProps) {
           name="message"
           required
           rows={4}
+          defaultValue={state?.fields?.message}
           className="mt-1 block w-full rounded-xl border border-border px-3 py-2 focus:border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary bg-card"
         />
-        <ValidationError 
-          prefix="Message" 
-          field="message"
-          errors={state.errors}
-        />
+        {state?.errors?.message && (
+          <p className="mt-1 text-sm text-red-500">{state.errors.message[0]}</p>
+        )}
       </div>
       <div>
         <button
           type="submit"
-          disabled={state.submitting}
+          disabled={isPending}
           className={cn(
             'w-full rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white dark:text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer',
-            state.submitting && 'cursor-not-allowed opacity-50'
+            isPending && 'cursor-not-allowed opacity-50'
           )}
         >
-          {state.submitting ? 'Sending...' : 'Send Message'}
+          {isPending ? 'Sending...' : 'Send Message'}
         </button>
       </div>
     </form>

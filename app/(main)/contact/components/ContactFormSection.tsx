@@ -11,7 +11,10 @@ export default function ContactFormSection() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
-      <h2 className="text-2xl mb-6 font-display">Send a Message</h2>
+      <h2 className="text-3xl mb-1 font-display">Send a Message</h2>
+      <p className="text-xs text-muted-foreground mb-6">
+        You will receive a response within 24 hours.
+      </p>
       <ContactForm />
     </motion.div>
   )

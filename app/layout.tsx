@@ -1,11 +1,14 @@
 import { AppProviders } from "@/components/features/app-providers"
 import SafariThemeColor from "@/components/features/safari-theme-color"
 import { ThemeProvider } from "@/components/features/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import "./globals.css"
+
+import { BASE_URL } from "@/lib/constants"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Lato } from "next/font/google"
-import "./globals.css"
 
 const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
@@ -19,8 +22,6 @@ const cormorantGaramond = Cormorant_Garamond({
   variable: "--font-display",
   weight: ["400", "500", "600", "700"],
 })
-
-import { BASE_URL } from "@/lib/constants"
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AppProviders>
             {children}
           </AppProviders>
+          <Toaster />
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
