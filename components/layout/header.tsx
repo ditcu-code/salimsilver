@@ -77,9 +77,6 @@ export default function Header() {
             <div className="shrink-0 md:block toggle-container">
               <StoreLocationButton />
             </div>
-            <div className="shrink-0 md:block toggle-container">
-              <ThemeToggle />
-            </div>
 
             <MobileMenuButton
               isOpen={isMenuOpen}
