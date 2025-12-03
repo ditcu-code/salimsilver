@@ -1,11 +1,10 @@
 import { Clock3, Mail, Phone } from "lucide-react"
 import type { Metadata } from "next"
-import Image from "next/image"
 import type { ReactNode } from "react"
 
 import CTASection from "@/components/blocks/cta-section"
 import StoreLocationSection from "@/components/blocks/store-location-section"
-import AnimatedButton from "@/components/ui/animated-button"
+import StoreHero from "./components/StoreHero"
 
 import { BASE_URL } from "@/lib/constants"
 
@@ -34,30 +33,8 @@ export default function StoreLocationPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
-        <Image
-          src="/images/hero-background.png"
-          alt="Salim Silver Workshop"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
-            Store Location
-          </p>
-          <h1 className="mb-6 text-5xl font-display md:text-7xl">Visit Our Workshop</h1>
-          <p className="mx-auto max-w-2xl text-lg text-white/90 md:text-xl leading-relaxed">
-            Step into the heart of Kotagede and witness the artistry behind every piece.
-          </p>
-          <div className="mt-8">
-            <AnimatedButton href="#location" variant="primary" className="px-8">
-              Get Directions
-            </AnimatedButton>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section */}
+      <StoreHero />
 
       {/* Content Section */}
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
