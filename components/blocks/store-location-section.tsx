@@ -70,7 +70,7 @@ export default function StoreLocationSection() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Salim Silver Location"
-          ></iframe>
+          />
         </motion.div>
       </div>
     </section>
