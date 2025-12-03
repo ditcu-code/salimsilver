@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Instagram } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { type ReactNode } from "react"
 
@@ -54,14 +55,23 @@ export default function Footer() {
   useDisableRightClick()
 
   return (
-    <motion.footer className="bg-background border-t border-border py-12 px-4 md:px-8" {...motionSettings}>
+    <motion.footer
+      className="bg-background border-t border-border py-12 px-4 md:px-8"
+      {...motionSettings}
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-4">
         <AnimatedSection className="md:col-span-2">
-          <div className="mb-6 flex flex-col">
+          <div className="mb-6 flex flex-col w-fit">
             <Link href="/" className="font-display text-3xl font-semibold text-foreground">
-              Salim Silver
+              <Image
+                src="/images/logo-salimsilver.webp"
+                alt="Salim Silver"
+                width={150}
+                height={40}
+                className="h-12 w-auto object-contain"
+              />
             </Link>
-            <span className="pl-4 text-xs italic text-muted-foreground">Heritage Forged by Hand.</span>
+            <span className="text-[0.7rem] text-muted-foreground self-end -mt-2 mr-2">Heritage Forged by Hand</span>
           </div>
           <p className="mb-6 max-w-md text-md text-muted-foreground">
             Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia

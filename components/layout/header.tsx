@@ -3,11 +3,11 @@
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion, type Transition } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { StoreLocationButton } from "../features/store-location-button"
-import { ThemeToggle } from "../features/theme-toggle"
 
 type NavItem = {
   name: string
@@ -98,11 +98,18 @@ function Brand({ isScrolled }: { isScrolled: boolean }) {
       <Link
         href="/"
         className={cn(
-          "px-4 py-3 text-2xl font-display font-semibold duration-300 h-10 flex items-center justify-center rounded-3xl transition-all",
-          isScrolled ? "bg-transparent" : "bg-background",
+          "duration-300 flex items-center justify-center transition-all",
+          isScrolled ? "scale-90" : "scale-100",
         )}
       >
-        Salim Silver
+        <Image
+          src="/images/logo-salimsilver.webp"
+          alt="Salim Silver"
+          width={150}
+          height={40}
+          className="h-10 w-auto object-contain"
+          priority
+        />
       </Link>
     </div>
   )
