@@ -1,31 +1,8 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-export function proxy(request: NextRequest) {
-  const host = request.headers.get('host') || ''
-  const { pathname } = request.nextUrl
-
-  // Define the production domain
-  const productionDomain = 'salimsilver.com'
-  const isProduction = host === productionDomain || host.endsWith(`.${productionDomain}`)
-
-  // Allow assets and API routes to pass through
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/api') ||
-    pathname.startsWith('/static') ||
-    pathname.startsWith('/images') ||
-    pathname.startsWith('/favicon.ico') ||
-    pathname === '/maintenance'
-  ) {
-    return NextResponse.next()
-  }
-
-  // If on production domain, rewrite to maintenance page
-  if (isProduction) {
-    return NextResponse.rewrite(new URL('/maintenance', request.url))
-  }
-
+export function proxy(_request: NextRequest) {
+  // Forward all requests without rewriting to the maintenance page
   return NextResponse.next()
 }
 
