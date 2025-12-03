@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/store-location`,
   },
   openGraph: {
+    type: "website",
     title: "Visit Salim Silver | Store Location",
     description:
       "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a studio tour.",

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/contact`,
   },
   openGraph: {
+    type: "website",
     title: "Contact Salim Silver",
     description:
       "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",

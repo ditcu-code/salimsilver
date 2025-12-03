@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/`,
   },
   openGraph: {
+    type: "website",
     title: "Handcrafted Javanese Silver Jewelry",
     description:
       "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",

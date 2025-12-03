@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/about`,
   },
   openGraph: {
+    type: "website",
     title: "About Salim Silver",
     description:
       "Meet Salim Silver: artisans crafting Javanese-inspired silver jewelry in Kotagede. Discover our heritage, values, and craftsmanship.",

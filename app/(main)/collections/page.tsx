@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/collections`,
   },
   openGraph: {
+    type: "website",
     title: "Collections",
     description:
       "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",

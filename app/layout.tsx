@@ -56,6 +56,9 @@ export const metadata: Metadata = {
       "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
     images: ["/opengraph-image"],
   },
+  other: {
+    "og:logo": `${BASE_URL}/images/logo-salimsilver.webp`,
+  },
 }
 
 export const viewport: Viewport = {
