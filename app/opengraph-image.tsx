@@ -5,7 +5,7 @@ export const size = {
   width: 1200,
   height: 630,
 }
-export const contentType = "image/png"
+export const contentType = "image/jpeg"
 
 export default async function OpengraphImage() {
   return await generateOgImage(

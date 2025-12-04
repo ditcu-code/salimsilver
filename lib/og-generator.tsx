@@ -1,6 +1,7 @@
 import { readFileSync } from "fs"
 import { ImageResponse } from "next/og"
 import { join } from "path"
+import sharp from "sharp"
 
 // Robust font fetching function
 async function loadGoogleFont(font: string, text: string) {
@@ -102,7 +103,7 @@ export async function generateOgImage(title: string, description: string) {
     loadGoogleFont("Lato:wght@400", `Salim Silver ${description} Kotagede - Yogyakarta`),
   ])
 
-  return new ImageResponse(
+  const imageResponse = new ImageResponse(
     (
       <div
         style={{
@@ -149,4 +150,18 @@ export async function generateOgImage(title: string, description: string) {
       ],
     },
   )
+
+  const arrayBuffer = await imageResponse.arrayBuffer()
+  const buffer = Buffer.from(arrayBuffer)
+  // Convert to JPEG using sharp with quality 80 to ensure size < 300KB
+  const compressedBuffer = await sharp(buffer)
+    .jpeg({ quality: 80 })
+    .toBuffer()
+
+  return new Response(compressedBuffer as unknown as BodyInit, {
+    headers: {
+      "Content-Type": "image/jpeg",
+      "Cache-Control": "public, immutable, no-transform, max-age=31536000",
+    },
+  })
 }
