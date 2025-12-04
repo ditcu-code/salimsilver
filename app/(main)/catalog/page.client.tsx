@@ -10,7 +10,7 @@ import CategoryFilters from "./components/CategoryFilters"
 
 export default function CatalogPageClient() {
   const collections = getAllCollections()
-  const allPhotos = useMemo(() => collections.flatMap(c => c.photos), [collections])
+  const allJewelry = useMemo(() => collections.flatMap((collection) => collection.jewelryList), [collections])
   const [activeCategory, setActiveCategory] = useState("all")
 
   const categories = useMemo(
@@ -21,11 +21,11 @@ export default function CatalogPageClient() {
     [collections]
   )
 
-  const filteredPhotos = useMemo(() => {
-    if (activeCategory === "all") return allPhotos
-    const collection = collections.find(c => c.slug === activeCategory)
-    return collection ? collection.photos : []
-  }, [activeCategory, allPhotos, collections])
+  const filteredJewelry = useMemo(() => {
+    if (activeCategory === "all") return allJewelry
+    const collection = collections.find((collection) => collection.slug === activeCategory)
+    return collection ? collection.jewelryList : []
+  }, [activeCategory, allJewelry, collections])
 
   useEffect(() => {
     const applyHashCategory = () => {
@@ -61,7 +61,7 @@ export default function CatalogPageClient() {
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
         />
-        <CatalogGallery photos={filteredPhotos} />
+        <CatalogGallery jewelryList={filteredJewelry} />
       </div>
     </div>
   )

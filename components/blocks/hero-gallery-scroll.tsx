@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef } from "react"
 import Image from "next/image"
 
-import AnimatedButton from "@/components/animated-button"
+import AnimatedButton from "@/components/ui/animated-button"
 import {
   BentoCell,
   BentoGrid,
