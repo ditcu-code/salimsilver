@@ -28,7 +28,7 @@ export function CollectionContent({ collection }: Props) {
         fullDescription={collection.fullDescription}
         description={collection.description}
       />
-      <CollectionGallery photos={collection.photos} />
+      <CollectionGallery jewelryList={collection.jewelryList} />
       <OtherCollectionsSection />
     </div>
   )

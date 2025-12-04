@@ -1,16 +1,16 @@
 "use client"
 
-import { PhotoGallery } from "@/components/blocks/photo-gallery"
-import { Photo } from "@/lib/types"
+import { JewelryGallery } from "@/components/blocks/jewelry-gallery"
+import { Jewelry } from "@/lib/types"
 
 interface CollectionGalleryProps {
-  photos: Photo[]
+  jewelryList: Jewelry[]
 }
 
-export default function CollectionGallery({ photos }: CollectionGalleryProps) {
+export default function CollectionGallery({ jewelryList }: CollectionGalleryProps) {
   return (
     <section className="py-8 px-4 md:px-8 max-w-[90%] mx-auto mb-20">
-      <PhotoGallery photos={photos} />
+      <JewelryGallery jewelryList={jewelryList} />
     </section>
   )
 }

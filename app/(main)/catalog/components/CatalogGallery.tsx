@@ -1,11 +1,11 @@
 "use client"
 
-import { PhotoGallery } from "@/components/blocks/photo-gallery"
-import { Photo } from "@/lib/types"
+import { JewelryGallery } from "@/components/blocks/jewelry-gallery"
+import { Jewelry } from "@/lib/types"
 import { motion } from "framer-motion"
 
 interface CatalogGalleryProps {
-  photos: Photo[]
+  photos: Jewelry[]
 }
 
 export default function CatalogGallery({ photos }: CatalogGalleryProps) {
@@ -15,7 +15,7 @@ export default function CatalogGallery({ photos }: CatalogGalleryProps) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.4 }}
     >
-      <PhotoGallery photos={photos} />
+      <JewelryGallery photos={photos} />
     </motion.div>
   )
 }

@@ -1,18 +1,7 @@
-import type { Collection, Photo } from "./types"
-
-// Common metadata for photos
-const defaultMetadata = {
-  camera: "Sony Alpha A7 IV",
-  lens: "24-70mm f/2.8",
-  aperture: "f/8.0",
-  shutterSpeed: "1/250",
-  iso: "100",
-  focalLength: "35mm",
-  takenAt: new Date().toISOString().split("T")[0],
-} as const
+import type { Collection, Jewelry } from "./types"
 
 // Helper to generate placeholder photos for now
-function getCollectionImages(collectionSlug: string, count: number): Photo[] {
+function getCollectionImages(collectionSlug: string, count: number): Jewelry[] {
   return Array.from({ length: count }, (_, i) => {
     const index = i + 1
     return {
@@ -21,7 +10,16 @@ function getCollectionImages(collectionSlug: string, count: number): Photo[] {
       width: 1200,
       height: 1200,
       alt: `${collectionSlug} item ${index}`,
-      metadata: defaultMetadata,
+      title: `${collectionSlug.charAt(0).toUpperCase() + collectionSlug.slice(1)} Item ${index}`,
+      description: `Beautiful handcrafted ${collectionSlug} with intricate silver details.`,
+      material: "Sterling Silver 925",
+      dimensions: {
+        width: 20,
+        height: 15,
+        units: "mm",
+      },
+      weightGrams: 5.2,
+      priceUsd: 120,
     }
   })
 }
@@ -38,7 +36,7 @@ const collections: Collection[] = [
     coverImage: "/images/rings-cover.png",
     tags: ["Silver", "Rings", "Handcrafted"],
     featured: true,
-    photos: getCollectionImages("rings", 8),
+    jewelryList: getCollectionImages("rings", 8),
   },
   {
     id: "2",
@@ -50,7 +48,7 @@ const collections: Collection[] = [
     coverImage: "/images/necklaces-cover.png",
     tags: ["Silver", "Necklaces", "Pendants"],
     featured: true,
-    photos: getCollectionImages("necklaces", 8),
+    jewelryList: getCollectionImages("necklaces", 8),
   },
   {
     id: "3",
@@ -62,12 +60,15 @@ const collections: Collection[] = [
     coverImage: "/images/bracelets-cover.png",
     tags: ["Silver", "Bracelets", "Cuffs"],
     featured: true,
-    photos: getCollectionImages("bracelets", 8),
+    jewelryList: getCollectionImages("bracelets", 8),
   },
 ]
 
 // Export functions
 export const getAllCollections = (): Collection[] => collections
-export const getFeaturedCollections = (): Collection[] => collections.filter(collection => collection.featured)
-export const getCollection = (slug: string): Collection | undefined => collections.find(collection => collection.slug === slug)
-export const getAllTags = (): string[] => Array.from(new Set(collections.flatMap(collection => collection.tags)))
+export const getFeaturedCollections = (): Collection[] =>
+  collections.filter((collection) => collection.featured)
+export const getCollection = (slug: string): Collection | undefined =>
+  collections.find((collection) => collection.slug === slug)
+export const getAllTags = (): string[] =>
+  Array.from(new Set(collections.flatMap((collection) => collection.tags)))

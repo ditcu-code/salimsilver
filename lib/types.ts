@@ -1,10 +1,10 @@
 /**
- * Represents a photo in the gallery
+ * Represents a jewelry in the gallery
  */
-export interface Photo {
-  /** Unique identifier for the photo */
+export interface Jewelry {
+  /** Unique identifier for the jewelry */
   id: string
-  /** Source path of the photo */
+  /** Source path of the jewelry's photo */
   src: string
   /** Width of the photo in pixels */
   width: number
@@ -12,32 +12,34 @@ export interface Photo {
   height: number
   /** Alt text for accessibility */
   alt: string
-  /** Technical metadata about the photo */
-  metadata: PhotoMetadata
+  /** Title of the jewelry item */
+  title: string
+  /** Description of the jewelry item */
+  description?: string
+  /** Material of the jewelry (e.g., "Sterling Silver 925") */
+  material?: string
+  /**
+   * Dimensions of the item ({ width: number, height: number, depth: number })
+   */
+  dimensions?: { width: number; height: number; depth?: number; units?: string }
+  /** Weight of the item in grams */
+  weightGrams?: number
+  /** Price of the item in USD (e.g., "120" or "120.00") */
+  priceUsd?: number
+  /** Estimated crafting time for the item, in hours */
+  craftingTimeHours?: number
+  /** Complexity of the item (e.g., "120+ individual silver threads soldered manually") */
+  complexity?: string
+  /** Origin of the piece (e.g., "Purbayan Workshop, Kotagede") */
+  origin?: string
+  /** Technique used to craft the jewelry (e.g., "100% Hand-twisted Filigree (Egg Technique)") */
+  technique?: string
+  /** Additional note or message about the piece */
+  note?: string
 }
 
 /**
- * Technical metadata for a photo
- */
-export interface PhotoMetadata {
-  /** Camera model used */
-  camera: string
-  /** Lens used */
-  lens: string
-  /** Aperture setting */
-  aperture: string
-  /** Shutter speed */
-  shutterSpeed: string
-  /** ISO setting */
-  iso: string
-  /** Focal length */
-  focalLength: string
-  /** Date the photo was taken */
-  takenAt: string
-}
-
-/**
- * Represents a photo collection
+ * Represents a jewelry collection
  */
 export interface Collection {
   /** Unique identifier for the collection */
@@ -56,8 +58,8 @@ export interface Collection {
   tags: string[]
   /** Whether the collection is featured on the homepage */
   featured: boolean
-  /** Array of photos in the collection */
-  photos: Photo[]
+  /** List of jewelry items in the collection */
+  jewelryList: Jewelry[]
 }
 
 /**
