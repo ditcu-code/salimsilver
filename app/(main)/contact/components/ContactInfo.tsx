@@ -1,9 +1,10 @@
 "use client"
 
 import { ObfuscatedEmail } from "@/components/features/obfuscated-email"
+import { Instagram } from "@/components/icons/instagram"
 import { WhatsApp } from "@/components/icons/whatsapp"
 import { motion } from "framer-motion"
-import { Instagram, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
 
 export default function ContactInfo() {
   return (

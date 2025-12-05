@@ -1,11 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Instagram } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { type ReactNode } from "react"
 import { ObfuscatedEmail } from "../features/obfuscated-email"
+import { Instagram } from "../icons/instagram"
 
 
 import useProtectImages from "@/hooks/useProtectImages"
