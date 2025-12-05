@@ -155,7 +155,7 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
 
   const renderImage: RenderImage<AlbumJewelry> = useCallback(
     ({ alt, title, sizes, className, style, onError }, { photo }) => (
-      <div className={cn(className, "relative")} style={style}>
+      <div className={cn(className, "relative overflow-hidden rounded-2xl")} style={style}>
         <Image
           src={photo.src}
           alt={alt || photo.alt || "Photo"}
@@ -179,10 +179,10 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
   const componentsProps = useMemo<ComponentsProps<AlbumJewelry>>(
     () => ({
       wrapper: {
-        className: "group relative overflow-hidden rounded-[20px]",
+        className: "group relative overflow-hidden rounded-2xl",
       },
       image: {
-        className: "rounded-[20px] transition-transform duration-300 group-hover:scale-[1.02]",
+        className: "rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]",
         onError: handlePhotoError,
       },
     }),
