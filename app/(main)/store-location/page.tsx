@@ -52,7 +52,7 @@ export default function StoreLocationPage() {
             </div>
 
             <div className="rounded-3xl border border-border bg-card/60 p-8 shadow-sm backdrop-blur">
-              <h3 className="text-xl font-display mb-4">What to expect</h3>
+              <h3 className="text-2xl font-display mb-4">What to expect</h3>
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />

@@ -42,8 +42,12 @@ export default function ValuesSection() {
               viewport={{ once: true }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <h3 className="text-primary-secondary dark:text-primary-foreground text-xl mb-4">{item.title}</h3>
-              <p className="text-primary-secondary dark:text-primary-foreground">{item.description}</p>
+              <h3 className="text-primary-secondary dark:text-primary-foreground text-2xl mb-4">
+                {item.title}
+              </h3>
+              <p className="text-primary-secondary dark:text-primary-foreground">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </div>

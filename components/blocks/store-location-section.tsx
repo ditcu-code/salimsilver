@@ -25,7 +25,7 @@ export default function StoreLocationSection() {
               <MapPin size={24} />
             </div>
             <div>
-              <h3 className="text-xl font-medium mb-2">Salim Silver</h3>
+              <h3 className="text-2xl font-medium mb-2">Salim Silver</h3>
               <p className="text-muted-foreground text-lg">
                 Kebohan KG 3/547, Purbayan, Kotagede
                 <br />
