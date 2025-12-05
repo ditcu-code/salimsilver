@@ -110,7 +110,7 @@ export function HeroGallery() {
             <CarouselItem>
               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp"
+                  src="/images/catalog/baroque-pearl-citrine-silver-brooch.webp"
                   alt="Model wearing statement gold hoop earrings"
                   fill
                   className="object-cover object-center"

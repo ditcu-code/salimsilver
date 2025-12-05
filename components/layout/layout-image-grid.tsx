@@ -79,7 +79,7 @@ const cards = [
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
-    thumbnail: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp",
+    thumbnail: "/images/catalog/baroque-pearl-citrine-silver-brooch.webp",
   },
 ]
 

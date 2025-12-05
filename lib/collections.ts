@@ -31,12 +31,19 @@ const CATALOG_DATA = {
       slug: "hand-carved-silver-pearl-brooch-salimsilver",
       title: "The Moonlight Heirloom: Silver and Pearl Filigree Brooch",
       desc: "A stunning macro capture of an intricate silver filigree brooch adorned with lustrous pearls, resting on a textured, dark carved walnut surface. The warm golden-hour light strikes the pearls, creating a soft glow against the cool metallic tones, emphasizing the rustic elegance and artisanal craftsmanship.",
-      category: "brooches"
+      category: "brooches",
+      hidden: true
     },
     {
       slug: "hand-carved-silver-moonstone-brooch-salimsilver",
       title: "The Moonlit Hand Carved: A Rustic Artisan Silver Moonstone Brooch",
       desc: "A detailed macro photograph of an ornate silver brooch with a central moonstone cabochon, resting on a piece of carved dark walnut. The piece is bathed in warm, golden-hour sunlight, casting long shadows and highlighting the intricate metalwork. The focus is sharp on the jewelry, with a soft blur on the rich wood grain background, emphasizing textures.",
+      category: "brooches"
+    },
+    {
+      slug: "baroque-pearl-citrine-silver-brooch",
+      title: "The Luminous Baroque: Artisan Pearl and Citrine Brooch",
+      desc: "A breathtaking high-resolution macro capture of a handcrafted silver brooch featuring lustrous baroque pearls and faceted yellow citrine gemstones arranged in an intricate, swirling floral motif. The piece rests on a dark, hand-carved walnut wood surface, illuminated by a warm, directional golden-hour sun that ignites the amber hues of the citrine and the iridescent sheen of the pearls. The deep, rich textures of the wood fade into a soft, cinematic blur, emphasizing the jewelry's exquisite artisanal detail.",
       category: "brooches"
     },
     {
@@ -98,7 +105,7 @@ const CATALOG_DATA = {
 
 // Helper to filter and map data to Jewelry type
 function getJewelryByCategory(category: string): Jewelry[] {
-  return CATALOG_DATA.Jewelry.filter((item) => item.category === category).map(
+  return CATALOG_DATA.Jewelry.filter((item) => item.category === category && !(item as any).hidden).map(
     (item) => ({
       id: item.slug,
       slug: item.slug,

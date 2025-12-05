@@ -8,18 +8,17 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import {
-    BentoCell,
-    BentoGrid,
-    ContainerScale,
-    ContainerScroll,
+  BentoCell,
+  BentoGrid,
+  ContainerScale,
+  ContainerScroll,
 } from "./hero-gallery-scroll-animation"
 
 const IMAGES = [
-  { src: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp", alt: "Handcrafted silver pearl brooch" },
+  { src: "/images/catalog/baroque-pearl-citrine-silver-brooch.webp", alt: "Handcrafted silver pearl brooch" },
   { src: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.webp", alt: "Close-up of ornate silver rings from Salim Silver" },
   { src: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp", alt: "Silver necklaces with intricate Javanese motifs" },
   { src: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.webp", alt: "Engraved silver bracelets from the collection" },
-  { src: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp", alt: "Handcrafted silver pearl brooch" },
 ]
 
 const NAV_REVEAL_PROGRESS = 1

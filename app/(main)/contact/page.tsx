@@ -60,7 +60,7 @@ export default function ContactPage() {
             mainEntity: {
               "@type": "JewelryStore",
               name: "Salim Silver",
-              image: `${BASE_URL}/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp`,
+              image: `${BASE_URL}/images/catalog/baroque-pearl-citrine-silver-brooch.webp`,
               telephone: "+62 896 7197 7699",
               contactPoint: {
                 "@type": "ContactPoint",
