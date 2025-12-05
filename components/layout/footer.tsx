@@ -6,8 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { type ReactNode } from "react"
 
-import useDisableRightClick from "@/hooks/useDisableRightClick"
 
+import useProtectImages from "@/hooks/useProtectImages"
 import { ThemeToggle } from "../features/theme-toggle"
 
 const motionSettings = {
@@ -52,7 +52,7 @@ function AnimatedSection({ children, className }: AnimatedSectionProps) {
 }
 
 export default function Footer() {
-  useDisableRightClick()
+  useProtectImages();
 
   return (
     <motion.footer
