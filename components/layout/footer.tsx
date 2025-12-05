@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { type ReactNode } from "react"
 import { ObfuscatedEmail } from "../features/obfuscated-email"
+import { Facebook } from "../icons/facebook"
 import { Instagram } from "../icons/instagram"
 
 
@@ -32,6 +33,11 @@ const contactLinks = [
 ]
 
 const socialLinks = [
+  {
+    href: "https://web.facebook.com/SalimSilverArt",
+    label: "Facebook",
+    Icon: Facebook,
+  },
   {
     href: "https://www.instagram.com/salimsilverofficial/",
     label: "Instagram",

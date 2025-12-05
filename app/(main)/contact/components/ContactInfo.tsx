@@ -1,6 +1,7 @@
 "use client"
 
 import { ObfuscatedEmail } from "@/components/features/obfuscated-email"
+import { Facebook } from "@/components/icons/facebook"
 import { Instagram } from "@/components/icons/instagram"
 import { WhatsApp } from "@/components/icons/whatsapp"
 import { motion } from "framer-motion"
@@ -66,10 +67,9 @@ export default function ContactInfo() {
         <h3 className="text-xl mb-4 font-display">Follow Us</h3>
         <div className="flex flex-wrap gap-1">
           {[
+            { icon: <Facebook size={26} />, label: "Facebook", href: "https://web.facebook.com/SalimSilverArt" },
             { icon: <Instagram size={26} />, label: "Instagram", href: "https://www.instagram.com/salimsilverofficial/" },
             { icon: <WhatsApp size={26} />, label: "WhatsApp", href: "/api/whatsapp" },
-            // { icon: <Twitter size={26} />, label: "Twitter", href: "#" },
-            // { icon: <Facebook size={26} />, label: "Facebook", href: "#" },
           ].map((item) => (
             <motion.a
               key={item.label}
