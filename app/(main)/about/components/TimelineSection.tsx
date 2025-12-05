@@ -28,49 +28,49 @@ export default function TimelineSection() {
               year: "1930",
               title: "The Beginning",
               description:
-                "Karto Oetomo, the grandfather of Priyo Salim, starts a silver business named 'KD'. This history is recorded in 'Yogya Silver: Renewal of a Javanese Handicraft' (2005) by Pienke W.H. Kal. The workshop focused on creating fine household silverware.",
+                "Karto Oetomo, the grandfather of Priyo Salim, lays the foundation by starting 'KD', a silver business focused on fine household silverware. This early history is documented in Pienke W.H. Kal's 'Yogya Silver: Renewal of a Javanese Handicraft' (2005).",
             },
             {
               year: "1952",
               title: "A New Legacy",
               description:
-                "Salim Widardjo, the son of Karto Oetomo, establishes 'Salim' Silver. He introduces intricate silver miniatures including becak, andong, and traditional statues, setting a new standard for craftsmanship.",
+                "Building on his father's work, Salim Widardjo establishes 'Salim' Silver. He expands the craft by introducing intricate silver miniatures—including becak, andong, and traditional statues—setting a new benchmark for detail.",
             },
             {
               year: "1985",
               title: "The Third Generation",
               description:
-                "Priyo Salim joins the family business while studying Cartography at Universitas Gadjah Mada, bringing a new perspective to the traditional craft.",
+                "The legacy continues as Priyo Salim joins the family business. While studying Cartography at Universitas Gadjah Mada, he brings a fresh perspective to the traditional workshop.",
             },
             {
               year: "1987",
               title: "The Pivot",
               description:
-                "Constrained by limited capital but inspired by the 'Power and Gold' book, Priyo Salim shifts his focus to producing Javanese silver jewelry.",
+                "A defining moment arrives. Inspired by the book 'Power and Gold', Priyo Salim steers the workshop toward a new direction: handcrafted Javanese silver jewelry, blending tradition with wearable art.",
             },
             {
               year: "1988",
               title: "The First Gallery",
               description:
-                "After generations of fulfilling orders for others at the Purbayan workshop, Priyo Salim opens his first shop on Jalan Kemasan to reach international tourists. At the time, it was one of Indonesia's largest silver craft centers.",
+                "Moving beyond the Purbayan workshop, Priyo opens his first gallery on Jalan Kemasan. Positioned in the heart of Kotagede's silver district, this step opens Salim Silver to the world of international tourism.",
             },
             {
               year: "1990",
               title: "Global Reach",
               description:
-                "Salim Silver expands into the international market, exporting handcrafted Javanese jewelry to the United States and Europe.",
+                "The commitment to quality pays off as Salim Silver enters the global market, exporting its handcrafted jewelry to clients across the United States and Europe.",
             },
             {
               year: "2017",
               title: "Modernization",
               description:
-                "The 4th generation begins modernizing the business, preserving traditional techniques while adapting to the digital era.",
+                "The 4th generation steps forward to carry the torch. They begin modernizing the business operations, ensuring that the ancient techniques thrive in the digital era.",
             },
             {
               year: "Present",
               title: "A Living Museum",
               description:
-                "Today, we stand as a bastion of heritage in Kotagede. Our workshop is open to the world, creating 'art for the future' that honors the past.",
+                "Today, Salim Silver stands as a guardian of heritage. Our workshop remains a living museum, open to all who wish to witness the creation of 'art for the future' that honors the past.",
             },
           ].map((item, index) => (
             <motion.div
