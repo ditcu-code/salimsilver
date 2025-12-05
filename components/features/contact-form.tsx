@@ -63,6 +63,18 @@ export function ContactForm({ className }: ContactFormProps) {
           <p className="mt-1 text-sm text-red-500">{state.errors.email[0]}</p>
         )}
       </div>
+
+      {/* Honeypot field - invisible to users, filled by bots */}
+      <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+        <label htmlFor="_gotcha">Do not fill this field</label>
+        <input
+          type="text"
+          id="_gotcha"
+          name="_gotcha"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-primary">
           Message

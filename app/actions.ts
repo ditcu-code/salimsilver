@@ -12,6 +12,13 @@ const contactFormSchema = z.object({
 })
 
 export async function submitContactForm(prevState: any, formData: FormData) {
+  // Honeypot check
+  const honeyPot = formData.get("_gotcha")
+  if (honeyPot && honeyPot !== "") {
+    // Silent success for bots
+    return { success: true, message: "Message sent successfully!" }
+  }
+
   const validatedFields = contactFormSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
