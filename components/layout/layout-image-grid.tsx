@@ -61,25 +61,25 @@ const cards = [
     id: 1,
     content: <SkeletonOne />,
     className: "md:col-span-2",
-    thumbnail: "/images/rings-cover.png",
+    thumbnail: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.png",
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
-    thumbnail: "/images/necklaces-cover.png",
+    thumbnail: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.png",
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
-    thumbnail: "/images/bracelets-cover.png",
+    thumbnail: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.png",
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
-    thumbnail: "/images/hero-background.png",
+    thumbnail: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.png",
   },
 ]
 

@@ -33,7 +33,7 @@ export default function BioSection() {
           <div className="text-muted-foreground space-y-4 mb-6">
             <p>
               Salim Silver is a guardian of heritage in Kotagede, Yogyakarta, the historic capital of the
-              Mataram Sultanate. Our workshop is a living museum where the ancient art of Javanese
+                Mataram Sultanate. Our workshop is a living museum where the ancient art of Javanese
               silver crafting is preserved and renewed.
             </p>
             <p>
@@ -41,7 +41,7 @@ export default function BioSection() {
               Representing the third generation, <strong>Priyo Salim</strong> joined the family legacy in 1985.
             </p>
             <p>
-              In 1987, inspired by the book <em>Power and Gold</em>, Priyo pivots the workshop's
+              In 1987, inspired by the book <em>Power and Gold</em>, Priyo pivots the workshop&apos;s
               focus to handcrafted silver jewelry. He has since dedicated his life to preserving and
               revitalizing the intricate Javanese techniques of Repoussé (embossing) and Filigree.
             </p>

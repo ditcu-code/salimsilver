@@ -50,7 +50,7 @@ export function HeroGallery() {
         {/* Cell 2: Large Portrait Image (Right) */}
         <FullBentoCell className="relative overflow-hidden rounded-3xl h-full min-h-[400px]">
           <Image
-            src="/images/hero-background.png" // Using existing image as placeholder for the model with hoop earrings
+            src="/images/jono-setting-filigree.png"
             alt="Model wearing statement gold hoop earrings"
             fill
             className="object-cover object-center"
@@ -62,7 +62,7 @@ export function HeroGallery() {
         {/* Cell 3: Portrait Image (Bottom Left) */}
         <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px]">
           <Image
-            src="/images/rings-cover.png" // Using existing image
+            src="/images/catalog/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.png"
             alt="Model wearing gold earrings"
             fill
             className="object-cover object-center"
@@ -71,9 +71,9 @@ export function HeroGallery() {
 
         {/* Cell 4: Landscape/Text Cell (Bottom Middle) */}
         <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px] bg-secondary flex flex-col justify-between p-6 items-end">
-          <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-4">
+          <div className="relative w-full h-43 rounded-2xl overflow-hidden mb-4">
             <Image
-              src="/images/necklaces-cover.png"
+              src="/images/catalog/silver-pagoda-ring-pearl-salimsilver.png"
               alt="Model with red earrings"
               fill
               className="object-cover object-center"
@@ -110,7 +110,7 @@ export function HeroGallery() {
             <CarouselItem>
               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/hero-background.png"
+                  src="/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.png"
                   alt="Model wearing statement gold hoop earrings"
                   fill
                   className="object-cover object-center"
@@ -121,7 +121,7 @@ export function HeroGallery() {
             <CarouselItem>
               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/rings-cover.png"
+                  src="/images/catalog/hand-carved-silver-rings-couple-salimsilver.png"
                   alt="Model wearing gold earrings"
                   fill
                   className="object-cover object-center"
@@ -131,7 +131,7 @@ export function HeroGallery() {
             <CarouselItem>
                <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/necklaces-cover.png"
+                  src="/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.png"
                   alt="Model with red earrings"
                   fill
                   className="object-cover object-center"

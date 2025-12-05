@@ -55,7 +55,7 @@ export default function AboutPage() {
               "@type": "JewelryStore",
               name: "Salim Silver",
               description: "Artisans crafting Javanese-inspired silver jewelry in Kotagede.",
-              image: `${BASE_URL}/images/hero-background.png`,
+              image: `${BASE_URL}/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.png`,
               telephone: "+62 896 7197 7699",
               address: {
                 "@type": "PostalAddress",

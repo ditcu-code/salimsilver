@@ -3,6 +3,7 @@
 import AnimatedButton from "@/components/ui/animated-button"
 import { useShutterSound } from "@/hooks/use-shutter-sound"
 import { getFeaturedCollections } from "@/lib/collections"
+import type { Collection } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
@@ -16,6 +17,7 @@ interface FeaturedCollectionsProps {
   ctaHref?: string
   sectionClassName?: string
   containerClassName?: string
+  collections?: Collection[]
 }
 
 export default function FeaturedCollections({
@@ -25,8 +27,9 @@ export default function FeaturedCollections({
   ctaHref,
   sectionClassName,
   containerClassName = "max-w-7xl mx-auto",
+  collections: propCollections,
 }: FeaturedCollectionsProps = {}) {
-  const collections = getFeaturedCollections()
+  const collections = propCollections || getFeaturedCollections()
   const { playShutterSound } = useShutterSound()
 
   const shouldRenderSection = Boolean(title || description || (ctaLabel && ctaHref))

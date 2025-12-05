@@ -93,7 +93,7 @@ export default function Header() {
 }
 
 function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string }) {
-  const isDarkHeroPage = ["/contact", "/about"].includes(pathname)
+  const isDarkHeroPage = ["/contact", "/about", "/store-location"].includes(pathname)
   const shouldInvert = isScrolled || !isDarkHeroPage
 
   return (

@@ -7,7 +7,7 @@ export default function ContactHero() {
   return (
     <section className="relative h-[50vh] w-full">
       <Image
-        src="/images/hero-background.png"
+        src="/images/gebyok.webp"
         alt="Contact Salim Silver"
         fill
         priority

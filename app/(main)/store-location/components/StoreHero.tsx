@@ -9,7 +9,7 @@ export default function StoreHero() {
   return (
     <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
       <Image
-        src="/images/hero-background.png"
+        src="/images/store-front.webp"
         alt="Salim Silver Workshop"
         fill
         className="object-cover"

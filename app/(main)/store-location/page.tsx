@@ -11,7 +11,7 @@ import { BASE_URL } from "@/lib/constants"
 export const metadata: Metadata = {
   title: "Visit Salim Silver | Store Location",
   description:
-    "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a studio tour.",
+    "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a workshop tour.",
   alternates: {
     canonical: `${BASE_URL}/store-location`,
   },
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     type: "website",
     title: "Visit Salim Silver | Store Location",
     description:
-      "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a studio tour.",
+      "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a workshop tour.",
     url: `${BASE_URL}/store-location`,
   },
   twitter: {
     card: "summary_large_image",
     title: "Visit Salim Silver | Store Location",
     description:
-      "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a studio tour.",
+      "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a workshop tour.",
   },
 }
 
@@ -74,12 +74,12 @@ export default function StoreLocationPage() {
 
           {/* Right Column: Quick Info */}
           <div className="space-y-6">
-            <h3 className="text-xl font-display mb-4">Quick Information</h3>
+            <h3 className="text-2xl font-display mb-4">Quick Information</h3>
             <div className="grid gap-4">
               <InfoCard
                 icon={<Clock3 className="text-primary" size={20} />}
                 title="Plan Your Visit"
-                description="Let us know before you arrive so we can prepare a guided look at the studio."
+                description="Let us know before you arrive so we can prepare a guided look at the workshop."
               />
               <InfoCard
                 icon={<Phone className="text-primary" size={20} />}
@@ -103,7 +103,7 @@ export default function StoreLocationPage() {
       <CTASection
         title="Schedule Your Visit"
         description="Tell us when you'd like to stop by, and we’ll make sure the workshop is ready for you."
-        ctaLabel="Contact the Studio"
+        ctaLabel="Contact the Workshop"
         ctaHref="/contact"
       />
 
@@ -114,7 +114,7 @@ export default function StoreLocationPage() {
             "@context": "https://schema.org",
             "@type": "JewelryStore",
             name: "Salim Silver",
-            image: `${BASE_URL}/images/hero-background.png`,
+            image: `${BASE_URL}/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.png`,
             "@id": `${BASE_URL}/store-location`,
             url: `${BASE_URL}/store-location`,
             telephone: "+62 896 7197 7699",
