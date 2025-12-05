@@ -32,18 +32,23 @@ export default function BioSection() {
           <h2 className="text-3xl md:text-4xl mb-6 font-display">The Heritage</h2>
           <div className="text-muted-foreground space-y-4 mb-6">
             <p>
-              Salim Silver is a guardian of heritage in Kotagede, the historic capital of the
+              Salim Silver is a guardian of heritage in Kotagede, Yogyakarta, the historic capital of the
               Mataram Sultanate. Our workshop is a living museum where the ancient art of Javanese
               silver crafting is preserved and renewed.
             </p>
             <p>
-              Our founder, Priyo Jatmiko Salim, is a UGM alumnus who inherited the family business
-              in 1987. He has dedicated his life to mastering and revitalizing the intricate
-              techniques of Repoussé (embossing) and Filigree.
+              Our journey began in 1930 with Karto Oetomo, followed by his son Salim Widardjo in 1952.
+              Representing the third generation, <strong>Priyo Salim</strong> joined the family legacy in 1985.
             </p>
             <p>
-              Today, we continue to create pieces that are not just jewelry, but wearable art that
-              honors our heritage while embracing the future of design.
+              In 1987, inspired by the book <em>Power and Gold</em>, Priyo pivots the workshop's
+              focus to handcrafted silver jewelry. He has since dedicated his life to preserving and
+              revitalizing the intricate Javanese techniques of Repoussé (embossing) and Filigree.
+            </p>
+            <p>
+              Today, the <strong>4th generation</strong> has stepped in to polish and elevate this heritage. We continue 
+              to create pieces that are not just jewelry, but wearable art that honors our past while 
+              embracing the future of design.
             </p>
           </div>
           <div className="flex flex-col md:flex-row flex-wrap gap-4">

@@ -25,22 +25,46 @@ export default function TimelineSection() {
         <div className="space-y-12 md:space-y-24">
           {[
             {
-              year: "1987",
-              title: "The Inheritance",
+              year: "1930",
+              title: "The Beginning",
               description:
-                "Priyo Jatmiko Salim inherits the family silver handicraft business, beginning a new chapter in a lineage of artisans.",
+                "Karto Oetomo, the grandfather of Priyo Salim, starts a silver business named 'KD'. This history is recorded in 'Yogya Silver: Renewal of a Javanese Handicraft' (2005) by Pienke W.H. Kal. The workshop focused on creating fine household silverware.",
+            },
+            {
+              year: "1952",
+              title: "A New Legacy",
+              description:
+                "Salim Widardjo, the son of Karto Oetomo, establishes 'Salim' Silver. He introduces intricate silver miniatures including becak, andong, and traditional statues, setting a new standard for craftsmanship.",
+            },
+            {
+              year: "1985",
+              title: "The Third Generation",
+              description:
+                "Priyo Salim joins the family business while studying Cartography at Universitas Gadjah Mada, bringing a new perspective to the traditional craft.",
+            },
+            {
+              year: "1987",
+              title: "The Pivot",
+              description:
+                "Constrained by limited capital but inspired by the 'Power and Gold' book, Priyo Salim shifts his focus to producing Javanese silver jewelry.",
+            },
+            {
+              year: "1988",
+              title: "The First Gallery",
+              description:
+                "After generations of fulfilling orders for others at the Purbayan workshop, Priyo Salim opens his first shop on Jalan Kemasan to reach international tourists. At the time, it was one of Indonesia's largest silver craft centers.",
             },
             {
               year: "1990",
-              title: "Official Establishment",
+              title: "Global Reach",
               description:
-                "Salim Silver is formally established, marking the transition from a traditional home industry to a modern enterprise while keeping the soul of craftsmanship alive.",
+                "Salim Silver expands into the international market, exporting handcrafted Javanese jewelry to the United States and Europe.",
             },
             {
-              year: "1998",
-              title: "Resilience & Expansion",
+              year: "2017",
+              title: "Modernization",
               description:
-                "Navigating the Asian Financial Crisis by focusing on high-quality exports. Our commitment to excellence opened doors to international markets in Europe and America.",
+                "The 4th generation begins modernizing the business, preserving traditional techniques while adapting to the digital era.",
             },
             {
               year: "Present",
