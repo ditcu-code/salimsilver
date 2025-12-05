@@ -151,14 +151,11 @@ export default function Footer() {
         </AnimatedSection>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8 flex flex-col md:flex-row justify-center items-center gap-4">
         <motion.p className="text-sm text-muted-foreground" {...motionSettings}>
           © {new Date().getFullYear()} Salim Silver. All rights reserved.
         </motion.p>
-        <motion.div className="flex space-x-6 text-sm text-muted-foreground" {...motionSettings}>
-          <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
-          <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
-        </motion.div>
+
       </div>
     </motion.footer>
   )
