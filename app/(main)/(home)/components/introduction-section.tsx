@@ -36,7 +36,7 @@ export default function IntroductionSection() {
           viewport={{ once: true }}
         >
           <Image
-            src="/images/hero-background.png"
+            src="/images/mbah-wasik-carving.webp"
             alt="Artisan at work"
             fill
             className="object-cover"

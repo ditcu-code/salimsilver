@@ -9,17 +9,18 @@ export default function BioSection() {
     <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
-          className="relative h-[400px] md:h-[600px] rounded-3xl overflow-hidden"
+          className="relative rounded-3xl overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <Image
-            src="/images/rings-cover.png"
-            alt="Jewelry craftsmanship"
-            fill
-            className="object-cover"
+            src="/images/priyana-jatmika-salim-with-his-loupe.webp"
+            alt="Priyana Jatmika Salim looking at silver ring with his loupe"
+            width={600}
+            height={800}
+            className="w-full h-auto"
           />
         </motion.div>
         <motion.div

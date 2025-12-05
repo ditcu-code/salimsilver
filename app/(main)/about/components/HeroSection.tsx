@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section className="relative h-[50vh] w-full">
       <Image
-        src="/images/hero-background.png"
+        src="/images/private-collection-priyana-jatmika-salim.webp"
         alt="About Salim Silver"
         fill
         priority
