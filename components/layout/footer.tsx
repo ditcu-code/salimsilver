@@ -82,24 +82,7 @@ export default function Footer() {
           <p className="mb-6 max-w-md text-md text-muted-foreground">
             Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
           </p>
-          <div className="flex items-center space-x-4">
-            {socialLinks.map(({ href, label, Icon }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground transition-colors hover:text-primary"
-                aria-label={label}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Icon size={20} />
-                <span className="sr-only">{label}</span>
-              </motion.a>
-            ))}
-            <ThemeToggle />
-          </div>
+
         </AnimatedSection>
 
         <AnimatedSection>
@@ -136,13 +119,40 @@ export default function Footer() {
               </li>
             ))}
           </ul>
+
+
+          <div className="mt-6">
+            <h4 className="text-primary mb-2">Follow Us</h4>
+            <div className="flex items-center space-x-4">
+              {socialLinks.map(({ href, label, Icon }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground transition-colors hover:text-primary"
+                  aria-label={label}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Icon size={20} />
+                  <span className="sr-only">{label}</span>
+                </motion.a>
+              ))}
+              <ThemeToggle />
+            </div>
+          </div>
         </AnimatedSection>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8">
-        <motion.p className="text-center text-sm text-muted-foreground" {...motionSettings}>
+      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <motion.p className="text-sm text-muted-foreground" {...motionSettings}>
           © {new Date().getFullYear()} Salim Silver. All rights reserved.
         </motion.p>
+        <motion.div className="flex space-x-6 text-sm text-muted-foreground" {...motionSettings}>
+          <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
+          <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
+        </motion.div>
       </div>
     </motion.footer>
   )
