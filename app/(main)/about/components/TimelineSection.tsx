@@ -48,12 +48,12 @@ export default function TimelineSection() {
               description:
                 "A defining moment arrives. Inspired by the book 'Power and Gold', Priyo Salim steers the workshop toward a new direction: handcrafted Javanese silver jewelry, blending tradition with wearable art.",
             },
-            {
-              year: "1988",
-              title: "The First Gallery",
-              description:
-                "Moving beyond the Purbayan workshop, Priyo opens his first gallery on Jalan Kemasan. Positioned in the heart of Kotagede's silver district, this step opens Salim Silver to the world of international tourism.",
-            },
+            // {
+            //   year: "1988",
+            //   title: "The First Gallery",
+            //   description:
+            //     "Moving beyond the Purbayan workshop, Priyo opens his first gallery on Jalan Kemasan. Positioned in the heart of Kotagede's silver district, this step opens Salim Silver to the world of international tourism.",
+            // },
             {
               year: "1990",
               title: "Global Reach",
