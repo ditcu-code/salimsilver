@@ -9,6 +9,7 @@ import { type ReactNode } from "react"
 
 import useProtectImages from "@/hooks/useProtectImages"
 import { ThemeToggle } from "../features/theme-toggle"
+import { WhatsApp } from "../icons/whatsapp"
 
 const motionSettings = {
   initial: { opacity: 0, y: 20 },
@@ -27,7 +28,6 @@ const quickLinks = [
 
 const contactLinks = [
   { label: "Email", href: "mailto:hello@salimsilver.com", display: "hello@salimsilver.com" },
-  { label: "Phone", href: "tel:+6289671977699", display: "+62 896 7197 7699" },
 ]
 
 const socialLinks = [
@@ -35,6 +35,11 @@ const socialLinks = [
     href: "https://www.instagram.com/salimsilverofficial/",
     label: "Instagram",
     Icon: Instagram,
+  },
+  {
+    href: "/api/whatsapp",
+    label: "WhatsApp",
+    Icon: WhatsApp,
   },
 ]
 

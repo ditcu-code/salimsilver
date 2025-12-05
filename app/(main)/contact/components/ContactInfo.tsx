@@ -1,7 +1,8 @@
 "use client"
 
+import { WhatsApp } from "@/components/icons/whatsapp"
 import { motion } from "framer-motion"
-import { Instagram, Mail, Phone } from "lucide-react"
+import { Instagram, Mail } from "lucide-react"
 
 export default function ContactInfo() {
   return (
@@ -37,11 +38,6 @@ export default function ContactInfo() {
             title: "Email",
             content: "hello@salimsilver.com",
           },
-          {
-            icon: <Phone className="text-primary mt-1" size={20} />,
-            title: "Phone",
-            content: "+62 896 7197 7699",
-          },
         ].map((item) => (
           <motion.div
             key={item.title}
@@ -69,6 +65,7 @@ export default function ContactInfo() {
         <div className="flex flex-wrap gap-1">
           {[
             { icon: <Instagram size={26} />, label: "Instagram", href: "https://www.instagram.com/salimsilverofficial/" },
+            { icon: <WhatsApp size={26} />, label: "WhatsApp", href: "/api/whatsapp" },
             // { icon: <Twitter size={26} />, label: "Twitter", href: "#" },
             // { icon: <Facebook size={26} />, label: "Facebook", href: "#" },
           ].map((item) => (
