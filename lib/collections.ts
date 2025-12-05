@@ -102,7 +102,7 @@ function getJewelryByCategory(category: string): Jewelry[] {
     (item) => ({
       id: item.slug,
       slug: item.slug,
-      src: `/images/catalog/${item.slug}.png`,
+      src: `/images/catalog/${item.slug}.webp`,
       width: 1200,
       height: 1200,
       alt: item.title,
@@ -123,7 +123,7 @@ const collections: Collection[] = [
     description: "Handcrafted silver rings",
     fullDescription:
       "Our collection of handcrafted silver rings features intricate designs inspired by traditional Javanese craftsmanship. Each piece is a unique statement of elegance.",
-    coverImage: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.png",
+    coverImage: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.webp",
     tags: ["Silver", "Rings", "Handcrafted"],
     featured: true,
     jewelryList: getJewelryByCategory("rings"),
@@ -135,7 +135,7 @@ const collections: Collection[] = [
     description: "Artisan silver pendants",
     fullDescription:
       "Discover our range of sterling silver pendants, from delicate designs to bold statement pieces. Perfect for any occasion.",
-    coverImage: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.png",
+    coverImage: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp",
     tags: ["Silver", "Pendants", "Necklaces"],
     featured: true,
     jewelryList: getJewelryByCategory("pendants"),
@@ -147,7 +147,7 @@ const collections: Collection[] = [
     description: "Artisan silver bracelets",
     fullDescription:
       "Adorn your wrists with our artisan silver bracelets. Featuring woven patterns and gemstone accents.",
-    coverImage: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.png",
+    coverImage: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.webp",
     tags: ["Silver", "Bracelets", "Cuffs"],
     featured: true,
     jewelryList: getJewelryByCategory("bracelets"),
@@ -159,7 +159,7 @@ const collections: Collection[] = [
     description: "Elegant silver brooches",
     fullDescription:
       "Timeless elegance with our handcrafted silver brooches. Perfect for adding a touch of sophistication to any outfit.",
-    coverImage: "/images/catalog/silver-gold-floral-lotus-brooch-salimsilver.png",
+    coverImage: "/images/catalog/silver-gold-floral-lotus-brooch-salimsilver.webp",
     tags: ["Silver", "Brooches", "Accessories"],
     featured: false,
     jewelryList: getJewelryByCategory("brooches"),
@@ -171,7 +171,7 @@ const collections: Collection[] = [
     description: "Handcrafted silver earrings",
     fullDescription:
       "Complete your look with our stunning silver earrings. From studs to drops, each pair is crafted with care.",
-    coverImage: "/images/catalog/silver-dragonfly-amethyst-drop-earrings-salimsilver.png",
+    coverImage: "/images/catalog/silver-dragonfly-amethyst-drop-earrings-salimsilver.webp",
     tags: ["Silver", "Earrings", "Jewelry"],
     featured: false,
     jewelryList: getJewelryByCategory("earrings"),

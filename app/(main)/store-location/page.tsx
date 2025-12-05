@@ -114,7 +114,7 @@ export default function StoreLocationPage() {
             "@context": "https://schema.org",
             "@type": "JewelryStore",
             name: "Salim Silver",
-            image: `${BASE_URL}/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.png`,
+            image: `${BASE_URL}/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp`,
             "@id": `${BASE_URL}/store-location`,
             url: `${BASE_URL}/store-location`,
             telephone: "+62 896 7197 7699",

@@ -8,7 +8,7 @@ export default function MaintenancePage() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/maintenance-hero.png"
+          src="/images/maintenance-hero.webp"
           alt="Silversmith workbench"
           fill
           className="object-cover opacity-30"

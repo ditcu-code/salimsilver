@@ -15,11 +15,11 @@ import {
 } from "./hero-gallery-scroll-animation"
 
 const IMAGES = [
-  { src: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.png", alt: "Handcrafted silver pearl brooch" },
-  { src: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.png", alt: "Close-up of ornate silver rings from Salim Silver" },
-  { src: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.png", alt: "Silver necklaces with intricate Javanese motifs" },
-  { src: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.png", alt: "Engraved silver bracelets from the collection" },
-  { src: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.png", alt: "Handcrafted silver pearl brooch" },
+  { src: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp", alt: "Handcrafted silver pearl brooch" },
+  { src: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.webp", alt: "Close-up of ornate silver rings from Salim Silver" },
+  { src: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp", alt: "Silver necklaces with intricate Javanese motifs" },
+  { src: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.webp", alt: "Engraved silver bracelets from the collection" },
+  { src: "/images/catalog/hand-carved-silver-pearl-brooch-salimsilver.webp", alt: "Handcrafted silver pearl brooch" },
 ]
 
 const NAV_REVEAL_PROGRESS = 1
