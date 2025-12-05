@@ -1,5 +1,6 @@
 "use client"
 
+import { ObfuscatedEmail } from "@/components/features/obfuscated-email"
 import { WhatsApp } from "@/components/icons/whatsapp"
 import { motion } from "framer-motion"
 import { Instagram, Mail } from "lucide-react"
@@ -36,7 +37,7 @@ export default function ContactInfo() {
           {
             icon: <Mail className="text-primary mt-1" size={20} />,
             title: "Email",
-            content: "hello@salimsilver.com",
+            content: <ObfuscatedEmail user="hello" domain="salimsilver.com" />,
           },
         ].map((item) => (
           <motion.div
@@ -50,7 +51,7 @@ export default function ContactInfo() {
             {item.icon}
             <div>
               <h3 className="font-medium">{item.title}</h3>
-              <p className="text-primary/60">{item.content}</p>
+              <div className="text-primary/60">{item.content}</div>
             </div>
           </motion.div>
         ))}

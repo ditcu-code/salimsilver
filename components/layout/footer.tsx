@@ -5,6 +5,7 @@ import { Instagram } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { type ReactNode } from "react"
+import { ObfuscatedEmail } from "../features/obfuscated-email"
 
 
 import useProtectImages from "@/hooks/useProtectImages"
@@ -123,9 +124,15 @@ export default function Footer() {
             {contactLinks.map(({ label, href, display }) => (
               <li key={label}>
                 <h4 className="text-primary">{label}</h4>
-                <a href={href} className="text-sm text-muted-foreground">
-                  <p>{display}</p>
-                </a>
+                {label === "Email" ? (
+                  <div className="text-sm text-muted-foreground">
+                    <ObfuscatedEmail user="hello" domain="salimsilver.com" />
+                  </div>
+                ) : (
+                  <a href={href} className="text-sm text-muted-foreground">
+                    <p>{display}</p>
+                  </a>
+                )}
               </li>
             ))}
           </ul>
