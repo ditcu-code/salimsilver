@@ -143,7 +143,7 @@ export default function SoundEffects() {
   }, [soundEnabled, isMobile])
 
   // Don't render anything - we're using the singleton audio elements
-  // that were created in the useEffect
+  // that were created in the singleton
   return null
 }
 
@@ -162,7 +162,7 @@ export function cleanupAudioSingleton() {
 }
 
 // Export the hook for direct use in components
-export function useShutterSound() {
+export function useHammerSound() {
   const [isMobile, setIsMobile] = useState(false)
   
   useEffect(() => {
@@ -177,7 +177,7 @@ export function useShutterSound() {
   }, [])
 
   // Simple function to play sound with error handling
-  const playShutterSound = () => {
+  const playHammerSound = () => {
     // Don't play sounds on mobile
     if (isMobile) return
     
@@ -198,5 +198,5 @@ export function useShutterSound() {
     }
   }
 
-  return { playShutterSound }
+  return { playHammerSound }
 }

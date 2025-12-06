@@ -1,5 +1,5 @@
 "use client"
-import { useShutterSound } from "@/hooks/use-shutter-sound"
+import { useHammerSound } from "@/hooks/use-hammer-sound"
 import { motion } from "framer-motion"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const { playShutterSound } = useShutterSound()
+  const { playHammerSound } = useHammerSound()
 
   // Ensure component is mounted before rendering to avoid hydration mismatch
   useEffect(() => {
@@ -39,7 +39,7 @@ export function ThemeToggle() {
   }
 
   const toggleTheme = () => {
-    playShutterSound()
+    playHammerSound()
     
     // Get the next theme state
     const nextTheme = resolvedTheme === "dark" ? "light" : "dark"

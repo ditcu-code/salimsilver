@@ -1,7 +1,7 @@
 "use client"
 
 import AnimatedButton from "@/components/ui/animated-button"
-import { useShutterSound } from "@/hooks/use-shutter-sound"
+import { useHammerSound } from "@/hooks/use-hammer-sound"
 import { getFeaturedCollections } from "@/lib/collections"
 import type { Collection } from "@/lib/types"
 import { cn } from "@/lib/utils"
@@ -30,7 +30,7 @@ export default function FeaturedCollections({
   collections: propCollections,
 }: FeaturedCollectionsProps = {}) {
   const collections = propCollections || getFeaturedCollections()
-  const { playShutterSound } = useShutterSound()
+  const { playHammerSound } = useHammerSound()
 
   const shouldRenderSection = Boolean(title || description || (ctaLabel && ctaHref))
 
@@ -48,7 +48,7 @@ export default function FeaturedCollections({
           <Link
             href={`/collections/${collection.slug}`}
             className="group block h-full"
-            onClick={playShutterSound}
+            onClick={playHammerSound}
           >
             <div className="relative h-full overflow-hidden bg-black rounded-3xl shadow-md">
               {/* Image container with overlay */}

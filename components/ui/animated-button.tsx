@@ -1,6 +1,6 @@
 "use client"
 
-import { useShutterSound } from "@/hooks/use-shutter-sound"
+import { useHammerSound } from "@/hooks/use-hammer-sound"
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 import { type MouseEvent, type ReactNode, useState } from "react"
@@ -32,7 +32,7 @@ export default function AnimatedButton({
   const [hoverOrigin, setHoverOrigin] = useState<{ x: number; y: number } | null>(null)
   const baseStyles =
     "btn inline-flex items-center gap-2 rounded-full transition-colors relative overflow-hidden"
-  const { playShutterSound } = useShutterSound()
+  const { playHammerSound } = useHammerSound()
 
   const variantStyles = {
     primary:
@@ -46,7 +46,7 @@ export default function AnimatedButton({
   const handleClick = () => {
     try {
       // Play sound manually for buttons
-      playShutterSound()
+      playHammerSound()
     } catch (error) {
       console.warn("Error playing sound on button click:", error)
     }

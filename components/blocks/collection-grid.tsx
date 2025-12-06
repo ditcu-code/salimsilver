@@ -1,6 +1,6 @@
 "use client"
 
-import { useShutterSound } from "@/hooks/use-shutter-sound"
+import { useHammerSound } from "@/hooks/use-hammer-sound"
 import { getAllCollections } from "@/lib/collections"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
@@ -14,7 +14,7 @@ export default function CollectionGrid() {
   const searchParams = useSearchParams()
   const searchQuery = searchParams.get("q") || ""
   const tagFilter = searchParams.get("tag") || ""
-  const { playShutterSound } = useShutterSound()
+  const { playHammerSound } = useHammerSound()
 
   const [filteredCollections, setFilteredCollections] = useState(collections)
 
@@ -76,7 +76,7 @@ export default function CollectionGrid() {
               <Link
                 href={`/collections/${group[0].slug}`}
                 className="group block"
-                onClick={playShutterSound}
+                onClick={playHammerSound}
               >
                 <div className="relative overflow-hidden bg-black rounded-lg shadow-lg">
                   {/* Image container with overlay */}
@@ -140,7 +140,7 @@ export default function CollectionGrid() {
                   <Link
                     href={`/collections/${collection.slug}`}
                     className="group block h-full"
-                    onClick={playShutterSound}
+                    onClick={playHammerSound}
                   >
                     <div className="relative h-full overflow-hidden bg-black rounded-lg shadow-md">
                       {/* Image container with overlay */}
