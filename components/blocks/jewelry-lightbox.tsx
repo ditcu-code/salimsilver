@@ -93,7 +93,7 @@ export function JewelryLightbox({
       aria-label="Jewelry photo viewer"
     >
       <button
-        className="absolute cursor-pointer right-16 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
+        className="absolute cursor-pointer right-16 top-4 z-30 rounded-full bg-black/20 p-2.5 text-white transition-transform hover:bg-black/40 hover:scale-110"
         onClick={handleShare}
         title="Share"
       >
@@ -142,9 +142,7 @@ export function JewelryLightbox({
 
       {/* Mobile Info Section (Above Thumbnails) */}
       <div className="w-full bg-black/80 px-6 py-2 text-white md:hidden">
-        <div className="flex items-center justify-end">
-          {infoContent}
-        </div>
+        <div className="flex items-center justify-end">{infoContent}</div>
       </div>
 
       <div className="relative flex h-[100px] w-full items-center justify-center bg-black/50">
