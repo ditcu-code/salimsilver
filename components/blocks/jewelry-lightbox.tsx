@@ -1,9 +1,10 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { ChevronLeft, ChevronRight, Info, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, Info, Share2, X } from "lucide-react"
 import Image from "next/image"
 import { type MouseEvent, type RefObject, useState } from "react"
+import { toast } from "sonner"
 import type { AlbumJewelry } from "./jewelry-gallery"
 
 export interface JewelryLightboxProps {
@@ -45,6 +46,34 @@ export function JewelryLightbox({
       >
         <Info size={22} />
         <span className="sr-only">Info</span>
+      </button>
+      <button
+        className="absolute cursor-pointer right-16 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
+        onClick={async () => {
+          // Create a clean URL with only the jewelry parameter
+          const url = new URL(window.location.origin + window.location.pathname)
+          url.searchParams.set("jewelry", currentPhoto.slug)
+          const shareUrl = url.toString()
+
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: currentPhoto.title || "Salim Silver Jewelry",
+                text: currentPhoto.description || "Check out this beautiful jewelry from Salim Silver.",
+                url: shareUrl,
+              })
+            } catch (error) {
+              console.error("Error sharing:", error)
+            }
+          } else {
+            navigator.clipboard.writeText(shareUrl)
+            toast.success("Link copied to clipboard")
+          }
+        }}
+        title="Share"
+      >
+        <Share2 size={20} />
+        <span className="sr-only">Share</span>
       </button>
       <button
         className="absolute cursor-pointer right-4 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
@@ -96,16 +125,16 @@ export function JewelryLightbox({
       {/* Mobile Info Section (Above Thumbnails) */}
       {showInfo && (
         <div className="w-full bg-black/80 px-6 py-2 text-white md:hidden">
-            <div className="flex items-center justify-end">
-               <div className="flex flex-col items-end text-right">
-                {currentPhoto.title && (
-                  <p className="font-serif text-md text-white">{currentPhoto.title}</p>
-                )}
-                {currentPhoto.description && (
-                  <p className="text-xs text-white/70">{currentPhoto.description}</p>
-                )}
-              </div>
+          <div className="flex items-center justify-end">
+            <div className="flex flex-col items-end text-right">
+              {currentPhoto.title && (
+                <p className="font-serif text-md text-white">{currentPhoto.title}</p>
+              )}
+              {currentPhoto.description && (
+                <p className="text-xs text-white/70">{currentPhoto.description}</p>
+              )}
             </div>
+          </div>
         </div>
       )}
 

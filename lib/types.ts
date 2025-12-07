@@ -4,6 +4,8 @@
 export interface Jewelry {
   /** Unique identifier for the jewelry */
   id: string
+  /** URL-friendly slug for the jewelry */
+  slug: string
   /** Source path of the jewelry's photo */
   src: string
   /** Width of the photo in pixels */

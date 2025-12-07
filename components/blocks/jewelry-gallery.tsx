@@ -4,7 +4,8 @@ import type { Jewelry } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from "react"
 import type { ComponentsProps, RenderExtras, RenderImage } from "react-photo-album"
 import PhotoAlbum from "react-photo-album"
 import "react-photo-album/masonry.css"
@@ -47,12 +48,16 @@ const PhotoMetadataOverlay = ({ photo }: { photo: AlbumJewelry }) => {
   )
 }
 
-export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) {
+function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) {
   const [error, setError] = useState<string | null>(null)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
   const lightboxRef = useRef<HTMLDivElement>(null)
   const thumbnailsRef = useRef<HTMLDivElement>(null)
+  
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
 
   const handlePhotoError = useCallback(() => {
     setError("Failed to load some images. Please try refreshing the page.")
@@ -79,30 +84,56 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
     [validPhotos],
   )
 
+  // Handle deep linking on mount
+  useEffect(() => {
+    const jewelrySlug = searchParams.get("jewelry")
+    if (jewelrySlug && !lightboxOpen) {
+      const index = albumPhotos.findIndex(p => p.slug === jewelrySlug)
+      if (index !== -1) {
+        setCurrentPhotoIndex(index)
+        setLightboxOpen(true)
+      }
+    }
+  }, [searchParams, albumPhotos, lightboxOpen])
+
+  const updateUrl = useCallback((slug: string | null) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (slug) {
+      params.set("jewelry", slug)
+    } else {
+      params.delete("jewelry")
+    }
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+  }, [searchParams, pathname, router])
+
   const openLightbox = useCallback(
     (index: number) => {
       if (!albumPhotos.length) return
       setCurrentPhotoIndex(index)
       setLightboxOpen(true)
+      updateUrl(albumPhotos[index].slug)
     },
-    [albumPhotos.length],
+    [albumPhotos, updateUrl],
   )
 
-  const closeLightbox = useCallback(() => setLightboxOpen(false), [])
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false)
+    updateUrl(null)
+  }, [updateUrl])
 
   const goToPrevious = useCallback(() => {
-    setCurrentPhotoIndex((prevIndex) => {
-      if (!albumPhotos.length) return prevIndex
-      return prevIndex === 0 ? albumPhotos.length - 1 : prevIndex - 1
-    })
-  }, [albumPhotos.length])
+    if (!albumPhotos.length) return
+    const newIndex = currentPhotoIndex === 0 ? albumPhotos.length - 1 : currentPhotoIndex - 1
+    setCurrentPhotoIndex(newIndex)
+    updateUrl(albumPhotos[newIndex].slug)
+  }, [albumPhotos, currentPhotoIndex, updateUrl])
 
   const goToNext = useCallback(() => {
-    setCurrentPhotoIndex((prevIndex) => {
-      if (!albumPhotos.length) return prevIndex
-      return prevIndex === albumPhotos.length - 1 ? 0 : prevIndex + 1
-    })
-  }, [albumPhotos.length])
+    if (!albumPhotos.length) return
+    const newIndex = currentPhotoIndex === albumPhotos.length - 1 ? 0 : currentPhotoIndex + 1
+    setCurrentPhotoIndex(newIndex)
+    updateUrl(albumPhotos[newIndex].slug)
+  }, [albumPhotos, currentPhotoIndex, updateUrl])
 
   const handleLightboxClick = useCallback(
     (event: MouseEvent) => {
@@ -232,7 +263,10 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
           onClose={closeLightbox}
           onNext={goToNext}
           onPrevious={goToPrevious}
-          onSelect={setCurrentPhotoIndex}
+          onSelect={(index) => {
+            setCurrentPhotoIndex(index)
+            updateUrl(albumPhotos[index].slug)
+          }}
           onBackgroundClick={handleLightboxClick}
           onImageError={handlePhotoError}
           lightboxRef={lightboxRef}
@@ -240,5 +274,13 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
         />
       )}
     </>
+  )
+}
+
+export function JewelryGallery(props: JewelryGalleryProps) {
+  return (
+    <Suspense fallback={<div className="min-h-[50vh]" />}>
+      <JewelryGalleryContent {...props} />
+    </Suspense>
   )
 }
