@@ -8,7 +8,6 @@ import { ObfuscatedEmail } from "../features/obfuscated-email"
 import { Facebook } from "../icons/facebook"
 import { Instagram } from "../icons/instagram"
 
-
 import useProtectImages from "@/hooks/useProtectImages"
 import { ThemeToggle } from "../features/theme-toggle"
 import { WhatsApp } from "../icons/whatsapp"
@@ -64,7 +63,7 @@ function AnimatedSection({ children, className }: AnimatedSectionProps) {
 }
 
 export default function Footer() {
-  useProtectImages();
+  useProtectImages()
 
   return (
     <motion.footer
@@ -83,12 +82,13 @@ export default function Footer() {
                 className="h-12 w-auto object-contain dark:invert-0 invert"
               />
             </Link>
-            <span className="text-[0.7rem] text-muted-foreground self-end -mt-2 mr-2">Heritage Forged by Hand</span>
+            <span className="text-[0.7rem] text-muted-foreground self-end -mt-2 mr-2">
+              Heritage Forged by Hand
+            </span>
           </div>
           <p className="mb-6 max-w-md text-md text-muted-foreground">
             Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
           </p>
-
         </AnimatedSection>
 
         <AnimatedSection>
@@ -126,7 +126,6 @@ export default function Footer() {
             ))}
           </ul>
 
-
           <div className="mt-6">
             <h4 className="text-primary mb-2">Follow Us</h4>
             <div className="flex items-center space-x-4">
@@ -145,17 +144,17 @@ export default function Footer() {
                   <span className="sr-only">{label}</span>
                 </motion.a>
               ))}
-              <ThemeToggle />
             </div>
           </div>
         </AnimatedSection>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8 flex flex-col md:flex-row justify-center items-center gap-4">
+      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8 flex flex-row items-center justify-between gap-4">
         <motion.p className="text-sm text-muted-foreground" {...motionSettings}>
-          © {new Date().getFullYear()} Salim Silver. All rights reserved.
+          © {new Date().getFullYear()} Salim Silver. <br className="md:hidden" /> All rights
+          reserved.
         </motion.p>
-
+        <ThemeToggle />
       </div>
     </motion.footer>
   )
