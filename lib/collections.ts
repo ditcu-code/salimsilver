@@ -85,7 +85,7 @@ const CATALOG_DATA = {
     {
       slug: "hand-carved-silver-rings-couple-salimsilver",
       title: "The Carved Couple: Artisan Carved Silver & White Gemstone Rings",
-      desc: "Hand-carved sterling silver rings featuring deep, oxidized organic vine engravings and bezel-set clear gemstones. The interior band reveals a subtle, authentic 'SALIM' maker's mark.",
+      desc: "Hand-carved sterling silver rings featuring deep, oxidized organic vine engravings and bezel-set clear gemstones.",
       category: "rings",
     },
     {

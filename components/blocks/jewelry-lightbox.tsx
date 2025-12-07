@@ -1,9 +1,9 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { ChevronLeft, ChevronRight, Info, Share2, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, Share2, X } from "lucide-react"
 import Image from "next/image"
-import { type MouseEvent, type RefObject, useState } from "react"
+import { type MouseEvent, type RefObject } from "react"
 import { toast } from "sonner"
 import type { AlbumJewelry } from "./jewelry-gallery"
 
@@ -34,19 +34,13 @@ export function JewelryLightbox({
 }: JewelryLightboxProps) {
   const currentPhoto = photos[currentIndex]
 
-  const [showInfo, setShowInfo] = useState(false)
+
 
   if (!currentPhoto) return null
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95">
-      <button
-        className="absolute md:hidden cursor-pointer left-4 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
-        onClick={() => setShowInfo((prev) => !prev)}
-      >
-        <Info size={22} />
-        <span className="sr-only">Info</span>
-      </button>
+
       <button
         className="absolute cursor-pointer right-16 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
         onClick={async () => {
@@ -123,20 +117,18 @@ export function JewelryLightbox({
       </div>
 
       {/* Mobile Info Section (Above Thumbnails) */}
-      {showInfo && (
-        <div className="w-full bg-black/80 px-6 py-2 text-white md:hidden">
-          <div className="flex items-center justify-end">
-            <div className="flex flex-col items-end text-right">
-              {currentPhoto.title && (
-                <p className="font-serif text-md text-white">{currentPhoto.title}</p>
-              )}
-              {currentPhoto.description && (
-                <p className="text-xs text-white/70">{currentPhoto.description}</p>
-              )}
-            </div>
+      <div className="w-full bg-black/80 px-6 py-2 text-white md:hidden">
+        <div className="flex items-center justify-end">
+          <div className="flex flex-col items-end text-right">
+            {currentPhoto.title && (
+              <p className="font-serif text-md text-white">{currentPhoto.title}</p>
+            )}
+            {currentPhoto.description && (
+              <p className="text-xs text-white/70">{currentPhoto.description}</p>
+            )}
           </div>
         </div>
-      )}
+      </div>
 
       <div className="relative flex h-[100px] w-full items-center justify-center bg-black/50">
         <button
