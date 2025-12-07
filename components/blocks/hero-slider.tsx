@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 interface Slide {
   image: string
@@ -83,6 +83,7 @@ export default function HeroSlider() {
               src={slides[currentSlide].image || "/placeholder.svg"}
               alt="Hero image"
               fill
+              sizes="100vw"
               priority
               className="object-cover"
             />

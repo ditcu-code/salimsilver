@@ -11,6 +11,7 @@ export default function MaintenancePage() {
           src="/images/maintenance-hero.webp"
           alt="Silversmith workbench"
           fill
+          sizes="100vw"
           className="object-cover opacity-30"
           priority
           quality={90}

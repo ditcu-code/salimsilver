@@ -85,6 +85,7 @@ export default function CollectionGrid() {
                       src={group[0].coverImage || "/placeholder.svg?height=1200&width=2000"}
                       alt={group[0].title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:opacity-90"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
@@ -149,6 +150,7 @@ export default function CollectionGrid() {
                           src={collection.coverImage || "/placeholder.svg?height=600&width=800"}
                           alt={collection.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:opacity-80"
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300" />

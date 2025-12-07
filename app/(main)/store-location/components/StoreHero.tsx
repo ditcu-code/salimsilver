@@ -12,6 +12,7 @@ export default function StoreHero() {
         src="/images/store-front.webp"
         alt="Salim Silver Workshop"
         fill
+        sizes="100vw"
         className="object-cover"
         priority
       />

@@ -10,6 +10,7 @@ export default function ContactHero() {
         src="/images/gebyok.webp"
         alt="Contact Salim Silver"
         fill
+        sizes="100vw"
         priority
         className="object-cover"
       />

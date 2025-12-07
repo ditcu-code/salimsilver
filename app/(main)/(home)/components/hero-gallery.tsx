@@ -66,6 +66,7 @@ export function HeroGallery() {
             src="/images/catalog/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.webp"
             alt="Model wearing gold earrings"
             fill
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover object-center"
           />
         </FullBentoCell>
@@ -77,6 +78,7 @@ export function HeroGallery() {
               src="/images/catalog/silver-pagoda-ring-pearl-salimsilver.webp"
               alt="Model with red earrings"
               fill
+              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover object-center"
             />
           </div>
@@ -114,6 +116,7 @@ export function HeroGallery() {
                   src="/images/catalog/baroque-pearl-citrine-silver-brooch.webp"
                   alt="Model wearing statement gold hoop earrings"
                   fill
+                  sizes="(max-width: 320px) 100vw, 320px"
                   className="object-cover object-center"
                   priority
                 />
@@ -125,6 +128,7 @@ export function HeroGallery() {
                   src="/images/catalog/hand-carved-silver-rings-couple-salimsilver.webp"
                   alt="Model wearing gold earrings"
                   fill
+                  sizes="(max-width: 320px) 100vw, 320px"
                   className="object-cover object-center"
                 />
               </div>
@@ -135,6 +139,7 @@ export function HeroGallery() {
                   src="/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp"
                   alt="Model with red earrings"
                   fill
+                  sizes="(max-width: 320px) 100vw, 320px"
                   className="object-cover object-center"
                 />
               </div>

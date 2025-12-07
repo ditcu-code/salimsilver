@@ -10,6 +10,7 @@ export default function HeroSection() {
         src="/images/private-collection-priyana-jatmika-salim.webp"
         alt="About Salim Silver"
         fill
+        sizes="100vw"
         priority
         className="object-cover"
       />

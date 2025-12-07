@@ -18,6 +18,7 @@ export default function CollectionHero({ title, description, coverImage, tags }:
         src={coverImage || "/Morocco/morocco-8.webp?height=800&width=1920"}
         alt={title}
         fill
+        sizes="100vw"
         priority
         className="object-cover"
       />
