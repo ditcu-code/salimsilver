@@ -1,14 +1,23 @@
 "use client"
 
-import type { Jewelry } from "@/lib/types"
-import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from "react"
-import type { ComponentsProps, RenderExtras, RenderImage } from "react-photo-album"
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent,
+} from "react"
 import PhotoAlbum from "react-photo-album"
+import type { ComponentsProps, RenderExtras, RenderImage } from "react-photo-album"
 import "react-photo-album/masonry.css"
+
+import type { Jewelry } from "@/lib/types"
+import { cn } from "@/lib/utils"
 import { JewelryLightbox } from "./jewelry-lightbox"
 
 // export type GalleryJewelry = Jewelry & { blurDataUrl?: string }
@@ -21,6 +30,7 @@ interface JewelryGalleryProps {
 export type AlbumJewelry = Jewelry & { key: string; blurDataUrl?: string }
 
 const masonryColumns = (containerWidth: number) => (containerWidth < 768 ? 2 : 3)
+const THUMBNAIL_WIDTH = 80
 
 const PhotoMetadataOverlay = ({ photo }: { photo: AlbumJewelry }) => {
   return (
@@ -54,8 +64,8 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
   const lightboxRef = useRef<HTMLDivElement>(null)
   const thumbnailsRef = useRef<HTMLDivElement>(null)
-  
   const searchParams = useSearchParams()
+  const searchParamsString = useMemo(() => searchParams.toString(), [searchParams])
   const router = useRouter()
   const pathname = usePathname()
 
@@ -84,36 +94,49 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
     [validPhotos],
   )
 
-  // Handle deep linking on mount
-  useEffect(() => {
-    const jewelrySlug = searchParams.get("jewelry")
-    if (jewelrySlug && !lightboxOpen) {
-      const index = albumPhotos.findIndex(p => p.slug === jewelrySlug)
-      if (index !== -1) {
-        setCurrentPhotoIndex(index)
-        setLightboxOpen(true)
+  const updateUrl = useCallback(
+    (slug: string | null) => {
+      const params = new URLSearchParams(searchParamsString)
+      if (slug) {
+        params.set("jewelry", slug)
+      } else {
+        params.delete("jewelry")
       }
-    }
-  }, [searchParams, albumPhotos, lightboxOpen])
 
-  const updateUrl = useCallback((slug: string | null) => {
-    const params = new URLSearchParams(searchParams.toString())
-    if (slug) {
-      params.set("jewelry", slug)
-    } else {
-      params.delete("jewelry")
+      const nextQuery = params.toString()
+      const nextPath = nextQuery ? `${pathname}?${nextQuery}` : pathname
+      router.replace(nextPath, { scroll: false })
+    },
+    [pathname, router, searchParamsString],
+  )
+
+  const selectPhoto = useCallback(
+    (index: number) => {
+      if (!albumPhotos.length) return
+      const normalizedIndex = (index + albumPhotos.length) % albumPhotos.length
+      setCurrentPhotoIndex(normalizedIndex)
+      updateUrl(albumPhotos[normalizedIndex].slug)
+    },
+    [albumPhotos, updateUrl],
+  )
+
+  useEffect(() => {
+    const jewelrySlug = new URLSearchParams(searchParamsString).get("jewelry")
+    if (!jewelrySlug || lightboxOpen || !albumPhotos.length) return
+
+    const index = albumPhotos.findIndex((photo) => photo.slug === jewelrySlug)
+    if (index !== -1) {
+      selectPhoto(index)
+      setLightboxOpen(true)
     }
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
-  }, [searchParams, pathname, router])
+  }, [albumPhotos, lightboxOpen, searchParamsString, selectPhoto])
 
   const openLightbox = useCallback(
     (index: number) => {
-      if (!albumPhotos.length) return
-      setCurrentPhotoIndex(index)
+      selectPhoto(index)
       setLightboxOpen(true)
-      updateUrl(albumPhotos[index].slug)
     },
-    [albumPhotos, updateUrl],
+    [selectPhoto],
   )
 
   const closeLightbox = useCallback(() => {
@@ -122,18 +145,12 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
   }, [updateUrl])
 
   const goToPrevious = useCallback(() => {
-    if (!albumPhotos.length) return
-    const newIndex = currentPhotoIndex === 0 ? albumPhotos.length - 1 : currentPhotoIndex - 1
-    setCurrentPhotoIndex(newIndex)
-    updateUrl(albumPhotos[newIndex].slug)
-  }, [albumPhotos, currentPhotoIndex, updateUrl])
+    selectPhoto(currentPhotoIndex - 1)
+  }, [currentPhotoIndex, selectPhoto])
 
   const goToNext = useCallback(() => {
-    if (!albumPhotos.length) return
-    const newIndex = currentPhotoIndex === albumPhotos.length - 1 ? 0 : currentPhotoIndex + 1
-    setCurrentPhotoIndex(newIndex)
-    updateUrl(albumPhotos[newIndex].slug)
-  }, [albumPhotos, currentPhotoIndex, updateUrl])
+    selectPhoto(currentPhotoIndex + 1)
+  }, [currentPhotoIndex, selectPhoto])
 
   const handleLightboxClick = useCallback(
     (event: MouseEvent) => {
@@ -175,9 +192,10 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
   useEffect(() => {
     if (!lightboxOpen || !thumbnailsRef.current) return
     const scrollContainer = thumbnailsRef.current
-    const thumbnailWidth = 80
     const scrollPosition =
-      currentPhotoIndex * thumbnailWidth - scrollContainer.clientWidth / 2 + thumbnailWidth / 2
+      currentPhotoIndex * THUMBNAIL_WIDTH -
+      scrollContainer.clientWidth / 2 +
+      THUMBNAIL_WIDTH / 2
 
     requestAnimationFrame(() => {
       scrollContainer.scrollTo({ left: scrollPosition, behavior: "smooth" })
@@ -263,10 +281,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
           onClose={closeLightbox}
           onNext={goToNext}
           onPrevious={goToPrevious}
-          onSelect={(index) => {
-            setCurrentPhotoIndex(index)
-            updateUrl(albumPhotos[index].slug)
-          }}
+          onSelect={selectPhoto}
           onBackgroundClick={handleLightboxClick}
           onImageError={handlePhotoError}
           lightboxRef={lightboxRef}
