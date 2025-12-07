@@ -1,11 +1,23 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight, Share2, X } from "lucide-react"
 import Image from "next/image"
 import { type MouseEvent, type RefObject } from "react"
 import { toast } from "sonner"
+
+import { cn } from "@/lib/utils"
 import type { AlbumJewelry } from "./jewelry-gallery"
+
+function buildSharePayload(photo: AlbumJewelry) {
+  const url = new URL(window.location.origin + window.location.pathname)
+  url.searchParams.set("jewelry", photo.slug)
+
+  return {
+    shareUrl: url.toString(),
+    shareTitle: photo.title || "Salim Silver Jewelry",
+    shareText: photo.description || "Check out this beautiful jewelry from Salim Silver.",
+  }
+}
 
 export interface JewelryLightboxProps {
   photos: AlbumJewelry[]
@@ -34,36 +46,55 @@ export function JewelryLightbox({
 }: JewelryLightboxProps) {
   const currentPhoto = photos[currentIndex]
 
-
-
   if (!currentPhoto) return null
 
-  return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95">
+  const totalPhotos = photos.length
+  const displayIndex = currentIndex + 1
+  const { shareUrl, shareTitle, shareText } = buildSharePayload(currentPhoto)
 
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText,
+          url: shareUrl,
+        })
+        return
+      }
+
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(shareUrl)
+        toast.success("Link copied to clipboard")
+        return
+      }
+
+      toast.error("Sharing is not supported in this browser.")
+    } catch (error) {
+      console.error("Error sharing:", error)
+      toast.error("Unable to share right now.")
+    }
+  }
+
+  const infoContent = (
+    <div className="flex flex-col items-end text-right">
+      {currentPhoto.title && <p className="font-serif text-md text-white">{currentPhoto.title}</p>}
+      {currentPhoto.description && (
+        <p className="text-xs text-white/70 md:w-2/3">{currentPhoto.description}</p>
+      )}
+    </div>
+  )
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Jewelry photo viewer"
+    >
       <button
         className="absolute cursor-pointer right-16 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
-        onClick={async () => {
-          // Create a clean URL with only the jewelry parameter
-          const url = new URL(window.location.origin + window.location.pathname)
-          url.searchParams.set("jewelry", currentPhoto.slug)
-          const shareUrl = url.toString()
-
-          if (navigator.share) {
-            try {
-              await navigator.share({
-                title: currentPhoto.title || "Salim Silver Jewelry",
-                text: currentPhoto.description || "Check out this beautiful jewelry from Salim Silver.",
-                url: shareUrl,
-              })
-            } catch (error) {
-              console.error("Error sharing:", error)
-            }
-          } else {
-            navigator.clipboard.writeText(shareUrl)
-            toast.success("Link copied to clipboard")
-          }
-        }}
+        onClick={handleShare}
         title="Share"
       >
         <Share2 size={20} />
@@ -79,7 +110,7 @@ export function JewelryLightbox({
 
       {/* Mobile Counter (Top Center) */}
       <div className="absolute top-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/20 px-3 py-1 text-sm text-white md:hidden">
-        {currentIndex + 1} of {photos.length}
+        {displayIndex} of {totalPhotos}
       </div>
 
       <div
@@ -101,16 +132,9 @@ export function JewelryLightbox({
           <div className="absolute inset-x-0 bottom-0 hidden md:block bg-black/60 p-4 text-white">
             <div className="mt-2 flex items-center justify-between">
               <p className="text-sm text-white/70">
-                {currentIndex + 1} of {photos.length}
+                {displayIndex} of {totalPhotos}
               </p>
-              <div className="flex flex-col items-end text-right">
-                {currentPhoto.title && (
-                  <p className="font-serif text-md text-white">{currentPhoto.title}</p>
-                )}
-                {currentPhoto.description && (
-                  <p className="text-xs w-2/3 text-white/70">{currentPhoto.description}</p>
-                )}
-              </div>
+              {infoContent}
             </div>
           </div>
         </div>
@@ -119,14 +143,7 @@ export function JewelryLightbox({
       {/* Mobile Info Section (Above Thumbnails) */}
       <div className="w-full bg-black/80 px-6 py-2 text-white md:hidden">
         <div className="flex items-center justify-end">
-          <div className="flex flex-col items-end text-right">
-            {currentPhoto.title && (
-              <p className="font-serif text-md text-white">{currentPhoto.title}</p>
-            )}
-            {currentPhoto.description && (
-              <p className="text-xs text-white/70">{currentPhoto.description}</p>
-            )}
-          </div>
+          {infoContent}
         </div>
       </div>
 
