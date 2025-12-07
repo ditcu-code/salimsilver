@@ -178,7 +178,7 @@ export function JewelryLightbox({
                   fill
                   className="rounded object-cover"
                   sizes="70px"
-                  quality={50}
+                  quality={90}
                 />
               </div>
               {index === currentIndex && (

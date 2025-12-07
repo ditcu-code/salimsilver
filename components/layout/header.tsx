@@ -108,12 +108,13 @@ function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string
         <Image
           src="/images/logo-salimsilver.webp"
           alt="Salim Silver"
-          width={150}
-          height={40}
+          width={180}
+          height={36}
           className={cn(
-            "h-10 w-auto object-contain dark:invert-0 transition-all duration-300",
+            "h-10 object-contain dark:invert-0 transition-all duration-300",
             shouldInvert ? "invert" : "invert-0",
           )}
+          style={{ width: "auto" }}
           priority
         />
       </Link>

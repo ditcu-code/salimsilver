@@ -53,6 +53,7 @@ export function HeroGallery() {
             src="/images/jono-setting-filigree.webp"
             alt="Model wearing statement gold hoop earrings"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center"
             fetchPriority="high"
             loading="eager"
