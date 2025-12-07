@@ -115,16 +115,16 @@ export function JewelryLightbox({
 
       <div
         ref={lightboxRef}
-        className="relative flex h-[calc(100%-120px)] w-full cursor-pointer items-center justify-center rounded-3xl p-4"
+        className="relative flex flex-1 min-h-0 w-full cursor-pointer items-center justify-center p-4 hover:bg-black/5"
         onClick={onBackgroundClick}
       >
-        <div className="relative z-10 max-h-full max-w-[90vw] overflow-hidden rounded-3xl">
+        <div className="relative z-10 h-full w-full flex items-center justify-center overflow-hidden">
           <Image
             src={currentPhoto.src || "/placeholder.svg"}
             alt={currentPhoto.alt || "Photo"}
             width={currentPhoto.width}
             height={currentPhoto.height}
-            className="max-h-[calc(100vh-180px)] max-w-[90vw] object-contain"
+            className="h-full w-full object-contain"
             quality={90}
             onError={onImageError}
           />
@@ -141,11 +141,11 @@ export function JewelryLightbox({
       </div>
 
       {/* Mobile Info Section (Above Thumbnails) */}
-      <div className="w-full bg-black/80 px-6 py-2 text-white md:hidden">
+      <div className="w-full shrink-0 bg-black/80 px-6 py-2 text-white md:hidden">
         <div className="flex items-center justify-end">{infoContent}</div>
       </div>
 
-      <div className="relative flex h-[100px] w-full items-center justify-center bg-black/50">
+      <div className="relative shrink-0 flex h-[100px] w-full items-center justify-center bg-black/50">
         <button
           className="absolute left-2 z-10 rounded-full bg-black/20 p-2 text-white transition-colors hover:bg-black/40"
           onClick={onPrevious}
@@ -165,7 +165,7 @@ export function JewelryLightbox({
               className={cn(
                 "relative mx-1 shrink-0 cursor-pointer transition-all duration-200",
                 index === currentIndex
-                  ? "z-10 scale-110 border-2 border-white"
+                  ? "z-10 scale-110 border-2 border-white rounded-lg"
                   : "border border-transparent opacity-60 hover:opacity-100",
               )}
               onClick={() => onSelect(index)}
@@ -176,9 +176,9 @@ export function JewelryLightbox({
                   src={photo.src || "/placeholder.svg"}
                   alt={photo.alt || `Thumbnail ${index + 1}`}
                   fill
-                  className="rounded object-cover"
+                  className="rounded-md object-cover"
                   sizes="70px"
-                  quality={90}
+                  quality={50}
                 />
               </div>
               {index === currentIndex && (
