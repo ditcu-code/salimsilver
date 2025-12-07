@@ -1,9 +1,9 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, Info, X } from "lucide-react"
 import Image from "next/image"
-import type { MouseEvent, RefObject } from "react"
+import { type MouseEvent, type RefObject, useState } from "react"
 import type { AlbumJewelry } from "./jewelry-gallery"
 
 export interface JewelryLightboxProps {
@@ -33,17 +33,31 @@ export function JewelryLightbox({
 }: JewelryLightboxProps) {
   const currentPhoto = photos[currentIndex]
 
+  const [showInfo, setShowInfo] = useState(false)
+
   if (!currentPhoto) return null
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95">
       <button
-        className="absolute right-4 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-colors hover:bg-black/40"
+        className="absolute md:hidden cursor-pointer left-4 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
+        onClick={() => setShowInfo((prev) => !prev)}
+      >
+        <Info size={22} />
+        <span className="sr-only">Info</span>
+      </button>
+      <button
+        className="absolute cursor-pointer right-4 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
         onClick={onClose}
       >
         <X size={24} />
         <span className="sr-only">Close</span>
       </button>
+
+      {/* Mobile Counter (Top Center) */}
+      <div className="absolute top-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/20 px-3 py-1 text-sm text-white md:hidden">
+        {currentIndex + 1} of {photos.length}
+      </div>
 
       <div
         ref={lightboxRef}
@@ -60,23 +74,40 @@ export function JewelryLightbox({
             quality={90}
             onError={onImageError}
           />
-          <div className="absolute inset-x-0 bottom-0 bg-black/60 p-4 text-white">
+          {/* Desktop Info Overlay */}
+          <div className="absolute inset-x-0 bottom-0 hidden md:block bg-black/60 p-4 text-white">
             <div className="mt-2 flex items-center justify-between">
               <p className="text-sm text-white/70">
                 {currentIndex + 1} of {photos.length}
               </p>
               <div className="flex flex-col items-end text-right">
                 {currentPhoto.title && (
-                  <p className="font-serif text-lg text-white">{currentPhoto.title}</p>
+                  <p className="font-serif text-md text-white">{currentPhoto.title}</p>
                 )}
-                {currentPhoto.material && (
-                  <p className="text-sm text-white/70">{currentPhoto.material}</p>
+                {currentPhoto.description && (
+                  <p className="text-xs w-2/3 text-white/70">{currentPhoto.description}</p>
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Mobile Info Section (Above Thumbnails) */}
+      {showInfo && (
+        <div className="w-full bg-black/80 px-6 py-2 text-white md:hidden">
+            <div className="flex items-center justify-end">
+               <div className="flex flex-col items-end text-right">
+                {currentPhoto.title && (
+                  <p className="font-serif text-md text-white">{currentPhoto.title}</p>
+                )}
+                {currentPhoto.description && (
+                  <p className="text-xs text-white/70">{currentPhoto.description}</p>
+                )}
+              </div>
+            </div>
+        </div>
+      )}
 
       <div className="relative flex h-[100px] w-full items-center justify-center bg-black/50">
         <button
