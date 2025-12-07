@@ -12,8 +12,8 @@ import {
   useState,
   type MouseEvent,
 } from "react"
-import PhotoAlbum from "react-photo-album"
 import type { ComponentsProps, RenderExtras, RenderImage } from "react-photo-album"
+import PhotoAlbum from "react-photo-album"
 import "react-photo-album/masonry.css"
 
 import type { Jewelry } from "@/lib/types"
@@ -122,14 +122,20 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
 
   useEffect(() => {
     const jewelrySlug = new URLSearchParams(searchParamsString).get("jewelry")
-    if (!jewelrySlug || lightboxOpen || !albumPhotos.length) return
+
+    if (!jewelrySlug) {
+      setLightboxOpen(false)
+      return
+    }
+
+    if (!albumPhotos.length) return
 
     const index = albumPhotos.findIndex((photo) => photo.slug === jewelrySlug)
     if (index !== -1) {
-      selectPhoto(index)
+      setCurrentPhotoIndex(index)
       setLightboxOpen(true)
     }
-  }, [albumPhotos, lightboxOpen, searchParamsString, selectPhoto])
+  }, [albumPhotos, searchParamsString])
 
   const openLightbox = useCallback(
     (index: number) => {

@@ -93,7 +93,7 @@ export function JewelryLightbox({
       aria-label="Jewelry photo viewer"
     >
       <button
-        className="absolute cursor-pointer right-16 top-4 z-30 rounded-full bg-black/20 p-2.5 text-white transition-transform hover:bg-black/40 hover:scale-110"
+        className="absolute cursor-pointer left-4 top-4 z-30 rounded-full bg-black/20 p-2.5 text-white transition-transform hover:bg-black/40 hover:scale-110"
         onClick={handleShare}
         title="Share"
       >
