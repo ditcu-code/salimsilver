@@ -1,6 +1,6 @@
 # Salim Silver | Handcrafted Javanese Jewelry
 
-![Salim Silver](public/images/hero-background.png)
+![Salim Silver](public/images/private-collection-priyana-jatmika-salim.webp)
 
 A premium jewelry catalog and company profile website built with Next.js 15+, featuring a sophisticated design system, dynamic product filtering, and smooth animations.
 
