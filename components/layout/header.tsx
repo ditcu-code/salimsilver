@@ -12,14 +12,15 @@ import { StoreLocationButton } from "../features/store-location-button"
 type NavItem = {
   name: string
   href: string
+  mobileOnly?: boolean
 }
 
 const navigation: NavItem[] = [
-  // { name: "Home", href: "/" },
   { name: "Catalog", href: "/catalog" },
   { name: "Collections", href: "/collections" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
+  { name: "Visit Us", href: "/store-location", mobileOnly: true },
 ]
 
 const mobileMenuTransition: Transition = { type: "spring", damping: 25, stiffness: 300 }
@@ -141,7 +142,9 @@ function DesktopNavigation({
         isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
-      {navigation.map((item) => {
+      {navigation
+        .filter((item) => !item.mobileOnly)
+        .map((item) => {
         const isActive = pathname === item.href
 
         return (
@@ -247,9 +250,6 @@ function MobileMenu({
                 </Link>
               )
             })}
-            <div className="mt-4">
-              <StoreLocationButton />
-            </div>
           </nav>
         </motion.div>
       )}
