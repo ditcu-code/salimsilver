@@ -24,11 +24,11 @@ export default function StoreHero() {
         transition={{ duration: 0.8 }}
       >
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
-          Store Location
+          Store & Workshop
         </p>
-        <h1 className="mb-6 text-5xl font-display md:text-7xl">Visit Our Workshop</h1>
+        <h1 className="mb-6 text-5xl font-display md:text-7xl">Visit Us in Kotagede</h1>
         <p className="mx-auto max-w-2xl text-lg text-white/90 md:text-xl leading-relaxed">
-          Step into the heart of Kotagede and witness the artistry behind every piece.
+          See where our silver is crafted and shop the collection in our historic workshop & store.
         </p>
         <div className="mt-8">
           <AnimatedButton href="#location" variant="primary" className="px-8">

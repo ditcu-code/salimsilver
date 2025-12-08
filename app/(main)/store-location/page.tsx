@@ -9,24 +9,24 @@ import StoreHero from "./components/StoreHero"
 import { BASE_URL } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Visit Salim Silver | Store Location",
+  title: "Visit Salim Silver | Store & Workshop",
   description:
-    "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a workshop tour.",
+    "Visit our Kotagede store and workshop. Shop our handcrafted silver collection and see the artisans at work in one location.",
   alternates: {
     canonical: `${BASE_URL}/store-location`,
   },
   openGraph: {
     type: "website",
-    title: "Visit Salim Silver | Store Location",
+    title: "Visit Salim Silver | Store & Workshop",
     description:
-      "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a workshop tour.",
+      "Visit our Kotagede store and workshop. Shop our handcrafted silver collection and see the artisans at work in one location.",
     url: `${BASE_URL}/store-location`,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Visit Salim Silver | Store Location",
+    title: "Visit Salim Silver | Store & Workshop",
     description:
-      "Find the Salim Silver workshop in Kotagede, Yogyakarta. Plan your visit, get directions, and arrange a workshop tour.",
+      "Visit our Kotagede store and workshop. Shop our handcrafted silver collection and see the artisans at work in one location.",
   },
 }
 
@@ -43,11 +43,11 @@ export default function StoreLocationPage() {
           {/* Left Column: What to Expect */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-display mb-4">Experience the Craft</h2>
+              <h2 className="text-3xl font-display mb-4">The Workshop & Store</h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Discover where every Salim Silver piece comes to life. Step into our Kotagede
-                workshop, see the tools we use each day, and pick up your order directly from the
-                artisans who crafted it.
+                Experience the complete journey of our craft in Kotagede. Watch our artisans shape
+                silver into art at our workshop, then step into our showroom to browse and try on the
+                finished collection.
               </p>
             </div>
 
@@ -55,18 +55,16 @@ export default function StoreLocationPage() {
               <h3 className="text-2xl font-display mb-4">What to expect</h3>
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                  <span>Guided walk-through of our traditional tools and techniques</span>
+                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                  <span>Browse our complete collection of ready-to-wear jewelry</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                   <span>See works in progress and one-of-a-kind pieces being made</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                  <span>
-                    Pick up online orders or discuss custom designs in person with our designers
-                  </span>
+                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                  <span>Try on pieces and consult with our team on custom designs</span>
                 </li>
               </ul>
             </div>
