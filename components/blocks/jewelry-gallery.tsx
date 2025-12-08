@@ -272,7 +272,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
             photos={albumPhotos}
             layout="masonry"
             columns={masonryColumns}
-            spacing={24}
+            spacing={(containerWidth) => (containerWidth < 768 ? 12 : 24)}
             onClick={({ index }) => openLightbox(index)}
             render={{ image: renderImage, extras: renderExtras }}
             componentsProps={componentsProps}

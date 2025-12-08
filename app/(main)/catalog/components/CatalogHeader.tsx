@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 export default function CatalogHeader() {
   return (
     <motion.div
-      className="text-center m-16"
+      className="text-center m-10 md:m-16"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

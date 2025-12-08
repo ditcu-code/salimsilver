@@ -9,7 +9,7 @@ interface CollectionGalleryProps {
 
 export default function CollectionGallery({ jewelryList }: CollectionGalleryProps) {
   return (
-    <section className="py-8 px-4 md:px-8 max-w-[90%] mx-auto mb-20">
+    <section className="md:px-8 max-w-[90%] mx-auto mb-20">
       <JewelryGallery jewelryList={jewelryList} />
     </section>
   )

@@ -10,7 +10,7 @@ interface CollectionInfoProps {
 export default function CollectionInfo({ fullDescription, description }: CollectionInfoProps) {
   return (
     <motion.section
-      className="py-12 px-4 md:px-8 max-w-5xl mx-auto mb-10 mt-10"
+      className="py px-4 md:px-8 max-w-5xl mx-auto my-8"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
