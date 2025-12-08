@@ -91,7 +91,7 @@ export default function TimelineSection() {
               {/* Content Side */}
               <div className="w-full md:w-1/2 pl-12 md:px-16">
                 <div className={`relative w-full flex flex-col ${index % 2 === 0 ? "md:items-start md:text-left" : "md:items-end md:text-right"}`}>
-                  <span className={`text-6xl md:text-8xl font-display text-primary/10 absolute -z-10 select-none transform -translate-y-8 md:-translate-y-12 max-md:right-0 ${
+                  <span className={`text-6xl md:text-8xl font-display text-primary/20 absolute -z-10 select-none transform -translate-y-8 md:-translate-y-12 max-md:right-0 ${
                     index % 2 === 0 ? "md:right-0" : "md:left-0"
                   }`}>
                     {item.year}
