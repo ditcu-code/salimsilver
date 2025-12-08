@@ -97,7 +97,7 @@ export function HeroGallery() {
           transition={{ duration: 0.6 }}
           className="w-full text-center"
         >
-          <h1 className="font-display text-3xl leading-[0.9] tracking-tight my-15 px-6 text-foreground">
+          <h1 className="font-display text-3xl leading-[0.9] tracking-tight my-12 px-6 text-foreground">
             Handcrafted silver jewelry that tells a story of elegance and tradition.
           </h1>
         </motion.div>
