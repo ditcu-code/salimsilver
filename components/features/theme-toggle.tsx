@@ -71,7 +71,7 @@ export function ThemeToggle() {
             key={option.value}
             onClick={() => handleThemeChange(option.value)}
             className={cn(
-              "relative flex items-center justify-center w-8 h-7 rounded-full text-muted-foreground transition-colors hover:text-foreground",
+              "relative flex cursor-pointer items-center justify-center w-8 h-7 rounded-full text-muted-foreground transition-colors hover:text-foreground",
               isActive && "text-foreground"
             )}
             aria-label={`Switch to ${option.label} theme`}
