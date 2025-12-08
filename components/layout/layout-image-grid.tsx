@@ -1,4 +1,5 @@
 "use client"
+import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import React, { useState } from "react"
@@ -61,25 +62,25 @@ const cards = [
     id: 1,
     content: <SkeletonOne />,
     className: "md:col-span-2",
-    thumbnail: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.webp",
+    thumbnail: `${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`,
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
-    thumbnail: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp",
+    thumbnail: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`,
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
-    thumbnail: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.webp",
+    thumbnail: `${SUPABASE_CATALOG_URL}/silver-filigree-ruby-cuff-bracelet-salimsilver.webp`,
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
-    thumbnail: "/images/catalog/baroque-pearl-citrine-silver-brooch.webp",
+    thumbnail: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
   },
 ]
 

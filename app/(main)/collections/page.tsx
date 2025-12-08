@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function CollectionsPage() {
-  const collections = getAllCollections()
+export default async function CollectionsPage() {
+  const collections = await getAllCollections()
 
   return (
     <div className="min-h-screen pt-24 pb-12 px-4 md:px-8">

@@ -1,7 +1,6 @@
 "use client"
 
 import { useHammerSound } from "@/hooks/use-hammer-sound"
-import { getAllCollections } from "@/lib/collections"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
@@ -9,8 +8,13 @@ import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
-export default function CollectionGrid() {
-  const collections = getAllCollections()
+import type { Collection } from "@/lib/types"
+
+interface CollectionGridProps {
+  collections: Collection[]
+}
+
+export default function CollectionGrid({ collections }: CollectionGridProps) {
   const searchParams = useSearchParams()
   const searchQuery = searchParams.get("q") || ""
   const tagFilter = searchParams.get("tag") || ""
@@ -26,17 +30,20 @@ export default function CollectionGrid() {
       filtered = filtered.filter(
         (collection) =>
           collection.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          collection.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          collection.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())),
+          collection.description?.toLowerCase().includes(searchQuery.toLowerCase()) // ||
+          // collection.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())),
       )
     }
 
     // Apply tag filter
+    // Tag filter removed
+    /*
     if (tagFilter) {
       filtered = filtered.filter((collection) =>
         collection.tags.some((tag) => tag.toLowerCase() === tagFilter.toLowerCase()),
       )
     }
+    */
 
     setFilteredCollections(filtered)
   }, [collections, searchQuery, tagFilter])
@@ -97,14 +104,7 @@ export default function CollectionGrid() {
                       <span className="px-3 py-1 rounded-full text-xs bg-white/30 text-white backdrop-blur-sm">
                         Featured Collection
                       </span>
-                      {group[0].tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 rounded-full text-xs bg-white/20 text-white backdrop-blur-sm"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                        /* Tags removed */
                     </div>
                     <h3 className="text-3xl md:text-4xl text-white mb-3 group-hover:text-white/90 transition-colors">
                       {group[0].title}
@@ -166,14 +166,7 @@ export default function CollectionGrid() {
                         </p>
                         <div className="flex justify-between items-center">
                           <div className="flex flex-wrap gap-2">
-                            {collection.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="px-2 py-1 rounded-full text-xs bg-white/20 text-white backdrop-blur-sm"
-                              >
-                                {tag}
-                              </span>
-                            ))}
+                            {/* Tags removed */}
                           </div>
                           <ArrowRight
                             size={18}

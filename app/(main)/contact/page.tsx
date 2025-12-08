@@ -5,7 +5,7 @@ import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
 
-import { BASE_URL } from "@/lib/constants"
+import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "Contact Salim Silver",
@@ -60,7 +60,7 @@ export default function ContactPage() {
             mainEntity: {
               "@type": "JewelryStore",
               name: "Salim Silver",
-              image: `${BASE_URL}/images/catalog/baroque-pearl-citrine-silver-brooch.webp`,
+              image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
               telephone: "+62 896 7197 7699",
               contactPoint: {
                 "@type": "ContactPoint",

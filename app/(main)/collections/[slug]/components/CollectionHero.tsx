@@ -1,6 +1,6 @@
 "use client"
 
-import TagList from "@/components/blocks/tag-list"
+
 import { motion } from "framer-motion"
 import Image from "next/image"
 
@@ -8,10 +8,9 @@ interface CollectionHeroProps {
   title: string
   description: string
   coverImage: string
-  tags: string[]
 }
 
-export default function CollectionHero({ title, description, coverImage, tags }: CollectionHeroProps) {
+export default function CollectionHero({ title, description, coverImage }: CollectionHeroProps) {
   return (
     <section className="relative h-[50vh] w-full">
       <Image
@@ -31,7 +30,7 @@ export default function CollectionHero({ title, description, coverImage, tags }:
       >
         <h1 className="text-4xl md:text-5xl text-white mb-4">{title}</h1>
         <p className="text-white/90 text-lg max-w-2xl mb-6">{description}</p>
-        <TagList tags={tags} variant="light" />
+
       </motion.div>
     </section>
   )

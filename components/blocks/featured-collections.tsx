@@ -2,7 +2,6 @@
 
 import AnimatedButton from "@/components/ui/animated-button"
 import { useHammerSound } from "@/hooks/use-hammer-sound"
-import { getFeaturedCollections } from "@/lib/collections"
 import type { Collection } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
@@ -27,9 +26,8 @@ export default function FeaturedCollections({
   ctaHref,
   sectionClassName,
   containerClassName = "max-w-7xl mx-auto",
-  collections: propCollections,
+  collections = [],
 }: FeaturedCollectionsProps = {}) {
-  const collections = propCollections || getFeaturedCollections()
   const { playHammerSound } = useHammerSound()
 
   const shouldRenderSection = Boolean(title || description || (ctaLabel && ctaHref))
@@ -71,16 +69,8 @@ export default function FeaturedCollections({
                 <p className="text-white/80 mb-4 line-clamp-2 text-sm group-hover:text-white/90 transition-colors">
                   {collection.description}
                 </p>
-                <div className="flex justify-between items-center">
                   <div className="flex flex-wrap gap-2">
-                    {collection.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 rounded-full text-xs bg-white/20 text-white backdrop-blur-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    {/* Tags removed from schema */}
                   </div>
                   <ArrowRight
                     size={18}
@@ -88,7 +78,7 @@ export default function FeaturedCollections({
                   />
                 </div>
               </div>
-            </div>
+
           </Link>
         </motion.div>
       ))}

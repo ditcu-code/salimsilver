@@ -6,6 +6,7 @@ import { type ReactNode, useRef } from "react"
 
 import { BentoGrid } from "@/components/blocks/hero-gallery-scroll-animation"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import { motion } from "framer-motion"
 
 function FullBentoCell({ children, className }: { children: ReactNode; className?: string }) {
@@ -63,7 +64,7 @@ export function HeroGallery() {
         {/* Cell 3: Portrait Image (Bottom Left) */}
         <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px]">
           <Image
-            src="/images/catalog/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.webp"
+            src={`${SUPABASE_CATALOG_URL}/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.webp`}
             alt="Model wearing gold earrings"
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
@@ -75,7 +76,7 @@ export function HeroGallery() {
         <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px] bg-secondary flex flex-col justify-between p-6 items-end">
           <div className="relative w-full h-43 rounded-2xl overflow-hidden mb-4">
             <Image
-              src="/images/catalog/silver-pagoda-ring-pearl-salimsilver.webp"
+              src={`${SUPABASE_CATALOG_URL}/silver-pagoda-ring-pearl-salimsilver.webp`}
               alt="Model with red earrings"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
@@ -113,7 +114,7 @@ export function HeroGallery() {
             <CarouselItem>
               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/catalog/baroque-pearl-citrine-silver-brooch.webp"
+                  src={`${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`}
                   alt="Model wearing statement gold hoop earrings"
                   fill
                   sizes="(max-width: 320px) 100vw, 320px"
@@ -125,7 +126,7 @@ export function HeroGallery() {
             <CarouselItem>
               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/catalog/hand-carved-silver-rings-couple-salimsilver.webp"
+                  src={`${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`}
                   alt="Model wearing gold earrings"
                   fill
                   sizes="(max-width: 320px) 100vw, 320px"
@@ -136,7 +137,7 @@ export function HeroGallery() {
             <CarouselItem>
                <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp"
+                  src={`${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`}
                   alt="Model with red earrings"
                   fill
                   sizes="(max-width: 320px) 100vw, 320px"

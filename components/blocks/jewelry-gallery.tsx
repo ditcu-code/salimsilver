@@ -27,7 +27,15 @@ interface JewelryGalleryProps {
   className?: string
 }
 
-export type AlbumJewelry = Jewelry & { key: string; blurDataUrl?: string }
+// Extend Jewelry to include properties required by react-photo-album
+export type AlbumJewelry = Jewelry & { 
+  key: string
+  src: string
+  width: number
+  height: number
+  alt?: string
+  blurDataUrl?: string 
+}
 
 const masonryColumns = (containerWidth: number) => (containerWidth < 768 ? 2 : 3)
 const THUMBNAIL_WIDTH = 80
@@ -76,8 +84,8 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
   const validPhotos = useMemo(
     () =>
       jewelryList.filter((jewelry) => {
-        if (!jewelry.src) {
-          console.warn("Invalid jewelry:", jewelry)
+        if (!jewelry.coverImage && (!jewelry.images || jewelry.images.length === 0)) {
+          console.warn("Invalid jewelry (no images):", jewelry)
           return false
         }
         return true
@@ -89,7 +97,11 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
     () =>
       validPhotos.map((photo, index) => ({
         ...photo,
-        key: photo.id || `photo-${index}-${photo.src}`,
+        key: photo.id || `photo-${index}`,
+        src: photo.coverImage || photo.images?.[0]?.src || "/placeholder.svg",
+        width: 800, // Mock dimensions since DB doesn't store them
+        height: 800, // Square aspect ratio for now
+        alt: photo.title,
       })),
     [validPhotos],
   )

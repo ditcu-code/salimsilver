@@ -3,11 +3,10 @@
 import { motion } from "framer-motion"
 
 interface CollectionInfoProps {
-  fullDescription: string
   description: string
 }
 
-export default function CollectionInfo({ fullDescription, description }: CollectionInfoProps) {
+export default function CollectionInfo({ description }: CollectionInfoProps) {
   return (
     <motion.section
       className="py px-4 md:px-8 max-w-5xl mx-auto my-8"
@@ -17,7 +16,7 @@ export default function CollectionInfo({ fullDescription, description }: Collect
     >
       <div className="prose max-w-none dark:prose-invert">
         <p className="text-lg text-primary leading-relaxed">
-          {fullDescription || description}
+          {description}
         </p>
       </div>
     </motion.section>

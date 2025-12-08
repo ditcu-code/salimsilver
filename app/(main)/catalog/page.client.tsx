@@ -2,15 +2,18 @@
 
 import { useEffect, useMemo, useState } from "react"
 
-import { getAllCollections } from "@/lib/collections"
+import type { Collection } from "@/lib/types"
 
 import CatalogGallery from "./components/CatalogGallery"
 import CatalogHeader from "./components/CatalogHeader"
 import CategoryFilters from "./components/CategoryFilters"
 
-export default function CatalogPageClient() {
-  const collections = getAllCollections()
-  const allJewelry = useMemo(() => collections.flatMap((collection) => collection.jewelryList), [collections])
+interface CatalogPageClientProps {
+  collections: Collection[]
+}
+
+export default function CatalogPageClient({ collections }: CatalogPageClientProps) {
+  const allJewelry = useMemo(() => collections.flatMap((collection) => collection.jewelryList || []), [collections])
   const [activeCategory, setActiveCategory] = useState("all")
 
   const categories = useMemo(
@@ -24,7 +27,7 @@ export default function CatalogPageClient() {
   const filteredJewelry = useMemo(() => {
     if (activeCategory === "all") return allJewelry
     const collection = collections.find((collection) => collection.slug === activeCategory)
-    return collection ? collection.jewelryList : []
+    return collection ? (collection.jewelryList || []) : []
   }, [activeCategory, allJewelry, collections])
 
   useEffect(() => {

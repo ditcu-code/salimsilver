@@ -26,10 +26,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function CatalogPage() {
+import { getAllCollections } from "@/lib/collections"
+
+export default async function CatalogPage() {
+  const collections = await getAllCollections()
   return (
     <>
-      <CatalogPageClient />
+      <CatalogPageClient collections={collections} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

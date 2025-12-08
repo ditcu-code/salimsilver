@@ -1,4 +1,4 @@
-import { getCollection } from "@/lib/collections"
+import { getCollection, getFeaturedCollections } from "@/lib/collections"
 import { notFound } from "next/navigation"
 import { CollectionContent } from "./collection-content"
 
@@ -12,10 +12,11 @@ export default async function CollectionPage({ params }: Props) {
   // Ensure params is properly awaited
   const { slug } = await params
   const collection = await getCollection(slug)
+  const featuredCollections = await getFeaturedCollections()
 
   if (!collection) {
     notFound()
   }
 
-  return <CollectionContent collection={collection} />
+  return <CollectionContent collection={collection} featuredCollections={featuredCollections} />
 }

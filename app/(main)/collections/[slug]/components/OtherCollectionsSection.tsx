@@ -5,7 +5,13 @@ import AnimatedButton from "@/components/ui/animated-button"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
-export default function OtherCollectionsSection() {
+import type { Collection } from "@/lib/types"
+
+interface Props {
+  collections: Collection[]
+}
+
+export default function OtherCollectionsSection({ collections }: Props) {
   return (
     <section className="mt-20 mb-20 py-20 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
@@ -21,7 +27,7 @@ export default function OtherCollectionsSection() {
             Explore our other handcrafted collections
           </p>
         </motion.div>
-        <FeaturedCollections />
+        <FeaturedCollections collections={collections} />
         <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}

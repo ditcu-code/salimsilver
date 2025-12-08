@@ -122,8 +122,8 @@ export function JewelryLightbox({
           <Image
             src={currentPhoto.src || "/placeholder.svg"}
             alt={currentPhoto.alt || "Photo"}
-            width={currentPhoto.width}
-            height={currentPhoto.height}
+            width={currentPhoto.width || 800}
+            height={currentPhoto.height || 800}
             className="h-full w-full object-contain"
             quality={90}
             onError={onImageError}

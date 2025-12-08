@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef } from "react"
 
 import AnimatedButton from "@/components/ui/animated-button"
 import { Button } from "@/components/ui/button"
+import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import {
@@ -15,10 +16,10 @@ import {
 } from "./hero-gallery-scroll-animation"
 
 const IMAGES = [
-  { src: "/images/catalog/baroque-pearl-citrine-silver-brooch.webp", alt: "Handcrafted silver pearl brooch" },
-  { src: "/images/catalog/hand-carved-silver-rings-couple-salimsilver.webp", alt: "Close-up of ornate silver rings from Salim Silver" },
-  { src: "/images/catalog/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp", alt: "Silver necklaces with intricate Javanese motifs" },
-  { src: "/images/catalog/silver-filigree-ruby-cuff-bracelet-salimsilver.webp", alt: "Engraved silver bracelets from the collection" },
+  { src: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`, alt: "Handcrafted silver pearl brooch" },
+  { src: `${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`, alt: "Close-up of ornate silver rings from Salim Silver" },
+  { src: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`, alt: "Silver necklaces with intricate Javanese motifs" },
+  { src: `${SUPABASE_CATALOG_URL}/silver-filigree-ruby-cuff-bracelet-salimsilver.webp`, alt: "Engraved silver bracelets from the collection" },
 ]
 
 const NAV_REVEAL_PROGRESS = 1

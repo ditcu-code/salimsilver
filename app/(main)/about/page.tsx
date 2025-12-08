@@ -7,7 +7,7 @@ import HeroSection from "./components/HeroSection"
 import TimelineSection from "./components/TimelineSection"
 import ValuesSection from "./components/ValuesSection"
 
-import { BASE_URL } from "@/lib/constants"
+import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "About Salim Silver",
@@ -55,7 +55,7 @@ export default function AboutPage() {
               "@type": "JewelryStore",
               name: "Salim Silver",
               description: "Artisans crafting Javanese-inspired silver jewelry in Kotagede.",
-              image: `${BASE_URL}/images/catalog/baroque-pearl-citrine-silver-brooch.webp`,
+              image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
               telephone: "+62 896 7197 7699",
               address: {
                 "@type": "PostalAddress",

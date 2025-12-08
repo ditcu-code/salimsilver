@@ -6,7 +6,7 @@ import CTASection from "@/components/blocks/cta-section"
 import StoreLocationSection from "@/components/blocks/store-location-section"
 import StoreHero from "./components/StoreHero"
 
-import { BASE_URL } from "@/lib/constants"
+import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "Visit Salim Silver | Store & Workshop",
@@ -112,7 +112,7 @@ export default function StoreLocationPage() {
             "@context": "https://schema.org",
             "@type": "JewelryStore",
             name: "Salim Silver",
-            image: `${BASE_URL}/images/catalog/baroque-pearl-citrine-silver-brooch.webp`,
+            image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
             "@id": `${BASE_URL}/store-location`,
             url: `${BASE_URL}/store-location`,
             telephone: "+62 896 7197 7699",

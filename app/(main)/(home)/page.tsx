@@ -5,6 +5,7 @@ export const dynamic = "force-static"
 import CTASection from "@/components/blocks/cta-section"
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { LayoutGridDemo } from "@/components/layout/layout-image-grid"
+import { getFeaturedCollections } from "@/lib/collections"
 import { HeroGallery } from "./components/hero-gallery"
 import IntroductionSection from "./components/introduction-section"
 
@@ -42,7 +43,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Home() {
+export default async function Home() {
+  const featuredCollections = await getFeaturedCollections()
   return (
     <div className="min-h-screen">
       {/* Hero Section with Slider */}
@@ -73,6 +75,7 @@ export default function Home() {
         ctaLabel="View All Collections"
         ctaHref="/catalog"
         sectionClassName="lg:mt-32 mb-32 z-10 mt-20"
+        collections={featuredCollections}
       />
 
       <script
