@@ -20,7 +20,6 @@ const lato = Lato({
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
 })
 
 export const metadata: Metadata = {
