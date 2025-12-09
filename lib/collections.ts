@@ -244,9 +244,56 @@ export async function getCollection(slug: string): Promise<Collection | undefine
     description: collection.description,
     featured: collection.featured,
     coverImageId: collection.cover_image_id,
-    coverImage: coverImage,
     jewelryList: mappedJewelry,
   }
 }
+
+export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefined> {
+  const supabase = await createClient()
+  const { data: item, error } = await supabase
+    .from("jewelry")
+    .select("*")
+    .eq("slug", slug)
+    .single()
+
+  if (error || !item) {
+    console.error("Error fetching jewelry by slug:", error)
+    return undefined
+  }
+
+  // Fetch images
+  const { data: images } = await supabase
+    .from("jewelry_images")
+    .select("*")
+    .eq("jewelry_id", item.id)
+    .order("display_order")
+
+  const itemImages = (images || []).map((img: any) => ({
+    id: img.id,
+    jewelryId: item.id,
+    src: img.src,
+    displayOrder: img.display_order,
+  }))
+
+  const cover = itemImages[0]?.src || ""
+
+  return {
+    id: item.id,
+    collectionId: item.collection_id,
+    slug: item.slug,
+    title: item.title,
+    description: item.description,
+    material: item.material,
+    materialPurity: item.material_purity,
+    weightGrams: item.weight_grams,
+    craftingTimeHours: item.crafting_time_hours,
+    productionYear: item.production_year,
+    status: item.status,
+    variants: item.variants,
+    images: itemImages,
+    coverImage: cover,
+  }
+}
+
 
 

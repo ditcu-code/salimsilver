@@ -1,14 +1,82 @@
-import { getCollection, getFeaturedCollections } from "@/lib/collections"
+import type { Metadata } from "next"
+
+import { getCollection, getFeaturedCollections, getJewelryBySlug } from "@/lib/collections"
+import { BASE_URL } from "@/lib/constants"
 import { notFound } from "next/navigation"
+
 import { CollectionContent } from "./collection-content"
 
 interface Props {
   params: Promise<{
     slug: string
   }>
+  searchParams: Promise<{
+    jewelry?: string
+  }>
 }
 
-export default async function CollectionPage({ params }: Props) {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const { jewelry } = await searchParams
+
+  // 1. Check if specific jewelry is being shared
+  if (jewelry) {
+    const item = await getJewelryBySlug(jewelry)
+    if (item) {
+      const title = `${item.title} - Salim Silver`
+      const description = item.description || "Handcrafted silver jewelry from Salim Silver."
+      const images = (item.images && item.images.length > 0) ? [item.images[0].src] : []
+
+      return {
+        title,
+        description,
+        openGraph: {
+          title,
+          description,
+          images,
+          url: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
+        },
+        twitter: {
+          card: "summary_large_image",
+          title,
+          description,
+          images,
+        },
+      }
+    }
+  }
+
+  // 2. Fallback to Collection metadata
+  const collection = await getCollection(slug)
+  if (collection) {
+    const title = `${collection.title} - Salim Silver`
+    const description = collection.description || `Explore our ${collection.title} collection.`
+    const images = collection.coverImage ? [collection.coverImage] : []
+
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        images,
+        url: `${BASE_URL}/collections/${slug}`,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images,
+      },
+    }
+  }
+
+  return {
+    title: "Collection Not Found",
+  }
+}
+
+export default async function CollectionPage({ params, searchParams }: Props) {
   // Ensure params is properly awaited
   const { slug } = await params
   const collection = await getCollection(slug)
@@ -18,5 +86,12 @@ export default async function CollectionPage({ params }: Props) {
     notFound()
   }
 
-  return <CollectionContent collection={collection} featuredCollections={featuredCollections} />
+  return (
+    <CollectionContent
+      collection={collection}
+      featuredCollections={featuredCollections}
+      initialJewelrySlug={(await searchParams).jewelry}
+    />
+  )
 }
+

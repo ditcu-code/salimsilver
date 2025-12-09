@@ -10,9 +10,10 @@ import OtherCollectionsSection from "./components/OtherCollectionsSection"
 interface Props {
   collection: Collection
   featuredCollections: Collection[]
+  initialJewelrySlug?: string
 }
 
-export function CollectionContent({ collection, featuredCollections }: Props) {
+export function CollectionContent({ collection, featuredCollections, initialJewelrySlug }: Props) {
   useEffect(() => {
     console.log("Collection:", collection)
   }, [collection])
