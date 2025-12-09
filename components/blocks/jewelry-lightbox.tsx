@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight, Loader2, Share2, X } from "lucide-react"
 import Image from "next/image"
-import { type MouseEvent, type RefObject, useEffect, useState } from "react"
+import { type MouseEvent, type RefObject, useState } from "react"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
@@ -44,16 +44,11 @@ export function JewelryLightbox({
   lightboxRef,
   thumbnailsRef,
 }: JewelryLightboxProps) {
-  const [isLoading, setIsLoading] = useState(true)
   const currentPhoto = photos[currentIndex]
   const nextIndex = (currentIndex + 1) % photos.length
   const prevIndex = (currentIndex - 1 + photos.length) % photos.length
   const nextPhoto = photos[nextIndex]
   const prevPhoto = photos[prevIndex]
-
-  useEffect(() => {
-    setIsLoading(true)
-  }, [currentIndex])
 
   if (!currentPhoto) return null
 
@@ -128,25 +123,15 @@ export function JewelryLightbox({
         onClick={onBackgroundClick}
       >
         <div className="relative z-10 h-full w-full flex items-center justify-center overflow-hidden">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Loader2 className="h-10 w-10 animate-spin text-white/50" />
-            </div>
-          )}
-          <Image
+          <LightboxImage
+            key={currentPhoto.src || currentIndex} // Force remount on change
             src={currentPhoto.src || "/placeholder.svg"}
             alt={currentPhoto.alt || "Photo"}
             width={currentPhoto.width || 800}
             height={currentPhoto.height || 800}
-            className={cn(
-              "h-full w-full object-contain transition-opacity duration-300",
-              isLoading ? "opacity-0" : "opacity-100"
-            )}
-            quality={90}
-            priority
-            onLoad={() => setIsLoading(false)}
-            onError={onImageError}
+            onImageError={onImageError}
           />
+
           {/* Desktop Info Overlay */}
           <div className="absolute inset-x-0 bottom-0 hidden md:block bg-black/60 p-4 text-white">
             <div className="mt-2 flex items-center justify-between">
@@ -238,5 +223,45 @@ export function JewelryLightbox({
         )}
       </div>
     </div>
+  )
+}
+
+function LightboxImage({
+  src,
+  alt,
+  width,
+  height,
+  onImageError,
+}: {
+  src: string
+  alt: string
+  width: number
+  height: number
+  onImageError: () => void
+}) {
+  const [isLoading, setIsLoading] = useState(true)
+
+  return (
+    <>
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Loader2 className="h-10 w-10 animate-spin text-white/50" />
+        </div>
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        className={cn(
+          "h-full w-full object-contain transition-opacity duration-300",
+          isLoading ? "opacity-0" : "opacity-100",
+        )}
+        quality={90}
+        priority
+        onLoad={() => setIsLoading(false)}
+        onError={onImageError}
+      />
+    </>
   )
 }
