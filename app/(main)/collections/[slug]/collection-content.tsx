@@ -1,7 +1,7 @@
 "use client"
 
 import type { Collection } from "@/lib/types"
-import { useEffect } from "react"
+
 import CollectionGallery from "./components/CollectionGallery"
 import CollectionHero from "./components/CollectionHero"
 import CollectionInfo from "./components/CollectionInfo"
@@ -14,9 +14,7 @@ interface Props {
 }
 
 export function CollectionContent({ collection, featuredCollections, initialJewelrySlug }: Props) {
-  useEffect(() => {
-    console.log("Collection:", collection)
-  }, [collection])
+
 
   return (
     <div className="min-h-screen">
