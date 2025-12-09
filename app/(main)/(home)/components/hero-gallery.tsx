@@ -111,9 +111,8 @@ export function HeroGallery() {
                   src={`${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`}
                   alt="Model wearing statement gold hoop earrings"
                   fill
-                  sizes="(max-width: 320px) 100vw, 320px"
+                  sizes="(max-width: 768px) 100vw, 1px"
                   className="object-cover object-center"
-                  priority
                 />
               </div>
             </CarouselItem>

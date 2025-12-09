@@ -2,6 +2,7 @@
 import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import React, { useState } from "react"
 
 type Card = {
@@ -134,16 +135,20 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
 
 const ImageComponent = ({ card }: { card: Card }) => {
   return (
-    <motion.img
+    <motion.div
       layoutId={`image-${card.id}-image`}
-      src={card.thumbnail}
-      height="500"
-      width="500"
       className={cn(
-        "object-cover object-center absolute inset-0 h-full w-full transition-transform duration-200 group-hover:scale-110",
+        "absolute inset-0 h-full w-full transition-transform duration-200 group-hover:scale-110",
       )}
-      alt="thumbnail"
-    />
+    >
+      <Image
+        src={card.thumbnail}
+        alt="thumbnail"
+        fill
+        className="object-cover object-center"
+        sizes="(max-width: 768px) 100vw, 33vw"
+      />
+    </motion.div>
   )
 }
 
