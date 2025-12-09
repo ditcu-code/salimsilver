@@ -1,0 +1,194 @@
+'use server'
+
+import { createClient } from '@/lib/supabase/server'
+import { revalidatePath } from 'next/cache'
+
+// --- Jewelry Actions ---
+
+export async function createJewelry(formData: FormData) {
+  const supabase = await createClient()
+  
+  const rawData = {
+    title: formData.get('title'),
+    slug: formData.get('slug'),
+    description: formData.get('description'),
+    collection_id: formData.get('collection_id'),
+    material: formData.get('material'),
+    material_purity: formData.get('material_purity'),
+    weight_grams: formData.get('weight_grams'),
+    status: formData.get('status'),
+  }
+
+  const { data, error } = await supabase
+    .from('jewelry')
+    .insert(rawData)
+    .select('id')
+    .single()
+
+  if (error) {
+    throw new Error('Failed to create jewelry: ' + error.message)
+  }
+
+  revalidatePath('/admin/jewelry')
+  return { success: true, id: data.id }
+}
+
+export async function updateJewelry(id: string, formData: FormData) {
+    const supabase = await createClient()
+    
+    const rawData = {
+      title: formData.get('title'), // string
+      slug: formData.get('slug'),
+      description: formData.get('description'),
+      collection_id: formData.get('collection_id'),
+      material: formData.get('material'),
+      material_purity: formData.get('material_purity'),
+      weight_grams: formData.get('weight_grams') ? parseFloat(formData.get('weight_grams') as string) : null,
+      status: formData.get('status'),
+    }
+  
+    const { error } = await supabase
+      .from('jewelry')
+      .update(rawData)
+      .eq('id', id)
+  
+    if (error) {
+      throw new Error('Failed to update jewelry: ' + error.message)
+    }
+  
+    revalidatePath('/admin/jewelry')
+    revalidatePath(`/admin/jewelry/${id}`)
+    return { success: true }
+}
+
+export async function deleteJewelry(id: string) {
+    const supabase = await createClient()
+
+    // Delete images from storage first? 
+    // Ideally we should used DB triggers or manual cleanup, but for now relies on cascade for DB records.
+    // Storage cleanup is separate. We'll skip complex storage cleanup for this iteration unless requested.
+
+    const { error } = await supabase
+        .from('jewelry')
+        .delete()
+        .eq('id', id)
+    
+    if (error) {
+        throw new Error('Failed to delete jewelry')
+    }
+
+    revalidatePath('/admin/jewelry')
+}
+
+// --- Image Actions ---
+// We'll handle image uploads via client-side directly to storage for better UX (progress bars),
+// but we need an action to save the DB record for the image.
+
+export async function saveJewelryImage(jewelryId: string, imagePath: string) {
+    const supabase = await createClient()
+
+    // Get current max display order
+    const { data: maxOrder } = await supabase
+        .from('jewelry_images')
+        .select('display_order')
+        .eq('jewelry_id', jewelryId)
+        .order('display_order', { ascending: false })
+        .limit(1)
+        .single()
+    
+    const nextOrder = (maxOrder?.display_order ?? -1) + 1
+
+    // Assuming we have a public URL or just storing the path. 
+    // The schema has `src`. Let's store the public URL.
+    const { data: { publicUrl } } = supabase.storage.from('catalog').getPublicUrl(imagePath)
+
+    const { error } = await supabase
+        .from('jewelry_images')
+        .insert({
+            jewelry_id: jewelryId,
+            src: publicUrl,
+            display_order: nextOrder
+        })
+    
+    if (error) throw error
+    revalidatePath(`/admin/jewelry/${jewelryId}`)
+}
+
+export async function deleteJewelryImage(imageId: string) {
+    const supabase = await createClient()
+    const { error } = await supabase.from('jewelry_images').delete().eq('id', imageId)
+    if (error) throw error
+    // Note: This doesn't delete from storage. Requires extra logic.
+    revalidatePath('/admin/jewelry')
+}
+
+// --- Collection Actions ---
+
+export async function createCollection(formData: FormData) {
+    const supabase = await createClient()
+
+    const rawData = {
+        title: formData.get('title'),
+        slug: formData.get('slug'),
+        description: formData.get('description'),
+        featured: formData.get('featured') === 'on',
+        // cover_image_id handled separately or assumes existing image ID?
+        // Ideally we select from existing images or upload new.
+        // For simplicity, let's say we just create the record first.
+    }
+
+    const { data, error } = await supabase
+        .from('collections')
+        .insert(rawData)
+        .select('id')
+        .single()
+
+    if (error) {
+        throw new Error('Failed to create collection: ' + error.message)
+    }
+
+    revalidatePath('/admin/collections')
+    return { success: true, id: data.id }
+}
+
+export async function updateCollection(id: string, formData: FormData) {
+    const supabase = await createClient()
+
+    const rawData = {
+        title: formData.get('title'),
+        slug: formData.get('slug'),
+        description: formData.get('description'),
+        featured: formData.get('featured') === 'on',
+    }
+
+    const { error } = await supabase
+        .from('collections')
+        .update(rawData)
+        .eq('id', id)
+
+    if (error) {
+        throw new Error('Failed to update collection: ' + error.message)
+    }
+
+    revalidatePath('/admin/collections')
+    revalidatePath(`/admin/collections/${id}`)
+    return { success: true }
+}
+
+export async function deleteCollection(id: string) {
+    const supabase = await createClient()
+    const { error } = await supabase.from('collections').delete().eq('id', id)
+    if (error) throw new Error('Failed to delete collection')
+    revalidatePath('/admin/collections')
+}
+
+export async function setCollectionCoverImage(collectionId: string, imageId: string) {
+    const supabase = await createClient()
+    const { error } = await supabase
+        .from('collections')
+        .update({ cover_image_id: imageId })
+        .eq('id', collectionId)
+    
+    if (error) throw error
+    revalidatePath(`/admin/collections/${collectionId}`)
+}

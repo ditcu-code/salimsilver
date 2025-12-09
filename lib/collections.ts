@@ -1,10 +1,17 @@
-
-import { supabase } from "@/lib/supabase/client"
+import { createClient } from "@/lib/supabase/server"
 import type { Collection, Jewelry } from "./types"
+
+// Revalidate data every hour (3600 seconds) or as needed.
+// Since we have an admin panel now, we might want shorter revalidation or use on-demand revalidation.
+// For now, let's stick to a reasonable time or 0 for dynamic if we want instant updates.
+// Given it's a catalog, maybe 60 seconds is fine.
+export const revalidate = 60
 
 // --- Data Fetching Functions ---
 
 export async function getAllCollections(): Promise<Collection[]> {
+  const supabase = await createClient()
+
   // 1. Fetch collections
   const { data: collections, error } = await supabase
     .from("collections")
@@ -114,6 +121,7 @@ export async function getAllCollections(): Promise<Collection[]> {
 }
 
 export async function getFeaturedCollections(): Promise<Collection[]> {
+  const supabase = await createClient()
   const { data: collections, error } = await supabase
     .from("collections")
     .select("*")
@@ -154,6 +162,7 @@ export async function getFeaturedCollections(): Promise<Collection[]> {
 }
 
 export async function getCollection(slug: string): Promise<Collection | undefined> {
+  const supabase = await createClient()
   const { data: collection, error } = await supabase
     .from("collections")
     .select("*")

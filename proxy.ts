@@ -1,20 +1,19 @@
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { updateSession } from '@/lib/supabase/middleware'
+import { type NextRequest } from 'next/server'
 
-export function proxy(_request: NextRequest) {
-  // Forward all requests without rewriting to the maintenance page
-  return NextResponse.next()
+export async function proxy(request: NextRequest) {
+  return await updateSession(request)
 }
 
 export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
-     * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
