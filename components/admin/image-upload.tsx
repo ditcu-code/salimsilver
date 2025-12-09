@@ -22,24 +22,60 @@ export function ImageUpload({ jewelryId, images }: ImageUploadProps) {
   const [isUploading, setIsUploading] = useState(false)
   const supabase = createClient()
 
+  async function convertImageToWebP(file: File): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const img = document.createElement('img')
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = img.width
+        canvas.height = img.height
+        const ctx = canvas.getContext('2d')
+        if (!ctx) {
+          reject(new Error('Failed to get canvas context'))
+          return
+        }
+        ctx.drawImage(img, 0, 0)
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              resolve(blob)
+            } else {
+              reject(new Error('Failed to convert image to WebP'))
+            }
+          },
+          'image/webp',
+          0.9 // 90% compression quality
+        )
+      }
+      img.onerror = () => reject(new Error('Failed to load image for conversion'))
+      img.src = URL.createObjectURL(file)
+    })
+  }
+
   async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
     if (!file) return
 
     setIsUploading(true)
     try {
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${jewelryId}/${Date.now()}.${fileExt}`
+      // Convert to WebP
+      const webpBlob = await convertImageToWebP(file)
+      
+      const fileName = `${jewelryId}/${Date.now()}.webp`
       
       const { error: uploadError } = await supabase.storage
         .from('catalog')
-        .upload(fileName, file)
+        .upload(fileName, webpBlob, {
+          contentType: 'image/webp',
+          cacheControl: '3600',
+          upsert: false
+        })
 
       if (uploadError) throw uploadError
 
       // Save to DB
       await saveJewelryImage(jewelryId, fileName)
-      toast.success("Image uploaded")
+      toast.success("Image uploaded (converted to WebP)")
     } catch (error: any) {
       toast.error("Upload failed: " + error.message)
     } finally {
