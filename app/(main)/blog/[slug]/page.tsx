@@ -1,6 +1,8 @@
+import BlogReadMore from "@/components/blocks/blog-read-more"
 import { ShareButton } from "@/components/features/share-button"
 import { getPostBySlug } from "@/lib/blog"
 import { formatDate } from "@/lib/utils"
+import { ArrowLeft } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -63,8 +65,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         )}
         <div className="absolute inset-0 bg-linear-to-t from-background via-background/60 to-transparent flex items-end">
          <div className="container mx-auto px-4 pb-12 max-w-4xl">
-           <Link href="/blog" className="text-sm font-medium mb-6 inline-block hover:text-primary/80 transition-colors">
-             &larr; Back to Journal
+           <Link 
+             href="/blog" 
+             className="group flex items-center gap-2 text-sm font-medium mb-6 text-primary hover:text-foreground transition-colors w-fit"
+           >
+             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+             Back to Journal
            </Link>
            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-4">
              {post.title}
@@ -108,14 +114,38 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           dangerouslySetInnerHTML={{ __html: post.content || "" }}
         />
         
-        <div className="mt-16 pt-8 border-t flex justify-center">
-          <Link href="/blog">
-            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors">
-              Read More Stories
-            </button>
-          </Link>
-        </div>
+        <BlogReadMore />
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            description: post.meta_description || post.excerpt,
+            image: post.cover_image_url ? [post.cover_image_url] : [],
+            datePublished: post.published_at,
+            dateModified: post.updated_at || post.published_at,
+            author: {
+              "@type": "Person",
+              name: "Salim Silver",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Salim Silver",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://salimsilver.com/images/logo-salimsilver.webp",
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://salimsilver.com/blog/${post.slug}`,
+            },
+          }),
+        }}
+      />
     </article>
   )
 }

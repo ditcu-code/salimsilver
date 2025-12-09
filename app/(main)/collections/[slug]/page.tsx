@@ -89,11 +89,36 @@ export default async function CollectionPage({ params, searchParams }: Props) {
   }
 
   return (
-    <CollectionContent
-      collection={collection}
-      featuredCollections={featuredCollections}
-      initialJewelrySlug={(await searchParams).jewelry}
-    />
+    <>
+      <CollectionContent
+        collection={collection}
+        featuredCollections={featuredCollections}
+        initialJewelrySlug={(await searchParams).jewelry}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: collection.title,
+            description: collection.description,
+            url: `${BASE_URL}/collections/${collection.slug}`,
+            image: collection.coverImage ? [collection.coverImage] : [],
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: collection.jewelryList?.map((item, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${BASE_URL}/catalog?jewelry=${item.slug}`,
+                name: item.title,
+                image: item.coverImage,
+              })) || [],
+            },
+          }),
+        }}
+      />
+    </>
   )
 }
 

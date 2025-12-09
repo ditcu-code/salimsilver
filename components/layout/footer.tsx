@@ -96,12 +96,12 @@ export default function Footer() {
 
         <AnimatedSection>
           <h3 className="section-title mb-2 text-2xl">Quick Links</h3>
-          <ul className="space-y-1">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-1">
             {quickLinks.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary whitespace-nowrap"
                 >
                   {label}
                 </Link>
