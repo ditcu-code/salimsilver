@@ -36,16 +36,13 @@ export function HeroGallery() {
         {/* ... existing desktop content ... */}
         {/* Cell 1: Title and Text (Top Left) */}
         <FullBentoCell className="flex flex-col justify-center items-start p-8 md:p-12 bg-background rounded-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div
             className="w-full"
           >
             <h1 className="font-display text-2xl md:text-4xl lg:text-5xl leading-[0.9] tracking-tight mb-4 text-foreground">
               Handcrafted silver jewelry that tells a story of elegance and tradition.
             </h1>
-          </motion.div>
+          </div>
         </FullBentoCell>
 
         {/* Cell 2: Large Portrait Image (Right) */}
@@ -92,16 +89,13 @@ export function HeroGallery() {
 
       {/* Mobile View */}
       <div className="md:hidden flex flex-col gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
           className="w-full text-center"
         >
           <h1 className="font-display text-3xl leading-[0.9] tracking-tight my-12 px-6 text-foreground">
             Handcrafted silver jewelry that tells a story of elegance and tradition.
           </h1>
-        </motion.div>
+        </div>
 
         <Carousel
           className="w-full max-w-xs mx-auto"
@@ -129,7 +123,7 @@ export function HeroGallery() {
                   src={`${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`}
                   alt="Model wearing gold earrings"
                   fill
-                  sizes="(max-width: 320px) 100vw, 320px"
+                  sizes="(max-width: 480px) 100vw, 50vw"
                   className="object-cover object-center"
                 />
               </div>
@@ -140,7 +134,7 @@ export function HeroGallery() {
                   src={`${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`}
                   alt="Model with red earrings"
                   fill
-                  sizes="(max-width: 320px) 100vw, 320px"
+                  sizes="(max-width: 480px) 100vw, 50vw"
                   className="object-cover object-center"
                 />
               </div>
