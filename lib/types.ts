@@ -96,3 +96,28 @@ export interface ContactFormResponse {
   /** Message to display to the user */
   message: string
 }
+
+/**
+ * Represents a blog post
+ */
+export interface Post {
+  id: string
+  slug: string
+  title: string
+  excerpt?: string
+  content?: string
+  cover_image_url?: string
+  published: boolean
+  published_at?: string
+  author_id?: string
+  created_at: string
+  updated_at: string
+  /** SEO Title (optional, falls back to title) */
+  meta_title?: string
+  /** SEO Description */
+  meta_description?: string
+  /** Array of tags for the post */
+  tags?: string[]
+  /** Whether the post is featured on the blog homepage */
+  featured?: boolean
+}

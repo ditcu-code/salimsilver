@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { logout } from "@/lib/actions/auth"
 import { cn } from "@/lib/utils"
-import { Diamond, FolderOpen, LayoutDashboard, LogOut } from "lucide-react"
+import { BookOpen, Diamond, FolderOpen, LayoutDashboard, LogOut } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -23,6 +23,11 @@ const sidebarItems = [
     title: "Collections",
     href: "/admin/collections",
     icon: FolderOpen,
+  },
+  {
+    title: "Journal",
+    href: "/admin/blog",
+    icon: BookOpen,
   },
 ]
 
