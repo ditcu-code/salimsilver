@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     description:
       "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
     url: `${BASE_URL}/collections`,
+    siteName: "Salim Silver"
   },
   twitter: {
     card: "summary_large_image",

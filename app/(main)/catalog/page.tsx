@@ -27,6 +27,7 @@ export async function generateMetadata({
           description,
           images,
           url: `${BASE_URL}/catalog?jewelry=${jewelry}`,
+          siteName: "Salim Silver",
         },
         twitter: {
           card: "summary_large_image",
@@ -51,6 +52,7 @@ export async function generateMetadata({
       description:
         "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
       url: `${BASE_URL}/catalog`,
+      siteName: "Salim Silver",
     },
     twitter: {
       card: "summary_large_image",

@@ -35,6 +35,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
           description,
           images,
           url: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
+          siteName: "Salim Silver",
         },
         twitter: {
           card: "summary_large_image",
@@ -61,6 +62,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         description,
         images,
         url: `${BASE_URL}/collections/${slug}`,
+        siteName: "Salim Silver",
       },
       twitter: {
         card: "summary_large_image",

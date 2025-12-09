@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description:
       "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
     url: `${BASE_URL}/contact`,
+    siteName: "Salim Silver"
   },
   twitter: {
     card: "summary_large_image",

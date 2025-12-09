@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Visit our Kotagede store and workshop. Shop our handcrafted silver collection and see the artisans at work in one location.",
     url: `${BASE_URL}/store-location`,
+    siteName: "Salim Silver"
   },
   twitter: {
     card: "summary_large_image",
