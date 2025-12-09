@@ -13,11 +13,12 @@ import { toast } from "sonner"
 
 interface CoverImageSelectorProps {
   collectionId: string
+  collectionTitle?: string
   currentCoverId: string | null
   currentCoverSrc: string | null
 }
 
-export function CoverImageSelector({ collectionId, currentCoverId, currentCoverSrc }: CoverImageSelectorProps) {
+export function CoverImageSelector({ collectionId, collectionTitle, currentCoverId, currentCoverSrc }: CoverImageSelectorProps) {
     const [isOpen, setIsOpen] = useState(false)
     const [search, setSearch] = useState("")
     const [images, setImages] = useState<any[]>([])
@@ -58,7 +59,12 @@ export function CoverImageSelector({ collectionId, currentCoverId, currentCoverS
             <div className="flex items-start gap-4">
                 <div className="relative h-32 w-32 bg-muted rounded-md overflow-hidden border">
                     {currentCoverSrc ? (
-                        <Image src={currentCoverSrc} alt="Cover" fill className="object-cover" />
+                        <Image 
+                            src={currentCoverSrc} 
+                            alt={collectionTitle ? `Cover image for ${collectionTitle}` : "Collection cover image"} 
+                            fill 
+                            className="object-cover" 
+                        />
                     ) : (
                         <div className="flex h-full w-full items-center justify-center text-xs text-muted-foreground">No Image</div>
                     )}

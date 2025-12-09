@@ -49,7 +49,7 @@ export function HeroGallery() {
         <FullBentoCell className="relative overflow-hidden rounded-3xl h-full min-h-[400px]">
           <Image
             src="/images/jono-setting-filigree.webp"
-            alt="Model wearing statement gold hoop earrings"
+            alt="Artisan creating intricate silver filigree"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center"
@@ -62,7 +62,7 @@ export function HeroGallery() {
         <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px]">
           <Image
             src={`${SUPABASE_CATALOG_URL}/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.webp`}
-            alt="Model wearing gold earrings"
+            alt="Hand carved silver floral relief cuff bracelet"
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover object-center"
@@ -74,7 +74,7 @@ export function HeroGallery() {
           <div className="relative w-full h-43 rounded-2xl overflow-hidden mb-4">
             <Image
               src={`${SUPABASE_CATALOG_URL}/silver-pagoda-ring-pearl-salimsilver.webp`}
-              alt="Model with red earrings"
+              alt="Silver pagoda ring with pearl"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover object-center"
@@ -109,7 +109,7 @@ export function HeroGallery() {
               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
                   src={`${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`}
-                  alt="Model wearing statement gold hoop earrings"
+                  alt="Baroque pearl and citrine silver brooch"
                   fill
                   sizes="(max-width: 768px) 100vw, 1px"
                   className="object-cover object-center"
@@ -120,7 +120,7 @@ export function HeroGallery() {
               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
                   src={`${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`}
-                  alt="Model wearing gold earrings"
+                  alt="Hand carved silver couple rings"
                   fill
                   sizes="(max-width: 480px) 100vw, 50vw"
                   className="object-cover object-center"
@@ -131,7 +131,7 @@ export function HeroGallery() {
                <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
                   src={`${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`}
-                  alt="Model with red earrings"
+                  alt="Silver hibiscus locket with purple stone pendant"
                   fill
                   sizes="(max-width: 480px) 100vw, 50vw"
                   className="object-cover object-center"

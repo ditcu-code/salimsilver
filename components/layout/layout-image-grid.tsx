@@ -10,6 +10,7 @@ type Card = {
   content: React.ReactNode
   className: string
   thumbnail: string
+  alt: string
 }
 
 const SkeletonOne = () => {
@@ -64,24 +65,28 @@ const cards = [
     content: <SkeletonOne />,
     className: "md:col-span-2",
     thumbnail: `${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`,
+    alt: "Handcrafted Silver Rings",
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
     thumbnail: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`,
+    alt: "Artisan Necklaces",
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
     thumbnail: `${SUPABASE_CATALOG_URL}/silver-filigree-ruby-cuff-bracelet-salimsilver.webp`,
+    alt: "Silver Bracelets",
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
     thumbnail: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
+    alt: "Statement Earrings",
   },
 ]
 
@@ -143,7 +148,7 @@ const ImageComponent = ({ card }: { card: Card }) => {
     >
       <Image
         src={card.thumbnail}
-        alt="thumbnail"
+        alt={card.alt}
         fill
         className="object-cover object-center"
         sizes="(max-width: 768px) 100vw, 33vw"

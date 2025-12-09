@@ -126,7 +126,7 @@ export function JewelryLightbox({
           <LightboxImage
             key={currentPhoto.src || currentIndex} // Force remount on change
             src={currentPhoto.src || "/placeholder.svg"}
-            alt={currentPhoto.alt || "Photo"}
+            alt={currentPhoto.alt || "Jewelry detail view"}
             width={currentPhoto.width || 800}
             height={currentPhoto.height || 800}
             onImageError={onImageError}

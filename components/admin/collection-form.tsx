@@ -84,6 +84,7 @@ export function CollectionForm({ initialData }: CollectionFormProps) {
           <div className="pt-8 border-t">
               <CoverImageSelector 
                   collectionId={initialData.id}
+                  collectionTitle={initialData.title}
                   currentCoverId={initialData.cover_image_id}
                   currentCoverSrc={initialData.coverImageSrc} 
               />
