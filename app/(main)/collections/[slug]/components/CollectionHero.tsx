@@ -14,7 +14,7 @@ export default function CollectionHero({ title, description, coverImage }: Colle
   return (
     <section className="relative h-[50vh] w-full">
       <Image
-        src={coverImage || "/Morocco/morocco-8.webp?height=800&width=1920"}
+        src={coverImage || "/images/gebyok.webp"}
         alt={title}
         fill
         sizes="100vw"

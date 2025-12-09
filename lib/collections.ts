@@ -244,6 +244,7 @@ export async function getCollection(slug: string): Promise<Collection | undefine
     description: collection.description,
     featured: collection.featured,
     coverImageId: collection.cover_image_id,
+    coverImage: coverImage, 
     jewelryList: mappedJewelry,
   }
 }
