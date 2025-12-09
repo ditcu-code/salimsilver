@@ -20,7 +20,6 @@ export function CollectionContent({ collection, featuredCollections, initialJewe
     <div className="min-h-screen">
       <CollectionHero
         title={collection.title}
-        description={collection.description || ""}
         coverImage={collection.coverImage || ""}
       />
       <CollectionInfo

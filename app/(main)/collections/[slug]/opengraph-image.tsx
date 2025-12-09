@@ -21,6 +21,6 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
 
   return await generateOgImage(
     collection.title,
-    collection.description
+    collection.description || "Handcrafted Javanese Jewelry"
   )
 }

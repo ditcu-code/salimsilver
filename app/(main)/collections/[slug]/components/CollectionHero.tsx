@@ -5,11 +5,10 @@ import Image from "next/image"
 
 interface CollectionHeroProps {
   title: string
-  description: string
   coverImage: string
 }
 
-export default function CollectionHero({ title, description, coverImage }: CollectionHeroProps) {
+export default function CollectionHero({ title, coverImage }: CollectionHeroProps) {
   return (
     <section className="relative h-[50vh] w-full">
       <Image
@@ -25,7 +24,6 @@ export default function CollectionHero({ title, description, coverImage }: Colle
         className="absolute inset-0 flex flex-col justify-center items-center text-center p-4"
       >
         <h1 className="text-4xl md:text-5xl text-white mb-4">{title}</h1>
-        <p className="text-white/90 text-lg max-w-2xl mb-6">{description}</p>
 
       </div>
     </section>
