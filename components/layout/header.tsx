@@ -17,9 +17,9 @@ type NavItem = {
 
 const navigation: NavItem[] = [
   { name: "Catalog", href: "/catalog" },
-  { name: "Rings", href: "/collections/rings" },
-  { name: "Necklaces", href: "/collections/necklaces" },
-  { name: "Bracelets", href: "/collections/bracelets" },
+  { name: "Collections", href: "/collections" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
   { name: "Journal", href: "/blog" },
   { name: "Visit Us", href: "/store-location", mobileOnly: true },
 ]

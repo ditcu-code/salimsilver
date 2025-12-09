@@ -25,6 +25,7 @@ const quickLinks = [
   { href: "/store-location", label: "Store Location" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Journal" },
 ]
 
 const contactLinks = [
