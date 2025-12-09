@@ -15,7 +15,7 @@ export async function createJewelry(formData: FormData) {
     collection_id: formData.get('collection_id'),
     material: formData.get('material'),
     material_purity: formData.get('material_purity'),
-    weight_grams: formData.get('weight_grams'),
+    weight_grams: formData.get('weight_grams') ? parseFloat(formData.get('weight_grams') as string) : null,
     status: formData.get('status'),
   }
 

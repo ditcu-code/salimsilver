@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { logout } from "@/lib/actions/auth"
 import { cn } from "@/lib/utils"
 import { Diamond, FolderOpen, LayoutDashboard, LogOut } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -31,7 +32,14 @@ export function AdminSidebar() {
   return (
     <div className="flex flex-col h-full bg-muted/40 border-r">
       <div className="h-16 flex items-center px-6 border-b">
-        <span className="font-serif font-bold text-xl tracking-wider">Salim Silver</span>
+        <Image
+          src="/images/logo-salimsilver.webp"
+          alt="Salim Silver"
+          width={140}
+          height={30}
+          className="h-8 w-auto object-contain invert dark:invert-0"
+          priority
+        />
       </div>
       <div className="flex-1 py-6 px-4 space-y-1">
         {sidebarItems.map((item) => (

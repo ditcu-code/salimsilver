@@ -56,7 +56,7 @@ export function JewelryForm({ initialData, collections }: JewelryFormProps) {
       <form onSubmit={onSubmit} className="space-y-6">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title">Title <span className="text-red-500">*</span></Label>
             <Input 
                 id="title" 
                 name="title" 
@@ -72,7 +72,7 @@ export function JewelryForm({ initialData, collections }: JewelryFormProps) {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="slug">Slug</Label>
+            <Label htmlFor="slug">Slug <span className="text-red-500">*</span></Label>
             <Input id="slug" name="slug" defaultValue={initialData?.slug} required />
           </div>
         </div>
@@ -84,7 +84,7 @@ export function JewelryForm({ initialData, collections }: JewelryFormProps) {
 
         <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-                <Label htmlFor="collection_id">Collection</Label>
+                <Label htmlFor="collection_id">Collection <span className="text-red-500">*</span></Label>
                 <Select name="collection_id" defaultValue={initialData?.collection_id || ""}>
                     <SelectTrigger>
                         <SelectValue placeholder="Select collection" />
