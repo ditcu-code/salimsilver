@@ -25,6 +25,23 @@ export default async function CollectionListPage() {
       return <div>Error loading collections</div>
   }
 
+  // Fetch cover images
+  const coverImageIds = collections.map(c => c.cover_image_id).filter(Boolean)
+  let coverImagesMap: Record<string, string> = {}
+  
+  if (coverImageIds.length > 0) {
+      const { data: images } = await supabase
+        .from("jewelry_images")
+        .select("id, src")
+        .in("id", coverImageIds)
+      
+      if (images) {
+         images.forEach((img: any) => {
+             coverImagesMap[img.id] = img.src
+         })
+      }
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -41,6 +58,7 @@ export default async function CollectionListPage() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Cover</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Slug</TableHead>
               <TableHead>Featured</TableHead>
@@ -50,6 +68,18 @@ export default async function CollectionListPage() {
           <TableBody>
             {collections.map((item) => (
               <TableRow key={item.id}>
+                <TableCell>
+                  {item.cover_image_id && coverImagesMap[item.cover_image_id] && (
+                    <div className="relative h-12 w-12 rounded-md overflow-hidden bg-muted">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src={coverImagesMap[item.cover_image_id]} 
+                        alt={item.title}
+                        className="object-cover h-full w-full"
+                      />
+                    </div>
+                  )}
+                </TableCell>
                 <TableCell className="font-medium">{item.title}</TableCell>
                 <TableCell>{item.slug}</TableCell>
                 <TableCell>

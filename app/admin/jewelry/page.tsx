@@ -18,7 +18,7 @@ export default async function JewelryListPage() {
   
   const { data: jewelry, error } = await supabase
     .from("jewelry")
-    .select("*, collections(title)")
+    .select("*, collections(title), jewelry_images(src)")
     .order("created_at", { ascending: false })
 
   if (error) {
@@ -41,6 +41,7 @@ export default async function JewelryListPage() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Image</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Collection</TableHead>
               <TableHead>Status</TableHead>
@@ -51,6 +52,18 @@ export default async function JewelryListPage() {
           <TableBody>
             {jewelry.map((item) => (
               <TableRow key={item.id}>
+                <TableCell>
+                  {item.jewelry_images?.[0]?.src && (
+                    <div className="relative h-12 w-12 rounded-md overflow-hidden bg-muted">
+                       {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src={item.jewelry_images[0].src} 
+                        alt={item.title}
+                        className="object-cover h-full w-full"
+                      />
+                    </div>
+                  )}
+                </TableCell>
                 <TableCell className="font-medium">{item.title}</TableCell>
                 <TableCell>{item.collections?.title || "-"}</TableCell>
                 <TableCell>{item.status}</TableCell>
