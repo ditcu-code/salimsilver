@@ -1,8 +1,8 @@
 "use client"
 
-import { ChevronLeft, ChevronRight, Share2, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, Loader2, Share2, X } from "lucide-react"
 import Image from "next/image"
-import { type MouseEvent, type RefObject } from "react"
+import { type MouseEvent, type RefObject, useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
@@ -44,7 +44,16 @@ export function JewelryLightbox({
   lightboxRef,
   thumbnailsRef,
 }: JewelryLightboxProps) {
+  const [isLoading, setIsLoading] = useState(true)
   const currentPhoto = photos[currentIndex]
+  const nextIndex = (currentIndex + 1) % photos.length
+  const prevIndex = (currentIndex - 1 + photos.length) % photos.length
+  const nextPhoto = photos[nextIndex]
+  const prevPhoto = photos[prevIndex]
+
+  useEffect(() => {
+    setIsLoading(true)
+  }, [currentIndex])
 
   if (!currentPhoto) return null
 
@@ -119,13 +128,23 @@ export function JewelryLightbox({
         onClick={onBackgroundClick}
       >
         <div className="relative z-10 h-full w-full flex items-center justify-center overflow-hidden">
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Loader2 className="h-10 w-10 animate-spin text-white/50" />
+            </div>
+          )}
           <Image
             src={currentPhoto.src || "/placeholder.svg"}
             alt={currentPhoto.alt || "Photo"}
             width={currentPhoto.width || 800}
             height={currentPhoto.height || 800}
-            className="h-full w-full object-contain"
+            className={cn(
+              "h-full w-full object-contain transition-opacity duration-300",
+              isLoading ? "opacity-0" : "opacity-100"
+            )}
             quality={90}
+            priority
+            onLoad={() => setIsLoading(false)}
             onError={onImageError}
           />
           {/* Desktop Info Overlay */}
@@ -195,6 +214,28 @@ export function JewelryLightbox({
         >
           <ChevronRight size={20} />
         </button>
+      </div>
+      
+      {/* Hidden images for preloading */}
+      <div className="hidden">
+        {nextPhoto && (
+          <Image
+            src={nextPhoto.src || "/placeholder.svg"}
+            alt="preload next"
+            width={1}
+            height={1}
+            priority
+          />
+        )}
+        {prevPhoto && (
+          <Image
+            src={prevPhoto.src || "/placeholder.svg"}
+            alt="preload prev"
+            width={1}
+            height={1}
+            priority
+          />
+        )}
       </div>
     </div>
   )
