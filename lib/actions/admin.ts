@@ -116,9 +116,42 @@ export async function saveJewelryImage(jewelryId: string, imagePath: string) {
 
 export async function deleteJewelryImage(imageId: string) {
     const supabase = await createClient()
+
+    // 1. Get the image src to find the storage path
+    const { data: image, error: fetchError } = await supabase
+        .from('jewelry_images')
+        .select('src')
+        .eq('id', imageId)
+        .single()
+
+    if (fetchError) {
+        throw new Error('Failed to find image to delete')
+    }
+
+    if (image?.src) {
+        // Extract path from public URL
+        // Format: .../storage/v1/object/public/catalog/jewelryId/timestamp.webp
+        // or relative path if stored not as full URL (schema says src is publicUrl from saveJewelryImage)
+        
+        // We know it's in 'catalog' bucket. 
+        // If src is a full URL, we need to extract the part after 'catalog/'
+        const parts = image.src.split('/catalog/')
+        if (parts.length === 2) {
+            const storagePath = parts[1]
+            const { error: storageError } = await supabase.storage
+                .from('catalog')
+                .remove([storagePath])
+            
+            if (storageError) {
+                 console.error('Failed to delete file from storage:', storageError)
+                 // decided to continue to delete DB record even if storage fails, 
+                 // to avoid "zombie" records in UI.
+            }
+        }
+    }
+
     const { error } = await supabase.from('jewelry_images').delete().eq('id', imageId)
     if (error) throw error
-    // Note: This doesn't delete from storage. Requires extra logic.
     revalidatePath('/admin/jewelry')
 }
 
