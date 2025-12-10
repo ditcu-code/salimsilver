@@ -66,18 +66,17 @@ export default function FeaturedCollections({
                 <h3 className="text-2xl text-white mb-2 group-hover:text-white/90 transition-colors">
                   {collection.title}
                 </h3>
-                <p className="text-white/80 mb-4 line-clamp-2 text-sm group-hover:text-white/90 transition-colors">
-                  {collection.description}
-                </p>
-                  <div className="flex flex-wrap gap-2">
-                    {/* Tags removed from schema */}
-                  </div>
+                <div className="flex flex-row justify-between">
+                  <p className="text-white/80 line-clamp-2 text-sm group-hover:text-white/90 transition-colors">
+                    {collection.description}
+                  </p>
                   <ArrowRight
                     size={18}
-                    className="text-white opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
-                  />
+                  className="text-white opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                />
                 </div>
               </div>
+            </div>
 
           </Link>
         </motion.div>
