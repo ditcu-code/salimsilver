@@ -1,16 +1,35 @@
-import { createClient } from "@/lib/supabase/server"
+import { unstable_cache } from "next/cache"
+
+import { createCacheClient, createClient } from "@/lib/supabase/server"
 import type { Collection, Jewelry } from "./types"
 
-// Revalidate data every hour (3600 seconds) or as needed.
-// Since we have an admin panel now, we might want shorter revalidation or use on-demand revalidation.
-// For now, let's stick to a reasonable time or 0 for dynamic if we want instant updates.
-// Given it's a catalog, maybe 60 seconds is fine.
-export const revalidate = 3600
+const COLLECTIONS_REVALIDATE_SECONDS = 300
+
+type CollectionFetchOptions = {
+  includeJewelry?: boolean
+}
 
 // --- Data Fetching Functions ---
 
-export async function getAllCollections(): Promise<Collection[]> {
-  const supabase = await createClient()
+export async function getAllCollections(options: CollectionFetchOptions = {}): Promise<Collection[]> {
+  const includeJewelry = options.includeJewelry ?? false
+  return includeJewelry ? cachedCollectionsWithJewelry() : cachedCollections()
+}
+
+const cachedCollections = unstable_cache(
+  async () => buildCollections(false),
+  ["collections-base"],
+  { revalidate: COLLECTIONS_REVALIDATE_SECONDS },
+)
+
+const cachedCollectionsWithJewelry = unstable_cache(
+  async () => buildCollections(true),
+  ["collections-with-jewelry"],
+  { revalidate: COLLECTIONS_REVALIDATE_SECONDS },
+)
+
+async function buildCollections(includeJewelry: boolean): Promise<Collection[]> {
+  const supabase = createCacheClient()
 
   // 1. Fetch collections
   const { data: collections, error } = await supabase
@@ -43,70 +62,80 @@ export async function getAllCollections(): Promise<Collection[]> {
     }
   }
 
-  // 3. To support Catalog page, we SHOULD fetch jewelry for these collections (or let catalog page fetch them separately? 
-  // The current CatalogPageClient expects `jewelryList` to be present on the collection)
-  // We'll fetch all jewelry for these collections.
   const collectionIds = collections.map(c => c.id)
-  
-  // Fetch jewelry
-  const { data: allJewelry, error: jewelryError } = await supabase
-    .from("jewelry")
-    .select("*")
-    .in("collection_id", collectionIds)
-    .order("created_at", { ascending: false })
+
+  let jewelryByCollection: Record<string, Jewelry[]> = {}
+
+  // Fetch just the cover image per jewelry item to reduce payload size for catalog loads
+  if (includeJewelry && collectionIds.length > 0) {
+    const { data: allJewelry, error: jewelryError } = await supabase
+      .from("jewelry")
+      .select(`
+        id,
+        collection_id,
+        slug,
+        title,
+        description,
+        material,
+        material_purity,
+        weight_grams,
+        crafting_time_hours,
+        production_year,
+        status,
+        variants,
+        jewelry_images (
+          id,
+          jewelry_id,
+          src,
+          display_order
+        )
+      `)
+      .in("collection_id", collectionIds)
+      .order("created_at", { ascending: false })
+      .order("display_order", { foreignTable: "jewelry_images", ascending: true })
+      .limit(1, { foreignTable: "jewelry_images" })
     
-  // Fetch images for jewelry (needed for gallery)
-  // We can fetch ALL images for these jewelry items
-  let jewelryImagesMap: Record<string, any[]> = {}
-  
-  if (allJewelry && allJewelry.length > 0) {
-      const jewelryIds = allJewelry.map(j => j.id)
-      const { data: jImages } = await supabase
-        .from("jewelry_images")
-        .select("*")
-        .in("jewelry_id", jewelryIds)
-        .order("display_order")
-        
-      if (jImages) {
-          jImages.forEach((img: any) => {
-              if (!jewelryImagesMap[img.jewelry_id]) {
-                  jewelryImagesMap[img.jewelry_id] = []
-              }
-              jewelryImagesMap[img.jewelry_id].push(img)
-          })
-      }
+    if (jewelryError) {
+      console.error("Error fetching jewelry items:", jewelryError)
+    }
+
+    if (allJewelry && allJewelry.length > 0) {
+      jewelryByCollection = allJewelry.reduce<Record<string, Jewelry[]>>((acc, item: any) => {
+        const images = (item.jewelry_images || []).sort(
+          (a: any, b: any) => (a.display_order ?? 0) - (b.display_order ?? 0),
+        )
+
+        const mapped: Jewelry = {
+          id: item.id,
+          collectionId: item.collection_id,
+          slug: item.slug,
+          title: item.title,
+          description: item.description,
+          material: item.material,
+          materialPurity: item.material_purity,
+          weightGrams: item.weight_grams,
+          craftingTimeHours: item.crafting_time_hours,
+          productionYear: item.production_year,
+          status: item.status,
+          variants: item.variants,
+          images: images.map((img: any) => ({
+            id: img.id,
+            jewelryId: item.id,
+            src: img.src,
+            displayOrder: img.display_order,
+          })),
+          coverImage: images[0]?.src || "",
+        }
+
+        if (!acc[item.collection_id]) acc[item.collection_id] = []
+        acc[item.collection_id].push(mapped)
+        return acc
+      }, {})
+    }
   }
 
   return collections.map((col: any) => {
-    // Map jewelry for this collection
-    const colJewelry = (allJewelry || [])
-        .filter((j: any) => j.collection_id === col.id)
-        .map((item: any) => {
-            const itemImages = jewelryImagesMap[item.id] || []
-            const cover = itemImages[0]?.src || ""
-            
-            return {
-                id: item.id,
-                collectionId: item.collection_id,
-                slug: item.slug,
-                title: item.title,
-                description: item.description,
-                material: item.material,
-                materialPurity: item.material_purity,
-                weightGrams: item.weight_grams,
-                craftingTimeHours: item.crafting_time_hours,
-                productionYear: item.production_year,
-                status: item.status,
-                variants: item.variants,
-                images: itemImages.map((img: any) => ({
-                    id: img.id,
-                    jewelryId: item.id,
-                    src: img.src,
-                    displayOrder: img.display_order,
-                })),
-                coverImage: cover, 
-            }
-        })
+    const colJewelry = includeJewelry ? jewelryByCollection[col.id] || [] : undefined
 
     return {
       id: col.id,
@@ -300,6 +329,4 @@ export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefine
     coverImage: cover,
   }
 }
-
-
 
