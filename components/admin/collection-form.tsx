@@ -15,8 +15,11 @@ interface CollectionFormProps {
   initialData?: any
 }
 
+import { useRouter } from "next/navigation"
+
 export function CollectionForm({ initialData }: CollectionFormProps) {
   const [isSaving, setIsSaving] = useState(false)
+  const router = useRouter()
   const isEditing = !!initialData
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -29,9 +32,12 @@ export function CollectionForm({ initialData }: CollectionFormProps) {
       if (isEditing) {
         await updateCollection(initialData.id, formData)
         toast.success("Collection updated")
+        setIsSaving(false)
       } else {
         await createCollection(formData)
-        // Redirect handled in action
+        toast.success("Collection created")
+        router.push("/admin/collections")
+        // Don't setIsSaving(false) here to avoid flash before redirect
       }
     } catch (error: any) {
       toast.error("Error: " + error.message)
