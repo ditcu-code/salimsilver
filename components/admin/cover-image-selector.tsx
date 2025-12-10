@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { setCollectionCoverImage } from "@/lib/actions/admin"
-import { createClient } from "@/lib/supabase/client"
+import { supabase } from "@/lib/supabase/client"
 import { cn } from "@/lib/utils"
 import { Search } from "lucide-react"
 import Image from "next/image"
@@ -38,7 +38,6 @@ export function CoverImageSelector({ collectionId, collectionTitle, currentCover
 
     async function searchImages() {
         setLoading(true)
-        const supabase = createClient()
         
         let query = supabase
             .from('jewelry')

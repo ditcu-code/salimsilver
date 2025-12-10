@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { deleteJewelryImage, saveJewelryImage } from "@/lib/actions/admin"
-import { createClient } from "@/lib/supabase/client"
+import { supabase } from "@/lib/supabase/client"
 import { Loader2, Trash2, Upload } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
@@ -20,7 +20,6 @@ interface ImageUploadProps {
 
 export function ImageUpload({ jewelryId, images }: ImageUploadProps) {
   const [isUploading, setIsUploading] = useState(false)
-  const supabase = createClient()
 
   async function convertImageToWebP(file: File): Promise<Blob> {
     return new Promise((resolve, reject) => {

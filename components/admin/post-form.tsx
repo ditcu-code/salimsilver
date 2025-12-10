@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { createPost, deletePost, updatePost } from "@/lib/actions/blog"
-import { createClient } from "@/lib/supabase/client"
+import { supabase } from "@/lib/supabase/client"
 import { Post } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import CharacterCount from "@tiptap/extension-character-count"
@@ -109,7 +109,6 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
     if (!file) return
 
     setIsUploading(true)
-    const supabase = createClient()
     
     try {
       const fileName = `blog/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, "")}`
@@ -140,7 +139,6 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
     if (!file || !editor) return
 
     setIsUploading(true)
-    const supabase = createClient()
     
     try {
       const fileName = `blog/content/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, "")}`
