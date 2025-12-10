@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/client"
 import { cn } from "@/lib/utils"
 import { Search } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 interface CoverImageSelectorProps {
@@ -24,15 +24,34 @@ export function CoverImageSelector({ collectionId, collectionTitle, currentCover
     const [images, setImages] = useState<any[]>([])
     const [loading, setLoading] = useState(false)
 
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        if (isOpen && !mounted) {
+            searchImages()
+            setMounted(true)
+        }
+        if (!isOpen) {
+            setMounted(false)
+        }
+    }, [isOpen])
+
     async function searchImages() {
         setLoading(true)
         const supabase = createClient()
-        // Search jewelry by title/slug and get their images
-        const { data: jewelry } = await supabase
+        
+        let query = supabase
             .from('jewelry')
             .select('id, title, jewelry_images(id, src)')
-            .ilike('title', `%${search}%`)
-            .limit(10)
+            
+        if (search) {
+            query = query.ilike('title', `%${search}%`).limit(10)
+        } else {
+            // Default to latest 5 modified
+            query = query.order('updated_at', { ascending: false }).limit(5)
+        }
+
+        const { data: jewelry } = await query
         
         const flatImages = jewelry?.flatMap((j: any) => j.jewelry_images.map((img: any) => ({
             ...img,
