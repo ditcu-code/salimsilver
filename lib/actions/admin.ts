@@ -177,9 +177,58 @@ export async function updateCollection(id: string, formData: FormData) {
 
 export async function deleteCollection(id: string) {
     const supabase = await createClient()
+
+    // 1. Ensure "Unassigned" collection exists
+    let { data: unassignedCollection, error: fetchError } = await supabase
+        .from('collections')
+        .select('id')
+        .eq('slug', 'unassigned')
+        .single()
+
+    if (fetchError && fetchError.code !== 'PGRST116') { // PGRST116 is "Row not found"
+        throw new Error('Failed to check for unassigned collection')
+    }
+
+    if (!unassignedCollection) {
+        // Create if it doesn't exist
+        const { data: newCollection, error: createError } = await supabase
+            .from('collections')
+            .insert({
+                title: 'Unassigned',
+                slug: 'unassigned',
+                description: 'Items from deleted collections',
+                featured: false
+            })
+            .select('id')
+            .single()
+        
+        if (createError) {
+            throw new Error('Failed to create unassigned collection: ' + createError.message)
+        }
+        unassignedCollection = newCollection
+    }
+
+    // 2. Move jewelry to "Unassigned" collection
+    if (unassignedCollection) {
+        // Prevent moving items if we are deleting the 'unassigned' collection itself (anti-pattern but safe guard)
+        if (unassignedCollection.id !== id) {
+            const { error: updateError } = await supabase
+                .from('jewelry')
+                .update({ collection_id: unassignedCollection.id })
+                .eq('collection_id', id)
+            
+            if (updateError) {
+                 throw new Error('Failed to move jewelry to unassigned collection')
+            }
+        }
+    }
+
+    // 3. Delete the collection
     const { error } = await supabase.from('collections').delete().eq('id', id)
     if (error) throw new Error('Failed to delete collection')
+    
     revalidatePath('/admin/collections')
+    revalidatePath('/admin/jewelry') // Refresh jewelry list as collection names changed
 }
 
 export async function setCollectionCoverImage(collectionId: string, imageId: string) {

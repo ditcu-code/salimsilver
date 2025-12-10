@@ -16,6 +16,7 @@ export async function getAllCollections(): Promise<Collection[]> {
   const { data: collections, error } = await supabase
     .from("collections")
     .select("*")
+    .neq("slug", "unassigned") // Hide unassigned collection
     .order("title")
 
   if (error) {
@@ -126,6 +127,7 @@ export async function getFeaturedCollections(): Promise<Collection[]> {
     .from("collections")
     .select("*")
     .eq("featured", true)
+    .neq("slug", "unassigned") // Hide unassigned from featured
     
   if (error) {
     console.error("Error fetching featured collections:", error)
@@ -163,6 +165,9 @@ export async function getFeaturedCollections(): Promise<Collection[]> {
 
 export async function getCollection(slug: string): Promise<Collection | undefined> {
   const supabase = await createClient()
+
+  if (slug === 'unassigned') return undefined; // Explicitly hide
+
   const { data: collection, error } = await supabase
     .from("collections")
     .select("*")
