@@ -1,5 +1,6 @@
 import { getAllCollections, getJewelryBySlug } from "@/lib/collections"
 import type { Metadata } from "next"
+import { Suspense } from "react"
 
 import CatalogPageClient from "./page.client"
 
@@ -67,7 +68,9 @@ export default async function CatalogPage() {
   const collections = await getAllCollections()
   return (
     <>
-      <CatalogPageClient collections={collections} />
+      <Suspense>
+        <CatalogPageClient collections={collections} />
+      </Suspense>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

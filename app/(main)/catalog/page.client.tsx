@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useMemo } from "react"
 
 import type { Collection } from "@/lib/types"
 
@@ -13,8 +14,13 @@ interface CatalogPageClientProps {
 }
 
 export default function CatalogPageClient({ collections }: CatalogPageClientProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
   const allJewelry = useMemo(() => collections.flatMap((collection) => collection.jewelryList || []), [collections])
-  const [activeCategory, setActiveCategory] = useState("all")
+  
+  const activeCategory = searchParams.get("category") || "all"
 
   const categories = useMemo(
     () => [
@@ -30,30 +36,17 @@ export default function CatalogPageClient({ collections }: CatalogPageClientProp
     return collection ? (collection.jewelryList || []) : []
   }, [activeCategory, allJewelry, collections])
 
-  useEffect(() => {
-    const applyHashCategory = () => {
-      const hashCategory = window.location.hash.replace("#", "")
-      if (!hashCategory) {
-        setActiveCategory("all")
-        return
-      }
-
-      if (categories.some(category => category.id === hashCategory)) {
-        setActiveCategory(hashCategory)
-      }
+  const handleCategoryChange = (categoryId: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (categoryId === "all") {
+      params.delete("category")
+    } else {
+      params.set("category", categoryId)
     }
-
-    applyHashCategory()
-    window.addEventListener("hashchange", applyHashCategory)
-
-    return () => window.removeEventListener("hashchange", applyHashCategory)
-  }, [categories])
-
-  useEffect(() => {
-    const newHash = activeCategory === "all" ? "" : `#${activeCategory}`
-    const newUrl = `${window.location.pathname}${window.location.search}${newHash}`
-    window.history.replaceState(null, "", newUrl)
-  }, [activeCategory])
+    const queryString = params.toString()
+    const url = queryString ? `${pathname}?${queryString}` : pathname
+    router.replace(url, { scroll: false })
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-12 px-4 md:px-8">
@@ -62,7 +55,7 @@ export default function CatalogPageClient({ collections }: CatalogPageClientProp
         <CategoryFilters 
           categories={categories}
           activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
+          onCategoryChange={handleCategoryChange}
         />
         <CatalogGallery jewelryList={filteredJewelry} />
       </div>
