@@ -5,7 +5,7 @@ import type { Collection, Jewelry } from "./types"
 // Since we have an admin panel now, we might want shorter revalidation or use on-demand revalidation.
 // For now, let's stick to a reasonable time or 0 for dynamic if we want instant updates.
 // Given it's a catalog, maybe 60 seconds is fine.
-export const revalidate = 60
+export const revalidate = 3600
 
 // --- Data Fetching Functions ---
 
