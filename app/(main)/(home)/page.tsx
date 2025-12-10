@@ -7,7 +7,6 @@ import FeaturedCollections from "@/components/blocks/featured-collections"
 import { LayoutGridDemo } from "@/components/layout/layout-image-grid"
 import { getFeaturedCollections } from "@/lib/collections"
 import { HeroGallery } from "./components/hero-gallery"
-import IntroductionSection from "./components/introduction-section"
 
 import { BASE_URL } from "@/lib/constants"
 
@@ -51,13 +50,7 @@ export default async function Home() {
       {/* Hero Section with Slider */}
       <HeroGallery />
 
-      {/* Hero Section with Slider 
-      <HeroSlider />*/}
 
-      <IntroductionSection />
-
-      {/* Dynamic Frame Section 
-      <DynamicFrame />*/}
 
       {/* Layout Grid Section */}
       <LayoutGridDemo />
