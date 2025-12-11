@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import Image from "next/image"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import {
@@ -18,6 +17,7 @@ import "react-photo-album/masonry.css"
 
 import type { Jewelry } from "@/lib/types"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 import { JewelryLightbox } from "./jewelry-lightbox"
 
 // export type GalleryJewelry = Jewelry & { blurDataUrl?: string }
@@ -221,8 +221,15 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
   }, [currentPhotoIndex, lightboxOpen])
 
   const renderImage: RenderImage<AlbumJewelry> = useCallback(
-    ({ alt, title, sizes, className, style, onError }, { photo }) => (
-      <div className={cn(className, "relative overflow-hidden rounded-2xl")} style={style}>
+    ({ alt, title, sizes, className, style, onError }, { photo, index }) => (
+      <motion.div
+        className={cn(className, "relative overflow-hidden rounded-2xl")}
+        style={style}
+        initial={{ opacity: 0, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+      >
         <Image
           src={photo.src}
           alt={alt || photo.alt || "Photo"}
@@ -233,7 +240,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
           quality={85}
           onError={onError}
         />
-      </div>
+      </motion.div>
     ),
     [],
   )
@@ -274,12 +281,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className={cn("relative", className)}>
+      <div className={cn("relative", className)}>
           <PhotoAlbum
             photos={albumPhotos}
             layout="masonry"
@@ -290,7 +292,6 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
             componentsProps={componentsProps}
           />
         </div>
-      </motion.div>
 
       {lightboxOpen && (
         <JewelryLightbox

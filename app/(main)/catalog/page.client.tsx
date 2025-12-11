@@ -5,8 +5,7 @@ import { useMemo } from "react"
 
 import type { Collection } from "@/lib/types"
 
-import CatalogGallery from "./components/CatalogGallery"
-import CatalogHeader from "./components/CatalogHeader"
+import { JewelryGallery } from "@/components/blocks/jewelry-gallery"
 import CategoryFilters from "./components/CategoryFilters"
 
 interface CatalogPageClientProps {
@@ -49,16 +48,13 @@ export default function CatalogPageClient({ collections }: CatalogPageClientProp
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-12 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
-        <CatalogHeader />
-        <CategoryFilters 
-          categories={categories}
-          activeCategory={activeCategory}
-          onCategoryChange={handleCategoryChange}
-        />
-        <CatalogGallery jewelryList={filteredJewelry} />
-      </div>
+    <div className="max-w-7xl mx-auto">
+      <CategoryFilters 
+        categories={categories}
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+      />
+      <JewelryGallery jewelryList={filteredJewelry} />
     </div>
   )
 }

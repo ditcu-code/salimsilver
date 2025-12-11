@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { getAllCollections } from "@/lib/collections"
-import CollectionsHeader from "./components/CollectionsHeader"
+
 
 import { BASE_URL } from "@/lib/constants"
 
@@ -33,9 +33,8 @@ export default async function CollectionsPage() {
   const collections = await getAllCollections()
 
   return (
-    <div className="min-h-screen pt-24 pb-12 px-4 md:px-8">
+    <>
       <div className="max-w-7xl mx-auto">
-        <CollectionsHeader />
         <FeaturedCollections collections={collections} />
       </div>
 
@@ -52,6 +51,6 @@ export default async function CollectionsPage() {
           }),
         }}
       />
-    </div>
+    </>
   )
 }

@@ -18,9 +18,9 @@ export default function CategoryFilters({ categories, activeCategory, onCategory
   return (
     <motion.div
       className="flex overflow-x-auto pb-4 md:pb-0 md:flex-wrap md:justify-center gap-4 mb-6 md:mb-12 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0"
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
+      transition={{ duration: 0.5 }}
       style={{
         msOverflowStyle: "none",
         scrollbarWidth: "none",
