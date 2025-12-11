@@ -82,8 +82,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </AppProviders>
           <Toaster />
         </ThemeProvider>
-        <SpeedInsights />
-        <Analytics />
+        {process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && (
+          <>
+            <SpeedInsights />
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   )
