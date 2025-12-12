@@ -1,11 +1,11 @@
+
 import { AppProviders } from "@/components/features/app-providers"
 import SafariThemeColor from "@/components/features/safari-theme-color"
 import { ThemeProvider } from "@/components/features/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css"
 
+import { AnalyticsWrapper } from "@/components/features/analytics-wrapper"
 import { BASE_URL } from "@/lib/constants"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Lato } from "next/font/google"
@@ -82,12 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </AppProviders>
           <Toaster />
         </ThemeProvider>
-        {process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && (
-          <>
-            <SpeedInsights />
-            <Analytics />
-          </>
-        )}
+        <AnalyticsWrapper />
       </body>
     </html>
   )
