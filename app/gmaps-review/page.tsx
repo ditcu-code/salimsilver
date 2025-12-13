@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 
 export default function ReviewRedirectPage() {
   const router = useRouter()
-  const [countdown, setCountdown] = useState(10)
+  const [countdown, setCountdown] = useState(5)
   const reviewUrl = "https://g.page/r/Ccp8F6XYiXlcEBM/review"
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function ReviewRedirectPage() {
     // Redirect after 5 seconds
     const redirectTimer = setTimeout(() => {
       router.push(reviewUrl)
-    }, 1000000)
+    }, 5000)
 
     return () => {
       clearInterval(timer)
