@@ -2,7 +2,6 @@
 
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
-import { redirect } from "next/navigation"
 
 export async function createPost(formData: FormData) {
   const supabase = await createClient()
@@ -45,7 +44,6 @@ export async function createPost(formData: FormData) {
   revalidatePath("/blog")
   revalidatePath("/admin/blog")
   revalidatePath("/sitemap.xml")
-  redirect("/admin/blog")
 }
 
 export async function updatePost(id: string, formData: FormData) {
@@ -119,7 +117,6 @@ export async function updatePost(id: string, formData: FormData) {
   revalidatePath(`/blog/${slug}`)
   revalidatePath("/admin/blog")
   revalidatePath("/sitemap.xml")
-  redirect("/admin/blog")
 }
 
 export async function deletePost(id: string) {
