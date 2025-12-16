@@ -26,7 +26,7 @@ export function HeroGallery() {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }))
 
   return (
-    <div className="from-background via-secondary/30 to-background relative w-full overflow-hidden bg-linear-to-br px-4 pt-24 pb-12 md:px-8">
+    <div className="from-background via-secondary/80 to-background relative w-full overflow-hidden bg-linear-to-tl px-4 pt-24 pb-12 md:px-8">
       {/* Desktop View */}
       <BentoGrid variant="hero" className="hidden h-full w-full gap-4 md:grid md:gap-6">
         {/* ... existing desktop content ... */}
@@ -34,7 +34,7 @@ export function HeroGallery() {
         <FullBentoCell className="bg-background flex flex-col items-start justify-center rounded-3xl p-8 md:p-12">
           <div className="w-full">
             <h1 className="font-display text-foreground mb-4 text-2xl leading-[0.9] tracking-tight md:text-4xl lg:text-5xl">
-              Handcrafted silver jewelry that tells a story of elegance and tradition.
+              Handcrafted silver jewelry that tells a story of elegance and tradition
             </h1>
           </div>
         </FullBentoCell>
