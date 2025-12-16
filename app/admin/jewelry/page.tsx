@@ -25,6 +25,20 @@ export default async function JewelryListPage() {
     return <div>Error loading jewelry</div>
   }
 
+  // Fetch creator names
+  const userIds = [...new Set(jewelry.map((item) => item.created_by).filter(Boolean))]
+  let usersMap: Record<string, string> = {}
+
+  if (userIds.length > 0) {
+    const { data: users } = await supabase.from("users").select("id, full_name").in("id", userIds)
+
+    if (users) {
+      users.forEach((user) => {
+        usersMap[user.id] = user.full_name
+      })
+    }
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -46,6 +60,7 @@ export default async function JewelryListPage() {
               <TableHead>Collection</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Material</TableHead>
+              <TableHead>Created By</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -68,6 +83,9 @@ export default async function JewelryListPage() {
                 <TableCell>{item.collections?.title || "-"}</TableCell>
                 <TableCell>{item.status}</TableCell>
                 <TableCell>{item.material}</TableCell>
+                <TableCell>
+                  {item.created_by ? usersMap[item.created_by] || "Unknown" : "-"}
+                </TableCell>
                 <TableCell className="space-x-2 text-right">
                   <Link href={`/admin/jewelry/${item.id}`}>
                     <Button variant="ghost" size="icon">
@@ -83,7 +101,7 @@ export default async function JewelryListPage() {
             ))}
             {jewelry.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-muted-foreground h-24 text-center">
+                <TableCell colSpan={7} className="text-muted-foreground h-24 text-center">
                   No jewelry items found.
                 </TableCell>
               </TableRow>

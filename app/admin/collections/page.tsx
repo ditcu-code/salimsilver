@@ -39,6 +39,20 @@ export default async function CollectionListPage() {
     }
   }
 
+  // Fetch creator names
+  const userIds = [...new Set(collections.map((item) => item.created_by).filter(Boolean))]
+  let usersMap: Record<string, string> = {}
+
+  if (userIds.length > 0) {
+    const { data: users } = await supabase.from("users").select("id, full_name").in("id", userIds)
+
+    if (users) {
+      users.forEach((user) => {
+        usersMap[user.id] = user.full_name
+      })
+    }
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -59,6 +73,7 @@ export default async function CollectionListPage() {
               <TableHead>Title</TableHead>
               <TableHead>Slug</TableHead>
               <TableHead>Featured</TableHead>
+              <TableHead>Created By</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -86,6 +101,9 @@ export default async function CollectionListPage() {
                     <StarOff className="text-muted-foreground h-4 w-4" />
                   )}
                 </TableCell>
+                <TableCell>
+                  {item.created_by ? usersMap[item.created_by] || "Unknown" : "-"}
+                </TableCell>
                 <TableCell className="space-x-2 text-right">
                   <Link href={`/admin/collections/${item.id}`}>
                     <Button variant="ghost" size="icon">
@@ -101,7 +119,7 @@ export default async function CollectionListPage() {
             ))}
             {collections.length === 0 && (
               <TableRow>
-                <TableCell colSpan={4} className="text-muted-foreground h-24 text-center">
+                <TableCell colSpan={6} className="text-muted-foreground h-24 text-center">
                   No collections found.
                 </TableCell>
               </TableRow>
