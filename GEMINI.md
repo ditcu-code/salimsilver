@@ -1,77 +1,101 @@
-# Salim Silver Project Context
+# Project Overview
 
-## Project Overview
+**Salim Silver** is a premium web application for showcasing handcrafted Javanese jewelry. It serves as a digital catalog, company profile, and blog. The application features a sophisticated design system, dynamic product filtering, and smooth animations to reflect the brand's luxury aesthetic.
 
-**Salim Silver** is a premium jewelry catalog and company profile website. It is a **Next.js 16** application using the **App Router**, designed to showcase handcrafted Javanese silver jewelry (Rings, Necklaces, Bracelets).
-
-## Tech Stack & Architecture
+## Tech Stack
 
 - **Framework:** Next.js 16 (App Router)
-- **Language:** TypeScript (Strict mode)
-- **Styling:** Tailwind CSS v4
-- **UI Library:** Shadcn UI (Radix UI primitives) + Custom components
-- **Icons:** Lucide React
-- **Animations:** Framer Motion
-- **Theme:** Custom Light/Dark mode with "Warm Cream" and "Dark Warm Brown" aesthetic.
-- **Data:** Static data management in `lib/collections.ts`.
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS (v4), Framer Motion (Animations)
+- **Database & Auth:** Supabase
+- **UI Components:** Shadcn UI (Radix Primitives), Lucide Icons
+- **Gallery/Media:** React Photo Album, Yet Another React Lightbox
+- **Testing:** Playwright (End-to-End)
+- **Editor:** Tiptap (Rich Text)
+- **Email:** Resend
 
-## Directory Structure & Conventions
+## Building and Running
 
-### `app/` (Routes)
+The project uses `yarn` as the package manager.
 
-Follows Next.js App Router conventions.
+- **Install Dependencies:**
 
-- `(home)/`: Root landing page.
-- `catalog/`: Product catalog with filtering.
-- `collections/[slug]/`: Dynamic individual collection pages.
-- `layout.tsx`: Root layout containing `AppProviders`, `ThemeProvider`, and global font configurations (`Lato` and `Cormorant Garamond`).
+  ```bash
+  yarn install
+  ```
 
-### `components/`
+- **Development Server:**
 
-Organized by scope and reusability:
+  ```bash
+  yarn dev
+  ```
 
-- **`ui/`**: Atomic, reusable UI primitives (e.g., `button.tsx`, `card.tsx`). largely based on Shadcn UI. **Do not modify these unless necessary for global style changes.**
-- **`blocks/`**: Larger, composite UI sections (e.g., `hero-slider.tsx`, `collection-grid.tsx`).
-- **`features/`**: Functional components with specific business logic (e.g., `search-bar.tsx`, `theme-toggle.tsx`, `contact-form.tsx`).
-- **`layout/`**: Global layout components (`header.tsx`, `footer.tsx`).
+  Runs at `http://localhost:3000`.
 
-### `lib/` (Utilities & Data)
+- **Production Build:**
 
-- **`collections.ts`**: Acts as the "database". Contains the `collections` array and helper functions (`getCollection`, `getFeaturedCollections`).
-- **`utils.ts`**: Common utility functions (e.g., `cn` for Tailwind class merging).
-- **`types.ts`**: Shared TypeScript interfaces (`Collection`, `Photo`).
+  ```bash
+  yarn build
+  ```
 
-### `public/`
+- **Start Production Server:**
 
-- **`images/`**: Stores high-quality jewelry imagery.
-- **`sounds/`**: UI sound effects.
+  ```bash
+  yarn start
+  ```
 
-## Development Workflow
+- **Run End-to-End Tests:**
 
-### Commands
+  ```bash
+  yarn test:e2e
+  ```
 
-- **Dev Server:** `yarn dev` (Runs on http://localhost:3000)
-- **Build:** `yarn build`
-- **Lint:** `yarn lint`
+  (Runs `playwright test`)
 
-### Coding Guidelines
+- **Linting:**
 
-1.  **Components:** Use Functional Components with Hooks.
-2.  **Styling:** Use Tailwind utility classes. Use `cn()` for conditional class merging.
-3.  **Imports:** Use the `@/` alias for the project root (e.g., `import { Button } from "@/components/ui/button"`).
-4.  **Type Safety:** Ensure all props and data structures are typed. Avoid `any`.
-5.  **Icons:** Import from `lucide-react`.
+  ```bash
+  yarn lint
+  ```
 
-## Key Design Tokens (from `globals.css`)
+- **Formatting:**
+  ```bash
+  yarn format
+  ```
 
-- **Fonts:** `Lato` (Sans-serif) for body, `Cormorant Garamond` (Serif) for headings.
-- **Colors:**
-  - `background`: Warm Cream (`#fafaf6`) / Dark Brown (`#1a120b`)
-  - `primary`: Dark Brown (`#3c2a21`) / Lighter Brown (`#956a58`)
-  - `accent`: Soft Brown (`#dccdc9`) / Dark Brown Accent (`#533e35`)
+## Project Structure & Conventions
 
-## Common Tasks
+### Key Directories
 
-- **Adding a new Collection:** Update `lib/collections.ts` and add images to `public/images/`.
-- **Modifying the Theme:** Edit CSS variables in `app/globals.css`.
-- **New UI Component:** Create in `components/ui/` if generic, or `components/blocks/` if complex.
+- `app/`: Main application code (Next.js App Router).
+  - `(auth)/`: Authentication routes (Login).
+  - `(main)/`: Public-facing pages (Home, Catalog, Blog, About).
+  - `admin/`: Protected admin dashboard for managing collections, jewelry, and blog posts.
+  - `api/`: Backend API routes (e.g., WhatsApp integration).
+- `components/`: Reusable React components.
+  - `ui/`: Base UI components (Shadcn UI).
+  - `features/`: Feature-specific components (e.g., Contact Form, Theme Toggle).
+  - `blocks/`: Larger page sections (e.g., Hero, Gallery).
+  - `admin/`: Admin-specific components.
+- `lib/`: Utilities and configurations.
+  - `supabase/`: Supabase client and server configuration (`client.ts`, `server.ts`).
+  - `types.ts`: TypeScript interfaces for data models (`Jewelry`, `Collection`, `Post`).
+  - `actions/`: Server actions for data mutation.
+- `supabase/`: Database configuration.
+  - `migrations/`: SQL migration files.
+  - `seed.sql`: Initial data seeding.
+- `tests/`: Playwright E2E test specs (`catalog.spec.ts`, `home.spec.ts`).
+
+### Development Conventions
+
+- **Styling:** Use Tailwind CSS utility classes. Global theme colors are defined in `app/globals.css` (variables like `--background`, `--foreground`, `--gold`, etc.).
+- **Data Fetching:** Prefer Server Components for data fetching where possible. Use Supabase clients (`@supabase/ssr`) configured in `lib/supabase/`.
+- **State Management:** Use React Server Actions for form submissions and mutations (`lib/actions/`).
+- **Icons:** Use `lucide-react` for iconography.
+- **Types:** Strictly adhere to types defined in `lib/types.ts` and `lib/types_db.ts`.
+
+## Data Models (Key Interfaces)
+
+- **Jewelry:** Represents a product item (id, title, status, material, images, etc.).
+- **Collection:** Represents a group of jewelry items (Rings, Necklaces, etc.).
+- **Post:** Represents a blog entry (title, content, tags, SEO metadata).
