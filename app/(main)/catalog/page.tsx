@@ -18,7 +18,7 @@ export async function generateMetadata({
     if (item) {
       const title = `${item.title} - Salim Silver`
       const description = item.description || "Handcrafted silver jewelry from Salim Silver."
-      const images = (item.images && item.images.length > 0) ? [item.images[0].src] : []
+      const images = item.images && item.images.length > 0 ? [item.images[0].src] : []
 
       return {
         title,

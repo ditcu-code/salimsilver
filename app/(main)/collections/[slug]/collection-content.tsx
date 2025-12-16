@@ -14,19 +14,12 @@ interface Props {
 }
 
 export function CollectionContent({ collection, featuredCollections, initialJewelrySlug }: Props) {
-
-
   return (
     <div className="min-h-screen">
-      <CollectionHero
-        title={collection.title}
-        coverImage={collection.coverImage || ""}
-      />
-      <CollectionInfo
-        description={collection.description || ""}
-      />
+      <CollectionHero title={collection.title} coverImage={collection.coverImage || ""} />
+      <CollectionInfo description={collection.description || ""} />
       <CollectionGallery jewelryList={collection.jewelryList || []} />
       <OtherCollectionsSection collections={featuredCollections} />
     </div>
   )
-} 
+}

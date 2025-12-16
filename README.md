@@ -63,6 +63,7 @@ Collection data is managed in `lib/collections.ts`.
 ### Design System
 
 The theme uses a premium color palette defined in `app/globals.css`:
+
 - **Light Mode**: Light Cream background, Deep Charcoal text, Gold accents.
 - **Dark Mode**: Midnight Blue background, Soft Cream text, Muted Gold accents.
 

@@ -33,7 +33,7 @@ export default function FeaturedCollections({
   const shouldRenderSection = Boolean(title || description || (ctaLabel && ctaHref))
 
   const grid = (
-    <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 md:pb-0 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
+    <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:px-0 md:pb-0 lg:grid-cols-3">
       {collections.map((collection, index) => (
         <motion.div
           key={collection.slug}
@@ -48,7 +48,7 @@ export default function FeaturedCollections({
             className="group block h-full"
             onClick={playHammerSound}
           >
-            <div className="relative h-full overflow-hidden bg-black rounded-3xl shadow-md">
+            <div className="relative h-full overflow-hidden rounded-3xl bg-black shadow-md">
               {/* Image container with overlay */}
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
@@ -58,26 +58,25 @@ export default function FeaturedCollections({
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:opacity-80"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
               </div>
 
               {/* Content positioned at the bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-2xl text-white mb-2 group-hover:text-white/90 transition-colors">
+              <div className="absolute right-0 bottom-0 left-0 translate-y-0 transform p-6 transition-transform duration-300 group-hover:translate-y-0">
+                <h3 className="mb-2 text-2xl text-white transition-colors group-hover:text-white/90">
                   {collection.title}
                 </h3>
                 <div className="flex flex-row justify-between">
-                  <p className="text-white/80 line-clamp-2 text-sm group-hover:text-white/90 transition-colors">
+                  <p className="line-clamp-2 text-sm text-white/80 transition-colors group-hover:text-white/90">
                     {collection.description}
                   </p>
                   <ArrowRight
                     size={18}
-                  className="text-white opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
-                />
+                    className="-translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                  />
                 </div>
               </div>
             </div>
-
           </Link>
         </motion.div>
       ))}
@@ -93,24 +92,22 @@ export default function FeaturedCollections({
       <div className={cn(containerClassName)}>
         {(title || description) && (
           <motion.div
-            className="text-center mb-12"
+            className="mb-12 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {title && (
-              <h2 className="text-3xl md:text-4xl mb-4 font-display">
-                {title}
-              </h2>
+            {title && <h2 className="font-display mb-4 text-3xl md:text-4xl">{title}</h2>}
+            {description && (
+              <p className="text-muted-foreground mx-auto max-w-2xl">{description}</p>
             )}
-            {description && <p className="text-muted-foreground max-w-2xl mx-auto">{description}</p>}
           </motion.div>
         )}
         {grid}
         {ctaLabel && ctaHref && (
           <motion.div
-            className="text-center mt-12"
+            className="mt-12 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

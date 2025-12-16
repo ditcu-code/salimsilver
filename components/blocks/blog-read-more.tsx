@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react"
 export default function BlogReadMore() {
   return (
     <motion.div
-      className="text-center mt-12 pt-8 border-t"
+      className="mt-12 border-t pt-8 text-center"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}

@@ -1,6 +1,5 @@
 "use client"
 
-
 import Image from "next/image"
 
 interface CollectionHeroProps {
@@ -20,11 +19,8 @@ export default function CollectionHero({ title, coverImage }: CollectionHeroProp
         className="object-cover"
       />
       <div className="absolute inset-0 bg-black/40" />
-      <div
-        className="absolute inset-0 flex flex-col justify-center items-center text-center p-4"
-      >
-        <h1 className="text-4xl md:text-5xl text-white mb-4">{title}</h1>
-
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+        <h1 className="mb-4 text-4xl text-white md:text-5xl">{title}</h1>
       </div>
     </section>
   )

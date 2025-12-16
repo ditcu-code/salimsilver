@@ -15,20 +15,20 @@ import Link from "next/link"
 
 export default async function JewelryListPage() {
   const supabase = await createClient()
-  
+
   const { data: jewelry, error } = await supabase
     .from("jewelry")
     .select("*, collections(title), jewelry_images(src)")
     .order("created_at", { ascending: false })
 
   if (error) {
-      return <div>Error loading jewelry</div>
+    return <div>Error loading jewelry</div>
   }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-serif font-bold text-primary">Jewelry</h1>
+        <h1 className="text-primary font-serif text-3xl font-bold">Jewelry</h1>
         <Link href="/admin/jewelry/new">
           <Button className="gap-2">
             <Plus className="h-4 w-4" />
@@ -37,7 +37,7 @@ export default async function JewelryListPage() {
         </Link>
       </div>
 
-      <div className="border rounded-md">
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
@@ -54,12 +54,12 @@ export default async function JewelryListPage() {
               <TableRow key={item.id}>
                 <TableCell>
                   {item.jewelry_images?.[0]?.src && (
-                    <div className="relative h-12 w-12 rounded-md overflow-hidden bg-muted">
-                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img 
-                        src={item.jewelry_images[0].src} 
+                    <div className="bg-muted relative h-12 w-12 overflow-hidden rounded-md">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.jewelry_images[0].src}
                         alt={item.title}
-                        className="object-cover h-full w-full"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                   )}
@@ -68,25 +68,25 @@ export default async function JewelryListPage() {
                 <TableCell>{item.collections?.title || "-"}</TableCell>
                 <TableCell>{item.status}</TableCell>
                 <TableCell>{item.material}</TableCell>
-                <TableCell className="text-right space-x-2">
-                    <Link href={`/admin/jewelry/${item.id}`}>
-                        <Button variant="ghost" size="icon">
-                            <Pencil className="h-4 w-4" />
-                        </Button>
-                    </Link>
-                    <DeleteButton 
-                        itemName={item.title}
-                        onDelete={deleteJewelry.bind(null, item.id)}
-                    />
+                <TableCell className="space-x-2 text-right">
+                  <Link href={`/admin/jewelry/${item.id}`}>
+                    <Button variant="ghost" size="icon">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <DeleteButton
+                    itemName={item.title}
+                    onDelete={deleteJewelry.bind(null, item.id)}
+                  />
                 </TableCell>
               </TableRow>
             ))}
             {jewelry.length === 0 && (
-                <TableRow>
-                    <TableCell colSpan={5} className="text-center h-24 text-muted-foreground">
-                        No jewelry items found.
-                    </TableCell>
-                </TableRow>
+              <TableRow>
+                <TableCell colSpan={5} className="text-muted-foreground h-24 text-center">
+                  No jewelry items found.
+                </TableCell>
+              </TableRow>
             )}
           </TableBody>
         </Table>

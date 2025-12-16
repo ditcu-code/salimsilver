@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description:
       "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
     url: `${BASE_URL}/contact`,
-    siteName: "Salim Silver"
+    siteName: "Salim Silver",
   },
   twitter: {
     card: "summary_large_image",
@@ -36,8 +36,8 @@ export default function ContactPage() {
       <ContactHero />
 
       {/* Contact Section */}
-      <section className="py-16 mt-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12">
+      <section className="mx-auto mt-20 max-w-7xl px-4 py-16 md:px-8">
+        <div className="grid gap-12 md:grid-cols-2">
           <ContactInfo />
           <ContactFormSection />
         </div>

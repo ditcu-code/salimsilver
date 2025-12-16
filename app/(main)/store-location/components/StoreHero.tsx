@@ -7,7 +7,7 @@ import AnimatedButton from "@/components/ui/animated-button"
 
 export default function StoreHero() {
   return (
-    <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
+    <section className="relative flex h-[60vh] min-h-[500px] w-full items-center justify-center overflow-hidden">
       <Image
         src="/images/store-front.webp"
         alt="Salim Silver Workshop"
@@ -23,11 +23,11 @@ export default function StoreHero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
+        <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-white/80 uppercase">
           Store & Workshop
         </p>
-        <h1 className="mb-6 text-5xl font-display md:text-7xl">Visit Us in Kotagede</h1>
-        <p className="mx-auto max-w-2xl text-lg text-white/90 md:text-xl leading-relaxed">
+        <h1 className="font-display mb-6 text-5xl md:text-7xl">Visit Us in Kotagede</h1>
+        <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl">
           See where our silver is crafted and shop the collection in our historic workshop & store.
         </p>
         <div className="mt-8">

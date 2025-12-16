@@ -5,19 +5,18 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Journal | Salim Silver",
-  description: "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
+  description:
+    "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
 }
 
 export default async function BlogPage() {
   const posts = await getAllPosts(false)
   const featuredPost = posts.find((p) => p.featured)
-  const remainingPosts = featuredPost 
-    ? posts.filter((p) => p.id !== featuredPost.id) 
-    : posts
+  const remainingPosts = featuredPost ? posts.filter((p) => p.id !== featuredPost.id) : posts
 
   if (posts.length === 0) {
     return (
-      <div className="text-center py-20 text-muted-foreground border-y border-border/50">
+      <div className="text-muted-foreground border-border/50 border-y py-20 text-center">
         <p className="text-lg">No stories published yet. We are crafting something special.</p>
       </div>
     )
@@ -29,7 +28,7 @@ export default async function BlogPage() {
       {featuredPost && <BlogHero post={featuredPost} />}
 
       {/* Divider */}
-      {remainingPosts.length > 0 && <div className="border-t border-border/40 my-16" />}
+      {remainingPosts.length > 0 && <div className="border-border/40 my-16 border-t" />}
 
       {/* Grid for other posts */}
       <BlogGrid posts={remainingPosts} />

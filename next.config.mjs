@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-
   poweredByHeader: false,
   typescript: {
     ignoreBuildErrors: true,
@@ -26,6 +25,6 @@ const nextConfig = {
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

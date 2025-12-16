@@ -45,12 +45,7 @@ export function ShareButton({ title, text, url }: ShareButtonProps) {
   }
 
   return (
-    <Button
-      variant="outline"
-      size="sm"
-      className="gap-2"
-      onClick={handleShare}
-    >
+    <Button variant="outline" size="sm" className="gap-2" onClick={handleShare}>
       {copied ? <Check className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
       Share
     </Button>

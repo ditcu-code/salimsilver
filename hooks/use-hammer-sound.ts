@@ -11,11 +11,12 @@ const soundFiles = [
 
 // Helper function to detect mobile devices
 function isMobileDevice() {
-  if (typeof window === 'undefined') return false
-  
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  ) || (window.innerWidth <= 768)
+  if (typeof window === "undefined") return false
+
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    window.innerWidth <= 768
+  )
 }
 
 // Singleton for audio elements to prevent multiple instances
@@ -23,9 +24,7 @@ let globalAudioElements: HTMLAudioElement[] = []
 let globalAudioContainer: HTMLDivElement | null = null
 let setupComplete = false
 
-function getRandomAudioElement(
-  audioElements: HTMLAudioElement[] | null,
-): HTMLAudioElement | null {
+function getRandomAudioElement(audioElements: HTMLAudioElement[] | null): HTMLAudioElement | null {
   if (!audioElements?.length) return null
 
   const randomIndex = Math.floor(Math.random() * audioElements.length)
@@ -35,7 +34,7 @@ function getRandomAudioElement(
 // Create a singleton set of audio elements that can be reused across the app
 function getOrCreateAudioElements(): HTMLAudioElement[] | null {
   // Early return if we're in a mobile environment
-  if (typeof window !== 'undefined' && isMobileDevice()) {
+  if (typeof window !== "undefined" && isMobileDevice()) {
     return null
   }
 
@@ -47,8 +46,8 @@ function getOrCreateAudioElements(): HTMLAudioElement[] | null {
   try {
     // First time setup - create container and audio elements
     if (!globalAudioContainer) {
-      globalAudioContainer = document.createElement('div')
-      globalAudioContainer.style.display = 'none'
+      globalAudioContainer = document.createElement("div")
+      globalAudioContainer.style.display = "none"
       document.body.appendChild(globalAudioContainer)
     }
 
@@ -56,12 +55,12 @@ function getOrCreateAudioElements(): HTMLAudioElement[] | null {
     const container = globalAudioContainer
 
     globalAudioElements = soundFiles.map((source) => {
-      const audioElement = document.createElement('audio')
+      const audioElement = document.createElement("audio")
       audioElement.src = source
       audioElement.preload = "auto"
       audioElement.style.display = "none"
-      audioElement.setAttribute('playsinline', 'true')
-      audioElement.setAttribute('webkit-playsinline', 'true')
+      audioElement.setAttribute("playsinline", "true")
+      audioElement.setAttribute("webkit-playsinline", "true")
       audioElement.volume = 0.4
 
       container.appendChild(audioElement)
@@ -69,7 +68,7 @@ function getOrCreateAudioElements(): HTMLAudioElement[] | null {
     })
 
     setupComplete = true
-    
+
     return globalAudioElements
   } catch (error) {
     console.warn("Error creating audio singleton:", error)
@@ -88,7 +87,7 @@ export default function SoundEffects() {
     // Check if device is mobile on mount
     const mobile = isMobileDevice()
     setIsMobile(mobile)
-    
+
     if (!mobile && !audioRef.current) {
       // Use the singleton audio elements
       audioRef.current = getOrCreateAudioElements()
@@ -99,8 +98,8 @@ export default function SoundEffects() {
       setIsMobile(isMobileDevice())
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   useEffect(() => {
@@ -164,12 +163,12 @@ export function cleanupAudioSingleton() {
 // Export the hook for direct use in components
 export function useHammerSound() {
   const [isMobile, setIsMobile] = useState(false)
-  
+
   useEffect(() => {
     // Check if device is mobile on mount
     const mobile = isMobileDevice()
     setIsMobile(mobile)
-    
+
     // Initialize the audio elements if not mobile and not already setup
     if (!mobile && !setupComplete) {
       getOrCreateAudioElements()
@@ -180,7 +179,7 @@ export function useHammerSound() {
   const playHammerSound = () => {
     // Don't play sounds on mobile
     if (isMobile) return
-    
+
     // Get one of the singleton audio elements
     const audioElements = globalAudioElements.length
       ? globalAudioElements

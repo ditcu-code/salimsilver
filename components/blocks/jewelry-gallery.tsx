@@ -2,15 +2,7 @@
 
 import Image from "next/image"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import {
-  Suspense,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type MouseEvent,
-} from "react"
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from "react"
 import type { ComponentsProps, RenderExtras, RenderImage } from "react-photo-album"
 import PhotoAlbum from "react-photo-album"
 import "react-photo-album/masonry.css"
@@ -28,13 +20,13 @@ interface JewelryGalleryProps {
 }
 
 // Extend Jewelry to include properties required by react-photo-album
-export type AlbumJewelry = Jewelry & { 
+export type AlbumJewelry = Jewelry & {
   key: string
   src: string
   width: number
   height: number
   alt?: string
-  blurDataUrl?: string 
+  blurDataUrl?: string
 }
 
 const masonryColumns = (containerWidth: number) => (containerWidth < 768 ? 2 : 3)
@@ -90,7 +82,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
         }
         return true
       }),
-    [jewelryList],
+    [jewelryList]
   )
 
   const albumPhotos = useMemo<AlbumJewelry[]>(
@@ -103,7 +95,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
         height: 800, // Square aspect ratio for now
         alt: photo.title,
       })),
-    [validPhotos],
+    [validPhotos]
   )
 
   const updateUrl = useCallback(
@@ -119,7 +111,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
       const nextPath = nextQuery ? `${pathname}?${nextQuery}` : pathname
       router.replace(nextPath, { scroll: false })
     },
-    [pathname, router, searchParamsString],
+    [pathname, router, searchParamsString]
   )
 
   const selectPhoto = useCallback(
@@ -129,7 +121,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
       setCurrentPhotoIndex(normalizedIndex)
       updateUrl(albumPhotos[normalizedIndex].slug)
     },
-    [albumPhotos, updateUrl],
+    [albumPhotos, updateUrl]
   )
 
   useEffect(() => {
@@ -154,7 +146,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
       selectPhoto(index)
       setLightboxOpen(true)
     },
-    [selectPhoto],
+    [selectPhoto]
   )
 
   const closeLightbox = useCallback(() => {
@@ -183,7 +175,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
         goToNext()
       }
     },
-    [goToNext, goToPrevious],
+    [goToNext, goToPrevious]
   )
 
   useEffect(() => {
@@ -211,9 +203,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
     if (!lightboxOpen || !thumbnailsRef.current) return
     const scrollContainer = thumbnailsRef.current
     const scrollPosition =
-      currentPhotoIndex * THUMBNAIL_WIDTH -
-      scrollContainer.clientWidth / 2 +
-      THUMBNAIL_WIDTH / 2
+      currentPhotoIndex * THUMBNAIL_WIDTH - scrollContainer.clientWidth / 2 + THUMBNAIL_WIDTH / 2
 
     requestAnimationFrame(() => {
       scrollContainer.scrollTo({ left: scrollPosition, behavior: "smooth" })
@@ -242,12 +232,12 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
         />
       </motion.div>
     ),
-    [],
+    []
   )
 
   const renderExtras: RenderExtras<AlbumJewelry> = useCallback(
     (_, { photo }) => <PhotoMetadataOverlay photo={photo} />,
-    [],
+    []
   )
 
   const componentsProps = useMemo<ComponentsProps<AlbumJewelry>>(
@@ -260,7 +250,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
         onError: handlePhotoError,
       },
     }),
-    [handlePhotoError],
+    [handlePhotoError]
   )
 
   if (error) {
@@ -282,16 +272,16 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
   return (
     <>
       <div className={cn("relative", className)}>
-          <PhotoAlbum
-            photos={albumPhotos}
-            layout="masonry"
-            columns={masonryColumns}
-            spacing={(containerWidth) => (containerWidth < 768 ? 12 : 24)}
-            onClick={({ index }) => openLightbox(index)}
-            render={{ image: renderImage, extras: renderExtras }}
-            componentsProps={componentsProps}
-          />
-        </div>
+        <PhotoAlbum
+          photos={albumPhotos}
+          layout="masonry"
+          columns={masonryColumns}
+          spacing={(containerWidth) => (containerWidth < 768 ? 12 : 24)}
+          onClick={({ index }) => openLightbox(index)}
+          render={{ image: renderImage, extras: renderExtras }}
+          componentsProps={componentsProps}
+        />
+      </div>
 
       {lightboxOpen && (
         <JewelryLightbox

@@ -23,14 +23,14 @@ export function ImageUpload({ jewelryId, images }: ImageUploadProps) {
 
   async function convertImageToWebP(file: File): Promise<Blob> {
     return new Promise((resolve, reject) => {
-      const img = document.createElement('img')
+      const img = document.createElement("img")
       img.onload = () => {
-        const canvas = document.createElement('canvas')
+        const canvas = document.createElement("canvas")
         canvas.width = img.width
         canvas.height = img.height
-        const ctx = canvas.getContext('2d')
+        const ctx = canvas.getContext("2d")
         if (!ctx) {
-          reject(new Error('Failed to get canvas context'))
+          reject(new Error("Failed to get canvas context"))
           return
         }
         ctx.drawImage(img, 0, 0)
@@ -39,14 +39,14 @@ export function ImageUpload({ jewelryId, images }: ImageUploadProps) {
             if (blob) {
               resolve(blob)
             } else {
-              reject(new Error('Failed to convert image to WebP'))
+              reject(new Error("Failed to convert image to WebP"))
             }
           },
-          'image/webp',
+          "image/webp",
           0.9 // 90% compression quality
         )
       }
-      img.onerror = () => reject(new Error('Failed to load image for conversion'))
+      img.onerror = () => reject(new Error("Failed to load image for conversion"))
       img.src = URL.createObjectURL(file)
     })
   }
@@ -59,15 +59,15 @@ export function ImageUpload({ jewelryId, images }: ImageUploadProps) {
     try {
       // Convert to WebP
       const webpBlob = await convertImageToWebP(file)
-      
+
       const fileName = `${jewelryId}/${Date.now()}.webp`
-      
+
       const { error: uploadError } = await supabase.storage
-        .from('catalog')
+        .from("catalog")
         .upload(fileName, webpBlob, {
-          contentType: 'image/webp',
-          cacheControl: '3600',
-          upsert: false
+          contentType: "image/webp",
+          cacheControl: "3600",
+          upsert: false,
         })
 
       if (uploadError) throw uploadError
@@ -80,42 +80,45 @@ export function ImageUpload({ jewelryId, images }: ImageUploadProps) {
     } finally {
       setIsUploading(false)
       // Reset input
-      event.target.value = ''
+      event.target.value = ""
     }
   }
 
   async function handleDelete(imageId: string) {
-      try {
-          await deleteJewelryImage(imageId)
-          toast.success("Image deleted")
-      } catch (error: any) {
-          toast.error("Delete failed")
-      }
+    try {
+      await deleteJewelryImage(imageId)
+      toast.success("Image deleted")
+    } catch (error: any) {
+      toast.error("Delete failed")
+    }
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-4">
         <Button variant="outline" disabled={isUploading} className="relative">
-            {isUploading ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-            ) : (
-                <Upload className="h-4 w-4 mr-2" />
-            )}
-            Upload Image
-            <Input 
-                type="file" 
-                className="absolute inset-0 opacity-0 cursor-pointer" 
-                onChange={handleFileChange}
-                accept="image/*"
-                disabled={isUploading}
-            />
+          {isUploading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Upload className="mr-2 h-4 w-4" />
+          )}
+          Upload Image
+          <Input
+            type="file"
+            className="absolute inset-0 cursor-pointer opacity-0"
+            onChange={handleFileChange}
+            accept="image/*"
+            disabled={isUploading}
+          />
         </Button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {images.map((img) => (
-          <div key={img.id} className="relative group aspect-square border rounded-md overflow-hidden bg-muted">
+          <div
+            key={img.id}
+            className="group bg-muted relative aspect-square overflow-hidden rounded-md border"
+          >
             <Image
               src={img.src}
               alt="Jewelry image"
@@ -124,12 +127,8 @@ export function ImageUpload({ jewelryId, images }: ImageUploadProps) {
               className="object-cover"
               unoptimized
             />
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <Button 
-                variant="destructive" 
-                size="icon"
-                onClick={() => handleDelete(img.id)}
-              >
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+              <Button variant="destructive" size="icon" onClick={() => handleDelete(img.id)}>
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>

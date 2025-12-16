@@ -9,7 +9,7 @@ export function StoreLocationButton() {
     <Link href="/store-location">
       <motion.button
         whileTap={{ scale: 0.9 }}
-        className="relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors cursor-pointer"
+        className="bg-secondary text-secondary-foreground hover:bg-secondary/80 relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors"
         aria-label="Store Location"
       >
         <MapPin size={20} className="text-primary" />

@@ -31,7 +31,7 @@ export function DeleteButton({ onDelete, itemName }: DeleteButtonProps) {
       await onDelete()
       toast.success("Item deleted successfully")
     } catch (error) {
-        toast.error("Failed to delete item")
+      toast.error("Failed to delete item")
     } finally {
       setIsDeleting(false)
       setIsOpen(false)
@@ -41,7 +41,11 @@ export function DeleteButton({ onDelete, itemName }: DeleteButtonProps) {
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-destructive hover:bg-destructive/10 hover:text-destructive">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+        >
           <Trash2 className="h-4 w-4" />
         </Button>
       </AlertDialogTrigger>
@@ -54,10 +58,10 @@ export function DeleteButton({ onDelete, itemName }: DeleteButtonProps) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
-          <AlertDialogAction 
+          <AlertDialogAction
             onClick={(e) => {
-                e.preventDefault()
-                handleDelete()
+              e.preventDefault()
+              handleDelete()
             }}
             className="bg-destructive hover:bg-destructive/90"
             disabled={isDeleting}

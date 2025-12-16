@@ -1,4 +1,3 @@
-
 import { AppProviders } from "@/components/features/app-providers"
 import SafariThemeColor from "@/components/features/safari-theme-color"
 import { ThemeProvider } from "@/components/features/theme-provider"
@@ -77,9 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <SafariThemeColor />
-          <AppProviders>
-            {children}
-          </AppProviders>
+          <AppProviders>{children}</AppProviders>
           <Toaster />
         </ThemeProvider>
         <AnalyticsWrapper />

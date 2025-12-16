@@ -104,33 +104,31 @@ export async function generateOgImage(title: string, description: string) {
   ])
 
   const imageResponse = new ImageResponse(
-    (
-      <div
-        style={{
-          ...styles.container,
-          backgroundImage: `url(${bgBase64})`,
-        }}
-      >
-        {/* Dark Overlay */}
-        <div style={styles.overlay} />
+    <div
+      style={{
+        ...styles.container,
+        backgroundImage: `url(${bgBase64})`,
+      }}
+    >
+      {/* Dark Overlay */}
+      <div style={styles.overlay} />
 
-        {/* Content Wrapper */}
-        <div style={styles.contentWrapper}>
-          <div style={styles.contentInner}>
-            <div style={styles.brand}>Salim Silver</div>
+      {/* Content Wrapper */}
+      <div style={styles.contentWrapper}>
+        <div style={styles.contentInner}>
+          <div style={styles.brand}>Salim Silver</div>
 
-            <div style={styles.title}>{title}</div>
+          <div style={styles.title}>{title}</div>
 
-            <div style={styles.description}>{description}</div>
+          <div style={styles.description}>{description}</div>
 
-            <div style={styles.footer}>
-              <div style={styles.footerLine} />
-              <span>Kotagede - Yogyakarta</span>
-            </div>
+          <div style={styles.footer}>
+            <div style={styles.footerLine} />
+            <span>Kotagede - Yogyakarta</span>
           </div>
         </div>
       </div>
-    ),
+    </div>,
     {
       width: 1200,
       height: 630,
@@ -148,15 +146,13 @@ export async function generateOgImage(title: string, description: string) {
           weight: 400,
         },
       ],
-    },
+    }
   )
 
   const arrayBuffer = await imageResponse.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
   // Convert to JPEG using sharp with quality 80 to ensure size < 300KB
-  const compressedBuffer = await sharp(buffer)
-    .jpeg({ quality: 80 })
-    .toBuffer()
+  const compressedBuffer = await sharp(buffer).jpeg({ quality: 80 }).toBuffer()
 
   return new Response(compressedBuffer as unknown as BodyInit, {
     headers: {

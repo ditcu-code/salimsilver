@@ -22,28 +22,28 @@ export function ThemeToggle() {
   // Helper function to update Safari theme color meta tag directly
   const updateSafariThemeColor = (newTheme: string) => {
     // Only run on the client side
-    if (typeof window === 'undefined') return
-    
+    if (typeof window === "undefined") return
+
     // Check if it's a mobile device
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
     if (!isMobile) return
-    
+
     // Determine effective theme
     let effectiveTheme = newTheme
-    if (newTheme === 'system') {
-      effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    if (newTheme === "system") {
+      effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
     }
 
     // Find or create the theme-color meta tag for Safari
     let metaThemeColor = document.querySelector('meta[name="theme-color"]')
     if (!metaThemeColor) {
-      metaThemeColor = document.createElement('meta')
-      metaThemeColor.setAttribute('name', 'theme-color')
+      metaThemeColor = document.createElement("meta")
+      metaThemeColor.setAttribute("name", "theme-color")
       document.head.appendChild(metaThemeColor)
     }
-    
+
     // Update color based on theme
-    metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#000000' : '#ffffff')
+    metaThemeColor.setAttribute("content", effectiveTheme === "dark" ? "#000000" : "#ffffff")
   }
 
   const handleThemeChange = (newTheme: Theme) => {
@@ -53,7 +53,7 @@ export function ThemeToggle() {
   }
 
   if (!mounted) {
-    return <div className="w-[104px] h-9" /> // Exact placeholder size
+    return <div className="h-9 w-[104px]" /> // Exact placeholder size
   }
 
   const options: { value: Theme; icon: typeof Sun; label: string }[] = [
@@ -63,7 +63,7 @@ export function ThemeToggle() {
   ]
 
   return (
-    <div className="flex items-center p-1 rounded-full bg-secondary/50 border border-border/50 backdrop-blur-sm w-fit">
+    <div className="bg-secondary/50 border-border/50 flex w-fit items-center rounded-full border p-1 backdrop-blur-sm">
       {options.map((option) => {
         const isActive = theme === option.value
         return (
@@ -71,7 +71,7 @@ export function ThemeToggle() {
             key={option.value}
             onClick={() => handleThemeChange(option.value)}
             className={cn(
-              "relative flex cursor-pointer items-center justify-center w-8 h-7 rounded-full text-muted-foreground transition-colors hover:text-foreground",
+              "text-muted-foreground hover:text-foreground relative flex h-7 w-8 cursor-pointer items-center justify-center rounded-full transition-colors",
               isActive && "text-foreground"
             )}
             aria-label={`Switch to ${option.label} theme`}
@@ -79,7 +79,7 @@ export function ThemeToggle() {
             {isActive && (
               <motion.div
                 layoutId="theme-toggle-active"
-                className="absolute inset-0 bg-background rounded-full shadow-sm border border-border/50"
+                className="bg-background border-border/50 absolute inset-0 rounded-full border shadow-sm"
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}

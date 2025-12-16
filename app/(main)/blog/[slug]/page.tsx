@@ -49,7 +49,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <article className="min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative w-full h-[50vh] min-h-[400px] md:h-[60vh]">
+      <div className="relative h-[50vh] min-h-[400px] w-full md:h-[60vh]">
         {post.cover_image_url ? (
           <Image
             src={post.cover_image_url}
@@ -59,61 +59,61 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             priority
           />
         ) : (
-          <div className="w-full h-full bg-muted flex items-center justify-center">
-             <span className="font-serif text-6xl text-muted-foreground/20">Journal</span>
+          <div className="bg-muted flex h-full w-full items-center justify-center">
+            <span className="text-muted-foreground/20 font-serif text-6xl">Journal</span>
           </div>
         )}
-        <div className="absolute inset-0 bg-linear-to-t from-background via-background/60 to-transparent flex items-end">
-         <div className="container mx-auto px-4 pb-12 max-w-4xl">
-           <Link 
-             href="/blog" 
-             className="group flex items-center gap-2 text-sm font-medium mb-6 text-primary hover:text-foreground transition-colors w-fit"
-           >
-             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-             Back to Journal
-           </Link>
-           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-4">
-             {post.title}
-           </h1>
-           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-             <span>{post.published_at ? formatDate(post.published_at) : "Recently published"}</span>
-             {post.updated_at && post.updated_at !== post.published_at && (
+        <div className="from-background via-background/60 absolute inset-0 flex items-end bg-linear-to-t to-transparent">
+          <div className="container mx-auto max-w-4xl px-4 pb-12">
+            <Link
+              href="/blog"
+              className="group text-primary hover:text-foreground mb-6 flex w-fit items-center gap-2 text-sm font-medium transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              Back to Journal
+            </Link>
+            <h1 className="mb-4 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl">
+              {post.title}
+            </h1>
+            <div className="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
+              <span>
+                {post.published_at ? formatDate(post.published_at) : "Recently published"}
+              </span>
+              {post.updated_at && post.updated_at !== post.published_at && (
                 <>
-                <span>•</span>
-                <span>Updated {formatDate(post.updated_at)}</span>
+                  <span>•</span>
+                  <span>Updated {formatDate(post.updated_at)}</span>
                 </>
-             )}
-           </div>
-           {post.tags && post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-4 animate-in fade-in slide-in-from-bottom-2 duration-700">
+              )}
+            </div>
+            {post.tags && post.tags.length > 0 && (
+              <div className="animate-in fade-in slide-in-from-bottom-2 mt-4 flex flex-wrap gap-2 duration-700">
                 {post.tags.map((tag) => (
-                  <span 
-                    key={tag} 
-                    className="px-3 py-1 bg-foreground/5 backdrop-blur-md rounded-full text-xs font-medium tracking-wide text-foreground/80 border border-foreground/10"
+                  <span
+                    key={tag}
+                    className="bg-foreground/5 text-foreground/80 border-foreground/10 rounded-full border px-3 py-1 text-xs font-medium tracking-wide backdrop-blur-md"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-           )}
-         </div>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 max-w-3xl mt-12">
-        <div className="flex justify-between items-center mb-8 pb-8 border-b">
-           <div className="text-sm font-medium text-muted-foreground">
-             Share this story
-           </div>
-           <ShareButton title={post.title} />
+      <div className="container mx-auto mt-12 max-w-3xl px-4">
+        <div className="mb-8 flex items-center justify-between border-b pb-8">
+          <div className="text-muted-foreground text-sm font-medium">Share this story</div>
+          <ShareButton title={post.title} />
         </div>
 
-        <div 
+        <div
           className="prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:font-medium prose-img:rounded-lg prose-a:text-primary hover:prose-a:underline max-w-none"
           dangerouslySetInnerHTML={{ __html: post.content || "" }}
         />
-        
+
         <BlogReadMore />
       </div>
       <script

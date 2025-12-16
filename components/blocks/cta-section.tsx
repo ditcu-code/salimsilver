@@ -37,9 +37,9 @@ export default function CTASection({
   return (
     <section
       className={cn(
-        "rounded-3xl border border-border bg-secondary/30",
+        "border-border bg-secondary/30 rounded-3xl border",
         resolvedPaddingClasses,
-        resolvedSectionClasses,
+        resolvedSectionClasses
       )}
     >
       <motion.div
@@ -49,8 +49,8 @@ export default function CTASection({
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl md:text-4xl mb-6 font-display">{title}</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto mb-8">{description}</p>
+        <h2 className="font-display mb-6 text-3xl md:text-4xl">{title}</h2>
+        <p className="text-muted-foreground mx-auto mb-8 max-w-2xl">{description}</p>
         <AnimatedButton href={ctaHref} variant={buttonVariant} icon={icon}>
           {ctaLabel}
         </AnimatedButton>

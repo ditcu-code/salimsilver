@@ -10,7 +10,7 @@ export default async function AdminBlogPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold font-serif">Journal Posts</h1>
+        <h1 className="font-serif text-3xl font-bold">Journal Posts</h1>
         <Link href="/admin/blog/new">
           <Button className="gap-2">
             <Plus className="h-4 w-4" />
@@ -19,31 +19,38 @@ export default async function AdminBlogPage() {
         </Link>
       </div>
 
-      <div className="border rounded-md bg-card">
-        <div className="grid grid-cols-[3fr_1fr_1fr_auto] gap-4 p-4 border-b font-medium text-muted-foreground bg-muted/50">
+      <div className="bg-card rounded-md border">
+        <div className="text-muted-foreground bg-muted/50 grid grid-cols-[3fr_1fr_1fr_auto] gap-4 border-b p-4 font-medium">
           <div>Title</div>
           <div>Status</div>
           <div>Date</div>
           <div className="w-10"></div>
         </div>
-        
+
         {posts.length === 0 ? (
-          <div className="p-8 text-center text-muted-foreground">
+          <div className="text-muted-foreground p-8 text-center">
             No posts found. Create your first story.
           </div>
         ) : (
           posts.map((post) => (
-            <div key={post.id} className="grid grid-cols-[3fr_1fr_1fr_auto] gap-4 p-4 border-b last:border-0 items-center hover:bg-muted/30 transition-colors">
+            <div
+              key={post.id}
+              className="hover:bg-muted/30 grid grid-cols-[3fr_1fr_1fr_auto] items-center gap-4 border-b p-4 transition-colors last:border-0"
+            >
               <div>
                 <div className="font-medium">{post.title}</div>
-                <div className="text-sm text-muted-foreground truncate max-w-[300px]">{post.slug}</div>
+                <div className="text-muted-foreground max-w-[300px] truncate text-sm">
+                  {post.slug}
+                </div>
               </div>
               <div>
-                <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                  post.published 
-                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                    : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
-                }`}>
+                <span
+                  className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
+                    post.published
+                      ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                      : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
+                  }`}
+                >
                   {post.published ? "Published" : "Draft"}
                 </span>
               </div>

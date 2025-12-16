@@ -1,28 +1,31 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { login } from '@/lib/actions/auth'
+import { login } from "@/lib/actions/auth"
 
-export default async function LoginPage(props: {
-  searchParams: Promise<{ error?: string }>
-}) {
+export default async function LoginPage(props: { searchParams: Promise<{ error?: string }> }) {
   const searchParams = await props.searchParams
   const error = searchParams.error
-  
+
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-50 dark:bg-gray-900">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl font-serif">Admin Login</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account.
-          </CardDescription>
+          <CardTitle className="font-serif text-2xl">Admin Login</CardTitle>
+          <CardDescription>Enter your email below to login to your account.</CardDescription>
         </CardHeader>
         <form action={login}>
           <CardContent className="grid gap-4">
             {error && (
-              <div className="bg-destructive/15 text-destructive text-sm p-3 rounded-md">
+              <div className="bg-destructive/15 text-destructive rounded-md p-3 text-sm">
                 {error}
               </div>
             )}

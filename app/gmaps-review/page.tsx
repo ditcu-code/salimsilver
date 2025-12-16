@@ -39,9 +39,9 @@ export default function ReviewRedirectPage() {
   }
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center text-center py-10 px-4">
-      <div className="max-w-2xl w-full space-y-8">
-        <div className="flex justify-center gap-2 text-primary">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center px-4 py-10 text-center">
+      <div className="w-full max-w-2xl space-y-8">
+        <div className="text-primary flex justify-center gap-2">
           {[1, 2, 3, 4, 5].map((star, i) => (
             <motion.div
               key={star}
@@ -52,38 +52,39 @@ export default function ReviewRedirectPage() {
                 delay: i * 0.1,
                 type: "spring",
                 stiffness: 200,
-                damping: 15
+                damping: 15,
               }}
             >
-              <Star className="w-8 h-8 fill-yellow-400" />
+              <Star className="h-8 w-8 fill-yellow-400" />
             </motion.div>
           ))}
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-serif text-primary font-medium text-balance">
+          <h1 className="text-primary font-serif text-4xl font-medium text-balance md:text-5xl">
             A Heartfelt Thank You
           </h1>
-          
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto text-balance">
+
+          <p className="text-muted-foreground mx-auto max-w-xl text-lg leading-relaxed text-balance md:text-xl">
             Thank you for spending time with us at Salim Silver.
           </p>
-          
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto text-balance">
-            We would be honored by a 5-star review. Your support keeps our tradition of Javanese craftsmanship alive.
+
+          <p className="text-muted-foreground mx-auto max-w-xl text-lg leading-relaxed text-balance md:text-xl">
+            We would be honored by a 5-star review. Your support keeps our tradition of Javanese
+            craftsmanship alive.
           </p>
         </div>
 
         <div className="space-y-4 pt-4">
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             onClick={handleRedirect}
-            className="px-8 py-6 text-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-lg font-medium transition-all"
           >
             Leave a Review Now
           </Button>
-          
-          <p className="text-sm text-muted-foreground animate-pulse">
+
+          <p className="text-muted-foreground animate-pulse text-sm">
             Redirecting you to Google Reviews in {countdown} seconds...
           </p>
         </div>

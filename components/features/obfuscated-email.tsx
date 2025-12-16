@@ -10,11 +10,11 @@ interface ObfuscatedEmailProps {
   showIcon?: boolean
 }
 
-export function ObfuscatedEmail({ 
-  user, 
-  domain, 
+export function ObfuscatedEmail({
+  user,
+  domain,
   className,
-  showIcon = false 
+  showIcon = false,
 }: ObfuscatedEmailProps) {
   const [email, setEmail] = useState<string>("")
 
@@ -24,7 +24,7 @@ export function ObfuscatedEmail({
     const timer = setTimeout(() => {
       setEmail(`${user}@${domain}`)
     }, 100)
-    
+
     return () => clearTimeout(timer)
   }, [user, domain])
 
@@ -39,10 +39,7 @@ export function ObfuscatedEmail({
 
   // Hydrated render (user): renders the clickable link
   return (
-    <a 
-      href={`mailto:${email}`} 
-      className={cn("transition-colors hover:text-primary", className)}
-    >
+    <a href={`mailto:${email}`} className={cn("hover:text-primary transition-colors", className)}>
       {email}
     </a>
   )

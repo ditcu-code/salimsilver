@@ -1,8 +1,8 @@
 /**
  * Represents a jewelry in the gallery
  */
-export type JewelryStatus = 'available' | 'sold' | 'reserved' | 'hidden'
-export type MaterialType = 'gold' | 'silver' | 'copper' | 'brass'
+export type JewelryStatus = "available" | "sold" | "reserved" | "hidden"
+export type MaterialType = "gold" | "silver" | "copper" | "brass"
 
 export interface Jewelry {
   /** Unique identifier for the jewelry (UUID) */
@@ -28,15 +28,15 @@ export interface Jewelry {
   status: JewelryStatus
   /** JSON variants (e.g. sizes) */
   variants?: any
-  
-  /** 
+
+  /**
    * Images are now fetched from jewelry_images table.
    * We typically join them or fetch them separately.
    * For the frontend, we might want to attach them here nicely.
    */
   images?: JewelryImage[]
   /** Helper to easily get the main cover image URL */
-  coverImage?: string 
+  coverImage?: string
 }
 
 export interface JewelryImage {
@@ -58,17 +58,17 @@ export interface Collection {
   title: string
   /** Short description for previews */
   description?: string
-  /** 
+  /**
    * ID of the jewelry_image used as cover.
    * In frontend, we often resolve this to the actual URL string 'coverImage'
    */
   coverImageId?: string
   /** Resolved cover image URL */
   coverImage?: string
-  
+
   /** Whether the collection is featured on the homepage */
   featured: boolean
-  
+
   /** List of jewelry items in the collection (optional, if fetched) */
   jewelryList?: Jewelry[]
 }

@@ -71,7 +71,7 @@ export default function AnimatedButton({
   const content = (
     <>
       <span className="relative z-10">{children}</span>
-      {icon && <span className="btn-icon overflow-hidden relative z-10">{icon}</span>}
+      {icon && <span className="btn-icon relative z-10 overflow-hidden">{icon}</span>}
       <AnimatePresence>
         {isHovered && hoverOrigin && variant === "outline" && (
           <motion.span

@@ -16,13 +16,13 @@ export default function ContactHero() {
       />
       <div className="absolute inset-0 bg-black/50" />
       <motion.div
-        className="absolute inset-0 flex flex-col justify-center items-center text-center p-4"
+        className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-4xl md:text-5xl text-white mb-4 font-display">Contact Us</h1>
-        <p className="text-white/90 text-lg max-w-2xl">We would love to hear from you</p>
+        <h1 className="font-display mb-4 text-4xl text-white md:text-5xl">Contact Us</h1>
+        <p className="max-w-2xl text-lg text-white/90">We would love to hear from you</p>
       </motion.div>
     </section>
   )

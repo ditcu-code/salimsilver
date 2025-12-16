@@ -12,10 +12,10 @@ export function cn(...inputs: ClassValue[]) {
  */
 export function formatDate(dateString: string): string {
   const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   })
 }
 
@@ -27,7 +27,7 @@ export function formatDate(dateString: string): string {
  */
 export function truncateString(str: string, length: number): string {
   if (str.length <= length) return str
-  return str.slice(0, length) + '...'
+  return str.slice(0, length) + "..."
 }
 
 /**
@@ -38,8 +38,8 @@ export function truncateString(str: string, length: number): string {
 export function generateSlug(str: string): string {
   return str
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
 }
 
 /**
@@ -48,7 +48,7 @@ export function generateSlug(str: string): string {
  * @returns Formatted number string
  */
 export function formatNumber(num: number): string {
-  return num.toLocaleString('en-US')
+  return num.toLocaleString("en-US")
 }
 
 /**
@@ -81,9 +81,9 @@ export function debounce<T extends (...args: any[]) => any>(
  */
 export function isEmpty(value: any): boolean {
   if (value === null || value === undefined) return true
-  if (typeof value === 'string') return value.trim().length === 0
+  if (typeof value === "string") return value.trim().length === 0
   if (Array.isArray(value)) return value.length === 0
-  if (typeof value === 'object') return Object.keys(value).length === 0
+  if (typeof value === "object") return Object.keys(value).length === 0
   return false
 }
 
@@ -107,8 +107,8 @@ export function safeJSONParse<T>(str: string, fallback: T): T {
  * @returns Random string
  */
 export function generateRandomString(length: number): string {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  let result = ''
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  let result = ""
   for (let i = 0; i < length; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length))
   }
@@ -121,11 +121,11 @@ export function generateRandomString(length: number): string {
  * @returns Formatted size string
  */
 export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 Bytes'
+  if (bytes === 0) return "0 Bytes"
   const k = 1024
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"]
   const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
 }
 
 /**
@@ -134,5 +134,5 @@ export function formatFileSize(bytes: number): string {
  * @returns Promise that resolves after the delay
  */
 export function delay(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }

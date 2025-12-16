@@ -61,14 +61,14 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-5 left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-500 ease-in-out header-height",
+        "header-height fixed top-5 right-4 left-4 z-50 transition-all duration-500 ease-in-out md:right-8 md:left-8",
         isScrolled
-          ? "bg-background border border-border"
-          : "bg-transparent border border-transparent",
+          ? "bg-background border-border border"
+          : "border border-transparent bg-transparent"
       )}
     >
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
-        <div className="flex items-center h-full relative gap-4">
+      <div className="max-w-8xl mx-auto h-full px-4 sm:px-6">
+        <div className="relative flex h-full items-center gap-4">
           <div className="mr-auto">
             <Brand isScrolled={isScrolled} pathname={pathname} />
           </div>
@@ -76,7 +76,7 @@ export default function Header() {
           <DesktopNavigation isHome={isHome} isScrolled={isScrolled} pathname={pathname} />
 
           <div className="flex items-center gap-2">
-            <div className="shrink-0 md:block toggle-container">
+            <div className="toggle-container shrink-0 md:block">
               <StoreLocationButton />
             </div>
 
@@ -96,16 +96,17 @@ export default function Header() {
 
 function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string }) {
   const isDarkHeroPage =
-    ["/contact", "/about", "/store-location"].includes(pathname) || pathname.startsWith("/collections/")
+    ["/contact", "/about", "/store-location"].includes(pathname) ||
+    pathname.startsWith("/collections/")
   const shouldInvert = isScrolled || !isDarkHeroPage
 
   return (
-    <div className="shrink-0 flex items-center gap-3">
+    <div className="flex shrink-0 items-center gap-3">
       <Link
         href="/"
         className={cn(
-          "duration-300 flex items-center justify-center transition-all",
-          isScrolled ? "scale-90" : "scale-100",
+          "flex items-center justify-center transition-all duration-300",
+          isScrolled ? "scale-90" : "scale-100"
         )}
       >
         <Image
@@ -114,8 +115,8 @@ function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string
           width={180}
           height={36}
           className={cn(
-            "h-10 object-contain dark:invert-0 transition-all duration-300",
-            shouldInvert ? "invert" : "invert-0",
+            "h-10 object-contain transition-all duration-300 dark:invert-0",
+            shouldInvert ? "invert" : "invert-0"
           )}
           style={{ width: "auto" }}
           priority
@@ -140,28 +141,28 @@ function DesktopNavigation({
     <nav
       className={cn(
         "hidden h-10 items-center justify-center space-x-8 rounded-3xl px-6 transition-all duration-300 md:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2",
-        isScrolled ? "bg-transparent" : "bg-background",
+        isScrolled ? "bg-transparent" : "bg-background"
       )}
     >
       {navigation
         .filter((item) => !item.mobileOnly)
         .map((item) => {
-        const isActive = pathname === item.href
+          const isActive = pathname === item.href
 
-        return (
-          <Link
-            key={item.name}
-            href={item.href}
-            className={cn(
-              "px-1 py-2 text-sm transition-colors border-b border-transparent",
-              baseTone,
-              isActive ? "text-primary font-semibold border-primary/50" : "hover:text-primary/80",
-            )}
-          >
-            {item.name}
-          </Link>
-        )
-      })}
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={cn(
+                "border-b border-transparent px-1 py-2 text-sm transition-colors",
+                baseTone,
+                isActive ? "text-primary border-primary/50 font-semibold" : "hover:text-primary/80"
+              )}
+            >
+              {item.name}
+            </Link>
+          )
+        })}
     </nav>
   )
 }
@@ -178,14 +179,14 @@ function MobileMenuButton({
   return (
     <div
       className={cn(
-        "flex h-10 items-center justify-center rounded-3xl  text-primary transition-all duration-300 md:hidden",
-        isScrolled ? "bg-transparent" : "bg-background",
+        "text-primary flex h-10 items-center justify-center rounded-3xl transition-all duration-300 md:hidden",
+        isScrolled ? "bg-transparent" : "bg-background"
       )}
     >
       <motion.button
         whileTap={{ scale: 0.95 }}
         type="button"
-        className="p-2 text-primary"
+        className="text-primary p-2"
         aria-expanded={isOpen}
         aria-controls="mobile-navigation"
         onClick={onOpen}
@@ -217,21 +218,21 @@ function MobileMenu({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: "100%" }}
           transition={mobileMenuTransition}
-          className="fixed inset-0 z-100 bg-background/80 backdrop-blur-2xl flex flex-col min-h-screen"
+          className="bg-background/80 fixed inset-0 z-100 flex min-h-screen flex-col backdrop-blur-2xl"
           id="mobile-navigation"
         >
-          <div className="p-4 flex justify-end">
+          <div className="flex justify-end p-4">
             <motion.button
               whileTap={{ scale: 0.95 }}
               type="button"
-              className="text-foreground p-2 rounded-3xl bg-background/50 backdrop-blur-md border border-white/10"
+              className="text-foreground bg-background/50 rounded-3xl border border-white/10 p-2 backdrop-blur-md"
               onClick={onClose}
             >
               <span className="sr-only">Close menu</span>
               <X className="h-6 w-6" aria-hidden="true" />
             </motion.button>
           </div>
-          <nav className="flex flex-col items-center py-10 space-y-6">
+          <nav className="flex flex-col items-center space-y-6 py-10">
             {navigation.map((item) => {
               const isActive = pathname === item.href
 
@@ -240,10 +241,10 @@ function MobileMenu({
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "block px-8 py-3 text-4xl font-display transition-all duration-300",
+                    "font-display block px-8 py-3 text-4xl transition-all duration-300",
                     isActive
-                      ? "text-primary font-medium scale-110 border-b-2 border-border"
-                      : "text-foreground/80 hover:text-primary hover:scale-105",
+                      ? "text-primary border-border scale-110 border-b-2 font-medium"
+                      : "text-foreground/80 hover:text-primary hover:scale-105"
                   )}
                   onClick={onClose}
                 >

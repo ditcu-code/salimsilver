@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { getAllCollections } from "@/lib/collections"
 
-
 import { BASE_URL } from "@/lib/constants"
 
 export const metadata: Metadata = {
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
     description:
       "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
     url: `${BASE_URL}/collections`,
-    siteName: "Salim Silver"
+    siteName: "Salim Silver",
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +33,7 @@ export default async function CollectionsPage() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl">
         <FeaturedCollections collections={collections} />
       </div>
 

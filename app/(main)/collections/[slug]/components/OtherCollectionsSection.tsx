@@ -13,23 +13,25 @@ interface Props {
 
 export default function OtherCollectionsSection({ collections }: Props) {
   return (
-    <section className="mt-20 mb-20 py-20 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="mt-20 mb-20 px-4 py-20 md:px-8">
+      <div className="mx-auto max-w-7xl">
         <motion.div
-          className="text-center mb-12"
+          className="mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary text-3xl md:text-4xl mb-4 font-display">Featured Collections</h2>
-          <p className="text-primary max-w-2xl mx-auto">
+          <h2 className="text-primary font-display mb-4 text-3xl md:text-4xl">
+            Featured Collections
+          </h2>
+          <p className="text-primary mx-auto max-w-2xl">
             Explore our other handcrafted collections
           </p>
         </motion.div>
         <FeaturedCollections collections={collections} />
         <motion.div
-          className="text-center mt-12"
+          className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}

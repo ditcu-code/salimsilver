@@ -27,7 +27,7 @@ export function CollectionForm({ initialData }: CollectionFormProps) {
     setIsSaving(true)
 
     const formData = new FormData(event.currentTarget)
-    
+
     try {
       if (isEditing) {
         await updateCollection(initialData.id, formData)
@@ -46,22 +46,23 @@ export function CollectionForm({ initialData }: CollectionFormProps) {
   }
 
   return (
-    <div className="space-y-8 max-w-2xl">
+    <div className="max-w-2xl space-y-8">
       <form onSubmit={onSubmit} className="space-y-6">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
-            <Input 
-                id="title" 
-                name="title" 
-                defaultValue={initialData?.title} 
-                required 
-                onChange={(e) => {
-                    if (!isEditing) {
-                        const slugInput = document.getElementById('slug') as HTMLInputElement
-                        if (slugInput) slugInput.value = e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-                    }
-                }}
+            <Input
+              id="title"
+              name="title"
+              defaultValue={initialData?.title}
+              required
+              onChange={(e) => {
+                if (!isEditing) {
+                  const slugInput = document.getElementById("slug") as HTMLInputElement
+                  if (slugInput)
+                    slugInput.value = e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+                }
+              }}
             />
           </div>
           <div className="space-y-2">
@@ -71,30 +72,35 @@ export function CollectionForm({ initialData }: CollectionFormProps) {
         </div>
 
         <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea id="description" name="description" defaultValue={initialData?.description} rows={4} />
+          <Label htmlFor="description">Description</Label>
+          <Textarea
+            id="description"
+            name="description"
+            defaultValue={initialData?.description}
+            rows={4}
+          />
         </div>
 
         <div className="flex items-center space-x-2">
-            <Switch id="featured" name="featured" defaultChecked={initialData?.featured} />
-            <Label htmlFor="featured">Featured Collection</Label>
+          <Switch id="featured" name="featured" defaultChecked={initialData?.featured} />
+          <Label htmlFor="featured">Featured Collection</Label>
         </div>
 
         <Button type="submit" disabled={isSaving}>
-            {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {isEditing ? "Save Changes" : "Create Collection"}
+          {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isEditing ? "Save Changes" : "Create Collection"}
         </Button>
       </form>
 
       {isEditing && (
-          <div className="pt-8 border-t">
-              <CoverImageSelector 
-                  collectionId={initialData.id}
-                  collectionTitle={initialData.title}
-                  currentCoverId={initialData.cover_image_id}
-                  currentCoverSrc={initialData.coverImageSrc} 
-              />
-          </div>
+        <div className="border-t pt-8">
+          <CoverImageSelector
+            collectionId={initialData.id}
+            collectionTitle={initialData.title}
+            currentCoverId={initialData.cover_image_id}
+            currentCoverSrc={initialData.coverImageSrc}
+          />
+        </div>
       )}
     </div>
   )

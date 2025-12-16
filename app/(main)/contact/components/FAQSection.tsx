@@ -4,10 +4,10 @@ import { motion } from "framer-motion"
 
 export default function FAQSection() {
   return (
-    <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border border-border bg-secondary/30">
-      <div className="max-w-5xl mx-auto">
+    <section className="border-border bg-secondary/30 my-20 mr-4 ml-4 min-w-[90%] justify-self-center rounded-3xl border px-4 py-20 md:px-8">
+      <div className="mx-auto max-w-5xl">
         <motion.h2
-          className="text-3xl text-center mb-12 font-display"
+          className="font-display mb-12 text-center text-3xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -46,7 +46,7 @@ export default function FAQSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-medium text-xl mb-2">{item.question}</h3>
+              <h3 className="mb-2 text-xl font-medium">{item.question}</h3>
               <p className="text-primary/60">{item.answer}</p>
             </motion.div>
           ))}

@@ -6,8 +6,8 @@ import { ArrowRight, MapPin } from "lucide-react"
 
 export default function StoreLocationSection() {
   return (
-    <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+    <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
+      <div className="grid items-center gap-12 md:grid-cols-2">
         {/* Left Side: Address Info */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -15,17 +15,17 @@ export default function StoreLocationSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-display mb-6">Location Details</h2>
+          <h2 className="font-display mb-6 text-3xl md:text-4xl">Location Details</h2>
           <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
             We are located in the heart of Kotagede, the historic silver district of Yogyakarta.
           </p>
 
-          <div className="flex items-start gap-4 mb-6">
-            <div className="p-3 bg-primary/10 rounded-full text-primary">
+          <div className="mb-6 flex items-start gap-4">
+            <div className="bg-primary/10 text-primary rounded-full p-3">
               <MapPin size={24} />
             </div>
             <div>
-              <h3 className="text-2xl font-medium mb-2">Salim Silver</h3>
+              <h3 className="mb-2 text-2xl font-medium">Salim Silver</h3>
               <p className="text-muted-foreground text-lg">
                 Kebohan KG 3/547, Purbayan, Kotagede
                 <br />
@@ -55,7 +55,7 @@ export default function StoreLocationSection() {
 
         {/* Right Side: Google Map */}
         <motion.div
-          className="w-full h-[400px] rounded-3xl overflow-hidden shadow-lg border border-border"
+          className="border-border h-[400px] w-full overflow-hidden rounded-3xl border shadow-lg"
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}

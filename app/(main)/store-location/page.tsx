@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description:
       "Visit our Kotagede store and workshop. Shop our handcrafted silver collection and see the artisans at work in one location.",
     url: `${BASE_URL}/store-location`,
-    siteName: "Salim Silver"
+    siteName: "Salim Silver",
   },
   twitter: {
     card: "summary_large_image",
@@ -39,32 +39,32 @@ export default function StoreLocationPage() {
       <StoreHero />
 
       {/* Content Section */}
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+      <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
         <div className="grid gap-12 md:grid-cols-[1.2fr,0.8fr]">
           {/* Left Column: What to Expect */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-display mb-4">The Workshop & Store</h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
+              <h2 className="font-display mb-4 text-3xl">The Workshop & Store</h2>
+              <p className="text-muted-foreground text-lg leading-relaxed">
                 Experience the complete journey of our craft in Kotagede. Watch our artisans shape
-                silver into art at our workshop, then step into our showroom to browse and try on the
-                finished collection.
+                silver into art at our workshop, then step into our showroom to browse and try on
+                the finished collection.
               </p>
             </div>
 
-            <div className="rounded-3xl border border-border bg-card/60 p-8 shadow-sm backdrop-blur">
-              <h3 className="text-2xl font-display mb-4">What to expect</h3>
-              <ul className="space-y-4 text-muted-foreground">
+            <div className="border-border bg-card/60 rounded-3xl border p-8 shadow-sm backdrop-blur">
+              <h3 className="font-display mb-4 text-2xl">What to expect</h3>
+              <ul className="text-muted-foreground space-y-4">
                 <li className="flex items-start gap-3">
-                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                  <span className="bg-primary mt-3 h-1.5 w-1.5 shrink-0 rounded-full" />
                   <span>Browse our complete collection of ready-to-wear jewelry</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                  <span className="bg-primary mt-3 h-1.5 w-1.5 shrink-0 rounded-full" />
                   <span>See works in progress and one-of-a-kind pieces being made</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                  <span className="bg-primary mt-3 h-1.5 w-1.5 shrink-0 rounded-full" />
                   <span>Try on pieces and consult with our team on custom designs</span>
                 </li>
               </ul>
@@ -73,7 +73,7 @@ export default function StoreLocationPage() {
 
           {/* Right Column: Quick Info */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-display mb-4">Quick Information</h3>
+            <h3 className="font-display mb-4 text-2xl">Quick Information</h3>
             <div className="grid gap-4">
               <InfoCard
                 icon={<Clock3 className="text-primary" size={20} />}
@@ -151,12 +151,12 @@ interface InfoCardProps {
 
 function InfoCard({ icon, title, description }: InfoCardProps) {
   return (
-    <div className="flex gap-4 rounded-3xl border border-border bg-card p-5 transition-colors hover:border-primary/20">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+    <div className="border-border bg-card hover:border-primary/20 flex gap-4 rounded-3xl border p-5 transition-colors">
+      <div className="bg-primary/10 text-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
         {icon}
       </div>
       <div>
-        <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        <p className="text-muted-foreground mb-1 text-sm font-semibold tracking-wide uppercase">
           {title}
         </p>
         <div className="text-foreground font-medium">{description}</div>

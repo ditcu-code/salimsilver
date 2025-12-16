@@ -82,7 +82,7 @@ export function JewelryLightbox({
 
   const infoContent = (
     <div className="flex flex-col items-end text-right">
-      {currentPhoto.title && <p className="font-serif text-md text-white">{currentPhoto.title}</p>}
+      {currentPhoto.title && <p className="text-md font-serif text-white">{currentPhoto.title}</p>}
       {currentPhoto.description && (
         <p className="text-xs text-white/70 md:w-2/3">{currentPhoto.description}</p>
       )}
@@ -97,7 +97,7 @@ export function JewelryLightbox({
       aria-label="Jewelry photo viewer"
     >
       <button
-        className="absolute cursor-pointer left-4 top-4 z-30 rounded-full bg-black/20 p-2.5 text-white transition-transform hover:bg-black/40 hover:scale-110"
+        className="absolute top-4 left-4 z-30 cursor-pointer rounded-full bg-black/20 p-2.5 text-white transition-transform hover:scale-110 hover:bg-black/40"
         onClick={handleShare}
         title="Share"
       >
@@ -105,7 +105,7 @@ export function JewelryLightbox({
         <span className="sr-only">Share</span>
       </button>
       <button
-        className="absolute cursor-pointer right-4 top-4 z-30 rounded-full bg-black/20 p-2 text-white transition-transform hover:bg-black/40 hover:scale-110"
+        className="absolute top-4 right-4 z-30 cursor-pointer rounded-full bg-black/20 p-2 text-white transition-transform hover:scale-110 hover:bg-black/40"
         onClick={onClose}
       >
         <X size={24} />
@@ -119,10 +119,10 @@ export function JewelryLightbox({
 
       <div
         ref={lightboxRef}
-        className="relative flex flex-1 min-h-0 w-full cursor-pointer items-center justify-center p-4 hover:bg-black/5"
+        className="relative flex min-h-0 w-full flex-1 cursor-pointer items-center justify-center p-4 hover:bg-black/5"
         onClick={onBackgroundClick}
       >
-        <div className="relative z-10 h-full w-full flex items-center justify-center overflow-hidden">
+        <div className="relative z-10 flex h-full w-full items-center justify-center overflow-hidden">
           <LightboxImage
             key={currentPhoto.src || currentIndex} // Force remount on change
             src={currentPhoto.src || "/placeholder.svg"}
@@ -133,7 +133,7 @@ export function JewelryLightbox({
           />
 
           {/* Desktop Info Overlay */}
-          <div className="absolute inset-x-0 bottom-0 hidden md:block bg-black/60 p-4 text-white">
+          <div className="absolute inset-x-0 bottom-0 hidden bg-black/60 p-4 text-white md:block">
             <div className="mt-2 flex items-center justify-between">
               <p className="text-sm text-white/70">
                 {displayIndex} of {totalPhotos}
@@ -149,7 +149,7 @@ export function JewelryLightbox({
         <div className="flex items-center justify-end">{infoContent}</div>
       </div>
 
-      <div className="relative shrink-0 flex h-[100px] w-full items-center justify-center bg-black/50">
+      <div className="relative flex h-[100px] w-full shrink-0 items-center justify-center bg-black/50">
         <button
           className="absolute left-2 z-10 rounded-full bg-black/20 p-2 text-white transition-colors hover:bg-black/40"
           onClick={onPrevious}
@@ -169,8 +169,8 @@ export function JewelryLightbox({
               className={cn(
                 "relative mx-1 shrink-0 cursor-pointer transition-all duration-200",
                 index === currentIndex
-                  ? "z-10 scale-110 border-2 border-white rounded-lg"
-                  : "border border-transparent opacity-60 hover:opacity-100",
+                  ? "z-10 scale-110 rounded-lg border-2 border-white"
+                  : "border border-transparent opacity-60 hover:opacity-100"
               )}
               onClick={() => onSelect(index)}
               aria-label={`Go to photo ${index + 1}`}
@@ -200,7 +200,7 @@ export function JewelryLightbox({
           <ChevronRight size={20} />
         </button>
       </div>
-      
+
       {/* Hidden images for preloading */}
       <div className="hidden">
         {nextPhoto && (
@@ -255,7 +255,7 @@ function LightboxImage({
         height={height}
         className={cn(
           "h-full w-full object-contain transition-opacity duration-300",
-          isLoading ? "opacity-0" : "opacity-100",
+          isLoading ? "opacity-0" : "opacity-100"
         )}
         quality={90}
         priority

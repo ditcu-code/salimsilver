@@ -68,40 +68,40 @@ export default function Footer() {
 
   return (
     <motion.footer
-      className="bg-background border-t border-border py-12 px-4 md:px-8"
+      className="bg-background border-border border-t px-4 py-12 md:px-8"
       {...motionSettings}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-4">
         <AnimatedSection className="md:col-span-2">
-          <div className="mb-6 flex flex-col w-fit">
-            <Link href="/" className="font-display text-3xl font-semibold text-foreground">
+          <div className="mb-6 flex w-fit flex-col">
+            <Link href="/" className="font-display text-foreground text-3xl font-semibold">
               <Image
                 src="/images/logo-salimsilver.webp"
                 alt="Salim Silver"
                 width={200}
                 height={40}
-                className="h-12 object-contain dark:invert-0 invert"
+                className="h-12 object-contain invert dark:invert-0"
                 style={{ width: "auto" }}
                 loading="eager"
               />
             </Link>
-            <span className="text-[0.7rem] text-muted-foreground self-end -mt-2 mr-2">
+            <span className="text-muted-foreground -mt-2 mr-2 self-end text-[0.7rem]">
               Heritage Forged by Hand
             </span>
           </div>
-          <p className="mb-6 max-w-md text-md text-muted-foreground">
+          <p className="text-md text-muted-foreground mb-6 max-w-md">
             Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
           </p>
         </AnimatedSection>
 
         <AnimatedSection>
           <h3 className="section-title mb-2 text-2xl">Quick Links</h3>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-1">
+          <ul className="grid grid-cols-1 gap-1 md:grid-cols-2">
             {quickLinks.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-primary whitespace-nowrap"
+                  className="text-muted-foreground hover:text-primary text-sm whitespace-nowrap transition-colors"
                 >
                   {label}
                 </Link>
@@ -112,16 +112,16 @@ export default function Footer() {
 
         <AnimatedSection>
           <h3 className="section-title mb-2 text-2xl">Contact</h3>
-          <ul className="space-y-2 text-muted-foreground">
+          <ul className="text-muted-foreground space-y-2">
             {contactLinks.map(({ label, href, display }) => (
               <li key={label}>
                 <h4 className="text-primary">{label}</h4>
                 {label === "Email" ? (
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-muted-foreground text-sm">
                     <ObfuscatedEmail user="hello" domain="salimsilver.com" />
                   </div>
                 ) : (
-                  <a href={href} className="text-sm text-muted-foreground">
+                  <a href={href} className="text-muted-foreground text-sm">
                     <p>{display}</p>
                   </a>
                 )}
@@ -138,7 +138,7 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground transition-colors hover:text-primary"
+                  className="text-foreground hover:text-primary transition-colors"
                   aria-label={label}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -152,8 +152,8 @@ export default function Footer() {
         </AnimatedSection>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-8 flex flex-row items-center justify-between gap-4">
-        <motion.p className="text-sm text-muted-foreground" {...motionSettings}>
+      <div className="border-border mx-auto mt-12 flex max-w-7xl flex-row items-center justify-between gap-4 border-t pt-8">
+        <motion.p className="text-muted-foreground text-sm" {...motionSettings}>
           © {new Date().getFullYear()} Salim Silver. <br className="md:hidden" /> All rights
           reserved.
         </motion.p>

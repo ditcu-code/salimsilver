@@ -16,13 +16,13 @@ export default function HeroSection() {
       />
       <div className="absolute inset-0 bg-black/50" />
       <motion.div
-        className="absolute inset-0 flex flex-col justify-center items-center text-center p-4"
+        className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-4xl md:text-5xl text-white mb-4 font-display">Our Story</h1>
-        <p className="text-white/90 text-lg max-w-2xl">Crafting timeless elegance since 1930</p>
+        <h1 className="font-display mb-4 text-4xl text-white md:text-5xl">Our Story</h1>
+        <p className="max-w-2xl text-lg text-white/90">Crafting timeless elegance since 1930</p>
       </motion.div>
     </section>
   )

@@ -1,11 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton"
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table"
 
 interface AdminTableSkeletonProps {
@@ -13,10 +13,7 @@ interface AdminTableSkeletonProps {
   rowCount?: number
 }
 
-export function AdminTableSkeleton({ 
-  columnCount, 
-  rowCount = 5 
-}: AdminTableSkeletonProps) {
+export function AdminTableSkeleton({ columnCount, rowCount = 5 }: AdminTableSkeletonProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -24,7 +21,7 @@ export function AdminTableSkeleton({
         <Skeleton className="h-10 w-28" />
       </div>
 
-      <div className="border rounded-md">
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>

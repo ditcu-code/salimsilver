@@ -25,7 +25,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     if (item) {
       const title = `${item.title} - Salim Silver`
       const description = item.description || "Handcrafted silver jewelry from Salim Silver."
-      const images = (item.images && item.images.length > 0) ? [item.images[0].src] : []
+      const images = item.images && item.images.length > 0 ? [item.images[0].src] : []
 
       return {
         title,
@@ -107,13 +107,14 @@ export default async function CollectionPage({ params, searchParams }: Props) {
             image: collection.coverImage ? [collection.coverImage] : [],
             mainEntity: {
               "@type": "ItemList",
-              itemListElement: collection.jewelryList?.map((item, index) => ({
-                "@type": "ListItem",
-                position: index + 1,
-                url: `${BASE_URL}/catalog?jewelry=${item.slug}`,
-                name: item.title,
-                image: item.coverImage,
-              })) || [],
+              itemListElement:
+                collection.jewelryList?.map((item, index) => ({
+                  "@type": "ListItem",
+                  position: index + 1,
+                  url: `${BASE_URL}/catalog?jewelry=${item.slug}`,
+                  name: item.title,
+                  image: item.coverImage,
+                })) || [],
             },
           }),
         }}
@@ -121,4 +122,3 @@ export default async function CollectionPage({ params, searchParams }: Props) {
     </>
   )
 }
-

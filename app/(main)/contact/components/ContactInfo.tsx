@@ -14,14 +14,14 @@ export default function ContactInfo() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <h1 className="text-4xl md:text-5xl mb-6 font-display">Get in Touch</h1>
+      <h1 className="font-display mb-6 text-4xl md:text-5xl">Get in Touch</h1>
       <p className="text-muted-foreground mb-8 max-w-md">
         Whether you have a question about a piece, want to discuss a custom design, or just want to
         say hello, we are here to help.
       </p>
 
       <motion.div
-        className="space-y-6 mb-8"
+        className="mb-8 space-y-6"
         initial="hidden"
         animate="visible"
         variants={{
@@ -64,11 +64,19 @@ export default function ContactInfo() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6 }}
       >
-        <h3 className="text-xl mb-4 font-display">Follow Us</h3>
+        <h3 className="font-display mb-4 text-xl">Follow Us</h3>
         <div className="flex flex-wrap gap-1">
           {[
-            { icon: <Facebook size={26} />, label: "Facebook", href: "https://web.facebook.com/SalimSilverArt" },
-            { icon: <Instagram size={26} />, label: "Instagram", href: "https://www.instagram.com/salimsilverofficial/" },
+            {
+              icon: <Facebook size={26} />,
+              label: "Facebook",
+              href: "https://web.facebook.com/SalimSilverArt",
+            },
+            {
+              icon: <Instagram size={26} />,
+              label: "Instagram",
+              href: "https://www.instagram.com/salimsilverofficial/",
+            },
             { icon: <WhatsApp size={26} />, label: "WhatsApp", href: "/api/whatsapp" },
           ].map((item) => (
             <motion.a
@@ -76,7 +84,7 @@ export default function ContactInfo() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-primary-secondary rounded-full transition-colors hover:bg-primary hover:text-primary-foreground"
+              className="bg-primary-secondary hover:bg-primary hover:text-primary-foreground rounded-full p-3 transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description:
       "Meet Salim Silver: artisans crafting Javanese-inspired silver jewelry in Kotagede. Discover our heritage, values, and craftsmanship.",
     url: `${BASE_URL}/about`,
-    siteName: "Salim Silver"
+    siteName: "Salim Silver",
   },
   twitter: {
     card: "summary_large_image",

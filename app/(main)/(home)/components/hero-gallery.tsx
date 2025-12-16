@@ -22,31 +22,25 @@ function FullBentoCell({ children, className }: { children: ReactNode; className
   )
 }
 
-
-
 export function HeroGallery() {
-  const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  )
+  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }))
 
   return (
-    <div className="relative w-full overflow-hidden bg-linear-to-br from-background via-secondary/30 to-background pt-24 pb-12 px-4 md:px-8">
+    <div className="from-background via-secondary/30 to-background relative w-full overflow-hidden bg-linear-to-br px-4 pt-24 pb-12 md:px-8">
       {/* Desktop View */}
-      <BentoGrid variant="hero" className="h-full w-full gap-4 md:gap-6 hidden md:grid">
+      <BentoGrid variant="hero" className="hidden h-full w-full gap-4 md:grid md:gap-6">
         {/* ... existing desktop content ... */}
         {/* Cell 1: Title and Text (Top Left) */}
-        <FullBentoCell className="flex flex-col justify-center items-start p-8 md:p-12 bg-background rounded-3xl">
-          <div
-            className="w-full"
-          >
-            <h1 className="font-display text-2xl md:text-4xl lg:text-5xl leading-[0.9] tracking-tight mb-4 text-foreground">
+        <FullBentoCell className="bg-background flex flex-col items-start justify-center rounded-3xl p-8 md:p-12">
+          <div className="w-full">
+            <h1 className="font-display text-foreground mb-4 text-2xl leading-[0.9] tracking-tight md:text-4xl lg:text-5xl">
               Handcrafted silver jewelry that tells a story of elegance and tradition.
             </h1>
           </div>
         </FullBentoCell>
 
         {/* Cell 2: Large Portrait Image (Right) */}
-        <FullBentoCell className="relative overflow-hidden rounded-3xl h-full min-h-[400px]">
+        <FullBentoCell className="relative h-full min-h-[400px] overflow-hidden rounded-3xl">
           <Image
             src="/images/jono-setting-filigree.webp"
             alt="Artisan creating intricate silver filigree"
@@ -59,7 +53,7 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 3: Portrait Image (Bottom Left) */}
-        <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px]">
+        <FullBentoCell className="relative min-h-[300px] overflow-hidden rounded-3xl">
           <Image
             src={`${SUPABASE_CATALOG_URL}/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.webp`}
             alt="Hand carved silver floral relief cuff bracelet"
@@ -70,8 +64,8 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 4: Landscape/Text Cell (Bottom Middle) */}
-        <FullBentoCell className="relative overflow-hidden rounded-3xl min-h-[300px] bg-secondary flex flex-col justify-between p-6 items-end">
-          <div className="relative w-full h-43 rounded-2xl overflow-hidden mb-4">
+        <FullBentoCell className="bg-secondary relative flex min-h-[300px] flex-col items-end justify-between overflow-hidden rounded-3xl p-6">
+          <div className="relative mb-4 h-43 w-full overflow-hidden rounded-2xl">
             <Image
               src={`${SUPABASE_CATALOG_URL}/silver-pagoda-ring-pearl-salimsilver.webp`}
               alt="Silver pagoda ring with pearl"
@@ -80,7 +74,7 @@ export function HeroGallery() {
               className="object-cover object-center"
             />
           </div>
-          <div className="text-sm md:text-base text-right text-primary max-w-[200px]">
+          <div className="text-primary max-w-[200px] text-right text-sm md:text-base">
             Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
             elegance.
           </div>
@@ -88,17 +82,15 @@ export function HeroGallery() {
       </BentoGrid>
 
       {/* Mobile View */}
-      <div className="md:hidden flex flex-col gap-6">
-        <div
-          className="w-full text-center"
-        >
-          <h1 className="font-display text-3xl leading-[0.9] tracking-tight my-12 px-6 text-foreground">
+      <div className="flex flex-col gap-6 md:hidden">
+        <div className="w-full text-center">
+          <h1 className="font-display text-foreground my-12 px-6 text-3xl leading-[0.9] tracking-tight">
             Handcrafted silver jewelry that tells a story of elegance and tradition.
           </h1>
         </div>
 
         <Carousel
-          className="w-full max-w-xs mx-auto"
+          className="mx-auto w-full max-w-xs"
           opts={{ loop: true }}
           plugins={[plugin.current]}
           onMouseEnter={plugin.current.stop}
@@ -128,7 +120,7 @@ export function HeroGallery() {
               </div>
             </CarouselItem>
             <CarouselItem>
-               <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
+              <div className="relative aspect-3/4 w-full overflow-hidden rounded-3xl">
                 <Image
                   src={`${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`}
                   alt="Silver hibiscus locket with purple stone pendant"
@@ -139,15 +131,15 @@ export function HeroGallery() {
               </div>
             </CarouselItem>
           </CarouselContent>
-          <div className="flex justify-center mt-4 gap-1">
-             {/* Custom dots or indicators could go here if needed, but standard Carousel might have them or we can rely on swipe */}
+          <div className="mt-4 flex justify-center gap-1">
+            {/* Custom dots or indicators could go here if needed, but standard Carousel might have them or we can rely on swipe */}
           </div>
         </Carousel>
-        
-         <div className="text-sm text-center text-primary px-4">
-            Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
-            elegance.
-          </div>
+
+        <div className="text-primary px-4 text-center text-sm">
+          Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
+          elegance.
+        </div>
       </div>
     </div>
   )

@@ -13,10 +13,7 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
   const collection = await getCollection(slug)
 
   if (!collection) {
-    return await generateOgImage(
-      "Salim Silver",
-      "Handcrafted Javanese Jewelry"
-    )
+    return await generateOgImage("Salim Silver", "Handcrafted Javanese Jewelry")
   }
 
   return await generateOgImage(

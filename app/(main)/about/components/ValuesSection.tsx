@@ -4,10 +4,10 @@ import { motion } from "framer-motion"
 
 export default function ValuesSection() {
   return (
-    <section className="py-16 px-4 md:px-8">
-      <div className="max-w-5xl mx-auto">
+    <section className="px-4 py-16 md:px-8">
+      <div className="mx-auto max-w-5xl">
         <motion.h2
-          className="text-3xl md:text-4xl mb-8 text-center font-display"
+          className="font-display mb-8 text-center text-3xl md:text-4xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -15,7 +15,7 @@ export default function ValuesSection() {
         >
           Our Values
         </motion.h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-3">
           {[
             {
               title: "Tradition",
@@ -35,14 +35,14 @@ export default function ValuesSection() {
           ].map((item, index) => (
             <motion.div
               key={item.title}
-              className="text-primary dark:text-primary-secondary bg-primary-secondary dark:bg-primary p-8 rounded-3xl shadow-sm"
+              className="text-primary dark:text-primary-secondary bg-primary-secondary dark:bg-primary rounded-3xl p-8 shadow-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <h3 className="text-primary-secondary dark:text-primary-foreground text-2xl mb-4">
+              <h3 className="text-primary-secondary dark:text-primary-foreground mb-4 text-2xl">
                 {item.title}
               </h3>
               <p className="text-primary-secondary dark:text-primary-foreground">

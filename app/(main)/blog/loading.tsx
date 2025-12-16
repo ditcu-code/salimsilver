@@ -4,36 +4,36 @@ export default function BlogLoading() {
   return (
     <div>
       {/* Featured Hero Loading */}
-      <div className="relative w-full mb-16 md:mb-24">
-        <div className="grid md:grid-cols-12 gap-6 items-center">
+      <div className="relative mb-16 w-full md:mb-24">
+        <div className="grid items-center gap-6 md:grid-cols-12">
           {/* Image Side */}
-          <div className="md:col-span-7 lg:col-span-8 relative aspect-4/3 md:aspect-video overflow-hidden rounded-lg">
-            <Skeleton className="w-full h-full" />
+          <div className="relative aspect-4/3 overflow-hidden rounded-lg md:col-span-7 md:aspect-video lg:col-span-8">
+            <Skeleton className="h-full w-full" />
           </div>
 
           {/* Text Side */}
-          <div className="md:col-span-5 lg:col-span-4 flex flex-col justify-center space-y-4 md:pl-6">
-            <Skeleton className="w-24 h-4" /> {/* Tag */}
-            <Skeleton className="w-3/4 h-12" /> {/* Title */}
-            <Skeleton className="w-full h-24" /> {/* Excerpt */}
-            <Skeleton className="w-32 h-6" /> {/* Read More */}
+          <div className="flex flex-col justify-center space-y-4 md:col-span-5 md:pl-6 lg:col-span-4">
+            <Skeleton className="h-4 w-24" /> {/* Tag */}
+            <Skeleton className="h-12 w-3/4" /> {/* Title */}
+            <Skeleton className="h-24 w-full" /> {/* Excerpt */}
+            <Skeleton className="h-6 w-32" /> {/* Read More */}
           </div>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="border-t border-border/40 my-16" />
+      <div className="border-border/40 my-16 border-t" />
 
       {/* Grid Loading */}
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="flex flex-col space-y-3">
-            <div className="aspect-4/3 relative overflow-hidden rounded-md mb-4">
-              <Skeleton className="w-full h-full" />
+            <div className="relative mb-4 aspect-4/3 overflow-hidden rounded-md">
+              <Skeleton className="h-full w-full" />
             </div>
-            <Skeleton className="w-20 h-3" /> {/* Date */}
-            <Skeleton className="w-full h-8" /> {/* Title */}
-            <Skeleton className="w-full h-16" /> {/* Excerpt */}
+            <Skeleton className="h-3 w-20" /> {/* Date */}
+            <Skeleton className="h-8 w-full" /> {/* Title */}
+            <Skeleton className="h-16 w-full" /> {/* Excerpt */}
           </div>
         ))}
       </div>
