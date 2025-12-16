@@ -37,6 +37,8 @@ export interface Jewelry {
   images?: JewelryImage[]
   /** Helper to easily get the main cover image URL */
   coverImage?: string
+  /** ID of the user who created this item */
+  createdBy?: string
 }
 
 export interface JewelryImage {
@@ -44,6 +46,7 @@ export interface JewelryImage {
   jewelryId: string
   src: string
   displayOrder: number
+  createdBy?: string
 }
 
 /**
@@ -71,6 +74,8 @@ export interface Collection {
 
   /** List of jewelry items in the collection (optional, if fetched) */
   jewelryList?: Jewelry[]
+  /** ID of the user who created this collection */
+  createdBy?: string
 }
 
 /**
@@ -120,4 +125,14 @@ export interface Post {
   tags?: string[]
   /** Whether the post is featured on the blog homepage */
   featured?: boolean
+}
+
+export interface User {
+  id: string
+  fullName: string
+  avatarUrl?: string
+  email?: string
+  role: "admin" | "customer"
+  createdAt: string
+  updatedAt: string
 }

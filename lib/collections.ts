@@ -103,8 +103,10 @@ export async function getAllCollections(): Promise<Collection[]> {
             jewelryId: item.id,
             src: img.src,
             displayOrder: img.display_order,
+            createdBy: img.created_by,
           })),
           coverImage: cover,
+          createdBy: item.created_by,
         }
       })
 
@@ -117,6 +119,7 @@ export async function getAllCollections(): Promise<Collection[]> {
       coverImageId: col.cover_image_id,
       coverImage: coverImagesMap[col.cover_image_id] || "",
       jewelryList: colJewelry,
+      createdBy: col.created_by,
     }
   })
 }
@@ -242,8 +245,10 @@ export async function getCollection(slug: string): Promise<Collection | undefine
           jewelryId: item.id,
           src: img.src,
           displayOrder: img.display_order,
+          createdBy: img.created_by,
         })),
         coverImage: itemCover,
+        createdBy: item.created_by,
       }
     })
   }
@@ -257,6 +262,7 @@ export async function getCollection(slug: string): Promise<Collection | undefine
     coverImageId: collection.cover_image_id,
     coverImage: coverImage,
     jewelryList: mappedJewelry,
+    createdBy: collection.created_by,
   }
 }
 
@@ -281,6 +287,7 @@ export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefine
     jewelryId: item.id,
     src: img.src,
     displayOrder: img.display_order,
+    createdBy: img.created_by,
   }))
 
   const cover = itemImages[0]?.src || ""
@@ -300,5 +307,6 @@ export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefine
     variants: item.variants,
     images: itemImages,
     coverImage: cover,
+    createdBy: item.created_by,
   }
 }
