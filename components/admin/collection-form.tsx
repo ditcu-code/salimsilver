@@ -1,14 +1,13 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { createCollection, updateCollection } from "@/lib/actions/admin"
-import { Loader2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
+import { SubmitButton } from "../features/submit-button"
 import { CoverImageSelector } from "./cover-image-selector"
 
 interface CollectionFormProps {
@@ -86,10 +85,11 @@ export function CollectionForm({ initialData }: CollectionFormProps) {
           <Label htmlFor="featured">Featured Collection</Label>
         </div>
 
-        <Button type="submit" disabled={isSaving}>
-          {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isEditing ? "Save Changes" : "Create Collection"}
-        </Button>
+        <SubmitButton
+          isLoading={isSaving}
+          text={isEditing ? "Save Changes" : "Create Collection"}
+          loadingText={isEditing ? "Saving..." : "Creating..."}
+        />
       </form>
 
       {isEditing && (

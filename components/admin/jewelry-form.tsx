@@ -1,6 +1,5 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -12,10 +11,10 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { createJewelry, updateJewelry } from "@/lib/actions/admin"
-import { Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "sonner"
+import { SubmitButton } from "../features/submit-button"
 import { ImageUpload } from "./image-upload"
 
 interface JewelryFormProps {
@@ -162,10 +161,11 @@ export function JewelryForm({ initialData, collections }: JewelryFormProps) {
           </div>
         </div>
 
-        <Button type="submit" disabled={isSaving}>
-          {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isEditing ? "Save Changes" : "Create Jewelry"}
-        </Button>
+        <SubmitButton
+          isLoading={isSaving}
+          text={isEditing ? "Save Changes" : "Create Jewelry"}
+          loadingText={isEditing ? "Saving..." : "Creating..."}
+        />
       </form>
 
       {isEditing && (

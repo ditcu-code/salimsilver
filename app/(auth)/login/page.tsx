@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/components/features/submit-button"
 import {
   Card,
   CardContent,
@@ -39,7 +39,7 @@ export default async function LoginPage(props: { searchParams: Promise<{ error?:
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">Sign in</Button>
+            <SubmitButton className="w-full" text="Sign in" loadingText="Signing in..." />
           </CardFooter>
         </form>
       </Card>

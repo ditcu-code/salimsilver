@@ -1,5 +1,6 @@
 "use client"
 
+import { SubmitButton } from "@/components/features/submit-button"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -241,10 +242,11 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
               {published ? "Published" : "Draft"}
             </Label>
           </div>
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {isEditing ? "Save Changes" : "Create Post"}
-          </Button>
+          <SubmitButton
+            isLoading={isSubmitting}
+            text={isEditing ? "Save Changes" : "Create Post"}
+            loadingText={isEditing ? "Saving..." : "Creating..."}
+          />
         </div>
       </div>
 
