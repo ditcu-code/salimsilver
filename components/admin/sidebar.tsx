@@ -1,12 +1,16 @@
 "use client"
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { logout } from "@/lib/actions/auth"
+import { createClient } from "@/lib/supabase/client"
+import { User } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { BookOpen, Diamond, FolderOpen, LayoutDashboard, LogOut } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 const sidebarItems = [
   {
@@ -33,6 +37,37 @@ const sidebarItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname()
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    async function getUser() {
+      const supabase = createClient()
+      const {
+        data: { user: authUser },
+      } = await supabase.auth.getUser()
+
+      if (authUser) {
+        const { data: profile } = await supabase
+          .from("users")
+          .select("*")
+          .eq("id", authUser.id)
+          .single()
+
+        if (profile) {
+          setUser({
+            id: profile.id,
+            fullName: profile.full_name,
+            email: profile.email,
+            avatarUrl: profile.avatar_url,
+            role: profile.role,
+            createdAt: profile.created_at,
+            updatedAt: profile.updated_at,
+          })
+        }
+      }
+    }
+    getUser()
+  }, [])
 
   return (
     <div className="bg-muted/40 flex h-full flex-col border-r">
@@ -61,7 +96,20 @@ export function AdminSidebar() {
           </Link>
         ))}
       </div>
-      <div className="border-t p-4">
+
+      <div className="space-y-4 border-t p-4">
+        {user && (
+          <div className="flex items-center gap-3 px-2">
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={user.avatarUrl} alt={user.fullName} />
+              <AvatarFallback>{user.fullName?.[0] || "U"}</AvatarFallback>
+            </Avatar>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-medium">{user.fullName}</p>
+              <p className="text-muted-foreground truncate text-xs">{user.email}</p>
+            </div>
+          </div>
+        )}
         <form action={logout}>
           <Button
             variant="ghost"
