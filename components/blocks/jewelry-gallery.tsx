@@ -229,6 +229,7 @@ function JewelryGalleryContent({ jewelryList, className }: JewelryGalleryProps) 
           className="object-cover"
           quality={85}
           onError={onError}
+          priority={index < 3}
         />
       </motion.div>
     ),
