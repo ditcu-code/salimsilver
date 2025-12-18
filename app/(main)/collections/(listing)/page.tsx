@@ -28,14 +28,11 @@ export const metadata: Metadata = {
   },
 }
 
-import CollectionsHeader from "./components/CollectionsHeader"
-
 export default async function CollectionsPage() {
   const collections = await getAllCollections()
 
   return (
     <>
-      <CollectionsHeader />
       <div className="mx-auto max-w-7xl">
         <FeaturedCollections collections={collections} />
       </div>
