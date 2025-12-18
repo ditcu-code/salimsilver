@@ -63,9 +63,9 @@ export function HeroGallery() {
           />
         </FullBentoCell>
 
-        {/* Cell 4: Landscape/Text Cell (Bottom Middle) */}
-        <FullBentoCell className="bg-secondary relative flex min-h-[300px] flex-col items-end justify-between overflow-hidden rounded-3xl p-6">
-          <div className="relative mb-4 h-43 w-full overflow-hidden rounded-2xl">
+        {/* Cell 4: Image and Text (Bottom Middle) */}
+        <div className="flex flex-col gap-4 md:gap-6">
+          <FullBentoCell className="relative min-h-[200px] flex-1 overflow-hidden rounded-3xl">
             <Image
               src={`${SUPABASE_CATALOG_URL}/silver-pagoda-ring-pearl-salimsilver.webp`}
               alt="Silver pagoda ring with pearl"
@@ -73,12 +73,16 @@ export function HeroGallery() {
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover object-center"
             />
-          </div>
-          <div className="text-primary max-w-[200px] text-right text-sm md:text-base">
-            Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
-            elegance.
-          </div>
-        </FullBentoCell>
+          </FullBentoCell>
+
+          {/* Cell 5: Text (Bottom Right) */}
+          <FullBentoCell className="bg-secondary flex min-h-[110px] flex-1 items-center justify-center rounded-3xl p-6">
+            <div className="text-primary text-center text-sm md:text-base">
+              Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
+              elegance.
+            </div>
+          </FullBentoCell>
+        </div>
       </BentoGrid>
 
       {/* Mobile View */}
