@@ -97,9 +97,9 @@ function HeroMobile() {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }))
 
   return (
-    <div className="flex flex-col gap-6 md:hidden">
+    <div className="flex h-full flex-col justify-evenly gap-4 md:hidden">
       <div className="w-full text-center">
-        <h1 className="font-display text-foreground my-12 px-6 text-3xl leading-[0.9] tracking-tight">
+        <h1 className="font-display text-foreground px-6 text-3xl leading-[0.9] tracking-tight">
           {CONTENT.title}.
         </h1>
       </div>
@@ -156,7 +156,7 @@ function HeroMobile() {
 
 export function HeroGallery() {
   return (
-    <div className="from-background via-secondary/80 to-background relative w-full overflow-hidden bg-linear-to-tl px-4 pt-24 pb-12 md:h-screen md:px-8">
+    <div className="from-background via-secondary/80 to-background relative h-dvh w-full overflow-hidden bg-linear-to-tl px-4 pt-24 pb-12 md:px-8">
       <HeroDesktop />
       <HeroMobile />
     </div>
