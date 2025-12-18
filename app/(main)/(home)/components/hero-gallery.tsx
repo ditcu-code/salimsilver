@@ -26,10 +26,9 @@ export function HeroGallery() {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }))
 
   return (
-    <div className="from-background via-secondary/80 to-background relative w-full overflow-hidden bg-linear-to-tl px-4 pt-24 pb-12 md:px-8">
+    <div className="from-background via-secondary/80 to-background relative w-full overflow-hidden bg-linear-to-tl px-4 pt-24 pb-12 md:h-screen md:px-8">
       {/* Desktop View */}
       <BentoGrid variant="hero" className="hidden h-full w-full gap-4 md:grid md:gap-6">
-        {/* ... existing desktop content ... */}
         {/* Cell 1: Title and Text (Top Left) */}
         <FullBentoCell className="bg-background flex flex-col items-start justify-center rounded-3xl p-8 md:p-12">
           <div className="w-full">
@@ -40,7 +39,7 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 2: Large Portrait Image (Right) */}
-        <FullBentoCell className="relative h-full min-h-[400px] overflow-hidden rounded-3xl">
+        <FullBentoCell className="relative h-full overflow-hidden rounded-3xl">
           <Image
             src="/images/jono-setting-filigree.webp"
             alt="Artisan creating intricate silver filigree"
@@ -53,7 +52,7 @@ export function HeroGallery() {
         </FullBentoCell>
 
         {/* Cell 3: Portrait Image (Bottom Left) */}
-        <FullBentoCell className="relative min-h-[300px] overflow-hidden rounded-3xl">
+        <FullBentoCell className="relative h-full overflow-hidden rounded-3xl">
           <Image
             src={`${SUPABASE_CATALOG_URL}/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.webp`}
             alt="Hand carved silver floral relief cuff bracelet"
@@ -65,7 +64,7 @@ export function HeroGallery() {
 
         {/* Cell 4: Image and Text (Bottom Middle) */}
         <div className="flex flex-col gap-4 md:gap-6">
-          <FullBentoCell className="relative min-h-[200px] flex-1 overflow-hidden rounded-3xl">
+          <FullBentoCell className="relative flex-2 overflow-hidden rounded-3xl">
             <Image
               src={`${SUPABASE_CATALOG_URL}/silver-pagoda-ring-pearl-salimsilver.webp`}
               alt="Silver pagoda ring with pearl"
@@ -76,7 +75,7 @@ export function HeroGallery() {
           </FullBentoCell>
 
           {/* Cell 5: Text (Bottom Right) */}
-          <FullBentoCell className="bg-secondary flex min-h-[110px] flex-1 items-center justify-center rounded-3xl p-6">
+          <FullBentoCell className="bg-secondary flex flex-1 items-center justify-center rounded-3xl px-6">
             <div className="text-primary text-center text-sm md:text-base">
               Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern
               elegance.
