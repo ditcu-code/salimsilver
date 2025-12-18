@@ -29,7 +29,7 @@ export default function WorkshopPage() {
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-neutral-300 md:text-xl">
             Experience the art of Javanese silversmithing. Create your own masterpiece in the heart
-            of Kotagede.
+            of Kotagede directly solely with the master.
           </p>
         </div>
       </section>
@@ -40,23 +40,23 @@ export default function WorkshopPage() {
           <div className="space-y-12">
             <div>
               <h2 className="mb-3 font-serif text-3xl leading-none font-bold text-neutral-900 dark:text-neutral-50">
-                Alur Kegiatan Workshop
+                How It Works
               </h2>
               <p className="mb-8 text-neutral-600 dark:text-neutral-400">
-                Temukan proses pembuatan perhiasan perak tradisional melalui 7 tahapan komprehensif.
-                Durasi workshop disesuaikan dengan sesi yang Anda pilih.
+                Discover the 7 steps of creating traditional silver jewelry with us. The duration is
+                flexible, depending on the session you choose.
               </p>
               <WorkshopSteps />
             </div>
 
             <div className="rounded-2xl bg-neutral-100 p-8 dark:bg-neutral-900">
-              <h3 className="mb-4 font-serif text-xl font-bold">Informasi Penting</h3>
+              <h3 className="mb-4 font-serif text-2xl font-bold">Important Notes</h3>
               <ul className="list-inside list-disc space-y-2 text-neutral-600 dark:text-neutral-400">
-                <li>Buka Senin - Sabtu</li>
-                <li>Sesi Pagi: 08:30 - 11:30</li>
-                <li>Sesi Siang: 12:30 - 15:30</li>
-                <li>Harga termasuk bahan perak hingga 5 gram</li>
-                <li>Peralatan lengkap disediakan</li>
+                <li>Open Mon - Sat</li>
+                <li>Morning Session: 08:30 - 11:30</li>
+                <li>Afternoon Session: 12:30 - 15:30</li>
+                <li>Price includes silver up to 5 grams</li>
+                <li>Full equipment provided</li>
               </ul>
             </div>
           </div>
@@ -64,9 +64,9 @@ export default function WorkshopPage() {
           {/* Right Column: Registration Form */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <div className="mb-8 lg:hidden">
-              <h2 className="mb-4 font-serif text-3xl font-bold">Mulai Sekarang</h2>
+              <h2 className="mb-4 font-serif text-3xl font-bold">Start Now</h2>
               <p className="text-neutral-600 dark:text-neutral-400">
-                Amankan slot Anda untuk pengalaman tak terlupakan ini.
+                Secure your slot for an unforgettable experience.
               </p>
             </div>
             <RegistrationForm />

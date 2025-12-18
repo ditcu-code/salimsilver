@@ -11,55 +11,61 @@ interface Step {
 const steps: Step[] = [
   {
     id: 1,
-    title: "Pendaftaran dan Penjadwalan",
-    description:
-      "Peserta melakukan pendaftaran awal untuk menentukan tanggal dan waktu pelaksanaan workshop yang diinginkan.",
+    title: "Reservation & Scheduling",
+    description: "Secure your workshop slot via our online reservation.",
     image: "/images/workshop-steps/step-1.webp",
   },
   {
     id: 2,
-    title: "Konsultasi dan Pemilihan Desain",
+    title: "Design Exploration",
     description:
-      "Tentukan desain cincin Anda. Anda boleh membawa desain sendiri atau memilih dari koleksi desain Salim Silver.",
+      "Pour your creativity into a real sketch. You're free to bring your own design or adapt from Salim Silver's classic motifs.",
     image: "/images/workshop-steps/step-2.webp",
   },
   {
     id: 3,
-    title: "Pengukuran",
-    description: "Proses pengukuran lingkar jari untuk memastikan cincin pas dan nyaman dipakai.",
+    title: "Precision Measurement",
+    description:
+      "Time to measure your finger size accurately, ensuring your handmade ring fits comfortably.",
     image: "/images/workshop-steps/step-3.webp",
   },
   {
     id: 4,
-    title: "Proses Repoussé (Pengukiran)",
-    description: "Tahap inti teknik repoussé yang terdiri dari 5 langkah spesifik:",
+    title: "The Art of Engraving (Repoussé)",
+    description:
+      "Dive into the signature Kotagede metal engraving technique. You'll learn 5 detailed stages with our experts:",
     details: [
-      "Rancapan Awal: Mengukir sketsa motif",
-      "Wudulan: Menciptakan volume (3D)",
-      "Rancapan Akhir: Memperjelas detail",
-      "Pengusapan: Menghaluskan motif",
-      "Tatasan: Melubangi dan memotong",
+      "Initial Sketch: Etching the basic motif outline",
+      "Embossing (Wudulan): Creating 3D volume from the back",
+      "Detailing: Sharpening details and texture",
+      "Smoothing: Refining the relief surface",
+      "Cutout (Tatasan): Piercing technique to enhance the silhouette",
     ],
     image: "/images/workshop-steps/step-4.webp",
   },
   {
     id: 5,
-    title: "Pematrian (Penyambungan)",
+    title: "Soldering",
     description:
-      "Penyambungan logam untuk membentuk cincin. Dapat dilakukan sendiri dengan pengawasan ahli.",
+      "Joining the silver sheet into a complete ring form. You can do it yourself or let our experts help you.",
     image: "/images/workshop-steps/step-5.webp",
   },
   {
     id: 6,
-    title: "Finishing (Pemolesan)",
-    description: "Menyempurnakan tampilan cincin:",
-    details: ["Pengamplasan", "Pemolesan", "Oksidasi (Penghitaman motif)"],
+    title: "Finishing Touches",
+    description:
+      "Make your creation shine. This process determines the final luster and character of your jewelry:",
+    details: [
+      "Sanding for a smooth surface",
+      "Polishing for maximum shine",
+      "Oxidation (optional) for an elegant antique look",
+    ],
     image: "/images/workshop-steps/step-6.webp",
   },
   {
     id: 7,
-    title: "Administrasi",
-    description: "Penyelesaian administrasi. Paket mencakup perak hingga 5 gram.",
+    title: "It's a Wrap!",
+    description: "Your handmade silver ring is ready to wear and take home.",
     image: "/images/workshop-steps/step-7.webp",
   },
 ]
