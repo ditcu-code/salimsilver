@@ -1,5 +1,6 @@
 "use client"
 
+import { WhatsApp } from "@/components/icons/whatsapp"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
@@ -284,7 +285,11 @@ Mohon info ketersediaannya.`
             className="w-full bg-[#25D366] text-white hover:bg-[#128C7E]"
             disabled={isPending}
           >
-            {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isPending ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <WhatsApp className="mr-2 h-4 w-4" />
+            )}
             Continue to WhatsApp
           </Button>
         </form>
