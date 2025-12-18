@@ -18,8 +18,9 @@ type NavItem = {
 const navigation: NavItem[] = [
   { name: "Catalog", href: "/catalog" },
   { name: "Collections", href: "/collections" },
+  { name: "Workshop", href: "/workshop" },
   { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  // { name: "Contact", href: "/contact" },
   { name: "Journal", href: "/blog" },
   { name: "Visit Us", href: "/store-location", mobileOnly: true },
 ]
@@ -156,7 +157,9 @@ function DesktopNavigation({
               className={cn(
                 "border-b border-transparent px-1 py-2 text-sm transition-colors",
                 baseTone,
-                isActive ? "text-primary border-primary/50 font-semibold" : "hover:text-primary/80"
+                isActive
+                  ? "text-primary border-primary/50 font-semibold"
+                  : "hover:text-primary/80 hover:scale-102"
               )}
             >
               {item.name}

@@ -22,6 +22,7 @@ const motionSettings = {
 const quickLinks = [
   { href: "/catalog", label: "Catalog" },
   { href: "/collections", label: "Collections" },
+  { href: "/workshop", label: "Workshop" },
   { href: "/store-location", label: "Store Location" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
