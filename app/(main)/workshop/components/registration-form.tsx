@@ -93,7 +93,7 @@ export function RegistrationForm() {
     startTransition(() => {
       // Construct WhatsApp Message
       const dateStr = format(values.date, "EEEE, d MMMM yyyy")
-      const sessionStr = values.session === "morning" ? "Pagi (08:30)" : "Siang (12:30)"
+      const sessionStr = values.session === "morning" ? "Morning (08:30)" : "Afternoon (12:30)"
       const count = values.participantType === "single" ? 1 : Math.max(2, values.participantCount)
       const priceStr = new Intl.NumberFormat("id-ID", {
         style: "currency",
@@ -101,16 +101,16 @@ export function RegistrationForm() {
         maximumFractionDigits: 0,
       }).format(totalPrice)
 
-      const message = `Halo Salim Silver,
+      const message = `Hello Salim Silver,
 
-Nama: ${values.name}
+Name: ${values.name}
 
-Saya ingin booking workshop silversmith:
-- Tanggal: ${dateStr}
-- Sesi: ${sessionStr}
-- Peserta: ${count} orang
+I would like to book a silversmith workshop:
+- Date: ${dateStr}
+- Session: ${sessionStr}
+- Participants: ${count} people
 
-Mohon info ketersediaannya.`
+Please let me know about the availability.`
 
       const encodedMessage = encodeURIComponent(message)
       const waUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`
@@ -157,7 +157,7 @@ Mohon info ketersediaannya.`
                     <DatePicker
                       selected={field.value}
                       onChange={(date: Date | null) => field.onChange(date)}
-                      dateFormat="MMMM d, yyyy"
+                      dateFormat="MMM d, yyyy"
                       minDate={new Date()}
                       filterDate={(date: Date) => date.getDay() !== 0}
                       customInput={<DatePickerCustomInput />}

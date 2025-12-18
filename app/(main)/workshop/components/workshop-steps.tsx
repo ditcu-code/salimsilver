@@ -78,8 +78,8 @@ export function WorkshopSteps() {
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-neutral-50 shadow-sm ring-4 ring-white dark:bg-neutral-50 dark:text-neutral-900 dark:ring-neutral-950">
             <span className="font-bold">{step.id}</span>
           </div>
-          <div className="flex-1 pb-4">
-            <h3 className="mb-2 text-xl leading-none font-medium">{step.title}</h3>
+          <div className="flex-1">
+            <h3 className="my-2 text-2xl leading-none font-semibold!">{step.title}</h3>
             <p className="mb-4 max-w-prose text-sm text-neutral-600 dark:text-neutral-400">
               {step.description}
             </p>

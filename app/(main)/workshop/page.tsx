@@ -43,8 +43,8 @@ export default function WorkshopPage() {
                 How It Works
               </h2>
               <p className="mb-8 text-neutral-600 dark:text-neutral-400">
-                Discover the 7 steps of creating traditional silver jewelry with us. The duration is
-                flexible, depending on the session you choose.
+                Embark on a three-hour creative journey where you'll master the seven fundamental
+                stages of traditional silver craftsmanship.
               </p>
               <WorkshopSteps />
             </div>
