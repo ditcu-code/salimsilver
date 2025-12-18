@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopSteps } from "./components/workshop-steps"
 
@@ -14,8 +15,13 @@ export default function WorkshopPage() {
       {/* Hero Section */}
       <section className="relative flex min-h-[50vh] flex-col justify-center bg-neutral-900 py-24 text-center text-neutral-50">
         <div className="absolute inset-0 z-0 overflow-hidden opacity-40">
-          {/* Placeholder for workshop hero image - using a pattern or abstract for now if no image is ready */}
-          <div className="h-full w-full bg-neutral-800" />
+          <Image
+            src="/images/tatah-cincin.webp"
+            alt="Menatah Cincin diatas Jabung"
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="mb-6 font-serif text-5xl font-bold tracking-tight md:text-6xl">
