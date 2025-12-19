@@ -1,12 +1,28 @@
 import type { Metadata } from "next"
+
+import { BASE_URL } from "@/lib/constants"
 import Image from "next/image"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopSteps } from "./components/workshop-steps"
 
 export const metadata: Metadata = {
-  title: "Silversmith Workshop - Salim Silver",
+  title: "Silversmith Jewelry Workshop in Kotagede, Yogyakarta",
   description:
-    "Join our hands-on silversmithing workshop in Kotagede, Yogyakarta. Create your own silver jewelry guided by master artisans.",
+    "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the 7 steps of creating traditional silver jewelry from master artisans.",
+  alternates: {
+    canonical: `${BASE_URL}/workshop`,
+  },
+  openGraph: {
+    title: "Silversmith Jewelry Workshop - Create Your Own Silver Jewelry",
+    description:
+      "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the 7 steps of creating traditional silver jewelry from master artisans.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Silversmith Jewelry Workshop - Create Your Own Silver Jewelry",
+    description:
+      "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the 7 steps of creating traditional silver jewelry from master artisans.",
+  },
 }
 
 export default function WorkshopPage() {

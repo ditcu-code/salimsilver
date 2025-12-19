@@ -1,6 +1,7 @@
 import BlogReadMore from "@/components/blocks/blog-read-more"
 import { ShareButton } from "@/components/features/share-button"
 import { getPostBySlug } from "@/lib/blog"
+import { BASE_URL } from "@/lib/constants"
 import { formatDate } from "@/lib/utils"
 import { ArrowLeft } from "lucide-react"
 import { Metadata } from "next"
@@ -27,9 +28,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: post.meta_title || post.title,
     description: post.meta_description || post.excerpt,
+    alternates: {
+      canonical: `${BASE_URL}/blog/${slug}`,
+    },
     openGraph: {
       title: post.meta_title || post.title,
       description: post.meta_description || post.excerpt,
+      url: `${BASE_URL}/blog/${slug}`,
       type: "article",
       publishedTime: post.published_at,
       images: post.cover_image_url ? [post.cover_image_url] : [],

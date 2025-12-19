@@ -92,8 +92,12 @@ const styles = {
   },
 } as const
 
-export async function generateOgImage(title: string, description: string) {
-  const bgPath = join(process.cwd(), "public/images/og-background.jpg")
+export async function generateOgImage(
+  title: string,
+  description: string,
+  imagePath: string = "public/images/og-background.jpg"
+) {
+  const bgPath = join(process.cwd(), imagePath)
   const bgBuffer = readFileSync(bgPath)
   const bgBase64 = `data:image/jpeg;base64,${bgBuffer.toString("base64")}`
 

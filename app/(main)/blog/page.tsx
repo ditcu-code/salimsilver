@@ -1,12 +1,30 @@
 import { BlogGrid } from "@/components/blocks/blog-grid"
 import { BlogHero } from "@/components/blocks/blog-hero"
 import { getAllPosts } from "@/lib/blog"
+import { BASE_URL } from "@/lib/constants"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Journal | Salim Silver",
   description:
     "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
+  alternates: {
+    canonical: `${BASE_URL}/blog`,
+  },
+  openGraph: {
+    type: "website",
+    title: "Journal | Salim Silver",
+    description:
+      "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
+    url: `${BASE_URL}/blog`,
+    siteName: "Salim Silver",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Journal | Salim Silver",
+    description:
+      "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
+  },
 }
 
 export default async function BlogPage() {
