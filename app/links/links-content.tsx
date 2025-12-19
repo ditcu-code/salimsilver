@@ -8,7 +8,7 @@ import { Globe, Hammer, Mail, MapPin, MessageCircle, ShoppingBag } from "lucide-
 import Image from "next/image"
 import Link from "next/link"
 
-export function BioContent() {
+export function LinksContent() {
   const links = [
     {
       label: "Visit Our Website",
