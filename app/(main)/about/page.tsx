@@ -40,10 +40,10 @@ export default function AboutPage() {
       <TimelineSection />
       <ValuesSection />
       <CTASection
-        title="Visit Our Workshop"
-        description="Experience the magic of silver crafting firsthand. Book a tour or a jewelry-making class."
-        ctaLabel="Book a Visit"
-        ctaHref="/contact"
+        title="Create Your Own Silver Jewelry"
+        description="Immerse yourself in the tradition of Kotagede. Join our hands-on workshop to learn the art of silversmithing and craft your own unique piece."
+        ctaLabel="Book a Class"
+        ctaHref="/workshop"
       />
 
       <script
