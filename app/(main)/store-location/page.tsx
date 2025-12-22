@@ -46,9 +46,9 @@ export default function StoreLocationPage() {
             <div>
               <h2 className="font-display mb-4 text-3xl">The Workshop & Store</h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Experience the complete journey of our craft in Kotagede. Watch our artisans shape
-                silver into art at our workshop, then step into our showroom to browse and try on
-                the finished collection.
+                A "hidden gem" deliberately located away from the main commercial streets. You will
+                enter a traditional Javanese compound that functions as a "living museum,"
+                seamlessly blending our domestic residence with the active silver workshop.
               </p>
             </div>
 
