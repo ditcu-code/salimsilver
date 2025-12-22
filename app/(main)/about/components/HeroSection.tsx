@@ -5,7 +5,7 @@ import Image from "next/image"
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[50vh] w-full">
+    <section className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] h-[50vh] w-screen">
       <Image
         src="/images/private-collection-priyana-jatmika-salim.webp"
         alt="About Salim Silver"

@@ -29,7 +29,7 @@ export default function WorkshopPage() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative flex min-h-[50vh] flex-col justify-center bg-neutral-900 py-24 text-center text-neutral-50">
+      <section className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] flex min-h-[50vh] w-screen flex-col justify-center bg-neutral-900 py-24 text-center text-neutral-50">
         <div className="absolute inset-0 z-0 overflow-hidden opacity-40">
           <Image
             src="/images/tatah-cincin.webp"

@@ -7,7 +7,7 @@ import AnimatedButton from "@/components/ui/animated-button"
 
 export default function StoreHero() {
   return (
-    <section className="relative flex h-[60vh] min-h-[500px] w-full items-center justify-center overflow-hidden">
+    <section className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] flex h-[60vh] min-h-[500px] w-screen items-center justify-center overflow-hidden">
       <Image
         src="/images/store-front.webp"
         alt="Salim Silver Workshop"
