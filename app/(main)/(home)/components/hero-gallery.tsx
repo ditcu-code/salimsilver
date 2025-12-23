@@ -59,6 +59,7 @@ function HeroDesktop() {
           className="object-cover object-center"
           fetchPriority="high"
           loading="eager"
+          quality={100}
         />
       </FullBentoCell>
 
@@ -70,6 +71,7 @@ function HeroDesktop() {
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover object-center"
+          quality={50}
         />
       </FullBentoCell>
 
@@ -82,6 +84,7 @@ function HeroDesktop() {
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover object-center"
+            quality={50}
           />
         </FullBentoCell>
 
@@ -121,7 +124,8 @@ function HeroMobile() {
                 sizes="(max-width: 768px) 100vw, 1px"
                 className="object-cover object-center"
                 fetchPriority="high"
-                loading="lazy"
+                loading="eager"
+                quality={85}
               />
             </div>
           </CarouselItem>
@@ -133,6 +137,7 @@ function HeroMobile() {
                 fill
                 sizes="(max-width: 480px) 100vw, 50vw"
                 className="object-cover object-center"
+                quality={85}
               />
             </div>
           </CarouselItem>
@@ -144,6 +149,7 @@ function HeroMobile() {
                 fill
                 sizes="(max-width: 480px) 100vw, 50vw"
                 className="object-cover object-center"
+                quality={85}
               />
             </div>
           </CarouselItem>
