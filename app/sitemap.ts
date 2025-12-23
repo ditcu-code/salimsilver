@@ -1,5 +1,5 @@
 import { getAllPosts } from "@/lib/blog"
-import { getAllCollections } from "@/lib/collections"
+import { getAllCollections, getAllJewelry } from "@/lib/collections"
 import { BASE_URL } from "@/lib/constants"
 import { MetadataRoute } from "next"
 
@@ -8,6 +8,7 @@ export const revalidate = 3600 // Revalidate at least every hour
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts(false)
   const collections = await getAllCollections()
+  const jewelry = await getAllJewelry()
 
   const blogUrls = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
@@ -17,6 +18,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const collectionUrls = collections.map((collection) => ({
     url: `${BASE_URL}/collections/${collection.slug}`,
     lastModified: new Date(),
+  }))
+
+  const jewelryUrls = jewelry.map((item) => ({
+    url: `${BASE_URL}/product/${item.slug}`,
+    lastModified: new Date(item.updated_at),
   }))
 
   return [
@@ -29,5 +35,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/blog`, lastModified: new Date() },
     ...blogUrls,
     ...collectionUrls,
+    ...jewelryUrls,
   ]
 }

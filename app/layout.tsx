@@ -57,6 +57,19 @@ export const metadata: Metadata = {
   other: {
     "og:logo": `${BASE_URL}/images/logo-salimsilver.webp`,
   },
+  keywords: [
+    "Javanese Jewelry",
+    "Silver Jewelry",
+    "Handcrafted Jewelry",
+    "Yogyakarta Silver",
+    "Kotagede Silver",
+    "Salim Silver",
+  ],
+  authors: [{ name: "Salim Silver", url: BASE_URL }],
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export const viewport: Viewport = {

@@ -8,6 +8,7 @@ export interface Jewelry {
   /** Unique identifier for the jewelry (UUID) */
   id: string
   collectionId: string
+  collectionSlug?: string
   /** URL-friendly slug for the jewelry */
   slug: string
   /** Title of the jewelry item */

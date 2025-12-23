@@ -41,15 +41,28 @@ export default async function BlogPage() {
   }
 
   return (
-    <>
-      {/* Featured Hero Section */}
-      {featuredPost && <BlogHero post={featuredPost} />}
+    <div className="min-h-screen pt-24 pb-20 md:pt-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Page Header */}
+        <div className="mx-auto mb-16 max-w-3xl space-y-4 text-center md:mb-24">
+          <h1 className="font-display text-foreground mt-8 text-4xl tracking-tight md:mt-4 lg:text-5xl">
+            The Journal
+          </h1>
+          <p className="text-muted-foreground text-sm leading-relaxed font-light md:text-base">
+            From the heart of Kotagede to your hands. Explore the history, techniques, and stories
+            behind our handcrafted silver legacy.
+          </p>
+        </div>
 
-      {/* Divider */}
-      {remainingPosts.length > 0 && <div className="border-border/40 my-16 border-t" />}
+        {/* Featured Hero Section */}
+        {featuredPost && <BlogHero post={featuredPost} />}
 
-      {/* Grid for other posts */}
-      <BlogGrid posts={remainingPosts} />
-    </>
+        {/* Divider */}
+        {remainingPosts.length > 0 && <div className="border-border/40 my-16 border-t" />}
+
+        {/* Grid for other posts */}
+        <BlogGrid posts={remainingPosts} />
+      </div>
+    </div>
   )
 }

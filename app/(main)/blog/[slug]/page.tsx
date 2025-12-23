@@ -1,12 +1,11 @@
 import BlogReadMore from "@/components/blocks/blog-read-more"
 import { ShareButton } from "@/components/features/share-button"
+import BackButton from "@/components/ui/back-button"
 import { getPostBySlug } from "@/lib/blog"
 import { BASE_URL } from "@/lib/constants"
 import { formatDate } from "@/lib/utils"
-import { ArrowLeft } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 
 interface BlogPostPageProps {
@@ -54,7 +53,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <article className="min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative h-[50vh] min-h-[400px] w-full md:h-[60vh]">
+      <div className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] h-[50vh] min-h-[400px] w-screen md:h-[60vh]">
         {post.cover_image_url ? (
           <Image
             src={post.cover_image_url}
@@ -70,13 +69,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         )}
         <div className="from-background via-background/60 absolute inset-0 flex items-end bg-linear-to-t to-transparent">
           <div className="container mx-auto max-w-4xl px-4 pb-12">
-            <Link
-              href="/blog"
-              className="group text-primary hover:text-foreground mb-6 flex w-fit items-center gap-2 text-sm font-medium transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-              Back to Journal
-            </Link>
+            <BackButton href="/blog">Back to Journal</BackButton>
             <h1 className="mb-4 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl">
               {post.title}
             </h1>

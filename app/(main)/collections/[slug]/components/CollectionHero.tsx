@@ -9,7 +9,7 @@ interface CollectionHeroProps {
 
 export default function CollectionHero({ title, coverImage }: CollectionHeroProps) {
   return (
-    <section className="relative h-[50vh] w-full">
+    <section className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] h-[50vh] w-screen">
       <Image
         src={coverImage || "/images/gebyok.webp"}
         alt={title}

@@ -268,7 +268,11 @@ export async function getCollection(slug: string): Promise<Collection | undefine
 
 export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefined> {
   const supabase = await createClient()
-  const { data: item, error } = await supabase.from("jewelry").select("*").eq("slug", slug).single()
+  const { data: item, error } = await supabase
+    .from("jewelry")
+    .select("*, collections(slug)")
+    .eq("slug", slug)
+    .single()
 
   if (error || !item) {
     console.error("Error fetching jewelry by slug:", error)
@@ -307,6 +311,25 @@ export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefine
     variants: item.variants,
     images: itemImages,
     coverImage: cover,
+    collectionSlug: item.collections?.slug,
     createdBy: item.created_by,
   }
+}
+
+export async function getAllJewelry(): Promise<{ slug: string; updated_at: string }[]> {
+  const supabase = await createClient()
+  const { data: jewelry, error } = await supabase
+    .from("jewelry")
+    .select("slug, updated_at, created_at")
+    .order("created_at", { ascending: false })
+
+  if (error) {
+    console.error("Error fetching all jewelry:", error)
+    return []
+  }
+
+  return (jewelry || []).map((item: any) => ({
+    slug: item.slug,
+    updated_at: item.updated_at || item.created_at,
+  }))
 }
