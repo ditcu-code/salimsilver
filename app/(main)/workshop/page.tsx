@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { PolaroidGallery } from "@/components/blocks/polaroid-gallery"
 import { BASE_URL } from "@/lib/constants"
 import Image from "next/image"
 import { RegistrationForm } from "./components/registration-form"
@@ -26,6 +27,14 @@ export const metadata: Metadata = {
 }
 
 export default function WorkshopPage() {
+  const guestImages = [
+    "/workshop-guests/workshop-guest-01.webp",
+    "/workshop-guests/workshop-guest-02.webp",
+    "/workshop-guests/workshop-guest-03.webp",
+    "/workshop-guests/workshop-guest-04.webp",
+    "/workshop-guests/workshop-guest-05.webp",
+  ]
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero Section */}
@@ -50,7 +59,7 @@ export default function WorkshopPage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 pt-16 pb-8 md:pt-24 md:pb-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Left Column: Information & Steps */}
           <div className="space-y-12">
@@ -73,6 +82,7 @@ export default function WorkshopPage() {
                 <li>Afternoon Session: 12:30 - 15:30</li>
                 <li>Price includes silver up to 5 grams</li>
                 <li>Full equipment provided</li>
+                <li>Payment upon completion (Cash, Bank Transfer, QRIS, Credit/Debit Cards)</li>
               </ul>
             </div>
           </div>
@@ -89,6 +99,8 @@ export default function WorkshopPage() {
           </div>
         </div>
       </div>
+
+      <PolaroidGallery images={guestImages} className="bg-stone-50 dark:bg-neutral-900/50" />
     </div>
   )
 }
