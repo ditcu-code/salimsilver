@@ -8,20 +8,20 @@ import { WorkshopSteps } from "./components/workshop-steps"
 export const metadata: Metadata = {
   title: "Silversmith Jewelry Workshop in Kotagede, Yogyakarta",
   description:
-    "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the 7 steps of creating traditional silver jewelry from master artisans.",
+    "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the steps of creating traditional silver jewelry from master artisans.",
   alternates: {
     canonical: `${BASE_URL}/workshop`,
   },
   openGraph: {
     title: "Silversmith Jewelry Workshop - Create Your Own Silver Jewelry",
     description:
-      "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the 7 steps of creating traditional silver jewelry from master artisans.",
+      "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the steps of creating traditional silver jewelry from master artisans.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Silversmith Jewelry Workshop - Create Your Own Silver Jewelry",
     description:
-      "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the 7 steps of creating traditional silver jewelry from master artisans.",
+      "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the steps of creating traditional silver jewelry from master artisans.",
   },
 }
 
@@ -59,8 +59,8 @@ export default function WorkshopPage() {
                 How It Works
               </h2>
               <p className="mb-8 text-neutral-600 dark:text-neutral-400">
-                Embark on a three-hour creative journey where you'll master the seven fundamental
-                stages of traditional silver craftsmanship.
+                Embark on a three-hour creative journey where you'll master the fundamental stages
+                of traditional silver craftsmanship.
               </p>
               <WorkshopSteps />
             </div>
