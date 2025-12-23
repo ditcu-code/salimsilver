@@ -158,9 +158,11 @@ function HeroMobile() {
 
 export function HeroGallery() {
   return (
-    <div className="from-background via-secondary/80 to-background relative h-dvh w-full overflow-hidden bg-linear-to-tl px-4 pt-24 pb-12 md:px-8">
-      <HeroDesktop />
-      <HeroMobile />
+    <div className="from-background via-secondary/80 to-background relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] h-dvh w-screen overflow-hidden bg-linear-to-tl pt-24 pb-12">
+      <div className="container mx-auto h-full px-4 md:px-8">
+        <HeroDesktop />
+        <HeroMobile />
+      </div>
     </div>
   )
 }
