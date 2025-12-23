@@ -120,6 +120,8 @@ function HeroMobile() {
                 fill
                 sizes="(max-width: 768px) 100vw, 1px"
                 className="object-cover object-center"
+                fetchPriority="high"
+                loading="lazy"
               />
             </div>
           </CarouselItem>
