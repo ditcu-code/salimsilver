@@ -25,7 +25,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     if (item) {
       const title = `${item.title} - Salim Silver`
       const description = item.description || "Handcrafted silver jewelry from Salim Silver."
-      const images = item.images && item.images.length > 0 ? [item.images[0].src] : []
+      const images =
+        item.images && item.images.length > 0 ? [item.images[0].src] : ["/opengraph-image"]
 
       return {
         title,
@@ -52,7 +53,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   if (collection) {
     const title = `${collection.title} - Salim Silver`
     const description = collection.description || `Explore our ${collection.title} collection.`
-    const images = collection.coverImage ? [collection.coverImage] : []
+    const images = collection.coverImage ? [collection.coverImage] : ["/opengraph-image"]
 
     return {
       title,

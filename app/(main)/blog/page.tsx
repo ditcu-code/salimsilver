@@ -18,12 +18,14 @@ export const metadata: Metadata = {
       "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
     url: `${BASE_URL}/blog`,
     siteName: "Salim Silver",
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Journal | Salim Silver",
     description:
       "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
+    images: ["/opengraph-image"],
   },
 }
 

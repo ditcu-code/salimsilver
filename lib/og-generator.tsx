@@ -99,8 +99,14 @@ export async function generateOgImage(
 ) {
   const bgPath = join(process.cwd(), imagePath)
   const fileBuffer = readFileSync(bgPath)
-  // Resize background to avoid large base64 string causing WASM crash
-  const bgBuffer = await sharp(fileBuffer).resize(1200).jpeg({ quality: 80 }).toBuffer()
+  // Resize background to cover the OG dimensions
+  const bgBuffer = await sharp(fileBuffer)
+    .resize(1200, 630, {
+      fit: "cover",
+      position: "center",
+    })
+    .jpeg({ quality: 80 })
+    .toBuffer()
   const bgBase64 = `data:image/jpeg;base64,${bgBuffer.toString("base64")}`
 
   // Load fonts
