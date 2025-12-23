@@ -19,21 +19,12 @@ export const metadata: Metadata = {
       "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
     url: `${BASE_URL}/collections`,
     siteName: "Salim Silver",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Salim Silver Collections",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Collections",
     description:
       "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more.",
-    images: ["/opengraph-image"],
   },
 }
 
