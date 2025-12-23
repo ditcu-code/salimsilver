@@ -90,8 +90,8 @@ export default function Footer() {
               Heritage Forged by Hand
             </span>
           </div>
-          <p className="text-md text-muted-foreground mb-6 max-w-md">
-            Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
+          <p className="text-muted-foreground mb-6 max-w-md text-sm">
+            Gg. Platina - Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
           </p>
         </AnimatedSection>
 
