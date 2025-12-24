@@ -11,6 +11,6 @@ export default async function OpengraphImage() {
   return await generateOgImage(
     "Review Salim Silver",
     "Share your experience visiting our workshop and showroom in Kotagede.",
-    "public/images/store-front.webp"
+    "public/images/salim-tells-old-design.webp"
   )
 }

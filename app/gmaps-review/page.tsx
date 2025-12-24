@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import ReviewRedirect from "./components/review-redirect"
 
 export const metadata: Metadata = {
-  title: "Review Salim Silver on Google Maps",
+  title: "Salim would love your feedback!",
   description:
     "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion.",
   alternates: {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Review Salim Silver on Google Maps",
+    title: "Salim would love your feedback!",
     description:
       "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion.",
     url: `${BASE_URL}/gmaps-review`,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Review Salim Silver on Google Maps",
+    title: "Salim would love your feedback!",
     description:
       "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion.",
   },
