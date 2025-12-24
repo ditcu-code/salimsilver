@@ -28,7 +28,7 @@ export function PolaroidGallery({ images, className }: PolaroidGalleryProps) {
                 <div className="relative aspect-300/213 overflow-hidden bg-stone-200 grayscale transition-all duration-500 group-hover:grayscale-0">
                   <Image
                     src={src}
-                    alt={`Salim Silver Jewelry Making Workshop Guest ${index + 1}`}
+                    alt={`Salim Silver Jewelry Making Workshop Student ${index + 1}`}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
                     className="object-cover"

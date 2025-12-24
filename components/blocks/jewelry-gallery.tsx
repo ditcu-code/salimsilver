@@ -38,7 +38,7 @@ const PhotoMetadataOverlay = ({ photo }: { photo: AlbumJewelry }) => {
           </h3>
         )}
         {photo.description && (
-          <p className="text-sm leading-relaxed text-white/90">{photo.description}</p>
+          <p className="line-clamp-2 text-sm leading-relaxed text-white/90">{photo.description}</p>
         )}
 
         <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-white/80">
