@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { PolaroidGallery } from "@/components/blocks/polaroid-gallery"
+import { ReelsGallery } from "@/components/blocks/reels-gallery"
 import { BASE_URL } from "@/lib/constants"
 import { Clock, CreditCard, Hammer } from "lucide-react"
 import Image from "next/image"
@@ -29,11 +30,16 @@ export const metadata: Metadata = {
 
 export default function WorkshopPage() {
   const guestImages = [
-    "/workshop-guests/workshop-guest-01.webp",
-    "/workshop-guests/workshop-guest-02.webp",
-    "/workshop-guests/workshop-guest-03.webp",
-    "/workshop-guests/workshop-guest-04.webp",
-    "/workshop-guests/workshop-guest-05.webp",
+    "/workshop-students/workshop-student-01.webp",
+    "/workshop-students/workshop-student-02.webp",
+    "/workshop-students/workshop-student-03.webp",
+    "/workshop-students/workshop-student-04.webp",
+    "/workshop-students/workshop-student-05.webp",
+    "/workshop-students/workshop-student-06.webp",
+    "/workshop-students/workshop-student-07.webp",
+    "/workshop-students/workshop-student-08.webp",
+    "/workshop-students/workshop-student-09.webp",
+    "/workshop-students/workshop-student-10.webp",
   ]
 
   return (
@@ -92,7 +98,9 @@ export default function WorkshopPage() {
                     <p className="text-sm text-stone-600 dark:text-stone-400">
                       Monday - Saturday
                       <br />
-                      Morning: 08:30 - 11:30 | Afternoon: 12:30 - 15:30
+                      Morning: 08:30 - 11:30
+                      <br />
+                      Afternoon: 12:30 - 15:30
                     </p>
                   </div>
                 </div>
@@ -137,7 +145,14 @@ export default function WorkshopPage() {
         </div>
       </div>
 
-      <PolaroidGallery images={guestImages} className="bg-stone-50 dark:bg-neutral-900/50" />
+      <ReelsGallery
+        reels={[
+          "https://www.instagram.com/reel/DEoZ7RFSORY/",
+          "https://www.instagram.com/reel/DErmKOjyZ3t/",
+          "https://www.instagram.com/reel/DEq2UFBPMZv/",
+        ]}
+      />
+      <PolaroidGallery images={guestImages} className="mb-16 bg-stone-50 dark:bg-neutral-900/50" />
     </div>
   )
 }
