@@ -66,7 +66,7 @@ export default function WorkshopPage() {
       </div>
 
       <PolaroidGallery images={studentsImages} className="bg-stone-50 dark:bg-neutral-900/50" />
-      <ReelsGallery reels={reels} className="mb-16" />
+      <ReelsGallery reels={reels} className="mb-12" />
     </div>
   )
 }

@@ -152,7 +152,7 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
   }
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative mb-16", className)}>
       <PhotoAlbum
         photos={albumPhotos}
         layout="masonry"
