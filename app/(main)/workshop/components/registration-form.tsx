@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
 import { CalendarIcon, Loader2, User, Users } from "lucide-react"
 import * as React from "react"
-import { useForm } from "react-hook-form"
+import { useForm, useWatch } from "react-hook-form"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -78,8 +78,8 @@ export function RegistrationForm() {
   })
 
   // Watch values for price calculation
-  const participantType = form.watch("participantType")
-  const participantCount = form.watch("participantCount")
+  const participantType = useWatch({ control: form.control, name: "participantType" })
+  const participantCount = useWatch({ control: form.control, name: "participantCount" })
 
   // Calculate price
   const totalPrice = React.useMemo(() => {

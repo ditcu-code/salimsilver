@@ -37,16 +37,6 @@ export function CoverImageSelector({
 
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    if (isOpen && !mounted) {
-      searchImages()
-      setMounted(true)
-    }
-    if (!isOpen) {
-      setMounted(false)
-    }
-  }, [isOpen])
-
   async function searchImages() {
     setLoading(true)
 
@@ -72,6 +62,17 @@ export function CoverImageSelector({
     setImages(flatImages)
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (isOpen && !mounted) {
+      searchImages()
+      setMounted(true)
+    }
+    if (!isOpen) {
+      setMounted(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen])
 
   async function handleSelect(imageId: string) {
     try {

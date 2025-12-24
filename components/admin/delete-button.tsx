@@ -53,7 +53,8 @@ export function DeleteButton({ onDelete, itemName }: DeleteButtonProps) {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the item "{itemName}".
+            Type &quot;DELETE&quot; to confirm: cannot be undone. This will permanently delete the
+            item &quot;{itemName}&quot;.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

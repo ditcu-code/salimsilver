@@ -45,10 +45,13 @@ export default function StoreLocationPage() {
           <div className="space-y-8">
             <div>
               <h2 className="font-display mb-4 text-3xl">The Workshop & Store</h2>
+              <p className="text-muted-foreground mt-2">&quot;Visit our workshop & gallery&quot;</p>
+              <p className="text-muted-foreground">&quot;Temukan keindahan perak kotagede&quot;</p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                A "hidden gem" deliberately located away from the main commercial streets. You will
-                enter a traditional Javanese compound that functions as a "living museum,"
-                seamlessly blending our domestic residence with the active silver workshop.
+                A &quot;hidden gem&quot; deliberately located away from the main commercial streets.
+                You will enter a traditional Javanese compound that functions as a &quot;living
+                museum,&quot; seamlessly blending our domestic residence with the active silver
+                workshop.
               </p>
             </div>
 

@@ -50,6 +50,7 @@ export default function WorkshopPage() {
           <Image
             src="/images/tatah-cincin.webp"
             alt="Menatah Cincin diatas Jabung"
+            title="Let's Create"
             fill
             className="object-cover"
             priority
@@ -75,8 +76,8 @@ export default function WorkshopPage() {
                 How It Works
               </h2>
               <p className="mb-8 text-neutral-600 dark:text-neutral-400">
-                Embark on a three-hour creative journey where you'll master the fundamental stages
-                of traditional silver craftsmanship.
+                Embark on a three-hour creative journey where you&apos;ll master the fundamental
+                stages of traditional silver craftsmanship.
               </p>
               <WorkshopSteps />
             </div>
