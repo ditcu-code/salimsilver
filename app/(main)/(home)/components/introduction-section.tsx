@@ -45,6 +45,7 @@ export default function IntroductionSection() {
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
+            blurDataURL="/images/mbah-wasik-carving-blur.webp"
           />
         </motion.div>
       </div>

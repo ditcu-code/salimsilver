@@ -16,6 +16,7 @@ const CONTENT = {
     "Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern elegance.",
   images: {
     heroPortrait: "/images/jono-setting-filigree.webp",
+    heroPortraitBlur: "/images/jono-setting-filigree-blur.webp",
     floralCuff: `${SUPABASE_CATALOG_URL}/hand-carved-silver-floral-relief-cuff-bracelet-salimsilver.webp`,
     pagodaRing: `${SUPABASE_CATALOG_URL}/silver-pagoda-ring-pearl-salimsilver.webp`,
     brooch: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
@@ -55,11 +56,12 @@ function HeroDesktop() {
           src={CONTENT.images.heroPortrait}
           alt="Artisan creating intricate silver filigree"
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 1px, 50vw"
           className="object-cover object-center"
           fetchPriority="high"
           loading="eager"
-          quality={100}
+          quality={90}
+          blurDataURL={CONTENT.images.heroPortraitBlur}
         />
       </FullBentoCell>
 
@@ -121,7 +123,7 @@ function HeroMobile() {
                 src={CONTENT.images.brooch}
                 alt="Baroque pearl and citrine silver brooch"
                 fill
-                sizes="(max-width: 768px) 100vw, 1px"
+                sizes="(max-width: 320px) 100vw, (max-width: 768px) 320px, 1px"
                 className="object-cover object-center"
                 fetchPriority="high"
                 loading="eager"
