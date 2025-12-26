@@ -1,11 +1,12 @@
 "use client"
 
-import { Analytics } from "@vercel/analytics/next"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useEffect, useState } from "react"
 
 export function AnalyticsWrapper() {
   const [shouldTrack, setShouldTrack] = useState(false)
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
 
   useEffect(() => {
     // Only track on the production domain
@@ -16,14 +17,13 @@ export function AnalyticsWrapper() {
     }
   }, [])
 
-  // If we are not in the correct domain, do not render analytics
   if (!shouldTrack) {
     return null
   }
 
   return (
     <>
-      <Analytics />
+      {gaId && <GoogleAnalytics gaId={gaId} />}
       <SpeedInsights />
     </>
   )
