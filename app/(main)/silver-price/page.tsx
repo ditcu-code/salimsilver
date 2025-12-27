@@ -66,10 +66,6 @@ export default async function SilverPricePage() {
           previousPrice={previousPrice}
           lastUpdated={latestData.updated_at}
         />
-
-        <p className="text-muted-foreground/60 mx-auto max-w-xs text-center text-xs text-balance">
-          Harga dapat berubah sewaktu-waktu mengikuti pasar global. Data diperbarui secara berkala.
-        </p>
       </div>
     </div>
   )
