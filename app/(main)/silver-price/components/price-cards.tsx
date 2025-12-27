@@ -42,7 +42,7 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
 
       <CardHeader className="pt-8 pb-2 text-center" />
 
-      <CardContent className="space-y-8 px-8 pb-10">
+      <CardContent className="space-y-8 px-8 pb-8">
         {/* Main Price Display */}
         <div className="space-y-4 text-center">
           <div className="flex items-baseline justify-center gap-1">
@@ -94,7 +94,7 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
                 timeZone: "Asia/Jakarta",
               })}
             </div>
-            <div className="text-muted-foreground text-xs">
+            <div className="text-muted-foreground -mt-1 text-xs">
               {new Date(lastUpdated).toLocaleTimeString("id-ID", {
                 hour: "2-digit",
                 minute: "2-digit",
