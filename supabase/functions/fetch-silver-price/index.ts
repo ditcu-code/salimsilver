@@ -35,14 +35,17 @@ Deno.serve(async (req) => {
     const usdRate = data.currencies.USD
 
     // Calculate USD Price
-    // Logic: If Base=IDR 1, and Rate(USD)=16768 (example context), then Price(USD) = Price(IDR) / Rate(USD)
-    const priceUSD = priceIDR / usdRate
+    // Calculate USD Price
+    // User requested to not save price_usd, but it is not null in DB, so set to 0.
+    const priceUSD = 0
 
+    // Round IDR price to nearest integer
+    const roundedPriceIDR = Math.round(priceIDR)
     const timestamp = new Date().toISOString()
 
     const insertPayload = {
       price_usd: priceUSD,
-      price_idr: priceIDR,
+      price_idr: roundedPriceIDR,
       source: "metals.dev",
       updated_at: timestamp,
     }

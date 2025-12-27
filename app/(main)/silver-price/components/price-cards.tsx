@@ -74,7 +74,7 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
         <div className="grid grid-cols-2 gap-8 pt-2">
           <div className="space-y-1 text-center">
             <p className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
-              Penutupan Kemarin
+              Harga Kemarin
             </p>
             <p className="text-xl font-semibold tracking-tight tabular-nums">
               {formattedYesterdayPrice}
