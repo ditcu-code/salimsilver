@@ -17,6 +17,7 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
     new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
+      maximumFractionDigits: 0,
     }).format(val)
 
   const formattedPrice = formatCurrency(currentPrice)
