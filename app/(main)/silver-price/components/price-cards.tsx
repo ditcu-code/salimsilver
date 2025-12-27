@@ -17,8 +17,6 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
     new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
     }).format(val)
 
   const formattedPrice = formatCurrency(currentPrice)
@@ -93,6 +91,7 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
                 day: "numeric",
                 month: "short",
                 year: "numeric",
+                timeZone: "Asia/Jakarta",
               })}
             </div>
             <div className="text-muted-foreground text-xs">
