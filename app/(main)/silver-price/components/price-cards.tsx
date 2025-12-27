@@ -33,10 +33,14 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
 
   const TrendIcon = Triangle
 
+  const gradientClass = isSame ? "via-primary/60" : isUp ? "via-green-500/60" : "via-red-500/60"
+
   return (
     <Card className="border-border/50 bg-card/50 overflow-hidden shadow-2xl backdrop-blur-md">
       {/* Subtle gradient accent at the top */}
-      <div className="via-primary/20 absolute inset-x-0 top-0 h-1 bg-linear-to-r from-transparent to-transparent opacity-50" />
+      <div
+        className={`absolute inset-x-0 top-0 h-1 bg-linear-to-r from-transparent to-transparent opacity-50 ${gradientClass}`}
+      />
 
       <CardHeader className="pt-8 pb-2 text-center" />
 
@@ -71,7 +75,7 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
         </div>
 
         {/* Details Grid */}
-        <div className="grid grid-cols-2 gap-8 pt-2">
+        <div className="grid grid-cols-2 gap-8 pt-6">
           <div className="space-y-1 text-center">
             <p className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
               Harga Kemarin
