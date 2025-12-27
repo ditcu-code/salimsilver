@@ -1,0 +1,76 @@
+import { createClient } from "@/lib/supabase/server"
+import type { Metadata } from "next"
+import { PriceCard, PriceFallbackCard } from "./components/price-cards"
+
+export const revalidate = 3600 // Revalidate every hour
+
+export const metadata: Metadata = {
+  title: "Harga Perak Hari Ini",
+  description:
+    "Pantau harga perak murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk referensi Anda.",
+  openGraph: {
+    title: "Harga Perak Hari Ini | Salim Silver",
+    description:
+      "Pantau harga perak murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate.",
+    url: "/silver-price",
+  },
+}
+
+export default async function SilverPricePage() {
+  const supabase = await createClient()
+
+  // Fetch latest silver price
+  const { data: latestData } = await supabase
+    .from("silver_prices")
+    .select("*")
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .single()
+
+  // Fallback if no data
+  if (!latestData) {
+    return (
+      <div className="container mx-auto max-w-lg px-4 py-24 md:py-32">
+        <PriceFallbackCard />
+      </div>
+    )
+  }
+
+  // Fetch yesterday's price (approx 24h ago)
+  const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+
+  const { data: yesterdayData } = await supabase
+    .from("silver_prices")
+    .select("price_idr")
+    .lte("updated_at", twentyFourHoursAgo)
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .single()
+
+  const currentPrice = latestData.price_idr
+  const previousPrice = yesterdayData?.price_idr || currentPrice
+
+  return (
+    <div className="container mx-auto max-w-lg px-4 pt-30 pb-12 md:pb-18">
+      <div className="space-y-6">
+        {/* Header Section */}
+        <div className="space-y-2 text-center">
+          <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            Harga Perak
+          </h1>
+          <p className="text-muted-foreground text-lg">Update harga perak murni dalam Rupiah.</p>
+        </div>
+
+        <PriceCard
+          currentPrice={currentPrice}
+          previousPrice={previousPrice}
+          lastUpdated={latestData.updated_at}
+        />
+
+        <p className="text-muted-foreground/60 mx-auto max-w-xs text-center text-xs text-balance">
+          Harga dapat berubah sewaktu-waktu mengikuti pasar global. Data diperbarui secara berkala.
+        </p>
+      </div>
+    </div>
+  )
+}

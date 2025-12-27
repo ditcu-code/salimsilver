@@ -24,6 +24,7 @@ const quickLinks = [
   { href: "/collections", label: "Collections" },
   { href: "/workshop", label: "Workshop" },
   { href: "/store-location", label: "Store Location" },
+  { href: "/silver-price", label: "Silver Price" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
   { href: "/blog", label: "Journal" },

@@ -165,6 +165,30 @@ export type Database = {
           },
         ]
       }
+      silver_prices: {
+        Row: {
+          id: string
+          price_usd: number
+          price_idr: number
+          source: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          price_usd: number
+          price_idr: number
+          source: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          price_usd?: number
+          price_idr?: number
+          source?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
