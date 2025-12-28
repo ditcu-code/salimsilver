@@ -52,11 +52,9 @@ Deno.serve(async (req) => {
 
     const priceIDR = data.metals.silver
 
-    // Round IDR price to nearest integer
     const roundedPriceIDR = Math.round(priceIDR)
 
-    // Use the timestamp from the metal data source
-    const timestamp = data.timestamps.metal
+    const timestamp = new Date().toISOString()
 
     const insertPayload = {
       price_idr: roundedPriceIDR,
