@@ -8,7 +8,11 @@ interface PriceCardProps {
 }
 
 export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCardProps) {
-  const priceChange = currentPrice - previousPrice
+  // Add 11% VAT
+  const currentPriceWithVat = currentPrice * 1.11
+  const previousPriceWithVat = previousPrice * 1.11
+
+  const priceChange = currentPriceWithVat - previousPriceWithVat
   const isUp = priceChange >= 0
   const isSame = priceChange === 0
 
@@ -20,8 +24,8 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
       maximumFractionDigits: 0,
     }).format(val)
 
-  const formattedPrice = formatCurrency(currentPrice)
-  const formattedYesterdayPrice = formatCurrency(previousPrice)
+  const formattedPrice = formatCurrency(currentPriceWithVat)
+  const formattedYesterdayPrice = formatCurrency(previousPriceWithVat)
   const formattedPriceChange = formatCurrency(Math.abs(priceChange))
 
   const trendColor = isSame
@@ -46,11 +50,14 @@ export function PriceCard({ currentPrice, previousPrice, lastUpdated }: PriceCar
       <CardContent className="space-y-8 px-8 pb-8">
         {/* Main Price Display */}
         <div className="space-y-4 text-center">
-          <div className="flex items-baseline justify-center gap-1">
-            <span className="text-foreground font-sans text-5xl font-bold tracking-tight sm:text-6xl">
-              {formattedPrice}
-            </span>
-            <span className="text-muted-foreground text-lg font-medium sm:text-xl">/ gram</span>
+          <div className="flex flex-col items-center gap-1">
+            <div className="flex items-baseline justify-center gap-1">
+              <span className="text-foreground font-sans text-5xl font-bold tracking-tight sm:text-6xl">
+                {formattedPrice}
+              </span>
+              <span className="text-muted-foreground text-lg font-medium sm:text-xl">/ gram</span>
+            </div>
+            <span className="text-muted-foreground text-xs font-medium">(Termasuk PPN 11%)</span>
           </div>
 
           {/* Trend Pill */}
