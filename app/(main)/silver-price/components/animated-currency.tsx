@@ -12,7 +12,7 @@ export function useFormattedCurrency(val: number) {
 }
 
 export function AnimatedCurrency({ value }: { value: number }) {
-  const spring = useSpring(value, { stiffness: 60, damping: 15, mass: 1 })
+  const spring = useSpring(value, { stiffness: 60, damping: 20, mass: 1 })
   const displayValue = useTransform(spring, (current) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
