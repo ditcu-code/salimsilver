@@ -16,14 +16,33 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     )
 
-    const API_KEY = Deno.env.get("METALS_DEV_API_KEY")
-    if (!API_KEY) {
+    const apiKey1 = Deno.env.get("METALS_DEV_API_KEY")
+    const apiKey2 = Deno.env.get("METALS_DEV_API_KEY_2")
+
+    if (!apiKey1) {
       throw new Error("Missing METALS_DEV_API_KEY environment variable")
+    }
+
+    let selectedApiKey = apiKey1
+
+    // Deterministic rotation: Use Key 2 on variable 4-hour blocks if available
+    // Example: 00-03 (Block 0, Even) -> Key 1
+    //          04-07 (Block 1, Odd)  -> Key 2
+    if (apiKey2) {
+      const hour = new Date().getHours()
+      const block = Math.floor(hour / 4)
+
+      if (block % 2 !== 0) {
+        selectedApiKey = apiKey2
+        console.log(`Using API Key 2 (Hour: ${hour}, Block: ${block})`)
+      } else {
+        console.log(`Using API Key 1 (Hour: ${hour}, Block: ${block})`)
+      }
     }
 
     // 1. Fetch Silver Price in IDR
     const response = await fetch(
-      `https://api.metals.dev/v1/latest?api_key=${API_KEY}&currency=IDR&unit=g`
+      `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=g`
     )
     const data = await response.json()
 
@@ -32,21 +51,15 @@ Deno.serve(async (req) => {
     }
 
     const priceIDR = data.metals.silver
-    const usdRate = data.currencies.USD
-
-    // Calculate USD Price
-    // Calculate USD Price
-    // User requested to not save price_usd, but it is not null in DB, so set to 0.
-    const priceUSD = 0
 
     // Round IDR price to nearest integer
     const roundedPriceIDR = Math.round(priceIDR)
-    const timestamp = new Date().toISOString()
+
+    // Use the timestamp from the metal data source
+    const timestamp = data.timestamps.metal
 
     const insertPayload = {
-      price_usd: priceUSD,
       price_idr: roundedPriceIDR,
-      source: "metals.dev",
       updated_at: timestamp,
     }
 

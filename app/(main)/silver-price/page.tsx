@@ -56,7 +56,7 @@ export default async function SilverPricePage() {
   // Fetch latest silver price
   const { data: latestData } = await supabase
     .from("silver_prices")
-    .select("*")
+    .select("price_idr, updated_at")
     .order("updated_at", { ascending: false })
     .limit(1)
     .single()
