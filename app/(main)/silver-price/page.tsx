@@ -1,6 +1,14 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion-motion"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { createClient } from "@/lib/supabase/server"
 import type { Metadata } from "next"
-import { PriceCard, PriceFallbackCard } from "./components/price-cards"
+import { PriceFallbackCard } from "./components/price-cards"
+import { SilverPriceDisplay } from "./components/silver-price-display"
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -14,10 +22,14 @@ export const metadata: Metadata = {
     "Harga Perak Hari Ini",
     "Harga Perak per Gram",
     "Harga Perak Antam",
+    "Harga Perak Rupiah",
     "Investasi Perak",
     "Silver Price Indonesia",
     "Harga Silver per Gram",
     "Jual Beli Perak",
+    "Harga Perak Murni",
+    "Grafik Harga Perak",
+    "Harga Perak Terbaru",
   ],
   alternates: {
     canonical: "/silver-price",
@@ -34,20 +46,53 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Product",
-  name: "Silver Price per Gram",
-  description: "Current price of fine silver (999) per gram in Indonesian Rupiah (IDR).",
-  image: "https://salimsilver.com/opengraph-image", // Assuming this exists or falls back to default
-  brand: {
-    "@type": "Brand",
-    name: "Salim Silver",
-  },
-  offers: {
-    "@type": "Offer",
-    priceCurrency: "IDR",
-    availability: "https://schema.org/InStock",
-    priceValidUntil: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Valid for 24h
-  },
+  "@graph": [
+    {
+      "@type": "Product",
+      name: "Silver Price per Gram",
+      description: "Current price of fine silver (999) per gram in Indonesian Rupiah (IDR).",
+      image: "https://salimsilver.com/opengraph-image",
+      brand: {
+        "@type": "Brand",
+        name: "Salim Silver",
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "IDR",
+        availability: "https://schema.org/InStock",
+        priceValidUntil: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+      },
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Apakah harga perak ini sudah termasuk PPN?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Secara default, harga yang ditampilkan belum termasuk PPN. Anda dapat mengaktifkan opsi 'Termasuk PPN 11%' untuk melihat harga setelah pajak.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Seberapa sering harga perak diperbarui?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Harga perak kami diperbarui secara berkala setiap 4 jam sekali mengikuti pergerakan pasar logam mulia dunia untuk memastikan akurasi data.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Apakah saya bisa membeli perak fisik di Salim Silver?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Ya, Salim Silver menyediakan berbagai perhiasan perak handmade berkualitas tinggi khas Kotagede. Anda bisa memesan langsung melalui katalog website kami.",
+          },
+        },
+      ],
+    },
+  ],
 }
 
 export default async function SilverPricePage() {
@@ -97,11 +142,70 @@ export default async function SilverPricePage() {
           </p>
         </div>
 
-        <PriceCard
+        <SilverPriceDisplay
           currentPrice={currentPrice}
           previousPrice={previousPrice}
           lastUpdated={latestData.updated_at}
         />
+
+        {/* Content Section for SEO */}
+        <div className="mx-auto mt-20 max-w-2xl space-y-12">
+          <section>
+            <Card className="border-muted bg-muted/30 text-center shadow-none">
+              <CardHeader className="items-center pb-3">
+                <CardTitle className="text-xl">Tentang Harga Perak Murni Hari Ini</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-sm leading-relaxed text-balance">
+                  Data harga kami mengacu pada standar pasar logam mulia internasional (Fine Silver
+                  999) dan dikonversi ke Rupiah (IDR) secara real-time. Informasi ini ditujukan
+                  sebagai referensi akurat bagi investor, kolektor, dan pengrajin perak, khususnya
+                  di pusat kerajinan Kotagede, Yogyakarta. Pastikan Anda memantau tren harga sebelum
+                  bertransaksi untuk keputusan terbaik.
+                </p>
+              </CardContent>
+            </Card>
+          </section>
+
+          <section>
+            <h2 className="mb-6 text-xl font-semibold">Frequently Asked Questions (FAQ)</h2>
+            <Accordion className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Apakah harga perak ini sudah termasuk PPN?</AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Secara default, harga yang ditampilkan adalah harga dasar (belum termasuk PPN).
+                    Anda dapat menggunakan tombol toggle di atas untuk melihat harga termasuk PPN
+                    11% sesuai ketentuan PMK No. 48 Tahun 2023.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Seberapa sering harga perak diperbarui?</AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Sistem kami memantau pergerakan harga perak dunia dan melakukan pembaruan data
+                    secara berkala setiap 4 jam sekali untuk memastikan Anda mendapatkan informasi
+                    yang paling relevan dengan kondisi pasar saat ini.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>
+                  Apakah saya bisa membeli perak fisik di Salim Silver?
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Tentu saja. Salim Silver adalah pengrajin perak asli Kotagede yang menyediakan
+                    berbagai koleksi perhiasan perak handmade berkualitas tinggi (Sterling Silver
+                    925). Anda dapat melihat koleksi Cincin, Kalung, dan Gelang kami melalui katalog
+                    di website ini atau berkunjung langsung ke galeri kami di Yogyakarta.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </section>
+        </div>
 
         <script
           type="application/ld+json"
