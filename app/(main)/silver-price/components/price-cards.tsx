@@ -37,10 +37,7 @@ export function PriceCard({
   const gradientClass = isSame ? "via-primary/60" : isUp ? "via-green-500/60" : "via-red-500/60"
 
   return (
-    <motion.div
-      layout
-      className="bg-card/50 border-border/50 relative overflow-hidden rounded-xl border shadow-2xl backdrop-blur-md"
-    >
+    <Card className="bg-card/50 border-border/50 relative overflow-hidden rounded-xl border shadow-2xl backdrop-blur-md">
       {/* Subtle gradient accent at the top */}
       <div
         className={`absolute inset-x-0 top-0 h-1 bg-linear-to-r from-transparent to-transparent opacity-50 ${gradientClass}`}
@@ -133,7 +130,7 @@ export function PriceCard({
           </div>
         </div>
       </CardContent>
-    </motion.div>
+    </Card>
   )
 }
 

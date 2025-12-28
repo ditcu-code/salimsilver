@@ -19,17 +19,12 @@ export default function SilverPriceLoading() {
           <div className="space-y-4 text-center">
             <div className="flex flex-col items-center gap-1">
               <div className="flex items-baseline justify-center gap-1">
-                <Skeleton className="h-12 w-48 sm:h-16 sm:w-64" />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-muted-foreground block text-xs font-medium">
-                  (Termasuk PPN 11%)
-                </span>
+                <Skeleton className="h-12 w-56 sm:h-16 sm:w-72" />
               </div>
             </div>
 
             {/* Trend Pill Skeleton */}
-            <div className="flex justify-center">
+            <div className="flex justify-center max-md:pt-1.5">
               <Skeleton className="h-8 w-32 rounded-full" />
             </div>
           </div>
@@ -56,9 +51,9 @@ export default function SilverPriceLoading() {
                 Update Terakhir
               </p>
               <div className="flex justify-center pt-1">
-                <Skeleton className="h-6 w-32" />
+                <Skeleton className="h-4 w-32" />
               </div>
-              <div className="flex justify-center pt-1">
+              <div className="flex justify-center">
                 <Skeleton className="h-3 w-16" />
               </div>
             </div>
