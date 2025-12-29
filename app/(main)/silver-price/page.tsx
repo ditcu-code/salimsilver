@@ -35,6 +35,14 @@ export const metadata: Metadata = {
     url: "/silver-price",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "/api/og/silver-price",
+        width: 1200,
+        height: 630,
+        alt: "Harga Perak Hari Ini di Salim Silver",
+      },
+    ],
   },
 }
 
@@ -45,7 +53,7 @@ const jsonLd = {
       "@type": "Product",
       name: "Silver Price per Gram",
       description: "Current price of fine silver (999) per gram in Indonesian Rupiah (IDR).",
-      image: "https://salimsilver.com/opengraph-image",
+      image: "https://salimsilver.com/api/og/silver-price",
       brand: {
         "@type": "Brand",
         name: "Salim Silver",
