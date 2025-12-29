@@ -1,4 +1,10 @@
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
 
 export type Database = {
   // Allows to automatically instantiate createClient with right options
@@ -37,6 +43,7 @@ export type Database = {
         Row: {
           cover_image_id: string | null
           created_at: string | null
+          created_by: string | null
           description: string | null
           featured: boolean | null
           id: string
@@ -47,6 +54,7 @@ export type Database = {
         Insert: {
           cover_image_id?: string | null
           created_at?: string | null
+          created_by?: string | null
           description?: string | null
           featured?: boolean | null
           id?: string
@@ -57,6 +65,7 @@ export type Database = {
         Update: {
           cover_image_id?: string | null
           created_at?: string | null
+          created_by?: string | null
           description?: string | null
           featured?: boolean | null
           id?: string
@@ -79,6 +88,7 @@ export type Database = {
           collection_id: string | null
           crafting_time_hours: number | null
           created_at: string | null
+          created_by: string | null
           description: string | null
           id: string
           material: Database["public"]["Enums"]["material_type"] | null
@@ -95,6 +105,7 @@ export type Database = {
           collection_id?: string | null
           crafting_time_hours?: number | null
           created_at?: string | null
+          created_by?: string | null
           description?: string | null
           id?: string
           material?: Database["public"]["Enums"]["material_type"] | null
@@ -111,6 +122,7 @@ export type Database = {
           collection_id?: string | null
           crafting_time_hours?: number | null
           created_at?: string | null
+          created_by?: string | null
           description?: string | null
           id?: string
           material?: Database["public"]["Enums"]["material_type"] | null
@@ -136,6 +148,7 @@ export type Database = {
       jewelry_images: {
         Row: {
           created_at: string | null
+          created_by: string | null
           display_order: number | null
           id: string
           jewelry_id: string | null
@@ -143,6 +156,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
+          created_by?: string | null
           display_order?: number | null
           id?: string
           jewelry_id?: string | null
@@ -150,6 +164,7 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
+          created_by?: string | null
           display_order?: number | null
           id?: string
           jewelry_id?: string | null
@@ -165,6 +180,60 @@ export type Database = {
           },
         ]
       }
+      posts: {
+        Row: {
+          author_id: string | null
+          content: string | null
+          cover_image_url: string | null
+          created_at: string | null
+          excerpt: string | null
+          featured: boolean | null
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          published: boolean | null
+          published_at: string | null
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author_id?: string | null
+          content?: string | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          featured?: boolean | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published?: boolean | null
+          published_at?: string | null
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author_id?: string | null
+          content?: string | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          featured?: boolean | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          published?: boolean | null
+          published_at?: string | null
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       silver_prices: {
         Row: {
           price_idr: number
@@ -177,6 +246,36 @@ export type Database = {
         Update: {
           price_idr?: number
           updated_at?: string
+        }
+        Relationships: []
+      }
+      users: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          full_name: string
+          id: string
+          role: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name: string
+          id: string
+          role?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          role?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -220,8 +319,10 @@ export type Tables<
     }
     ? R
     : never
-  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    ? (DefaultSchema["Tables"] & DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
         Row: infer R
       }
       ? R
