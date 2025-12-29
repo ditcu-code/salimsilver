@@ -48,8 +48,8 @@ Deno.serve(async (req) => {
 
     if (!kiloPriceRaw) throw new Error("Scraper validation failed: 'Kilo' row not found")
 
-    // Clean: "40.126.039" -> 40126039
-    const cleanedPrice = kiloPriceRaw.replace(/\./g, "")
+    // Clean: "40.126.039" -> 40126039 (Handle both . and , as separators)
+    const cleanedPrice = kiloPriceRaw.replace(/[.,]/g, "")
     priceIDR = parseInt(cleanedPrice, 10)
 
     if (isNaN(priceIDR) || priceIDR === 0) {
