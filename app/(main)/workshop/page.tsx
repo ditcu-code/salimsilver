@@ -67,6 +67,55 @@ export default function WorkshopPage() {
 
       <PolaroidGallery images={studentsImages} className="bg-stone-50 dark:bg-neutral-900/50" />
       <ReelsGallery reels={reels} className="mb-12" />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Course",
+            name: "Silversmith Jewelry Workshop",
+            description:
+              "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the steps of creating traditional silver jewelry from master artisans.",
+            provider: {
+              "@type": "Organization",
+              name: "Salim Silver",
+              sameAs: "https://salimsilver.com",
+            },
+            educationalLevel: "Beginner",
+            teaches: "Traditional Javanese Silversmithing",
+            offers: {
+              "@type": "Offer",
+              category: "Workshop",
+              url: `${BASE_URL}/workshop`,
+              availability: "https://schema.org/InStock",
+              price: "500000",
+              priceCurrency: "IDR",
+              seller: {
+                "@type": "Organization",
+                name: "Salim Silver",
+              },
+            },
+            hasCourseInstance: {
+              "@type": "CourseInstance",
+              courseMode: "Onsite",
+              courseWorkload: "PT3H",
+              location: {
+                "@type": "Place",
+                name: "Salim Silver Workshop",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "Kebohan KG 3/547, Purbayan, Kotagede",
+                  addressLocality: "Yogyakarta City",
+                  addressRegion: "Special Region of Yogyakarta",
+                  postalCode: "55173",
+                  addressCountry: "ID",
+                },
+              },
+            },
+          }),
+        }}
+      />
     </div>
   )
 }

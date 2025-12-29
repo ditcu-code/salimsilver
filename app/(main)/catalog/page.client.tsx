@@ -52,6 +52,7 @@ export default function CatalogPageClient({ collections }: CatalogPageClientProp
 
   return (
     <div className="mx-auto max-w-7xl">
+      <h1 className="sr-only">Jewelry Catalog</h1>
       <CategoryFilters
         categories={categories}
         activeCategory={activeCategory}

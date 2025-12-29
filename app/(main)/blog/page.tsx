@@ -56,6 +56,27 @@ export default async function BlogPage() {
         {/* Grid for other posts */}
         <BlogGrid posts={remainingPosts} />
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "Salim Silver Journal",
+            description:
+              "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
+            url: `${BASE_URL}/blog`,
+            blogPost: posts.map((post) => ({
+              "@type": "BlogPosting",
+              headline: post.title,
+              url: `${BASE_URL}/blog/${post.slug}`,
+              datePublished: post.published_at,
+              image: post.cover_image_url,
+            })),
+          }),
+        }}
+      />
     </div>
   )
 }
