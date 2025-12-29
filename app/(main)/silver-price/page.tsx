@@ -2,10 +2,7 @@ import type { Metadata } from "next"
 
 import { createClient } from "@/lib/supabase/server"
 import { PriceFallbackCard } from "./components/price-cards"
-import { SilverPriceAbout } from "./components/silver-price-about"
 import { SilverPriceDisplay } from "./components/silver-price-display"
-import { SilverPriceFaq } from "./components/silver-price-faq"
-import { SilverPriceHeader } from "./components/silver-price-header"
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -133,14 +130,7 @@ export default async function SilverPricePage() {
 
   return (
     <div className="space-y-6">
-      <SilverPriceHeader />
-
       {priceContent}
-
-      <div className="mx-auto mt-20 max-w-2xl space-y-12">
-        <SilverPriceAbout />
-        <SilverPriceFaq />
-      </div>
 
       <script
         type="application/ld+json"
