@@ -76,10 +76,12 @@ export default function SilverPriceLayout({ children }: { children: React.ReactN
           </section>
 
           <section>
-            <h2 className="mb-6 text-xl font-semibold">Frequently Asked Questions (FAQ)</h2>
+            <h2 className="mb-6 text-2xl font-semibold">Frequently Asked Questions (FAQ)</h2>
             <Accordion className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>Apakah harga perak ini sudah termasuk PPN?</AccordionTrigger>
+                <AccordionTrigger className="text-left">
+                  Apakah harga perak ini sudah termasuk PPN?
+                </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     Secara default, harga yang ditampilkan adalah harga dasar (belum termasuk PPN).
@@ -89,7 +91,9 @@ export default function SilverPriceLayout({ children }: { children: React.ReactN
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>Seberapa sering harga perak diperbarui?</AccordionTrigger>
+                <AccordionTrigger className="text-left">
+                  Seberapa sering harga perak diperbarui?
+                </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     Sistem kami memantau pergerakan harga perak dunia dan melakukan pembaruan data
@@ -99,7 +103,7 @@ export default function SilverPriceLayout({ children }: { children: React.ReactN
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger>
+                <AccordionTrigger className="text-left">
                   Apakah saya bisa membeli perak fisik di Salim Silver?
                 </AccordionTrigger>
                 <AccordionContent>
