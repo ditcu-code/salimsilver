@@ -81,7 +81,7 @@ const jsonLd = {
           name: "Seberapa sering harga perak diperbarui?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Harga perak kami diperbarui secara berkala setiap 4 jam sekali mengikuti pergerakan pasar logam mulia dunia untuk memastikan akurasi data.",
+            text: "Harga perak kami diperbarui secara berkala setiap 1 jam sekali mengikuti pergerakan pasar logam mulia dunia untuk memastikan akurasi data.",
           },
         },
         {
@@ -124,8 +124,9 @@ export default async function SilverPricePage() {
       .limit(1)
       .single()
 
-    const currentPrice = latestData.price_idr
-    const previousPrice = yesterdayData?.price_idr || currentPrice
+    // Convert from kg to per gram (divide by 1000)
+    const currentPrice = latestData.price_idr / 1000
+    const previousPrice = yesterdayData?.price_idr ? yesterdayData.price_idr / 1000 : currentPrice
 
     priceContent = (
       <SilverPriceDisplay
