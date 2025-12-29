@@ -1,8 +1,45 @@
+import type { Metadata } from "next"
+
 import { createClient } from "@/lib/supabase/server"
 import { PriceFallbackCard } from "./components/price-cards"
+import { SilverPriceAbout } from "./components/silver-price-about"
 import { SilverPriceDisplay } from "./components/silver-price-display"
+import { SilverPriceFaq } from "./components/silver-price-faq"
+import { SilverPriceHeader } from "./components/silver-price-header"
 
 export const revalidate = 3600 // Revalidate every hour
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Harga Perak Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
+  },
+  description:
+    "Pantau harga perak murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
+  keywords: [
+    "Harga Perak Hari Ini",
+    "Harga Perak per Gram",
+    "Harga Perak Antam",
+    "Harga Perak Rupiah",
+    "Investasi Perak",
+    "Silver Price Indonesia",
+    "Harga Silver per Gram",
+    "Jual Beli Perak",
+    "Harga Perak Murni",
+    "Grafik Harga Perak",
+    "Harga Perak Terbaru",
+  ],
+  alternates: {
+    canonical: "/silver-price",
+  },
+  openGraph: {
+    title: "Harga Perak Hari Ini | Update Terbaru per Gram (IDR)",
+    description:
+      "Cek harga perak murni hari ini dalam Rupiah. Data terupdate real-time untuk panduan beli dan investasi perak Anda.",
+    url: "/silver-price",
+    locale: "id_ID",
+    type: "website",
+  },
+}
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -66,37 +103,49 @@ export default async function SilverPricePage() {
     .limit(1)
     .single()
 
-  // Fallback if no data
+  let priceContent
+
   if (!latestData) {
-    return <PriceFallbackCard />
-  }
+    priceContent = <PriceFallbackCard />
+  } else {
+    // Fetch yesterday's price (approx 24h ago)
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
 
-  // Fetch yesterday's price (approx 24h ago)
-  const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+    const { data: yesterdayData } = await supabase
+      .from("silver_prices")
+      .select("price_idr")
+      .lte("updated_at", twentyFourHoursAgo)
+      .order("updated_at", { ascending: false })
+      .limit(1)
+      .single()
 
-  const { data: yesterdayData } = await supabase
-    .from("silver_prices")
-    .select("price_idr")
-    .lte("updated_at", twentyFourHoursAgo)
-    .order("updated_at", { ascending: false })
-    .limit(1)
-    .single()
+    const currentPrice = latestData.price_idr
+    const previousPrice = yesterdayData?.price_idr || currentPrice
 
-  const currentPrice = latestData.price_idr
-  const previousPrice = yesterdayData?.price_idr || currentPrice
-
-  return (
-    <>
+    priceContent = (
       <SilverPriceDisplay
         currentPrice={currentPrice}
         previousPrice={previousPrice}
         lastUpdated={latestData.updated_at}
       />
+    )
+  }
+
+  return (
+    <div className="space-y-6">
+      <SilverPriceHeader />
+
+      {priceContent}
+
+      <div className="mx-auto mt-20 max-w-2xl space-y-12">
+        <SilverPriceAbout />
+        <SilverPriceFaq />
+      </div>
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </>
+    </div>
   )
 }
