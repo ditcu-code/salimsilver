@@ -150,7 +150,7 @@ Deno.serve(async (req) => {
 
     if (error) throw error
 
-    return new Response(JSON.stringify({ success: true, data: insertPayload, is_api }), {
+    return new Response(JSON.stringify({ success: true, data: insertPayload }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     })
