@@ -1,12 +1,13 @@
 "use client"
 
-import { GoogleAnalytics } from "@next/third-parties/google"
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useEffect, useState } from "react"
 
 export function AnalyticsWrapper() {
   const [shouldTrack, setShouldTrack] = useState(false)
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+  const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
 
   useEffect(() => {
     // Only track on the production domain
@@ -24,6 +25,7 @@ export function AnalyticsWrapper() {
   return (
     <>
       {gaId && <GoogleAnalytics gaId={gaId} />}
+      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <SpeedInsights />
     </>
   )
