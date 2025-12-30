@@ -13,7 +13,7 @@ interface SilverPriceFaqProps {
 export function SilverPriceFaq({ className }: SilverPriceFaqProps) {
   return (
     <section className={cn(className)}>
-      <h2 className="mb-6 text-2xl font-semibold">Frequently Asked Questions (FAQ)</h2>
+      <h2 className="mb-6 text-2xl font-semibold">Frequently Asked Questions</h2>
       <Accordion className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-left">

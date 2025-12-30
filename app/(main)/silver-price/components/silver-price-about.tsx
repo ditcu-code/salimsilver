@@ -17,8 +17,8 @@ export function SilverPriceAbout({ className }: SilverPriceAboutProps) {
             Data harga kami mengacu pada standar pasar logam mulia internasional (Fine Silver 999)
             dan dikonversi ke Rupiah (IDR) secara real-time. Informasi ini ditujukan sebagai
             referensi akurat bagi investor, kolektor, dan pengrajin perak, khususnya di pusat
-            kerajinan Kotagede, Yogyakarta. Pastikan Anda memantau tren harga sebelum bertransaksi
-            untuk keputusan terbaik.
+            kerajinan perak Kotagede, Yogyakarta. Pastikan Anda memantau tren harga sebelum
+            bertransaksi untuk keputusan terbaik.
           </p>
         </CardContent>
       </Card>
