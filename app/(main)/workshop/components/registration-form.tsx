@@ -3,6 +3,7 @@
 import { WhatsApp } from "@/components/icons/whatsapp"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { sendGTMEvent } from "@next/third-parties/google"
 import { format } from "date-fns"
 import { CalendarIcon, Loader2, User, Users } from "lucide-react"
 import * as React from "react"
@@ -114,6 +115,14 @@ Please let me know about the availability.`
 
       const encodedMessage = encodeURIComponent(message)
       const waUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`
+
+      // Track GTM Event
+      sendGTMEvent({
+        event: "generate_lead",
+        value: totalPrice,
+        currency: "IDR",
+        lead_type: "workshop_booking",
+      })
 
       // Redirect
       window.open(waUrl, "_blank")

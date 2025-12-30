@@ -1,6 +1,6 @@
 "use client"
 
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useEffect, useState } from "react"
 
@@ -25,7 +25,6 @@ export function AnalyticsWrapper() {
   return (
     <>
       {gaId && <GoogleAnalytics gaId={gaId} />}
-      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <SpeedInsights />
     </>
   )
