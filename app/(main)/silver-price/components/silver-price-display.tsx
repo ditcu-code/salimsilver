@@ -2,6 +2,7 @@
 
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
+import { sendGTMEvent } from "@next/third-parties/google"
 import { useState } from "react"
 import { PriceCard } from "./price-cards"
 
@@ -21,7 +22,17 @@ export function SilverPriceDisplay({
   return (
     <div className="mx-auto max-w-7xl space-y-6">
       <div className="flex items-center justify-center space-x-2">
-        <Switch id="ppn-mode" checked={includeTax} onCheckedChange={setIncludeTax} />
+        <Switch
+          id="ppn-mode"
+          checked={includeTax}
+          onCheckedChange={(checked) => {
+            setIncludeTax(checked)
+            sendGTMEvent({
+              event: "toggle_ppn",
+              value: checked ? "on" : "off",
+            })
+          }}
+        />
         <Label htmlFor="ppn-mode">Termasuk PPN 11%</Label>
       </div>
 
