@@ -39,6 +39,17 @@ export function SilverPriceFaq({ className }: SilverPriceFaqProps) {
             </p>
           </AccordionContent>
         </AccordionItem>
+        <AccordionItem value="item-source">
+          <AccordionTrigger className="text-left">
+            Dari mana sumber data harga perak ini?
+          </AccordionTrigger>
+          <AccordionContent>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Data harga kami bersumber langsung dari data pasar spot internasional (XAG/USD) yang
+              dikonversi ke Rupiah secara real-time untuk memastikan akurasi nilai tukar terkini.
+            </p>
+          </AccordionContent>
+        </AccordionItem>
         <AccordionItem value="item-3">
           <AccordionTrigger className="text-left">
             Apakah saya bisa membeli perak fisik di Salim Silver?
