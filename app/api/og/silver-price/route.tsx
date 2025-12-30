@@ -3,8 +3,8 @@ import { createClient } from "@/lib/supabase/server"
 
 export const runtime = "nodejs"
 
-// Revalidate every hour
-export const revalidate = 3600
+// Revalidate every 30 minutes
+export const revalidate = 1800
 
 export async function GET() {
   const supabase = await createClient()

@@ -82,7 +82,7 @@ const jsonLd = {
           name: "Seberapa sering harga perak diperbarui?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Harga perak kami diperbarui secara berkala setiap 1 jam sekali mengikuti pergerakan pasar logam mulia dunia untuk memastikan akurasi data.",
+            text: "Harga perak kami diperbarui secara berkala setiap 30 menit sekali mengikuti pergerakan pasar logam mulia dunia untuk memastikan akurasi data.",
           },
         },
         {

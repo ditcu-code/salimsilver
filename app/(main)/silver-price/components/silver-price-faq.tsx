@@ -34,7 +34,7 @@ export function SilverPriceFaq({ className }: SilverPriceFaqProps) {
           <AccordionContent>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Sistem kami memantau pergerakan harga perak dunia dan melakukan pembaruan data secara
-              berkala setiap 1 jam sekali untuk memastikan Anda mendapatkan informasi yang paling
+              berkala setiap 30 menit sekali untuk memastikan Anda mendapatkan informasi yang paling
               relevan dengan kondisi pasar saat ini.
             </p>
           </AccordionContent>
