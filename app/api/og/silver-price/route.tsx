@@ -26,7 +26,7 @@ export async function GET() {
     maximumFractionDigits: 0,
   })
 
-  const formattedPrice = formatter.format(price)
+  const formattedPrice = formatter.format(price / 1000)
 
   const today = new Date().toLocaleDateString("id-ID", {
     day: "numeric",

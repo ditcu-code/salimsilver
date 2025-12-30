@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server"
 import { PriceFallbackCard } from "./components/price-cards"
 import { SilverPriceDisplay } from "./components/silver-price-display"
 
-export const revalidate = 3600 // Revalidate every hour
+export const revalidate = 1800 // Revalidate every 30 minutes
 
 export const metadata: Metadata = {
   title: {
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     "Harga Perak Murni",
     "Grafik Harga Perak",
     "Harga Perak Terbaru",
+    "Silver Price Rupiah",
   ],
   alternates: {
     canonical: "/silver-price",
