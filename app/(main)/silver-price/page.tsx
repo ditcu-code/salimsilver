@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { createClient } from "@/lib/supabase/server"
 import { PriceFallbackCard } from "./components/price-cards"
 import { SilverPriceDisplay } from "./components/silver-price-display"
+import { FAQ_ITEMS } from "./constants"
 
 export const revalidate = 1800 // Revalidate every 30 minutes
 
@@ -68,32 +69,14 @@ const jsonLd = {
     },
     {
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Apakah harga perak ini sudah termasuk PPN?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Secara default, harga yang ditampilkan belum termasuk PPN. Anda dapat mengaktifkan opsi 'Termasuk PPN 11%' untuk melihat harga setelah pajak.",
-          },
+      mainEntity: FAQ_ITEMS.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
         },
-        {
-          "@type": "Question",
-          name: "Seberapa sering harga perak diperbarui?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Harga perak kami diperbarui secara berkala setiap 30 menit sekali mengikuti pergerakan pasar logam mulia dunia untuk memastikan akurasi data.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Apakah saya bisa membeli perak fisik di Salim Silver?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Ya, Salim Silver menyediakan berbagai perhiasan perak handmade berkualitas tinggi khas Kotagede. Anda bisa memesan langsung melalui katalog website kami.",
-          },
-        },
-      ],
+      })),
     },
   ],
 }
