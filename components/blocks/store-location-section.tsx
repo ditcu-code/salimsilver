@@ -1,6 +1,7 @@
 "use client"
 
 import AnimatedButton from "@/components/ui/animated-button"
+import { sendGAEvent } from "@next/third-parties/google"
 import { motion } from "framer-motion"
 import { ArrowRight, MapPin } from "lucide-react"
 
@@ -47,6 +48,12 @@ export default function StoreLocationSection() {
               rel="noopener noreferrer"
               variant="primary"
               icon={<ArrowRight size={18} />}
+              onClick={() =>
+                sendGAEvent("event", "get_directions", {
+                  method: "google_maps",
+                  location: "store_location_section",
+                })
+              }
             >
               Get Directions
             </AnimatedButton>
