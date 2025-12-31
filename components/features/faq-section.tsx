@@ -6,19 +6,29 @@ import {
 } from "@/components/ui/accordion-motion"
 import { cn } from "@/lib/utils"
 
-interface SilverPriceFaqProps {
-  className?: string
+export interface FAQItem {
+  question: string
+  answer: string
+  value?: string
 }
 
-import { FAQ_ITEMS } from "../constants"
+interface FaqSectionProps {
+  items: FAQItem[]
+  className?: string
+  title?: string
+}
 
-export function SilverPriceFaq({ className }: SilverPriceFaqProps) {
+export function FaqSection({
+  items,
+  className,
+  title = "Frequently Asked Questions",
+}: FaqSectionProps) {
   return (
     <section className={cn(className)}>
-      <h2 className="mb-6 text-2xl font-semibold">Frequently Asked Questions</h2>
+      {title && <h2 className="mb-6 text-2xl font-semibold">{title}</h2>}
       <Accordion className="w-full">
-        {FAQ_ITEMS.map((item) => (
-          <AccordionItem key={item.value} value={item.value}>
+        {items.map((item, index) => (
+          <AccordionItem key={item.value || `item-${index}`} value={item.value || `item-${index}`}>
             <AccordionTrigger className="cursor-pointer text-left">
               {item.question}
             </AccordionTrigger>
