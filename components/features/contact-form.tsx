@@ -2,6 +2,7 @@
 
 import { submitContactForm } from "@/app/actions"
 import { cn } from "@/lib/utils"
+import { sendGAEvent } from "@next/third-parties/google"
 import { useActionState, useEffect, useRef } from "react"
 import { toast } from "sonner"
 
@@ -23,6 +24,7 @@ export function ContactForm({ className }: ContactFormProps) {
   useEffect(() => {
     if (state?.success) {
       toast.success("Message sent successfully!")
+      sendGAEvent("event", "form_submit", { form_name: "contact_form" })
       formRef.current?.reset()
     } else if (state?.message && !state.success) {
       toast.error(state.message)

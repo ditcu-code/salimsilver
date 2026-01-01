@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { sendGAEvent } from "@next/third-parties/google"
 import { Check, Share2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -24,6 +25,11 @@ export function ShareButton({ title, text, url }: ShareButtonProps) {
           text,
           url: shareUrl,
         })
+        sendGAEvent("event", "share", {
+          method: "navigator",
+          content_type: "url",
+          item_id: shareUrl,
+        })
         return
       } catch (error) {
         if ((error as Error).name !== "AbortError") {
@@ -40,6 +46,11 @@ export function ShareButton({ title, text, url }: ShareButtonProps) {
     navigator.clipboard.writeText(textToCopy).then(() => {
       setCopied(true)
       toast.success("Link copied to clipboard")
+      sendGAEvent("event", "share", {
+        method: "clipboard",
+        content_type: "url",
+        item_id: textToCopy,
+      })
       setTimeout(() => setCopied(false), 2000)
     })
   }

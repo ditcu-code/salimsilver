@@ -2,7 +2,7 @@
 
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { sendGTMEvent } from "@next/third-parties/google"
+import { sendGAEvent } from "@next/third-parties/google"
 import { useState } from "react"
 import { PriceCard } from "./price-cards"
 
@@ -27,8 +27,7 @@ export function SilverPriceDisplay({
           checked={includeTax}
           onCheckedChange={(checked) => {
             setIncludeTax(checked)
-            sendGTMEvent({
-              event: "toggle_ppn",
+            sendGAEvent("event", "toggle_ppn", {
               value: checked ? "on" : "off",
             })
           }}

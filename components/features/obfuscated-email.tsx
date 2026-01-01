@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { sendGAEvent } from "@next/third-parties/google"
 import { useEffect, useState } from "react"
 
 interface ObfuscatedEmailProps {
@@ -39,7 +40,16 @@ export function ObfuscatedEmail({
 
   // Hydrated render (user): renders the clickable link
   return (
-    <a href={`mailto:${email}`} className={cn("hover:text-primary transition-colors", className)}>
+    <a
+      href={`mailto:${email}`}
+      className={cn("hover:text-primary transition-colors", className)}
+      onClick={() =>
+        sendGAEvent("event", "contact_click", {
+          method: "email",
+          value: email,
+        })
+      }
+    >
       {email}
     </a>
   )

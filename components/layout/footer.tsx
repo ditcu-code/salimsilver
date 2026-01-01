@@ -1,5 +1,6 @@
 "use client"
 
+import { sendGAEvent } from "@next/third-parties/google"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
@@ -143,7 +144,12 @@ export default function Footer() {
                   className="text-foreground hover:text-primary transition-colors"
                   aria-label={label}
                   whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  onClick={() =>
+                    sendGAEvent("event", "social_click", {
+                      network: label,
+                      url: href,
+                    })
+                  }
                 >
                   <Icon size={20} />
                   <span className="sr-only">{label}</span>
