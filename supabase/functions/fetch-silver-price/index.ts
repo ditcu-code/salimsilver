@@ -214,7 +214,6 @@ Deno.serve(async (req) => {
         price_7d_ago: price7d,
         price_30d_ago: price30d,
         price_1y_ago: price1y,
-        source: source,
         updated_at: timestamp,
       }
 

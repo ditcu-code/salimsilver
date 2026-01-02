@@ -284,7 +284,6 @@ export type Database = {
           price_7d_ago: number | null
           price_30d_ago: number | null
           price_1y_ago: number | null
-          source: Database["public"]["Enums"]["price_source_type"]
           updated_at: string
         }
         Insert: {
@@ -294,7 +293,6 @@ export type Database = {
           price_7d_ago?: number | null
           price_30d_ago?: number | null
           price_1y_ago?: number | null
-          source: Database["public"]["Enums"]["price_source_type"]
           updated_at?: string
         }
         Update: {
@@ -304,7 +302,6 @@ export type Database = {
           price_7d_ago?: number | null
           price_30d_ago?: number | null
           price_1y_ago?: number | null
-          source?: Database["public"]["Enums"]["price_source_type"]
           updated_at?: string
         }
         Relationships: []

@@ -87,7 +87,7 @@ export default async function SilverPricePage() {
   // Fetch latest silver price summary (cached)
   const { data: summaryData } = await supabase
     .from("silver_price_summary")
-    .select("*")
+    .select("price_idr, price_24h_ago, updated_at")
     .eq("id", 1)
     .single()
 
