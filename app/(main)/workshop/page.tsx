@@ -6,6 +6,7 @@ import { BASE_URL } from "@/lib/constants"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopDetails } from "./components/workshop-details"
 import { WorkshopHero } from "./components/workshop-hero"
+import { WorkshopReasons } from "./components/workshop-reasons"
 import { WorkshopSteps } from "./components/workshop-steps"
 import { reels, studentsImages } from "./constants"
 
@@ -33,6 +34,7 @@ export default function WorkshopPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <WorkshopHero />
+      <WorkshopReasons />
 
       <div className="container mx-auto px-4 pt-16 pb-8 md:pt-24 md:pb-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
