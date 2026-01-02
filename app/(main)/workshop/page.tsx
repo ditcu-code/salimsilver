@@ -34,7 +34,6 @@ export default function WorkshopPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <WorkshopHero />
-      <WorkshopReasons />
 
       <div className="container mx-auto px-4 pt-16 pb-8 md:pt-24 md:pb-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
@@ -56,7 +55,7 @@ export default function WorkshopPage() {
 
           {/* Right Column: Registration Form */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
-            <div className="mb-8 lg:hidden">
+            <div id="registration-form" className="mb-8 lg:hidden">
               <h2 className="mb-4 font-serif text-3xl font-bold">Start Now</h2>
               <p className="text-neutral-600 dark:text-neutral-400">
                 Secure your slot for an unforgettable experience.
@@ -67,6 +66,16 @@ export default function WorkshopPage() {
         </div>
       </div>
 
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-stone-200 bg-white/80 p-4 backdrop-blur-md md:hidden dark:border-stone-800 dark:bg-stone-900/80">
+        <a
+          href="#registration-form"
+          className="flex w-full items-center justify-center rounded-full bg-stone-900 py-3 font-medium text-white shadow-lg dark:bg-stone-50 dark:text-stone-900"
+        >
+          Book Your Workshop
+        </a>
+      </div>
+
+      <WorkshopReasons />
       <PolaroidGallery images={studentsImages} className="bg-stone-50 dark:bg-neutral-900/50" />
       <ReelsGallery reels={reels} className="mb-12" />
 

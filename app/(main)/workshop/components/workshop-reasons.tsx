@@ -1,5 +1,7 @@
 import { BookOpen, Landmark, Medal } from "lucide-react"
 
+import { cn } from "@/lib/utils"
+
 const reasons = [
   {
     icon: BookOpen,
@@ -21,9 +23,9 @@ const reasons = [
   },
 ]
 
-export function WorkshopReasons() {
+export function WorkshopReasons({ className }: { className?: string }) {
   return (
-    <section className="bg-stone-50 pt-16 pb-8 dark:bg-neutral-900/50">
+    <section className={cn("bg-stone-50 py-8 dark:bg-neutral-900/50", className)}>
       <div className="container mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-3">
           {reasons.map((reason) => (
