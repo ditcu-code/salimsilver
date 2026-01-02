@@ -1,11 +1,11 @@
-import { Gem, Landmark, Medal } from "lucide-react"
+import { BookOpen, Landmark, Medal } from "lucide-react"
 
 const reasons = [
   {
-    icon: Medal,
-    title: "Guided by Masters",
+    icon: BookOpen,
+    title: "Meet Salim, The Storyteller",
     description:
-      "Your masterpiece will be guided by experienced artisans with decades of expertise, ensuring quality and tradition in every step.",
+      "He will share not just techniques, but weave tales of our family history and the rich legacy of silver in Kotagede.",
   },
   {
     icon: Landmark,
@@ -14,10 +14,10 @@ const reasons = [
       "Create in the same authentic studio where our family legacy began over a century ago, surrounded by living history.",
   },
   {
-    icon: Gem,
-    title: "Authentic Experience",
+    icon: Medal,
+    title: "Guided by Masters",
     description:
-      "Immerse yourself in true Javanese heritage and take home a piece of history crafted by your own hands.",
+      "Your masterpiece will be guided by experienced artisans with decades of expertise, ensuring quality and tradition in every step.",
   },
 ]
 
