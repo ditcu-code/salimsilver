@@ -276,6 +276,39 @@ export type Database = {
         }
         Relationships: []
       }
+      silver_price_summary: {
+        Row: {
+          id: number
+          price_idr: number
+          price_24h_ago: number | null
+          price_7d_ago: number | null
+          price_30d_ago: number | null
+          price_1y_ago: number | null
+          source: Database["public"]["Enums"]["price_source_type"]
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          price_idr: number
+          price_24h_ago?: number | null
+          price_7d_ago?: number | null
+          price_30d_ago?: number | null
+          price_1y_ago?: number | null
+          source: Database["public"]["Enums"]["price_source_type"]
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          price_idr?: number
+          price_24h_ago?: number | null
+          price_7d_ago?: number | null
+          price_30d_ago?: number | null
+          price_1y_ago?: number | null
+          source?: Database["public"]["Enums"]["price_source_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

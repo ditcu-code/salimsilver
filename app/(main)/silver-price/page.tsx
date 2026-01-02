@@ -84,39 +84,32 @@ const jsonLd = {
 export default async function SilverPricePage() {
   const supabase = await createClient()
 
-  // Fetch latest silver price
-  const { data: latestData } = await supabase
-    .from("silver_prices")
-    .select("price_idr, updated_at")
-    .order("updated_at", { ascending: false })
-    .limit(1)
+  // Fetch latest silver price summary (cached)
+  const { data: summaryData } = await supabase
+    .from("silver_price_summary")
+    .select("*")
+    .eq("id", 1)
     .single()
 
   let priceContent
 
-  if (!latestData) {
+  if (!summaryData) {
+    // Fallback if cache is empty (e.g. before first cron run)
+    // We could fallback to old query, but showing fallback card is safer/simpler
     priceContent = <PriceFallbackCard />
   } else {
-    // Fetch yesterday's price (approx 24h ago)
-    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-
-    const { data: yesterdayData } = await supabase
-      .from("silver_prices")
-      .select("price_idr")
-      .lte("updated_at", twentyFourHoursAgo)
-      .order("updated_at", { ascending: false })
-      .limit(1)
-      .single()
-
     // Convert from kg to per gram (divide by 1000)
-    const currentPrice = latestData.price_idr / 1000
-    const previousPrice = yesterdayData?.price_idr ? yesterdayData.price_idr / 1000 : currentPrice
+    const currentPrice = summaryData.price_idr / 1000
+    // Use 24h ago price if available, otherwise fallback to current
+    const previousPrice = summaryData.price_24h_ago
+      ? summaryData.price_24h_ago / 1000
+      : currentPrice
 
     priceContent = (
       <SilverPriceDisplay
         currentPrice={currentPrice}
         previousPrice={previousPrice}
-        lastUpdated={latestData.updated_at}
+        lastUpdated={summaryData.updated_at}
       />
     )
   }

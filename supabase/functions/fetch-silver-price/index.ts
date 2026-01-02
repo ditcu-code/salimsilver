@@ -185,6 +185,53 @@ Deno.serve(async (req) => {
 
     if (error) throw error
 
+    // 4. Update Summary Cache
+    try {
+      const now = new Date()
+      const getHistoricalPrice = async (daysAgo: number) => {
+        const targetDate = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000).toISOString()
+        const { data } = await supabaseClient
+          .from("silver_prices")
+          .select("price_idr")
+          .lte("updated_at", targetDate)
+          .order("updated_at", { ascending: false })
+          .limit(1)
+          .single()
+        return data?.price_idr || null
+      }
+
+      const [price24h, price7d, price30d, price1y] = await Promise.all([
+        getHistoricalPrice(1),
+        getHistoricalPrice(7),
+        getHistoricalPrice(30),
+        getHistoricalPrice(365),
+      ])
+
+      const summaryPayload = {
+        id: 1,
+        price_idr: priceIDR,
+        price_24h_ago: price24h,
+        price_7d_ago: price7d,
+        price_30d_ago: price30d,
+        price_1y_ago: price1y,
+        source: source,
+        updated_at: timestamp,
+      }
+
+      const { error: summaryError } = await supabaseClient
+        .from("silver_price_summary")
+        .upsert(summaryPayload)
+
+      if (summaryError) {
+        console.error("Failed to update summary cache:", summaryError)
+        // We don't throw here to avoid failing the whole request if just the cache update fails
+      } else {
+        console.log("Summary cache updated successfully")
+      }
+    } catch (cacheError) {
+      console.error("Error updating summary cache:", cacheError)
+    }
+
     return new Response(JSON.stringify({ success: true, data: insertPayload }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
