@@ -76,7 +76,7 @@ export default function WorkshopPage() {
       </div>
 
       <WorkshopReasons />
-      <PolaroidGallery images={studentsImages} className="bg-stone-50 dark:bg-neutral-900/50" />
+      <PolaroidGallery images={studentsImages} />
       <ReelsGallery reels={reels} className="mb-12" />
 
       <script

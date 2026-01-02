@@ -25,7 +25,7 @@ const reasons = [
 
 export function WorkshopReasons({ className }: { className?: string }) {
   return (
-    <section className={cn("bg-stone-50 py-8 dark:bg-neutral-900/50", className)}>
+    <section className={cn("py-8", className)}>
       <div className="container mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-3">
           {reasons.map((reason) => (
