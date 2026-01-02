@@ -16,7 +16,7 @@ Deno.serve(async (req) => {
   )
 
   let priceIDR = 0
-  let is_api = false
+  let source = "goldprice"
   let timestamp = new Date().toISOString()
 
   // 1. Attempt to Fetch from goldprice.org (Primary)
@@ -66,7 +66,7 @@ Deno.serve(async (req) => {
       timestamp = new Date(data.ts).toISOString()
     }
 
-    is_api = false // Marking as false to distinguish from the paid/limited metals.dev API
+    source = "goldprice" // Marking source explicitly
     console.log(`Primary fetch successful: ${priceIDR} (Source: goldprice.org, Time: ${timestamp})`)
   } catch (primaryError) {
     console.error("Primary fetch failed, switching to Scraper fallback:", primaryError.message)
@@ -105,7 +105,7 @@ Deno.serve(async (req) => {
         throw new Error(`Scraped price invalid: ${priceString}`)
       }
 
-      is_api = false // Scraper is not the paid API
+      source = "bullion_rates" // Scraper source
       timestamp = new Date().toISOString() // Use current time
       console.log(`Scraper successful: ${priceIDR} (Source: bullion-rates.com)`)
     } catch (scraperError) {
@@ -140,7 +140,7 @@ Deno.serve(async (req) => {
 
         const apiPrice = data.metals.silver
         priceIDR = Math.round(apiPrice) // Save as integer with no decimal
-        is_api = true
+        source = "metals_dev"
 
         // Parse API Timestamps: pick latest of "metal" vs "currency"
         if (data.timestamps) {
@@ -178,7 +178,7 @@ Deno.serve(async (req) => {
     const insertPayload = {
       price_idr: priceIDR,
       updated_at: timestamp,
-      is_api: is_api,
+      source: source,
     }
 
     const { error } = await supabaseClient.from("silver_prices").insert(insertPayload)

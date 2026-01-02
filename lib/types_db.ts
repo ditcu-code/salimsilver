@@ -232,17 +232,17 @@ export type Database = {
         Row: {
           price_idr: number
           updated_at: string
-          is_api: boolean | null
+          source: Database["public"]["Enums"]["price_source_type"]
         }
         Insert: {
           price_idr: number
           updated_at?: string
-          is_api?: boolean | null
+          source: Database["public"]["Enums"]["price_source_type"]
         }
         Update: {
           price_idr?: number
           updated_at?: string
-          is_api?: boolean | null
+          source?: Database["public"]["Enums"]["price_source_type"]
         }
         Relationships: []
       }
@@ -286,6 +286,7 @@ export type Database = {
     Enums: {
       jewelry_status: "available" | "sold" | "reserved" | "hidden"
       material_type: "gold" | "silver" | "copper" | "brass"
+      price_source_type: "goldprice" | "bullion_rates" | "metals_dev"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -416,6 +417,7 @@ export const Constants = {
     Enums: {
       jewelry_status: ["available", "sold", "reserved", "hidden"],
       material_type: ["gold", "silver", "copper", "brass"],
+      price_source_type: ["goldprice", "bullion_rates", "metals_dev"],
     },
   },
 } as const
