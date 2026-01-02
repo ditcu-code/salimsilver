@@ -29,7 +29,7 @@ Deno.serve(async (req) => {
     }
 
     const data = await response.json()
-    console.log("GoldPrice.org Response:", JSON.stringify(data, null, 2))
+    console.log("GoldPrice.org Response:", data)
 
     if (!data.items || data.items.length === 0) {
       throw new Error("Primary fetch validation failed: No items in response")
@@ -132,10 +132,10 @@ Deno.serve(async (req) => {
           `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=kg`
         )
         const data = await response.json()
-        console.log("Metals.dev API Response:", JSON.stringify(data, null, 2))
+        console.log("Metals.dev API Response:", data)
 
         if (data.status !== "success") {
-          throw new Error(`API Error: ${JSON.stringify(data)}`)
+          throw new Error(`API Error: \n${JSON.stringify(data, null, 2)}`)
         }
 
         const apiPrice = data.metals.silver
