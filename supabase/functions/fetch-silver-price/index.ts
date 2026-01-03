@@ -1,8 +1,10 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 }
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", {
@@ -24,7 +26,7 @@ Deno.serve(async (req) => {
       throw new Error(`Primary fetch failed: ${response.status} ${response.statusText}`)
     }
     const data = await response.json()
-    console.log("GoldPrice.org Response:", response)
+    console.log("GoldPrice.org Response:", data)
     if (!data.items || data.items.length === 0) {
       throw new Error("Primary fetch validation failed: No items in response")
     }
