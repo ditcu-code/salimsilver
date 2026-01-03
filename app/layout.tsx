@@ -10,7 +10,7 @@ import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Lato } from "next/font/google"
 
 const lato = Lato({
-  weight: ["100", "300", "400", "700", "900"],
+  weight: ["300", "400", "700"],
   subsets: ["latin"],
   variable: "--font-lato",
 })

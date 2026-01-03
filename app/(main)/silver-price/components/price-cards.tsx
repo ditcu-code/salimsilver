@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Triangle } from "lucide-react"
 
-import { motion } from "framer-motion"
+import { m as motion } from "framer-motion"
 import { AnimatedCurrency } from "./animated-currency"
 
 interface PriceCardProps {
