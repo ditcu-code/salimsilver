@@ -28,12 +28,26 @@ export const metadata: Metadata = {
     description:
       "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the steps of creating traditional silver jewelry from master artisans.",
   },
+  keywords: [
+    "Silversmithing Workshop",
+    "Jewelry Making Workshop",
+    "Traditional Silversmithing",
+    "Silver Jewelry Making",
+    "Yogyakarta Workshop",
+    "Silversmithing Course",
+    "Jewelry Making Course",
+    "Traditional Silversmithing Course",
+    "Silver Jewelry Making Course",
+    "Yogyakarta Course",
+    "Workshop Perhiasan Perak",
+  ],
 }
 
 export default function WorkshopPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <WorkshopHero />
+      <WorkshopReasons className="md:hidden" />
 
       <div className="container mx-auto px-4 pt-16 pb-8 md:pt-24 md:pb-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
@@ -75,7 +89,6 @@ export default function WorkshopPage() {
         </a>
       </div>
 
-      <WorkshopReasons />
       <PolaroidGallery images={studentsImages} />
       <ReelsGallery reels={reels} className="mb-12" />
 
