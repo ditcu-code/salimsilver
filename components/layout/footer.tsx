@@ -81,14 +81,14 @@ export default function Footer() {
               <Image
                 src="/images/logo-salimsilver.webp"
                 alt="Salim Silver"
-                width={200}
+                width={260}
                 height={40}
                 className="h-12 object-contain invert dark:invert-0"
-                style={{ width: "auto" }}
+                style={{ width: "auto", maxWidth: "260px" }}
                 loading="eager"
               />
             </Link>
-            <span className="text-muted-foreground -mt-2 mr-2 self-end text-[0.7rem]">
+            <span className="text-muted-foreground -mt-2 mr-1.5 self-end text-[0.7rem]">
               Heritage Forged by Hand
             </span>
           </div>

@@ -77,8 +77,11 @@ export default function Header() {
           <DesktopNavigation isHome={isHome} isScrolled={isScrolled} pathname={pathname} />
 
           <div className="flex items-center gap-2">
-            <div className="toggle-container shrink-0 md:block">
-              <StoreLocationButton />
+            <div className="toggle-container flex shrink-0 gap-2 md:block">
+              <div className="flex gap-2">
+                <StoreLocationButton />
+                {/* <LanguageSwitcher /> */}
+              </div>
             </div>
 
             <MobileMenuButton
@@ -119,7 +122,7 @@ function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string
             "h-10 object-contain transition-all duration-300 dark:invert-0",
             shouldInvert ? "invert" : "invert-0"
           )}
-          style={{ width: "auto" }}
+          style={{ width: "auto", maxWidth: "180px" }}
           priority
         />
       </Link>
