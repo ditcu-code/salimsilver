@@ -2,6 +2,7 @@
 import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import React, { useState } from "react"
 
@@ -12,83 +13,6 @@ type Card = {
   thumbnail: string
   alt: string
 }
-
-const SkeletonOne = () => {
-  return (
-    <div>
-      <p className="font-display text-xl font-bold text-white md:text-4xl">Handcrafted Rings</p>
-      <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
-        Discover our collection of intricate silver rings, each piece telling a story of Javanese
-        tradition.
-      </p>
-    </div>
-  )
-}
-
-const SkeletonTwo = () => {
-  return (
-    <div>
-      <p className="font-display text-xl font-bold text-white md:text-4xl">Artisan Necklaces</p>
-      <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
-        Elegant silver necklaces featuring bold pendants and delicate chains, perfect for any
-        occasion.
-      </p>
-    </div>
-  )
-}
-
-const SkeletonThree = () => {
-  return (
-    <div>
-      <p className="font-display text-xl font-bold text-white md:text-4xl">Silver Bracelets</p>
-      <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
-        Hand-woven and solid silver bracelets that combine modern style with timeless craftsmanship.
-      </p>
-    </div>
-  )
-}
-
-const SkeletonFour = () => {
-  return (
-    <div>
-      <p className="font-display text-xl font-bold text-white md:text-4xl">Statement Earrings</p>
-      <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
-        From subtle studs to dramatic drops, our earrings are designed to captivate and inspire.
-      </p>
-    </div>
-  )
-}
-
-const cards = [
-  {
-    id: 1,
-    content: <SkeletonOne />,
-    className: "md:col-span-2",
-    thumbnail: `${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`,
-    alt: "Handcrafted Silver Rings",
-  },
-  {
-    id: 2,
-    content: <SkeletonTwo />,
-    className: "col-span-1",
-    thumbnail: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`,
-    alt: "Artisan Necklaces",
-  },
-  {
-    id: 3,
-    content: <SkeletonThree />,
-    className: "col-span-1",
-    thumbnail: `${SUPABASE_CATALOG_URL}/silver-filigree-ruby-cuff-bracelet-salimsilver.webp`,
-    alt: "Silver Bracelets",
-  },
-  {
-    id: 4,
-    content: <SkeletonFour />,
-    className: "md:col-span-2",
-    thumbnail: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-    alt: "Statement Earrings",
-  },
-]
 
 export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   const [selected, setSelected] = useState<Card | null>(null)
@@ -180,6 +104,75 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
 }
 
 export function LayoutGridDemo() {
+  const t = useTranslations("HomePage.LayoutGrid")
+
+  const cards = [
+    {
+      id: 1,
+      content: (
+        <div>
+          <p className="font-display text-xl font-bold text-white md:text-4xl">
+            {t("card1.title")}
+          </p>
+          <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
+            {t("card1.description")}
+          </p>
+        </div>
+      ),
+      className: "md:col-span-2",
+      thumbnail: `${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`,
+      alt: t("card1.alt"),
+    },
+    {
+      id: 2,
+      content: (
+        <div>
+          <p className="font-display text-xl font-bold text-white md:text-4xl">
+            {t("card2.title")}
+          </p>
+          <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
+            {t("card2.description")}
+          </p>
+        </div>
+      ),
+      className: "col-span-1",
+      thumbnail: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`,
+      alt: t("card2.alt"),
+    },
+    {
+      id: 3,
+      content: (
+        <div>
+          <p className="font-display text-xl font-bold text-white md:text-4xl">
+            {t("card3.title")}
+          </p>
+          <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
+            {t("card3.description")}
+          </p>
+        </div>
+      ),
+      className: "col-span-1",
+      thumbnail: `${SUPABASE_CATALOG_URL}/silver-filigree-ruby-cuff-bracelet-salimsilver.webp`,
+      alt: t("card3.alt"),
+    },
+    {
+      id: 4,
+      content: (
+        <div>
+          <p className="font-display text-xl font-bold text-white md:text-4xl">
+            {t("card4.title")}
+          </p>
+          <p className="my-4 max-w-lg text-base font-normal text-neutral-200">
+            {t("card4.description")}
+          </p>
+        </div>
+      ),
+      className: "md:col-span-2",
+      thumbnail: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
+      alt: t("card4.alt"),
+    },
+  ]
+
   return (
     <div className="h-screen w-full py-20">
       <LayoutGrid cards={cards} />

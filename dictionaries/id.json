@@ -1,0 +1,50 @@
+{
+  "HomePage": {
+    "Hero": {
+      "title": "Perhiasan perak buatan tangan yang menceritakan kisah keanggunan dan tradisi",
+      "description": "Dibuat oleh pengrajin Salim, setiap karya menyalurkan warisan Jawa menjadi keanggunan modern yang halus."
+    },
+    "Introduction": {
+      "title": "Seni Kerajinan Perak",
+      "description1": "Di Salim Silver, kami percaya bahwa perhiasan lebih dari sekadar aksesori; itu adalah ekspresi seni dan tradisi. Karya kami dibuat dengan tangan oleh pengrajin terampil di Kotagede, Yogyakarta, menjaga warisan pembaruan dan desain.",
+      "description2": "Mulai dari cincin filigan yang rumit hingga kalung pernyataan yang berani, setiap item dalam koleksi kami menceritakan kisah unik.",
+      "cta": "Temukan Warisan Kami"
+    },
+    "CTA": {
+      "title": "Desain Kustom & Grosir",
+      "description": "Mencari perhiasan unik atau tertarik untuk menjual perhiasan kami? Kami menawarkan layanan desain kustom dan kemitraan grosir.",
+      "ctaLabel": "Tanya Sekarang"
+    },
+    "Featured": {
+      "title": "Koleksi Unggulan",
+      "description": "Jelajahi pilihan perhiasan perak buatan tangan kami",
+      "ctaLabel": "Lihat Semua Koleksi"
+    },
+    "LayoutGrid": {
+      "card1": {
+        "title": "Cincin Buatan Tangan",
+        "description": "Temukan koleksi cincin perak rumit kami, setiap karya menceritakan kisah tradisi Jawa.",
+        "alt": "Cincin Perak Buatan Tangan"
+      },
+      "card2": {
+        "title": "Kalung Pengrajin",
+        "description": "Kalung perak elegan dengan liontin tegas dan rantai halus, sempurna untuk setiap kesempatan.",
+        "alt": "Kalung Pengrajin"
+      },
+      "card3": {
+        "title": "Gelang Perak",
+        "description": "Gelang perak anyaman tangan dan padat yang memadukan gaya modern dengan keahlian abadi.",
+        "alt": "Gelang Perak"
+      },
+      "card4": {
+        "title": "Anting Memukau",
+        "description": "Dari giwang halus hingga model gantung dramatis, anting kami dirancang untuk memikat dan menginspirasi.",
+        "alt": "Anting Memukau"
+      }
+    },
+    "Metadata": {
+      "title": "Perhiasan Perak Jawa Buatan Tangan",
+      "description": "Jelajahi cincin, kalung, dan gelang buatan tangan Salim Silver yang terinspirasi oleh warisan Jawa dan dibuat di Kotagede, Yogyakarta."
+    }
+  }
+}

@@ -10,10 +10,9 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
+import { useTranslations } from "next-intl"
+
 const CONTENT = {
-  title: "Handcrafted silver jewelry that tells a story of elegance and tradition",
-  description:
-    "Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern elegance.",
   images: {
     heroPortrait: "/images/jono-setting-filigree.webp",
     heroPortraitBlur: "/images/jono-setting-filigree-blur.webp",
@@ -39,13 +38,15 @@ function FullBentoCell({ children, className }: { children: ReactNode; className
 }
 
 function HeroDesktop() {
+  const t = useTranslations("HomePage.Hero")
+
   return (
     <BentoGrid variant="hero" className="hidden h-full w-full gap-4 md:grid md:gap-6">
       {/* Cell 1: Title */}
       <FullBentoCell className="bg-background flex flex-col items-start justify-center rounded-3xl p-8 md:p-12">
         <div className="w-full">
           <h1 className="font-display text-foreground mb-4 text-2xl leading-[0.9] tracking-tight md:text-4xl lg:text-5xl">
-            {CONTENT.title}
+            {t("title")}
           </h1>
         </div>
       </FullBentoCell>
@@ -91,7 +92,7 @@ function HeroDesktop() {
         </FullBentoCell>
 
         <FullBentoCell className="bg-secondary flex flex-1 items-center justify-center rounded-3xl px-6">
-          <div className="text-primary text-center text-sm md:text-base">{CONTENT.description}</div>
+          <div className="text-primary text-center text-sm md:text-base">{t("description")}</div>
         </FullBentoCell>
       </div>
     </BentoGrid>
@@ -99,13 +100,14 @@ function HeroDesktop() {
 }
 
 function HeroMobile() {
+  const t = useTranslations("HomePage.Hero")
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }))
 
   return (
     <div className="flex h-full flex-col justify-evenly gap-4 md:hidden">
       <div className="w-full text-center">
         <h1 className="font-display text-foreground px-6 text-3xl leading-[0.9] tracking-tight">
-          {CONTENT.title}.
+          {t("title")}.
         </h1>
       </div>
 
@@ -159,7 +161,7 @@ function HeroMobile() {
         <div className="mt-4 flex justify-center gap-1" />
       </Carousel>
 
-      <div className="text-primary px-4 text-center text-sm">{CONTENT.description}</div>
+      <div className="text-primary px-4 text-center text-sm">{t("description")}</div>
     </div>
   )
 }

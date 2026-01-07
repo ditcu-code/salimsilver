@@ -1,0 +1,50 @@
+{
+  "HomePage": {
+    "Hero": {
+      "title": "Handcrafted silver jewelry that tells a story of elegance and tradition",
+      "description": "Crafted by Salim artisans, each piece channels Javanese heritage into refined, modern elegance."
+    },
+    "Introduction": {
+      "title": "The Art of Silver Craftsmanship",
+      "description1": "At Salim Silver, we believe that jewelry is more than just an accessory; it is an expression of art and tradition. Our pieces are handcrafted by skilled artisans in Kotagede, Yogyakarta, preserving a legacy of renewal and design.",
+      "description2": "From intricate filigree rings to bold statement necklaces, every item in our collection tells a unique story.",
+      "cta": "Discover Our Heritage"
+    },
+    "CTA": {
+      "title": "Custom Designs & Wholesale",
+      "description": "Looking for a unique piece or interested in stocking our jewelry? We offer custom design services and wholesale partnerships.",
+      "ctaLabel": "Inquire Now"
+    },
+    "Featured": {
+      "title": "Featured Collections",
+      "description": "Explore our curated selection of handcrafted silver jewelry",
+      "ctaLabel": "View All Collections"
+    },
+    "LayoutGrid": {
+      "card1": {
+        "title": "Handcrafted Rings",
+        "description": "Discover our collection of intricate silver rings, each piece telling a story of Javanese tradition.",
+        "alt": "Handcrafted Silver Rings"
+      },
+      "card2": {
+        "title": "Artisan Necklaces",
+        "description": "Elegant silver necklaces featuring bold pendants and delicate chains, perfect for any occasion.",
+        "alt": "Artisan Necklaces"
+      },
+      "card3": {
+        "title": "Silver Bracelets",
+        "description": "Hand-woven and solid silver bracelets that combine modern style with timeless craftsmanship.",
+        "alt": "Silver Bracelets"
+      },
+      "card4": {
+        "title": "Statement Earrings",
+        "description": "From subtle studs to dramatic drops, our earrings are designed to captivate and inspire.",
+        "alt": "Statement Earrings"
+      }
+    },
+    "Metadata": {
+      "title": "Handcrafted Javanese Silver Jewelry",
+      "description": "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta."
+    }
+  }
+}

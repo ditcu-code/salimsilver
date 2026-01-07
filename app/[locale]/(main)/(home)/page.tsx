@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 
 export const dynamic = "force-static"
 
@@ -11,40 +12,52 @@ import IntroductionSection from "./components/introduction-section"
 
 import { BASE_URL } from "@/lib/constants"
 
-export const metadata: Metadata = {
-  title: "Handcrafted Javanese Silver Jewelry",
-  description:
-    "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
-  alternates: {
-    canonical: `${BASE_URL}/`,
-  },
-  openGraph: {
-    type: "website",
-    title: "Handcrafted Javanese Silver Jewelry",
-    description:
-      "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
-    url: `${BASE_URL}/`,
-    siteName: "Salim Silver",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Handcrafted Javanese Silver Jewelry",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Handcrafted Javanese Silver Jewelry",
-    description:
-      "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta.",
-    images: ["/opengraph-image"],
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "HomePage.Metadata" })
+  const isDefaultLocale = locale === "en"
+  const localePath = isDefaultLocale ? "" : `/${locale}`
+  const canonicalUrl = `${BASE_URL}${localePath}/`
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      type: "website",
+      title: t("title"),
+      description: t("description"),
+      url: canonicalUrl,
+      siteName: "Salim Silver",
+      locale: isDefaultLocale ? "en_US" : "id_ID",
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: t("title"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: ["/opengraph-image"],
+    },
+  }
 }
 
 export default async function Home() {
   const featuredCollections = await getFeaturedCollections()
+  const t = await getTranslations("HomePage")
+
   return (
     <div className="min-h-screen">
       {/* Hero Section with Slider */}
@@ -57,16 +70,16 @@ export default async function Home() {
 
       {/* Call to Action */}
       <CTASection
-        title="Custom Designs & Wholesale"
-        description="Looking for a unique piece or interested in stocking our jewelry? We offer custom design services and wholesale partnerships."
-        ctaLabel="Inquire Now"
+        title={t("CTA.title")}
+        description={t("CTA.description")}
+        ctaLabel={t("CTA.ctaLabel")}
         ctaHref="/contact"
       />
 
       <FeaturedCollections
-        title="Featured Collections"
-        description="Explore our curated selection of handcrafted silver jewelry"
-        ctaLabel="View All Collections"
+        title={t("Featured.title")}
+        description={t("Featured.description")}
+        ctaLabel={t("Featured.ctaLabel")}
         ctaHref="/catalog"
         sectionClassName="lg:mt-32 mb-32 z-10 mt-20"
         collections={featuredCollections}
@@ -79,6 +92,7 @@ export default async function Home() {
             "@context": "https://schema.org",
             "@type": "JewelryStore",
             name: "Salim Silver",
+            description: t("Metadata.description"),
             image: `${BASE_URL}/images/hero-background.png`,
             "@id": `${BASE_URL}`,
             url: BASE_URL,

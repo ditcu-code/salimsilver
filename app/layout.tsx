@@ -1,13 +1,13 @@
+import { AnalyticsWrapper } from "@/components/features/analytics-wrapper"
 import { AppProviders } from "@/components/features/app-providers"
 import SafariThemeColor from "@/components/features/safari-theme-color"
 import { ThemeProvider } from "@/components/features/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
-import "./globals.css"
-
-import { AnalyticsWrapper } from "@/components/features/analytics-wrapper"
 import { BASE_URL } from "@/lib/constants"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Lato } from "next/font/google"
+import { headers } from "next/headers"
+import "./globals.css"
 
 const lato = Lato({
   weight: ["300", "400", "700"],
@@ -15,7 +15,6 @@ const lato = Lato({
   variable: "--font-lato",
 })
 
-// Display/heading font. Swap here for future updates.
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
@@ -79,10 +78,13 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headerList = await headers()
+  const locale = headerList.get("X-Locale") || "en"
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${lato.variable} ${cormorantGaramond.variable}`}
       suppressHydrationWarning
     >
