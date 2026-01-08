@@ -268,5 +268,53 @@
         "closing": "Mohon informasinya mengenai ketersediaan jadwal."
       }
     }
+  },
+  "StoreLocationPage": {
+    "Metadata": {
+      "title": "Kunjungi Salim Silver | Toko & Workshop",
+      "description": "Kunjungi toko dan workshop kami di Kotagede. Belanja koleksi perak buatan tangan kami dan saksikan para pengrajin bekerja di satu lokasi."
+    },
+    "Hero": {
+      "subtitle": "Toko & Workshop",
+      "title": "Kunjungi Kami di Kotagede",
+      "description": "Lihat tempat pembuatan perak kami serta belanja koleksi di workshop & toko bersejarah kami.",
+      "ctaLabel": "Petunjuk Arah"
+    },
+    "Content": {
+      "title": "Workshop & Toko",
+      "description": "Sebuah \"hidden gem\" yang sengaja berlokasi jauh dari jalan komersial utama. Anda akan memasuki kompleks rumah Jawa tradisional yang berfungsi sebagai \"museum hidup,\" memadukan hunian domestik kami dengan workshop perak yang aktif."
+    },
+    "Expectations": {
+      "title": "Yang akan Anda temui",
+      "items": {
+        "browse": "Jelajahi koleksi lengkap perhiasan siap pakai kami",
+        "works": "Lihat karya yang sedang dikerjakan dan perhiasan unik yang sedang dibuat",
+        "consult": "Coba perhiasan dan konsultasikan desain kustom dengan tim kami"
+      }
+    },
+    "QuickInfo": {
+      "title": "Informasi Cepat",
+      "plan": {
+        "title": "Rencanakan Kunjungan",
+        "description": "Beri tahu kami sebelum kedatangan agar kami dapat menyiapkan tur singkat di workshop."
+      },
+      "call": {
+        "title": "Hubungi Kami"
+      },
+      "email": {
+        "title": "Email"
+      }
+    },
+    "LocationSection": {
+      "title": "Detail Lokasi",
+      "description": "Kami berlokasi di jantung Kotagede, distrik perak bersejarah di Yogyakarta.",
+      "ctaLabel": "Petunjuk Arah",
+      "mapTitle": "Lokasi Salim Silver"
+    },
+    "CTA": {
+      "title": "Jadwalkan Kunjungan Anda",
+      "description": "Beri tahu kami kapan Anda ingin mampir, dan kami akan memastikan workshop siap menyambut Anda.",
+      "ctaLabel": "Hubungi Workshop"
+    }
   }
 }

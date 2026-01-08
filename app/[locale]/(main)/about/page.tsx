@@ -17,18 +17,21 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "AboutPage.Metadata" })
+  const isDefaultLocale = locale === "en"
+  const localePath = isDefaultLocale ? "" : `/${locale}`
+  const canonicalUrl = `${BASE_URL}${localePath}/about`
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: `${BASE_URL}/about`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       type: "website",
       title: t("title"),
       description: t("description"),
-      url: `${BASE_URL}/about`,
+      url: canonicalUrl,
       siteName: "Salim Silver",
       locale: locale === "en" ? "en_US" : "id_ID",
       images: [

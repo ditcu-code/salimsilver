@@ -1,11 +1,15 @@
 "use client"
 
-import AnimatedButton from "@/components/ui/animated-button"
 import { sendGAEvent } from "@next/third-parties/google"
 import { motion } from "framer-motion"
 import { ArrowRight, MapPin } from "lucide-react"
+import { useTranslations } from "next-intl"
+
+import AnimatedButton from "@/components/ui/animated-button"
 
 export default function StoreLocationSection() {
+  const t = useTranslations("StoreLocationPage.LocationSection")
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
       <div className="grid items-center gap-12 md:grid-cols-2">
@@ -16,19 +20,17 @@ export default function StoreLocationSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-display mb-6 text-3xl md:text-4xl">Location Details</h2>
-          <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
-            We are located in the heart of Kotagede, the historic silver district of Yogyakarta.
-          </p>
+          <h2 className="font-display mb-6 text-3xl md:text-4xl">{t("title")}</h2>
+          <p className="text-muted-foreground mb-8 text-lg leading-relaxed">{t("description")}</p>
 
           <div className="mb-6 flex items-start gap-4">
             <div className="bg-primary/10 text-primary rounded-full p-3">
               <MapPin size={24} />
             </div>
             <div>
-              <h3 className="mb-2 text-2xl font-medium">Salim Silver</h3>
+              <h3 className="mb-2 text-2xl font-medium">{t("title")}</h3>
               <p className="text-muted-foreground text-lg">
-                Kebohan KG 3/547, Purbayan, Kotagede
+                Gg. Platina - Kebohan KG 3/547, Purbayan, Kotagede
                 <br />
                 Yogyakarta City, Indonesia
               </p>
@@ -55,7 +57,7 @@ export default function StoreLocationSection() {
                 })
               }
             >
-              Get Directions
+              {t("ctaLabel")}
             </AnimatedButton>
           </motion.div>
         </motion.div>
@@ -76,7 +78,7 @@ export default function StoreLocationSection() {
             allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Salim Silver Location"
+            title={t("mapTitle")}
           />
         </motion.div>
       </div>

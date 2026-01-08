@@ -18,17 +18,20 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "WorkshopPage.Metadata" })
+  const isDefaultLocale = locale === "en"
+  const localePath = isDefaultLocale ? "" : `/${locale}`
+  const canonicalUrl = `${BASE_URL}${localePath}/workshop`
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: `${BASE_URL}/${locale === "en" ? "" : "id/"}workshop`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `${BASE_URL}/${locale === "en" ? "" : "id/"}workshop`,
+      url: canonicalUrl,
       siteName: "Salim Silver",
       locale: locale === "en" ? "en_US" : "id_ID",
     },
@@ -62,6 +65,9 @@ export default async function WorkshopPage({ params }: Props) {
 
   const t = await getTranslations("WorkshopPage")
   const tMeta = await getTranslations("WorkshopPage.Metadata")
+  const isDefaultLocale = locale === "en"
+  const localePath = isDefaultLocale ? "" : `/${locale}`
+  const workshopUrl = `${BASE_URL}${localePath}/workshop`
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -126,7 +132,7 @@ export default async function WorkshopPage({ params }: Props) {
             offers: {
               "@type": "Offer",
               category: "Workshop",
-              url: `${BASE_URL}/${locale === "en" ? "" : "id/"}workshop`,
+              url: workshopUrl,
               availability: "https://schema.org/InStock",
               price: "500000",
               priceCurrency: "IDR",

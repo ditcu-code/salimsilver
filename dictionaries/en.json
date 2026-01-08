@@ -268,5 +268,53 @@
         "closing": "Please let me know about the availability."
       }
     }
+  },
+  "StoreLocationPage": {
+    "Metadata": {
+      "title": "Visit Salim Silver | Store & Workshop",
+      "description": "Visit our Kotagede store and workshop. Shop our handcrafted silver collection and see the artisans at work in one location."
+    },
+    "Hero": {
+      "subtitle": "Store & Workshop",
+      "title": "Visit Us in Kotagede",
+      "description": "See where our silver is crafted and shop the collection in our historic workshop & store.",
+      "ctaLabel": "Get Directions"
+    },
+    "Content": {
+      "title": "The Workshop & Store",
+      "description": "A \"hidden gem\" deliberately located away from the main commercial streets. You will enter a traditional Javanese compound that functions as a \"living museum,\" seamlessly blending our domestic residence with the active silver workshop."
+    },
+    "Expectations": {
+      "title": "What to expect",
+      "items": {
+        "browse": "Browse our complete collection of ready-to-wear jewelry",
+        "works": "See works in progress and one-of-a-kind pieces being made",
+        "consult": "Try on pieces and consult with our team on custom designs"
+      }
+    },
+    "QuickInfo": {
+      "title": "Quick Information",
+      "plan": {
+        "title": "Plan Your Visit",
+        "description": "Let us know before you arrive so we can prepare a guided look at the workshop."
+      },
+      "call": {
+        "title": "Call Us"
+      },
+      "email": {
+        "title": "Email"
+      }
+    },
+    "LocationSection": {
+      "title": "Location Details",
+      "description": "We are located in the heart of Kotagede, the historic silver district of Yogyakarta.",
+      "ctaLabel": "Get Directions",
+      "mapTitle": "Salim Silver Location"
+    },
+    "CTA": {
+      "title": "Schedule Your Visit",
+      "description": "Tell us when you'd like to stop by, and we’ll make sure the workshop is ready for you.",
+      "ctaLabel": "Contact the Workshop"
+    }
   }
 }
