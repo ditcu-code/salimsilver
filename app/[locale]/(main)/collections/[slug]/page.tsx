@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { getCollection, getFeaturedCollections, getJewelryBySlug } from "@/lib/collections"
 import { BASE_URL } from "@/lib/constants"
+import { getOpenGraphLocale } from "@/lib/seo"
 import { notFound } from "next/navigation"
 
 import { CollectionContent } from "./collection-content"
@@ -10,6 +11,7 @@ import { CollectionContent } from "./collection-content"
 interface Props {
   params: Promise<{
     slug: string
+    locale: string
   }>
   searchParams: Promise<{
     jewelry?: string
@@ -17,7 +19,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params
   const { jewelry } = await searchParams
   const t = await getTranslations("CollectionDetailPage.Metadata")
 
@@ -39,6 +41,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
           images,
           url: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
           siteName: "Salim Silver",
+          locale: getOpenGraphLocale(locale),
         },
         twitter: {
           card: "summary_large_image",
@@ -67,6 +70,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         images,
         url: `${BASE_URL}/collections/${slug}`,
         siteName: "Salim Silver",
+        locale: getOpenGraphLocale(locale),
       },
       twitter: {
         card: "summary_large_image",

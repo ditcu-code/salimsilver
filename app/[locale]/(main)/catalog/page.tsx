@@ -5,15 +5,17 @@ import { Suspense } from "react"
 
 import CatalogPageClient from "./page.client"
 
-import { BASE_URL } from "@/lib/constants"
+import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
 
-export async function generateMetadata({
-  searchParams,
-}: {
+type Props = {
+  params: Promise<{ locale: string }>
   searchParams: Promise<{ jewelry?: string }>
-}): Promise<Metadata> {
+}
+
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const { locale } = await params
   const { jewelry } = await searchParams
-  const t = await getTranslations("CatalogPage.Metadata")
+  const t = await getTranslations({ locale, namespace: "CatalogPage.Metadata" })
 
   if (jewelry) {
     const item = await getJewelryBySlug(jewelry)
@@ -21,6 +23,7 @@ export async function generateMetadata({
       const title = `${item.title} - Salim Silver`
       const description = item.description || t("fallbackDescription")
       const images = item.images && item.images.length > 0 ? [item.images[0].src] : []
+      const productUrl = constructCanonicalUrl(locale, `/catalog?jewelry=${jewelry}`)
 
       return {
         title,
@@ -29,8 +32,9 @@ export async function generateMetadata({
           title,
           description,
           images,
-          url: `${BASE_URL}/catalog?jewelry=${jewelry}`,
+          url: productUrl,
           siteName: "Salim Silver",
+          locale: getOpenGraphLocale(locale),
         },
         twitter: {
           card: "summary_large_image",
@@ -42,18 +46,21 @@ export async function generateMetadata({
     }
   }
 
+  const canonicalUrl = constructCanonicalUrl(locale, "/catalog")
+
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: `${BASE_URL}/catalog`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       type: "website",
       title: t("title"),
       description: t("description"),
-      url: `${BASE_URL}/catalog`,
+      url: canonicalUrl,
       siteName: "Salim Silver",
+      locale: getOpenGraphLocale(locale),
     },
     twitter: {
       card: "summary_large_image",
@@ -63,7 +70,8 @@ export async function generateMetadata({
   }
 }
 
-export default async function CatalogPage() {
+export default async function CatalogPage({ params }: Props) {
+  const { locale } = await params
   const t = await getTranslations("CatalogPage.Metadata")
   const collections = await getAllCollections()
   return (
@@ -79,7 +87,7 @@ export default async function CatalogPage() {
             "@type": "CollectionPage",
             name: t("title"),
             description: t("description"),
-            url: `${BASE_URL}/catalog`,
+            url: constructCanonicalUrl(locale, "/catalog"),
           }),
         }}
       />

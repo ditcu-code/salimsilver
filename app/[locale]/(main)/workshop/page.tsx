@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { PolaroidGallery } from "@/components/blocks/polaroid-gallery"
 import { ReelsGallery } from "@/components/blocks/reels-gallery"
-import { BASE_URL } from "@/lib/constants"
+import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopDetails } from "./components/workshop-details"
 import { WorkshopHero } from "./components/workshop-hero"
@@ -18,9 +18,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "WorkshopPage.Metadata" })
-  const isDefaultLocale = locale === "en"
-  const localePath = isDefaultLocale ? "" : `/${locale}`
-  const canonicalUrl = `${BASE_URL}${localePath}/workshop`
+  const canonicalUrl = constructCanonicalUrl(locale, "/workshop")
 
   return {
     title: t("title"),
@@ -33,14 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: locale === "en" ? "en_US" : "id_ID",
+      locale: getOpenGraphLocale(locale),
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
     },
-    // Keywords can be merged or English kept for SEO breadth, but adding ID ones is good.
     keywords: [
       "Silversmithing Workshop",
       "Jewelry Making Workshop",
@@ -65,9 +62,7 @@ export default async function WorkshopPage({ params }: Props) {
 
   const t = await getTranslations("WorkshopPage")
   const tMeta = await getTranslations("WorkshopPage.Metadata")
-  const isDefaultLocale = locale === "en"
-  const localePath = isDefaultLocale ? "" : `/${locale}`
-  const workshopUrl = `${BASE_URL}${localePath}/workshop`
+  const workshopUrl = constructCanonicalUrl(locale, "/workshop")
 
   return (
     <div className="flex min-h-screen flex-col">

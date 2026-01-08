@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
+import { SUPABASE_CATALOG_URL } from "@/lib/constants"
+import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
@@ -14,9 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "ContactPage.Metadata" })
-  const isDefaultLocale = locale === "en"
-  const localePath = isDefaultLocale ? "" : `/${locale}`
-  const canonicalUrl = `${BASE_URL}${localePath}/contact`
+  const canonicalUrl = constructCanonicalUrl(locale, "/contact")
 
   return {
     title: t("title"),
@@ -30,7 +29,7 @@ export async function generateMetadata({
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: isDefaultLocale ? "en_US" : "id_ID",
+      locale: getOpenGraphLocale(locale),
     },
     twitter: {
       card: "summary_large_image",

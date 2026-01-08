@@ -8,7 +8,8 @@ import HeroSection from "./components/HeroSection"
 import TimelineSection from "./components/TimelineSection"
 import ValuesSection from "./components/ValuesSection"
 
-import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
+import { SUPABASE_CATALOG_URL } from "@/lib/constants"
+import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -17,9 +18,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "AboutPage.Metadata" })
-  const isDefaultLocale = locale === "en"
-  const localePath = isDefaultLocale ? "" : `/${locale}`
-  const canonicalUrl = `${BASE_URL}${localePath}/about`
+  const canonicalUrl = constructCanonicalUrl(locale, "/about")
 
   return {
     title: t("title"),
@@ -33,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: locale === "en" ? "en_US" : "id_ID",
+      locale: getOpenGraphLocale(locale),
       images: [
         {
           url: "/opengraph-image",

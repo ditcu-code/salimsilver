@@ -4,17 +4,18 @@ import { notFound } from "next/navigation"
 
 import ProductDetail from "@/components/blocks/product-detail"
 import { getJewelryBySlug } from "@/lib/collections"
-import { BASE_URL } from "@/lib/constants"
+import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
 
 interface Props {
   params: Promise<{
     slug: string
+    locale: string
   }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const t = await getTranslations("ProductPage.Metadata")
+  const { slug, locale } = await params
+  const t = await getTranslations({ locale, namespace: "ProductPage.Metadata" })
   const product = await getJewelryBySlug(slug)
 
   if (!product) {
@@ -28,18 +29,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const images =
     product.images && product.images.length > 0 ? [product.images[0].src] : ["/opengraph-image"]
 
+  const canonicalUrl = constructCanonicalUrl(locale, `/product/${slug}`)
+
   return {
     title,
     description,
     alternates: {
-      canonical: `${BASE_URL}/product/${slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title,
       description,
       images,
-      url: `${BASE_URL}/product/${slug}`,
+      url: canonicalUrl,
       type: "website",
+      locale: getOpenGraphLocale(locale),
     },
     twitter: {
       card: "summary_large_image",
@@ -51,13 +55,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const t = await getTranslations("ProductPage.Breadcrumbs")
   const product = await getJewelryBySlug(slug)
 
   if (!product) {
     notFound()
   }
+
+  const productUrl = constructCanonicalUrl(locale, `/product/${product.slug}`)
+  const collectionsUrl = constructCanonicalUrl(locale, "/collections")
 
   return (
     <>
@@ -87,7 +94,7 @@ export default async function ProductPage({ params }: Props) {
             offers: {
               "@type": "Offer",
               availability: "https://schema.org/InStock",
-              url: `${BASE_URL}/product/${product.slug}`,
+              url: productUrl,
             },
           }),
         }}
@@ -103,7 +110,7 @@ export default async function ProductPage({ params }: Props) {
                 "@type": "ListItem",
                 position: 1,
                 name: t("collections"),
-                item: `${BASE_URL}/collections`,
+                item: collectionsUrl,
               },
               ...(product.collectionSlug
                 ? [
@@ -114,13 +121,13 @@ export default async function ProductPage({ params }: Props) {
                         .split("-")
                         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                         .join(" "),
-                      item: `${BASE_URL}/collections/${product.collectionSlug}`,
+                      item: constructCanonicalUrl(locale, `/collections/${product.collectionSlug}`),
                     },
                     {
                       "@type": "ListItem",
                       position: 3,
                       name: product.title,
-                      item: `${BASE_URL}/product/${product.slug}`,
+                      item: productUrl,
                     },
                   ]
                 : [
@@ -128,7 +135,7 @@ export default async function ProductPage({ params }: Props) {
                       "@type": "ListItem",
                       position: 2,
                       name: product.title,
-                      item: `${BASE_URL}/product/${product.slug}`,
+                      item: productUrl,
                     },
                   ]),
             ],

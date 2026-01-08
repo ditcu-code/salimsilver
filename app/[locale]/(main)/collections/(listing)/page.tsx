@@ -3,24 +3,30 @@ import { getTranslations } from "next-intl/server"
 
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { getAllCollections } from "@/lib/collections"
+import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
 
-import { BASE_URL } from "@/lib/constants"
+type Props = {
+  params: Promise<{ locale: string }>
+}
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("CollectionsPage.Metadata")
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "CollectionsPage.Metadata" })
+  const canonicalUrl = constructCanonicalUrl(locale, "/collections")
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: `${BASE_URL}/collections`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       type: "website",
       title: t("title"),
       description: t("description"),
-      url: `${BASE_URL}/collections`,
+      url: canonicalUrl,
       siteName: "Salim Silver",
+      locale: getOpenGraphLocale(locale),
     },
     twitter: {
       card: "summary_large_image",
@@ -30,7 +36,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function CollectionsPage() {
+export default async function CollectionsPage({ params }: Props) {
+  const { locale } = await params
   const t = await getTranslations("CollectionsPage.Metadata")
   const collections = await getAllCollections()
 
@@ -48,7 +55,7 @@ export default async function CollectionsPage() {
             "@type": "CollectionPage",
             name: t("title"),
             description: t("description"),
-            url: `${BASE_URL}/collections`,
+            url: constructCanonicalUrl(locale, "/collections"),
           }),
         }}
       />

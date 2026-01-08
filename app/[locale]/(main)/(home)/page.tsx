@@ -11,17 +11,16 @@ import { HeroGallery } from "./components/hero-gallery"
 import IntroductionSection from "./components/introduction-section"
 
 import { BASE_URL } from "@/lib/constants"
+import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
 
-export async function generateMetadata({
-  params,
-}: {
+interface Props {
   params: Promise<{ locale: string }>
-}): Promise<Metadata> {
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "HomePage.Metadata" })
-  const isDefaultLocale = locale === "en"
-  const localePath = isDefaultLocale ? "" : `/${locale}`
-  const canonicalUrl = `${BASE_URL}${localePath}/`
+  const canonicalUrl = constructCanonicalUrl(locale, "/")
 
   return {
     title: t("title"),
@@ -35,7 +34,7 @@ export async function generateMetadata({
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: isDefaultLocale ? "en_US" : "id_ID",
+      locale: getOpenGraphLocale(locale),
       images: [
         {
           url: "/opengraph-image",
@@ -54,7 +53,8 @@ export async function generateMetadata({
   }
 }
 
-export default async function Home() {
+export default async function Home({ params }: Props) {
+  const { locale } = await params
   const featuredCollections = await getFeaturedCollections()
   const t = await getTranslations("HomePage")
 
@@ -94,8 +94,8 @@ export default async function Home() {
             name: "Salim Silver",
             description: t("Metadata.description"),
             image: `${BASE_URL}/images/hero-background.png`,
-            "@id": `${BASE_URL}`,
-            url: BASE_URL,
+            "@id": constructCanonicalUrl(locale, "/"),
+            url: constructCanonicalUrl(locale, "/"),
             telephone: "+62 896 7197 7699",
             address: {
               "@type": "PostalAddress",
