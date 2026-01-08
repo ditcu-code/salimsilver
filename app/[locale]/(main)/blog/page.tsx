@@ -37,7 +37,7 @@ export default async function BlogPage() {
 
   if (posts.length === 0) {
     return (
-      <div className="text-muted-foreground border-border/50 border-y py-20 text-center">
+      <div className="text-muted-foreground border-border/50 border-y pt-32 pb-20 text-center">
         <p className="text-lg">{t("Fallback.noStories")}</p>
       </div>
     )

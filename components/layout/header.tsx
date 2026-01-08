@@ -7,6 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { LanguageSwitcher } from "../features/language-switcher"
 import { StoreLocationButton } from "../features/store-location-button"
 
 type NavItem = {
@@ -80,7 +81,7 @@ export default function Header() {
             <div className="toggle-container flex shrink-0 gap-2 md:block">
               <div className="flex gap-2">
                 <StoreLocationButton />
-                {/* <LanguageSwitcher /> */}
+                <LanguageSwitcher />
               </div>
             </div>
 
