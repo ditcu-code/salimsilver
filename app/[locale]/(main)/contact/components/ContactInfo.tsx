@@ -6,19 +6,19 @@ import { Instagram } from "@/components/icons/instagram"
 import { WhatsApp } from "@/components/icons/whatsapp"
 import { motion } from "framer-motion"
 import { Mail } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function ContactInfo() {
+  const t = useTranslations("ContactPage.Info")
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <h1 className="font-display mb-6 text-4xl md:text-5xl">Get in Touch</h1>
-      <p className="text-muted-foreground mb-8 max-w-md">
-        Whether you have a question about a piece, want to discuss a custom design, or just want to
-        say hello, we are here to help.
-      </p>
+      <h1 className="font-display mb-6 text-4xl md:text-5xl">{t("title")}</h1>
+      <p className="text-muted-foreground mb-8 max-w-md">{t("description")}</p>
 
       <motion.div
         className="mb-8 space-y-6"
@@ -38,7 +38,7 @@ export default function ContactInfo() {
         {[
           {
             icon: <Mail className="text-primary mt-1" size={20} />,
-            title: "Email",
+            title: t("Email"),
             content: <ObfuscatedEmail user="hello" domain="salimsilver.com" />,
           },
         ].map((item) => (
@@ -64,7 +64,7 @@ export default function ContactInfo() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6 }}
       >
-        <h3 className="font-display mb-4 text-xl">Follow Us</h3>
+        <h3 className="font-display mb-4 text-xl">{t("Follow")}</h3>
         <div className="flex flex-wrap gap-1">
           {[
             {

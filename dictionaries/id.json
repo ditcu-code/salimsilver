@@ -316,5 +316,46 @@
       "description": "Beri tahu kami kapan Anda ingin mampir, dan kami akan memastikan workshop siap menyambut Anda.",
       "ctaLabel": "Hubungi Workshop"
     }
+  },
+  "ContactPage": {
+    "Metadata": {
+      "title": "Hubungi Salim Silver",
+      "description": "Hubungi Salim Silver untuk desain kustom, grosir, atau workshop di Kotagede, Yogyakarta."
+    },
+    "Hero": {
+      "title": "Hubungi Kami",
+      "subtitle": "Kami ingin membaca pesan dari Anda"
+    },
+    "Info": {
+      "title": "Hubungi Kami",
+      "description": "Baik pertanyaan tentang produk, ingin mendiskusikan desain kustom, atau sekadar ingin menyapa, kami siap membantu.",
+      "Email": "Email",
+      "Follow": "Ikuti Kami"
+    },
+    "Form": {
+      "title": "Kirim Pesan",
+      "description": "Anda akan menerima balasan dalam waktu 24 jam."
+    },
+    "FAQs": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "items": {
+        "custom": {
+          "question": "Apakah Anda menerima desain kustom?",
+          "answer": "Ya, kami spesialis dalam desain perhiasan kustom. Silakan hubungi kami dengan ide Anda, dan kita bisa bekerja sama untuk menciptakan karya yang unik."
+        },
+        "shipping": {
+          "question": "Apakah Anda melayani pengiriman internasional?",
+          "answer": "Ya, kami melayani pengiriman ke seluruh dunia. Waktu dan biaya pengiriman bervariasi tergantung tujuan."
+        },
+        "care": {
+          "question": "Bagaimana cara merawat perhiasan perak saya?",
+          "answer": "Kami menyarankan penyimpanan di tempat sejuk dan kering. Pembersihan rutin dengan kain lembut akan membantu menjaga kilaunya."
+        },
+        "wholesale": {
+          "question": "Apakah Anda melayani grosir?",
+          "answer": "Ya, kami menerima pesanan grosir. Silakan hubungi kami untuk informasi lebih lanjut mengenai program grosir kami."
+        }
+      }
+    }
   }
 }

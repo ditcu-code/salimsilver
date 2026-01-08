@@ -316,5 +316,46 @@
       "description": "Tell us when you'd like to stop by, and we’ll make sure the workshop is ready for you.",
       "ctaLabel": "Contact the Workshop"
     }
+  },
+  "ContactPage": {
+    "Metadata": {
+      "title": "Contact Salim Silver",
+      "description": "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta."
+    },
+    "Hero": {
+      "title": "Contact Us",
+      "subtitle": "We would love to hear from you"
+    },
+    "Info": {
+      "title": "Get in Touch",
+      "description": "Whether you have a question about a piece, want to discuss a custom design, or just want to say hello, we are here to help.",
+      "Email": "Email",
+      "Follow": "Follow Us"
+    },
+    "Form": {
+      "title": "Send a Message",
+      "description": "You will receive a response within 24 hours."
+    },
+    "FAQs": {
+      "title": "Frequently Asked Questions",
+      "items": {
+        "custom": {
+          "question": "Do you offer custom designs?",
+          "answer": "Yes, we specialize in custom jewelry design. Please contact us with your ideas, and we can work together to create a unique piece."
+        },
+        "shipping": {
+          "question": "Do you ship internationally?",
+          "answer": "Yes, we ship worldwide. Shipping times and costs vary depending on the destination."
+        },
+        "care": {
+          "question": "How do I care for my silver jewelry?",
+          "answer": "We recommend storing your silver in a cool, dry place. Regular cleaning with a soft cloth will help maintain its shine."
+        },
+        "wholesale": {
+          "question": "Do you offer wholesale?",
+          "answer": "Yes, we welcome wholesale inquiries. Please contact us for more information about our wholesale program."
+        }
+      }
+    }
   }
 }

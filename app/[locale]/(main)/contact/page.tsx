@@ -1,36 +1,48 @@
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 
+import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
 
-import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "ContactPage.Metadata" })
+  const isDefaultLocale = locale === "en"
+  const localePath = isDefaultLocale ? "" : `/${locale}`
+  const canonicalUrl = `${BASE_URL}${localePath}/contact`
 
-export const metadata: Metadata = {
-  title: "Contact Salim Silver",
-  description:
-    "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
-  alternates: {
-    canonical: `${BASE_URL}/contact`,
-  },
-  openGraph: {
-    type: "website",
-    title: "Contact Salim Silver",
-    description:
-      "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
-    url: `${BASE_URL}/contact`,
-    siteName: "Salim Silver",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Salim Silver",
-    description:
-      "Get in touch with Salim Silver for custom designs, wholesale inquiries, or workshop visits in Kotagede, Yogyakarta.",
-  },
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      type: "website",
+      title: t("title"),
+      description: t("description"),
+      url: canonicalUrl,
+      siteName: "Salim Silver",
+      locale: isDefaultLocale ? "en_US" : "id_ID",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+  }
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getTranslations("ContactPage.Metadata")
+
   return (
     <div className="min-h-screen">
       <ContactHero />
@@ -50,7 +62,7 @@ export default function ContactPage() {
         ctaLabel="View All Collections"
         ctaHref="/catalog"
         sectionClassName="mt-20 mb-20 py-20"
-      /> */}
+        /> */}
 
       <script
         type="application/ld+json"
