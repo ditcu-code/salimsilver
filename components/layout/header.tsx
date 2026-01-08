@@ -99,9 +99,10 @@ export default function Header() {
 }
 
 function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string }) {
+  const pathWithoutLocale = pathname.replace(/^\/id(?=\/|$)/, "") || "/"
   const isDarkHeroPage =
-    ["/contact", "/about", "/store-location", "/workshop"].includes(pathname) ||
-    pathname.startsWith("/collections/")
+    ["/contact", "/about", "/store-location", "/workshop"].includes(pathWithoutLocale) ||
+    pathWithoutLocale.startsWith("/collections/")
   const shouldInvert = isScrolled || !isDarkHeroPage
 
   return (
