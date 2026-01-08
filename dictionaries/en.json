@@ -357,5 +357,19 @@
         }
       }
     }
+  },
+  "CatalogPage": {
+    "Metadata": {
+      "title": "Jewelry Catalog",
+      "description": "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
+      "fallbackDescription": "Handcrafted silver jewelry from Salim Silver."
+    },
+    "Header": {
+      "title": "Jewelry Catalog",
+      "description": "Discover our complete collection of handcrafted silver jewelry."
+    },
+    "Filters": {
+      "all": "All Jewelry"
+    }
   }
 }

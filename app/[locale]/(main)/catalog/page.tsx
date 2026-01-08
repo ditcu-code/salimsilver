@@ -1,5 +1,6 @@
 import { getAllCollections, getJewelryBySlug } from "@/lib/collections"
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 import { Suspense } from "react"
 
 import CatalogPageClient from "./page.client"
@@ -12,12 +13,13 @@ export async function generateMetadata({
   searchParams: Promise<{ jewelry?: string }>
 }): Promise<Metadata> {
   const { jewelry } = await searchParams
+  const t = await getTranslations("CatalogPage.Metadata")
 
   if (jewelry) {
     const item = await getJewelryBySlug(jewelry)
     if (item) {
       const title = `${item.title} - Salim Silver`
-      const description = item.description || "Handcrafted silver jewelry from Salim Silver."
+      const description = item.description || t("fallbackDescription")
       const images = item.images && item.images.length > 0 ? [item.images[0].src] : []
 
       return {
@@ -41,30 +43,28 @@ export async function generateMetadata({
   }
 
   return {
-    title: "Jewelry Catalog",
-    description:
-      "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
+    title: t("title"),
+    description: t("description"),
     alternates: {
       canonical: `${BASE_URL}/catalog`,
     },
     openGraph: {
       type: "website",
-      title: "Jewelry Catalog",
-      description:
-        "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
+      title: t("title"),
+      description: t("description"),
       url: `${BASE_URL}/catalog`,
       siteName: "Salim Silver",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Jewelry Catalog",
-      description:
-        "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
+      title: t("title"),
+      description: t("description"),
     },
   }
 }
 
 export default async function CatalogPage() {
+  const t = await getTranslations("CatalogPage.Metadata")
   const collections = await getAllCollections()
   return (
     <>
@@ -77,9 +77,8 @@ export default async function CatalogPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "Jewelry Catalog",
-            description:
-              "Shop Salim Silver's full catalog of handcrafted silver rings, necklaces, bracelets, and accessories.",
+            name: t("title"),
+            description: t("description"),
             url: `${BASE_URL}/catalog`,
           }),
         }}

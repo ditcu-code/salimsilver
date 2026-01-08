@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useMemo } from "react"
 
@@ -24,12 +25,14 @@ export default function CatalogPageClient({ collections }: CatalogPageClientProp
 
   const activeCategory = searchParams.get("category") || "all"
 
+  const t = useTranslations("CatalogPage.Filters")
+
   const categories = useMemo(
     () => [
-      { id: "all", label: "All Jewelry" },
+      { id: "all", label: t("all") },
       ...collections.map((c) => ({ id: c.slug, label: c.title })),
     ],
-    [collections]
+    [collections, t]
   )
 
   const filteredJewelry = useMemo(() => {

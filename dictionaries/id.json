@@ -357,5 +357,19 @@
         }
       }
     }
+  },
+  "CatalogPage": {
+    "Metadata": {
+      "title": "Katalog Perhiasan",
+      "description": "Jelajahi katalog lengkap cincin, kalung, gelang, dan aksesori perak buatan tangan Salim Silver.",
+      "fallbackDescription": "Perhiasan perak buatan tangan dari Salim Silver."
+    },
+    "Header": {
+      "title": "Katalog Perhiasan",
+      "description": "Temukan koleksi lengkap perhiasan perak buatan tangan kami."
+    },
+    "Filters": {
+      "all": "Semua Perhiasan"
+    }
   }
 }
