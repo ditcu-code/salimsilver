@@ -51,7 +51,6 @@ export function LanguageSwitcher() {
     }
 
     setIsOpen(false)
-    router.refresh()
     router.push(newPath)
   }
 
