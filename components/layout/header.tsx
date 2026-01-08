@@ -226,10 +226,11 @@ function MobileMenu({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: "100%" }}
           transition={mobileMenuTransition}
-          className="bg-background/80 fixed inset-0 z-100 flex min-h-screen flex-col backdrop-blur-2xl"
+          className="bg-background/80 fixed inset-0 z-100 flex min-h-screen flex-col overflow-y-auto backdrop-blur-2xl"
           id="mobile-navigation"
         >
-          <div className="flex justify-end p-4">
+          <div className="flex items-center justify-end gap-4 p-4">
+            <LanguageSwitcher />
             <motion.button
               whileTap={{ scale: 0.95 }}
               type="button"
