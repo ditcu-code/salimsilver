@@ -84,7 +84,7 @@ export function LanguageSwitcher() {
                   key={lang.code}
                   onClick={() => switchLanguage(lang.code)}
                   className={cn(
-                    "hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
+                    "hover:bg-accent hover:text-accent-foreground flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
                     currentLocale === lang.code && "bg-accent/50 font-medium"
                   )}
                 >
