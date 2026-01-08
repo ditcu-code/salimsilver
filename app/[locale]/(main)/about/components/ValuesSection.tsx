@@ -2,7 +2,12 @@
 
 import { motion } from "framer-motion"
 
+import { useTranslations } from "next-intl"
+
 export default function ValuesSection() {
+  const t = useTranslations("AboutPage.Values")
+  const keys = ["tradition", "quality", "sustainability"]
+
   return (
     <section className="px-4 py-16 md:px-8">
       <div className="mx-auto max-w-5xl">
@@ -13,28 +18,12 @@ export default function ValuesSection() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          Our Values
+          {t("title")}
         </motion.h2>
         <div className="grid gap-8 md:grid-cols-3">
-          {[
-            {
-              title: "Tradition",
-              description:
-                "We are dedicated to the renewal of Kotagede's silver traditions, ensuring these skills are not just preserved but evolved for the future.",
-            },
-            {
-              title: "Quality",
-              description:
-                "We use only the finest 925 sterling silver and ethically sourced gemstones. Every piece is inspected to ensure it meets our high standards.",
-            },
-            {
-              title: "Sustainability",
-              description:
-                "We are committed to sustainable practices, from responsible sourcing of materials to minimizing waste in our workshop.",
-            },
-          ].map((item, index) => (
+          {keys.map((key, index) => (
             <motion.div
-              key={item.title}
+              key={key}
               className="text-primary dark:text-primary-secondary bg-primary-secondary dark:bg-primary rounded-3xl p-8 shadow-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -43,10 +32,10 @@ export default function ValuesSection() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <h3 className="text-primary-secondary dark:text-primary-foreground mb-4 text-2xl">
-                {item.title}
+                {t(`items.${key}.title`)}
               </h3>
               <p className="text-primary-secondary dark:text-primary-foreground">
-                {item.description}
+                {t(`items.${key}.description`)}
               </p>
             </motion.div>
           ))}

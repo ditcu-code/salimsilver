@@ -2,7 +2,7 @@
   "HomePage": {
     "Hero": {
       "title": "Sentuhan Magis Tradisi Perak Kotagede",
-      "description": "Setiap ukiran adalah nafas sejarah. Pengrajin kami mengubah perak murni menjadi karya seni yang memancarkan keanggunan Jawa dalam desain masa kini."
+      "description": "Dibuat oleh pengrajin Salim. Kami mengubah perak murni menjadi karya seni yang bernyawa, modern namun tetap menghormati akarnya."
     },
     "Introduction": {
       "title": "Jiwa dalam Setiap Tempaan",
@@ -17,7 +17,7 @@
     },
     "Featured": {
       "title": "Mahakarya Pilihan",
-      "description": "Kurasi terbaik dari bengkel kami, khusus untuk Anda.",
+      "description": "Kurasi terbaik dari workshop kami, khusus untuk Anda.",
       "ctaLabel": "Lihat Semua Koleksi"
     },
     "LayoutGrid": {
@@ -43,8 +43,88 @@
       }
     },
     "Metadata": {
-      "title": "Perhiasan Perak Kotagede Asli",
-      "description": "Pusat kerajinan perak Salim Silver Yogyakarta. Temukan cincin, kalung, dan gelang buatan tangan dengan kualitas ekspor dan desain autentik."
+      "title": "Perhiasan Perak Jawa Buatan Tangan",
+      "description": "Jelajahi cincin, kalung, dan gelang buatan tangan Salim Silver yang terinspirasi dari warisan budaya Jawa dan dibuat di Kotagede, Yogyakarta."
+    }
+  },
+  "AboutPage": {
+    "Hero": {
+      "title": "Kisah Perjalanan Kami",
+      "description": "Merangkai keanggunan abadi sejak 1930"
+    },
+    "Bio": {
+      "imageAlt": "Priyana Jatmika Salim sedang mengamati cincin perak dengan suryakanta",
+      "title": "Sang Penjaga Warisan",
+      "p1": "Salim Silver berdiri sebagai benteng tradisi di Kotagede, Yogyakarta, bekas ibu kota Kesultanan Mataram. Workshop kami adalah museum hidup, tempat seni kriya perak Jawa yang luhur dirawat dan diberi nafas baru.",
+      "p2": "Sejak dirintis oleh Karto Oetomo pada 1930, warisan ini terus tumbuh di era Salim Widardjo. Estafet kebanggaan ini kini dijaga oleh Priyo Salim, sang generasi ketiga.",
+      "p3": "Pada tahun 1987, terinspirasi oleh buku <italic>Power and Gold</italic>, Priyo mengubah haluan workshop menuju penciptaan perhiasan perak kerajinan tangan. Ia mengabdikan hidupnya untuk menghidupkan kembali teknik rumit Jawa seperti Repoussé (tatah timbul) dan Filigree (krawangan).",
+      "p4": "Kini, <bold>generasi ke-4</bold> telah melangkah maju untuk memoles dan mengangkat warisan ini lebih tinggi. Kami terus melahirkan karya yang bukan sekadar perhiasan, melainkan seni yang bisa dikenakan—sebuah penghormatan pada masa lalu yang menyatu dengan desain masa depan.",
+      "badges": {
+        "craftsmanship": "Pengrajin Ahli",
+        "ethical": "Bahan Baku Terpilih",
+        "collective": "Evolusi Tradisi"
+      }
+    },
+    "Timeline": {
+      "title": "Jejak Langkah",
+      "description": "Dari workshop keluarga sederhana menjadi penjaga warisan perak Kotagede.",
+      "items": {
+        "1930": {
+          "title": "Awal Mula",
+          "description": "Karto Oetomo, kakek Priyo Salim, meletakkan batu pertama dengan mendirikan 'KD', usaha perak yang berfokus pada perabotan rumah tangga halus. Sejarah awal ini terdokumentasikan dalam buku Pienke W.H. Kal, 'Yogya Silver: Renewal of a Javanese Handicraft' (2005)."
+        },
+        "1952": {
+          "title": "Episode Baru",
+          "description": "Melanjutkan karya ayahnya, Salim Widardjo mendirikan 'Salim' Silver. Ia memperluas cakupan kriya dengan memperkenalkan miniatur perak yang rumit—termasuk becak, andong, dan patung tradisional—menetapkan standar baru dalam detail."
+        },
+        "1985": {
+          "title": "Generasi Ketiga",
+          "description": "Warisan berlanjut saat Priyo Salim bergabung. Sambil menempuh studi Kartografi di Universitas Gadjah Mada, ia membawa perspektif segar ke dalam workshop tradisional."
+        },
+        "1987": {
+          "title": "Titik Balik",
+          "description": "Momen yang menentukan tiba. Terinspirasi oleh buku 'Power and Gold', Priyo Salim mengarahkan workshop ke tujuan baru: perhiasan perak kerajinan tangan khas Jawa, memadukan tradisi dengan seni."
+        },
+        "1990": {
+          "title": "Jangkauan Global",
+          "description": "Komitmen terhadap kualitas membuahkan hasil. Salim Silver menembus pasar global, mengekspor perhiasan kerajinan tangannya ke klien di seluruh Amerika Serikat, Asia dan Eropa."
+        },
+        "2017": {
+          "title": "Modernisasi",
+          "description": "Generasi ke-4 tampil ke depan untuk meneruskan obor estafet. Mereka mulai memodernisasi operasional bisnis, memastikan teknik kuno tetap relevan dan berkembang di era digital."
+        },
+        "Present": {
+          "title": "Museum Hidup",
+          "description": "Hari ini, Salim Silver berdiri tegak sebagai penjaga warisan. Workshop kami tetap menjadi museum hidup, terbuka bagi siapa saja yang ingin belajar dan menyaksikan penciptaan 'seni masa depan' yang menghormati masa lalu."
+        }
+      }
+    },
+    "Values": {
+      "title": "Nilai Kami",
+      "items": {
+        "tradition": {
+          "title": "Tradisi",
+          "description": "Kami berdedikasi pada pembaruan tradisi perak Kotagede, memastikan keterampilan ini tidak hanya dilestarikan, tetapi juga berevolusi untuk masa depan."
+        },
+        "quality": {
+          "title": "Kualitas",
+          "description": "Kami hanya menggunakan perak sterling 925 terbaik dan batu permata yang bersumber secara etis. Setiap karya diperiksa dengan ketat untuk memenuhi standar tinggi kami."
+        },
+        "sustainability": {
+          "title": "Keberlanjutan",
+          "description": "Kami berkomitmen pada praktik berkelanjutan, mulai dari pengadaan bahan yang bertanggung jawab hingga meminimalkan limbah di workshop kami."
+        }
+      }
+    },
+    "CTA": {
+      "title": "Ciptakan Perhiasan Perak Anda Sendiri",
+      "description": "Pelajari tradisi Kotagede. Bergabunglah dengan kelas workshop kami untuk mempelajari seni kriya perak dan buat karya unik Anda sendiri secara langsung.",
+      "ctaLabel": "Pesan Kelas Workshop"
+    },
+    "Metadata": {
+      "title": "Salim Silver: Penjaga Warisan & Evolusi Tradisi Perak Kotagede",
+      "description": "Temukan perjalanan Salim Silver menjaga kriya perak Kotagede sejak 1930. Sebuah kisah dedikasi, keahlian pengrajin ahli, dan evolusi tradisi.",
+      "schemaDescription": "Pengrajin perak Kotagede yang melestarikan warisan leluhur melalui desain perhiasan modern dan berkualitas tinggi."
     }
   }
 }

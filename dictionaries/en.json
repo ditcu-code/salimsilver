@@ -46,5 +46,85 @@
       "title": "Handcrafted Javanese Silver Jewelry",
       "description": "Explore Salim Silver's handcrafted rings, necklaces, and bracelets inspired by Javanese heritage and made in Kotagede, Yogyakarta."
     }
+  },
+  "AboutPage": {
+    "Hero": {
+      "title": "Our Story",
+      "description": "Crafting timeless elegance since 1930"
+    },
+    "Bio": {
+      "imageAlt": "Priyana Jatmika Salim looking at silver ring with his loupe",
+      "title": "The Heritage",
+      "p1": "Salim Silver is a guardian of heritage in Kotagede, Yogyakarta, the historic capital of the Mataram Sultanate. Our workshop is a living museum where the ancient art of Javanese silver crafting is preserved and renewed.",
+      "p2": "Our journey began in 1930 with Karto Oetomo, followed by his son Salim Widardjo in 1952. Representing the third generation, <bold>Priyo Salim</bold> joined the family legacy in 1985.",
+      "p3": "In 1987, inspired by the book <italic>Power and Gold</italic>, Priyo pivots the workshop's focus to handcrafted silver jewelry. He has since dedicated his life to preserving and revitalizing the intricate Javanese techniques of Repoussé (embossing) and Filigree.",
+      "p4": "Today, the <bold>4th generation</bold> has stepped in to polish and elevate this heritage. We continue to create pieces that are not just jewelry, but wearable art that honors our past while embracing the future of design.",
+      "badges": {
+        "craftsmanship": "Master Craftsmanship",
+        "ethical": "Ethically Sourced",
+        "collective": "Evolution of Tradition"
+      }
+    },
+    "Timeline": {
+      "title": "Our Journey",
+      "description": "From a humble family workshop to a guardian of Kotagede silver heritage.",
+      "items": {
+        "1930": {
+          "title": "The Beginning",
+          "description": "Karto Oetomo, the grandfather of Priyo Salim, lays the foundation by starting 'KD', a silver business focused on fine household silverware. This early history is documented in Pienke W.H. Kal's 'Yogya Silver: Renewal of a Javanese Handicraft' (2005)."
+        },
+        "1952": {
+          "title": "A New Legacy",
+          "description": "Building on his father's work, Salim Widardjo establishes 'Salim' Silver. He expands the craft by introducing intricate silver miniatures—including becak, andong, and traditional statues—setting a new benchmark for detail."
+        },
+        "1985": {
+          "title": "The Third Generation",
+          "description": "The legacy continues as Priyo Salim joins the family business. While studying Cartography at Universitas Gadjah Mada, he brings a fresh perspective to the traditional workshop."
+        },
+        "1987": {
+          "title": "The Pivot",
+          "description": "A defining moment arrives. Inspired by the book 'Power and Gold', Priyo Salim steers the workshop toward a new direction: handcrafted Javanese silver jewelry, blending tradition with wearable art."
+        },
+        "1990": {
+          "title": "Global Reach",
+          "description": "The commitment to quality pays off as Salim Silver enters the global market, exporting its handcrafted jewelry to clients across the United States, Asia and Europe."
+        },
+        "2017": {
+          "title": "Modernization",
+          "description": "The 4th generation steps forward to carry the torch. They begin modernizing the business operations, ensuring that the ancient techniques thrive in the digital era."
+        },
+        "Present": {
+          "title": "A Living Museum",
+          "description": "Today, Salim Silver stands as a guardian of heritage. Our workshop remains a living museum, open to all who wish to witness the creation of 'art for the future' that honors the past."
+        }
+      }
+    },
+    "Values": {
+      "title": "Our Values",
+      "items": {
+        "tradition": {
+          "title": "Tradition",
+          "description": "We are dedicated to the renewal of Kotagede's silver traditions, ensuring these skills are not just preserved but evolved for the future."
+        },
+        "quality": {
+          "title": "Quality",
+          "description": "We use only the finest 925 sterling silver and ethically sourced gemstones. Every piece is inspected to ensure it meets our high standards."
+        },
+        "sustainability": {
+          "title": "Sustainability",
+          "description": "We are committed to sustainable practices, from responsible sourcing of materials to minimizing waste in our workshop."
+        }
+      }
+    },
+    "CTA": {
+      "title": "Create Your Own Silver Jewelry",
+      "description": "Immerse yourself in the tradition of Kotagede. Join our hands-on workshop to learn the art of silversmithing and craft your own unique piece.",
+      "ctaLabel": "Book a Class"
+    },
+    "Metadata": {
+      "title": "Salim Silver: Guardians of Kotagede Silver Heritage",
+      "description": "Discover the story of Salim Silver, preserving Kotagede silver craftsmanship since 1930. A journey of master craftsmanship and the evolution of tradition.",
+      "schemaDescription": "Kotagede silver artisans preserving ancestral heritage through modern, high-quality jewelry design."
+    }
   }
 }

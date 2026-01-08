@@ -2,9 +2,12 @@
 
 import { motion } from "framer-motion"
 import { Award, Globe, Users } from "lucide-react"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 
 export default function BioSection() {
+  const t = useTranslations("AboutPage.Bio")
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
       <div className="grid items-center gap-12 md:grid-cols-2">
@@ -17,7 +20,7 @@ export default function BioSection() {
         >
           <Image
             src="/images/priyana-jatmika-salim-with-his-loupe.webp"
-            alt="Priyana Jatmika Salim looking at silver ring with his loupe"
+            alt={t("imageAlt")}
             width={600}
             height={800}
             className="h-auto w-full"
@@ -29,42 +32,37 @@ export default function BioSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-display mb-6 text-3xl md:text-4xl">The Heritage</h2>
+          <h2 className="font-display mb-6 text-3xl md:text-4xl">{t("title")}</h2>
           <div className="text-muted-foreground mb-6 space-y-4">
+            <p>{t("p1")}</p>
             <p>
-              Salim Silver is a guardian of heritage in Kotagede, Yogyakarta, the historic capital
-              of the Mataram Sultanate. Our workshop is a living museum where the ancient art of
-              Javanese silver crafting is preserved and renewed.
+              {t.rich("p2", {
+                bold: (chunks) => <strong>{chunks}</strong>,
+              })}
             </p>
             <p>
-              Our journey began in 1930 with Karto Oetomo, followed by his son Salim Widardjo in
-              1952. Representing the third generation, <strong>Priyo Salim</strong> joined the
-              family legacy in 1985.
+              {t.rich("p3", {
+                italic: (chunks) => <em>{chunks}</em>,
+              })}
             </p>
             <p>
-              In 1987, inspired by the book <em>Power and Gold</em>, Priyo pivots the
-              workshop&apos;s focus to handcrafted silver jewelry. He has since dedicated his life
-              to preserving and revitalizing the intricate Javanese techniques of Repoussé
-              (embossing) and Filigree.
-            </p>
-            <p>
-              Today, the <strong>4th generation</strong> has stepped in to polish and elevate this
-              heritage. We continue to create pieces that are not just jewelry, but wearable art
-              that honors our past while embracing the future of design.
+              {t.rich("p4", {
+                bold: (chunks) => <strong>{chunks}</strong>,
+              })}
             </p>
           </div>
           <div className="flex flex-col flex-wrap gap-4 md:flex-row">
             <div className="flex items-center gap-2">
               <Award size={20} className="text-primary" />
-              <span className="text-primary">Master Craftsmanship</span>
+              <span className="text-primary">{t("badges.craftsmanship")}</span>
             </div>
             <div className="flex items-center gap-2">
               <Globe size={20} className="text-primary" />
-              <span className="text-primary">Ethically Sourced</span>
+              <span className="text-primary">{t("badges.ethical")}</span>
             </div>
             <div className="flex items-center gap-2">
               <Users size={20} className="text-primary" />
-              <span className="text-primary">Artisan Collective</span>
+              <span className="text-primary">{t("badges.collective")}</span>
             </div>
           </div>
         </motion.div>
