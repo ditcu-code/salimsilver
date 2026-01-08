@@ -371,5 +371,84 @@
     "Filters": {
       "all": "Semua Perhiasan"
     }
+  },
+  "CollectionsPage": {
+    "Metadata": {
+      "title": "Koleksi",
+      "description": "Jelajahi koleksi cincin, kalung, gelang, dan lainnya yang dikurasi Salim Silver."
+    },
+    "Header": {
+      "title": "Koleksi Kami",
+      "description": "Jelajahi seri buatan tangan kami, masing-masing menceritakan kisah unik tentang tradisi dan seni."
+    }
+  },
+  "CollectionDetailPage": {
+    "Metadata": {
+      "fallbackDescription": "Jelajahi koleksi {title} kami."
+    },
+    "OtherCollections": {
+      "title": "Koleksi Pilihan",
+      "subtitle": "Jelajahi koleksi buatan tangan kami lainnya",
+      "cta": "Lihat Semua Koleksi"
+    },
+    "Breadcrumbs": {
+      "collections": "Koleksi"
+    }
+  },
+  "JournalPage": {
+    "Metadata": {
+      "title": "Jurnal | Salim Silver",
+      "description": "Baca tentang kriya, bahan, dan kisah di balik perhiasan perak Jawa kami."
+    },
+    "Header": {
+      "title": "Jurnal",
+      "description": "Dari jantung Kotagede ke tangan Anda. Jelajahi sejarah, teknik, dan cerita di balik warisan perak buatan tangan kami."
+    },
+    "Hero": {
+      "featured": "Cerita Pilihan",
+      "readFull": "Baca Selengkapnya"
+    },
+    "Fallback": {
+      "noStories": "Belum ada cerita yang diterbitkan. Kami sedang meramu sesuatu yang spesial."
+    }
+  },
+  "JournalDetailPage": {
+    "Metadata": {
+      "notFound": "Artikel Tidak Ditemukan"
+    },
+    "UI": {
+      "backToJournal": "Kembali ke Jurnal",
+      "recentlyPublished": "Baru saja diterbitkan",
+      "updated": "Diperbarui {date}",
+      "share": "Bagikan cerita ini",
+      "readMore": "Baca Cerita Lainnya",
+      "journal": "Jurnal"
+    },
+    "Breadcrumbs": {
+      "journal": "Jurnal"
+    }
+  },
+  "ProductPage": {
+    "Metadata": {
+      "notFound": "Produk Tidak Ditemukan",
+      "fallbackDescription": "Perhiasan perak buatan tangan dari Salim Silver."
+    },
+    "Breadcrumbs": {
+      "collections": "Koleksi"
+    },
+    "Detail": {
+      "labels": {
+        "material": "Bahan",
+        "purity": "Kemurnian",
+        "weight": "Berat",
+        "craftingTime": "Waktu Pengerjaan"
+      },
+      "suffixes": {
+        "hours": "Jam",
+        "grams": "gr"
+      },
+      "fallbackDescription": "Deskripsi tidak tersedia.",
+      "inquireButton": "Tanyakan tentang perhiasan ini"
+    }
   }
 }

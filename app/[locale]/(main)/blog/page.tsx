@@ -4,31 +4,33 @@ import { BlogHero } from "@/components/blocks/blog-hero"
 import { getAllPosts } from "@/lib/blog"
 import { BASE_URL } from "@/lib/constants"
 import { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 
-export const metadata: Metadata = {
-  title: "Journal | Salim Silver",
-  description:
-    "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
-  alternates: {
-    canonical: `${BASE_URL}/blog`,
-  },
-  openGraph: {
-    type: "website",
-    title: "Journal | Salim Silver",
-    description:
-      "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
-    url: `${BASE_URL}/blog`,
-    siteName: "Salim Silver",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Journal | Salim Silver",
-    description:
-      "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("JournalPage.Metadata")
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: `${BASE_URL}/blog`,
+    },
+    openGraph: {
+      type: "website",
+      title: t("title"),
+      description: t("description"),
+      url: `${BASE_URL}/blog`,
+      siteName: "Salim Silver",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+  }
 }
 
 export default async function BlogPage() {
+  const t = await getTranslations("JournalPage")
   const posts = await getAllPosts(false)
   const featuredPost = posts.find((p) => p.featured)
   const remainingPosts = featuredPost ? posts.filter((p) => p.id !== featuredPost.id) : posts
@@ -36,7 +38,7 @@ export default async function BlogPage() {
   if (posts.length === 0) {
     return (
       <div className="text-muted-foreground border-border/50 border-y py-20 text-center">
-        <p className="text-lg">No stories published yet. We are crafting something special.</p>
+        <p className="text-lg">{t("Fallback.noStories")}</p>
       </div>
     )
   }
@@ -63,9 +65,8 @@ export default async function BlogPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            name: "Salim Silver Journal",
-            description:
-              "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry.",
+            name: t("Metadata.title"),
+            description: t("Metadata.description"),
             url: `${BASE_URL}/blog`,
             blogPost: posts.map((post) => ({
               "@type": "BlogPosting",

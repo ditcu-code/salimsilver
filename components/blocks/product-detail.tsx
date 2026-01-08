@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -18,6 +19,8 @@ interface ProductDetailProps {
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
+  const t = useTranslations("ProductPage.Detail")
+  const tb = useTranslations("ProductPage.Breadcrumbs")
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
 
@@ -62,7 +65,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       <div className="mb-6">
         <Breadcrumbs
           items={[
-            { label: "Collections", href: "/collections" },
+            { label: tb("collections"), href: "/collections" },
             ...(product.collectionSlug
               ? [
                   {
@@ -130,20 +133,26 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           <div className="prose prose-stone dark:prose-invert max-w-none">
             <p className="text-muted-foreground text-lg leading-relaxed">
-              {product.description || "No description available."}
+              {product.description || t("fallbackDescription")}
             </p>
           </div>
 
           <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8">
-            <InfoItem label="Material" value={product.material} />
-            <InfoItem label="Purity" value={product.materialPurity} />
+            <InfoItem label={t("labels.material")} value={product.material} />
+            <InfoItem label={t("labels.purity")} value={product.materialPurity} />
             <InfoItem
-              label="Weight"
-              value={product.weightGrams ? `${product.weightGrams}g` : undefined}
+              label={t("labels.weight")}
+              value={
+                product.weightGrams ? `${product.weightGrams}${t("suffixes.grams")}` : undefined
+              }
             />
             <InfoItem
-              label="Crafting Time"
-              value={product.craftingTimeHours ? `${product.craftingTimeHours} Hours` : undefined}
+              label={t("labels.craftingTime")}
+              value={
+                product.craftingTimeHours
+                  ? `${product.craftingTimeHours} ${t("suffixes.hours")}`
+                  : undefined
+              }
             />
           </div>
 
@@ -152,7 +161,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               href="/contact"
               className="bg-foreground text-background inline-flex h-12 items-center justify-center rounded-full px-8 text-sm font-medium transition-colors hover:bg-black/80 dark:hover:bg-white/80"
             >
-              Inquire about this piece
+              {t("inquireButton")}
             </Link>
           </div>
         </div>

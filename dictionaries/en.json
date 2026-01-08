@@ -371,5 +371,84 @@
     "Filters": {
       "all": "All Jewelry"
     }
+  },
+  "CollectionsPage": {
+    "Metadata": {
+      "title": "Collections",
+      "description": "Browse Salim Silver's curated collections of handcrafted rings, necklaces, bracelets, and more."
+    },
+    "Header": {
+      "title": "Our Collections",
+      "description": "Explore our handcrafted series, each telling a unique story of tradition and artistry."
+    }
+  },
+  "CollectionDetailPage": {
+    "Metadata": {
+      "fallbackDescription": "Explore our {title} collection."
+    },
+    "OtherCollections": {
+      "title": "Featured Collections",
+      "subtitle": "Explore our other handcrafted collections",
+      "cta": "View All Collections"
+    },
+    "Breadcrumbs": {
+      "collections": "Collections"
+    }
+  },
+  "JournalPage": {
+    "Metadata": {
+      "title": "Journal | Salim Silver",
+      "description": "Read about our craftsmanship, materials, and the stories behind Javanese silver jewelry."
+    },
+    "Header": {
+      "title": "The Journal",
+      "description": "From the heart of Kotagede to your hands. Explore the history, techniques, and stories behind our handcrafted silver legacy."
+    },
+    "Hero": {
+      "featured": "Featured Story",
+      "readFull": "Read Full Story"
+    },
+    "Fallback": {
+      "noStories": "No stories published yet. We are crafting something special."
+    }
+  },
+  "JournalDetailPage": {
+    "Metadata": {
+      "notFound": "Post Not Found"
+    },
+    "UI": {
+      "backToJournal": "Back to Journal",
+      "recentlyPublished": "Recently published",
+      "updated": "Updated {date}",
+      "share": "Share this story",
+      "readMore": "Read More Stories",
+      "journal": "Journal"
+    },
+    "Breadcrumbs": {
+      "journal": "Journal"
+    }
+  },
+  "ProductPage": {
+    "Metadata": {
+      "notFound": "Product Not Found",
+      "fallbackDescription": "Handcrafted silver jewelry from Salim Silver."
+    },
+    "Breadcrumbs": {
+      "collections": "Collections"
+    },
+    "Detail": {
+      "labels": {
+        "material": "Material",
+        "purity": "Purity",
+        "weight": "Weight",
+        "craftingTime": "Crafting Time"
+      },
+      "suffixes": {
+        "hours": "Hours",
+        "grams": "g"
+      },
+      "fallbackDescription": "No description available.",
+      "inquireButton": "Inquire about this piece"
+    }
   }
 }

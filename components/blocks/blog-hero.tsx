@@ -3,10 +3,13 @@
 import { Post } from "@/lib/types"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 
 export function BlogHero({ post }: { post: Post }) {
+  const t = useTranslations("JournalPage.Hero")
+
   return (
     <section className="relative mb-16 w-full md:mb-24">
       <Link href={`/blog/${post.slug}`} className="group block">
@@ -38,7 +41,7 @@ export function BlogHero({ post }: { post: Post }) {
             >
               <div className="text-primary flex items-center gap-3 text-sm font-medium tracking-wide uppercase">
                 <span className="bg-primary h-px w-8"></span>
-                Featured Story
+                {t("featured")}
               </div>
             </motion.div>
 
@@ -67,7 +70,7 @@ export function BlogHero({ post }: { post: Post }) {
               className="pt-4"
             >
               <div className="text-foreground flex items-center gap-2 text-sm font-medium transition-transform duration-300 group-hover:translate-x-2">
-                Read Full Story <ArrowRight className="ml-1 h-4 w-4" />
+                {t("readFull")} <ArrowRight className="ml-1 h-4 w-4" />
               </div>
             </motion.div>
           </div>

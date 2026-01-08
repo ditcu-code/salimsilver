@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 
 import { getCollection, getFeaturedCollections, getJewelryBySlug } from "@/lib/collections"
 import { BASE_URL } from "@/lib/constants"
@@ -18,13 +19,14 @@ interface Props {
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { slug } = await params
   const { jewelry } = await searchParams
+  const t = await getTranslations("CollectionDetailPage.Metadata")
 
   // 1. Check if specific jewelry is being shared
   if (jewelry) {
     const item = await getJewelryBySlug(jewelry)
     if (item) {
       const title = `${item.title} - Salim Silver`
-      const description = item.description || "Handcrafted silver jewelry from Salim Silver."
+      const description = item.description || t("fallbackDescription", { title: item.title })
       const images =
         item.images && item.images.length > 0 ? [item.images[0].src] : ["/opengraph-image"]
 
@@ -52,7 +54,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const collection = await getCollection(slug)
   if (collection) {
     const title = `${collection.title} - Salim Silver`
-    const description = collection.description || `Explore our ${collection.title} collection.`
+    const description =
+      collection.description || t("fallbackDescription", { title: collection.title })
     const images = collection.coverImage ? [collection.coverImage] : ["/opengraph-image"]
 
     return {
@@ -82,6 +85,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 export default async function CollectionPage({ params, searchParams }: Props) {
   // Ensure params is properly awaited
   const { slug } = await params
+  const t = await getTranslations("CollectionDetailPage.Breadcrumbs")
   const collection = await getCollection(slug)
   const featuredCollections = await getFeaturedCollections()
 
@@ -130,7 +134,7 @@ export default async function CollectionPage({ params, searchParams }: Props) {
               {
                 "@type": "ListItem",
                 position: 1,
-                name: "Collections",
+                name: t("collections"),
                 item: `${BASE_URL}/collections`,
               },
               {

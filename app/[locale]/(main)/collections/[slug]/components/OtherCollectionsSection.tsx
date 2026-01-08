@@ -1,5 +1,7 @@
 "use client"
 
+import { useTranslations } from "next-intl"
+
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import AnimatedButton from "@/components/ui/animated-button"
 import { motion } from "framer-motion"
@@ -12,6 +14,8 @@ interface Props {
 }
 
 export default function OtherCollectionsSection({ collections }: Props) {
+  const t = useTranslations("CollectionDetailPage.OtherCollections")
+
   return (
     <section className="mt-20 mb-20 px-4 py-20 md:px-8">
       <div className="mx-auto max-w-7xl">
@@ -22,12 +26,8 @@ export default function OtherCollectionsSection({ collections }: Props) {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary font-display mb-4 text-3xl md:text-4xl">
-            Featured Collections
-          </h2>
-          <p className="text-primary mx-auto max-w-2xl">
-            Explore our other handcrafted collections
-          </p>
+          <h2 className="text-primary font-display mb-4 text-3xl md:text-4xl">{t("title")}</h2>
+          <p className="text-primary mx-auto max-w-2xl">{t("subtitle")}</p>
         </motion.div>
         <FeaturedCollections collections={collections} />
         <motion.div
@@ -38,7 +38,7 @@ export default function OtherCollectionsSection({ collections }: Props) {
           viewport={{ once: true }}
         >
           <AnimatedButton href="/catalog" variant="primary" icon={<ArrowRight size={18} />}>
-            View All Collections
+            {t("cta")}
           </AnimatedButton>
         </motion.div>
       </div>

@@ -5,6 +5,7 @@ import { getPostBySlug } from "@/lib/blog"
 import { BASE_URL } from "@/lib/constants"
 import { formatDate } from "@/lib/utils"
 import { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
@@ -16,11 +17,12 @@ interface BlogPostPageProps {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params
+  const t = await getTranslations("JournalDetailPage.Metadata")
   const post = await getPostBySlug(slug)
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: t("notFound"),
     }
   }
 
@@ -44,6 +46,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
+  const t = await getTranslations("JournalDetailPage.UI")
+  const tb = await getTranslations("JournalDetailPage.Breadcrumbs")
   const post = await getPostBySlug(slug)
 
   if (!post || !post.published) {
@@ -64,23 +68,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           />
         ) : (
           <div className="bg-muted flex h-full w-full items-center justify-center">
-            <span className="text-muted-foreground/20 font-serif text-6xl">Journal</span>
+            <span className="text-muted-foreground/20 font-serif text-6xl">{t("journal")}</span>
           </div>
         )}
         <div className="from-background via-background/60 absolute inset-0 flex items-end bg-linear-to-t to-transparent">
           <div className="container mx-auto max-w-4xl px-4 pb-12">
-            <BackButton href="/blog">Back to Journal</BackButton>
+            <BackButton href="/blog">{t("backToJournal")}</BackButton>
             <h1 className="mb-4 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl">
               {post.title}
             </h1>
             <div className="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
               <span>
-                {post.published_at ? formatDate(post.published_at) : "Recently published"}
+                {post.published_at ? formatDate(post.published_at) : t("recentlyPublished")}
               </span>
               {post.updated_at && post.updated_at !== post.published_at && (
                 <>
                   <span>•</span>
-                  <span>Updated {formatDate(post.updated_at)}</span>
+                  <span>{t("updated", { date: formatDate(post.updated_at) })}</span>
                 </>
               )}
             </div>
@@ -103,7 +107,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Content */}
       <div className="container mx-auto mt-12 max-w-3xl px-4">
         <div className="mb-8 flex items-center justify-between border-b pb-8">
-          <div className="text-muted-foreground text-sm font-medium">Share this story</div>
+          <div className="text-muted-foreground text-sm font-medium">{t("share")}</div>
           <ShareButton title={post.title} />
         </div>
 
@@ -154,7 +158,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {
                 "@type": "ListItem",
                 position: 1,
-                name: "Journal",
+                name: tb("journal"),
                 item: `${BASE_URL}/blog`,
               },
               {

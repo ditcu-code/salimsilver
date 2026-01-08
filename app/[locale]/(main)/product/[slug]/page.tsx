@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import ProductDetail from "@/components/blocks/product-detail"
@@ -13,16 +14,17 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
+  const t = await getTranslations("ProductPage.Metadata")
   const product = await getJewelryBySlug(slug)
 
   if (!product) {
     return {
-      title: "Product Not Found",
+      title: t("notFound"),
     }
   }
 
   const title = `${product.title} - Salim Silver`
-  const description = product.description || "Handcrafted silver jewelry from Salim Silver."
+  const description = product.description || t("fallbackDescription")
   const images =
     product.images && product.images.length > 0 ? [product.images[0].src] : ["/opengraph-image"]
 
@@ -50,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params
+  const t = await getTranslations("ProductPage.Breadcrumbs")
   const product = await getJewelryBySlug(slug)
 
   if (!product) {
@@ -99,7 +102,7 @@ export default async function ProductPage({ params }: Props) {
               {
                 "@type": "ListItem",
                 position: 1,
-                name: "Collections",
+                name: t("collections"),
                 item: `${BASE_URL}/collections`,
               },
               ...(product.collectionSlug

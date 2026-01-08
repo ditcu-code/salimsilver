@@ -3,8 +3,11 @@
 import AnimatedButton from "@/components/ui/animated-button"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function BlogReadMore() {
+  const t = useTranslations("JournalDetailPage.UI")
+
   return (
     <motion.div
       className="mt-12 border-t pt-8 text-center"
@@ -14,7 +17,7 @@ export default function BlogReadMore() {
       viewport={{ once: true }}
     >
       <AnimatedButton href="/blog" variant="primary" icon={<ArrowRight size={18} />}>
-        Read More Stories
+        {t("readMore")}
       </AnimatedButton>
     </motion.div>
   )
