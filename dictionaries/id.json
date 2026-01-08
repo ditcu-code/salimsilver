@@ -133,26 +133,26 @@
       "description": "Ikuti workshop perak 3 jam di Kotagede, Yogyakarta. Pelajari langkah membuat perhiasan perak tradisional langsung dari pengrajin ahli."
     },
     "Hero": {
-      "title": "Workshop Tempa Perak",
-      "description": "Rasakan seni kriya perak Jawa. Ciptakan mahakarya Anda sendiri di jantung Kotagede, dibimbing langsung oleh sang maestro."
+      "title": "Workshop Perhiasan Perak",
+      "description": "Rasakan pengalaman membuat perhiasan perak kriya ala Jawa. Ciptakan mahakarya Anda sendiri di jantung Kotagede, dibimbing langsung oleh sang maestro."
     },
     "Reasons": {
       "storyteller": {
-        "title": "Bertemu Salim, Sang Penutur",
+        "title": "Bertemu Salim, Si Pencerita",
         "description": "Ia tak hanya membagi teknik, tapi menjalin kisah sejarah keluarga dan kekayaan warisan perak Kotagede."
       },
       "venue": {
         "title": "Ruang Bersejarah",
-        "description": "Berkarya di studio autentik yang sama tempat warisan keluarga kami bermula seabad lalu, dikelilingi sejarah yang hidup."
+        "description": "Buat karya Anda di workhsop autentik tempat dimana warisan keluarga kami bermula sekitar seabad lalu."
       },
       "masters": {
         "title": "Dibimbing Ahli",
-        "description": "Karya Anda akan dipandu oleh pengrajin berpengalaman puluhan tahun, memastikan kualitas dan tradisi di setiap langkah."
+        "description": "Karya Anda akan dipandu oleh pengrajin berpengalaman puluhan tahun, memastikan kualitas dan tradisi di setiap langkah perhiasanmu."
       }
     },
     "Steps": {
       "title": "Proses Kreatif",
-      "subtitle": "Mulai perjalanan kreatif 3 jam di mana Anda akan menguasai tahapan fundamental kriya perak tradisional.",
+      "subtitle": "Mulai perjalanan kreatif 3 jam di mana Anda akan menguasai tahapan dasar seni kriya perak tradisional.",
       "list": {
         "step1": {
           "title": "Reservasi & Jadwal",
@@ -160,15 +160,15 @@
         },
         "step2": {
           "title": "Eksplorasi Desain",
-          "description": "Tuangkan kreativitas ke dalam sketsa nyata. Bebas bawa desain sendiri atau adaptasi motif klasik Salim Silver."
+          "description": "Tuangkan kreativitas ke dalam sketsa nyata. Bebas bawa desain sendiri atau adaptasi motif dari Salim Silver."
         },
         "step3": {
-          "title": "Presisi Ukuran",
+          "title": "Ukuran Presisi",
           "description": "Saatnya mengukur jari dengan akurat, memastikan cincin buatan tangan Anda pas dan nyaman."
         },
         "step4": {
-          "title": "Seni Ukir (Tatah)",
-          "description": "Selami teknik tatah logam khas Kotagede. Pelajari 5 tahap detail bersama ahli kami:",
+          "title": "Repousse (Tatah)",
+          "description": "Dalami teknik tatah logam khas Kotagede. Pelajari 5 tahap detail bersama ahli kami:",
           "details": [
             "Sketsa Awal: Menggores garis motif dasar",
             "Wudulan (Embossing): Menciptakan volume 3D dari belakang",
@@ -191,8 +191,8 @@
           ]
         },
         "step7": {
-          "title": "Selesai!",
-          "description": "Cincin perak buatan tangan Anda siap dipakai dan dibawa pulang."
+          "title": "Bungkus!",
+          "description": "Cincin perak buatan tangan Anda siap dipakai dan Anda bawa pulang."
         }
       }
     },
@@ -218,8 +218,8 @@
       }
     },
     "Registration": {
-      "title": "Pesan Sesi Anda",
-      "subtitle": "Isi detail untuk cek ketersediaan via WhatsApp.",
+      "title": "Booking Sesi Anda",
+      "subtitle": "Isi detail untuk cek ketersediaan sesi via WhatsApp.",
       "startNow": "Mulai Sekarang",
       "secureSlot": "Amankan slot untuk pengalaman tak terlupakan.",
       "fields": {
