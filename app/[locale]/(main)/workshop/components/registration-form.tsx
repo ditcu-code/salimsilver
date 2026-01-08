@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { sendGAEvent } from "@next/third-parties/google"
 import { format } from "date-fns"
+import { enUS, id } from "date-fns/locale"
 import { CalendarIcon, Loader2, User, Users } from "lucide-react"
+import { useLocale, useTranslations } from "next-intl"
 import * as React from "react"
 import { useForm, useWatch } from "react-hook-form"
 import * as z from "zod"
@@ -34,8 +36,8 @@ import { toast } from "sonner"
 // Custom Input for DatePicker
 const DatePickerCustomInput = React.forwardRef<
   HTMLButtonElement,
-  { value?: string; onClick?: () => void; className?: string }
->(({ value, onClick, className }, ref) => (
+  { value?: string; onClick?: () => void; className?: string; placeholder?: string }
+>(({ value, onClick, className, placeholder }, ref) => (
   <Button
     variant="outline"
     className={cn(
@@ -49,25 +51,27 @@ const DatePickerCustomInput = React.forwardRef<
     }}
     ref={ref}
   >
-    {value || <span>Pick a date</span>}
+    {value || <span>{placeholder || "Pick a date"}</span>}
     <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
   </Button>
 ))
 DatePickerCustomInput.displayName = "DatePickerCustomInput"
 
-// Schema
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  date: z.date(),
-  session: z.enum(["morning", "afternoon"]),
-  participantType: z.enum(["single", "group"]),
-  participantCount: z.number().min(1),
-})
-
 export function RegistrationForm() {
+  const t = useTranslations("WorkshopPage.Registration")
+  const locale = useLocale()
   const [isPending, startTransition] = React.useTransition()
+
+  // Schema with localization
+  const formSchema = z.object({
+    name: z.string().min(2, {
+      message: t("Validation.nameLength"),
+    }),
+    date: z.date(),
+    session: z.enum(["morning", "afternoon"]),
+    participantType: z.enum(["single", "group"]),
+    participantCount: z.number().min(1),
+  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -93,25 +97,30 @@ export function RegistrationForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(() => {
       // Construct WhatsApp Message
-      const dateStr = format(values.date, "EEEE, d MMMM yyyy")
-      const sessionStr = values.session === "morning" ? "Morning (08:30)" : "Afternoon (12:30)"
+      const dateLocale = locale === "id" ? id : enUS
+      const dateStr = format(values.date, "EEEE, d MMMM yyyy", { locale: dateLocale })
+
+      const sessionLabel =
+        values.session === "morning" ? t("fields.session.morning") : t("fields.session.afternoon")
+
+      // Strip the time part from the session label if needed, or keep it.
+      // The label in dictionary is "Morning (08:30-11:30)", might be too long.
+      // Let's use a cleaner format for WA: "Morning / Pagi" or just use the translated label.
+      // The user's original code used specifically "Morning (08:30)" vs "Pagi (08:30-11:30)"
+      // Let's stick to using the dictionary label for simplicity as it's clear enough.
+
       const count = values.participantType === "single" ? 1 : Math.max(2, values.participantCount)
-      const priceStr = new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-        maximumFractionDigits: 0,
-      }).format(totalPrice)
 
-      const message = `Hello Salim Silver,
+      const message = `${t("WhatsApp.greeting")}
 
-Name: ${values.name}
+${t("WhatsApp.name")}: ${values.name}
 
-I would like to book a silversmith workshop:
-- Date: ${dateStr}
-- Session: ${sessionStr}
-- Participants: ${count} people
+${t("WhatsApp.intro")}
+- ${t("WhatsApp.date")}: ${dateStr}
+- ${t("WhatsApp.session")}: ${sessionLabel}
+- ${t("WhatsApp.participants")}: ${count} ${t("WhatsApp.people")}
 
-Please let me know about the availability.`
+${t("WhatsApp.closing")}`
 
       const encodedMessage = encodeURIComponent(message)
       const waUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`
@@ -125,7 +134,7 @@ Please let me know about the availability.`
 
       // Redirect
       window.open(waUrl, "_blank")
-      toast.success("Redirecting to WhatsApp...")
+      toast.success(t("toast"))
       form.reset()
     })
   }
@@ -133,10 +142,8 @@ Please let me know about the availability.`
   return (
     <div className="mx-auto w-full max-w-md space-y-6 rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
       <div className="space-y-2 text-center">
-        <h3 className="text-2xl font-semibold">Book Your Session</h3>
-        <p className="text-muted-foreground text-sm">
-          Fill details to check availability via WhatsApp.
-        </p>
+        <h3 className="text-2xl font-semibold">{t("title")}</h3>
+        <p className="text-muted-foreground text-sm">{t("subtitle")}</p>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -145,9 +152,9 @@ Please let me know about the availability.`
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
+                <FormLabel>{t("fields.name.label")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your name" {...field} />
+                  <Input placeholder={t("fields.name.placeholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -160,7 +167,7 @@ Please let me know about the availability.`
               name="date"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Date</FormLabel>
+                  <FormLabel>{t("fields.date.label")}</FormLabel>
                   <FormControl>
                     <DatePicker
                       selected={field.value}
@@ -168,7 +175,9 @@ Please let me know about the availability.`
                       dateFormat="MMM d, yyyy"
                       minDate={new Date()}
                       filterDate={(date: Date) => date.getDay() !== 0}
-                      customInput={<DatePickerCustomInput />}
+                      customInput={
+                        <DatePickerCustomInput placeholder={t("fields.date.placeholder")} />
+                      }
                       wrapperClassName="w-full"
                     />
                   </FormControl>
@@ -182,16 +191,16 @@ Please let me know about the availability.`
               name="session"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Session</FormLabel>
+                  <FormLabel>{t("fields.session.label")}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select" />
+                        <SelectValue placeholder={t("fields.session.placeholder")} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="morning">Morning (08:30-11:30)</SelectItem>
-                      <SelectItem value="afternoon">Afternoon (12:30-15:30)</SelectItem>
+                      <SelectItem value="morning">{t("fields.session.morning")}</SelectItem>
+                      <SelectItem value="afternoon">{t("fields.session.afternoon")}</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -201,7 +210,7 @@ Please let me know about the availability.`
           </div>
 
           <div className="space-y-3">
-            <FormLabel>Number of Participants</FormLabel>
+            <FormLabel>{t("fields.participants.label")}</FormLabel>
             <div className="grid grid-cols-2 gap-4">
               <div
                 className={cn(
@@ -221,8 +230,10 @@ Please let me know about the availability.`
                     <div className="h-2 w-2 rounded-full bg-neutral-900 dark:bg-neutral-50" />
                   )}
                 </div>
-                <div className="font-semibold">1 Person</div>
-                <div className="text-muted-foreground text-xs">Rp 550.000</div>
+                <div className="font-semibold">{t("fields.participants.single.title")}</div>
+                <div className="text-muted-foreground text-xs">
+                  {t("fields.participants.single.price")}
+                </div>
               </div>
 
               <div
@@ -245,8 +256,10 @@ Please let me know about the availability.`
                     <div className="h-2 w-2 rounded-full bg-neutral-900 dark:bg-neutral-50" />
                   )}
                 </div>
-                <div className="font-semibold">2+ People</div>
-                <div className="text-muted-foreground text-xs">Rp 500k/pax</div>
+                <div className="font-semibold">{t("fields.participants.group.title")}</div>
+                <div className="text-muted-foreground text-xs">
+                  {t("fields.participants.group.price")}
+                </div>
               </div>
             </div>
 
@@ -257,7 +270,9 @@ Please let me know about the availability.`
                 render={({ field }) => (
                   <FormItem>
                     <div className="flex items-center justify-between gap-3 pt-2">
-                      <FormLabel className="pb-0 whitespace-nowrap">Total People:</FormLabel>
+                      <FormLabel className="pb-0 whitespace-nowrap">
+                        {t("fields.participants.totalLabel")}
+                      </FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -277,7 +292,7 @@ Please let me know about the availability.`
 
           <div className="my-4 rounded-lg bg-neutral-100 p-4 dark:bg-neutral-900">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground">Estimated Total:</span>
+              <span className="text-muted-foreground">{t("totalEstimate")}</span>
               <span className="text-lg font-bold">
                 {new Intl.NumberFormat("id-ID", {
                   style: "currency",
@@ -298,7 +313,7 @@ Please let me know about the availability.`
             ) : (
               <WhatsApp className="mr-2 h-4 w-4" />
             )}
-            Continue to WhatsApp
+            {t("submit")}
           </Button>
         </form>
       </Form>

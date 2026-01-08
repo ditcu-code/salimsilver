@@ -126,5 +126,147 @@
       "description": "Discover the story of Salim Silver, preserving Kotagede silver craftsmanship since 1930. A journey of master craftsmanship and the evolution of tradition.",
       "schemaDescription": "Kotagede silver artisans preserving ancestral heritage through modern, high-quality jewelry design."
     }
+  },
+  "WorkshopPage": {
+    "Metadata": {
+      "title": "Silversmith Jewelry Workshop in Kotagede, Yogyakarta",
+      "description": "Join our 3-hour hands-on silversmithing workshop in Kotagede, Yogyakarta. Learn the steps of creating traditional silver jewelry from master artisans."
+    },
+    "Hero": {
+      "title": "Silversmith Workshop",
+      "description": "Experience the art of Javanese silversmithing. Create your own masterpiece in the heart of Kotagede directly solely with the master."
+    },
+    "Reasons": {
+      "storyteller": {
+        "title": "Meet Salim, The Storyteller",
+        "description": "He will share not just techniques, but weave tales of our family history and the rich legacy of silver in Kotagede."
+      },
+      "venue": {
+        "title": "Historic Venue",
+        "description": "Create in the same authentic studio where our family legacy began over a century ago, surrounded by living history."
+      },
+      "masters": {
+        "title": "Guided by Masters",
+        "description": "Your masterpiece will be guided by experienced artisans with decades of expertise, ensuring quality and tradition in every step."
+      }
+    },
+    "Steps": {
+      "title": "How It Works",
+      "subtitle": "Embark on a three-hour creative journey where you'll master the fundamental stages of traditional silver craftsmanship.",
+      "list": {
+        "step1": {
+          "title": "Reservation & Scheduling",
+          "description": "Secure your workshop slot via our online reservation."
+        },
+        "step2": {
+          "title": "Design Exploration",
+          "description": "Pour your creativity into a real sketch. You're free to bring your own design or adapt from Salim Silver's classic motifs."
+        },
+        "step3": {
+          "title": "Precision Measurement",
+          "description": "Time to measure your finger size accurately, ensuring your handmade ring fits comfortably."
+        },
+        "step4": {
+          "title": "The Art of Engraving (Repoussé)",
+          "description": "Dive into the signature Kotagede metal engraving technique. You'll learn 5 detailed stages with our experts:",
+          "details": [
+            "Initial Sketch: Etching the basic motif outline",
+            "Embossing (Wudulan): Creating 3D volume from the back",
+            "Detailing: Sharpening details and texture",
+            "Smoothing: Refining the relief surface",
+            "Cutout (Tatasan): Piercing technique to enhance the silhouette"
+          ]
+        },
+        "step5": {
+          "title": "Soldering",
+          "description": "Joining the silver sheet into a complete ring form. You can do it yourself or let our experts help you."
+        },
+        "step6": {
+          "title": "Finishing Touches",
+          "description": "Make your creation shine. This process determines the final luster and character of your jewelry:",
+          "details": [
+            "Sanding for a smooth surface",
+            "Polishing for maximum shine",
+            "Oxidation (optional) for an elegant antique look"
+          ]
+        },
+        "step7": {
+          "title": "It's a Wrap!",
+          "description": "Your handmade silver ring is ready to wear and take home."
+        }
+      }
+    },
+    "Details": {
+      "title": "Important Details",
+      "hours": {
+        "title": "Opening Hours",
+        "days": "Monday - Saturday",
+        "morning": "Morning: 08:30 - 11:30",
+        "afternoon": "Afternoon: 12:30 - 15:30"
+      },
+      "includes": {
+        "title": "Includes",
+        "description": "5 grams of silver and full equipment usage"
+      },
+      "flexible": {
+        "title": "Flexible Designs",
+        "description": "Craft rings, pendants, bracelets, or any custom design. We're happy to collaborate with you to bring your unique idea to life."
+      },
+      "payment": {
+        "title": "Payment",
+        "description": "Cash, Bank Transfer, QRIS, Credit/Debit Cards (upon completion)"
+      }
+    },
+    "Registration": {
+      "title": "Book Your Session",
+      "subtitle": "Fill details to check availability via WhatsApp.",
+      "startNow": "Start Now",
+      "secureSlot": "Secure your slot for an unforgettable experience.",
+      "fields": {
+        "name": {
+          "label": "Full Name",
+          "placeholder": "Your name"
+        },
+        "date": {
+          "label": "Date",
+          "placeholder": "Pick a date"
+        },
+        "session": {
+          "label": "Session",
+          "placeholder": "Select",
+          "morning": "Morning (08:30-11:30)",
+          "afternoon": "Afternoon (12:30-15:30)"
+        },
+        "participants": {
+          "label": "Number of Participants",
+          "single": {
+            "title": "1 Person",
+            "price": "Rp 550.000"
+          },
+          "group": {
+            "title": "2+ People",
+            "price": "Rp 500k/pax"
+          },
+          "totalLabel": "Total People:"
+        }
+      },
+      "totalEstimate": "Estimated Total:",
+      "submit": "Continue to WhatsApp",
+      "toast": "Redirecting to WhatsApp...",
+      "mobileButton": "Book Your Workshop",
+      "Validation": {
+        "nameLength": "Name must be at least 2 characters"
+      },
+      "WhatsApp": {
+        "greeting": "Hello Salim Silver,",
+        "name": "Name",
+        "intro": "I would like to book a silversmith workshop:",
+        "date": "Date",
+        "session": "Session",
+        "participants": "Participants",
+        "people": "people",
+        "closing": "Please let me know about the availability."
+      }
+    }
   }
 }

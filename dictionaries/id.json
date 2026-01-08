@@ -126,5 +126,147 @@
       "description": "Temukan perjalanan Salim Silver menjaga kriya perak Kotagede sejak 1930. Sebuah kisah dedikasi, keahlian pengrajin ahli, dan evolusi tradisi.",
       "schemaDescription": "Pengrajin perak Kotagede yang melestarikan warisan leluhur melalui desain perhiasan modern dan berkualitas tinggi."
     }
+  },
+  "WorkshopPage": {
+    "Metadata": {
+      "title": "Workshop Perhiasan Perak di Kotagede, Yogyakarta",
+      "description": "Ikuti workshop perak 3 jam di Kotagede, Yogyakarta. Pelajari langkah membuat perhiasan perak tradisional langsung dari pengrajin ahli."
+    },
+    "Hero": {
+      "title": "Workshop Tempa Perak",
+      "description": "Rasakan seni kriya perak Jawa. Ciptakan mahakarya Anda sendiri di jantung Kotagede, dibimbing langsung oleh sang maestro."
+    },
+    "Reasons": {
+      "storyteller": {
+        "title": "Bertemu Salim, Sang Penutur",
+        "description": "Ia tak hanya membagi teknik, tapi menjalin kisah sejarah keluarga dan kekayaan warisan perak Kotagede."
+      },
+      "venue": {
+        "title": "Ruang Bersejarah",
+        "description": "Berkarya di studio autentik yang sama tempat warisan keluarga kami bermula seabad lalu, dikelilingi sejarah yang hidup."
+      },
+      "masters": {
+        "title": "Dibimbing Ahli",
+        "description": "Karya Anda akan dipandu oleh pengrajin berpengalaman puluhan tahun, memastikan kualitas dan tradisi di setiap langkah."
+      }
+    },
+    "Steps": {
+      "title": "Proses Kreatif",
+      "subtitle": "Mulai perjalanan kreatif 3 jam di mana Anda akan menguasai tahapan fundamental kriya perak tradisional.",
+      "list": {
+        "step1": {
+          "title": "Reservasi & Jadwal",
+          "description": "Amankan slot workshop Anda melalui reservasi online kami."
+        },
+        "step2": {
+          "title": "Eksplorasi Desain",
+          "description": "Tuangkan kreativitas ke dalam sketsa nyata. Bebas bawa desain sendiri atau adaptasi motif klasik Salim Silver."
+        },
+        "step3": {
+          "title": "Presisi Ukuran",
+          "description": "Saatnya mengukur jari dengan akurat, memastikan cincin buatan tangan Anda pas dan nyaman."
+        },
+        "step4": {
+          "title": "Seni Ukir (Tatah)",
+          "description": "Selami teknik tatah logam khas Kotagede. Pelajari 5 tahap detail bersama ahli kami:",
+          "details": [
+            "Sketsa Awal: Menggores garis motif dasar",
+            "Wudulan (Embossing): Menciptakan volume 3D dari belakang",
+            "Detailing: Mempertajam detail dan tekstur",
+            "Halusan: Menghaluskan permukaan relief",
+            "Tatasan (Cutout): Teknik lubang untuk mempertegas siluet"
+          ]
+        },
+        "step5": {
+          "title": "Patri (Soldering)",
+          "description": "Menyatukan lempeng perak menjadi bentuk cincin utuh. Bisa Anda lakukan sendiri atau dibantu ahli kami."
+        },
+        "step6": {
+          "title": "Sentuhan Akhir",
+          "description": "Buat karya Anda bersinar. Proses ini menentukan kilau akhir dan karakter perhiasan:",
+          "details": [
+            "Pengamplasan untuk permukaan halus",
+            "Pemolesan untuk kilau maksimal",
+            "Oksidasi (opsional) untuk tampilan antik elegan"
+          ]
+        },
+        "step7": {
+          "title": "Selesai!",
+          "description": "Cincin perak buatan tangan Anda siap dipakai dan dibawa pulang."
+        }
+      }
+    },
+    "Details": {
+      "title": "Info Penting",
+      "hours": {
+        "title": "Jam Buka",
+        "days": "Senin - Sabtu",
+        "morning": "Pagi: 08:30 - 11:30",
+        "afternoon": "Siang: 12:30 - 15:30"
+      },
+      "includes": {
+        "title": "Termasuk",
+        "description": "5 gram perak dan penggunaan peralatan lengkap"
+      },
+      "flexible": {
+        "title": "Desain Fleksibel",
+        "description": "Buat cincin, liontin, gelang, atau desain kustom. Kami senang berkolaborasi mewujudkan ide unik Anda."
+      },
+      "payment": {
+        "title": "Pembayaran",
+        "description": "Tunai, Transfer Bank, QRIS, Kartu Kredit/Debit (setelah selesai)"
+      }
+    },
+    "Registration": {
+      "title": "Pesan Sesi Anda",
+      "subtitle": "Isi detail untuk cek ketersediaan via WhatsApp.",
+      "startNow": "Mulai Sekarang",
+      "secureSlot": "Amankan slot untuk pengalaman tak terlupakan.",
+      "fields": {
+        "name": {
+          "label": "Nama Lengkap",
+          "placeholder": "Nama Anda"
+        },
+        "date": {
+          "label": "Tanggal",
+          "placeholder": "Pilih tanggal"
+        },
+        "session": {
+          "label": "Sesi",
+          "placeholder": "Pilih",
+          "morning": "Pagi (08:30-11:30)",
+          "afternoon": "Siang (12:30-15:30)"
+        },
+        "participants": {
+          "label": "Jumlah Peserta",
+          "single": {
+            "title": "1 Orang",
+            "price": "Rp 550.000"
+          },
+          "group": {
+            "title": "2+ Orang",
+            "price": "Rp 500rb/orang"
+          },
+          "totalLabel": "Total Peserta:"
+        }
+      },
+      "totalEstimate": "Perkiraan Total:",
+      "submit": "Lanjut ke WhatsApp",
+      "toast": "Mengalihkan ke WhatsApp...",
+      "mobileButton": "Pesan Workshop",
+      "Validation": {
+        "nameLength": "Nama minimal 2 karakter"
+      },
+      "WhatsApp": {
+        "greeting": "Halo Salim Silver,",
+        "name": "Nama",
+        "intro": "Saya ingin memesan workshop perhiasan perak:",
+        "date": "Tanggal",
+        "session": "Sesi",
+        "participants": "Peserta",
+        "people": "orang",
+        "closing": "Mohon informasinya mengenai ketersediaan jadwal."
+      }
+    }
   }
 }

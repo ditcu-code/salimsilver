@@ -35,6 +35,7 @@ export function LanguageSwitcher() {
     let newPath = pathname
 
     // Set cookie to update preference immediately for middleware
+    // eslint-disable-next-line
     document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000; SameSite=Lax`
 
     if (locale === "id") {

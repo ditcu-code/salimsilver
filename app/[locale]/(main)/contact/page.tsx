@@ -72,7 +72,7 @@ export default function ContactPage() {
               },
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Kebohan KG 3/547, Purbayan, Kotagede",
+                streetAddress: "Gg. Platina - Kebohan KG 3/547, Purbayan, Kotagede",
                 addressLocality: "Yogyakarta City",
                 addressRegion: "Special Region of Yogyakarta",
                 postalCode: "55173",

@@ -1,12 +1,17 @@
+"use client"
+
 import { Clock, CreditCard, Hammer, Sparkles } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export function WorkshopDetails() {
+  const t = useTranslations("WorkshopPage.Details")
+
   return (
     <div className="relative overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/50 p-8 backdrop-blur-sm dark:border-stone-800 dark:bg-stone-900/50">
       <div className="bg-primary/5 absolute -top-12 -right-12 h-64 w-64 rounded-full blur-3xl" />
 
       <h3 className="mb-6 font-serif text-2xl font-bold text-stone-900 dark:text-stone-50">
-        Important Details
+        {t("title")}
       </h3>
 
       <div className="space-y-6">
@@ -15,13 +20,13 @@ export function WorkshopDetails() {
             <Clock className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">Opening Hours</h4>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("hours.title")}</h4>
             <p className="text-sm text-stone-600 dark:text-stone-400">
-              Monday - Saturday
+              {t("hours.days")}
               <br />
-              Morning: 08:30 - 11:30
+              {t("hours.morning")}
               <br />
-              Afternoon: 12:30 - 15:30
+              {t("hours.afternoon")}
             </p>
           </div>
         </div>
@@ -31,9 +36,9 @@ export function WorkshopDetails() {
             <Hammer className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">Includes</h4>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("includes.title")}</h4>
             <p className="text-sm text-stone-600 dark:text-stone-400">
-              5 grams of silver and full equipment usage
+              {t("includes.description")}
             </p>
           </div>
         </div>
@@ -43,10 +48,9 @@ export function WorkshopDetails() {
             <Sparkles className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">Flexible Designs</h4>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("flexible.title")}</h4>
             <p className="text-sm text-stone-600 dark:text-stone-400">
-              Craft rings, pendants, bracelets, or any custom design. We&apos;re happy to
-              collaborate with you to bring your unique idea to life.
+              {t("flexible.description")}
             </p>
           </div>
         </div>
@@ -56,10 +60,8 @@ export function WorkshopDetails() {
             <CreditCard className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">Payment</h4>
-            <p className="text-sm text-stone-600 dark:text-stone-400">
-              Cash, Bank Transfer, QRIS, Credit/Debit Cards (upon completion)
-            </p>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("payment.title")}</h4>
+            <p className="text-sm text-stone-600 dark:text-stone-400">{t("payment.description")}</p>
           </div>
         </div>
       </div>
