@@ -28,6 +28,14 @@ const navigation: NavItem[] = [
 
 const mobileMenuTransition: Transition = { type: "spring", damping: 25, stiffness: 300 }
 
+function getLocalizedPath(path: string, currentPathname: string) {
+  const isId = currentPathname.startsWith("/id")
+  if (isId) {
+    return `/id${path === "/" ? "" : path}`
+  }
+  return path
+}
+
 export default function Header() {
   const pathname = usePathname() ?? "/"
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -58,7 +66,7 @@ export default function Header() {
     setIsMenuOpen(false)
   }, [pathname])
 
-  const isHome = pathname === "/"
+  const isHome = pathname === "/" || pathname === "/id"
 
   return (
     <header
@@ -109,7 +117,7 @@ function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string
   return (
     <div className="flex shrink-0 items-center gap-3">
       <Link
-        href="/"
+        href={getLocalizedPath("/", pathname)}
         className={cn(
           "flex items-center justify-center transition-all duration-300",
           isScrolled ? "scale-90" : "scale-100"
@@ -153,12 +161,13 @@ function DesktopNavigation({
       {navigation
         .filter((item) => !item.mobileOnly)
         .map((item) => {
-          const isActive = pathname === item.href
+          const localizedHref = getLocalizedPath(item.href, pathname)
+          const isActive = pathname === localizedHref
 
           return (
             <Link
               key={item.name}
-              href={item.href}
+              href={localizedHref}
               className={cn(
                 "border-b border-transparent px-1 py-2 text-sm transition-colors",
                 baseTone,
@@ -243,12 +252,13 @@ function MobileMenu({
           </div>
           <nav className="flex flex-col items-center space-y-6 py-10">
             {navigation.map((item) => {
-              const isActive = pathname === item.href
+              const localizedHref = getLocalizedPath(item.href, pathname)
+              const isActive = pathname === localizedHref
 
               return (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  href={localizedHref}
                   className={cn(
                     "font-display block px-8 py-3 text-4xl transition-all duration-300",
                     isActive
