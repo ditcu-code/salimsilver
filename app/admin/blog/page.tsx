@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { getAllPosts } from "@/lib/blog"
 import { createClient } from "@/lib/supabase/server"
 import { formatDate } from "@/lib/utils"
-import { Edit, Plus } from "lucide-react"
+import { Edit, Eye, Plus } from "lucide-react"
 import Link from "next/link"
 
 export default async function AdminBlogPage() {
@@ -44,7 +44,7 @@ export default async function AdminBlogPage() {
           <div>Author</div>
           <div>Status</div>
           <div>Date</div>
-          <div className="w-10"></div>
+          <div className="w-20"></div>
         </div>
 
         {posts.length === 0 ? (
@@ -81,6 +81,13 @@ export default async function AdminBlogPage() {
                 {post.published_at ? formatDate(post.published_at) : "Unpublished"}
               </div>
               <div className="flex justify-end">
+                {post.published && (
+                  <Link href={`/blog/${post.slug}`} target="_blank">
+                    <Button variant="ghost" size="icon" title="View Post">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                )}
                 <Link href={`/admin/blog/${post.id}`}>
                   <Button variant="ghost" size="icon">
                     <Edit className="h-4 w-4" />
