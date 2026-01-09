@@ -98,7 +98,11 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
         name: "customKeymap",
         addKeyboardShortcuts() {
           return {
-            Enter: () => this.editor.commands.setHardBreak(),
+            Enter: () =>
+              this.editor.commands.first(({ commands }) => [
+                () => commands.splitListItem("listItem"),
+                () => commands.setHardBreak(),
+              ]),
             "Shift-Enter": () =>
               this.editor.commands.first(({ commands }) => [
                 () => commands.splitListItem("listItem"),
