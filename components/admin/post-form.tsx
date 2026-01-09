@@ -10,6 +10,7 @@ import { createPost, deletePost, updatePost } from "@/lib/actions/blog"
 import { supabase } from "@/lib/supabase/client"
 import { Post } from "@/lib/types"
 import { cn } from "@/lib/utils"
+import { Extension } from "@tiptap/core"
 import CharacterCount from "@tiptap/extension-character-count"
 import ImageExtension from "@tiptap/extension-image"
 import Link from "@tiptap/extension-link"
@@ -92,6 +93,19 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
         placeholder: "Write your story here...",
         emptyEditorClass:
           "is-editor-empty before:content-[attr(data-placeholder)] before:text-muted-foreground/50 before:float-left before:h-0 before:pointer-events-none",
+      }),
+      Extension.create({
+        name: "customKeymap",
+        addKeyboardShortcuts() {
+          return {
+            Enter: () => this.editor.commands.setHardBreak(),
+            "Shift-Enter": () =>
+              this.editor.commands.first(({ commands }) => [
+                () => commands.splitListItem("listItem"),
+                () => commands.splitBlock(),
+              ]),
+          }
+        },
       }),
     ],
     content: post?.content || "",
@@ -387,19 +401,45 @@ export function PostForm({ post, isEditing = false }: PostFormProps) {
                   size="icon"
                   onClick={() => {
                     if (!editor) return
+
+                    // 1. Get URL
                     const previousUrl = editor.getAttributes("link").href
                     const url = window.prompt("URL", previousUrl)
 
-                    if (url === null) {
-                      return
-                    }
+                    if (url === null) return // Cancelled
 
+                    // 2. Remove link if empty URL
                     if (url === "") {
                       editor.chain().focus().extendMarkRange("link").unsetLink().run()
                       return
                     }
 
-                    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run()
+                    // 3. Get Text (default to selection or URL)
+                    const { from, to, empty } = editor.state.selection
+                    const selectedText = !empty ? editor.state.doc.textBetween(from, to) : ""
+
+                    const text = window.prompt("Text to display", selectedText || url)
+
+                    if (text === null) return // Cancelled
+
+                    // 4. Update Editor
+                    if (empty) {
+                      // Insert new link with text
+                      editor
+                        .chain()
+                        .focus()
+                        .insertContent(`<a href="${url}">${text || url}</a>`)
+                        .run()
+                    } else {
+                      // Update existing selection
+                      if (text !== selectedText) {
+                        // If text changed, replace content first then link it
+                        editor.chain().focus().insertContent(`<a href="${url}">${text}</a>`).run()
+                      } else {
+                        // Just apply link to existing text
+                        editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run()
+                      }
+                    }
                   }}
                   className={cn("h-8 w-8", editor?.isActive("link") && "bg-slate-200")}
                   title="Link"
