@@ -65,6 +65,9 @@ The project uses `yarn` as the package manager.
 
 ## Project Structure & Conventions
 
+> [!IMPORTANT]
+> **Middleware Deprecation**: The "middleware" file convention is deprecated. We use `proxy.ts` (root) instead of `middleware.ts`. This project is configured to use `proxy.ts`.
+
 ### Key Directories
 
 - `app/`: Main application code (Next.js App Router).
