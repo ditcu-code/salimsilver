@@ -18,6 +18,14 @@ export async function createPost(formData: FormData) {
   // Parse tags from JSON string, default to empty array
   const tags = JSON.parse((formData.get("tags") as string) || "[]")
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    throw new Error("You must be logged in to create a post")
+  }
+
   const { data, error } = await supabase
     .from("posts")
     .insert({
@@ -32,6 +40,7 @@ export async function createPost(formData: FormData) {
       published_at: published ? new Date().toISOString() : null,
       tags,
       featured,
+      author_id: user.id,
     })
     .select()
     .single()
