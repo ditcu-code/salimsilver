@@ -81,6 +81,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>
                 {post.published_at ? formatDate(post.published_at) : t("recentlyPublished")}
               </span>
+              {/* Author */}
+              {post.author && (
+                <>
+                  <span>•</span>
+                  <div className="flex items-center gap-2">
+                    <div className="relative h-6 w-6 overflow-hidden rounded-full">
+                      {post.author.avatar_url ? (
+                        <Image
+                          src={post.author.avatar_url}
+                          alt={post.author.full_name}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="bg-primary/10 flex h-full w-full items-center justify-center text-[10px] font-bold">
+                          {post.author.full_name.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <span>{post.author.full_name}</span>
+                  </div>
+                </>
+              )}
               {post.updated_at && post.updated_at !== post.published_at && (
                 <>
                   <span>•</span>

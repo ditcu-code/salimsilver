@@ -23,7 +23,11 @@ export async function getAllPosts(includeDrafts = false): Promise<Post[]> {
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   const supabase = await createClient()
 
-  const { data, error } = await supabase.from("posts").select("*").eq("slug", slug).single()
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*, author:users(*)")
+    .eq("slug", slug)
+    .single()
 
   if (error) {
     console.error("Error fetching post by slug:", JSON.stringify(error, null, 2))

@@ -126,14 +126,15 @@ export interface Post {
   tags?: string[]
   /** Whether the post is featured on the blog homepage */
   featured?: boolean
+  author?: User
 }
 
 export interface User {
   id: string
-  fullName: string
-  avatarUrl?: string
+  full_name: string
+  avatar_url?: string
   email?: string
   role: "admin" | "customer"
-  createdAt: string
-  updatedAt: string
+  created_at: string
+  updated_at: string
 }
