@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <span className="text-muted-foreground/20 font-serif text-6xl">{t("journal")}</span>
           </div>
         )}
-        <div className="from-background via-background/60 absolute inset-0 flex flex-col bg-linear-to-t to-transparent pt-24 md:pt-40">
+        <div className="from-background via-background/60 absolute inset-0 flex flex-col bg-linear-to-t to-transparent pt-40 md:pt-56">
           <div className="container mx-auto mt-auto max-w-4xl px-4 pb-12">
             <BackButton href="/blog">{t("backToJournal")}</BackButton>
             <h1 className="mb-4 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl">
