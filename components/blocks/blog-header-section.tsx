@@ -13,7 +13,7 @@ export function BlogHeaderSection({ className, ...props }: ComponentPropsWithout
       <h1 className="font-display text-foreground mt-8 text-4xl tracking-tight md:mt-4 lg:text-5xl">
         {t("title")}
       </h1>
-      <p className="text-muted-foreground text-sm leading-relaxed font-light md:text-base">
+      <p className="text-muted-foreground text-sm leading-relaxed font-light whitespace-pre-line md:text-base">
         {t("description")}
       </p>
     </div>
