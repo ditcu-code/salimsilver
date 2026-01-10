@@ -6,10 +6,7 @@ export function BlogHeaderSection({ className, ...props }: ComponentPropsWithout
   const t = useTranslations("JournalPage.Header")
 
   return (
-    <div
-      className={cn("mx-auto mb-16 max-w-3xl space-y-4 text-center md:mb-24", className)}
-      {...props}
-    >
+    <div className={cn("mx-auto max-w-3xl space-y-4 text-center", className)} {...props}>
       <h1 className="font-display text-foreground mt-8 text-4xl tracking-tight md:mt-4 lg:text-5xl">
         {t("title")}
       </h1>
