@@ -1,9 +1,11 @@
 import BlogReadMore from "@/components/blocks/blog-read-more"
+import { ViewCounter } from "@/components/features/blog/view-counter"
 import { ShareButton } from "@/components/features/share-button"
 import BackButton from "@/components/ui/back-button"
 import { getPostBySlug } from "@/lib/blog"
 import { BASE_URL } from "@/lib/constants"
 import { formatDate } from "@/lib/utils"
+import { Eye } from "lucide-react"
 import { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import Image from "next/image"
@@ -56,6 +58,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="min-h-screen pb-20">
+      <ViewCounter postId={post.id} />
       {/* Hero Section */}
       <div className="absolute top-0 flex h-60 w-screen md:h-80">
         {post.cover_image_url ? (
@@ -110,6 +113,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>{t("updated", { date: formatDate(post.updated_at) })}</span>
             </>
           )}
+          <span>•</span>
+          <div className="flex items-center gap-1.5" title={`${post.views || 0} views`}>
+            <Eye className="h-4 w-4" />
+            <span>{post.views || 0}</span>
+          </div>
         </div>
         {post.tags && post.tags.length > 0 && (
           <div className="animate-in fade-in slide-in-from-bottom-2 mt-4 flex flex-wrap gap-2 duration-700">

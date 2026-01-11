@@ -126,6 +126,8 @@ export interface Post {
   tags?: string[]
   /** Whether the post is featured on the blog homepage */
   featured?: boolean
+  /** Number of views */
+  views?: number
   author?: User
 }
 
