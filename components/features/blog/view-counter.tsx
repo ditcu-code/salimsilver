@@ -15,6 +15,9 @@ export function ViewCounter({ postId }: ViewCounterProps) {
     if (hasIncremented.current) return
 
     const incrementView = async () => {
+      // Prevention: Only count views on production domain
+      if (window.location.hostname !== "salimsilver.com") return
+
       // Check session storage to prevent spamming refreshes
       const storageKey = `viewed_post_${postId}`
       if (sessionStorage.getItem(storageKey)) return
