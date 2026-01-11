@@ -41,7 +41,7 @@ function HeroDesktop() {
   const t = useTranslations("HomePage.Hero")
 
   return (
-    <BentoGrid variant="hero" className="hidden h-full w-full gap-4 md:grid md:gap-6">
+    <BentoGrid variant="hero" className="hidden h-full min-h-[400px] w-full gap-4 md:grid md:gap-6">
       {/* Cell 1: Title */}
       <FullBentoCell className="bg-background flex flex-col items-start justify-center rounded-3xl p-8 md:p-12">
         <div className="w-full">
