@@ -67,7 +67,7 @@ export default async function WorkshopPage({ params }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <WorkshopHero />
-      <WorkshopReasons className="md:hidden" />
+      <WorkshopReasons className="hidden md:block" />
 
       <div className="container mx-auto px-4 pt-16 pb-8 md:pt-24 md:pb-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">

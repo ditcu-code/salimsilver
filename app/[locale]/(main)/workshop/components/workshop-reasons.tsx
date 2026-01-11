@@ -24,7 +24,7 @@ export function WorkshopReasons({ className }: { className?: string }) {
   const t = useTranslations("WorkshopPage.Reasons")
 
   return (
-    <section className={cn("py-8", className)}>
+    <section className={cn("mt-12", className)}>
       <div className="container mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-3">
           {reasons.map((reason) => (

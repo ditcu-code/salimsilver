@@ -9,7 +9,7 @@ export default function TimelineSection() {
   const years = ["1930", "1952", "1985", "1987", "1990", "2017", "Present"]
 
   return (
-    <section className="mx-auto max-w-7xl overflow-hidden px-4 py-24 md:px-8">
+    <section className="mx-auto max-w-7xl overflow-hidden px-4 py-12 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

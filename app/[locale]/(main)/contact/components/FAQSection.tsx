@@ -26,7 +26,7 @@ export default function FAQSection() {
   ]
 
   return (
-    <section className="mx-auto mt-20 mb-20 max-w-7xl px-4 md:px-8">
+    <section className="mx-auto mb-20 max-w-7xl px-4 md:px-8">
       <FaqSection items={FAQ_ITEMS} title={t("title")} />
     </section>
   )

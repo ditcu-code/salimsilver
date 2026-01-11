@@ -37,7 +37,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
             href={`/blog/${post.slug}`}
             className="group bg-background/50 flex h-full flex-col overflow-hidden rounded-lg transition-all hover:-translate-y-1"
           >
-            <div className="bg-muted relative mb-4 aspect-4/3 overflow-hidden rounded-md">
+            <div className="bg-muted relative mb-4 aspect-4/2 overflow-hidden rounded-md">
               {post.cover_image_url ? (
                 <Image
                   src={post.cover_image_url}
