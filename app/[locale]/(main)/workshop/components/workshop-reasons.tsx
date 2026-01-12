@@ -35,10 +35,10 @@ export function WorkshopReasons({ className }: { className?: string }) {
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm transition-transform duration-300 group-hover:scale-110 dark:bg-neutral-800">
                 <reason.icon className="h-8 w-8 text-stone-900 dark:text-stone-100" />
               </div>
-              <h3 className="mb-2 font-serif text-xl font-bold text-neutral-900 dark:text-neutral-50">
+              <h3 className="mb-1 font-serif text-xl font-bold text-neutral-900 dark:text-neutral-50">
                 {t(`${reason.key}.title`)}
               </h3>
-              <p className="text-neutral-600 dark:text-neutral-400">
+              <p className="max-w-[40ch] text-sm text-neutral-600 dark:text-neutral-400">
                 {t(`${reason.key}.description`)}
               </p>
             </div>
