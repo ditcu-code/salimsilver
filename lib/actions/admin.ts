@@ -19,6 +19,7 @@ export async function createJewelry(formData: FormData) {
       ? parseFloat(formData.get("weight_grams") as string)
       : null,
     status: formData.get("status"),
+    created_by: (await supabase.auth.getUser()).data.user?.id,
   }
 
   const { data, error } = await supabase.from("jewelry").insert(rawData).select("id").single()
