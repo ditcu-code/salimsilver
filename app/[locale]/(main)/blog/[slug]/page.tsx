@@ -11,6 +11,13 @@ import { getTranslations } from "next-intl/server"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
+function isSameMonth(date1?: string | Date | null, date2?: string | Date | null) {
+  if (!date1 || !date2) return false
+  const d1 = new Date(date1)
+  const d2 = new Date(date2)
+  return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth()
+}
+
 interface BlogPostPageProps {
   params: Promise<{
     slug: string
@@ -107,12 +114,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </>
           )}
-          {post.updated_at && post.updated_at !== post.published_at && (
-            <>
-              <span>•</span>
-              <span>{t("updated", { date: formatDate(post.updated_at) })}</span>
-            </>
-          )}
+          {post.updated_at &&
+            post.updated_at !== post.published_at &&
+            !isSameMonth(post.published_at, post.updated_at) && (
+              <>
+                <span>•</span>
+                <span>{t("updated", { date: formatDate(post.updated_at) })}</span>
+              </>
+            )}
           <span>•</span>
           <div className="flex items-center gap-1.5" title={`${post.views || 0} views`}>
             <Eye className="h-4 w-4" />
@@ -135,15 +144,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Content */}
       <div className="container mx-auto mt-8 max-w-3xl px-4">
-        <div className="mb-8 flex items-center justify-between border-b pb-8">
-          <div className="text-muted-foreground text-sm font-medium">{t("share")}</div>
-          <ShareButton title={post.title} />
-        </div>
-
         <div
           className="prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:font-medium prose-img:rounded-lg prose-a:text-primary hover:prose-a:underline max-w-none"
           dangerouslySetInnerHTML={{ __html: post.content || "" }}
         />
+
+        <div className="mt-8 flex items-center justify-end space-x-4">
+          <div className="text-muted-foreground text-sm font-medium">{t("share")}</div>
+          <ShareButton title={post.title} />
+        </div>
 
         <BlogReadMore />
       </div>
