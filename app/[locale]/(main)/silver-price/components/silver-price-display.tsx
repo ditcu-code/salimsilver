@@ -60,7 +60,7 @@ export function SilverPriceDisplay({
         lastUpdated={lastUpdated}
       />
 
-      <Card className="border-border/30 bg-card/30 mt-6 shadow-sm backdrop-blur-sm">
+      <Card className="border-border/30 bg-card/30 mt-10 shadow-sm backdrop-blur-sm">
         <CardContent className="flex items-center justify-between space-x-4 py-3">
           <span className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
             1 Minggu Lalu
