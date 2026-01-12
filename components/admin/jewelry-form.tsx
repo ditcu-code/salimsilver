@@ -37,6 +37,7 @@ export function JewelryForm({ initialData, collections }: JewelryFormProps) {
       if (isEditing) {
         await updateJewelry(initialData.id, formData)
         toast.success("Jewelry updated")
+        setIsSaving(false)
       } else {
         const result = await createJewelry(formData)
         if (result?.success && result.id) {
