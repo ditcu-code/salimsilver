@@ -36,9 +36,9 @@ Deno.serve(async (req) => {
     if (!xagPrice) {
       throw new Error("Primary fetch validation failed: xagPrice not found")
     }
-    // Check for Anomaly (Extreme Change > 5%)
+    // Check for Anomaly (Extreme Change > 10%)
     // We use pcXag (Percentage Change) as the indicator.
-    if (item.pcXag && Math.abs(item.pcXag) > 5) {
+    if (item.pcXag && Math.abs(item.pcXag) > 10) {
       throw new Error(`Primary fetch validation failed: Anomaly detected (pcXag: ${item.pcXag}%)`)
     }
     // Convert Ounce to Kg
