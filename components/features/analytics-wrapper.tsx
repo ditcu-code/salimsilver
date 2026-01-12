@@ -1,7 +1,7 @@
 "use client"
 
-import { GoogleAnalytics } from "@next/third-parties/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Script from "next/script"
 import { useEffect, useState } from "react"
 
 export function AnalyticsWrapper() {
@@ -23,7 +23,22 @@ export function AnalyticsWrapper() {
 
   return (
     <>
-      {gaId && <GoogleAnalytics gaId={gaId} />}
+      {gaId && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            strategy="lazyOnload"
+          />
+          <Script id="google-analytics" strategy="lazyOnload">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaId}');
+            `}
+          </Script>
+        </>
+      )}
       <SpeedInsights />
     </>
   )
