@@ -65,7 +65,7 @@ export default async function SilverPricePage({ params }: Props) {
   // Fetch latest silver price summary (cached)
   const { data: summaryData } = await supabase
     .from("silver_price_summary")
-    .select("price_idr, price_24h_ago, updated_at")
+    .select("price_idr, price_24h_ago, price_7d_ago, updated_at")
     .eq("id", 1)
     .single()
 
@@ -78,15 +78,21 @@ export default async function SilverPricePage({ params }: Props) {
   } else {
     // Convert from kg to per gram (divide by 1000)
     const currentPrice = summaryData.price_idr / 1000
+
     // Use 24h ago price if available, otherwise fallback to current
     const previousPrice = summaryData.price_24h_ago
       ? summaryData.price_24h_ago / 1000
       : currentPrice
 
+    // Use 7d ago price if available, otherwise fallback to 24h ago price (and if that's missing, current)
+    // This provides a cascading fallback
+    const price7d = summaryData.price_7d_ago ? summaryData.price_7d_ago / 1000 : previousPrice
+
     priceContent = (
       <SilverPriceDisplay
         currentPrice={currentPrice}
         previousPrice={previousPrice}
+        price7d={price7d}
         lastUpdated={summaryData.updated_at}
       />
     )
