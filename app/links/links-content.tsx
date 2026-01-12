@@ -29,7 +29,7 @@ export function LinksContent() {
       variant: "outline" as const,
     },
     {
-      label: "Discuss Custom Jewelry Design",
+      label: "Chat with Us",
       href: "https://wa.me/6289671977699",
       icon: MessageCircle,
       variant: "outline" as const,
@@ -96,15 +96,17 @@ export function LinksContent() {
         {/* Profile Section */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col items-center gap-4 text-center"
+          className="flex flex-col items-center gap-2 text-center"
         >
-          <div className="border-border relative h-24 w-24 overflow-hidden rounded-full border-2 shadow-md">
+          <div className="border-border relative h-20 w-20 overflow-hidden rounded-full border-2 shadow-md">
             <Image
               src="/images/icon-salimsilver.webp"
               alt="Salim Silver Icon Logo"
               fill
               className="object-cover"
               priority
+              sizes="(max-width: 768px) 33vw, 80px"
+              quality={85}
             />
           </div>
           <div className="space-y-2">
@@ -148,7 +150,7 @@ export function LinksContent() {
         </div>
 
         {/* Socials Section */}
-        <motion.div variants={itemVariants} className="flex justify-center gap-6 pt-4">
+        <motion.div variants={itemVariants} className="flex justify-center gap-4 pt-4">
           {socials.map((social) => {
             const Icon = social.icon
             return (
@@ -167,7 +169,7 @@ export function LinksContent() {
 
         <motion.div
           variants={itemVariants}
-          className="text-muted-foreground mt-8 text-center text-xs"
+          className="text-muted-foreground mt-4 text-center text-xs"
         >
           <p>© {new Date().getFullYear()} Salim Silver. All rights reserved.</p>
         </motion.div>
