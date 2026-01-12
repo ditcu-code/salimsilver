@@ -75,7 +75,11 @@ const ImageComponent = ({ card }: { card: Card }) => {
         alt={card.alt}
         fill
         className="object-cover object-center"
-        sizes="(max-width: 768px) 100vw, 33vw"
+        sizes={
+          card.className.includes("col-span-2")
+            ? "(max-width: 768px) 100vw, 66vw"
+            : "(max-width: 768px) 100vw, 33vw"
+        }
         quality={85}
       />
     </motion.div>
