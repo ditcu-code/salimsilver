@@ -125,7 +125,6 @@ ${t("WhatsApp.closing")}`
       const encodedMessage = encodeURIComponent(message)
       const waUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`
 
-      // Track GTM Event
       sendGAEvent("event", "generate_lead", {
         value: totalPrice,
         currency: "IDR",

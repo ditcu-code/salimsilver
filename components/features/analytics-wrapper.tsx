@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 export function AnalyticsWrapper() {
   const [shouldTrack, setShouldTrack] = useState(false)
   const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-  const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
 
   useEffect(() => {
     // Only track on the production domain
