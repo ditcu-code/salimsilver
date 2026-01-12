@@ -64,6 +64,13 @@ export const metadata: Metadata = {
     "Kotagede Silver",
     "Salim Silver",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icons/icon-white.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   authors: [{ name: "Salim Silver", url: BASE_URL }],
   robots: {
     index: true,
