@@ -283,6 +283,7 @@ export type Database = {
           price_24h_ago: number | null
           price_7d_ago: number | null
           price_30d_ago: number | null
+          price_180d_ago: number | null
           price_1y_ago: number | null
           updated_at: string
         }
@@ -292,6 +293,7 @@ export type Database = {
           price_24h_ago?: number | null
           price_7d_ago?: number | null
           price_30d_ago?: number | null
+          price_180d_ago?: number | null
           price_1y_ago?: number | null
           updated_at?: string
         }
@@ -301,6 +303,7 @@ export type Database = {
           price_24h_ago?: number | null
           price_7d_ago?: number | null
           price_30d_ago?: number | null
+          price_180d_ago?: number | null
           price_1y_ago?: number | null
           updated_at?: string
         }

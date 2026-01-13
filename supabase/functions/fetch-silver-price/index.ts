@@ -209,10 +209,11 @@ Deno.serve(async (req) => {
         return data?.price_idr || null
       }
 
-      const [price24h, price7d, price30d, price1y] = await Promise.all([
+      const [price24h, price7d, price30d, price180d, price1y] = await Promise.all([
         getHistoricalPrice(1),
         getHistoricalPrice(7),
         getHistoricalPrice(30),
+        getHistoricalPrice(180),
         getHistoricalPrice(365),
       ])
 
@@ -222,6 +223,7 @@ Deno.serve(async (req) => {
         price_24h_ago: price24h,
         price_7d_ago: price7d,
         price_30d_ago: price30d,
+        price_180d_ago: price180d,
         price_1y_ago: price1y,
         updated_at: timestamp,
       }

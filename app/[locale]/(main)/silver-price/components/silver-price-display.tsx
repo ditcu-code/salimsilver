@@ -4,15 +4,17 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { sendGAEvent } from "@next/third-parties/google"
-import { Triangle } from "lucide-react"
 import { useState } from "react"
-import { AnimatedCurrency } from "./animated-currency"
+import { HistoricalPriceRow } from "./historical-price-row"
 import { PriceCard } from "./price-cards"
 
 interface SilverPriceDisplayProps {
   currentPrice: number
   previousPrice: number
   price7d: number
+  price30d: number
+  price180d: number
+  price1y: number
   lastUpdated: string
 }
 
@@ -20,22 +22,20 @@ export function SilverPriceDisplay({
   currentPrice,
   previousPrice,
   price7d,
+  price30d,
+  price180d,
+  price1y,
   lastUpdated,
 }: SilverPriceDisplayProps) {
   const [includeTax, setIncludeTax] = useState(false)
 
   const taxMultiplier = includeTax ? 1.11 : 1
   const currentPriceDisplay = currentPrice * taxMultiplier
-  const price7dDisplay = price7d * taxMultiplier
-  const priceChange7d = currentPriceDisplay - price7dDisplay
-  const isUp7d = priceChange7d >= 0
-  const isSame7d = priceChange7d === 0
 
-  const trendColor7d = isSame7d
-    ? "text-muted-foreground"
-    : isUp7d
-      ? "text-green-600 dark:text-green-400"
-      : "text-red-600 dark:text-red-400"
+  const price7dDisplay = price7d * taxMultiplier
+  const price30dDisplay = price30d * taxMultiplier
+  const price180dDisplay = price180d * taxMultiplier
+  const price1yDisplay = price1y * taxMultiplier
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
@@ -61,20 +61,30 @@ export function SilverPriceDisplay({
       />
 
       <Card className="border-border/30 bg-card/30 mt-10 shadow-sm backdrop-blur-sm">
-        <CardContent className="flex items-center justify-between space-x-4 py-3">
-          <span className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
-            1 Minggu Lalu
-          </span>
-          <div className="flex items-center space-x-6">
-            <span className="text-foreground text-sm font-semibold tabular-nums">
-              <AnimatedCurrency value={price7dDisplay} />
-            </span>
-            {!isSame7d && (
-              <div className={`flex items-center text-xs font-medium ${trendColor7d}`}>
-                <Triangle className={`mr-0.5 h-2 w-2 fill-current ${!isUp7d && "rotate-180"}`} />
-                <AnimatedCurrency value={Math.abs(priceChange7d)} />
-              </div>
-            )}
+        <CardContent className="divide-border/50 grid gap-4 divide-y p-6 sm:grid-cols-2 sm:gap-8 sm:divide-x sm:divide-y-0">
+          <div className="space-y-1">
+            <HistoricalPriceRow
+              label="1 Minggu Lalu"
+              historicalPrice={price7dDisplay}
+              currentPrice={currentPriceDisplay}
+            />
+            <HistoricalPriceRow
+              label="1 Bulan Lalu"
+              historicalPrice={price30dDisplay}
+              currentPrice={currentPriceDisplay}
+            />
+          </div>
+          <div className="space-y-1 pt-4 sm:pt-0 sm:pl-8">
+            <HistoricalPriceRow
+              label="6 Bulan Lalu"
+              historicalPrice={price180dDisplay}
+              currentPrice={currentPriceDisplay}
+            />
+            <HistoricalPriceRow
+              label="1 Tahun Lalu"
+              historicalPrice={price1yDisplay}
+              currentPrice={currentPriceDisplay}
+            />
           </div>
         </CardContent>
       </Card>

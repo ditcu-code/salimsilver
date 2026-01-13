@@ -1,7 +1,7 @@
 import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import { calculateDisplayPrices, getSilverPriceSummary } from "@/lib/silver-price"
 import type { Metadata } from "next"
 
-import { createClient } from "@/lib/supabase/server"
 import { PriceFallbackCard } from "./components/price-cards"
 import { SilverPriceDisplay } from "./components/silver-price-display"
 import { FAQ_ITEMS } from "./constants"
@@ -35,6 +35,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Grafik Harga Perak",
       "Harga Perak Terbaru",
       "Silver Price Rupiah",
+      "Harga Perak Minggu Lalu",
+      "Harga Perak Bulan Lalu",
+      "Harga Perak 6 Bulan Lalu",
+      "Harga Perak 1 Tahun Lalu",
     ],
     alternates: {
       canonical: canonicalUrl,
@@ -60,40 +64,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SilverPricePage({ params }: Props) {
   const { locale } = await params
-  const supabase = await createClient()
-
-  // Fetch latest silver price summary (cached)
-  const { data: summaryData } = await supabase
-    .from("silver_price_summary")
-    .select("price_idr, price_24h_ago, price_7d_ago, updated_at")
-    .eq("id", 1)
-    .single()
+  const summaryData = await getSilverPriceSummary()
+  const displayPrices = calculateDisplayPrices(summaryData)
 
   let priceContent
 
-  if (!summaryData) {
+  if (!displayPrices) {
     // Fallback if cache is empty (e.g. before first cron run)
     // We could fallback to old query, but showing fallback card is safer/simpler
     priceContent = <PriceFallbackCard />
   } else {
-    // Convert from kg to per gram (divide by 1000)
-    const currentPrice = summaryData.price_idr / 1000
-
-    // Use 24h ago price if available, otherwise fallback to current
-    const previousPrice = summaryData.price_24h_ago
-      ? summaryData.price_24h_ago / 1000
-      : currentPrice
-
-    // Use 7d ago price if available, otherwise fallback to 24h ago price (and if that's missing, current)
-    // This provides a cascading fallback
-    const price7d = summaryData.price_7d_ago ? summaryData.price_7d_ago / 1000 : previousPrice
-
     priceContent = (
       <SilverPriceDisplay
-        currentPrice={currentPrice}
-        previousPrice={previousPrice}
-        price7d={price7d}
-        lastUpdated={summaryData.updated_at}
+        currentPrice={displayPrices.currentPrice}
+        previousPrice={displayPrices.previousPrice}
+        price7d={displayPrices.price7d}
+        price30d={displayPrices.price30d}
+        price180d={displayPrices.price180d}
+        price1y={displayPrices.price1y}
+        lastUpdated={displayPrices.lastUpdated}
       />
     )
   }
