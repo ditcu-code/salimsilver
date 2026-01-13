@@ -30,9 +30,9 @@ export default function StoreLocationSection() {
             <div>
               <h3 className="mb-2 text-2xl font-medium">{t("title")}</h3>
               <p className="text-muted-foreground text-lg">
-                Gg. Platina - Kebohan KG 3/547, Purbayan, Kotagede
+                Gg. Platina KG 3/547 - Kebohan, Purbayan
                 <br />
-                Yogyakarta City, Indonesia
+                Kotagede, Yogyakarta City, Indonesia
               </p>
             </div>
           </div>

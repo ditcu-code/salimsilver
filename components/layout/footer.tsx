@@ -93,7 +93,7 @@ export default function Footer() {
             </span>
           </div>
           <p className="text-muted-foreground mb-6 max-w-md text-sm">
-            Gg. Platina - Kebohan KG 3/547, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
+            Gg. Platina KG 3/547 - Kebohan, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
           </p>
         </AnimatedSection>
 

@@ -145,7 +145,7 @@ export default async function WorkshopPage({ params }: Props) {
                 name: "Salim Silver Workshop",
                 address: {
                   "@type": "PostalAddress",
-                  streetAddress: "Gg. Platina - Kebohan KG 3/547, Purbayan, Kotagede",
+                  streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
                   addressLocality: "Yogyakarta City",
                   addressRegion: "Special Region of Yogyakarta",
                   postalCode: "55173",
