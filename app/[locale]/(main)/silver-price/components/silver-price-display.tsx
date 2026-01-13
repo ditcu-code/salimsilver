@@ -61,8 +61,8 @@ export function SilverPriceDisplay({
       />
 
       <Card className="border-border/30 bg-card/30 mt-10 shadow-sm backdrop-blur-sm">
-        <CardContent className="divide-border/50 grid gap-4 divide-y p-6 sm:grid-cols-2 sm:gap-8 sm:divide-x sm:divide-y-0">
-          <div className="space-y-1">
+        <CardContent className="space-y-2 p-0 px-6 py-3">
+          <div className="divide-muted divide-y">
             <HistoricalPriceRow
               label="1 Minggu Lalu"
               historicalPrice={price7dDisplay}
@@ -73,8 +73,6 @@ export function SilverPriceDisplay({
               historicalPrice={price30dDisplay}
               currentPrice={currentPriceDisplay}
             />
-          </div>
-          <div className="space-y-1 pt-4 sm:pt-0 sm:pl-8">
             <HistoricalPriceRow
               label="6 Bulan Lalu"
               historicalPrice={price180dDisplay}

@@ -22,7 +22,7 @@ export function HistoricalPriceRow({
       : "text-red-600 dark:text-red-400"
 
   return (
-    <div className="flex items-center justify-between py-3">
+    <div className="flex items-center justify-between py-2">
       <span className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
         {label}
       </span>
