@@ -39,13 +39,11 @@ export async function updateSession(request: NextRequest, response?: NextRespons
   const isLoginPath = path === "/login" || path.match(/^\/(en|id)\/login/)
 
   // Optimization: Check for session cookie before calling Supabase
-  // The cookie name format is `sb-<project_ref>-auth-token`
-  // We extract the project ref from the Supabase URL
-  const projectRef = process.env.NEXT_PUBLIC_SUPABASE_URL?.match(
-    /https?:\/\/([^.]+)\.supabase\.co/
-  )?.[1]
-  const cookieName = `sb-${projectRef}-auth-token`
-  const hasSessionCookie = projectRef && request.cookies.has(cookieName)
+  // We check for any cookie starting with 'sb-' and ending with '-auth-token'
+  // This covers standard Supabase projects (sb-<ref>-auth-token), localhost, and custom setups
+  const hasSessionCookie = request.cookies
+    .getAll()
+    .some((cookie) => cookie.name.startsWith("sb-") && cookie.name.endsWith("-auth-token"))
 
   let user = null
 
