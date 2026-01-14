@@ -32,7 +32,7 @@ export function HistoricalPriceRow({
         </span>
         {!isSame && (
           <div
-            className={`flex min-w-24 items-center justify-end text-xs font-medium ${trendColor}`}
+            className={`flex min-w-12 items-center justify-end text-xs font-medium ${trendColor}`}
           >
             <Triangle className={`mr-0.5 h-2 w-2 fill-current ${!isUp && "rotate-180"}`} />
             <AnimatedCurrency value={Math.abs(priceChange)} />
