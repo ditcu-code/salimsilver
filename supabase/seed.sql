@@ -210,7 +210,8 @@ INSERT INTO "public"."collections" ("id", "slug", "title", "description", "cover
 	('3e75b39a-f602-4e34-ac9d-f0dbb35c5264', 'earrings', 'Earrings', 'Handcrafted silver earrings', '55306487-73ca-46d2-b36c-9df0097ee8bf', false, '2025-12-08 07:57:07.115256+00', '2025-12-08 07:57:07.115256+00', 'c815afc1-3f72-4a58-a4d6-0b475433c58e'),
 	('3fc15fb3-bffb-46c1-82c2-ebb3176902d8', 'collectibles', 'Collectibles', 'Handcrafted silver collectibles and home decor', 'a08aa306-0341-4fc9-ad97-e5c73249044b', true, '2025-12-10 04:22:28.685179+00', '2025-12-10 04:22:28.685179+00', 'c815afc1-3f72-4a58-a4d6-0b475433c58e'),
 	('2cc56012-a490-4c33-9f31-9139eb984fe6', 'pendants', 'Pendants', 'Artisan silver pendants', '7bbf1ba8-476e-41ea-aa41-5b0b09319115', false, '2025-12-08 07:57:00.982488+00', '2025-12-08 07:57:00.982488+00', 'c815afc1-3f72-4a58-a4d6-0b475433c58e'),
-	('9836e22f-df52-4452-b693-efc1b84d311b', 'roimar', 'Roimar', 'Handcrafted couple rings and bridal sets. The Roimar collection blends gold, silver and diamonds into unique symbols of love.', 'd14583f0-d836-456b-ae66-34bb9154bf25', false, '2026-01-12 04:33:12.32527+00', '2026-01-12 04:33:12.32527+00', '975d5e46-7a11-46a8-833a-da92ba8162c0');
+	('9836e22f-df52-4452-b693-efc1b84d311b', 'roimar', 'Roimar', 'Handcrafted couple rings and bridal sets. The Roimar collection blends gold, silver and diamonds into unique symbols of love.', 'd14583f0-d836-456b-ae66-34bb9154bf25', false, '2026-01-12 04:33:12.32527+00', '2026-01-12 04:33:12.32527+00', '975d5e46-7a11-46a8-833a-da92ba8162c0')
+ON CONFLICT (id) DO NOTHING;
 
 
 --
@@ -252,7 +253,8 @@ INSERT INTO "public"."jewelry" ("id", "collection_id", "slug", "title", "descrip
 	('3eca98aa-d74e-469d-84d9-7414e20b29e9', '9836e22f-df52-4452-b693-efc1b84d311b', 'cincin-pasangan-hilaria-diamond-gold', 'Hilaria', 'Cincin yang merayakan kegembiraan dalam kesederhanaan. Bentuknya yang dinamis dan perpaduan dua warna logam (bicolor) menciptakan tampilan kontemporer yang tetap terasa klasik disertai grafir yang personal.', 'gold', '', NULL, NULL, NULL, 'available', NULL, '2026-01-12 09:29:47.098781+00', '2026-01-12 09:29:47.098781+00', '975d5e46-7a11-46a8-833a-da92ba8162c0'),
 	('33e62a51-155b-405f-bad0-3ae4c1fc8085', '9836e22f-df52-4452-b693-efc1b84d311b', 'cincin-ginevra-white-gold-diamond', 'Ginevra', 'Cincin Ginevra yang berarti "Bayangan Putih" (White Shadow) adalah cincin yang mengeksplorasi konsep dualitas. Cincin pasangan ini menampilkan siluet bypass yang ikonik, di mana dua jalur emas putih melengkung dengan anggun, melambangkan dua perjalanan hidup yang berbeda yang kini menyatu dalam satu harmoni yang sempurna.', 'gold', '', NULL, NULL, NULL, 'available', NULL, '2026-01-12 04:56:20.91843+00', '2026-01-12 04:56:20.91843+00', '975d5e46-7a11-46a8-833a-da92ba8162c0'),
 	('eb25df3e-89cb-464a-a5c4-c4153602cd2b', '9836e22f-df52-4452-b693-efc1b84d311b', 'cincin-pasangan-ilaria-white-gold-sapphire-diamond', 'Ilaria', 'Set cincin yang memadukan keanggunan safir biru oval dengan cincin band berukir aksara kuno yang melambangkan kesetiaan abadi.', 'gold', '', NULL, NULL, NULL, 'available', NULL, '2026-01-12 15:22:31.648146+00', '2026-01-12 15:22:31.648146+00', '975d5e46-7a11-46a8-833a-da92ba8162c0'),
-	('7e203f33-67c9-4e9c-9324-11bf94816da9', '9836e22f-df52-4452-b693-efc1b84d311b', 'cincin-pernikahan-jemma-silver-white-gold-diamond-solitaire', 'Jemma', 'Jemma menghadirkan harmoni antara kekuatan dan kelembutan. Cincin pernikahan dengan desain band lebar yang elegan, dipertegas dengan satu permata brilian dalam bingkai persegi yang presisi. Sebuah simbol cinta yang abadi dalam balutan kemewahan yang tenang dan modern.', 'gold', '', NULL, NULL, NULL, 'available', NULL, '2026-01-13 04:08:48.330913+00', '2026-01-13 04:08:48.330913+00', '975d5e46-7a11-46a8-833a-da92ba8162c0');
+	('7e203f33-67c9-4e9c-9324-11bf94816da9', '9836e22f-df52-4452-b693-efc1b84d311b', 'cincin-pernikahan-jemma-silver-white-gold-diamond-solitaire', 'Jemma', 'Jemma menghadirkan harmoni antara kekuatan dan kelembutan. Cincin pernikahan dengan desain band lebar yang elegan, dipertegas dengan satu permata brilian dalam bingkai persegi yang presisi. Sebuah simbol cinta yang abadi dalam balutan kemewahan yang tenang dan modern.', 'gold', '', NULL, NULL, NULL, 'available', NULL, '2026-01-13 04:08:48.330913+00', '2026-01-13 04:08:48.330913+00', '975d5e46-7a11-46a8-833a-da92ba8162c0')
+ON CONFLICT (id) DO NOTHING;
 
 
 --
@@ -294,7 +296,8 @@ INSERT INTO "public"."jewelry_images" ("id", "jewelry_id", "src", "display_order
 	('d828a0bc-e19a-4f87-90ae-052ce4849c66', 'fd56cb6d-5d99-494e-8192-916ba91a0ca2', 'https://ckrypbqakgmeujbdmeks.supabase.co/storage/v1/object/public/catalog/fd56cb6d-5d99-494e-8192-916ba91a0ca2/1768210573064.webp', 0, '2026-01-12 09:36:15.257375+00', NULL),
 	('d14583f0-d836-456b-ae66-34bb9154bf25', 'aa35feb7-5636-4fe3-99e8-54db35ee8522', 'https://ckrypbqakgmeujbdmeks.supabase.co/storage/v1/object/public/catalog/aa35feb7-5636-4fe3-99e8-54db35ee8522/1768211360203.webp', 0, '2026-01-12 09:49:21.276948+00', NULL),
 	('9ca93a0b-b10a-477c-a8ac-fe13bc569297', 'eb25df3e-89cb-464a-a5c4-c4153602cd2b', 'https://ckrypbqakgmeujbdmeks.supabase.co/storage/v1/object/public/catalog/eb25df3e-89cb-464a-a5c4-c4153602cd2b/1768231866953.webp', 0, '2026-01-12 15:31:11.487696+00', NULL),
-	('6172942b-199f-400a-b365-709831180d2f', '7e203f33-67c9-4e9c-9324-11bf94816da9', 'https://ckrypbqakgmeujbdmeks.supabase.co/storage/v1/object/public/catalog/7e203f33-67c9-4e9c-9324-11bf94816da9/1768277342846.webp', 0, '2026-01-13 04:09:04.875078+00', NULL);
+	('6172942b-199f-400a-b365-709831180d2f', '7e203f33-67c9-4e9c-9324-11bf94816da9', 'https://ckrypbqakgmeujbdmeks.supabase.co/storage/v1/object/public/catalog/7e203f33-67c9-4e9c-9324-11bf94816da9/1768277342846.webp', 0, '2026-01-13 04:09:04.875078+00', NULL)
+ON CONFLICT (id) DO NOTHING;
 
 
 --
@@ -325,7 +328,8 @@ This scarcity is attributed to the recyclable nature of silver. Historically, ra
 --
 
 INSERT INTO "public"."silver_price_summary" ("id", "price_idr", "price_24h_ago", "price_7d_ago", "price_30d_ago", "price_1y_ago", "updated_at", "price_180d_ago") VALUES
-	(1, 47138491, 46205065, 43766208, 33140348, 15483695, '2026-01-13 22:30:29.008+00', NULL);
+	(1, 47138491, 46205065, 43766208, 33140348, 15483695, '2026-01-13 22:30:29.008+00', NULL)
+ON CONFLICT (id) DO NOTHING;
 
 
 --
@@ -1189,7 +1193,8 @@ INSERT INTO "public"."silver_prices" ("price_idr", "updated_at", "source") VALUE
 
 INSERT INTO "storage"."buckets" ("id", "name", "owner", "created_at", "updated_at", "public", "avif_autodetection", "file_size_limit", "allowed_mime_types", "owner_id", "type") VALUES
 	('blog', 'blog', NULL, '2025-12-16 01:44:02.33202+00', '2025-12-16 01:44:02.33202+00', true, false, NULL, NULL, NULL, 'STANDARD'),
-	('catalog', 'catalog', NULL, '2025-12-16 01:57:48.396204+00', '2025-12-16 01:57:48.396204+00', true, false, NULL, NULL, NULL, 'STANDARD');
+	('catalog', 'catalog', NULL, '2025-12-16 01:57:48.396204+00', '2025-12-16 01:57:48.396204+00', true, false, NULL, NULL, NULL, 'STANDARD')
+ON CONFLICT (id) DO NOTHING;
 
 
 --
@@ -1250,7 +1255,8 @@ INSERT INTO "storage"."objects" ("id", "bucket_id", "name", "owner", "created_at
 	('dd675f27-834d-46eb-8042-561bf578040c', 'catalog', '6a56602d-4e81-4eba-b37b-514510e81692/1768198532058.webp', '975d5e46-7a11-46a8-833a-da92ba8162c0', '2026-01-12 06:15:33.017055+00', '2026-01-12 06:15:33.017055+00', '2026-01-12 06:15:33.017055+00', '{"eTag": "\"b173c59f1ded3cd81767fef391a013ec\"", "size": 752660, "mimetype": "image/webp", "cacheControl": "max-age=3600", "lastModified": "2026-01-12T06:15:33.000Z", "contentLength": 752660, "httpStatusCode": 200}', '6f764348-3a53-421a-a8b6-ba6ac808b5ff', '975d5e46-7a11-46a8-833a-da92ba8162c0', '{}', 2),
 	('8b08afa5-8daf-47bb-a741-ee16c9857915', 'blog', 'blog/1768212538345-49616817261c710cd6f3dc.jpg', 'c815afc1-3f72-4a58-a4d6-0b475433c58e', '2026-01-12 10:09:00.419304+00', '2026-01-12 10:09:00.419304+00', '2026-01-12 10:09:00.419304+00', '{"eTag": "\"3cf345898522155532d681a138cb3242\"", "size": 110668, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2026-01-12T10:09:01.000Z", "contentLength": 110668, "httpStatusCode": 200}', 'b9fdbc1d-fcd9-49e0-bf71-49888f03217d', 'c815afc1-3f72-4a58-a4d6-0b475433c58e', '{}', 2),
 	('a44f436c-b561-4266-a3d7-bc7da4d0bcda', 'catalog', 'eb25df3e-89cb-464a-a5c4-c4153602cd2b/1768231866953.webp', '975d5e46-7a11-46a8-833a-da92ba8162c0', '2026-01-12 15:31:10.418187+00', '2026-01-12 15:31:10.418187+00', '2026-01-12 15:31:10.418187+00', '{"eTag": "\"988ffa0d431b316a0e76afe895b13fa0\"", "size": 494552, "mimetype": "image/webp", "cacheControl": "max-age=3600", "lastModified": "2026-01-12T15:31:11.000Z", "contentLength": 494552, "httpStatusCode": 200}', '6f5af69f-e300-4c4a-b564-5e8664969364', '975d5e46-7a11-46a8-833a-da92ba8162c0', '{}', 2),
-	('7d20e1a7-059a-44da-b26e-872d7e106e1e', 'catalog', '7e203f33-67c9-4e9c-9324-11bf94816da9/1768277342846.webp', '975d5e46-7a11-46a8-833a-da92ba8162c0', '2026-01-13 04:09:04.540429+00', '2026-01-13 04:09:04.540429+00', '2026-01-13 04:09:04.540429+00', '{"eTag": "\"810ddf1ee8e055f8604a45847679c1be\"", "size": 449474, "mimetype": "image/webp", "cacheControl": "max-age=3600", "lastModified": "2026-01-13T04:09:05.000Z", "contentLength": 449474, "httpStatusCode": 200}', '6d3fc5fa-698d-4f41-a5f2-008e92899f4b', '975d5e46-7a11-46a8-833a-da92ba8162c0', '{}', 2);
+	('7d20e1a7-059a-44da-b26e-872d7e106e1e', 'catalog', '7e203f33-67c9-4e9c-9324-11bf94816da9/1768277342846.webp', '975d5e46-7a11-46a8-833a-da92ba8162c0', '2026-01-13 04:09:04.540429+00', '2026-01-13 04:09:04.540429+00', '2026-01-13 04:09:04.540429+00', '{"eTag": "\"810ddf1ee8e055f8604a45847679c1be\"", "size": 449474, "mimetype": "image/webp", "cacheControl": "max-age=3600", "lastModified": "2026-01-13T04:09:05.000Z", "contentLength": 449474, "httpStatusCode": 200}', '6d3fc5fa-698d-4f41-a5f2-008e92899f4b', '975d5e46-7a11-46a8-833a-da92ba8162c0', '{}', 2)
+ON CONFLICT (id) DO NOTHING;
 
 
 --
