@@ -31,6 +31,7 @@ export function SilverPriceDisplay({
 
   const taxMultiplier = includeTax ? 1.11 : 1
   const currentPriceDisplay = currentPrice * taxMultiplier
+  const previousPriceDisplay = previousPrice * taxMultiplier
 
   const price7dDisplay = price7d * taxMultiplier
   const price30dDisplay = price30d * taxMultiplier
@@ -55,8 +56,8 @@ export function SilverPriceDisplay({
 
       <PriceCard
         includeTax={includeTax}
-        currentPrice={currentPrice}
-        previousPrice={previousPrice}
+        currentPriceDisplay={currentPriceDisplay}
+        previousPriceDisplay={previousPriceDisplay}
         lastUpdated={lastUpdated}
       />
 

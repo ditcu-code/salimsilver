@@ -2,7 +2,8 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { Triangle } from "lucide-react"
-import { useEffect, useState } from "react"
+
+import { usePriceTrend } from "../hooks/use-price-trend"
 
 import { AnimatedCurrency } from "./animated-currency"
 
@@ -15,18 +16,10 @@ export function HistoricalPriceRow({
   historicalPrice: number
   currentPrice: number
 }) {
-  const [showPercentage, setShowPercentage] = useState(false)
-  const priceChange = currentPrice - historicalPrice
-  const percentageChange = (priceChange / historicalPrice) * 100
-  const isUp = priceChange >= 0
-  const isSame = priceChange === 0
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowPercentage((prev) => !prev)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+  const { priceChange, percentageChange, isUp, isSame, showPercentage } = usePriceTrend(
+    currentPrice,
+    historicalPrice
+  )
 
   const trendColor = isSame
     ? "text-muted-foreground"

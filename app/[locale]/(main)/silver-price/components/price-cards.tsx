@@ -4,40 +4,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Triangle } from "lucide-react"
 
 import { AnimatePresence, m as motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { usePriceTrend } from "../hooks/use-price-trend"
 import { AnimatedCurrency } from "./animated-currency"
-
-interface PriceCardProps {
-  includeTax: boolean
-  currentPrice: number
-  previousPrice: number
-  lastUpdated: string
-}
 
 export function PriceCard({
   includeTax,
-  currentPrice,
-  previousPrice,
+  currentPriceDisplay,
+  previousPriceDisplay,
   lastUpdated,
-}: PriceCardProps) {
-  // Add 11% VAT if includeTax is true
-  const taxMultiplier = includeTax ? 1.11 : 1
-  const currentPriceDisplay = currentPrice * taxMultiplier
-  const previousPriceDisplay = previousPrice * taxMultiplier
-
-  const priceChange = currentPriceDisplay - previousPriceDisplay
-  const percentageChange = (priceChange / previousPriceDisplay) * 100
-  const isUp = priceChange >= 0
-  const isSame = priceChange === 0
-
-  const [showPercentage, setShowPercentage] = useState(false)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowPercentage((prev) => !prev)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+}: {
+  includeTax: boolean
+  currentPriceDisplay: number
+  previousPriceDisplay: number
+  lastUpdated: string
+}) {
+  const { priceChange, percentageChange, isUp, isSame, showPercentage } = usePriceTrend(
+    currentPriceDisplay,
+    previousPriceDisplay
+  )
 
   const trendColor = isSame
     ? "bg-muted text-muted-foreground"
