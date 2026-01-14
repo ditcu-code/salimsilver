@@ -1,7 +1,10 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Triangle } from "lucide-react"
 
-import { m as motion } from "framer-motion"
+import { AnimatePresence, m as motion } from "framer-motion"
+import { useEffect, useState } from "react"
 import { AnimatedCurrency } from "./animated-currency"
 
 interface PriceCardProps {
@@ -23,8 +26,18 @@ export function PriceCard({
   const previousPriceDisplay = previousPrice * taxMultiplier
 
   const priceChange = currentPriceDisplay - previousPriceDisplay
+  const percentageChange = (priceChange / previousPriceDisplay) * 100
   const isUp = priceChange >= 0
   const isSame = priceChange === 0
+
+  const [showPercentage, setShowPercentage] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowPercentage((prev) => !prev)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   const trendColor = isSame
     ? "bg-muted text-muted-foreground"
@@ -72,21 +85,48 @@ export function PriceCard({
 
           {/* Trend Pill */}
           <div className="flex justify-center">
-            <div
+            <motion.div
+              layout
               className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium ${trendColor}`}
             >
               {!isSame && <TrendIcon className={`h-3 w-3 fill-current ${!isUp && "rotate-180"}`} />}
-              <span className="flex gap-1 font-sans font-bold">
+              <div className="flex gap-1 font-sans font-bold">
                 {isSame ? (
                   "Harga Stabil"
                 ) : (
                   <>
-                    {isUp ? "Naik" : "Turun"}
-                    <AnimatedCurrency value={Math.abs(priceChange)} />
+                    <span>{isUp ? "Naik" : "Turun"}</span>
+                    <div className="relative h-5 overflow-hidden">
+                      <AnimatePresence mode="popLayout" initial={false}>
+                        {showPercentage ? (
+                          <motion.span
+                            key="percentage"
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -20, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="block tabular-nums"
+                          >
+                            {Math.abs(percentageChange).toFixed(2)}%
+                          </motion.span>
+                        ) : (
+                          <motion.span
+                            key="nominal"
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -20, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="block tabular-nums"
+                          >
+                            <AnimatedCurrency value={Math.abs(priceChange)} />
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </>
                 )}
-              </span>
-            </div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
