@@ -6,7 +6,7 @@ const corsHeaders = {
 }
 
 // Import TradingView API wrapper from npm
-import TradingView from "https://esm.sh/@mathieuc/tradingview?target=deno"
+import TradingView from "npm:@mathieuc/tradingview"
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
