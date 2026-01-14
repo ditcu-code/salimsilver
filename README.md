@@ -2,75 +2,85 @@
 
 ![Salim Silver](public/images/private-collection-priyana-jatmika-salim.webp)
 
-A premium jewelry catalog and company profile website built with Next.js 15+, featuring a sophisticated design system, dynamic product filtering, and smooth animations.
-
-## 🌟 Features
-
-- **Jewelry Catalog**: Browse handcrafted collections with a masonry-style grid layout.
-- **Category Filtering**: Filter products by type (Rings, Necklaces, Bracelets).
-- **Premium Aesthetic**: Custom design system with elegant typography and color palette.
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop.
-- **Dark/Light Theme**: Sophisticated theme switching with gold accents.
-- **Modern Animations**: Powered by Framer Motion for a luxurious feel.
+**Salim Silver** is a premium web application for showcasing handcrafted Javanese jewelry. It serves as a digital catalog, company profile, and blog, featuring a sophisticated design system, dynamic product filtering, and smooth animations to reflect the brand's luxury aesthetic.
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 15 (App Router)
-- **React**: 19
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide Icons
-- **Gallery**: React Photo Album
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS (v4), Framer Motion
+- **Database & Auth**: Supabase
+- **UI Components**: Shadcn UI (Radix Primitives), Lucide Icons
+- **Gallery**: React Photo Album, Yet Another React Lightbox
+- **Editor**: Tiptap (Rich Text)
+- **Email**: Resend
+- **Testing**: Playwright (End-to-End)
+
+## 📂 Project Structure
+
+- **`app/`**: Main application code (App Router).
+  - `(auth)/`: Authentication routes.
+  - `(main)/`: Public-facing pages (Home, Catalog, Blog, About).
+  - `admin/`: Protected admin dashboard.
+  - `api/`: Backend API routes.
+- **`components/`**: Reusable React components.
+  - `ui/`: Base UI components (Shadcn UI).
+  - `features/`: Feature-specific components.
+  - `blocks/`: Larger page sections.
+- **`lib/`**: Utilities and configurations.
+  - `supabase/`: Supabase client/server configuration.
+  - `actions/`: Server actions for data mutation.
+  - `types.ts`: TypeScript interfaces.
+- **`supabase/`**: Database migrations and seeds.
+- **`tests/`**: Playwright E2E test specs.
 
 ## 🛠️ Setup Instructions
 
-1. **Clone the repository**
+This project uses `yarn` as the package manager.
+
+1. **Install dependencies**
 
    ```bash
-   git clone [repository-url]
-   cd salimsilver
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   # or
    yarn install
    ```
 
-3. **Run the development server**
+2. **Run the development server**
+
    ```bash
-   npm run dev
-   # or
    yarn dev
    ```
 
-Open http://localhost:3000 with your browser to see the result.
+   Runs at `http://localhost:3000`.
 
-## 💎 Collections
+3. **Production Build**
 
-The catalog is organized into core jewelry collections:
+   ```bash
+   yarn build
+   yarn start
+   ```
 
-- **Rings**: Handcrafted silver rings with intricate details.
-- **Necklaces**: Statement pieces and delicate chains.
-- **Bracelets**: Artisan cuffs and woven designs.
+4. **Testing & Linting**
 
-Collection data is managed in `lib/collections.ts`.
+   ```bash
+   yarn test:e2e  # Run Playwright tests
+   yarn lint      # Run linter
+   yarn format    # Run formatter
+   ```
 
-## 🎨 Customization
+## 💎 Features & Data
 
-### Design System
+- **Jewelry Catalog**: Browsable handcrafted collections managed via **Supabase**.
+- **Data Fetching**: Collections and items are fetched using `@supabase/ssr` in `lib/collections.ts` and `lib/supabase/`.
+- **Filtering**: Filter products by type (Rings, Necklaces, etc.).
+- **Admin Dashboard**: operational interface for managing content.
 
-The theme uses a premium color palette defined in `app/globals.css`:
+## 🎨 Design System
+
+The theme uses a premium color palette defined in `app/globals.css` with **Tailwind CSS v4** variables:
 
 - **Light Mode**: Light Cream background, Deep Charcoal text, Gold accents.
 - **Dark Mode**: Midnight Blue background, Soft Cream text, Muted Gold accents.
-
-### Typography
-
-- **Headings**: Cormorant Garamond (Serif)
-- **Body**: Lato (Sans-serif)
+- **Typography**: Cormorant Garamond (Serif) & Lato (Sans-serif).
 
 ## 📄 License
 
