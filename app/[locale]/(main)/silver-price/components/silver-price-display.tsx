@@ -39,7 +39,7 @@ export function SilverPriceDisplay({
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
-      <div className="flex items-center justify-center space-x-2">
+      <div className="mb-8 flex items-center justify-center space-x-2">
         <Switch
           id="ppn-mode"
           checked={includeTax}
