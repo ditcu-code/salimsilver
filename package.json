@@ -2,7 +2,7 @@
   "name": "salim-silver",
   "version": "1.0.0",
   "private": true,
-  "author": "Salim Silver <salim@salimsilver.com>",
+  "author": "Salim Silver <hello@salimsilver.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -42,7 +42,6 @@
     "react-hook-form": "^7.54.1",
     "react-photo-album": "^3.2.1",
     "react-social-media-embed": "^2.5.18",
-    "react-twitter-embed": "4.0.4",
     "resend": "^6.5.2",
     "sharp": "^0.34.5",
     "sonner": "^2.0.7",
