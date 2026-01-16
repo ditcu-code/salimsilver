@@ -1,6 +1,5 @@
-import { updateSession } from "@/lib/supabase/middleware"
 import createMiddleware from "next-intl/middleware"
-import { NextRequest } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
@@ -13,18 +12,7 @@ const intlMiddleware = createMiddleware({
   localePrefix: "as-needed",
 })
 
-const NON_LOCALIZED_PATHNAMES = [
-  "/admin",
-  "/links",
-  "/gmaps-review",
-  "/maintenance",
-  "/login",
-  "/register",
-  "/signup",
-  "/forgot-password",
-  "/reset-password",
-  "/auth",
-]
+const NON_LOCALIZED_PATHNAMES = ["/links", "/gmaps-review", "/maintenance"]
 
 export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -46,11 +34,10 @@ export default async function proxy(request: NextRequest) {
     pathname.startsWith("/api") ||
     NON_LOCALIZED_PATHNAMES.some((path) => pathname.startsWith(path))
   ) {
-    return await updateSession(localizedRequest)
+    return NextResponse.next()
   }
 
-  const response = intlMiddleware(localizedRequest)
-  return await updateSession(localizedRequest, response)
+  return intlMiddleware(localizedRequest)
 }
 
 export const config = {
