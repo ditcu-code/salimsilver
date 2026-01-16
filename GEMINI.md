@@ -9,9 +9,9 @@
 - **Styling:** Tailwind CSS (v4), Framer Motion (Animations)
 - **Database & Auth:** Supabase
 - **UI Components:** Shadcn UI (Radix Primitives), Lucide Icons
+- **Internationalization:** next-intl
 - **Gallery/Media:** React Photo Album, Yet Another React Lightbox
 - **Testing:** Playwright (End-to-End)
-- **Editor:** Tiptap (Rich Text)
 - **Email:** Resend
 
 ## Building and Running
@@ -71,15 +71,14 @@ The project uses `yarn` as the package manager.
 ### Key Directories
 
 - `app/`: Main application code (Next.js App Router).
-  - `(auth)/`: Authentication routes (Login).
-  - `(main)/`: Public-facing pages (Home, Catalog, Blog, About).
-  - `admin/`: Protected admin dashboard for managing collections, jewelry, and blog posts.
+  - `[locale]/`: Internationalized routes.
+    - `(auth)/`: Authentication routes (Login).
+    - `(main)/`: Public-facing pages (Home, Catalog, Blog, About).
   - `api/`: Backend API routes (e.g., WhatsApp integration).
 - `components/`: Reusable React components.
   - `ui/`: Base UI components (Shadcn UI).
   - `features/`: Feature-specific components (e.g., Contact Form, Theme Toggle).
   - `blocks/`: Larger page sections (e.g., Hero, Gallery).
-  - `admin/`: Admin-specific components.
 - `lib/`: Utilities and configurations.
   - `supabase/`: Supabase client and server configuration (`client.ts`, `server.ts`).
   - `types.ts`: TypeScript interfaces for data models (`Jewelry`, `Collection`, `Post`).

@@ -11,17 +11,17 @@
 - **Styling**: Tailwind CSS (v4), Framer Motion
 - **Database & Auth**: Supabase
 - **UI Components**: Shadcn UI (Radix Primitives), Lucide Icons
+- **Internationalization**: next-intl
 - **Gallery**: React Photo Album, Yet Another React Lightbox
-- **Editor**: Tiptap (Rich Text)
 - **Email**: Resend
 - **Testing**: Playwright (End-to-End)
 
 ## 📂 Project Structure
 
 - **`app/`**: Main application code (App Router).
-  - `(auth)/`: Authentication routes.
-  - `(main)/`: Public-facing pages (Home, Catalog, Blog, About).
-  - `admin/`: Protected admin dashboard.
+  - `[locale]/`: Internationalized routes.
+    - `(auth)/`: Authentication routes.
+    - `(main)/`: Public-facing pages (Home, Catalog, Blog, About).
   - `api/`: Backend API routes.
 - **`components/`**: Reusable React components.
   - `ui/`: Base UI components (Shadcn UI).
@@ -32,6 +32,7 @@
   - `actions/`: Server actions for data mutation.
   - `types.ts`: TypeScript interfaces.
 - **`supabase/`**: Database migrations and seeds.
+- **`proxy.ts`**: Middleware replacement for request handling.
 - **`tests/`**: Playwright E2E test specs.
 
 ## 🛠️ Setup Instructions
@@ -72,7 +73,6 @@ This project uses `yarn` as the package manager.
 - **Jewelry Catalog**: Browsable handcrafted collections managed via **Supabase**.
 - **Data Fetching**: Collections and items are fetched using `@supabase/ssr` in `lib/collections.ts` and `lib/supabase/`.
 - **Filtering**: Filter products by type (Rings, Necklaces, etc.).
-- **Admin Dashboard**: operational interface for managing content.
 
 ## 🎨 Design System
 
