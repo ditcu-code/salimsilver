@@ -26,7 +26,11 @@ const navigation: NavItem[] = [
   { name: "Visit Us", href: "/store-location", mobileOnly: true },
 ]
 
-const mobileMenuTransition: Transition = { type: "spring", damping: 25, stiffness: 300 }
+const mobileMenuTransition: Transition = {
+  type: "spring",
+  damping: 25,
+  stiffness: 300,
+}
 
 function getLocalizedPath(path: string, currentPathname: string) {
   const isId = currentPathname.startsWith("/id")
@@ -74,7 +78,7 @@ export default function Header() {
         "header-height fixed top-5 right-4 left-4 z-50 transition-all duration-500 ease-in-out md:right-8 md:left-8",
         isScrolled
           ? "bg-background border-border border"
-          : "border border-transparent bg-transparent"
+          : "border border-transparent bg-transparent",
       )}
     >
       <div className="max-w-8xl mx-auto h-full px-4 sm:px-6">
@@ -83,7 +87,11 @@ export default function Header() {
             <Brand isScrolled={isScrolled} pathname={pathname} />
           </div>
 
-          <DesktopNavigation isHome={isHome} isScrolled={isScrolled} pathname={pathname} />
+          <DesktopNavigation
+            isHome={isHome}
+            isScrolled={isScrolled}
+            pathname={pathname}
+          />
 
           <div className="flex items-center gap-2">
             <div className="toggle-container flex shrink-0 gap-2 md:block">
@@ -102,16 +110,29 @@ export default function Header() {
         </div>
       </div>
 
-      <MobileMenu isOpen={isMenuOpen} pathname={pathname} onClose={() => setIsMenuOpen(false)} />
+      <MobileMenu
+        isOpen={isMenuOpen}
+        pathname={pathname}
+        onClose={() => setIsMenuOpen(false)}
+      />
     </header>
   )
 }
 
-function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string }) {
+function Brand({
+  isScrolled,
+  pathname,
+}: {
+  isScrolled: boolean
+  pathname: string
+}) {
   const pathWithoutLocale = pathname.replace(/^\/id(?=\/|$)/, "") || "/"
   const isDarkHeroPage =
-    ["/contact", "/about", "/store-location", "/workshop"].includes(pathWithoutLocale) ||
-    pathWithoutLocale.startsWith("/collections/")
+    ["/contact", "/about", "/store-location", "/workshop"].includes(
+      pathWithoutLocale,
+    ) ||
+    pathWithoutLocale.startsWith("/collections/") ||
+    pathWithoutLocale.startsWith("/blog/")
   const shouldInvert = isScrolled || !isDarkHeroPage
 
   return (
@@ -120,7 +141,7 @@ function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string
         href={getLocalizedPath("/", pathname)}
         className={cn(
           "flex items-center justify-center transition-all duration-300",
-          isScrolled ? "scale-90" : "scale-100"
+          isScrolled ? "scale-90" : "scale-100",
         )}
       >
         <Image
@@ -130,7 +151,7 @@ function Brand({ isScrolled, pathname }: { isScrolled: boolean; pathname: string
           height={36}
           className={cn(
             "h-10 object-contain transition-all duration-300 dark:invert-0",
-            shouldInvert ? "invert" : "invert-0"
+            shouldInvert ? "invert" : "invert-0",
           )}
           style={{ width: "auto", maxWidth: "180px" }}
           priority
@@ -155,7 +176,7 @@ function DesktopNavigation({
     <nav
       className={cn(
         "hidden h-10 items-center justify-center space-x-8 rounded-3xl px-6 transition-all duration-300 md:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2",
-        isScrolled ? "bg-transparent" : "bg-background"
+        isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
       {navigation
@@ -173,7 +194,7 @@ function DesktopNavigation({
                 baseTone,
                 isActive
                   ? "text-primary border-primary/50 font-semibold"
-                  : "hover:text-primary/80 hover:scale-102"
+                  : "hover:text-primary/80 hover:scale-102",
               )}
             >
               {item.name}
@@ -197,7 +218,7 @@ function MobileMenuButton({
     <div
       className={cn(
         "text-primary flex h-10 items-center justify-center rounded-3xl transition-all duration-300 md:hidden",
-        isScrolled ? "bg-transparent" : "bg-background"
+        isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
       <motion.button
@@ -263,7 +284,7 @@ function MobileMenu({
                     "font-display block px-8 py-3 text-4xl transition-all duration-300",
                     isActive
                       ? "text-primary border-border scale-110 border-b-2 font-medium"
-                      : "text-foreground/80 hover:text-primary hover:scale-105"
+                      : "text-foreground/80 hover:text-primary hover:scale-105",
                   )}
                   onClick={onClose}
                 >
