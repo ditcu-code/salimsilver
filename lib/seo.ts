@@ -6,11 +6,15 @@ import { BASE_URL } from "@/lib/constants"
  * @param path The path to the page (e.g., '/blog', '/about'). Should start with / if not empty.
  * @returns The full canonical URL.
  */
-export function constructCanonicalUrl(locale: string, path: string = ""): string {
+export function constructCanonicalUrl(
+  locale: string,
+  path: string = "",
+): string {
   const isDefaultLocale = locale === "en"
   const localePath = isDefaultLocale ? "" : `/${locale}`
   // Ensure path starts with / if it's not empty and doesn't have it
-  const normalizedPath = path.length > 0 && !path.startsWith("/") ? `/${path}` : path
+  const normalizedPath =
+    path.length > 0 && !path.startsWith("/") ? `/${path}` : path
 
   // Remove trailing slash from path if present to avoid double slashes or inconsistency,
   // but we usually want no trailing slash for canonicals unless it's root.
@@ -32,4 +36,17 @@ const LOCALE_MAP: Record<string, string> = {
  */
 export function getOpenGraphLocale(locale: string): string {
   return LOCALE_MAP[locale] || "en_US"
+}
+
+/**
+ * Returns the alternate language URLs for a given path.
+ * Used for the `alternates.languages` metadata property to generate hreflang tags.
+ * @param path The path to the page (e.g., '/about', '/product/slug').
+ */
+export function getAlternates(path: string = "") {
+  return {
+    en: constructCanonicalUrl("en", path),
+    id: constructCanonicalUrl("id", path),
+    "x-default": constructCanonicalUrl("en", path),
+  }
 }

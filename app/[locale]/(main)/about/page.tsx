@@ -9,7 +9,11 @@ import TimelineSection from "./components/TimelineSection"
 import ValuesSection from "./components/ValuesSection"
 
 import { SUPABASE_CATALOG_URL } from "@/lib/constants"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -25,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/about"),
     },
     openGraph: {
       type: "website",
@@ -84,7 +89,8 @@ export default async function AboutPage({ params }: Props) {
               telephone: "+62 896 7197 7699",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
+                streetAddress:
+                  "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
                 addressLocality: "Yogyakarta City",
                 addressRegion: "Special Region of Yogyakarta",
                 postalCode: "55173",

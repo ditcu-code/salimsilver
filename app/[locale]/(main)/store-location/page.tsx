@@ -8,7 +8,11 @@ import StoreLocationSection from "@/components/blocks/store-location-section"
 import StoreHero from "./components/StoreHero"
 
 import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -16,7 +20,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: "StoreLocationPage.Metadata" })
+  const t = await getTranslations({
+    locale,
+    namespace: "StoreLocationPage.Metadata",
+  })
   const canonicalUrl = constructCanonicalUrl(locale, "/store-location")
 
   return {
@@ -24,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/store-location"),
     },
     openGraph: {
       type: "website",
@@ -57,14 +65,18 @@ export default async function StoreLocationPage({ params }: Props) {
           {/* Left Column: What to Expect */}
           <div className="space-y-8">
             <div>
-              <h2 className="font-display mb-4 text-3xl">{t("Content.title")}</h2>
+              <h2 className="font-display mb-4 text-3xl">
+                {t("Content.title")}
+              </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
                 {t("Content.description")}
               </p>
             </div>
 
             <div className="border-border bg-card/60 rounded-3xl border p-8 shadow-sm backdrop-blur">
-              <h3 className="font-display mb-4 text-2xl">{t("Expectations.title")}</h3>
+              <h3 className="font-display mb-4 text-2xl">
+                {t("Expectations.title")}
+              </h3>
               <ul className="text-muted-foreground space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="bg-primary mt-3 h-1.5 w-1.5 shrink-0 rounded-full" />
@@ -84,7 +96,9 @@ export default async function StoreLocationPage({ params }: Props) {
 
           {/* Right Column: Quick Info */}
           <div className="space-y-6">
-            <h3 className="font-display mb-4 text-2xl">{t("QuickInfo.title")}</h3>
+            <h3 className="font-display mb-4 text-2xl">
+              {t("QuickInfo.title")}
+            </h3>
             <div className="grid gap-4">
               <InfoCard
                 icon={<Clock3 className="text-primary" size={20} />}
@@ -130,7 +144,8 @@ export default async function StoreLocationPage({ params }: Props) {
             telephone: "+62 896 7197 7699",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
+              streetAddress:
+                "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
               addressLocality: "Yogyakarta City",
               addressRegion: "Special Region of Yogyakarta",
               postalCode: "55173",
@@ -143,7 +158,14 @@ export default async function StoreLocationPage({ params }: Props) {
             },
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
-              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+              ],
               opens: "08:00",
               closes: "16:00",
             },

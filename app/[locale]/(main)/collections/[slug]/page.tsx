@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import { getCollection, getFeaturedCollections, getJewelryBySlug } from "@/lib/collections"
+import {
+  getCollection,
+  getFeaturedCollections,
+  getJewelryBySlug,
+} from "@/lib/collections"
 import { BASE_URL } from "@/lib/constants"
-import { getOpenGraphLocale } from "@/lib/seo"
+import { getAlternates, getOpenGraphLocale } from "@/lib/seo"
 import { notFound } from "next/navigation"
 
 import { CollectionContent } from "./collection-content"
@@ -18,7 +22,10 @@ interface Props {
   }>
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const { slug, locale } = await params
   const { jewelry } = await searchParams
   const t = await getTranslations("CollectionDetailPage.Metadata")
@@ -28,13 +35,20 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const item = await getJewelryBySlug(jewelry)
     if (item) {
       const title = `${item.title} - Salim Silver`
-      const description = item.description || t("fallbackDescription", { title: item.title })
+      const description =
+        item.description || t("fallbackDescription", { title: item.title })
       const images =
-        item.images && item.images.length > 0 ? [item.images[0].src] : ["/opengraph-image"]
+        item.images && item.images.length > 0
+          ? [item.images[0].src]
+          : ["/opengraph-image"]
 
       return {
         title,
         description,
+        alternates: {
+          canonical: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
+          languages: getAlternates(`/collections/${slug}?jewelry=${jewelry}`),
+        },
         openGraph: {
           title,
           description,
@@ -58,12 +72,19 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   if (collection) {
     const title = `${collection.title} - Salim Silver`
     const description =
-      collection.description || t("fallbackDescription", { title: collection.title })
-    const images = collection.coverImage ? [collection.coverImage] : ["/opengraph-image"]
+      collection.description ||
+      t("fallbackDescription", { title: collection.title })
+    const images = collection.coverImage
+      ? [collection.coverImage]
+      : ["/opengraph-image"]
 
     return {
       title,
       description,
+      alternates: {
+        canonical: `${BASE_URL}/collections/${slug}`,
+        languages: getAlternates(`/collections/${slug}`),
+      },
       openGraph: {
         title,
         description,

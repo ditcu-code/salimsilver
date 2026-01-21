@@ -4,7 +4,11 @@ import { notFound } from "next/navigation"
 
 import ProductDetail from "@/components/blocks/product-detail"
 import { getJewelryBySlug } from "@/lib/collections"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 
 interface Props {
   params: Promise<{
@@ -27,7 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${product.title} - Salim Silver`
   const description = product.description || t("fallbackDescription")
   const images =
-    product.images && product.images.length > 0 ? [product.images[0].src] : ["/opengraph-image"]
+    product.images && product.images.length > 0
+      ? [product.images[0].src]
+      : ["/opengraph-image"]
 
   const canonicalUrl = constructCanonicalUrl(locale, `/product/${slug}`)
 
@@ -36,6 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates(`/product/${slug}`),
     },
     openGraph: {
       title,
@@ -119,9 +126,15 @@ export default async function ProductPage({ params }: Props) {
                       position: 2,
                       name: product.collectionSlug
                         .split("-")
-                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                        .map(
+                          (word) =>
+                            word.charAt(0).toUpperCase() + word.slice(1),
+                        )
                         .join(" "),
-                      item: constructCanonicalUrl(locale, `/collections/${product.collectionSlug}`),
+                      item: constructCanonicalUrl(
+                        locale,
+                        `/collections/${product.collectionSlug}`,
+                      ),
                     },
                     {
                       "@type": "ListItem",

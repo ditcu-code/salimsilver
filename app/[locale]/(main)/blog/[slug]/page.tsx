@@ -4,6 +4,11 @@ import { ShareButton } from "@/components/features/share-button"
 import BackButton from "@/components/ui/back-button"
 import { getPostBySlug } from "@/lib/blog"
 import { BASE_URL } from "@/lib/constants"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 import { formatDate } from "@/lib/utils"
 import { Eye } from "lucide-react"
 import { Metadata } from "next"
@@ -11,21 +16,29 @@ import { getTranslations } from "next-intl/server"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
-function isSameMonth(date1?: string | Date | null, date2?: string | Date | null) {
+function isSameMonth(
+  date1?: string | Date | null,
+  date2?: string | Date | null,
+) {
   if (!date1 || !date2) return false
   const d1 = new Date(date1)
   const d2 = new Date(date2)
-  return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth()
+  return (
+    d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth()
+  )
 }
 
 interface BlogPostPageProps {
   params: Promise<{
     slug: string
+    locale: string
   }>
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const { slug, locale } = await params
   const t = await getTranslations("JournalDetailPage.Metadata")
   const post = await getPostBySlug(slug)
 
@@ -35,19 +48,27 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     }
   }
 
+  const title = post.meta_title || post.title
+  const description = post.meta_description || post.excerpt
+  const url = `${BASE_URL}/blog/${slug}`
+
   return {
-    title: post.meta_title || post.title,
-    description: post.meta_description || post.excerpt,
+    title,
+    description,
     alternates: {
-      canonical: `${BASE_URL}/blog/${slug}`,
+      canonical: constructCanonicalUrl(locale, `/blog/${slug}`),
+      languages: getAlternates(`/blog/${slug}`),
     },
     openGraph: {
-      title: post.meta_title || post.title,
-      description: post.meta_description || post.excerpt,
-      url: `${BASE_URL}/blog/${slug}`,
+      title,
+      description,
+      url,
       type: "article",
       publishedTime: post.published_at,
-      images: post.cover_image_url ? [post.cover_image_url] : ["/opengraph-image"],
+      images: post.cover_image_url
+        ? [post.cover_image_url]
+        : ["/opengraph-image"],
+      locale: getOpenGraphLocale(locale),
     },
     keywords: post.tags,
   }
@@ -78,7 +99,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           />
         ) : (
           <div className="bg-muted absolute inset-0 flex h-full w-full items-center justify-center">
-            <span className="text-muted-foreground/20 font-serif text-6xl">{t("journal")}</span>
+            <span className="text-muted-foreground/20 font-serif text-6xl">
+              {t("journal")}
+            </span>
           </div>
         )}
         <div className="from-background via-background/60 pointer-events-none absolute inset-0 bg-linear-to-t to-transparent" />
@@ -90,7 +113,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {post.title}
         </h1>
         <div className="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
-          <span>{post.published_at ? formatDate(post.published_at) : t("recentlyPublished")}</span>
+          <span>
+            {post.published_at
+              ? formatDate(post.published_at)
+              : t("recentlyPublished")}
+          </span>
           {/* Author */}
           {post.author && (
             <>
@@ -119,11 +146,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             !isSameMonth(post.published_at, post.updated_at) && (
               <>
                 <span>•</span>
-                <span>{t("updated", { date: formatDate(post.updated_at) })}</span>
+                <span>
+                  {t("updated", { date: formatDate(post.updated_at) })}
+                </span>
               </>
             )}
           <span>•</span>
-          <div className="flex items-center gap-1.5" title={`${post.views || 0} views`}>
+          <div
+            className="flex items-center gap-1.5"
+            title={`${post.views || 0} views`}
+          >
             <Eye className="h-4 w-4" />
             <span>{post.views || 0}</span>
           </div>
@@ -150,7 +182,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         />
 
         <div className="mt-8 flex items-center justify-end space-x-4">
-          <div className="text-muted-foreground text-sm font-medium">{t("share")}</div>
+          <div className="text-muted-foreground text-sm font-medium">
+            {t("share")}
+          </div>
           <ShareButton title={post.title} />
         </div>
 

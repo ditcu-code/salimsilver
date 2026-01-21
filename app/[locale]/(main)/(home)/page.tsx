@@ -11,7 +11,11 @@ import { HeroGallery } from "./components/hero-gallery"
 import IntroductionSection from "./components/introduction-section"
 
 import { BASE_URL } from "@/lib/constants"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -27,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates(),
     },
     openGraph: {
       type: "website",
@@ -92,6 +97,7 @@ export default async function Home({ params }: Props) {
             "@context": "https://schema.org",
             "@type": "JewelryStore",
             name: "Salim Silver",
+            priceRange: "$$",
             description: t("Metadata.description"),
             image: `${BASE_URL}/images/hero-background.png`,
             "@id": constructCanonicalUrl(locale, "/"),
@@ -99,7 +105,8 @@ export default async function Home({ params }: Props) {
             telephone: "+62 896 7197 7699",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
+              streetAddress:
+                "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
               addressLocality: "Yogyakarta City",
               addressRegion: "Special Region of Yogyakarta",
               postalCode: "55173",
@@ -113,7 +120,14 @@ export default async function Home({ params }: Props) {
             },
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
-              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+              ],
               opens: "08:00",
               closes: "16:00",
             },

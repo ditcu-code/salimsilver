@@ -3,7 +3,11 @@ import { getTranslations } from "next-intl/server"
 
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { getAllCollections } from "@/lib/collections"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -11,7 +15,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: "CollectionsPage.Metadata" })
+  const t = await getTranslations({
+    locale,
+    namespace: "CollectionsPage.Metadata",
+  })
   const canonicalUrl = constructCanonicalUrl(locale, "/collections")
 
   return {
@@ -19,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/collections"),
     },
     openGraph: {
       type: "website",

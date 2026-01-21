@@ -5,14 +5,21 @@ import { Suspense } from "react"
 
 import CatalogPageClient from "./page.client"
 
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 
 type Props = {
   params: Promise<{ locale: string }>
   searchParams: Promise<{ jewelry?: string }>
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const { locale } = await params
   const { jewelry } = await searchParams
   const t = await getTranslations({ locale, namespace: "CatalogPage.Metadata" })
@@ -22,8 +29,12 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     if (item) {
       const title = `${item.title} - Salim Silver`
       const description = item.description || t("fallbackDescription")
-      const images = item.images && item.images.length > 0 ? [item.images[0].src] : []
-      const productUrl = constructCanonicalUrl(locale, `/catalog?jewelry=${jewelry}`)
+      const images =
+        item.images && item.images.length > 0 ? [item.images[0].src] : []
+      const productUrl = constructCanonicalUrl(
+        locale,
+        `/catalog?jewelry=${jewelry}`,
+      )
 
       return {
         title,
@@ -42,6 +53,10 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
           description,
           images,
         },
+        alternates: {
+          canonical: productUrl,
+          languages: getAlternates(`/catalog?jewelry=${jewelry}`),
+        },
       }
     }
   }
@@ -53,6 +68,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/catalog"),
     },
     openGraph: {
       type: "website",

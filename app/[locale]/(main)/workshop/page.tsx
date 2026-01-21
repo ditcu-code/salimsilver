@@ -3,7 +3,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { PolaroidGallery } from "@/components/blocks/polaroid-gallery"
 import { ReelsGallery } from "@/components/blocks/reels-gallery"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopDetails } from "./components/workshop-details"
 import { WorkshopHero } from "./components/workshop-hero"
@@ -17,7 +21,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: "WorkshopPage.Metadata" })
+  const t = await getTranslations({
+    locale,
+    namespace: "WorkshopPage.Metadata",
+  })
   const canonicalUrl = constructCanonicalUrl(locale, "/workshop")
 
   return {
@@ -25,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/workshop"),
     },
     openGraph: {
       title: t("title"),
@@ -77,7 +85,9 @@ export default async function WorkshopPage({ params }: Props) {
               <h2 className="mb-3 font-serif text-3xl leading-none font-bold text-neutral-900 dark:text-neutral-50">
                 {t("Steps.title")}
               </h2>
-              <p className="mb-8 text-neutral-600 dark:text-neutral-400">{t("Steps.subtitle")}</p>
+              <p className="mb-8 text-neutral-600 dark:text-neutral-400">
+                {t("Steps.subtitle")}
+              </p>
               <WorkshopSteps />
             </div>
 
@@ -87,7 +97,9 @@ export default async function WorkshopPage({ params }: Props) {
           {/* Right Column: Registration Form */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <div id="registration-form" className="mb-8 lg:hidden">
-              <h2 className="mb-4 font-serif text-3xl font-bold">{t("Registration.startNow")}</h2>
+              <h2 className="mb-4 font-serif text-3xl font-bold">
+                {t("Registration.startNow")}
+              </h2>
               <p className="text-neutral-600 dark:text-neutral-400">
                 {t("Registration.secureSlot")}
               </p>
@@ -145,7 +157,8 @@ export default async function WorkshopPage({ params }: Props) {
                 name: "Salim Silver Workshop",
                 address: {
                   "@type": "PostalAddress",
-                  streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
+                  streetAddress:
+                    "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
                   addressLocality: "Yogyakarta City",
                   addressRegion: "Special Region of Yogyakarta",
                   postalCode: "55173",

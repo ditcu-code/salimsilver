@@ -2,7 +2,11 @@ import { BlogGrid } from "@/components/blocks/blog-grid"
 import { BlogHeaderSection } from "@/components/blocks/blog-header-section"
 import { BlogHero } from "@/components/blocks/blog-hero"
 import { getAllPosts } from "@/lib/blog"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 import { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
@@ -20,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/blog"),
     },
     openGraph: {
       type: "website",
@@ -42,7 +47,9 @@ export default async function BlogPage({ params }: Props) {
   const t = await getTranslations("JournalPage")
   const posts = await getAllPosts(false)
   const featuredPost = posts.find((p) => p.featured)
-  const remainingPosts = featuredPost ? posts.filter((p) => p.id !== featuredPost.id) : posts
+  const remainingPosts = featuredPost
+    ? posts.filter((p) => p.id !== featuredPost.id)
+    : posts
 
   const canonicalUrl = constructCanonicalUrl(locale, "/blog")
 
@@ -64,7 +71,9 @@ export default async function BlogPage({ params }: Props) {
         {featuredPost && <BlogHero post={featuredPost} />}
 
         {/* Divider */}
-        {remainingPosts.length > 0 && <div className="border-border/40 my-16 border-t" />}
+        {remainingPosts.length > 0 && (
+          <div className="border-border/40 my-16 border-t" />
+        )}
 
         {/* Grid for other posts */}
         <BlogGrid posts={remainingPosts} />

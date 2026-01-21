@@ -1,5 +1,12 @@
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
-import { calculateDisplayPrices, getSilverPriceSummary } from "@/lib/silver-price"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
+import {
+  calculateDisplayPrices,
+  getSilverPriceSummary,
+} from "@/lib/silver-price"
 import type { Metadata } from "next"
 
 import { PriceFallbackCard } from "./components/price-cards"
@@ -18,7 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: {
-      absolute: "Harga Perak Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
+      absolute:
+        "Harga Perak Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
     },
     description:
       "Pantau harga perak murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
@@ -42,6 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/silver-price"),
     },
     openGraph: {
       title: "Harga Perak Hari Ini | Update Terbaru per Gram (IDR)",
@@ -93,7 +102,8 @@ export default async function SilverPricePage({ params }: Props) {
       {
         "@type": "Product",
         name: "Silver Price per Gram",
-        description: "Current price of fine silver (999) per gram in Indonesian Rupiah (IDR).",
+        description:
+          "Current price of fine silver (999) per gram in Indonesian Rupiah (IDR).",
         image: "https://salimsilver.com/api/og/silver-price",
         brand: {
           "@type": "Brand",
@@ -104,7 +114,9 @@ export default async function SilverPricePage({ params }: Props) {
           priceCurrency: "IDR",
           price: displayPrices ? displayPrices.currentPrice : "0",
           availability: "https://schema.org/InStock",
-          priceValidUntil: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+          priceValidUntil: new Date(
+            Date.now() + 24 * 60 * 60 * 1000,
+          ).toISOString(),
           url: constructCanonicalUrl(locale, "/silver-price"),
         },
       },

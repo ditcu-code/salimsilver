@@ -2,7 +2,11 @@ import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
 import { SUPABASE_CATALOG_URL } from "@/lib/constants"
-import { constructCanonicalUrl, getOpenGraphLocale } from "@/lib/seo"
+import {
+  constructCanonicalUrl,
+  getAlternates,
+  getOpenGraphLocale,
+} from "@/lib/seo"
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
@@ -22,6 +26,7 @@ export async function generateMetadata({
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
+      languages: getAlternates("/contact"),
     },
     openGraph: {
       type: "website",
@@ -83,7 +88,8 @@ export default async function ContactPage() {
               },
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
+                streetAddress:
+                  "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
                 addressLocality: "Yogyakarta City",
                 addressRegion: "Special Region of Yogyakarta",
                 postalCode: "55173",
