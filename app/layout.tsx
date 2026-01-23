@@ -79,6 +79,7 @@ export const metadata: Metadata = {
   verification: {
     other: {
       "facebook-domain-verification": "wenmk7vlpgfbu5tzqn444a2utztajd",
+      "fb:pages": "100063782388858",
     },
   },
 }
