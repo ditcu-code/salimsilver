@@ -76,6 +76,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    other: {
+      "facebook-domain-verification": "wenmk7vlpgfbu5tzqn444a2utztajd",
+    },
+  },
 }
 
 export const viewport: Viewport = {
@@ -85,7 +90,11 @@ export const viewport: Viewport = {
   ],
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const headerList = await headers()
   const locale = headerList.get("X-Locale") || "en"
 
