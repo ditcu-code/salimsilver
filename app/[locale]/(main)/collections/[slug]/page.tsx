@@ -123,7 +123,6 @@ export default async function CollectionPage({ params, searchParams }: Props) {
       <CollectionContent
         collection={collection}
         featuredCollections={featuredCollections}
-        initialJewelrySlug={(await searchParams).jewelry}
       />
       <script
         type="application/ld+json"
