@@ -450,5 +450,23 @@
       "fallbackDescription": "Deskripsi tidak tersedia.",
       "inquireButton": "Tanyakan tentang perhiasan ini"
     }
+  },
+  "Blog": {
+    "Comments": {
+      "title": "Komentar",
+      "leaveComment": "Tinggalkan komentar",
+      "commentsCount": "{count, plural, =0 {} one {1 Komentar} other {# Komentar}}",
+      "noComments": "Belum ada komentar. Jadilah yang pertama memberikan tanggapan!",
+      "namePlaceholder": "Nama Anda",
+      "nameLabel": "Nama",
+      "emailPlaceholder": "Email Anda (opsional)",
+      "emailLabel": "Email",
+      "commentPlaceholder": "Tulis komentar Anda di sini...",
+      "commentLabel": "Komentar",
+      "submit": "Kirim Komentar",
+      "submitting": "Mengirim...",
+      "success": "Komentar berhasil dikirim!",
+      "error": "Gagal mengirim komentar. Silakan coba lagi."
+    }
   }
 }

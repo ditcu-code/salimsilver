@@ -450,5 +450,23 @@
       "fallbackDescription": "No description available.",
       "inquireButton": "Inquire about this piece"
     }
+  },
+  "Blog": {
+    "Comments": {
+      "title": "Comments",
+      "leaveComment": "Leave a comment",
+      "commentsCount": "{count, plural, =0 {} one {1 Comment} other {# Comments}}",
+      "noComments": "No comments yet. Be the first to share your thoughts!",
+      "namePlaceholder": "Your Name",
+      "nameLabel": "Name",
+      "emailPlaceholder": "Your Email (optional)",
+      "emailLabel": "Email",
+      "commentPlaceholder": "Write your comment here...",
+      "commentLabel": "Comment",
+      "submit": "Post Comment",
+      "submitting": "Posting...",
+      "success": "Comment posted successfully!",
+      "error": "Failed to post comment. Please try again."
+    }
   }
 }

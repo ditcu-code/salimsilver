@@ -1,4 +1,5 @@
 import BlogReadMore from "@/components/blocks/blog-read-more"
+import { CommentSection } from "@/components/features/blog/comment-section"
 import { ViewCounter } from "@/components/features/blog/view-counter"
 import { ShareButton } from "@/components/features/share-button"
 import BackButton from "@/components/ui/back-button"
@@ -187,6 +188,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
           <ShareButton title={post.title} />
         </div>
+
+        <CommentSection postId={post.id} />
 
         <BlogReadMore />
       </div>

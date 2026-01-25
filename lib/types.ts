@@ -141,6 +141,19 @@ export interface User {
   updated_at: string
 }
 
+export interface BlogComment {
+  id: string
+  post_id: string
+  user_id?: string
+  guest_name?: string
+  guest_email?: string
+  content: string
+  is_approved: boolean
+  created_at: string
+  updated_at: string
+  user?: User
+}
+
 export interface SilverPriceSummary {
   id: number
   price_idr: number
