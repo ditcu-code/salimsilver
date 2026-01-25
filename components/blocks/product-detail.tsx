@@ -4,13 +4,10 @@ import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import PhotoAlbum, { type RenderImage } from "react-photo-album"
-import "react-photo-album/rows.css"
 
 import { JewelryLightbox } from "@/components/blocks/jewelry-lightbox"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import type { Jewelry } from "@/lib/types"
-import { cn } from "@/lib/utils"
 
 import type { AlbumJewelry } from "./jewelry-gallery"
 
@@ -35,31 +32,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     key: img.id || `img-${index}`,
   }))
 
-  const renderImage: RenderImage<AlbumJewelry> = (
-    { alt, title, sizes, className, style, onClick },
-    { photo, index }
-  ) => {
-    return (
-      <div
-        style={style}
-        className={cn(
-          className,
-          "bg-secondary/30 relative cursor-pointer overflow-hidden rounded-xl"
-        )}
-        onClick={onClick}
-      >
-        <Image
-          src={photo.src}
-          alt={alt || ""}
-          title={title}
-          fill
-          sizes={sizes}
-          className="object-cover transition-transform duration-500 hover:scale-105"
-        />
-      </div>
-    )
-  }
-
   return (
     <div className="container mx-auto min-h-screen px-4 py-32 md:px-8">
       <div className="mb-6">
@@ -71,7 +43,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   {
                     label: product.collectionSlug
                       .split("-")
-                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
+                      )
                       .join(" "),
                     href: `/collections/${product.collectionSlug}`,
                   },
@@ -86,20 +60,56 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         {/* Left Column: Gallery */}
         <div className="space-y-4">
           {photos.length > 0 ? (
-            <PhotoAlbum
-              layout="rows"
-              photos={photos}
-              targetRowHeight={500}
-              render={{ image: renderImage }}
-              onClick={({ index }) => {
-                setCurrentPhotoIndex(index)
-                setLightboxOpen(true)
-              }}
-            />
+            <div className="space-y-4">
+              <div
+                className="bg-secondary/30 relative aspect-square w-full cursor-pointer overflow-hidden rounded-xl"
+                onClick={() => {
+                  setCurrentPhotoIndex(0)
+                  setLightboxOpen(true)
+                }}
+              >
+                <Image
+                  src={photos[0].src}
+                  alt={photos[0].alt || ""}
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              {photos.length > 1 && (
+                <div className="scrollbar-hide flex gap-4 overflow-x-auto pb-2">
+                  {photos.slice(1).map((photo, index) => (
+                    <div
+                      key={photo.key}
+                      className="bg-secondary/30 relative aspect-square w-24 shrink-0 cursor-pointer overflow-hidden rounded-lg"
+                      onClick={() => {
+                        setCurrentPhotoIndex(index + 1)
+                        setLightboxOpen(true)
+                      }}
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt || ""}
+                        fill
+                        className="object-cover transition-opacity hover:opacity-80"
+                        sizes="96px"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           ) : (
             <div className="bg-secondary/30 relative aspect-square w-full overflow-hidden rounded-xl">
               {product.coverImage && (
-                <Image src={product.coverImage} alt={product.title} fill className="object-cover" />
+                <Image
+                  src={product.coverImage}
+                  alt={product.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               )}
             </div>
           )}
@@ -110,9 +120,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               photos={photos}
               currentIndex={currentPhotoIndex}
               onClose={() => setLightboxOpen(false)}
-              onNext={() => setCurrentPhotoIndex((prev) => (prev + 1) % photos.length)}
+              onNext={() =>
+                setCurrentPhotoIndex((prev) => (prev + 1) % photos.length)
+              }
               onPrevious={() =>
-                setCurrentPhotoIndex((prev) => (prev - 1 + photos.length) % photos.length)
+                setCurrentPhotoIndex(
+                  (prev) => (prev - 1 + photos.length) % photos.length,
+                )
               }
               onSelect={setCurrentPhotoIndex}
               onBackgroundClick={(e) => {
@@ -127,7 +141,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
         {/* Right Column: Product Info */}
         <div className="flex flex-col">
-          <h1 className="font-display mb-4 text-4xl md:text-5xl lg:text-6xl">{product.title}</h1>
+          <h1 className="font-display mb-4 text-4xl md:text-5xl lg:text-6xl">
+            {product.title}
+          </h1>
 
           <div className="bg-secondary/20 mt-8 mb-8 h-px w-full" />
 
@@ -139,11 +155,16 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8">
             <InfoItem label={t("labels.material")} value={product.material} />
-            <InfoItem label={t("labels.purity")} value={product.materialPurity} />
+            <InfoItem
+              label={t("labels.purity")}
+              value={product.materialPurity}
+            />
             <InfoItem
               label={t("labels.weight")}
               value={
-                product.weightGrams ? `${product.weightGrams}${t("suffixes.grams")}` : undefined
+                product.weightGrams
+                  ? `${product.weightGrams}${t("suffixes.grams")}`
+                  : undefined
               }
             />
             <InfoItem
@@ -170,11 +191,19 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   )
 }
 
-function InfoItem({ label, value }: { label: string; value?: string | number }) {
+function InfoItem({
+  label,
+  value,
+}: {
+  label: string
+  value?: string | number
+}) {
   if (!value) return null
   return (
     <div>
-      <h3 className="text-muted-foreground mb-1 text-sm tracking-wider uppercase">{label}</h3>
+      <h3 className="text-muted-foreground mb-1 text-sm tracking-wider uppercase">
+        {label}
+      </h3>
       <p className="text-xl">{value}</p>
     </div>
   )
