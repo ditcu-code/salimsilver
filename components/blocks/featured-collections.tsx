@@ -67,19 +67,14 @@ export default function FeaturedCollections({
               </div>
 
               {/* Content positioned at the bottom */}
-              <div className="absolute right-0 bottom-0 left-0 translate-y-0 transform p-6 transition-transform duration-300 group-hover:translate-y-0">
-                <h3 className="mb-2 text-2xl text-white transition-colors group-hover:text-white/90">
+              <div className="flex flex-row items-center justify-between absolute right-0 bottom-0 left-0 translate-y-0 transform p-6 transition-transform duration-300 group-hover:translate-y-0">
+                <h3 className="text-2xl text-white transition-colors group-hover:text-white/90">
                   {collection.title}
                 </h3>
-                <div className="flex flex-row justify-between">
-                  <p className="line-clamp-2 text-sm text-white/80 transition-colors group-hover:text-white/90">
-                    {collection.description}
-                  </p>
-                  <ArrowRight
-                    size={18}
-                    className="-translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 min-w-10"
-                  />
-                </div>
+                <ArrowRight
+                  size={18}
+                  className="-translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 min-w-10"
+                />
               </div>
             </div>
           </Link>
