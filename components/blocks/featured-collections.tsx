@@ -30,7 +30,9 @@ export default function FeaturedCollections({
 }: FeaturedCollectionsProps = {}) {
   const { playHammerSound } = useHammerSound()
 
-  const shouldRenderSection = Boolean(title || description || (ctaLabel && ctaHref))
+  const shouldRenderSection = Boolean(
+    title || description || (ctaLabel && ctaHref),
+  )
 
   const grid = (
     <div className="no-scrollbar -mx-4 mb-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:px-0 md:pb-0 lg:grid-cols-3">
@@ -52,7 +54,10 @@ export default function FeaturedCollections({
               {/* Image container with overlay */}
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
-                  src={collection.coverImage || "/placeholder.svg?height=600&width=800"}
+                  src={
+                    collection.coverImage ||
+                    "/placeholder.svg?height=600&width=800"
+                  }
                   alt={collection.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -72,7 +77,7 @@ export default function FeaturedCollections({
                   </p>
                   <ArrowRight
                     size={18}
-                    className="-translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                    className="-translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 min-w-10"
                   />
                 </div>
               </div>
@@ -98,9 +103,15 @@ export default function FeaturedCollections({
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {title && <h2 className="font-display mb-4 text-3xl md:text-4xl">{title}</h2>}
+            {title && (
+              <h2 className="font-display mb-4 text-3xl md:text-4xl">
+                {title}
+              </h2>
+            )}
             {description && (
-              <p className="text-muted-foreground mx-auto max-w-2xl">{description}</p>
+              <p className="text-muted-foreground mx-auto max-w-2xl">
+                {description}
+              </p>
             )}
           </motion.div>
         )}
@@ -113,7 +124,11 @@ export default function FeaturedCollections({
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <AnimatedButton href={ctaHref} variant="primary" icon={<ArrowRight size={18} />}>
+            <AnimatedButton
+              href={ctaHref}
+              variant="primary"
+              icon={<ArrowRight size={18} />}
+            >
               {ctaLabel}
             </AnimatedButton>
           </motion.div>
