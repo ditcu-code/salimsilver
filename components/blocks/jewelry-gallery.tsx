@@ -3,13 +3,18 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useCallback, useMemo, useState } from "react"
-import type { ComponentsProps, RenderExtras, RenderImage } from "react-photo-album"
+import type {
+  ComponentsProps,
+  RenderExtras,
+  RenderImage,
+} from "react-photo-album"
 import PhotoAlbum from "react-photo-album"
 import "react-photo-album/masonry.css"
 
 import type { Jewelry } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
 
 interface JewelryGalleryProps {
   jewelryList: Jewelry[]
@@ -26,35 +31,31 @@ export type AlbumJewelry = Jewelry & {
   blurDataUrl?: string
 }
 
-const masonryColumns = (containerWidth: number) => (containerWidth < 768 ? 2 : 3)
+const masonryColumns = (containerWidth: number) =>
+  containerWidth < 768 ? 2 : 3
 
 const PhotoMetadataOverlay = ({ photo }: { photo: AlbumJewelry }) => {
   return (
     <div className="pointer-events-none absolute inset-0 z-10 flex items-end bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-      <div className="w-full p-6 text-white">
+      <div className="w-full p-6 text-white flex flex-row items-baseline-last justify-between">
         {photo.title && (
-          <h3 className="mb-2 font-serif text-xl font-medium tracking-wide text-white">
+          <h3 className="font-serif text-xl font-medium tracking-wide text-white">
             {photo.title}
           </h3>
         )}
-        {photo.description && (
-          <p className="line-clamp-2 text-sm leading-relaxed text-white/90">{photo.description}</p>
-        )}
-
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-white/80">
-          {photo.weightGrams && (
-            <div>
-              <span className="block text-white/60">Weight</span>
-              {photo.weightGrams}g
-            </div>
-          )}
-        </div>
+        <ArrowRight
+          size={18}
+          className="-translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 min-w-10"
+        />
       </div>
     </div>
   )
 }
 
-export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) {
+export function JewelryGallery({
+  jewelryList,
+  className,
+}: JewelryGalleryProps) {
   const [error, setError] = useState<string | null>(null)
 
   const handlePhotoError = useCallback(() => {
@@ -64,13 +65,16 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
   const validPhotos = useMemo(
     () =>
       jewelryList.filter((jewelry) => {
-        if (!jewelry.coverImage && (!jewelry.images || jewelry.images.length === 0)) {
+        if (
+          !jewelry.coverImage &&
+          (!jewelry.images || jewelry.images.length === 0)
+        ) {
           console.warn("Invalid jewelry (no images):", jewelry)
           return false
         }
         return true
       }),
-    [jewelryList]
+    [jewelryList],
   )
 
   const albumPhotos = useMemo<AlbumJewelry[]>(
@@ -83,7 +87,7 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
         height: 800, // Square aspect ratio for now
         alt: photo.title,
       })),
-    [validPhotos]
+    [validPhotos],
   )
 
   const renderImage: RenderImage<AlbumJewelry> = useCallback(
@@ -105,7 +109,10 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
               alt={alt || photo.alt || "Photo"}
               title={title}
               fill
-              sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+              sizes={
+                sizes ||
+                "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              }
               className="object-cover transition-transform duration-500 hover:scale-105"
               quality={85}
               priority={index < 3}
@@ -114,12 +121,12 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
         </motion.div>
       )
     },
-    []
+    [],
   )
 
   const renderExtras: RenderExtras<AlbumJewelry> = useCallback(
     (_, { photo }) => <PhotoMetadataOverlay photo={photo} />,
-    []
+    [],
   )
 
   const componentsProps = useMemo<ComponentsProps<AlbumJewelry>>(
@@ -128,11 +135,12 @@ export function JewelryGallery({ jewelryList, className }: JewelryGalleryProps) 
         className: "group relative overflow-hidden rounded-2xl",
       },
       image: {
-        className: "rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]",
+        className:
+          "rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]",
         onError: handlePhotoError,
       },
     }),
-    [handlePhotoError]
+    [handlePhotoError],
   )
 
   if (error) {
