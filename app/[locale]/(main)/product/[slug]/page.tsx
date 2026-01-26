@@ -9,6 +9,7 @@ import {
   getAlternates,
   getOpenGraphLocale,
 } from "@/lib/seo"
+export { revalidate } from "@/lib/collections"
 
 interface Props {
   params: Promise<{

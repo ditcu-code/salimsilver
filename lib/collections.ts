@@ -1,11 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import type { Collection, Jewelry } from "./types"
 
-// Revalidate data every hour (3600 seconds) or as needed.
-// Since we have an admin panel now, we might want shorter revalidation or use on-demand revalidation.
-// For now, let's stick to a reasonable time or 0 for dynamic if we want instant updates.
-// Given it's a catalog, maybe 60 seconds is fine.
-export const revalidate = 3600
+export const revalidate = 86400
 
 // --- Data Fetching Functions ---
 
@@ -166,7 +162,9 @@ export async function getFeaturedCollections(): Promise<Collection[]> {
   }))
 }
 
-export async function getCollection(slug: string): Promise<Collection | undefined> {
+export async function getCollection(
+  slug: string,
+): Promise<Collection | undefined> {
   const supabase = await createClient()
 
   if (slug === "unassigned") return undefined // Explicitly hide
@@ -216,14 +214,15 @@ export async function getCollection(slug: string): Promise<Collection | undefine
     let jewelryImagesMap: Record<string, any[]> = {}
     if (jImages) {
       jImages.forEach((img: any) => {
-        if (!jewelryImagesMap[img.jewelry_id]) jewelryImagesMap[img.jewelry_id] = []
+        if (!jewelryImagesMap[img.jewelry_id])
+          jewelryImagesMap[img.jewelry_id] = []
         jewelryImagesMap[img.jewelry_id].push(img)
       })
     }
 
     mappedJewelry = jewelryItems.map((item: any) => {
       const itemImages = (jewelryImagesMap[item.id] || []).sort(
-        (a: any, b: any) => a.display_order - b.display_order
+        (a: any, b: any) => a.display_order - b.display_order,
       )
       const itemCover = itemImages[0]?.src || ""
 
@@ -266,7 +265,9 @@ export async function getCollection(slug: string): Promise<Collection | undefine
   }
 }
 
-export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefined> {
+export async function getJewelryBySlug(
+  slug: string,
+): Promise<Jewelry | undefined> {
   const supabase = await createClient()
   const { data: item, error } = await supabase
     .from("jewelry")
@@ -316,7 +317,9 @@ export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefine
   }
 }
 
-export async function getAllJewelry(): Promise<{ slug: string; updated_at: string }[]> {
+export async function getAllJewelry(): Promise<
+  { slug: string; updated_at: string }[]
+> {
   const supabase = await createClient()
   const { data: jewelry, error } = await supabase
     .from("jewelry")

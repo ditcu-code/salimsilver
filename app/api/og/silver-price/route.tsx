@@ -36,6 +36,6 @@ export async function GET() {
 
   return await generateOgImage(
     `Harga Perak Hari Ini: ${formattedPrice} per gram`,
-    `Update Terbaru ${today}. Cek detail harga perak murni hari ini di Salim Silver.`
+    `Update Terbaru ${today}. Cek detail harga perak murni hari ini di Salim Silver.`,
   )
 }
