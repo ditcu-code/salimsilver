@@ -180,7 +180,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
           <div className="mt-12">
             <AnimatedButton
-              href="/contact"
+              href={`/contact?message=${encodeURIComponent(
+                `Hello, I am interested in the ${product.title}. Could you please provide more information regarding its availability and pricing? Thank you.`,
+              )}`}
               variant="outline"
               icon={<ArrowRight size={16} />}
             >
