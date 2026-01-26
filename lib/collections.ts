@@ -1,231 +1,321 @@
 import { createClient } from "@/lib/supabase/server"
+import { unstable_cache } from "next/cache"
+import { cache } from "react"
 import type { Collection, Jewelry } from "./types"
-
-// Revalidate data every hour (3600 seconds) or as needed.
-// Since we have an admin panel now, we might want shorter revalidation or use on-demand revalidation.
-// For now, let's stick to a reasonable time or 0 for dynamic if we want instant updates.
-// Given it's a catalog, maybe 60 seconds is fine.
-export const revalidate = 3600
 
 // --- Data Fetching Functions ---
 
-export async function getAllCollections(): Promise<Collection[]> {
-  const supabase = await createClient()
+export const getAllCollections = cache(
+  unstable_cache(
+    async (): Promise<Collection[]> => {
+      const supabase = await createClient()
 
-  // 1. Fetch collections
-  const { data: collections, error } = await supabase
-    .from("collections")
-    .select("*")
-    .neq("slug", "unassigned") // Hide unassigned collection
-    .order("title")
+      // 1. Fetch collections
+      const { data: collections, error } = await supabase
+        .from("collections")
+        .select("*")
+        .neq("slug", "unassigned") // Hide unassigned collection
+        .order("title")
 
-  if (error) {
-    console.error("Error fetching collections:", error)
-    return []
-  }
+      if (error) {
+        console.error("Error fetching collections:", error)
+        return []
+      }
 
-  if (!collections || collections.length === 0) return []
+      if (!collections || collections.length === 0) return []
 
-  // 2. Fetch cover images manually
-  const coverImageIds = collections.map((c) => c.cover_image_id).filter(Boolean)
-  let coverImagesMap: Record<string, string> = {}
+      // 2. Fetch cover images manually
+      const coverImageIds = collections
+        .map((c) => c.cover_image_id)
+        .filter(Boolean)
+      let coverImagesMap: Record<string, string> = {}
 
-  if (coverImageIds.length > 0) {
-    const { data: images } = await supabase
-      .from("jewelry_images")
-      .select("id, src")
-      .in("id", coverImageIds)
+      if (coverImageIds.length > 0) {
+        const { data: images } = await supabase
+          .from("jewelry_images")
+          .select("id, src")
+          .in("id", coverImageIds)
 
-    if (images) {
-      images.forEach((img: any) => {
-        coverImagesMap[img.id] = img.src
-      })
-    }
-  }
-
-  // 3. To support Catalog page, we SHOULD fetch jewelry for these collections (or let catalog page fetch them separately?
-  // The current CatalogPageClient expects `jewelryList` to be present on the collection)
-  // We'll fetch all jewelry for these collections.
-  const collectionIds = collections.map((c) => c.id)
-
-  // Fetch jewelry
-  const { data: allJewelry, error: jewelryError } = await supabase
-    .from("jewelry")
-    .select("*")
-    .in("collection_id", collectionIds)
-    .order("created_at", { ascending: false })
-
-  // Fetch images for jewelry (needed for gallery)
-  // We can fetch ALL images for these jewelry items
-  let jewelryImagesMap: Record<string, any[]> = {}
-
-  if (allJewelry && allJewelry.length > 0) {
-    const jewelryIds = allJewelry.map((j) => j.id)
-    const { data: jImages } = await supabase
-      .from("jewelry_images")
-      .select("*")
-      .in("jewelry_id", jewelryIds)
-      .order("display_order")
-
-    if (jImages) {
-      jImages.forEach((img: any) => {
-        if (!jewelryImagesMap[img.jewelry_id]) {
-          jewelryImagesMap[img.jewelry_id] = []
+        if (images) {
+          images.forEach((img: any) => {
+            coverImagesMap[img.id] = img.src
+          })
         }
-        jewelryImagesMap[img.jewelry_id].push(img)
-      })
-    }
-  }
+      }
 
-  return collections.map((col: any) => {
-    // Map jewelry for this collection
-    const colJewelry = (allJewelry || [])
-      .filter((j: any) => j.collection_id === col.id)
-      .map((item: any) => {
-        const itemImages = jewelryImagesMap[item.id] || []
-        const cover = itemImages[0]?.src || ""
+      // 3. To support Catalog page, we SHOULD fetch jewelry for these collections (or let catalog page fetch them separately?
+      // The current CatalogPageClient expects `jewelryList` to be present on the collection)
+      // We'll fetch all jewelry for these collections.
+      const collectionIds = collections.map((c) => c.id)
+
+      // Fetch jewelry
+      const { data: allJewelry, error: jewelryError } = await supabase
+        .from("jewelry")
+        .select("*")
+        .in("collection_id", collectionIds)
+        .order("created_at", { ascending: false })
+
+      // Fetch images for jewelry (needed for gallery)
+      // We can fetch ALL images for these jewelry items
+      let jewelryImagesMap: Record<string, any[]> = {}
+
+      if (allJewelry && allJewelry.length > 0) {
+        const jewelryIds = allJewelry.map((j) => j.id)
+        const { data: jImages } = await supabase
+          .from("jewelry_images")
+          .select("*")
+          .in("jewelry_id", jewelryIds)
+          .order("display_order")
+
+        if (jImages) {
+          jImages.forEach((img: any) => {
+            if (!jewelryImagesMap[img.jewelry_id]) {
+              jewelryImagesMap[img.jewelry_id] = []
+            }
+            jewelryImagesMap[img.jewelry_id].push(img)
+          })
+        }
+      }
+
+      return collections.map((col: any) => {
+        // Map jewelry for this collection
+        const colJewelry = (allJewelry || [])
+          .filter((j: any) => j.collection_id === col.id)
+          .map((item: any) => {
+            const itemImages = jewelryImagesMap[item.id] || []
+            const cover = itemImages[0]?.src || ""
+
+            return {
+              id: item.id,
+              collectionId: item.collection_id,
+              slug: item.slug,
+              title: item.title,
+              description: item.description,
+              material: item.material,
+              materialPurity: item.material_purity,
+              weightGrams: item.weight_grams,
+              craftingTimeHours: item.crafting_time_hours,
+              productionYear: item.production_year,
+              status: item.status,
+              variants: item.variants,
+              images: itemImages.map((img: any) => ({
+                id: img.id,
+                jewelryId: item.id,
+                src: img.src,
+                displayOrder: img.display_order,
+                createdBy: img.created_by,
+              })),
+              coverImage: cover,
+              createdBy: item.created_by,
+            }
+          })
 
         return {
-          id: item.id,
-          collectionId: item.collection_id,
-          slug: item.slug,
-          title: item.title,
-          description: item.description,
-          material: item.material,
-          materialPurity: item.material_purity,
-          weightGrams: item.weight_grams,
-          craftingTimeHours: item.crafting_time_hours,
-          productionYear: item.production_year,
-          status: item.status,
-          variants: item.variants,
-          images: itemImages.map((img: any) => ({
-            id: img.id,
-            jewelryId: item.id,
-            src: img.src,
-            displayOrder: img.display_order,
-            createdBy: img.created_by,
-          })),
-          coverImage: cover,
-          createdBy: item.created_by,
+          id: col.id,
+          slug: col.slug,
+          title: col.title,
+          description: col.description,
+          featured: col.featured,
+          coverImageId: col.cover_image_id,
+          coverImage: coverImagesMap[col.cover_image_id] || "",
+          jewelryList: colJewelry,
+          createdBy: col.created_by,
         }
       })
+    },
+    ["all-collections"],
+    { tags: ["collections"], revalidate: 3600 },
+  ),
+)
 
-    return {
-      id: col.id,
-      slug: col.slug,
-      title: col.title,
-      description: col.description,
-      featured: col.featured,
-      coverImageId: col.cover_image_id,
-      coverImage: coverImagesMap[col.cover_image_id] || "",
-      jewelryList: colJewelry,
-      createdBy: col.created_by,
-    }
-  })
-}
+export const getFeaturedCollections = cache(
+  unstable_cache(
+    async (): Promise<Collection[]> => {
+      const supabase = await createClient()
+      const { data: collections, error } = await supabase
+        .from("collections")
+        .select("*")
+        .eq("featured", true)
+        .neq("slug", "unassigned") // Hide unassigned from featured
 
-export async function getFeaturedCollections(): Promise<Collection[]> {
-  const supabase = await createClient()
-  const { data: collections, error } = await supabase
-    .from("collections")
-    .select("*")
-    .eq("featured", true)
-    .neq("slug", "unassigned") // Hide unassigned from featured
+      if (error) {
+        console.error("Error fetching featured collections:", error)
+        return []
+      }
 
-  if (error) {
-    console.error("Error fetching featured collections:", error)
-    return []
-  }
+      if (!collections || collections.length === 0) return []
 
-  if (!collections || collections.length === 0) return []
+      const coverImageIds = collections
+        .map((c) => c.cover_image_id)
+        .filter(Boolean)
+      let coverImagesMap: Record<string, string> = {}
 
-  const coverImageIds = collections.map((c) => c.cover_image_id).filter(Boolean)
-  let coverImagesMap: Record<string, string> = {}
+      if (coverImageIds.length > 0) {
+        const { data: images } = await supabase
+          .from("jewelry_images")
+          .select("id, src")
+          .in("id", coverImageIds)
 
-  if (coverImageIds.length > 0) {
-    const { data: images } = await supabase
-      .from("jewelry_images")
-      .select("id, src")
-      .in("id", coverImageIds)
+        if (images) {
+          images.forEach((img: any) => {
+            coverImagesMap[img.id] = img.src
+          })
+        }
+      }
 
-    if (images) {
-      images.forEach((img: any) => {
-        coverImagesMap[img.id] = img.src
-      })
-    }
-  }
+      return collections.map((col: any) => ({
+        id: col.id,
+        slug: col.slug,
+        title: col.title,
+        description: col.description,
+        featured: col.featured,
+        coverImageId: col.cover_image_id,
+        coverImage: coverImagesMap[col.cover_image_id] || "",
+      }))
+    },
+    ["featured-collections"],
+    { tags: ["collections"], revalidate: 3600 },
+  ),
+)
 
-  return collections.map((col: any) => ({
-    id: col.id,
-    slug: col.slug,
-    title: col.title,
-    description: col.description,
-    featured: col.featured,
-    coverImageId: col.cover_image_id,
-    coverImage: coverImagesMap[col.cover_image_id] || "",
-  }))
-}
+export const getCollection = cache(
+  unstable_cache(
+    async (slug: string): Promise<Collection | undefined> => {
+      const supabase = await createClient()
 
-export async function getCollection(slug: string): Promise<Collection | undefined> {
-  const supabase = await createClient()
+      if (slug === "unassigned") return undefined // Explicitly hide
 
-  if (slug === "unassigned") return undefined // Explicitly hide
+      const { data: collection, error } = await supabase
+        .from("collections")
+        .select("*")
+        .eq("slug", slug)
+        .single()
 
-  const { data: collection, error } = await supabase
-    .from("collections")
-    .select("*")
-    .eq("slug", slug)
-    .single()
+      if (error || !collection) {
+        console.error("Error fetching collection:", error)
+        return undefined
+      }
 
-  if (error || !collection) {
-    console.error("Error fetching collection:", error)
-    return undefined
-  }
+      // Fetch cover image
+      let coverImage = ""
+      if (collection.cover_image_id) {
+        const { data: img } = await supabase
+          .from("jewelry_images")
+          .select("src")
+          .eq("id", collection.cover_image_id)
+          .single()
+        if (img) coverImage = img.src
+      }
 
-  // Fetch cover image
-  let coverImage = ""
-  if (collection.cover_image_id) {
-    const { data: img } = await supabase
-      .from("jewelry_images")
-      .select("src")
-      .eq("id", collection.cover_image_id)
-      .single()
-    if (img) coverImage = img.src
-  }
+      // Fetch jewelry items
+      const { data: jewelryItems, error: jewelryError } = await supabase
+        .from("jewelry")
+        .select("*")
+        .eq("collection_id", collection.id)
+        .order("created_at", { ascending: false })
 
-  // Fetch jewelry items
-  const { data: jewelryItems, error: jewelryError } = await supabase
-    .from("jewelry")
-    .select("*")
-    .eq("collection_id", collection.id)
-    .order("created_at", { ascending: false })
+      if (jewelryError) {
+        console.error("Error fetching jewelry items:", jewelryError)
+      }
 
-  if (jewelryError) {
-    console.error("Error fetching jewelry items:", jewelryError)
-  }
+      let mappedJewelry: Jewelry[] = []
 
-  let mappedJewelry: Jewelry[] = []
+      if (jewelryItems && jewelryItems.length > 0) {
+        const jewelryIds = jewelryItems.map((j: any) => j.id)
+        const { data: jImages } = await supabase
+          .from("jewelry_images")
+          .select("*")
+          .in("jewelry_id", jewelryIds)
 
-  if (jewelryItems && jewelryItems.length > 0) {
-    const jewelryIds = jewelryItems.map((j: any) => j.id)
-    const { data: jImages } = await supabase
-      .from("jewelry_images")
-      .select("*")
-      .in("jewelry_id", jewelryIds)
+        let jewelryImagesMap: Record<string, any[]> = {}
+        if (jImages) {
+          jImages.forEach((img: any) => {
+            if (!jewelryImagesMap[img.jewelry_id])
+              jewelryImagesMap[img.jewelry_id] = []
+            jewelryImagesMap[img.jewelry_id].push(img)
+          })
+        }
 
-    let jewelryImagesMap: Record<string, any[]> = {}
-    if (jImages) {
-      jImages.forEach((img: any) => {
-        if (!jewelryImagesMap[img.jewelry_id]) jewelryImagesMap[img.jewelry_id] = []
-        jewelryImagesMap[img.jewelry_id].push(img)
-      })
-    }
+        mappedJewelry = jewelryItems.map((item: any) => {
+          const itemImages = (jewelryImagesMap[item.id] || []).sort(
+            (a: any, b: any) => a.display_order - b.display_order,
+          )
+          const itemCover = itemImages[0]?.src || ""
 
-    mappedJewelry = jewelryItems.map((item: any) => {
-      const itemImages = (jewelryImagesMap[item.id] || []).sort(
-        (a: any, b: any) => a.display_order - b.display_order
-      )
-      const itemCover = itemImages[0]?.src || ""
+          return {
+            id: item.id,
+            collectionId: item.collection_id,
+            slug: item.slug,
+            title: item.title,
+            description: item.description,
+            material: item.material,
+            materialPurity: item.material_purity,
+            weightGrams: item.weight_grams,
+            craftingTimeHours: item.crafting_time_hours,
+            productionYear: item.production_year,
+            status: item.status,
+            variants: item.variants,
+            images: itemImages.map((img: any) => ({
+              id: img.id,
+              jewelryId: item.id,
+              src: img.src,
+              displayOrder: img.display_order,
+              createdBy: img.created_by,
+            })),
+            coverImage: itemCover,
+            createdBy: item.created_by,
+          }
+        })
+      }
+
+      return {
+        id: collection.id,
+        slug: collection.slug,
+        title: collection.title,
+        description: collection.description,
+        featured: collection.featured,
+        coverImageId: collection.cover_image_id,
+        coverImage: coverImage,
+        jewelryList: mappedJewelry,
+        createdBy: collection.created_by,
+      }
+    },
+    ["collection-by-slug"],
+    { tags: ["collections"], revalidate: 3600 },
+  ),
+)
+
+export const getJewelryBySlug = cache(
+  unstable_cache(
+    async (slug: string): Promise<Jewelry | undefined> => {
+      const supabase = await createClient()
+      const { data: item, error } = await supabase
+        .from("jewelry")
+        .select("*, collections(slug)")
+        .eq("slug", slug)
+        .single()
+
+      if (error || !item) {
+        console.error("Error fetching jewelry by slug:", error)
+        return undefined
+      }
+
+      // Fetch images
+      const { data: images } = await supabase
+        .from("jewelry_images")
+        .select("*")
+        .eq("jewelry_id", item.id)
+        .order("display_order")
+
+      const itemImages = (images || []).map((img: any) => ({
+        id: img.id,
+        jewelryId: item.id,
+        src: img.src,
+        displayOrder: img.display_order,
+        createdBy: img.created_by,
+      }))
+
+      const cover = itemImages[0]?.src || ""
 
       return {
         id: item.id,
@@ -240,83 +330,20 @@ export async function getCollection(slug: string): Promise<Collection | undefine
         productionYear: item.production_year,
         status: item.status,
         variants: item.variants,
-        images: itemImages.map((img: any) => ({
-          id: img.id,
-          jewelryId: item.id,
-          src: img.src,
-          displayOrder: img.display_order,
-          createdBy: img.created_by,
-        })),
-        coverImage: itemCover,
+        images: itemImages,
+        coverImage: cover,
+        collectionSlug: item.collections?.slug,
         createdBy: item.created_by,
       }
-    })
-  }
+    },
+    ["jewelry-by-slug"],
+    { tags: ["jewelry"], revalidate: 3600 },
+  ),
+)
 
-  return {
-    id: collection.id,
-    slug: collection.slug,
-    title: collection.title,
-    description: collection.description,
-    featured: collection.featured,
-    coverImageId: collection.cover_image_id,
-    coverImage: coverImage,
-    jewelryList: mappedJewelry,
-    createdBy: collection.created_by,
-  }
-}
-
-export async function getJewelryBySlug(slug: string): Promise<Jewelry | undefined> {
-  const supabase = await createClient()
-  const { data: item, error } = await supabase
-    .from("jewelry")
-    .select("*, collections(slug)")
-    .eq("slug", slug)
-    .single()
-
-  if (error || !item) {
-    console.error("Error fetching jewelry by slug:", error)
-    return undefined
-  }
-
-  // Fetch images
-  const { data: images } = await supabase
-    .from("jewelry_images")
-    .select("*")
-    .eq("jewelry_id", item.id)
-    .order("display_order")
-
-  const itemImages = (images || []).map((img: any) => ({
-    id: img.id,
-    jewelryId: item.id,
-    src: img.src,
-    displayOrder: img.display_order,
-    createdBy: img.created_by,
-  }))
-
-  const cover = itemImages[0]?.src || ""
-
-  return {
-    id: item.id,
-    collectionId: item.collection_id,
-    slug: item.slug,
-    title: item.title,
-    description: item.description,
-    material: item.material,
-    materialPurity: item.material_purity,
-    weightGrams: item.weight_grams,
-    craftingTimeHours: item.crafting_time_hours,
-    productionYear: item.production_year,
-    status: item.status,
-    variants: item.variants,
-    images: itemImages,
-    coverImage: cover,
-    collectionSlug: item.collections?.slug,
-    createdBy: item.created_by,
-  }
-}
-
-export async function getAllJewelry(): Promise<{ slug: string; updated_at: string }[]> {
+export async function getAllJewelry(): Promise<
+  { slug: string; updated_at: string }[]
+> {
   const supabase = await createClient()
   const { data: jewelry, error } = await supabase
     .from("jewelry")

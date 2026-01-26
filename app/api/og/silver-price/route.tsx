@@ -1,12 +1,13 @@
 import { generateOgImage } from "@/lib/og-generator"
 import { createClient } from "@/lib/supabase/server"
+import { NextRequest } from "next/server"
 
-export const runtime = "nodejs"
+export const runtime = "edge"
 
 // Revalidate every 30 minutes
 export const revalidate = 1800
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   const supabase = await createClient()
 
   // Fetch latest silver price
@@ -34,8 +35,14 @@ export async function GET() {
     year: "numeric",
   })
 
+  const imageUrl = new URL(
+    "/images/og-background.jpg",
+    request.nextUrl.origin,
+  ).toString()
+
   return await generateOgImage(
     `Harga Perak Hari Ini: ${formattedPrice} per gram`,
-    `Update Terbaru ${today}. Cek detail harga perak murni hari ini di Salim Silver.`
+    `Update Terbaru ${today}. Cek detail harga perak murni hari ini di Salim Silver.`,
+    imageUrl,
   )
 }

@@ -1,7 +1,4 @@
-import { readFileSync } from "fs"
 import { ImageResponse } from "next/og"
-import { join } from "path"
-import sharp from "sharp"
 
 // Robust font fetching function
 async function loadGoogleFont(font: string, text: string) {
@@ -95,27 +92,22 @@ const styles = {
 export async function generateOgImage(
   title: string,
   description: string,
-  imagePath: string = "public/images/og-background.jpg"
+  imageUrl: string,
 ) {
-  const bgPath = join(process.cwd(), imagePath)
-  const fileBuffer = readFileSync(bgPath)
-  // Resize background to cover the OG dimensions
-  const bgBuffer = await sharp(fileBuffer)
-    .resize(1200, 630, {
-      fit: "cover",
-      position: "center",
-    })
-    .jpeg({ quality: 80 })
-    .toBuffer()
-  const bgBase64 = `data:image/jpeg;base64,${bgBuffer.toString("base64")}`
+  // Fetch background image
+  const bgBuffer = await fetch(imageUrl).then((res) => res.arrayBuffer())
+  const bgBase64 = `data:image/jpeg;base64,${Buffer.from(bgBuffer).toString("base64")}`
 
   // Load fonts
   const [cormorantFont, latoFont] = await Promise.all([
     loadGoogleFont("Cormorant Garamond:wght@700", title),
-    loadGoogleFont("Lato:wght@400", `Salim Silver ${description} Kotagede - Yogyakarta`),
+    loadGoogleFont(
+      "Lato:wght@400",
+      `Salim Silver ${description} Kotagede - Yogyakarta`,
+    ),
   ])
 
-  const imageResponse = new ImageResponse(
+  return new ImageResponse(
     <div
       style={{
         ...styles.container,
@@ -158,18 +150,6 @@ export async function generateOgImage(
           weight: 400,
         },
       ],
-    }
-  )
-
-  const arrayBuffer = await imageResponse.arrayBuffer()
-  const buffer = Buffer.from(arrayBuffer)
-  // Convert to JPEG using sharp with quality 80 to ensure size < 300KB
-  const compressedBuffer = await sharp(buffer).jpeg({ quality: 80 }).toBuffer()
-
-  return new Response(compressedBuffer as unknown as BodyInit, {
-    headers: {
-      "Content-Type": "image/jpeg",
-      "Cache-Control": "public, immutable, no-transform, max-age=31536000",
     },
-  })
+  )
 }
