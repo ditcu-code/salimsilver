@@ -2,13 +2,14 @@
 
 import { useTranslations } from "next-intl"
 import Image from "next/image"
-import Link from "next/link"
 import { useState } from "react"
 
 import { JewelryLightbox } from "@/components/blocks/jewelry-lightbox"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 import type { Jewelry } from "@/lib/types"
 
+import { ArrowRight } from "lucide-react"
+import AnimatedButton from "../ui/animated-button"
 import type { AlbumJewelry } from "./jewelry-gallery"
 
 interface ProductDetailProps {
@@ -141,7 +142,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
         {/* Right Column: Product Info */}
         <div className="flex flex-col">
-          <h1 className="font-display mb-4 text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="font-display mb-4 text-3xl md:text-4xl lg:text-5xl">
             {product.title}
           </h1>
 
@@ -178,12 +179,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           </div>
 
           <div className="mt-12">
-            <Link
+            <AnimatedButton
               href="/contact"
-              className="bg-foreground text-background inline-flex h-12 items-center justify-center rounded-full px-8 text-sm font-medium transition-colors hover:bg-black/80 dark:hover:bg-white/80"
+              variant="outline"
+              icon={<ArrowRight size={16} />}
             >
               {t("inquireButton")}
-            </Link>
+            </AnimatedButton>
           </div>
         </div>
       </div>
@@ -201,7 +203,7 @@ function InfoItem({
   if (!value) return null
   return (
     <div>
-      <h3 className="text-muted-foreground mb-1 text-sm tracking-wider uppercase">
+      <h3 className="font-sans! text-muted-foreground mb-1 text-sm tracking-wider uppercase">
         {label}
       </h3>
       <p className="text-xl">{value}</p>
