@@ -2,7 +2,7 @@ import { getAllCollections, getJewelryBySlug } from "@/lib/collections"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { Suspense } from "react"
-export { revalidate } from "@/lib/collections"
+export const revalidate = 86400
 
 import CatalogPageClient from "./page.client"
 

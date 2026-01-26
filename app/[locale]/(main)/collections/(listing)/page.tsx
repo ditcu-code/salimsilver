@@ -8,7 +8,7 @@ import {
   getAlternates,
   getOpenGraphLocale,
 } from "@/lib/seo"
-export { revalidate } from "@/lib/collections"
+export const revalidate = 86400
 
 type Props = {
   params: Promise<{ locale: string }>

@@ -9,7 +9,7 @@ import {
 import { BASE_URL } from "@/lib/constants"
 import { getAlternates, getOpenGraphLocale } from "@/lib/seo"
 import { notFound } from "next/navigation"
-export { revalidate } from "@/lib/collections"
+export const revalidate = 86400
 
 import { CollectionContent } from "./collection-content"
 

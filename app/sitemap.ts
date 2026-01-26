@@ -3,7 +3,7 @@ import { getAllCollections, getAllJewelry } from "@/lib/collections"
 import { BASE_URL } from "@/lib/constants"
 import { MetadataRoute } from "next"
 
-export const revalidate = 3600 // Revalidate at least every hour
+export const revalidate = 86400 // Revalidate every day
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts(false)
