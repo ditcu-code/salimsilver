@@ -25,7 +25,7 @@ export default function CollectionHero({
       />
       <div className="absolute inset-0 bg-black/40" />
       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-        <h1 className="mb-2 text-4xl text-white md:text-5xl">{title}</h1>
+        <h1 className="mb-4 text-4xl text-white md:text-5xl">{title}</h1>
         {description && (
           <p className="max-w-2xl text-lg text-white/90">{description}</p>
         )}

@@ -142,11 +142,11 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
         {/* Right Column: Product Info */}
         <div className="flex flex-col">
-          <h1 className="font-display mb-4 text-3xl md:text-4xl lg:text-5xl">
+          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl">
             {product.title}
           </h1>
 
-          <div className="bg-secondary/20 mt-8 mb-8 h-px w-full" />
+          <div className="bg-secondary/20 my-2 md:my-4 h-px w-full" />
 
           <div className="prose prose-stone dark:prose-invert max-w-none">
             <p className="text-muted-foreground text-lg leading-relaxed">
