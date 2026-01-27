@@ -1,18 +1,35 @@
-import { createClient } from "@/lib/supabase/server"
+import { createClient as createSupabaseClient } from "@supabase/supabase-js"
 import { unstable_cache } from "next/cache"
 import { SilverPriceSummary } from "./types"
 
 export const getSilverPriceSummary = unstable_cache(
   async (): Promise<SilverPriceSummary | null> => {
-    const supabase = await createClient()
+    try {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 
-    const { data } = await supabase
-      .from("silver_price_summary")
-      .select("*")
-      .eq("id", 1)
-      .single()
+      if (!supabaseUrl || !supabaseKey) {
+        throw new Error("Supabase environment variables missing")
+      }
 
-    return data as SilverPriceSummary
+      const supabase = createSupabaseClient(supabaseUrl, supabaseKey)
+
+      const { data, error } = await supabase
+        .from("silver_price_summary")
+        .select("*")
+        .eq("id", 1)
+        .single()
+
+      if (error) {
+        console.error("Supabase Error in getSilverPriceSummary:", error)
+        throw error
+      }
+
+      return data as SilverPriceSummary
+    } catch (e) {
+      console.error("Exception in getSilverPriceSummary:", e)
+      throw e
+    }
   },
   ["silver-price-summary"],
   {
