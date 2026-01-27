@@ -1,7 +1,6 @@
-import { Clock3, Mail, Phone } from "lucide-react"
+import { Gem, Hammer, Sparkles } from "lucide-react"
 import type { Metadata } from "next"
 import { getTranslations, setRequestLocale } from "next-intl/server"
-import type { ReactNode } from "react"
 
 import CTASection from "@/components/blocks/cta-section"
 import StoreLocationSection from "@/components/blocks/store-location-section"
@@ -61,61 +60,48 @@ export default async function StoreLocationPage({ params }: Props) {
 
       {/* Content Section */}
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
-        <div className="grid gap-12 md:grid-cols-[1.2fr,0.8fr]">
-          {/* Left Column: What to Expect */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="font-display mb-4 text-3xl">
-                {t("Content.title")}
-              </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {t("Content.description")}
-              </p>
-            </div>
-
-            <div className="border-border bg-card/60 rounded-3xl border p-8 shadow-sm backdrop-blur">
-              <h3 className="font-display mb-4 text-2xl">
-                {t("Expectations.title")}
-              </h3>
-              <ul className="text-muted-foreground space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="bg-primary mt-3 h-1.5 w-1.5 shrink-0 rounded-full" />
-                  <span>{t("Expectations.items.browse")}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="bg-primary mt-3 h-1.5 w-1.5 shrink-0 rounded-full" />
-                  <span>{t("Expectations.items.works")}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="bg-primary mt-3 h-1.5 w-1.5 shrink-0 rounded-full" />
-                  <span>{t("Expectations.items.consult")}</span>
-                </li>
-              </ul>
-            </div>
+        <div className="grid gap-12 md:grid-cols-2 md:items-center">
+          <div className="space-y-6">
+            <h2 className="font-display text-3xl md:text-4xl">
+              {t("Content.title")}
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              {t("Content.description")}
+            </p>
           </div>
 
-          {/* Right Column: Quick Info */}
-          <div className="space-y-6">
-            <h3 className="font-display mb-4 text-2xl">
-              {t("QuickInfo.title")}
+          <div className="border-border bg-card/60 relative overflow-hidden rounded-3xl border p-8 shadow-sm backdrop-blur md:p-10">
+            <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-linear-to-br from-primary/10 to-transparent blur-3xl" />
+
+            <h3 className="font-display mb-8 text-2xl">
+              {t("Expectations.title")}
             </h3>
-            <div className="grid gap-4">
-              <InfoCard
-                icon={<Clock3 className="text-primary" size={20} />}
-                title={t("QuickInfo.plan.title")}
-                description={t("QuickInfo.plan.description")}
-              />
-              <InfoCard
-                icon={<Phone className="text-primary" size={20} />}
-                title={t("QuickInfo.call.title")}
-                description="+62 896 7197 7699"
-              />
-              <InfoCard
-                icon={<Mail className="text-primary" size={20} />}
-                title={t("QuickInfo.email.title")}
-                description="hello@salimsilver.com"
-              />
-            </div>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4">
+                <div className="bg-primary/10 text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
+                  <Gem size={20} />
+                </div>
+                <p className="text-foreground font-medium">
+                  {t("Expectations.items.browse")}
+                </p>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="bg-primary/10 text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
+                  <Hammer size={20} />
+                </div>
+                <p className="text-foreground font-medium">
+                  {t("Expectations.items.works")}
+                </p>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="bg-primary/10 text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
+                  <Sparkles size={20} />
+                </div>
+                <p className="text-foreground font-medium">
+                  {t("Expectations.items.consult")}
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -172,28 +158,6 @@ export default async function StoreLocationPage({ params }: Props) {
           }),
         }}
       />
-    </div>
-  )
-}
-
-interface InfoCardProps {
-  icon: ReactNode
-  title: string
-  description: ReactNode
-}
-
-function InfoCard({ icon, title, description }: InfoCardProps) {
-  return (
-    <div className="border-border bg-card hover:border-primary/20 flex gap-4 rounded-3xl border p-5 transition-colors">
-      <div className="bg-primary/10 text-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
-        {icon}
-      </div>
-      <div>
-        <p className="text-muted-foreground mb-1 text-sm font-semibold tracking-wide uppercase">
-          {title}
-        </p>
-        <div className="text-foreground font-medium">{description}</div>
-      </div>
     </div>
   )
 }

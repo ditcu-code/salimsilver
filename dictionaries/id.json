@@ -301,29 +301,17 @@
         "consult": "Coba perhiasan dan konsultasikan desain kustom dengan tim kami"
       }
     },
-    "QuickInfo": {
-      "title": "Informasi Cepat",
-      "plan": {
-        "title": "Rencanakan Kunjungan",
-        "description": "Beri tahu kami sebelum kedatangan agar kami dapat menyiapkan tur singkat di workshop."
-      },
-      "call": {
-        "title": "Hubungi Kami"
-      },
-      "email": {
-        "title": "Email"
-      }
-    },
+
     "LocationSection": {
       "title": "Detail Lokasi",
-      "description": "Kami berlokasi di jantung Kotagede, distrik perak bersejarah di Yogyakarta.",
+      "description": "Kami berlokasi di jantung Kotagede, kemantren perak bersejarah di Yogyakarta.",
       "ctaLabel": "Petunjuk Arah",
       "mapTitle": "Lokasi Salim Silver"
     },
     "CTA": {
       "title": "Jadwalkan Kunjungan Anda",
       "description": "Beri tahu kami kapan Anda ingin mampir, dan kami akan memastikan workshop siap menyambut Anda.",
-      "ctaLabel": "Hubungi Workshop"
+      "ctaLabel": "Booking Workshop"
     }
   },
   "ContactPage": {
