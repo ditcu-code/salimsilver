@@ -8,9 +8,10 @@ import { InstagramEmbed } from "react-social-media-embed"
 interface ReelsGalleryProps {
   reels: string[]
   className?: string
+  title?: string
 }
 
-export function ReelsGallery({ reels, className }: ReelsGalleryProps) {
+export function ReelsGallery({ reels, className, title }: ReelsGalleryProps) {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -22,7 +23,9 @@ export function ReelsGallery({ reels, className }: ReelsGalleryProps) {
   return (
     <section className={cn("py-12", className)}>
       <div className="container mx-auto px-4">
-        <h2 className="text-primary mb-8 text-center font-serif text-3xl">Captured Moments</h2>
+        <h2 className="text-primary mb-8 text-center font-serif text-3xl">
+          {title}
+        </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {reels.map((url, index) => (
             <motion.div
@@ -33,9 +36,7 @@ export function ReelsGallery({ reels, className }: ReelsGalleryProps) {
               viewport={{ once: true }}
               className="group relative flex justify-center hover:z-10"
             >
-              <div className="w-full max-w-[328px] overflow-hidden rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl">
-                <InstagramEmbed url={url} width={328} />
-              </div>
+              <InstagramEmbed url={url} width={328} />
             </motion.div>
           ))}
         </div>

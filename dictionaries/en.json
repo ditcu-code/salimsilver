@@ -134,7 +134,9 @@
     },
     "Hero": {
       "title": "Silversmith Workshop",
-      "description": "Experience the art of Javanese silversmithing. Create your own masterpiece in the heart of Kotagede directly solely with the master."
+      "description": "Experience the art of Javanese silversmithing. Create your own masterpiece in the heart of Kotagede directly solely with the master.",
+      "imageAlt": "Engraving a ring on pitch",
+      "imageTitle": "Let's Create Your Unique Jewelry"
     },
     "Reasons": {
       "storyteller": {
@@ -267,6 +269,13 @@
         "people": "people",
         "closing": "Please let me know about the availability."
       }
+    },
+    "Reels": {
+      "title": "Captured Moments"
+    },
+    "PolaroidGallery": {
+      "title": "Our Happy Students",
+      "studentAlt": "Salim Silver Jewelry Making Workshop Student"
     }
   },
   "StoreLocationPage": {

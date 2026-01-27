@@ -118,8 +118,12 @@ export default async function WorkshopPage({ params }: Props) {
         </a>
       </div>
 
-      <PolaroidGallery images={studentsImages} />
-      <ReelsGallery reels={reels} className="mb-12" />
+      <PolaroidGallery
+        images={studentsImages}
+        title={t("PolaroidGallery.title")}
+        studentAlt={t("PolaroidGallery.studentAlt")}
+      />
+      <ReelsGallery reels={reels} className="mb-12" title={t("Reels.title")} />
 
       <script
         type="application/ld+json"

@@ -7,13 +7,22 @@ import Image from "next/image"
 interface PolaroidGalleryProps {
   images: string[]
   className?: string
+  title?: string
+  studentAlt?: string
 }
 
-export function PolaroidGallery({ images, className }: PolaroidGalleryProps) {
+export function PolaroidGallery({
+  images,
+  className,
+  title = "Our Happy Students",
+  studentAlt = "Salim Silver Jewelry Making Workshop Student",
+}: PolaroidGalleryProps) {
   return (
     <section className={cn("py-12", className)}>
       <div className="container mx-auto px-4">
-        <h2 className="text-primary mb-8 text-center font-serif text-3xl">Our Happy Students</h2>
+        <h2 className="text-primary mb-8 text-center font-serif text-3xl">
+          {title}
+        </h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {images.map((src, index) => (
             <motion.div
@@ -28,7 +37,7 @@ export function PolaroidGallery({ images, className }: PolaroidGalleryProps) {
                 <div className="relative aspect-300/213 overflow-hidden bg-stone-200 grayscale transition-all duration-500 group-hover:grayscale-0">
                   <Image
                     src={src}
-                    alt={`Salim Silver Jewelry Making Workshop Student ${index + 1}`}
+                    alt={`${studentAlt} ${index + 1}`}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
                     className="object-cover"

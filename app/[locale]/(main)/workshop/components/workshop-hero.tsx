@@ -11,8 +11,8 @@ export function WorkshopHero() {
       title={t("title")}
       subtitle={t("description")}
       imageSrc="/images/tatah-cincin.webp"
-      imageAlt="Menatah Cincin diatas Jabung"
-      imageTitle="Let's Create Your Unique Jewelry"
+      imageAlt={t("imageAlt")}
+      imageTitle={t("imageTitle")}
     />
   )
 }

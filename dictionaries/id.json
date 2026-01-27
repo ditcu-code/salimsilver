@@ -134,7 +134,9 @@
     },
     "Hero": {
       "title": "Workshop Perhiasan Perak",
-      "description": "Rasakan pengalaman membuat perhiasan perak kriya ala Jawa. Ciptakan mahakarya Anda sendiri di jantung Kotagede, dibimbing langsung oleh sang maestro."
+      "description": "Rasakan pengalaman membuat perhiasan perak kriya ala Jawa. Ciptakan mahakarya Anda sendiri di jantung Kotagede, dibimbing langsung oleh sang maestro.",
+      "imageAlt": "Menatah Cincin diatas Jabung",
+      "imageTitle": "Mari Ciptakan Perhiasan Unik Anda"
     },
     "Reasons": {
       "storyteller": {
@@ -267,6 +269,13 @@
         "people": "orang",
         "closing": "Mohon informasinya mengenai ketersediaan jadwal."
       }
+    },
+    "Reels": {
+      "title": "Momen Terabadikan"
+    },
+    "PolaroidGallery": {
+      "title": "Murid-murid Bahagia",
+      "studentAlt": "Peserta Workshop Perhiasan Perak Salim Silver"
     }
   },
   "StoreLocationPage": {
