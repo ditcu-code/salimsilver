@@ -13,8 +13,6 @@ import { PriceFallbackCard } from "./components/price-cards"
 import { SilverPriceDisplay } from "./components/silver-price-display"
 import { FAQ_ITEMS } from "./constants"
 
-export const revalidate = 1800 // Revalidate every 30 minutes
-
 type Props = {
   params: Promise<{ locale: string }>
 }

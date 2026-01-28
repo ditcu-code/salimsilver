@@ -1,17 +1,26 @@
 import { createClient } from "@/lib/supabase/server"
 import { SilverPriceSummary } from "./types"
 
-export async function getSilverPriceSummary(): Promise<SilverPriceSummary | null> {
-  const supabase = await createClient()
+import { unstable_cache } from "next/cache"
 
-  const { data } = await supabase
-    .from("silver_price_summary")
-    .select("*")
-    .eq("id", 1)
-    .single()
+export const getSilverPriceSummary = unstable_cache(
+  async (): Promise<SilverPriceSummary | null> => {
+    const supabase = await createClient()
 
-  return data as SilverPriceSummary
-}
+    const { data } = await supabase
+      .from("silver_price_summary")
+      .select("*")
+      .eq("id", 1)
+      .single()
+
+    return data as SilverPriceSummary
+  },
+  ["silver-price-summary"],
+  {
+    tags: ["silver-price"],
+    revalidate: 3600, // Fallback revalidate every hour
+  },
+)
 
 export interface DisplayPrices {
   currentPrice: number
