@@ -2,7 +2,8 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
 }
 
 // Import TradingView API wrapper from npm
@@ -17,7 +18,7 @@ Deno.serve(async (req) => {
 
   const supabaseClient = createClient(
     Deno.env.get("SUPABASE_URL") ?? "",
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
   )
 
   let priceIDR = 0
@@ -76,16 +77,20 @@ Deno.serve(async (req) => {
   } catch (tvError: any) {
     console.error(
       "Primary (TradingView) fetch failed, switching to Fallback 1 (GoldPrice.org):",
-      tvError.message
+      tvError.message,
     )
     errors.tradingview = tvError.message
 
     // 2. Fallback 1: GoldPrice.org
     try {
       console.log("Attempting to fetch from goldprice.org...")
-      const response = await fetch("https://data-asg.goldprice.org/dbXRates/IDR")
+      const response = await fetch(
+        "https://data-asg.goldprice.org/dbXRates/IDR",
+      )
       if (!response.ok) {
-        throw new Error(`GoldPrice fetch failed: ${response.status} ${response.statusText}`)
+        throw new Error(
+          `GoldPrice fetch failed: ${response.status} ${response.statusText}`,
+        )
       }
       const data = await response.json()
 
@@ -113,7 +118,7 @@ Deno.serve(async (req) => {
     } catch (gpError: any) {
       console.error(
         "Fallback 1 (GoldPrice) failed, switching to Fallback 2 (Metals.dev):",
-        gpError.message
+        gpError.message,
       )
       errors.goldprice = gpError.message
 
@@ -133,7 +138,7 @@ Deno.serve(async (req) => {
 
         console.log("Fetching from metals.dev API...")
         const response = await fetch(
-          `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=kg`
+          `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=kg`,
         )
         const data = await response.json()
 
@@ -146,7 +151,9 @@ Deno.serve(async (req) => {
         source = "metals_dev"
 
         if (data.timestamps) {
-          const metalTime = data.timestamps.metal ? new Date(data.timestamps.metal).getTime() : 0
+          const metalTime = data.timestamps.metal
+            ? new Date(data.timestamps.metal).getTime()
+            : 0
           const currencyTime = data.timestamps.currency
             ? new Date(data.timestamps.currency).getTime()
             : 0
@@ -171,7 +178,7 @@ Deno.serve(async (req) => {
               "Content-Type": "application/json",
             },
             status: 500,
-          }
+          },
         )
       }
     }
@@ -185,7 +192,9 @@ Deno.serve(async (req) => {
       source: source,
     }
 
-    const { error } = await supabaseClient.from("silver_prices").insert(insertPayload)
+    const { error } = await supabaseClient
+      .from("silver_prices")
+      .insert(insertPayload)
 
     if (error) {
       // Should match the enum type if 'tradingview' is added correctly
@@ -196,7 +205,9 @@ Deno.serve(async (req) => {
     try {
       const now = new Date()
       const getHistoricalPrice = async (daysAgo: number) => {
-        const targetDate = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000).toISOString()
+        const targetDate = new Date(
+          now.getTime() - daysAgo * 24 * 60 * 60 * 1000,
+        ).toISOString()
         const { data } = await supabaseClient
           .from("silver_prices")
           .select("price_idr")
@@ -209,13 +220,14 @@ Deno.serve(async (req) => {
         return data?.price_idr || null
       }
 
-      const [price24h, price7d, price30d, price180d, price1y] = await Promise.all([
-        getHistoricalPrice(1),
-        getHistoricalPrice(7),
-        getHistoricalPrice(30),
-        getHistoricalPrice(180),
-        getHistoricalPrice(365),
-      ])
+      const [price24h, price7d, price30d, price180d, price1y] =
+        await Promise.all([
+          getHistoricalPrice(1),
+          getHistoricalPrice(7),
+          getHistoricalPrice(30),
+          getHistoricalPrice(180),
+          getHistoricalPrice(365),
+        ])
 
       const summaryPayload = {
         id: 1,
@@ -236,6 +248,34 @@ Deno.serve(async (req) => {
         console.error("Failed to update summary cache:", summaryError)
       } else {
         console.log("Summary cache updated successfully")
+
+        // 6. Trigger Next.js Revalidation
+        const reqUrl = new URL(req.url)
+        const secret = reqUrl.searchParams.get("secret")
+
+        if (secret) {
+          try {
+            console.log("Triggering Next.js revalidation...")
+            const revalidateRes = await fetch(
+              `https://www.salimsilver.com/api/revalidate?tag=silver-price&secret=${secret}`,
+              { method: "POST" },
+            )
+
+            if (revalidateRes.ok) {
+              console.log("Revalidation request successful")
+            } else {
+              console.error(
+                `Revalidation failed: ${revalidateRes.status} ${revalidateRes.statusText}`,
+              )
+            }
+          } catch (revalError) {
+            console.error("Error triggering revalidation:", revalError)
+          }
+        } else {
+          console.warn(
+            "No 'secret' query param found, skipping revalidation trigger.",
+          )
+        }
       }
     } catch (cacheError) {
       console.error("Error updating summary cache:", cacheError)
@@ -252,7 +292,7 @@ Deno.serve(async (req) => {
           "Content-Type": "application/json",
         },
         status: 200,
-      }
+      },
     )
   } catch (dbError: any) {
     console.error("Database insert failed:", dbError)
@@ -267,7 +307,7 @@ Deno.serve(async (req) => {
           "Content-Type": "application/json",
         },
         status: 400,
-      }
+      },
     )
   }
 })
