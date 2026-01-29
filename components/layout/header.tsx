@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion, type Transition } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -11,19 +12,19 @@ import { LanguageSwitcher } from "../features/language-switcher"
 import { StoreLocationButton } from "../features/store-location-button"
 
 type NavItem = {
-  name: string
+  key: string
   href: string
   mobileOnly?: boolean
 }
 
-const navigation: NavItem[] = [
-  { name: "Catalog", href: "/catalog" },
-  { name: "Collections", href: "/collections" },
-  { name: "Workshop", href: "/workshop" },
-  { name: "About", href: "/about" },
-  // { name: "Contact", href: "/contact" },
-  { name: "Journal", href: "/blog" },
-  { name: "Visit Us", href: "/store-location", mobileOnly: true },
+const navigationConfig: NavItem[] = [
+  { key: "catalog", href: "/catalog" },
+  { key: "collections", href: "/collections" },
+  { key: "workshop", href: "/workshop" },
+  { key: "about", href: "/about" },
+  // { key: "contact", href: "/contact" },
+  { key: "journal", href: "/blog" },
+  { key: "storeLocation", href: "/store-location", mobileOnly: true },
 ]
 
 const mobileMenuTransition: Transition = {
@@ -170,6 +171,7 @@ function DesktopNavigation({
   isScrolled: boolean
   pathname: string
 }) {
+  const t = useTranslations("Header.nav")
   const baseTone = isScrolled || !isHome ? "text-foreground" : "text-primary"
 
   return (
@@ -179,7 +181,7 @@ function DesktopNavigation({
         isScrolled ? "bg-transparent" : "bg-background",
       )}
     >
-      {navigation
+      {navigationConfig
         .filter((item) => !item.mobileOnly)
         .map((item) => {
           const localizedHref = getLocalizedPath(item.href, pathname)
@@ -187,7 +189,7 @@ function DesktopNavigation({
 
           return (
             <Link
-              key={item.name}
+              key={item.key}
               href={localizedHref}
               className={cn(
                 "border-b border-transparent px-1 py-2 text-sm transition-colors",
@@ -197,7 +199,7 @@ function DesktopNavigation({
                   : "hover:text-primary/80 hover:scale-102",
               )}
             >
-              {item.name}
+              {t(item.key)}
             </Link>
           )
         })}
@@ -214,6 +216,8 @@ function MobileMenuButton({
   isScrolled: boolean
   onOpen: () => void
 }) {
+  const t = useTranslations("Header.mobile")
+
   return (
     <div
       className={cn(
@@ -229,7 +233,7 @@ function MobileMenuButton({
         aria-controls="mobile-navigation"
         onClick={onOpen}
       >
-        <span className="sr-only">Open menu</span>
+        <span className="sr-only">{t("open")}</span>
         <Menu className="h-6 w-6" aria-hidden="true" />
       </motion.button>
     </div>
@@ -245,6 +249,8 @@ function MobileMenu({
   pathname: string
   onClose: () => void
 }) {
+  const t = useTranslations("Header")
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -267,18 +273,18 @@ function MobileMenu({
               className="text-foreground bg-background/50 rounded-3xl border border-white/10 p-2 backdrop-blur-md"
               onClick={onClose}
             >
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">{t("mobile.close")}</span>
               <X className="h-6 w-6" aria-hidden="true" />
             </motion.button>
           </div>
           <nav className="flex flex-col items-center space-y-6 py-10">
-            {navigation.map((item) => {
+            {navigationConfig.map((item) => {
               const localizedHref = getLocalizedPath(item.href, pathname)
               const isActive = pathname === localizedHref
 
               return (
                 <Link
-                  key={item.name}
+                  key={item.key}
                   href={localizedHref}
                   className={cn(
                     "font-display block px-8 py-3 text-4xl transition-all duration-300",
@@ -288,7 +294,7 @@ function MobileMenu({
                   )}
                   onClick={onClose}
                 >
-                  {item.name}
+                  {t(`nav.${item.key}`)}
                 </Link>
               )
             })}

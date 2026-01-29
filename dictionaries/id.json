@@ -465,5 +465,37 @@
       "success": "Komentar berhasil dikirim!",
       "error": "Gagal mengirim komentar. Silakan coba lagi."
     }
+  },
+  "Header": {
+    "nav": {
+      "catalog": "Katalog",
+      "collections": "Koleksi",
+      "workshop": "Workshop",
+      "storeLocation": "Kunjungi Kami",
+      "about": "Tentang",
+      "journal": "Jurnal"
+    },
+    "mobile": {
+      "open": "Buka menu",
+      "close": "Tutup menu"
+    }
+  },
+  "Footer": {
+    "brandDescription": "Heritage Forged by Hand",
+    "quickLinks": "Tautan Cepat",
+    "contact": "Kontak",
+    "email": "Email",
+    "followUs": "Ikuti Kami",
+    "rights": "All rights reserved.",
+    "links": {
+      "catalog": "Katalog",
+      "collections": "Koleksi",
+      "workshop": "Workshop",
+      "storeLocation": "Lokasi Toko",
+      "silverPrice": "Harga Perak",
+      "about": "Tentang Kami",
+      "contact": "Kontak",
+      "journal": "Jurnal"
+    }
   }
 }

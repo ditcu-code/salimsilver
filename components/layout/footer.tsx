@@ -2,6 +2,7 @@
 
 import { sendGAEvent } from "@next/third-parties/google"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { type ReactNode } from "react"
@@ -20,19 +21,23 @@ const motionSettings = {
   viewport: { once: true },
 }
 
-const quickLinks = [
-  { href: "/catalog", label: "Catalog" },
-  { href: "/collections", label: "Collections" },
-  { href: "/workshop", label: "Workshop" },
-  { href: "/store-location", label: "Store Location" },
-  { href: "/silver-price", label: "Silver Price" },
-  { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact" },
-  { href: "/blog", label: "Journal" },
+const quickLinksConfig = [
+  { href: "/catalog", key: "catalog" },
+  { href: "/collections", key: "collections" },
+  { href: "/workshop", key: "workshop" },
+  { href: "/store-location", key: "storeLocation" },
+  { href: "/silver-price", key: "silverPrice" },
+  { href: "/about", key: "about" },
+  { href: "/contact", key: "contact" },
+  { href: "/blog", key: "journal" },
 ]
 
-const contactLinks = [
-  { label: "Email", href: "mailto:hello@salimsilver.com", display: "hello@salimsilver.com" },
+const contactLinksConfig = [
+  {
+    key: "email",
+    href: "mailto:hello@salimsilver.com",
+    display: "hello@salimsilver.com",
+  },
 ]
 
 const socialLinks = [
@@ -67,6 +72,7 @@ function AnimatedSection({ children, className }: AnimatedSectionProps) {
 }
 
 export default function Footer() {
+  const t = useTranslations("Footer")
   useProtectImages()
 
   return (
@@ -77,7 +83,10 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-4">
         <AnimatedSection className="md:col-span-2">
           <div className="mb-6 flex w-fit flex-col">
-            <Link href="/" className="font-display text-foreground text-3xl font-semibold">
+            <Link
+              href="/"
+              className="font-display text-foreground text-3xl font-semibold"
+            >
               <Image
                 src="/images/logo-salimsilver.webp"
                 alt="Salim Silver"
@@ -89,24 +98,25 @@ export default function Footer() {
               />
             </Link>
             <span className="text-muted-foreground -mt-2 mr-1.5 self-end text-[0.7rem]">
-              Heritage Forged by Hand
+              {t("brandDescription")}
             </span>
           </div>
           <p className="text-muted-foreground mb-6 max-w-md text-sm">
-            Gg. Platina KG 3/547 - Kebohan, Purbayan <br /> Kotagede, Yogyakarta City, Indonesia
+            Gg. Platina KG 3/547 - Kebohan, Purbayan <br /> Kotagede, Yogyakarta
+            City, Indonesia
           </p>
         </AnimatedSection>
 
         <AnimatedSection>
-          <h3 className="section-title mb-2 text-2xl">Quick Links</h3>
+          <h3 className="section-title mb-2 text-2xl">{t("quickLinks")}</h3>
           <ul className="grid grid-cols-1 gap-1 md:grid-cols-2">
-            {quickLinks.map(({ href, label }) => (
+            {quickLinksConfig.map(({ href, key }) => (
               <li key={href}>
                 <Link
                   href={href}
                   className="text-muted-foreground hover:text-primary text-sm whitespace-nowrap transition-colors"
                 >
-                  {label}
+                  {t(`links.${key}`)}
                 </Link>
               </li>
             ))}
@@ -114,12 +124,12 @@ export default function Footer() {
         </AnimatedSection>
 
         <AnimatedSection>
-          <h3 className="section-title mb-2 text-2xl">Contact</h3>
+          <h3 className="section-title mb-2 text-2xl">{t("contact")}</h3>
           <ul className="text-muted-foreground space-y-2">
-            {contactLinks.map(({ label, href, display }) => (
-              <li key={label}>
-                <h4 className="text-primary">{label}</h4>
-                {label === "Email" ? (
+            {contactLinksConfig.map(({ key, href, display }) => (
+              <li key={key}>
+                <h4 className="text-primary">{t(key)}</h4>
+                {key === "email" ? (
                   <div className="text-muted-foreground text-sm">
                     <ObfuscatedEmail user="hello" domain="salimsilver.com" />
                   </div>
@@ -133,7 +143,7 @@ export default function Footer() {
           </ul>
 
           <div className="mt-6">
-            <h4 className="text-primary mb-2">Follow Us</h4>
+            <h4 className="text-primary mb-2">{t("followUs")}</h4>
             <div className="flex items-center space-x-4">
               {socialLinks.map(({ href, label, Icon }) => (
                 <motion.a
@@ -162,8 +172,8 @@ export default function Footer() {
 
       <div className="border-border mx-auto mt-12 flex max-w-7xl flex-row items-center justify-between gap-4 border-t pt-8">
         <motion.p className="text-muted-foreground text-sm" {...motionSettings}>
-          © {new Date().getFullYear()} Salim Silver. <br className="md:hidden" /> All rights
-          reserved.
+          © {new Date().getFullYear()} Salim Silver.{" "}
+          <br className="md:hidden" /> {t("rights")}
         </motion.p>
         <ThemeToggle />
       </div>

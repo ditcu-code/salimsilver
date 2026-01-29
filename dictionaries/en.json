@@ -465,5 +465,37 @@
       "success": "Comment posted successfully!",
       "error": "Failed to post comment. Please try again."
     }
+  },
+  "Header": {
+    "nav": {
+      "catalog": "Catalog",
+      "collections": "Collections",
+      "workshop": "Workshop",
+      "storeLocation": "Visit Us",
+      "about": "About",
+      "journal": "Journal"
+    },
+    "mobile": {
+      "open": "Open menu",
+      "close": "Close menu"
+    }
+  },
+  "Footer": {
+    "brandDescription": "Heritage Forged by Hand",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "email": "Email",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "links": {
+      "catalog": "Catalog",
+      "collections": "Collections",
+      "workshop": "Workshop",
+      "storeLocation": "Store Location",
+      "silverPrice": "Silver Price",
+      "about": "About Us",
+      "contact": "Contact",
+      "journal": "Journal"
+    }
   }
 }
