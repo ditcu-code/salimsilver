@@ -43,6 +43,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "hourly",
     0.9,
   )
+  const goldPriceEntries = generateEntries(
+    "/gold-price",
+    new Date(),
+    "hourly",
+    0.9,
+  )
 
   const mainPages = ["/catalog", "/collections", "/workshop"].flatMap((route) =>
     generateEntries(route, new Date(), "weekly", 0.8),
@@ -85,6 +91,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...homeEntries,
     ...silverPriceEntries,
+    ...goldPriceEntries,
     ...mainPages,
     ...supportPages,
     ...blogIndex,
