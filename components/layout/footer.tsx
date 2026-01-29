@@ -27,6 +27,7 @@ const quickLinksConfig = [
   { href: "/workshop", key: "workshop" },
   { href: "/store-location", key: "storeLocation" },
   { href: "/silver-price", key: "silverPrice" },
+  { href: "/gold-price", key: "goldPrice" },
   { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
   { href: "/blog", key: "journal" },
