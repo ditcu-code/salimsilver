@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { Triangle } from "lucide-react"
 
-import { usePriceTrend } from "../hooks/use-price-trend"
+import { usePriceTrend } from "./use-price-trend"
 
 import { AnimatedCurrency } from "./animated-currency"
 
@@ -16,10 +16,8 @@ export function HistoricalPriceRow({
   historicalPrice: number
   currentPrice: number
 }) {
-  const { priceChange, percentageChange, isUp, isSame, showPercentage } = usePriceTrend(
-    currentPrice,
-    historicalPrice
-  )
+  const { priceChange, percentageChange, isUp, isSame, showPercentage } =
+    usePriceTrend(currentPrice, historicalPrice)
 
   const trendColor = isSame
     ? "text-muted-foreground"
@@ -51,7 +49,9 @@ export function HistoricalPriceRow({
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     className="col-start-1 row-start-1 flex items-center justify-end tabular-nums"
                   >
-                    <Triangle className={`mr-1 h-2 w-2 fill-current ${!isUp && "rotate-180"}`} />
+                    <Triangle
+                      className={`mr-1 h-2 w-2 fill-current ${!isUp && "rotate-180"}`}
+                    />
                     {Math.abs(percentageChange).toFixed(2)}%
                   </motion.div>
                 ) : (
@@ -63,7 +63,9 @@ export function HistoricalPriceRow({
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     className="col-start-1 row-start-1 flex items-center justify-end tabular-nums"
                   >
-                    <Triangle className={`mr-1 h-2 w-2 fill-current ${!isUp && "rotate-180"}`} />
+                    <Triangle
+                      className={`mr-1 h-2 w-2 fill-current ${!isUp && "rotate-180"}`}
+                    />
                     <AnimatedCurrency value={Math.abs(priceChange)} />
                   </motion.div>
                 )}

@@ -1,4 +1,4 @@
-export const FAQ_ITEMS = [
+export const SILVER_FAQ_ITEMS = [
   {
     value: "item-1",
     question: "Apakah harga perak ini sudah termasuk PPN?",

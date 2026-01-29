@@ -1,18 +1,14 @@
+import { calculateDisplayPrices, getGoldPriceSummary } from "@/lib/gold-price"
 import {
   constructCanonicalUrl,
   getAlternates,
   getOpenGraphLocale,
 } from "@/lib/seo"
-import {
-  calculateDisplayPrices,
-  getSilverPriceSummary,
-} from "@/lib/silver-price"
 import type { Metadata } from "next"
 
 import { PriceFallbackCard } from "@/components/features/metal-price/metal-price-card"
 import { MetalPriceDisplay } from "@/components/features/metal-price/metal-price-display"
-
-import { SILVER_FAQ_ITEMS } from "./constants"
+import { GOLD_FAQ_ITEMS } from "./constants"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -20,59 +16,59 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const canonicalUrl = constructCanonicalUrl(locale, "/silver-price")
+  const canonicalUrl = constructCanonicalUrl(locale, "/gold-price")
 
   return {
     title: {
       absolute:
-        "Harga Perak Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
+        "Harga Emas Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
     },
     description:
-      "Pantau harga perak murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
+      "Pantau harga emas murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
     keywords: [
-      "Harga Perak Hari Ini",
-      "Harga Perak per Gram",
-      "Harga Perak Antam",
-      "Harga Perak Rupiah",
-      "Investasi Perak",
-      "Silver Price Indonesia",
-      "Harga Silver per Gram",
-      "Jual Beli Perak",
-      "Harga Perak Murni",
-      "Grafik Harga Perak",
-      "Harga Perak Terbaru",
-      "Silver Price Rupiah",
-      "Harga Perak Minggu Lalu",
-      "Harga Perak Bulan Lalu",
-      "Harga Perak 6 Bulan Lalu",
-      "Harga Perak 1 Tahun Lalu",
+      "Harga Emas Hari Ini",
+      "Harga Emas per Gram",
+      "Harga Emas Antam",
+      "Harga Emas Rupiah",
+      "Investasi Emas",
+      "Gold Price Indonesia",
+      "Harga Gold per Gram",
+      "Jual Beli Emas",
+      "Harga Emas Murni",
+      "Grafik Harga Emas",
+      "Harga Emas Terbaru",
+      "Gold Price Rupiah",
+      "Harga Emas Minggu Lalu",
+      "Harga Emas Bulan Lalu",
+      "Harga Emas 6 Bulan Lalu",
+      "Harga Emas 1 Tahun Lalu",
     ],
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/silver-price"),
+      languages: getAlternates("/gold-price"),
     },
     openGraph: {
-      title: "Harga Perak Hari Ini | Update Terbaru per Gram (IDR)",
+      title: "Harga Emas Hari Ini | Update Terbaru per Gram (IDR)",
       description:
-        "Cek harga perak murni hari ini dalam Rupiah. Data terupdate real-time untuk panduan beli dan investasi perak Anda.",
+        "Cek harga emas murni hari ini dalam Rupiah. Data terupdate real-time untuk panduan beli dan investasi emas Anda.",
       url: canonicalUrl,
       locale: getOpenGraphLocale(locale),
       type: "website",
       images: [
         {
-          url: "/api/og/silver-price",
+          url: "/api/og/gold-price",
           width: 1200,
           height: 630,
-          alt: "Harga Perak Hari Ini di Salim Silver",
+          alt: "Harga Emas Hari Ini di Salim Silver",
         },
       ],
     },
   }
 }
 
-export default async function SilverPricePage({ params }: Props) {
+export default async function GoldPricePage({ params }: Props) {
   const { locale } = await params
-  const summaryData = await getSilverPriceSummary()
+  const summaryData = await getGoldPriceSummary()
   const displayPrices = calculateDisplayPrices(summaryData)
 
   let priceContent
@@ -81,12 +77,17 @@ export default async function SilverPricePage({ params }: Props) {
     // Fallback if cache is empty
     priceContent = (
       <PriceFallbackCard
-        title="Harga Perak"
-        description="Kami saat ini tidak dapat mengambil harga perak terbaru. Silakan periksa kembali nanti."
+        title="Harga Emas"
+        description="Kami saat ini tidak dapat mengambil harga emas terbaru. Silakan periksa kembali nanti."
       />
     )
   } else {
-    priceContent = <MetalPriceDisplay displayPrices={displayPrices} />
+    priceContent = (
+      <MetalPriceDisplay
+        displayPrices={displayPrices}
+        enableTaxToggle={false}
+      />
+    )
   }
 
   const jsonLd = {
@@ -94,10 +95,10 @@ export default async function SilverPricePage({ params }: Props) {
     "@graph": [
       {
         "@type": "Product",
-        name: "Silver Price per Gram",
+        name: "Gold Price per Gram",
         description:
-          "Current price of fine silver (999) per gram in Indonesian Rupiah (IDR).",
-        image: "https://salimsilver.com/api/og/silver-price",
+          "Current price of fine gold (999) per gram in Indonesian Rupiah (IDR).",
+        image: "https://salimsilver.com/api/og/gold-price",
         brand: {
           "@type": "Brand",
           name: "Salim Silver",
@@ -110,12 +111,12 @@ export default async function SilverPricePage({ params }: Props) {
           priceValidUntil: new Date(
             Date.now() + 24 * 60 * 60 * 1000,
           ).toISOString(),
-          url: constructCanonicalUrl(locale, "/silver-price"),
+          url: constructCanonicalUrl(locale, "/gold-price"),
         },
       },
       {
         "@type": "FAQPage",
-        mainEntity: SILVER_FAQ_ITEMS.map((item) => ({
+        mainEntity: GOLD_FAQ_ITEMS.map((item) => ({
           "@type": "Question",
           name: item.question,
           acceptedAnswer: {

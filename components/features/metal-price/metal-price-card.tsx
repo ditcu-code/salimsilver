@@ -1,27 +1,33 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Triangle } from "lucide-react"
 
 import { AnimatePresence, m as motion } from "framer-motion"
-import { usePriceTrend } from "../hooks/use-price-trend"
 import { AnimatedCurrency } from "./animated-currency"
+import { usePriceTrend } from "./use-price-trend"
 
-export function PriceCard({
-  includeTax,
-  currentPriceDisplay,
-  previousPriceDisplay,
-  lastUpdated,
-}: {
+interface MetalPriceCardProps {
   includeTax: boolean
   currentPriceDisplay: number
   previousPriceDisplay: number
   lastUpdated: string
-}) {
-  const { priceChange, percentageChange, isUp, isSame, showPercentage } = usePriceTrend(
-    currentPriceDisplay,
-    previousPriceDisplay
-  )
+}
+
+export function MetalPriceCard({
+  includeTax,
+  currentPriceDisplay,
+  previousPriceDisplay,
+  lastUpdated,
+}: MetalPriceCardProps) {
+  const { priceChange, percentageChange, isUp, isSame, showPercentage } =
+    usePriceTrend(currentPriceDisplay, previousPriceDisplay)
 
   const trendColor = isSame
     ? "bg-muted text-muted-foreground"
@@ -31,7 +37,11 @@ export function PriceCard({
 
   const TrendIcon = Triangle
 
-  const gradientClass = isSame ? "via-primary/60" : isUp ? "via-green-500/60" : "via-red-500/60"
+  const gradientClass = isSame
+    ? "via-primary/60"
+    : isUp
+      ? "via-green-500/60"
+      : "via-red-500/60"
 
   return (
     <Card className="bg-card/50 border-border/50 relative overflow-hidden rounded-xl border shadow-lg backdrop-blur-xl">
@@ -50,7 +60,9 @@ export function PriceCard({
               <span className="text-foreground font-sans text-5xl font-bold tracking-tight sm:text-6xl">
                 <AnimatedCurrency value={currentPriceDisplay} />
               </span>
-              <span className="text-muted-foreground text-lg font-medium sm:text-xl">/ gram</span>
+              <span className="text-muted-foreground text-lg font-medium sm:text-xl">
+                / gram
+              </span>
             </div>
             <motion.div
               layout
@@ -73,7 +85,11 @@ export function PriceCard({
               layout
               className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium ${trendColor}`}
             >
-              {!isSame && <TrendIcon className={`h-3 w-3 fill-current ${!isUp && "rotate-180"}`} />}
+              {!isSame && (
+                <TrendIcon
+                  className={`h-3 w-3 fill-current ${!isUp && "rotate-180"}`}
+                />
+              )}
               <div className="flex gap-1 font-sans font-bold">
                 {isSame ? (
                   "Harga Stabil"
@@ -88,7 +104,11 @@ export function PriceCard({
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -20, opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 300,
+                              damping: 30,
+                            }}
                             className="block tabular-nums"
                           >
                             {Math.abs(percentageChange).toFixed(2)}%
@@ -99,7 +119,11 @@ export function PriceCard({
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -20, opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 300,
+                              damping: 30,
+                            }}
                             className="block tabular-nums"
                           >
                             <AnimatedCurrency value={Math.abs(priceChange)} />
@@ -158,14 +182,20 @@ export function PriceCard({
   )
 }
 
-export function PriceFallbackCard() {
+interface PriceFallbackCardProps {
+  title: string
+  description: string
+}
+
+export function PriceFallbackCard({
+  title,
+  description,
+}: PriceFallbackCardProps) {
   return (
     <Card className="border-border/50 bg-card/50 shadow-xl backdrop-blur-md">
       <CardHeader className="text-center">
-        <CardTitle className="font-display text-2xl">Harga Perak</CardTitle>
-        <CardDescription className="text-base">
-          Kami saat ini tidak dapat mengambil harga perak terbaru. Silakan periksa kembali nanti.
-        </CardDescription>
+        <CardTitle className="font-display text-2xl">{title}</CardTitle>
+        <CardDescription className="text-base">{description}</CardDescription>
       </CardHeader>
     </Card>
   )
