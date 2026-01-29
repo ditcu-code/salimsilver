@@ -57,7 +57,13 @@ export function MetalPriceCard({
         <div className="space-y-4 text-center">
           <div className="flex flex-col items-center gap-1">
             <div className="flex items-baseline justify-center gap-1">
-              <span className="text-foreground font-sans text-5xl font-bold tracking-tight sm:text-6xl">
+              <span
+                className={`text-foreground font-sans font-bold tracking-tight md:text-6xl ${
+                  currentPriceDisplay.toString().length >= 7
+                    ? "text-4xl"
+                    : "text-5xl"
+                }`}
+              >
                 <AnimatedCurrency value={currentPriceDisplay} />
               </span>
               <span className="text-muted-foreground text-lg font-medium sm:text-xl">
