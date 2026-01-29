@@ -317,6 +317,27 @@ export async function getJewelryBySlug(
   }
 }
 
+export async function getAllCollectionsMetadata(): Promise<
+  { slug: string; updated_at: string }[]
+> {
+  const supabase = await createClient()
+  const { data: collections, error } = await supabase
+    .from("collections")
+    .select("slug, updated_at, created_at")
+    .neq("slug", "unassigned")
+    .order("created_at", { ascending: false })
+
+  if (error) {
+    console.error("Error fetching collections metadata:", error)
+    return []
+  }
+
+  return (collections || []).map((col: any) => ({
+    slug: col.slug,
+    updated_at: col.updated_at || col.created_at,
+  }))
+}
+
 export async function getAllJewelry(): Promise<
   { slug: string; updated_at: string }[]
 > {

@@ -1,5 +1,5 @@
 import { getAllPosts } from "@/lib/blog"
-import { getAllCollections, getAllJewelry } from "@/lib/collections"
+import { getAllCollectionsMetadata, getAllJewelry } from "@/lib/collections"
 import { BASE_URL } from "@/lib/constants"
 import { MetadataRoute } from "next"
 
@@ -7,7 +7,7 @@ export const revalidate = 86400 // Revalidate every day
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts(false)
-  const collections = await getAllCollections()
+  const collections = await getAllCollectionsMetadata()
   const jewelry = await getAllJewelry()
 
   // Helper to generate localized entries
@@ -73,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const collectionEntries = collections.flatMap((collection) =>
     generateEntries(
       `/collections/${collection.slug}`,
-      new Date(),
+      new Date(collection.updated_at),
       "weekly",
       0.7,
     ),

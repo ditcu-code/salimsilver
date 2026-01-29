@@ -50,8 +50,8 @@ export async function GET() {
   return new Response(imageBuffer, {
     headers: {
       "Content-Type": "image/jpeg",
-      // Tell browsers/CDNs to check often (max-age=60), but serve stale for a bit if needed
-      "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+      // Tell browsers/CDNs to check often (max-age=3600), but serve stale for a day if needed
+      "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
     },
   })
 }
