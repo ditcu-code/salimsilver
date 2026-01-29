@@ -254,7 +254,6 @@ Deno.serve(async (req) => {
 
   // --- REVALIDATION ---
   // Revalidate if at least one succeeded
-  const reqUrl = new URL(req.url)
   const secret = reqUrl.searchParams.get("secret")
 
   if (secret && (silverResult.price > 0 || goldResult.price > 0)) {
