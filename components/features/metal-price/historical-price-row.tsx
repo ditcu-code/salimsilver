@@ -36,7 +36,7 @@ export function HistoricalPriceRow({
         </span>
         {!isSame && (
           <div
-            className={`flex min-w-[70px] items-center justify-end text-xs font-medium ${trendColor} overflow-hidden`}
+            className={`flex min-w-[85px] items-center justify-between text-xs font-medium ${trendColor} overflow-hidden`}
           >
             <div className="relative grid h-4 w-full place-items-end">
               <AnimatePresence mode="wait" initial={false}>
