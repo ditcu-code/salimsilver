@@ -59,7 +59,7 @@ export function formatNumber(num: number): string {
  */
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number
+  wait: number,
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout
 
@@ -135,4 +135,23 @@ export function formatFileSize(bytes: number): string {
  */
 export function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+/**
+ * Constructs a localized path.
+ * Uses 'en' as the default locale (no prefix).
+ * @param locale The current locale
+ * @param path The path to localize (should start with /)
+ * @returns The localized path
+ */
+export function constructLocalizedPath(locale: string, path: string): string {
+  // Ensure path starts with /
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`
+
+  // Default locale (en) does not have a prefix
+  if (locale === "en") {
+    return normalizedPath
+  }
+
+  return `/${locale}${normalizedPath}`
 }

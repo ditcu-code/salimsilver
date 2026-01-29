@@ -1,9 +1,11 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { sendGAEvent } from "@next/third-parties/google"
+import Link from "next/link"
 import { useState } from "react"
 import { HistoricalPriceRow } from "./historical-price-row"
 import { MetalPriceCard } from "./metal-price-card"
@@ -21,11 +23,16 @@ export interface DisplayPrices {
 interface MetalPriceDisplayProps {
   displayPrices: DisplayPrices
   enableTaxToggle?: boolean
+  relatedMetal?: {
+    name: string
+    href: string
+  }
 }
 
 export function MetalPriceDisplay({
   displayPrices,
   enableTaxToggle = true,
+  relatedMetal,
 }: MetalPriceDisplayProps) {
   const {
     currentPrice,
@@ -51,21 +58,23 @@ export function MetalPriceDisplay({
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
-      {enableTaxToggle && (
-        <div className="mb-8 flex items-center justify-center space-x-2">
-          <Switch
-            id="ppn-mode"
-            checked={includeTax}
-            onCheckedChange={(checked) => {
-              setIncludeTax(checked)
-              sendGAEvent("event", "toggle_ppn", {
-                value: checked ? "on" : "off",
-              })
-            }}
-          />
-          <Label htmlFor="ppn-mode">Termasuk PPN 11%</Label>
-        </div>
-      )}
+      <div className="flex flex-col items-center justify-center gap-6 mb-8">
+        {enableTaxToggle && (
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="ppn-mode"
+              checked={includeTax}
+              onCheckedChange={(checked) => {
+                setIncludeTax(checked)
+                sendGAEvent("event", "toggle_ppn", {
+                  value: checked ? "on" : "off",
+                })
+              }}
+            />
+            <Label htmlFor="ppn-mode">Termasuk PPN 11%</Label>
+          </div>
+        )}
+      </div>
 
       <MetalPriceCard
         includeTax={enableTaxToggle && includeTax}
@@ -100,6 +109,16 @@ export function MetalPriceDisplay({
           </div>
         </CardContent>
       </Card>
+
+      {relatedMetal && (
+        <div className="flex justify-center pt-4">
+          <Button variant="outline" className="rounded-full" asChild>
+            <Link href={relatedMetal.href}>
+              Lihat Harga {relatedMetal.name}
+            </Link>
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

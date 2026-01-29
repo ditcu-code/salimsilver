@@ -66,6 +66,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+import { constructLocalizedPath } from "@/lib/utils"
+
 export default async function GoldPricePage({ params }: Props) {
   const { locale } = await params
   const summaryData = await getGoldPriceSummary()
@@ -86,6 +88,10 @@ export default async function GoldPricePage({ params }: Props) {
       <MetalPriceDisplay
         displayPrices={displayPrices}
         enableTaxToggle={false}
+        relatedMetal={{
+          name: "Perak",
+          href: constructLocalizedPath(locale, "/silver-price"),
+        }}
       />
     )
   }

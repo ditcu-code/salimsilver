@@ -13,7 +13,7 @@ export default function GoldPriceLayout({
       <MetalPriceHeader
         title="Harga Emas Hari Ini"
         description="Update harga emas murni terkini dalam Rupiah."
-        className="mb-12"
+        className="mb-6"
       />
 
       {children}

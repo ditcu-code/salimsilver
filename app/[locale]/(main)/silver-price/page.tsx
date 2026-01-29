@@ -70,6 +70,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+import { constructLocalizedPath } from "@/lib/utils"
+
 export default async function SilverPricePage({ params }: Props) {
   const { locale } = await params
   const summaryData = await getSilverPriceSummary()
@@ -86,7 +88,15 @@ export default async function SilverPricePage({ params }: Props) {
       />
     )
   } else {
-    priceContent = <MetalPriceDisplay displayPrices={displayPrices} />
+    priceContent = (
+      <MetalPriceDisplay
+        displayPrices={displayPrices}
+        relatedMetal={{
+          name: "Emas",
+          href: constructLocalizedPath(locale, "/gold-price"),
+        }}
+      />
+    )
   }
 
   const jsonLd = {
