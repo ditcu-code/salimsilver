@@ -29,6 +29,11 @@ Deno.serve(async (req) => {
   const messages: string[] = []
   const errors: Record<string, string> = {}
 
+  // --- EXECUTE FETCHES ---
+
+  const reqUrl = new URL(req.url)
+  const skipSources = reqUrl.searchParams.get("skip_sources")?.split(",") || []
+
   // Helper to fetch price for a specific symbol
   async function fetchPrice(
     type: "silver" | "gold",
@@ -41,6 +46,9 @@ Deno.serve(async (req) => {
 
     // 1. TradingView
     try {
+      if (skipSources.includes("tradingview")) {
+        throw new Error("Simulated skip: tradingview")
+      }
       console.log(`[${type}] Attempting TradingView (${tvSymbol})...`)
       const currentPrice = await new Promise<number>((resolve, reject) => {
         const client = new TradingView.Client()
@@ -78,10 +86,11 @@ Deno.serve(async (req) => {
     } catch (tvError: any) {
       console.warn(`[${type}] TradingView failed: ${tvError.message}`)
 
-      // 2. GoldPrice.org (Silver only supported in existing code, adding Gold support if URL pattern matches)
-      // GoldPrice.org URL for silver was: https://data-asg.goldprice.org/dbXRates/IDR
-      // For gold, it usually returns multiple items. Let's check if we can use it for both.
+      // 2. GoldPrice.org
       try {
+        if (skipSources.includes("goldprice")) {
+          throw new Error("Simulated skip: goldprice")
+        }
         console.log(`[${type}] Attempting GoldPrice.org...`)
         const response = await fetch(
           "https://data-asg.goldprice.org/dbXRates/IDR",
@@ -110,6 +119,9 @@ Deno.serve(async (req) => {
 
         // 3. Metals.dev
         try {
+          if (skipSources.includes("metals_dev")) {
+            throw new Error("Simulated skip: metals_dev")
+          }
           console.log(`[${type}] Attempting Metals.dev...`)
           const apiKey1 = Deno.env.get("METALS_DEV_API_KEY")
           const apiKey2 = Deno.env.get("METALS_DEV_API_KEY_2") // Optional fallback key
@@ -152,8 +164,6 @@ Deno.serve(async (req) => {
 
     return { price: priceIDR, timestamp, source }
   }
-
-  // --- EXECUTE FETCHES ---
 
   const silverResult = await fetchPrice("silver", "FX_IDC:XAGIDRK", "silver")
   const goldResult = await fetchPrice("gold", "FX_IDC:XAUIDRK", "gold")
@@ -256,10 +266,21 @@ Deno.serve(async (req) => {
 
       // Sequential revalidations
       for (const tag of tags) {
-        await fetch(
+        console.log(`Triggering revalidation for tag: ${tag}...`)
+        const revalidateRes = await fetch(
           `https://www.salimsilver.com/api/revalidate?tag=${tag}&secret=${secret}`,
           { method: "POST" },
         )
+
+        if (revalidateRes.ok) {
+          console.log(`Revalidation request successful for tag: ${tag}`)
+        } else {
+          console.error(
+            `Revalidation failed for ${tag}: ${revalidateRes.status} ${revalidateRes.statusText}`,
+          )
+          errors[`revalidation_${tag}`] =
+            `Failed: ${revalidateRes.status} ${revalidateRes.statusText}`
+        }
       }
       messages.push("Revalidation triggered")
     } catch (err: any) {
