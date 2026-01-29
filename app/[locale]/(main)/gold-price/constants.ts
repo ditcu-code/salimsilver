@@ -3,7 +3,7 @@ export const GOLD_FAQ_ITEMS = [
     value: "item-1",
     question: "Seberapa sering harga emas diperbarui?",
     answer:
-      "Sistem kami memantau pergerakan harga emas dunia dan melakukan pembaruan data secara berkala untuk memastikan Anda mendapatkan informasi yang paling relevan dengan kondisi pasar saat ini.",
+      "Sistem kami memantau pergerakan harga emas dunia dan melakukan pembaruan data setiap 30 menit untuk memastikan Anda mendapatkan informasi yang paling relevan dengan kondisi pasar saat ini.",
   },
   {
     value: "item-source",
@@ -22,6 +22,6 @@ export const GOLD_FAQ_ITEMS = [
     value: "item-2",
     question: "Apakah saya bisa membeli emas fisik di Salim Silver?",
     answer:
-      "Saat ini, Salim Silver berfokus pada kerajinan perak (Sterling Silver 925). Namun, kami dapat melayani pesanan khusus perhiasan emas (cincin kawin, dsb) secara by request. Silakan hubungi kami untuk informasi lebih lanjut.",
+      "Saat ini, Salim Silver berfokus pada kerajinan perak (Sterling Silver 925). Namun, kami dapat melayani pesanan khusus perhiasan emas (cincin kawin, dsb) by request. Silakan hubungi kami untuk informasi lebih lanjut.",
   },
 ]

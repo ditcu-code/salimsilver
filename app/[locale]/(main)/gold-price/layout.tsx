@@ -12,7 +12,7 @@ export default function GoldPriceLayout({
     <div className="container mx-auto max-w-lg px-4 pt-30 pb-12 md:pb-18">
       <MetalPriceHeader
         title="Harga Emas Hari Ini"
-        description="Pantau pegerakan harga emas murni (High Purity) per gram dalam Rupiah (IDR), update secara real-time mengikuti pasar spot global."
+        description="Update harga emas murni terkini dalam Rupiah."
       />
 
       {children}
