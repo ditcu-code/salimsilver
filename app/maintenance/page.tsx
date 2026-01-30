@@ -1,6 +1,17 @@
 import { Button } from "@/components/ui/button"
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Under Maintenance",
+  description:
+    "Our digital storefront is currently undergoing a transformation to bring you an even more exquisite experience. We will be back shortly with our latest collections.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 export default function MaintenancePage() {
   return (
@@ -36,8 +47,9 @@ export default function MaintenancePage() {
           </h2>
 
           <p className="text-muted-foreground text-lg leading-relaxed font-medium">
-            Our digital storefront is currently undergoing a transformation to bring you an even
-            more exquisite experience. We will be back shortly with our latest collections.
+            Our digital storefront is currently undergoing a transformation to
+            bring you an even more exquisite experience. We will be back shortly
+            with our latest collections.
           </p>
 
           <div className="pt-4">
