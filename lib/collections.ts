@@ -275,6 +275,7 @@ export async function getJewelryBySlug(
     .from("jewelry")
     .select("*, collections(slug)")
     .eq("slug", slug)
+    .eq("status", "available")
     .single()
 
   if (error || !item) {
