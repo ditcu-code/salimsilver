@@ -113,7 +113,14 @@ export function MetalPriceDisplay({
       {relatedMetal && (
         <div className="flex justify-center pt-4">
           <Button variant="outline" className="rounded-full" asChild>
-            <Link href={relatedMetal.href}>
+            <Link
+              href={relatedMetal.href}
+              onClick={() => {
+                sendGAEvent("event", "click_related_metal_price", {
+                  metal: relatedMetal.name,
+                })
+              }}
+            >
               Lihat Harga {relatedMetal.name}
             </Link>
           </Button>

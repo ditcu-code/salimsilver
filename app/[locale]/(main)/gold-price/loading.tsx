@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 export default function GoldPriceLoading() {
   return (
     <div className="space-y-6">
-      <Card className="mt-6 bg-card/50 border-border/50 relative overflow-hidden rounded-xl border shadow-2xl backdrop-blur-md">
+      <Card className="mt-12 bg-card/50 border-border/50 relative overflow-hidden rounded-xl border shadow-2xl backdrop-blur-md">
         <CardHeader className="pt-8 pb-2 text-center" />
         <CardContent className="space-y-8 px-8 pb-8">
           {/* Main Price Display */}
