@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (jewelry) {
     const item = await getJewelryBySlug(jewelry)
     if (item) {
-      const title = `${item.title} - Salim Silver`
+      const title = `${item.title}`
       const description = item.description || t("fallbackDescription")
       const images =
         item.images && item.images.length > 0 ? [item.images[0].src] : []

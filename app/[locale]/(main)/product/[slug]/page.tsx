@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const title = `${product.title} - Salim Silver`
+  const title = `${product.title}`
   const description = product.description || t("fallbackDescription")
   const images =
     product.images && product.images.length > 0

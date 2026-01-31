@@ -71,7 +71,7 @@ export async function generateMetadata({
   // 2. Fallback to Collection metadata
   const collection = await getCollection(slug)
   if (collection) {
-    const title = `${collection.title} - Salim Silver`
+    const title = `${collection.title} Collection`
     const description =
       collection.description ||
       t("fallbackDescription", { title: collection.title })
