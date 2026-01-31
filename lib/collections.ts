@@ -49,6 +49,7 @@ export async function getAllCollections(): Promise<Collection[]> {
     .from("jewelry")
     .select("*")
     .in("collection_id", collectionIds)
+    .eq("status", "available")
     .order("created_at", { ascending: false })
 
   // Fetch images for jewelry (needed for gallery)
@@ -196,6 +197,7 @@ export async function getCollection(
     .from("jewelry")
     .select("*")
     .eq("collection_id", collection.id)
+    .eq("status", "available")
     .order("created_at", { ascending: false })
 
   if (jewelryError) {
@@ -345,6 +347,7 @@ export async function getAllJewelry(): Promise<
   const { data: jewelry, error } = await supabase
     .from("jewelry")
     .select("slug, updated_at, created_at")
+    .eq("status", "available")
     .order("created_at", { ascending: false })
 
   if (error) {
