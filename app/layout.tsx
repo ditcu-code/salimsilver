@@ -80,6 +80,8 @@ export const metadata: Metadata = {
     other: {
       "facebook-domain-verification": "wenmk7vlpgfbu5tzqn444a2utztajd",
       "fb:pages": "100063782388858",
+      "apple-domain-verification":
+        "EA7SnyHtJ1olDecZFQouDgz70AAMmpSQZT_Z29zOn-c",
     },
   },
 }
