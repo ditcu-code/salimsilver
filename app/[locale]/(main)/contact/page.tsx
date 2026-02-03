@@ -46,6 +46,67 @@ export async function generateMetadata({
 
 export default async function ContactPage() {
   const t = await getTranslations("ContactPage.Metadata")
+  const tFaq = await getTranslations("ContactPage.FAQs")
+
+  const faqItems = [
+    {
+      question: tFaq("items.custom.question"),
+      answer: tFaq("items.custom.answer"),
+    },
+    {
+      question: tFaq("items.shipping.question"),
+      answer: tFaq("items.shipping.answer"),
+    },
+    {
+      question: tFaq("items.care.question"),
+      answer: tFaq("items.care.answer"),
+    },
+    {
+      question: tFaq("items.wholesale.question"),
+      answer: tFaq("items.wholesale.answer"),
+    },
+  ]
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        mainEntity: {
+          "@type": "JewelryStore",
+          name: "Salim Silver",
+          image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
+          telephone: "+62 896 7197 7699",
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+62 896 7197 7699",
+            contactType: "customer service",
+            areaServed: "ID",
+            availableLanguage: ["English", "Indonesian"],
+          },
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
+            addressLocality: "Yogyakarta City",
+            addressRegion: "Special Region of Yogyakarta",
+            postalCode: "55173",
+            addressCountry: "ID",
+          },
+        },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      },
+    ],
+  }
 
   return (
     <div className="min-h-screen">
@@ -60,43 +121,11 @@ export default async function ContactPage() {
       </section>
 
       <FAQSection />
-      {/* <FeaturedCollections
-        title="Featured Collections"
-        description="Explore our latest creations"
-        ctaLabel="View All Collections"
-        ctaHref="/catalog"
-        sectionClassName="mt-20 mb-20 py-20"
-        /> */}
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ContactPage",
-            mainEntity: {
-              "@type": "JewelryStore",
-              name: "Salim Silver",
-              image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-              telephone: "+62 896 7197 7699",
-              contactPoint: {
-                "@type": "ContactPoint",
-                telephone: "+62 896 7197 7699",
-                contactType: "customer service",
-                areaServed: "ID",
-                availableLanguage: ["English", "Indonesian"],
-              },
-              address: {
-                "@type": "PostalAddress",
-                streetAddress:
-                  "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
-                addressLocality: "Yogyakarta City",
-                addressRegion: "Special Region of Yogyakarta",
-                postalCode: "55173",
-                addressCountry: "ID",
-              },
-            },
-          }),
+          __html: JSON.stringify(jsonLd),
         }}
       />
     </div>
