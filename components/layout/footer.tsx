@@ -81,8 +81,8 @@ export default function Footer() {
       className="bg-background border-border border-t px-4 py-12 md:px-8"
       {...motionSettings}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-4">
-        <AnimatedSection className="md:col-span-2">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-12">
+        <AnimatedSection className="md:col-span-4">
           <div className="mb-6 flex w-fit flex-col">
             <Link
               href="/"
@@ -108,9 +108,9 @@ export default function Footer() {
           </p>
         </AnimatedSection>
 
-        <AnimatedSection>
+        <AnimatedSection className="md:col-span-5">
           <h3 className="section-title mb-2 text-2xl">{t("quickLinks")}</h3>
-          <ul className="grid grid-cols-1 gap-1 md:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-1 md:grid-cols-3">
             {quickLinksConfig.map(({ href, key }) => (
               <li key={href}>
                 <Link
@@ -124,7 +124,7 @@ export default function Footer() {
           </ul>
         </AnimatedSection>
 
-        <AnimatedSection>
+        <AnimatedSection className="md:col-span-3">
           <h3 className="section-title mb-2 text-2xl">{t("contact")}</h3>
           <ul className="text-muted-foreground space-y-2">
             {contactLinksConfig.map(({ key, href, display }) => (
