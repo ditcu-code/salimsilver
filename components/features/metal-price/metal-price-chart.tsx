@@ -80,7 +80,7 @@ export function MetalPriceChart({
                   return new Intl.NumberFormat("id-ID", {
                     notation: "compact",
                     compactDisplay: "short",
-                    maximumFractionDigits: 1,
+                    maximumFractionDigits: 0,
                   }).format(value)
                 }}
                 stroke="#888888"
@@ -106,7 +106,9 @@ export function MetalPriceChart({
                         </div>
                         <div className="text-foreground font-bold tabular-nums text-sm">
                           Rp{" "}
-                          {(payload[0].value as number).toLocaleString("id-ID")}
+                          {Math.round(
+                            payload[0].value as number,
+                          ).toLocaleString("id-ID")}
                         </div>
                       </div>
                     )
