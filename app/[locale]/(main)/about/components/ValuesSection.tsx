@@ -24,17 +24,17 @@ export default function ValuesSection() {
           {keys.map((key, index) => (
             <motion.div
               key={key}
-              className="text-primary dark:text-primary-secondary bg-primary-secondary dark:bg-primary rounded-3xl p-8 shadow-sm"
+              className="bg-card text-card-foreground rounded-3xl p-8 shadow-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <h3 className="text-primary-secondary dark:text-primary-foreground mb-4 text-2xl">
+              <h3 className="mb-4 text-2xl font-semibold">
                 {t(`items.${key}.title`)}
               </h3>
-              <p className="text-primary-secondary dark:text-primary-foreground">
+              <p className="text-muted-foreground">
                 {t(`items.${key}.description`)}
               </p>
             </motion.div>
