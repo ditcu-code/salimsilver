@@ -9,7 +9,7 @@ export default function SilverPriceLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="container mx-auto max-w-lg px-4 pt-30 pb-12 md:pb-18">
+    <div className="w-full pt-30 pb-12 md:pb-18 px-8">
       <MetalPriceHeader
         title="Harga Perak Hari Ini"
         description="Update harga perak murni terkini dalam Rupiah."

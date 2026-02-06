@@ -10,14 +10,18 @@ import {
   YAxis,
 } from "recharts"
 
+import { Button } from "@/components/ui/button"
 import { PriceHistoryItem } from "@/lib/types"
+import { cn } from "@/lib/utils"
 import { ArrowDown, ArrowUp, Minus } from "lucide-react"
+import { useState } from "react"
 
 interface MetalPriceChartProps {
   type: "gold" | "silver"
   color?: string
   latestPrice?: number
   data: PriceHistoryItem[]
+  className?: string
 }
 
 export function MetalPriceChart({
@@ -25,6 +29,7 @@ export function MetalPriceChart({
   color = "#d4af37",
   latestPrice,
   data: initialData,
+  className,
 }: MetalPriceChartProps) {
   // Append latest price if it exists
   const data = [...initialData]
@@ -32,25 +37,76 @@ export function MetalPriceChart({
     data.push({ date: new Date().toISOString(), price: latestPrice })
   }
 
-  // Calculate min and max for Y-axis domain to make the chart look dynamic
-  if (data.length === 0) return null
+  const [period, setPeriod] = useState("1B")
 
-  const prices = data.map((d) => d.price)
+  // Filter data based on selected period
+  const filteredData = (() => {
+    if (!data.length) return []
+    const sortedData = [...data].sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    )
+
+    const now = new Date()
+    let daysToSubtract = 30 // Default 1B
+
+    switch (period) {
+      case "1H": // 1 Hari (Show comparison with yesterday)
+        daysToSubtract = 2 // Need at least 2 points for a line
+        break
+      case "1B": // 1 Bulan
+        daysToSubtract = 30
+        break
+      case "6B": // 6 Bulan
+        daysToSubtract = 180
+        break
+      case "1T": // 1 Tahun
+        daysToSubtract = 365
+        break
+      default:
+        daysToSubtract = 30
+    }
+
+    const cutoffDate = new Date()
+    cutoffDate.setDate(now.getDate() - daysToSubtract)
+
+    return sortedData.filter((item) => new Date(item.date) >= cutoffDate)
+  })()
+
+  // Calculate min and max for Y-axis domain to make the chart look dynamic
+  if (filteredData.length === 0) return null
+
+  const prices = filteredData.map((d) => d.price)
   const minPrice = Math.min(...prices)
   const maxPrice = Math.max(...prices)
   const padding = (maxPrice - minPrice) * 0.1
 
   return (
-    <Card className="border-border/50 bg-card shadow-sm mt-12">
-      <CardHeader className="pb-4">
-        <CardTitle className="text-base text-center font-bold text-muted-foreground">
-          Grafik Harga {type === "gold" ? "Emas" : "Perak"} 30 Hari Terakhir
-        </CardTitle>
+    <Card className={cn("border-border/50 bg-card shadow-sm", className)}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-base font-normal">Grafik Harga</CardTitle>
+        <div className="flex items-center space-x-1">
+          {[
+            { key: "1H", label: "1 Hari" },
+            { key: "1B", label: "1 Bulan" },
+            { key: "6B", label: "6 Bulan" },
+            { key: "1T", label: "1 Tahun" },
+          ].map((p) => (
+            <Button
+              key={p.key}
+              variant={period === p.key ? "secondary" : "ghost"}
+              size="sm"
+              onClick={() => setPeriod(p.key)}
+              className="h-7 px-3 text-xs"
+            >
+              {p.label}
+            </Button>
+          ))}
+        </div>
       </CardHeader>
-      <CardContent className="pl-0 pb-4">
-        <div className="h-[250px] w-full">
+      <CardContent className="pt-4 pb-4 pl-0 pr-4 sm:pr-6">
+        <div className="h-[350px] w-full sm:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data}>
+            <AreaChart data={filteredData}>
               <defs>
                 <linearGradient
                   id={`gradient-${type}`}

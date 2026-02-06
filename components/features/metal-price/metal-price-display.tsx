@@ -63,7 +63,7 @@ export function MetalPriceDisplay({
   const price1yDisplay = price1y * taxMultiplier
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="w-full space-y-6">
       <div className="flex flex-col items-center justify-center gap-6 mb-8">
         {enableTaxToggle && (
           <div className="flex items-center space-x-2">
@@ -82,46 +82,55 @@ export function MetalPriceDisplay({
         )}
       </div>
 
-      <MetalPriceCard
-        includeTax={enableTaxToggle && includeTax}
-        currentPriceDisplay={currentPriceDisplay}
-        previousPriceDisplay={previousPriceDisplay}
-        lastUpdated={lastUpdated}
-      />
+      <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-3">
+        {/* Left Column: Chart (Takes 2/3 width) - Order 3 on Mobile, Order 1 on Desktop */}
+        <div className="order-3 lg:order-1 lg:col-span-2">
+          <MetalPriceChart
+            type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
+            color={"#3c2a21"}
+            data={chartData}
+            latestPrice={currentPrice}
+            className="min-h-[450px]"
+          />
+        </div>
 
-      <MetalPriceChart
-        type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
-        color={"#956a58"}
-        data={chartData}
-        latestPrice={currentPrice}
-      />
+        {/* Right Column: Sticky Sidebar (Takes 1/3 width) - Order 1 & 2 on Mobile, Order 2 on Desktop */}
+        <div className="order-1 lg:order-2 lg:col-span-1 space-y-6 lg:sticky lg:top-24">
+          <MetalPriceCard
+            includeTax={enableTaxToggle && includeTax}
+            currentPriceDisplay={currentPriceDisplay}
+            previousPriceDisplay={previousPriceDisplay}
+            lastUpdated={lastUpdated}
+          />
 
-      <Card className="border-border/30 bg-card mt-10 shadow-sm">
-        <CardContent className="space-y-2 p-0 px-6 py-3">
-          <div className="divide-muted divide-y">
-            <HistoricalPriceRow
-              label="1 Minggu Lalu"
-              historicalPrice={price7dDisplay}
-              currentPrice={currentPriceDisplay}
-            />
-            <HistoricalPriceRow
-              label="1 Bulan Lalu"
-              historicalPrice={price30dDisplay}
-              currentPrice={currentPriceDisplay}
-            />
-            <HistoricalPriceRow
-              label="6 Bulan Lalu"
-              historicalPrice={price180dDisplay}
-              currentPrice={currentPriceDisplay}
-            />
-            <HistoricalPriceRow
-              label="1 Tahun Lalu"
-              historicalPrice={price1yDisplay}
-              currentPrice={currentPriceDisplay}
-            />
-          </div>
-        </CardContent>
-      </Card>
+          <Card className="border-border/30 bg-card shadow-sm">
+            <CardContent className="space-y-2 p-0 px-6 py-3">
+              <div className="divide-muted divide-y">
+                <HistoricalPriceRow
+                  label="1 Minggu Lalu"
+                  historicalPrice={price7dDisplay}
+                  currentPrice={currentPriceDisplay}
+                />
+                <HistoricalPriceRow
+                  label="1 Bulan Lalu"
+                  historicalPrice={price30dDisplay}
+                  currentPrice={currentPriceDisplay}
+                />
+                <HistoricalPriceRow
+                  label="6 Bulan Lalu"
+                  historicalPrice={price180dDisplay}
+                  currentPrice={currentPriceDisplay}
+                />
+                <HistoricalPriceRow
+                  label="1 Tahun Lalu"
+                  historicalPrice={price1yDisplay}
+                  currentPrice={currentPriceDisplay}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
       {relatedMetal && (
         <div className="flex justify-center pt-4">

@@ -9,7 +9,7 @@ export default function GoldPriceLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="container mx-auto max-w-lg px-4 pt-30 pb-12 md:pb-18">
+    <div className="w-full pt-30 pb-12 md:pb-18 px-8">
       <MetalPriceHeader
         title="Harga Emas Hari Ini"
         description="Update harga emas murni terkini dalam Rupiah."
