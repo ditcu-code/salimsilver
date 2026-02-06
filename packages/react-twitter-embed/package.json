@@ -1,6 +1,7 @@
 {
   "name": "react-twitter-embed",
   "version": "4.0.4",
+  "private": true,
   "description": "React Twitter Embed Components",
   "author": "Saurabh Nemade",
   "license": "MIT",
