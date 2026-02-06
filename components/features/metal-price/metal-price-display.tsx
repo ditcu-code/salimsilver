@@ -91,7 +91,7 @@ export function MetalPriceDisplay({
 
       <MetalPriceChart
         type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
-        color={relatedMetal?.name === "Perak" ? "#d4af37" : "#C0C0C0"}
+        color={"#956a58"}
         data={chartData}
         latestPrice={currentPrice}
       />
