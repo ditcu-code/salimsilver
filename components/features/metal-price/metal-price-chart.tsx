@@ -43,7 +43,7 @@ export function MetalPriceChart({
     <Card className="border-border/50 bg-card shadow-sm mt-12">
       <CardHeader className="pb-4">
         <CardTitle className="text-base text-center font-bold text-muted-foreground">
-          Grafik Harga 30 Hari Terakhir
+          Grafik Harga {type === "gold" ? "Emas" : "Perak"} 30 Hari Terakhir
         </CardTitle>
       </CardHeader>
       <CardContent className="pl-0 pb-4">
