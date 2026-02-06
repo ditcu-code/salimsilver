@@ -35,14 +35,26 @@ export const getSilverPriceHistory = unstable_cache(
       .select("price_idr, updated_at")
       .gte("updated_at", fromDate)
       .order("updated_at", { ascending: false })
-      .limit(1000)
+      .limit(9000)
 
     const reversedData = data ? [...data].reverse() : []
 
-    return reversedData.map((item) => ({
-      date: item.updated_at,
-      price: item.price_idr / 1000, // Silver is stored in kg, convert to gram
-    }))
+    // Downsample to 1 point per day to keep payload light
+    const dailyData: PriceHistoryItem[] = []
+    const seenDates = new Set<string>()
+
+    reversedData.forEach((item) => {
+      const dateStr = new Date(item.updated_at).toISOString().split("T")[0]
+      if (!seenDates.has(dateStr)) {
+        seenDates.add(dateStr)
+        dailyData.push({
+          date: item.updated_at,
+          price: item.price_idr / 1000, // Silver is stored in kg, convert to gram
+        })
+      }
+    })
+
+    return dailyData
   },
   ["silver-price-history"],
   {

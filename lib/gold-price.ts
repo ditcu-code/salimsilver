@@ -36,20 +36,26 @@ export const getGoldPriceHistory = unstable_cache(
       .select("price_idr, updated_at")
       .gte("updated_at", fromDate)
       .order("updated_at", { ascending: false })
-      .limit(1000)
+      .limit(9000)
 
     const reversedData = data ? [...data].reverse() : []
 
-    return reversedData.map((item) => ({
-      date: item.updated_at,
-      price: item.price_idr, // Gold is already per gram in DB?
-      // Wait, let's check the API route logic.
-      // API: type === "silver" ? item.price_idr / 1000 : item.price_idr
-      // So Gold is likely per gram or per whatever unit is desired.
-      // Let's check calculateDisplayPrices in this file.
-      // calculateDisplayPrices says: // Price is already per gram in DB
-      // So yes, return raw price_idr.
-    }))
+    // Downsample to 1 point per day to keep payload light
+    const dailyData: PriceHistoryItem[] = []
+    const seenDates = new Set<string>()
+
+    reversedData.forEach((item) => {
+      const dateStr = new Date(item.updated_at).toISOString().split("T")[0]
+      if (!seenDates.has(dateStr)) {
+        seenDates.add(dateStr)
+        dailyData.push({
+          date: item.updated_at,
+          price: item.price_idr, // Gold is already per gram in DB
+        })
+      }
+    })
+
+    return dailyData
   },
   ["gold-price-history"],
   {
