@@ -72,7 +72,7 @@ export function MetalPriceChart({
           Grafik Harga 30 Hari Terakhir
         </CardTitle>
       </CardHeader>
-      <CardContent className="pl-2 pb-4">
+      <CardContent className="px-4 pl-0 pb-4">
         <div className="h-[250px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data}>
