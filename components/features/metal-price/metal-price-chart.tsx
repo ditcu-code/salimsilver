@@ -11,6 +11,7 @@ import {
 } from "recharts"
 
 import { PriceHistoryItem } from "@/lib/types"
+import { ArrowDown, ArrowUp, Minus } from "lucide-react"
 
 interface MetalPriceChartProps {
   type: "gold" | "silver"
@@ -98,17 +99,56 @@ export function MetalPriceChart({
                           {new Date(label as string).toLocaleString("id-ID", {
                             weekday: "long",
                             day: "numeric",
-                            month: "short", // shortened month to save space if needed, or keep long. Long is fine.
+                            month: "short",
                             year: "numeric",
                             hour: "2-digit",
                             minute: "2-digit",
                           })}
                         </div>
-                        <div className="text-foreground font-bold tabular-nums text-sm">
-                          Rp{" "}
-                          {Math.round(
-                            payload[0].value as number,
-                          ).toLocaleString("id-ID")}
+                        <div className="flex items-center gap-3">
+                          <div className="text-foreground font-bold tabular-nums text-sm">
+                            Rp{" "}
+                            {Math.round(
+                              payload[0].value as number,
+                            ).toLocaleString("id-ID")}
+                          </div>
+                          {(() => {
+                            const currentPrice = payload[0].value as number
+                            const currentIndex = data.findIndex(
+                              (item) => item.date === label,
+                            )
+                            const prevItem =
+                              currentIndex > 0 ? data[currentIndex - 1] : null
+
+                            if (!prevItem) return null
+
+                            const diff = currentPrice - prevItem.price
+                            const percentage = (diff / prevItem.price) * 100
+                            const isPositive = diff > 0
+                            const isNegative = diff < 0
+                            const isZero = diff === 0
+
+                            return (
+                              <div
+                                className={`flex items-center text-xs font-medium ${
+                                  isPositive
+                                    ? "text-green-600"
+                                    : isNegative
+                                      ? "text-red-600"
+                                      : "text-muted-foreground"
+                                }`}
+                              >
+                                {isPositive && (
+                                  <ArrowUp className="mr-1 h-3 w-3" />
+                                )}
+                                {isNegative && (
+                                  <ArrowDown className="mr-1 h-3 w-3" />
+                                )}
+                                {isZero && <Minus className="mr-1 h-3 w-3" />}
+                                {Math.abs(percentage).toFixed(2)}%
+                              </div>
+                            )
+                          })()}
                         </div>
                       </div>
                     )
