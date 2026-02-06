@@ -83,7 +83,7 @@ export function MetalPriceDisplay({
         lastUpdated={lastUpdated}
       />
 
-      <Card className="border-border/30 bg-card/30 mt-10 shadow-sm backdrop-blur-sm">
+      <Card className="border-border/30 bg-white dark:bg-card mt-10 shadow-sm">
         <CardContent className="space-y-2 p-0 px-6 py-3">
           <div className="divide-muted divide-y">
             <HistoricalPriceRow

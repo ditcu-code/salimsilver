@@ -44,7 +44,7 @@ export function MetalPriceCard({
       : "via-red-500/60"
 
   return (
-    <Card className="bg-card/50 border-border/50 relative overflow-hidden rounded-xl border shadow-lg backdrop-blur-xl">
+    <Card className="bg-white dark:bg-card border-border/50 relative overflow-hidden rounded-xl border shadow-lg">
       {/* Subtle gradient accent at the top */}
       <div
         className={`absolute inset-x-0 top-0 h-1 bg-linear-to-r from-transparent to-transparent opacity-50 ${gradientClass}`}
@@ -198,7 +198,7 @@ export function PriceFallbackCard({
   description,
 }: PriceFallbackCardProps) {
   return (
-    <Card className="border-border/50 bg-card/50 shadow-xl backdrop-blur-md">
+    <Card className="border-border/50 bg-white dark:bg-card shadow-xl">
       <CardHeader className="text-center">
         <CardTitle className="font-display text-2xl">{title}</CardTitle>
         <CardDescription className="text-base">{description}</CardDescription>
