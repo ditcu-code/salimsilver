@@ -5,6 +5,7 @@ import {
 } from "@/lib/seo"
 import {
   calculateDisplayPrices,
+  getSilverPriceHistory,
   getSilverPriceSummary,
 } from "@/lib/silver-price"
 import type { Metadata } from "next"
@@ -76,6 +77,7 @@ export default async function SilverPricePage({ params }: Props) {
   const { locale } = await params
   const summaryData = await getSilverPriceSummary()
   const displayPrices = calculateDisplayPrices(summaryData)
+  const chartData = await getSilverPriceHistory(30)
 
   let priceContent
 
@@ -91,6 +93,7 @@ export default async function SilverPricePage({ params }: Props) {
     priceContent = (
       <MetalPriceDisplay
         displayPrices={displayPrices}
+        chartData={chartData}
         relatedMetal={{
           name: "Emas",
           href: constructLocalizedPath(locale, "/gold-price"),

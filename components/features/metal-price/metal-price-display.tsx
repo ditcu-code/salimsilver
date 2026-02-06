@@ -4,12 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
+import { PriceHistoryItem } from "@/lib/types"
 import { sendGAEvent } from "@next/third-parties/google"
 import Link from "next/link"
 import { useState } from "react"
 import { HistoricalPriceRow } from "./historical-price-row"
 import { MetalPriceCard } from "./metal-price-card"
 import { MetalPriceChart } from "./metal-price-chart"
+
+// ...
 
 export interface DisplayPrices {
   currentPrice: number
@@ -23,6 +26,7 @@ export interface DisplayPrices {
 
 interface MetalPriceDisplayProps {
   displayPrices: DisplayPrices
+  chartData: PriceHistoryItem[]
   enableTaxToggle?: boolean
   relatedMetal?: {
     name: string
@@ -32,6 +36,7 @@ interface MetalPriceDisplayProps {
 
 export function MetalPriceDisplay({
   displayPrices,
+  chartData,
   enableTaxToggle = true,
   relatedMetal,
 }: MetalPriceDisplayProps) {
@@ -87,6 +92,8 @@ export function MetalPriceDisplay({
       <MetalPriceChart
         type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
         color={relatedMetal?.name === "Perak" ? "#d4af37" : "#C0C0C0"}
+        data={chartData}
+        latestPrice={currentPrice}
       />
 
       <Card className="border-border/30 bg-card mt-10 shadow-sm">

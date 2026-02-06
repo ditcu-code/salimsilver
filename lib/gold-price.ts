@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import { unstable_cache } from "next/cache"
-import { SilverPriceSummary } from "./types"
+import { PriceHistoryItem, SilverPriceSummary } from "./types"
 
 export type GoldPriceSummary = SilverPriceSummary
 
@@ -18,8 +18,43 @@ export const getGoldPriceSummary = unstable_cache(
   },
   ["gold-price-summary"],
   {
-    tags: ["gold-price"],
     revalidate: 3600, // Fallback revalidate every hour
+  },
+)
+
+export const getGoldPriceHistory = unstable_cache(
+  async (days: number = 30): Promise<PriceHistoryItem[]> => {
+    const supabase = await createClient()
+
+    // Calculate the date from 'days' ago
+    const date = new Date()
+    date.setDate(date.getDate() - days)
+    const fromDate = date.toISOString()
+
+    const { data } = await supabase
+      .from("gold_prices")
+      .select("price_idr, updated_at")
+      .gte("updated_at", fromDate)
+      .order("updated_at", { ascending: false })
+      .limit(1000)
+
+    const reversedData = data ? [...data].reverse() : []
+
+    return reversedData.map((item) => ({
+      date: item.updated_at,
+      price: item.price_idr, // Gold is already per gram in DB?
+      // Wait, let's check the API route logic.
+      // API: type === "silver" ? item.price_idr / 1000 : item.price_idr
+      // So Gold is likely per gram or per whatever unit is desired.
+      // Let's check calculateDisplayPrices in this file.
+      // calculateDisplayPrices says: // Price is already per gram in DB
+      // So yes, return raw price_idr.
+    }))
+  },
+  ["gold-price-history"],
+  {
+    tags: ["gold-price"],
+    revalidate: 3600,
   },
 )
 

@@ -165,3 +165,8 @@ export interface SilverPriceSummary {
   price_1y_ago: number | null
   updated_at: string
 }
+
+export interface PriceHistoryItem {
+  date: string
+  price: number
+}

@@ -1,7 +1,6 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { useEffect, useState } from "react"
 import {
   Area,
   AreaChart,
@@ -11,55 +10,30 @@ import {
   YAxis,
 } from "recharts"
 
-interface ChartData {
-  date: string
-  price: number
-}
+import { PriceHistoryItem } from "@/lib/types"
 
 interface MetalPriceChartProps {
   type: "gold" | "silver"
   color?: string
+  latestPrice?: number
+  data: PriceHistoryItem[]
 }
 
 export function MetalPriceChart({
   type,
   color = "#d4af37",
+  latestPrice,
+  data: initialData,
 }: MetalPriceChartProps) {
-  const [data, setData] = useState<ChartData[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch(`/api/metal-price-history?type=${type}&days=30`)
-        if (!res.ok) throw new Error("Failed to fetch data")
-        const json = await res.json()
-        setData(json.data)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error")
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [type])
-
-  if (loading) {
-    return (
-      <Card className="border-border/50 bg-card shadow-sm mt-12">
-        <CardContent className="h-[300px] flex items-center justify-center text-muted-foreground text-sm">
-          Loading chart...
-        </CardContent>
-      </Card>
-    )
-  }
-
-  if (error || data.length === 0) {
-    return null // Hide if error or no data
+  // Append latest price if it exists
+  const data = [...initialData]
+  if (latestPrice && data.length > 0) {
+    data.push({ date: new Date().toISOString(), price: latestPrice })
   }
 
   // Calculate min and max for Y-axis domain to make the chart look dynamic
+  if (data.length === 0) return null
+
   const prices = data.map((d) => d.price)
   const minPrice = Math.min(...prices)
   const maxPrice = Math.max(...prices)
@@ -72,7 +46,7 @@ export function MetalPriceChart({
           Grafik Harga 30 Hari Terakhir
         </CardTitle>
       </CardHeader>
-      <CardContent className="px-4 pl-0 pb-4">
+      <CardContent className="pl-0 pb-4">
         <div className="h-[250px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data}>

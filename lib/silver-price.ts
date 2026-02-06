@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
-import { SilverPriceSummary } from "./types"
+import { PriceHistoryItem, SilverPriceSummary } from "./types"
 
 import { unstable_cache } from "next/cache"
 
@@ -17,8 +17,37 @@ export const getSilverPriceSummary = unstable_cache(
   },
   ["silver-price-summary"],
   {
-    tags: ["silver-price"],
     revalidate: 3600, // Fallback revalidate every hour
+  },
+)
+
+export const getSilverPriceHistory = unstable_cache(
+  async (days: number = 30): Promise<PriceHistoryItem[]> => {
+    const supabase = await createClient()
+
+    // Calculate the date from 'days' ago
+    const date = new Date()
+    date.setDate(date.getDate() - days)
+    const fromDate = date.toISOString()
+
+    const { data } = await supabase
+      .from("silver_prices")
+      .select("price_idr, updated_at")
+      .gte("updated_at", fromDate)
+      .order("updated_at", { ascending: false })
+      .limit(1000)
+
+    const reversedData = data ? [...data].reverse() : []
+
+    return reversedData.map((item) => ({
+      date: item.updated_at,
+      price: item.price_idr / 1000, // Silver is stored in kg, convert to gram
+    }))
+  },
+  ["silver-price-history"],
+  {
+    tags: ["silver-price"],
+    revalidate: 3600,
   },
 )
 
