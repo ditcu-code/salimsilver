@@ -87,7 +87,7 @@ export function MetalPriceDisplay({
         <div className="order-3 lg:order-1 lg:col-span-2">
           <MetalPriceChart
             type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
-            color={"#3c2a21"}
+            color={"#b0714a"}
             data={chartData}
             latestPrice={currentPrice}
             className="min-h-[450px]"
