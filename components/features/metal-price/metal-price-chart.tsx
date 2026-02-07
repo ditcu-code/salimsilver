@@ -50,8 +50,8 @@ export function MetalPriceChart({
     let daysToSubtract = 30 // Default 1B
 
     switch (period) {
-      case "1H": // 1 Hari (Show comparison with yesterday)
-        daysToSubtract = 2 // Need at least 2 points for a line
+      case "1M": // 1 Minggu
+        daysToSubtract = 7
         break
       case "1B": // 1 Bulan
         daysToSubtract = 30
@@ -86,7 +86,7 @@ export function MetalPriceChart({
         <CardTitle className="text-base font-normal">Grafik Harga</CardTitle>
         <div className="flex items-center space-x-1">
           {[
-            { key: "1H", label: "1 Hari" },
+            { key: "1M", label: "1 Minggu" },
             { key: "1B", label: "1 Bulan" },
             { key: "6B", label: "6 Bulan" },
             { key: "1T", label: "1 Tahun" },

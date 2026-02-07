@@ -49,7 +49,7 @@ export const getSilverPriceHistory = unstable_cache(
         seenDates.add(dateStr)
         dailyData.push({
           date: item.updated_at,
-          price: item.price_idr / 1000, // Silver is stored in kg, convert to gram
+          price: item.price_idr / 1000,
         })
       }
     })
