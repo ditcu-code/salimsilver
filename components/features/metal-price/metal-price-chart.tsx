@@ -67,7 +67,9 @@ export function MetalPriceChart({
   return (
     <Card className={cn("border-border/50 bg-card shadow-sm", className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-base font-normal">Grafik Harga</CardTitle>
+        <CardTitle className="text-base font-normal">
+          Grafik Harga {type === "gold" ? "Emas" : "Perak"}
+        </CardTitle>
         <div className="flex items-center space-x-1">
           <div className="flex items-center p-1 bg-muted rounded-lg">
             <Button
