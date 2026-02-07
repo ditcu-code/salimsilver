@@ -151,10 +151,10 @@ function Brand({
           width={180}
           height={36}
           className={cn(
-            "h-10 object-contain transition-all duration-300 dark:invert-0",
+            "h-8 object-contain transition-all duration-300 dark:invert-0",
             shouldInvert ? "invert" : "invert-0",
           )}
-          style={{ width: "auto", maxWidth: "180px" }}
+          style={{ width: "auto" }}
           priority
         />
       </Link>

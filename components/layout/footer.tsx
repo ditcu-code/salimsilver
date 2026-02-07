@@ -93,8 +93,8 @@ export default function Footer() {
                 alt="Salim Silver"
                 width={260}
                 height={40}
-                className="h-12 object-contain invert dark:invert-0"
-                style={{ width: "auto", maxWidth: "260px" }}
+                className="h-12 object-contain invert dark:invert-0 "
+                style={{ width: "auto" }}
                 loading="eager"
               />
             </Link>
