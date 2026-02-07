@@ -57,7 +57,7 @@ export const getGoldPriceHistory = unstable_cache(
 
     return dailyData
   },
-  ["gold-price-history"],
+  ["gold-price-history-v2"],
   {
     tags: ["gold-price"],
     revalidate: 3600,

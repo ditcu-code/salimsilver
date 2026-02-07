@@ -56,7 +56,7 @@ export const getSilverPriceHistory = unstable_cache(
 
     return dailyData
   },
-  ["silver-price-history"],
+  ["silver-price-history-v2"],
   {
     tags: ["silver-price"],
     revalidate: 3600,
