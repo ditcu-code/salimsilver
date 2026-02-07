@@ -95,7 +95,7 @@ export function MetalPriceChart({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pt-4 pb-4 pl-0 pr-4 sm:pr-6">
+      <CardContent className="pt-4 pb-4 px-4 sm:pr-6">
         <div className="h-[350px] w-full min-w-0 sm:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={filteredData}>
@@ -136,7 +136,7 @@ export function MetalPriceChart({
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                width={60}
+                width={25}
               />
               <Tooltip
                 content={({ active, payload, label }) => {
