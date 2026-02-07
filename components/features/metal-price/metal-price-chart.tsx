@@ -138,7 +138,7 @@ export function MetalPriceChart({
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                width={25}
+                width={type === "gold" ? 25 : 35}
               />
               <Tooltip
                 content={({ active, payload, label }) => {

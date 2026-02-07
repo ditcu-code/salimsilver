@@ -62,6 +62,12 @@ export function MetalPriceDisplay({
   const price180dDisplay = price180d * taxMultiplier
   const price1yDisplay = price1y * taxMultiplier
 
+  // Apply tax multiplier to chart data
+  const chartDataDisplay = chartData.map((item) => ({
+    ...item,
+    price: item.price * taxMultiplier,
+  }))
+
   return (
     <div className="w-full space-y-6">
       <div className="flex flex-col items-center justify-center gap-6 mb-8">
@@ -88,8 +94,8 @@ export function MetalPriceDisplay({
           <MetalPriceChart
             type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
             color={"#b0714a"}
-            data={chartData}
-            latestPrice={currentPrice}
+            data={chartDataDisplay}
+            latestPrice={currentPriceDisplay}
             className="min-h-[450px]"
           />
         </div>
