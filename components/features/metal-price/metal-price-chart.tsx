@@ -78,7 +78,7 @@ export function MetalPriceChart({
         </div>
       </CardHeader>
       <CardContent className="pt-4 pb-4 pl-0 pr-4 sm:pr-6">
-        <div className="h-[350px] w-full sm:h-[400px]">
+        <div className="h-[350px] w-full min-w-0 sm:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={filteredData}>
               <defs>
