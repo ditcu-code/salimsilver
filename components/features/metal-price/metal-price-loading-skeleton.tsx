@@ -13,10 +13,9 @@ export function MetalPriceLoadingSkeleton() {
           <Card className="border-border/50 bg-card shadow-sm h-full max-h-[500px]">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <Skeleton className="h-6 w-32" />
-              <div className="flex gap-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <Skeleton key={i} className="h-7 w-8" />
-                ))}
+              <div className="flex items-center p-1 bg-muted/50 rounded-lg gap-1">
+                <Skeleton className="h-7 w-20" />
+                <Skeleton className="h-7 w-20" />
               </div>
             </CardHeader>
             <CardContent className="pl-0 pb-4 px-6">
