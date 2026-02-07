@@ -43,6 +43,8 @@ export function MetalPriceCard({
       ? "via-green-500/60"
       : "via-red-500/60"
 
+  const isLongNumber = Math.floor(currentPriceDisplay).toString().length >= 7
+
   return (
     <Card className="bg-card border-border/50 relative overflow-hidden rounded-xl border shadow-lg">
       {/* Subtle gradient accent at the top */}
@@ -58,10 +60,8 @@ export function MetalPriceCard({
           <div className="flex flex-col items-center gap-1">
             <div className="flex items-baseline justify-center gap-1">
               <span
-                className={`text-foreground font-sans font-bold tracking-tight md:text-6xl ${
-                  currentPriceDisplay.toString().length >= 7
-                    ? "text-4xl"
-                    : "text-5xl"
+                className={`text-foreground font-sans font-bold tracking-tight ${
+                  isLongNumber ? "md:text-5xl text-4xl" : "md:text-6xl text-5xl"
                 }`}
               >
                 <AnimatedCurrency value={currentPriceDisplay} />
