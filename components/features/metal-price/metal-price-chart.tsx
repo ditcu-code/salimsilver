@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { PriceHistoryItem } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { ArrowDown, ArrowUp, Minus } from "lucide-react"
+import { useState } from "react"
 
 interface MetalPriceChartProps {
   type: "gold" | "silver"
@@ -30,6 +31,8 @@ export function MetalPriceChart({
   data: initialData,
   className,
 }: MetalPriceChartProps) {
+  const [period, setPeriod] = useState<"1w" | "1m">("1m")
+
   // Append latest price if it exists
   const data = [...initialData]
   if (latestPrice && data.length > 0) {
@@ -44,11 +47,11 @@ export function MetalPriceChart({
     )
 
     const now = new Date()
-    // Default to 30 days (1 Bulan)
-    const daysToSubtract = 30
+    const daysToSubtract = period === "1w" ? 7 : 30
 
     const cutoffDate = new Date()
     cutoffDate.setDate(now.getDate() - daysToSubtract)
+    cutoffDate.setHours(0, 0, 0, 0)
 
     return sortedData.filter((item) => new Date(item.date) >= cutoffDate)
   })()
@@ -66,11 +69,26 @@ export function MetalPriceChart({
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-base font-normal">Grafik Harga</CardTitle>
         <div className="flex items-center space-x-1">
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center p-1 bg-muted rounded-lg">
             <Button
-              variant="secondary"
+              variant={period === "1w" ? "secondary" : "ghost"}
               size="sm"
-              className="h-7 px-3 text-xs pointer-events-none"
+              className={cn(
+                "h-7 px-3 text-xs",
+                period === "1w" && "bg-background text-foreground shadow-sm",
+              )}
+              onClick={() => setPeriod("1w")}
+            >
+              1 Minggu
+            </Button>
+            <Button
+              variant={period === "1m" ? "secondary" : "ghost"}
+              size="sm"
+              className={cn(
+                "h-7 px-3 text-xs",
+                period === "1m" && "bg-background text-foreground shadow-sm",
+              )}
+              onClick={() => setPeriod("1m")}
             >
               1 Bulan
             </Button>

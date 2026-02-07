@@ -36,24 +36,15 @@ export const getGoldPriceHistory = unstable_cache(
       .select("price_idr, updated_at")
       .gte("updated_at", fromDate)
       .order("updated_at", { ascending: false })
-      .limit(100)
+      .limit(2000)
 
     const reversedData = data ? [...data].reverse() : []
 
-    // Downsample to 1 point per day to keep payload light
-    const dailyData: PriceHistoryItem[] = []
-    const seenDates = new Set<string>()
-
-    reversedData.forEach((item) => {
-      const dateStr = new Date(item.updated_at).toISOString().split("T")[0]
-      if (!seenDates.has(dateStr)) {
-        seenDates.add(dateStr)
-        dailyData.push({
-          date: item.updated_at,
-          price: item.price_idr,
-        })
-      }
-    })
+    // Map directly to PriceHistoryItem format (no downsampling)
+    const dailyData: PriceHistoryItem[] = reversedData.map((item) => ({
+      date: item.updated_at,
+      price: item.price_idr,
+    }))
 
     return dailyData
   },
