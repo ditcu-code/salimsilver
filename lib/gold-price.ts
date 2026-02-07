@@ -36,7 +36,7 @@ export const getGoldPriceHistory = unstable_cache(
       .select("price_idr, updated_at")
       .gte("updated_at", fromDate)
       .order("updated_at", { ascending: false })
-      .limit(9000)
+      .limit(100)
 
     const reversedData = data ? [...data].reverse() : []
 
@@ -50,14 +50,14 @@ export const getGoldPriceHistory = unstable_cache(
         seenDates.add(dateStr)
         dailyData.push({
           date: item.updated_at,
-          price: item.price_idr, // Gold is already per gram in DB
+          price: item.price_idr,
         })
       }
     })
 
     return dailyData
   },
-  ["gold-price-history-v2"],
+  ["gold-price-history"],
   {
     tags: ["gold-price"],
     revalidate: 3600,

@@ -35,7 +35,7 @@ export const getSilverPriceHistory = unstable_cache(
       .select("price_idr, updated_at")
       .gte("updated_at", fromDate)
       .order("updated_at", { ascending: false })
-      .limit(9000)
+      .limit(100)
 
     const reversedData = data ? [...data].reverse() : []
 
@@ -56,7 +56,7 @@ export const getSilverPriceHistory = unstable_cache(
 
     return dailyData
   },
-  ["silver-price-history-v2"],
+  ["silver-price-history"],
   {
     tags: ["silver-price"],
     revalidate: 3600,

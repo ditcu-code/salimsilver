@@ -47,24 +47,8 @@ export function MetalPriceChart({
     )
 
     const now = new Date()
-    let daysToSubtract = 30 // Default 1B
-
-    switch (period) {
-      case "1M": // 1 Minggu
-        daysToSubtract = 7
-        break
-      case "1B": // 1 Bulan
-        daysToSubtract = 30
-        break
-      case "6B": // 6 Bulan
-        daysToSubtract = 180
-        break
-      case "1T": // 1 Tahun
-        daysToSubtract = 365
-        break
-      default:
-        daysToSubtract = 30
-    }
+    // Default to 30 days (1 Bulan)
+    const daysToSubtract = 30
 
     const cutoffDate = new Date()
     cutoffDate.setDate(now.getDate() - daysToSubtract)
@@ -85,22 +69,15 @@ export function MetalPriceChart({
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-base font-normal">Grafik Harga</CardTitle>
         <div className="flex items-center space-x-1">
-          {[
-            { key: "1M", label: "1 Minggu" },
-            { key: "1B", label: "1 Bulan" },
-            { key: "6B", label: "6 Bulan" },
-            { key: "1T", label: "1 Tahun" },
-          ].map((p) => (
+          <div className="flex items-center space-x-1">
             <Button
-              key={p.key}
-              variant={period === p.key ? "secondary" : "ghost"}
+              variant="secondary"
               size="sm"
-              onClick={() => setPeriod(p.key)}
-              className="h-7 px-3 text-xs"
+              className="h-7 px-3 text-xs pointer-events-none"
             >
-              {p.label}
+              1 Bulan
             </Button>
-          ))}
+          </div>
         </div>
       </CardHeader>
       <CardContent className="pt-4 pb-4 pl-0 pr-4 sm:pr-6">
