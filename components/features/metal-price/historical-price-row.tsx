@@ -30,7 +30,7 @@ export function HistoricalPriceRow({
       <span className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
         {label}
       </span>
-      <div className="flex items-center space-x-6">
+      <div className="flex items-center space-x-4">
         <span className="text-foreground text-sm font-semibold tabular-nums">
           <AnimatedCurrency value={historicalPrice} />
         </span>
