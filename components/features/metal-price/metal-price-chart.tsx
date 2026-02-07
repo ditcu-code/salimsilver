@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button"
 import { PriceHistoryItem } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { ArrowDown, ArrowUp, Minus } from "lucide-react"
-import { useState } from "react"
 
 interface MetalPriceChartProps {
   type: "gold" | "silver"
@@ -36,8 +35,6 @@ export function MetalPriceChart({
   if (latestPrice && data.length > 0) {
     data.push({ date: new Date().toISOString(), price: latestPrice })
   }
-
-  const [period, setPeriod] = useState("1B")
 
   // Filter data based on selected period
   const filteredData = (() => {
