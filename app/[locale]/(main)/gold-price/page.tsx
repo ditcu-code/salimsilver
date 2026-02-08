@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "Harga Emas Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
     },
     description:
-      "Pantau harga emas murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
+      "Pantau harga emas murni 24 karat terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
     keywords: [
       "Harga Emas Hari Ini",
       "Harga Emas per Gram",
@@ -46,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Harga Emas Bulan Lalu",
       "Harga Emas 6 Bulan Lalu",
       "Harga Emas 1 Tahun Lalu",
+      "Harga Emas 24 Karat",
     ],
     alternates: {
       canonical: canonicalUrl,
