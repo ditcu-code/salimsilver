@@ -40,12 +40,12 @@ export function MetalPriceChart({
     data.push({ date: new Date().toISOString(), price: latestPrice })
   }
 
+  // Ensure data is sorted by date for accurate calculations
+  data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
   // Filter data based on selected period
   const filteredData = (() => {
     if (!data.length) return []
-    const sortedData = [...data].sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    )
 
     const now = new Date()
     const daysToSubtract = period === "1w" ? 7 : 30
@@ -54,7 +54,7 @@ export function MetalPriceChart({
     cutoffDate.setDate(now.getDate() - daysToSubtract)
     cutoffDate.setHours(0, 0, 0, 0)
 
-    return sortedData.filter((item) => new Date(item.date) >= cutoffDate)
+    return data.filter((item) => new Date(item.date) >= cutoffDate)
   })()
 
   // Calculate min and max for Y-axis domain to make the chart look dynamic
