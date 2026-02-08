@@ -32,6 +32,7 @@ export function MetalPriceChart({
   className,
 }: MetalPriceChartProps) {
   const [period, setPeriod] = useState<"1w" | "1m">("1m")
+  const isGold = type === "gold"
 
   // Append latest price if it exists
   const data = [...initialData]
@@ -68,7 +69,7 @@ export function MetalPriceChart({
     <Card className={cn("border-border/50 bg-card shadow-sm", className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-base font-normal">
-          Grafik Harga {type === "gold" ? "Emas" : "Perak"}
+          Grafik Harga {isGold ? "Emas" : "Perak"}
         </CardTitle>
         <div className="flex items-center space-x-1">
           <div className="flex items-center p-1 bg-muted rounded-lg">
@@ -131,14 +132,14 @@ export function MetalPriceChart({
                   return new Intl.NumberFormat("id-ID", {
                     notation: "compact",
                     compactDisplay: "short",
-                    maximumFractionDigits: 0,
+                    maximumFractionDigits: isGold ? 1 : 0,
                   }).format(value)
                 }}
                 stroke="#888888"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                width={type === "gold" ? 25 : 35}
+                width={35}
               />
               <Tooltip
                 content={({ active, payload, label }) => {

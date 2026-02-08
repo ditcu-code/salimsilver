@@ -152,7 +152,7 @@ export function MetalPriceCard({
         </div>
 
         {/* Details Grid */}
-        <div className="grid grid-cols-2 gap-8 pt-6">
+        <div className="grid grid-cols-2 md:gap-8 gap-4 pt-6">
           <div className="space-y-1 text-center">
             <p className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
               Harga Kemarin

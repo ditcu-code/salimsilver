@@ -30,13 +30,13 @@ export function HistoricalPriceRow({
       <span className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
         {label}
       </span>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center justify-end md:space-x-6 space-x-2">
         <span className="text-foreground text-sm font-semibold tabular-nums">
           <AnimatedCurrency value={historicalPrice} />
         </span>
         {!isSame && (
           <div
-            className={`flex min-w-[85px] items-center justify-between text-xs font-medium ${trendColor} overflow-hidden`}
+            className={`flex min-w-[83px] items-center justify-between text-xs font-medium ${trendColor} overflow-hidden`}
           >
             <div className="relative grid h-4 w-full place-items-end">
               <AnimatePresence mode="wait" initial={false}>
