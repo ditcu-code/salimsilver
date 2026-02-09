@@ -118,7 +118,7 @@ export default async function SilverPricePage({ params }: Props) {
         offers: {
           "@type": "Offer",
           priceCurrency: "IDR",
-          price: displayPrices ? displayPrices.currentPrice : "0",
+          price: displayPrices ? Math.round(displayPrices.currentPrice) : "0",
           availability: "https://schema.org/InStock",
           priceValidUntil: new Date(
             Date.now() + 24 * 60 * 60 * 1000,
