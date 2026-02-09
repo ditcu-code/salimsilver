@@ -31,7 +31,7 @@ export function MetalPriceChart({
   data: initialData,
   className,
 }: MetalPriceChartProps) {
-  const [period, setPeriod] = useState<"1w" | "1m">("1m")
+  const [period, setPeriod] = useState<"1w" | "1m">("1w")
   const isGold = type === "gold"
 
   // Append latest price if it exists
