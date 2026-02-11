@@ -65,6 +65,26 @@ export function MetalPriceChart({
   const maxPrice = Math.max(...prices)
   const padding = (maxPrice - minPrice) * 0.1
 
+  // Generate ticks for X-axis (one per day at 00:00 WIB)
+  const ticks = filteredData
+    .map((item) => item.date)
+    .filter((date, index) => {
+      if (index === 0) return false
+      const prevDate = new Date(filteredData[index - 1].date)
+      const currDate = new Date(date)
+
+      // Check for day change in WIB (UTC+7)
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Jakarta",
+        day: "numeric",
+      }
+
+      const prevDay = prevDate.toLocaleString("en-US", options)
+      const currDay = currDate.toLocaleString("en-US", options)
+
+      return prevDay !== currDay
+    })
+
   return (
     <Card className={cn("border-border/50 bg-card shadow-sm", className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -116,15 +136,18 @@ export function MetalPriceChart({
               </defs>
               <XAxis
                 dataKey="date"
+                ticks={ticks}
                 tickFormatter={(date) => {
-                  const d = new Date(date)
-                  return `${d.getDate()}/${d.getMonth() + 1}`
+                  return new Date(date).toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "numeric",
+                    timeZone: "Asia/Jakarta",
+                  })
                 }}
                 stroke="#888888"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                minTickGap={30}
               />
               <YAxis
                 domain={[minPrice - padding, maxPrice + padding]}
