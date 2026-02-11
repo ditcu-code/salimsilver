@@ -91,8 +91,8 @@ export function MetalPriceChart({
         <CardTitle className="text-base font-normal">
           Grafik Harga {isGold ? "Emas" : "Perak"}
         </CardTitle>
-        <div className="flex items-center space-x-1">
-          <div className="flex items-center p-1 bg-muted rounded-lg">
+        <div className="flex items-center">
+          <div className="flex items-center p-1 bg-muted rounded-lg gap-1">
             <Button
               variant={period === "1w" ? "secondary" : "ghost"}
               size="sm"
