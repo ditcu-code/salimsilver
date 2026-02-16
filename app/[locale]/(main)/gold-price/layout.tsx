@@ -20,7 +20,7 @@ export default function GoldPriceLayout({
 
       <div className="mx-auto mt-20 max-w-2xl space-y-12">
         <FaqSection items={GOLD_FAQ_ITEMS} className={"mt-20"} />
-        <MetalPriceAbout title="Tentang Harga Emas Murni Hari Ini">
+        <MetalPriceAbout title="Tentang Harga Emas Hari Ini">
           <p>
             Salim Silver menyajikan data harga emas murni (Fine Gold .999) yang
             bersumber dari pasar komoditas internasional. Harga ini adalah acuan
