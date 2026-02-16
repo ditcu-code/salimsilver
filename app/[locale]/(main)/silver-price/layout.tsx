@@ -19,7 +19,7 @@ export default function SilverPriceLayout({
 
       <div className="mx-auto mt-20 max-w-2xl space-y-12">
         <FaqSection items={SILVER_FAQ_ITEMS} className={"mt-20"} />
-        <MetalPriceAbout title="Tentang Harga Murni Hari Ini">
+        <MetalPriceAbout title="Tentang Harga Perak Hari Ini">
           <p className="text-muted-foreground text-sm leading-relaxed text-balance">
             Data harga kami mengacu pada standar pasar logam mulia internasional
             (Fine Silver 999) dan dikonversi ke Rupiah (IDR) secara real-time.
