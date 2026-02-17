@@ -12,13 +12,26 @@ export function constructCanonicalUrl(
 ): string {
   const isDefaultLocale = locale === "en"
   const localePath = isDefaultLocale ? "" : `/${locale}`
-  // Ensure path starts with / if it's not empty and doesn't have it
-  const normalizedPath =
-    path.length > 0 && !path.startsWith("/") ? `/${path}` : path
 
-  // Remove trailing slash from path if present to avoid double slashes or inconsistency,
-  // but we usually want no trailing slash for canonicals unless it's root.
-  // However, the project seems to use no trailing slash for subpages.
+  // Ensure path starts with / if it's not empty
+  let normalizedPath = path
+  if (path.length > 0 && !path.startsWith("/")) {
+    normalizedPath = `/${path}`
+  }
+
+  // Remove trailing slash from path if it exists and isn't just "/"
+  if (normalizedPath.length > 1 && normalizedPath.endsWith("/")) {
+    normalizedPath = normalizedPath.slice(0, -1)
+  }
+
+  // If path is just "/" or empty, we don't need to append anything if it's default locale
+  // But if it's non-default locale (e.g. /id), we want /id
+
+  // HOWEVER, valid URLs are:
+  // https://salimsilver.com (en home)
+  // https://salimsilver.com/id (id home)
+  // https://salimsilver.com/catalog (en catalog)
+  // https://salimsilver.com/id/catalog (id catalog)
 
   return `${BASE_URL}${localePath}${normalizedPath}`
 }

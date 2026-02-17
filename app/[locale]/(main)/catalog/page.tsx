@@ -32,10 +32,7 @@ export async function generateMetadata({
       const description = item.description || t("fallbackDescription")
       const images =
         item.images && item.images.length > 0 ? [item.images[0].src] : []
-      const productUrl = constructCanonicalUrl(
-        locale,
-        `/catalog?jewelry=${jewelry}`,
-      )
+      const productUrl = constructCanonicalUrl(locale, `/product/${item.slug}`)
 
       return {
         title,
@@ -56,7 +53,7 @@ export async function generateMetadata({
         },
         alternates: {
           canonical: productUrl,
-          languages: getAlternates(`/catalog?jewelry=${jewelry}`),
+          languages: getAlternates(`/product/${item.slug}`),
         },
       }
     }
