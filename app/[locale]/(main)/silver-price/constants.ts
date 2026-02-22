@@ -19,8 +19,21 @@ export const SILVER_FAQ_ITEMS = [
   },
   {
     value: "item-3",
+    question: "Apakah Salim Silver menerima jual beli perak?",
+    answer:
+      "Ya, Salim Silver menerima jual beli perak dalam keadaan apapun dan kadar berapapun. Anda dapat membawa perak Anda ke galeri kami untuk dilakukan pengecekan dan penaksiran harga.",
+  },
+  {
+    value: "item-4",
     question: "Apakah saya bisa membeli perak fisik di Salim Silver?",
     answer:
       "Tentu saja. Salim Silver adalah pengrajin perak asli Kotagede yang menyediakan berbagai koleksi perhiasan perak handmade berkualitas tinggi (Sterling Silver 925). Anda dapat melihat koleksi Cincin, Kalung, dan Gelang kami melalui katalog di website ini atau berkunjung langsung ke galeri kami di Yogyakarta.",
+  },
+  {
+    value: "item-5",
+    question:
+      "Mengapa harga perak murni lokal terkadang berbeda dengan harga internasional?",
+    answer:
+      "Perbedaan harga antara perak lokal dan internasional disebabkan oleh beberapa faktor, meliputi biaya pengiriman, margin/keuntungan pedagang, biaya pemurnian (refining), serta kebijakan pajak dan regulasi setempat. Selain itu, fluktuasi nilai tukar Rupiah terhadap Dolar AS juga mempengaruhi harga perak di pasar lokal.",
   },
 ]
