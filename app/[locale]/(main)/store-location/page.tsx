@@ -153,7 +153,7 @@ export default async function StoreLocationPage({ params }: Props) {
                 "Saturday",
               ],
               opens: "08:00",
-              closes: "16:00",
+              closes: "16:30",
             },
           }),
         }}
