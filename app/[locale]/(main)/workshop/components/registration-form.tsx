@@ -1,6 +1,7 @@
 "use client"
 
 import { WhatsApp } from "@/components/icons/whatsapp"
+import { Airbnb } from "@/components/icons/airbnb"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { sendGAEvent } from "@next/third-parties/google"
@@ -313,6 +314,27 @@ ${t("WhatsApp.closing")}`
               <WhatsApp className="mr-2 h-4 w-4" />
             )}
             {t("submit")}
+          </Button>
+
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-neutral-200 dark:border-neutral-800" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-white px-2 text-muted-foreground dark:bg-neutral-950">
+                {t("airbnbLabel")}
+              </span>
+            </div>
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full border-[#FF385C] text-[#FF385C] hover:bg-[#FF385C] hover:text-white"
+            onClick={() => window.open("https://airbnb.com/x/craft-in-kotagede", "_blank")}
+          >
+            <Airbnb className="mr-2 h-4 w-4" />
+            {t("airbnbLink")}
           </Button>
         </form>
       </Form>

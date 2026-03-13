@@ -254,6 +254,8 @@
       },
       "totalEstimate": "Estimated Total:",
       "submit": "Continue to WhatsApp",
+      "airbnbLabel": "Also available on Airbnb",
+      "airbnbLink": "Book on Airbnb",
       "toast": "Redirecting to WhatsApp...",
       "mobileButton": "Book Your Workshop",
       "Validation": {

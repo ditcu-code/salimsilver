@@ -254,6 +254,8 @@
       },
       "totalEstimate": "Perkiraan Total:",
       "submit": "Lanjut ke WhatsApp",
+      "airbnbLabel": "Juga tersedia di Airbnb",
+      "airbnbLink": "Pesan di Airbnb",
       "toast": "Mengalihkan ke WhatsApp...",
       "mobileButton": "Pesan Workshop",
       "Validation": {
