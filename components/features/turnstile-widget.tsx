@@ -1,6 +1,7 @@
 "use client"
 
 import Script from "next/script"
+import { useTheme } from "next-themes"
 import { useCallback, useEffect, useRef, useState } from "react"
 
 interface TurnstileWidgetProps {
@@ -37,10 +38,12 @@ export function TurnstileWidget({
   resetKey,
 }: TurnstileWidgetProps) {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+  const { resolvedTheme } = useTheme()
   const containerRef = useRef<HTMLDivElement>(null)
   const widgetIdRef = useRef<string | null>(null)
   const lastResetKeyRef = useRef(resetKey)
   const [scriptReady, setScriptReady] = useState(false)
+  const turnstileTheme = resolvedTheme === "dark" ? "dark" : "light"
 
   const handleTokenCleared = useCallback(() => {
     onTokenChange("")
@@ -57,7 +60,7 @@ export function TurnstileWidget({
 
     widgetIdRef.current = window.turnstile.render(containerRef.current, {
       sitekey: siteKey,
-      theme: "auto",
+      theme: turnstileTheme,
       size: "flexible",
       appearance: "interaction-only",
       callback: onTokenChange,
@@ -65,7 +68,7 @@ export function TurnstileWidget({
       "expired-callback": handleTokenCleared,
       "timeout-callback": handleTokenCleared,
     })
-  }, [handleTokenCleared, onTokenChange, scriptReady, siteKey])
+  }, [handleTokenCleared, onTokenChange, scriptReady, siteKey, turnstileTheme])
 
   useEffect(() => {
     if (window.turnstile) {
@@ -76,6 +79,17 @@ export function TurnstileWidget({
   useEffect(() => {
     renderWidget()
   }, [renderWidget])
+
+  useEffect(() => {
+    if (!window.turnstile || !widgetIdRef.current) {
+      return
+    }
+
+    window.turnstile.remove(widgetIdRef.current)
+    widgetIdRef.current = null
+    handleTokenCleared()
+    renderWidget()
+  }, [handleTokenCleared, renderWidget, turnstileTheme])
 
   useEffect(() => {
     if (resetKey === lastResetKeyRef.current) {
