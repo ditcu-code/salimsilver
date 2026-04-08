@@ -1,14 +1,30 @@
 "use server"
 
+import {
+  consumeContactFormAttempt,
+  extractClientIp,
+  getMessageSpamError,
+  getRateLimitMessage,
+  getSubmissionTimingState,
+} from "@/lib/contact-form-security"
+import { headers } from "next/headers"
 import { Resend } from "resend"
 import { z } from "zod"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const contactFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.email("Invalid email address"),
-  message: z.string().min(1, "Message is required"),
+  name: z.string().trim().min(1, "Name is required").max(100, "Name is too long"),
+  email: z
+    .string()
+    .trim()
+    .email("Invalid email address")
+    .max(320, "Email is too long"),
+  message: z
+    .string()
+    .trim()
+    .min(1, "Message is required")
+    .max(2000, "Message is too long"),
 })
 
 export async function submitContactForm(prevState: any, formData: FormData) {
@@ -17,6 +33,15 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   if (honeyPot && honeyPot !== "") {
     // Silent success for bots
     return { success: true, message: "Message sent successfully!" }
+  }
+
+  const timingState = getSubmissionTimingState(formData.get("_startedAt"))
+  if (timingState === "too_fast" || timingState === "invalid") {
+    return { success: true, message: "Message sent successfully!" }
+  }
+
+  if (timingState === "expired") {
+    return { message: "This form has expired. Please refresh the page and try again." }
   }
 
   const validatedFields = contactFormSchema.safeParse({
@@ -47,6 +72,36 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   }
 
   const { name, email, message } = validatedFields.data
+  const messageSpamError = getMessageSpamError(message)
+
+  if (messageSpamError) {
+    return {
+      errors: {
+        message: [messageSpamError],
+      },
+      message: "Please check the form for errors.",
+      fields: {
+        name,
+        email,
+        message,
+      },
+    }
+  }
+
+  const headerList = await headers()
+  const clientIp = extractClientIp(headerList)
+  const rateLimitResult = consumeContactFormAttempt(clientIp)
+
+  if (!rateLimitResult.allowed) {
+    return {
+      message: getRateLimitMessage(rateLimitResult.retryAfterMs),
+      fields: {
+        name,
+        email,
+        message,
+      },
+    }
+  }
 
   try {
     const data = await resend.emails.send({

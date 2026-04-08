@@ -4,7 +4,7 @@ import { submitContactForm } from "@/app/actions"
 import { cn } from "@/lib/utils"
 import { sendGAEvent } from "@next/third-parties/google"
 import { useSearchParams } from "next/navigation"
-import { useActionState, useEffect, useRef } from "react"
+import { useActionState, useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 interface ContactFormProps {
   className?: string
@@ -19,6 +19,7 @@ const initialState = {
 
 export function ContactForm({ className }: ContactFormProps) {
   const searchParams = useSearchParams()
+  const [startedAt, setStartedAt] = useState("")
   const [state, formAction, isPending] = useActionState(
     submitContactForm,
     initialState,
@@ -26,10 +27,15 @@ export function ContactForm({ className }: ContactFormProps) {
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
+    setStartedAt(Date.now().toString())
+  }, [])
+
+  useEffect(() => {
     if (state?.success) {
       toast.success("Message sent successfully!")
       sendGAEvent("event", "form_submit", { form_name: "contact_form" })
       formRef.current?.reset()
+      setStartedAt(Date.now().toString())
     } else if (state?.message && !state.success) {
       toast.error(state.message)
     }
@@ -91,6 +97,7 @@ export function ContactForm({ className }: ContactFormProps) {
           autoComplete="off"
         />
       </div>
+      <input type="hidden" name="_startedAt" value={startedAt} />
       <div>
         <label
           htmlFor="message"
