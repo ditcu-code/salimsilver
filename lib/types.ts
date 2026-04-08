@@ -85,10 +85,10 @@ export interface Collection {
 export interface ContactFormData {
   /** Name of the person contacting */
   name: string
-  /** Email address for response */
-  email: string
-  /** Subject of the message */
-  subject: string
+  /** Email address for response, optional if WhatsApp is provided */
+  email?: string
+  /** WhatsApp number for response, optional if email is provided */
+  whatsapp?: string
   /** Message content */
   message: string
 }

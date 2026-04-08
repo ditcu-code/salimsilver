@@ -9,19 +9,23 @@ import { ContactFormData, ContactFormResponse } from "./types"
  */
 function validateContactForm(data: ContactFormData): string[] {
   const errors: string[] = []
+  const email = data.email?.trim() ?? ""
+  const whatsapp = data.whatsapp?.trim() ?? ""
 
   if (!data.name?.trim()) {
     errors.push("Name is required")
   }
 
-  if (!data.email?.trim()) {
-    errors.push("Email is required")
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+  if (!email && !whatsapp) {
+    errors.push("Email or WhatsApp number is required")
+  }
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     errors.push("Invalid email format")
   }
 
-  if (!data.subject?.trim()) {
-    errors.push("Subject is required")
+  if (whatsapp && !/^\+?[0-9()\-\s]{8,20}$/.test(whatsapp)) {
+    errors.push("Invalid WhatsApp number")
   }
 
   if (!data.message?.trim()) {

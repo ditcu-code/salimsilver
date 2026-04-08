@@ -77,12 +77,30 @@ export function ContactForm({ className }: ContactFormProps) {
           type="email"
           id="email"
           name="email"
-          required
           defaultValue={state?.fields?.email}
           className="border-border focus:border-primary focus:ring-primary bg-card mt-1 block w-full rounded-xl border px-3 py-2 focus:ring-1 focus:outline-none"
         />
         {state?.errors?.email && (
           <p className="mt-1 text-sm text-red-500">{state.errors.email[0]}</p>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="whatsapp"
+          className="text-primary block text-sm font-medium"
+        >
+          WhatsApp Number
+        </label>
+        <input
+          type="tel"
+          id="whatsapp"
+          name="whatsapp"
+          inputMode="tel"
+          defaultValue={state?.fields?.whatsapp}
+          className="border-border focus:border-primary focus:ring-primary bg-card mt-1 block w-full rounded-xl border px-3 py-2 focus:ring-1 focus:outline-none"
+        />
+        {state?.errors?.whatsapp && (
+          <p className="mt-1 text-sm text-red-500">{state.errors.whatsapp[0]}</p>
         )}
       </div>
 

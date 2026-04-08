@@ -18,13 +18,40 @@ const contactFormSchema = z.object({
   email: z
     .string()
     .trim()
-    .email("Invalid email address")
-    .max(320, "Email is too long"),
+    .max(320, "Email is too long")
+    .refine((value) => value === "" || z.email().safeParse(value).success, {
+      message: "Invalid email address",
+    }),
+  whatsapp: z
+    .string()
+    .trim()
+    .max(30, "WhatsApp number is too long")
+    .refine((value) => value === "" || /^\+?[0-9()\-\s]{8,20}$/.test(value), {
+      message: "Invalid WhatsApp number",
+    }),
   message: z
     .string()
     .trim()
     .min(1, "Message is required")
     .max(2000, "Message is too long"),
+})
+.superRefine(({ email, whatsapp }, ctx) => {
+  if (email || whatsapp) {
+    return
+  }
+
+  const message = "Please provide an email address or WhatsApp number."
+
+  ctx.addIssue({
+    code: "custom",
+    message,
+    path: ["email"],
+  })
+  ctx.addIssue({
+    code: "custom",
+    message,
+    path: ["whatsapp"],
+  })
 })
 
 export async function submitContactForm(prevState: any, formData: FormData) {
@@ -47,6 +74,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   const validatedFields = contactFormSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
+    whatsapp: formData.get("whatsapp"),
     message: formData.get("message"),
   })
 
@@ -66,12 +94,13 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       fields: {
         name: formData.get("name") as string,
         email: formData.get("email") as string,
+        whatsapp: formData.get("whatsapp") as string,
         message: formData.get("message") as string,
       },
     }
   }
 
-  const { name, email, message } = validatedFields.data
+  const { name, email, whatsapp, message } = validatedFields.data
   const messageSpamError = getMessageSpamError(message)
 
   if (messageSpamError) {
@@ -83,6 +112,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       fields: {
         name,
         email,
+        whatsapp,
         message,
       },
     }
@@ -98,18 +128,26 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       fields: {
         name,
         email,
+        whatsapp,
         message,
       },
     }
   }
 
   try {
+    const textLines = [
+      `Name: ${name}`,
+      `Email: ${email || "-"}`,
+      `WhatsApp: ${whatsapp || "-"}`,
+      `Message: ${message}`,
+    ]
+
     const data = await resend.emails.send({
       from: "Salim Silver Contact Form <contact_form@salimsilver.com>", // Use default until user configures domain
       to: process.env.CONTACT_EMAIL_TO || "design@salimsilver.com",
       subject: `New Contact Form Submission from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-      replyTo: email,
+      text: textLines.join("\n"),
+      ...(email ? { replyTo: email } : {}),
     })
 
     if (data.error) {
