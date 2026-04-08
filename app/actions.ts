@@ -6,6 +6,8 @@ import {
   getMessageSpamError,
   getRateLimitMessage,
   getSubmissionTimingState,
+  getTurnstileErrorMessage,
+  validateTurnstileToken,
 } from "@/lib/contact-form-security"
 import { headers } from "next/headers"
 import { Resend } from "resend"
@@ -134,6 +136,24 @@ export async function submitContactForm(prevState: any, formData: FormData) {
     }
   }
 
+  const turnstileResult = await validateTurnstileToken(
+    formData.get("cf-turnstile-response"),
+    clientIp,
+  )
+
+  if (!turnstileResult.success) {
+    return {
+      message: getTurnstileErrorMessage(turnstileResult.errorCodes),
+      fields: {
+        name,
+        email,
+        whatsapp,
+        message,
+      },
+      resetTurnstile: true,
+    }
+  }
+
   try {
     const textLines = [
       `Name: ${name}`,
@@ -155,9 +175,9 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       return { message: "Failed to send message. Please try again." }
     }
 
-    return { success: true, message: "Message sent successfully!" }
+    return { success: true, message: "Message sent successfully!", resetTurnstile: true }
   } catch (error) {
     console.error("Server error:", error)
-    return { message: "Failed to send message. Please try again." }
+    return { message: "Failed to send message. Please try again.", resetTurnstile: true }
   }
 }

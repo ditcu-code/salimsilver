@@ -1,6 +1,7 @@
 "use client"
 
 import { submitContactForm } from "@/app/actions"
+import { TurnstileWidget } from "@/components/features/turnstile-widget"
 import { cn } from "@/lib/utils"
 import { sendGAEvent } from "@next/third-parties/google"
 import { useSearchParams } from "next/navigation"
@@ -14,12 +15,16 @@ const initialState = {
   message: "",
   errors: undefined,
   fields: undefined,
+  resetTurnstile: false,
   success: false,
 }
 
 export function ContactForm({ className }: ContactFormProps) {
   const searchParams = useSearchParams()
+  const turnstileEnabled = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY)
   const [startedAt, setStartedAt] = useState("")
+  const [turnstileToken, setTurnstileToken] = useState("")
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0)
   const [state, formAction, isPending] = useActionState(
     submitContactForm,
     initialState,
@@ -36,8 +41,15 @@ export function ContactForm({ className }: ContactFormProps) {
       sendGAEvent("event", "form_submit", { form_name: "contact_form" })
       formRef.current?.reset()
       setStartedAt(Date.now().toString())
+      setTurnstileToken("")
+      setTurnstileResetKey((current) => current + 1)
     } else if (state?.message && !state.success) {
       toast.error(state.message)
+
+      if (state.resetTurnstile) {
+        setTurnstileToken("")
+        setTurnstileResetKey((current) => current + 1)
+      }
     }
   }, [state])
 
@@ -116,6 +128,7 @@ export function ContactForm({ className }: ContactFormProps) {
         />
       </div>
       <input type="hidden" name="_startedAt" value={startedAt} />
+      <input type="hidden" name="cf-turnstile-response" value={turnstileToken} />
       <div>
         <label
           htmlFor="message"
@@ -137,13 +150,27 @@ export function ContactForm({ className }: ContactFormProps) {
           <p className="mt-1 text-sm text-red-500">{state.errors.message[0]}</p>
         )}
       </div>
+      {turnstileEnabled && (
+        <div className="space-y-2">
+          <TurnstileWidget
+            onTokenChange={setTurnstileToken}
+            resetKey={turnstileResetKey}
+          />
+          {!turnstileToken && (
+            <p className="text-muted-foreground text-xs">
+              Complete the verification challenge before sending your message.
+            </p>
+          )}
+        </div>
+      )}
       <div>
         <button
           type="submit"
-          disabled={isPending}
+          disabled={isPending || (turnstileEnabled && !turnstileToken)}
           className={cn(
             "bg-primary dark:text-primary-foreground hover:bg-primary/90 focus:ring-primary w-full cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-white shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none",
-            isPending && "cursor-not-allowed opacity-50",
+            (isPending || (turnstileEnabled && !turnstileToken)) &&
+              "cursor-not-allowed opacity-50",
           )}
         >
           {isPending ? "Sending..." : "Send Message"}
