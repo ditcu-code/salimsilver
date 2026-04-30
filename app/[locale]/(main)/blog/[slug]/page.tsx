@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <article className="min-h-screen pb-20">
       <ViewCounter postId={post.id} />
       {/* Hero Section */}
-      <div className="absolute top-0 flex h-56 w-screen md:h-96">
+      <div className="absolute inset-x-0 top-0 flex h-56 w-full md:h-96">
         {post.cover_image_url ? (
           <Image
             src={post.cover_image_url}
