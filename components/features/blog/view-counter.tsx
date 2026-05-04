@@ -1,6 +1,5 @@
 "use client"
 
-import { createClient } from "@/lib/supabase/client"
 import { useEffect, useRef } from "react"
 
 interface ViewCounterProps {
@@ -22,10 +21,21 @@ export function ViewCounter({ postId }: ViewCounterProps) {
       const storageKey = `viewed_post_${postId}`
       if (sessionStorage.getItem(storageKey)) return
 
-      const supabase = createClient()
-
       try {
-        await supabase.rpc("increment_post_views", { post_id: postId })
+        const response = await fetch("/api/blog/views", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ postId }),
+          cache: "no-store",
+          keepalive: true,
+        })
+
+        if (!response.ok) {
+          throw new Error(`View increment failed: ${response.status}`)
+        }
+
         sessionStorage.setItem(storageKey, "true")
         hasIncremented.current = true
       } catch (error) {
