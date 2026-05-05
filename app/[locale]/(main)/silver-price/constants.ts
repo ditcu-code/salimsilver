@@ -17,18 +17,18 @@ export const SILVER_FAQ_ITEMS = [
     answer:
       "Data harga kami bersumber langsung dari data pasar spot internasional (XAG/USD) yang dikonversi ke Rupiah secara real-time untuk memastikan akurasi nilai tukar terkini.",
   },
-  {
-    value: "item-3",
-    question: "Apakah Salim Silver menerima jual beli perak?",
-    answer:
-      "Ya, Salim Silver menerima jual beli perak dalam keadaan apapun dan kadar berapapun. Anda dapat membawa perak Anda ke galeri kami untuk dilakukan pengecekan dan penaksiran harga.",
-  },
-  {
-    value: "item-4",
-    question: "Apakah saya bisa membeli perak fisik di Salim Silver?",
-    answer:
-      "Tentu saja. Salim Silver adalah pengrajin perak asli Kotagede yang menyediakan berbagai koleksi perhiasan perak handmade berkualitas tinggi (Sterling Silver 925). Anda dapat melihat koleksi Cincin, Kalung, dan Gelang kami melalui katalog di website ini atau berkunjung langsung ke galeri kami di Yogyakarta.",
-  },
+  // {
+  //   value: "item-3",
+  //   question: "Apakah Salim Silver menerima jual beli perak?",
+  //   answer:
+  //     "Ya, Salim Silver menerima jual beli perak dalam keadaan apapun dan kadar berapapun. Anda dapat membawa perak Anda ke galeri kami untuk dilakukan pengecekan dan penaksiran harga.",
+  // },
+  // {
+  //   value: "item-4",
+  //   question: "Apakah saya bisa membeli perak fisik di Salim Silver?",
+  //   answer:
+  //     "Tentu saja. Salim Silver adalah pengrajin perak asli Kotagede yang menyediakan berbagai koleksi perhiasan perak handmade berkualitas tinggi (Sterling Silver 925). Anda dapat melihat koleksi Cincin, Kalung, dan Gelang kami melalui katalog di website ini atau berkunjung langsung ke galeri kami di Yogyakarta.",
+  // },
   {
     value: "item-5",
     question:
