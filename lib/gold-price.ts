@@ -8,16 +8,21 @@ export const getGoldPriceSummary = unstable_cache(
   async (): Promise<GoldPriceSummary | null> => {
     const supabase = await createClient()
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("gold_price_summary")
       .select("*")
       .eq("id", 1)
       .single()
 
+    if (error) {
+      console.error("[gold-price] getGoldPriceSummary error:", error)
+    }
+
     return data as GoldPriceSummary
   },
   ["gold-price-summary"],
   {
+    tags: ["gold-price"],
     revalidate: 3600, // Fallback revalidate every hour
   },
 )

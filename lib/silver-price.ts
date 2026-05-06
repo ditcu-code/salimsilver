@@ -7,16 +7,21 @@ export const getSilverPriceSummary = unstable_cache(
   async (): Promise<SilverPriceSummary | null> => {
     const supabase = await createClient()
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("silver_price_summary")
       .select("*")
       .eq("id", 1)
       .single()
 
+    if (error) {
+      console.error("[silver-price] getSilverPriceSummary error:", error)
+    }
+
     return data as SilverPriceSummary
   },
   ["silver-price-summary"],
   {
+    tags: ["silver-price"],
     revalidate: 3600, // Fallback revalidate every hour
   },
 )
