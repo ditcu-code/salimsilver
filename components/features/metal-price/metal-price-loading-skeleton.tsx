@@ -4,9 +4,6 @@ import { Skeleton } from "@/components/ui/skeleton"
 export function MetalPriceLoadingSkeleton() {
   return (
     <div className="w-full space-y-6">
-      {/* Header/Toggle area placeholder */}
-      <div className="flex flex-col items-center justify-center gap-6 mb-8 h-[24px]"></div>
-
       <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-3">
         {/* Left Column: Chart (Takes 2/3 width) */}
         <div className="order-3 lg:order-1 lg:col-span-2">

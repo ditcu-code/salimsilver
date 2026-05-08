@@ -1,11 +1,5 @@
 export const SILVER_FAQ_ITEMS = [
   {
-    value: "item-1",
-    question: "Apakah harga perak ini sudah termasuk PPN?",
-    answer:
-      "Secara default, harga yang ditampilkan adalah harga dasar (belum termasuk PPN). Anda dapat menggunakan tombol toggle di atas untuk melihat harga termasuk PPN 11% sesuai ketentuan PMK No. 48 Tahun 2023.",
-  },
-  {
     value: "item-2",
     question: "Seberapa sering harga perak diperbarui?",
     answer:

@@ -14,14 +14,12 @@ import { AnimatedCurrency } from "./animated-currency"
 import { usePriceTrend } from "./use-price-trend"
 
 interface MetalPriceCardProps {
-  includeTax: boolean
   currentPriceDisplay: number
   previousPriceDisplay: number
   lastUpdated: string
 }
 
 export function MetalPriceCard({
-  includeTax,
   currentPriceDisplay,
   previousPriceDisplay,
   lastUpdated,
@@ -70,19 +68,6 @@ export function MetalPriceCard({
                 / gram
               </span>
             </div>
-            <motion.div
-              layout
-              initial={{ opacity: 0, height: 0 }}
-              animate={{
-                opacity: includeTax ? 1 : 0,
-                height: includeTax ? "auto" : 0,
-              }}
-              className="overflow-hidden"
-            >
-              <span className="text-muted-foreground block text-xs font-medium">
-                (Termasuk PPN 11%)
-              </span>
-            </motion.div>
           </div>
 
           {/* Trend Pill */}

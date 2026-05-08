@@ -1,13 +1,8 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
 import { PriceHistoryItem } from "@/lib/types"
 import { sendGAEvent } from "@next/third-parties/google"
 import Link from "next/link"
-import { useMemo, useState } from "react"
 import { HistoricalPriceRow } from "./historical-price-row"
 import { MetalPriceCard } from "./metal-price-card"
 import { MetalPriceChart } from "./metal-price-chart"
@@ -27,7 +22,6 @@ export interface DisplayPrices {
 interface MetalPriceDisplayProps {
   displayPrices: DisplayPrices
   chartData: PriceHistoryItem[]
-  enableTaxToggle?: boolean
   relatedMetal?: {
     name: string
     href: string
@@ -37,7 +31,6 @@ interface MetalPriceDisplayProps {
 export function MetalPriceDisplay({
   displayPrices,
   chartData,
-  enableTaxToggle = true,
   relatedMetal,
 }: MetalPriceDisplayProps) {
   const {
@@ -50,56 +43,16 @@ export function MetalPriceDisplay({
     lastUpdated,
   } = displayPrices
 
-  const [includeTax, setIncludeTax] = useState(false)
-
-  // Force tax to 1 (no tax) if toggle is disabled
-  const taxMultiplier = enableTaxToggle && includeTax ? 1.11 : 1
-  const currentPriceDisplay = currentPrice * taxMultiplier
-  const previousPriceDisplay = previousPrice * taxMultiplier
-
-  const price7dDisplay = price7d * taxMultiplier
-  const price30dDisplay = price30d * taxMultiplier
-  const price180dDisplay = price180d * taxMultiplier
-  const price1yDisplay = price1y * taxMultiplier
-
-  // Memoize chart data with tax applied — avoids creating ~2000 new objects on every render
-  const chartDataDisplay = useMemo(
-    () =>
-      chartData.map((item) => ({
-        ...item,
-        price: item.price * taxMultiplier,
-      })),
-    [chartData, taxMultiplier],
-  )
-
   return (
     <div className="w-full space-y-6">
-      <div className="flex flex-col items-center justify-center gap-6 mb-8">
-        {enableTaxToggle && (
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="ppn-mode"
-              checked={includeTax}
-              onCheckedChange={(checked) => {
-                setIncludeTax(checked)
-                sendGAEvent("event", "toggle_ppn", {
-                  value: checked ? "on" : "off",
-                })
-              }}
-            />
-            <Label htmlFor="ppn-mode">Termasuk PPN 11%</Label>
-          </div>
-        )}
-      </div>
-
       <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-3">
         {/* Left Column: Chart (Takes 2/3 width) - Order 3 on Mobile, Order 1 on Desktop */}
         <div className="order-3 lg:order-1 lg:col-span-2">
           <MetalPriceChart
             type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
             color={"#b0714a"}
-            data={chartDataDisplay}
-            latestPrice={currentPriceDisplay}
+            data={chartData}
+            latestPrice={currentPrice}
             className="min-h-[450px]"
           />
         </div>
@@ -107,9 +60,8 @@ export function MetalPriceDisplay({
         {/* Right Column: Sticky Sidebar (Takes 1/3 width) - Order 1 & 2 on Mobile, Order 2 on Desktop */}
         <div className="order-1 lg:order-2 lg:col-span-1 space-y-6 lg:sticky lg:top-24">
           <MetalPriceCard
-            includeTax={enableTaxToggle && includeTax}
-            currentPriceDisplay={currentPriceDisplay}
-            previousPriceDisplay={previousPriceDisplay}
+            currentPriceDisplay={currentPrice}
+            previousPriceDisplay={previousPrice}
             lastUpdated={lastUpdated}
           />
 
@@ -118,23 +70,23 @@ export function MetalPriceDisplay({
               <div className="divide-muted divide-y">
                 <HistoricalPriceRow
                   label="1 Minggu Lalu"
-                  historicalPrice={price7dDisplay}
-                  currentPrice={currentPriceDisplay}
+                  historicalPrice={price7d}
+                  currentPrice={currentPrice}
                 />
                 <HistoricalPriceRow
                   label="1 Bulan Lalu"
-                  historicalPrice={price30dDisplay}
-                  currentPrice={currentPriceDisplay}
+                  historicalPrice={price30d}
+                  currentPrice={currentPrice}
                 />
                 <HistoricalPriceRow
                   label="6 Bulan Lalu"
-                  historicalPrice={price180dDisplay}
-                  currentPrice={currentPriceDisplay}
+                  historicalPrice={price180d}
+                  currentPrice={currentPrice}
                 />
                 <HistoricalPriceRow
                   label="1 Tahun Lalu"
-                  historicalPrice={price1yDisplay}
-                  currentPrice={currentPriceDisplay}
+                  historicalPrice={price1y}
+                  currentPrice={currentPrice}
                 />
               </div>
             </CardContent>

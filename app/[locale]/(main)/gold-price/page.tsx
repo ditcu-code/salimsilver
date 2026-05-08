@@ -94,7 +94,6 @@ export default async function GoldPricePage({ params }: Props) {
       <MetalPriceDisplay
         displayPrices={displayPrices}
         chartData={chartData}
-        enableTaxToggle={false}
         relatedMetal={{
           name: "Perak",
           href: constructLocalizedPath(locale, "/silver-price"),
