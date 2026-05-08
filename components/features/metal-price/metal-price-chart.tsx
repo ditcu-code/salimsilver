@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 import { PriceHistoryItem } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { ArrowDown, ArrowUp, Minus } from "lucide-react"
-import { useState } from "react"
+import { startTransition, useCallback, useMemo, useState } from "react"
 
 interface MetalPriceChartProps {
   type: "gold" | "silver"
@@ -23,6 +23,19 @@ interface MetalPriceChartProps {
   data: PriceHistoryItem[]
   className?: string
 }
+
+// Reuse Intl formatters — constructing them is expensive
+const compactFormatterGold = new Intl.NumberFormat("id-ID", {
+  notation: "compact",
+  compactDisplay: "short",
+  maximumFractionDigits: 1,
+})
+
+const compactFormatterSilver = new Intl.NumberFormat("id-ID", {
+  notation: "compact",
+  compactDisplay: "short",
+  maximumFractionDigits: 0,
+})
 
 export function MetalPriceChart({
   type,
@@ -33,18 +46,26 @@ export function MetalPriceChart({
 }: MetalPriceChartProps) {
   const [period, setPeriod] = useState<"1w" | "1m">("1w")
   const isGold = type === "gold"
+  const compactFormatter = isGold ? compactFormatterGold : compactFormatterSilver
 
-  // Append latest price if it exists
-  const data = [...initialData]
-  if (latestPrice && data.length > 0) {
-    data.push({ date: new Date().toISOString(), price: latestPrice })
-  }
+  /**
+   * Memoize the sorted data array. Previously, `[...initialData]` spread +
+   * `.sort()` ran on every render, creating a new array and doing O(n log n)
+   * comparison work each time — even when initialData hadn't changed.
+   */
+  const data = useMemo(() => {
+    const arr = [...initialData]
+    if (latestPrice && arr.length > 0) {
+      arr.push({ date: new Date().toISOString(), price: latestPrice })
+    }
+    arr.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    )
+    return arr
+  }, [initialData, latestPrice])
 
-  // Ensure data is sorted by date for accurate calculations
-  data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-
-  // Filter data based on selected period
-  const filteredData = (() => {
+  // Memoize filtered data — only recompute when data or period changes
+  const filteredData = useMemo(() => {
     if (!data.length) return []
 
     const now = new Date()
@@ -55,35 +76,59 @@ export function MetalPriceChart({
     cutoffDate.setHours(0, 0, 0, 0)
 
     return data.filter((item) => new Date(item.date) >= cutoffDate)
-  })()
+  }, [data, period])
 
-  // Calculate min and max for Y-axis domain to make the chart look dynamic
-  if (filteredData.length === 0) return null
+  // Memoize Y-axis domain calculation
+  const { minPrice, maxPrice, padding } = useMemo(() => {
+    if (filteredData.length === 0)
+      return { minPrice: 0, maxPrice: 0, padding: 0 }
 
-  const prices = filteredData.map((d) => d.price)
-  const minPrice = Math.min(...prices)
-  const maxPrice = Math.max(...prices)
-  const padding = (maxPrice - minPrice) * 0.1
+    const prices = filteredData.map((d) => d.price)
+    const min = Math.min(...prices)
+    const max = Math.max(...prices)
+    return { minPrice: min, maxPrice: max, padding: (max - min) * 0.1 }
+  }, [filteredData])
 
-  // Generate ticks for X-axis (one per day at 00:00 WIB)
-  const ticks = filteredData
-    .map((item) => item.date)
-    .filter((date, index) => {
-      if (index === 0) return false
-      const prevDate = new Date(filteredData[index - 1].date)
-      const currDate = new Date(date)
+  // Memoize X-axis ticks — involves expensive toLocaleString calls
+  const ticks = useMemo(
+    () =>
+      filteredData
+        .map((item) => item.date)
+        .filter((date, index) => {
+          if (index === 0) return false
+          const prevDate = new Date(filteredData[index - 1].date)
+          const currDate = new Date(date)
 
-      // Check for day change in WIB (UTC+7)
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: "Asia/Jakarta",
-        day: "numeric",
-      }
+          // Check for day change in WIB (UTC+7)
+          const options: Intl.DateTimeFormatOptions = {
+            timeZone: "Asia/Jakarta",
+            day: "numeric",
+          }
 
-      const prevDay = prevDate.toLocaleString("en-US", options)
-      const currDay = currDate.toLocaleString("en-US", options)
+          const prevDay = prevDate.toLocaleString("en-US", options)
+          const currDay = currDate.toLocaleString("en-US", options)
 
-      return prevDay !== currDay
+          return prevDay !== currDay
+        }),
+    [filteredData],
+  )
+
+  // Stable callback for Y-axis formatter — avoids creating new closure each render
+  const yAxisFormatter = useCallback(
+    (value: number) => compactFormatter.format(value),
+    [compactFormatter],
+  )
+
+  // Stable callback for X-axis formatter
+  const xAxisFormatter = useCallback((date: string) => {
+    return new Date(date).toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "numeric",
+      timeZone: "Asia/Jakarta",
     })
+  }, [])
+
+  if (filteredData.length === 0) return null
 
   return (
     <Card className={cn("border-border/50 bg-card shadow-sm", className)}>
@@ -100,7 +145,7 @@ export function MetalPriceChart({
                 "h-7 px-3 text-xs",
                 period === "1w" && "bg-background text-foreground shadow-sm",
               )}
-              onClick={() => setPeriod("1w")}
+              onClick={() => startTransition(() => setPeriod("1w"))}
             >
               1 Minggu
             </Button>
@@ -111,7 +156,7 @@ export function MetalPriceChart({
                 "h-7 px-3 text-xs",
                 period === "1m" && "bg-background text-foreground shadow-sm",
               )}
-              onClick={() => setPeriod("1m")}
+              onClick={() => startTransition(() => setPeriod("1m"))}
             >
               1 Bulan
             </Button>
@@ -137,13 +182,7 @@ export function MetalPriceChart({
               <XAxis
                 dataKey="date"
                 ticks={ticks}
-                tickFormatter={(date) => {
-                  return new Date(date).toLocaleDateString("id-ID", {
-                    day: "numeric",
-                    month: "numeric",
-                    timeZone: "Asia/Jakarta",
-                  })
-                }}
+                tickFormatter={xAxisFormatter}
                 stroke="#888888"
                 fontSize={12}
                 tickLine={false}
@@ -151,13 +190,7 @@ export function MetalPriceChart({
               />
               <YAxis
                 domain={[minPrice - padding, maxPrice + padding]}
-                tickFormatter={(value) => {
-                  return new Intl.NumberFormat("id-ID", {
-                    notation: "compact",
-                    compactDisplay: "short",
-                    maximumFractionDigits: isGold ? 1 : 0,
-                  }).format(value)
-                }}
+                tickFormatter={yAxisFormatter}
                 stroke="#888888"
                 fontSize={12}
                 tickLine={false}

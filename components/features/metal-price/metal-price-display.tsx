@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch"
 import { PriceHistoryItem } from "@/lib/types"
 import { sendGAEvent } from "@next/third-parties/google"
 import Link from "next/link"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { HistoricalPriceRow } from "./historical-price-row"
 import { MetalPriceCard } from "./metal-price-card"
 import { MetalPriceChart } from "./metal-price-chart"
@@ -62,11 +62,15 @@ export function MetalPriceDisplay({
   const price180dDisplay = price180d * taxMultiplier
   const price1yDisplay = price1y * taxMultiplier
 
-  // Apply tax multiplier to chart data
-  const chartDataDisplay = chartData.map((item) => ({
-    ...item,
-    price: item.price * taxMultiplier,
-  }))
+  // Memoize chart data with tax applied — avoids creating ~2000 new objects on every render
+  const chartDataDisplay = useMemo(
+    () =>
+      chartData.map((item) => ({
+        ...item,
+        price: item.price * taxMultiplier,
+      })),
+    [chartData, taxMultiplier],
+  )
 
   return (
     <div className="w-full space-y-6">
