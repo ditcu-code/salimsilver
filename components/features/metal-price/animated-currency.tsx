@@ -1,29 +1,39 @@
 "use client"
 
-import { m as motion, useSpring, useTransform } from "framer-motion"
-import { useEffect } from "react"
+import { memo, useMemo } from "react"
+
+// Reuse a single Intl.NumberFormat instance — constructing it is expensive
+const currencyFormatter = new Intl.NumberFormat("id-ID", {
+  style: "currency",
+  currency: "IDR",
+  maximumFractionDigits: 0,
+})
 
 export function useFormattedCurrency(val: number) {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    maximumFractionDigits: 0,
-  }).format(val)
+  return currencyFormatter.format(val)
 }
 
-export function AnimatedCurrency({ value }: { value: number }) {
-  const spring = useSpring(value, { stiffness: 60, damping: 20, mass: 1 })
-  const displayValue = useTransform(spring, (current) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0,
-    }).format(Math.round(current))
-  })
+/**
+ * Renders a formatted IDR currency value.
+ *
+ * Previously used Framer Motion's `useSpring` + `useTransform` which called
+ * `Intl.NumberFormat().format()` on every animation frame (~60x/s per instance).
+ * With 7 simultaneous instances during PPN toggle, this caused ~420 format
+ * calls/second — a major INP bottleneck on mobile.
+ *
+ * Now uses instant rendering with `memo` to avoid unnecessary re-renders.
+ * The visual trade-off (no counting animation) is worth the INP improvement,
+ * and instant price updates are better UX for financial data.
+ */
+export const AnimatedCurrency = memo(function AnimatedCurrency({
+  value,
+}: {
+  value: number
+}) {
+  const formatted = useMemo(
+    () => currencyFormatter.format(Math.round(value)),
+    [value],
+  )
 
-  useEffect(() => {
-    spring.set(value)
-  }, [value, spring])
-
-  return <motion.span>{displayValue}</motion.span>
-}
+  return <span>{formatted}</span>
+})
