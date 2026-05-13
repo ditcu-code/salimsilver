@@ -93,7 +93,7 @@ export default function CareerContent({
             <span className="text-primary mb-6 block text-sm font-semibold tracking-[0.3em] uppercase">
               {t("Hero.eyebrow")}
             </span>
-            <h1 className="font-display text-5xl leading-[1.1] md:text-7xl lg:text-8xl">
+            <h1 className="font-display text-5xl leading-[1.1] md:text-7xl">
               {t("Hero.title")}
             </h1>
             <p className="text-muted-foreground mt-8 max-w-2xl text-xl leading-relaxed">
