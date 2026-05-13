@@ -371,6 +371,8 @@
       "eyebrow": "Current Openings",
       "title": "Join Our Team",
       "description": "We are always looking for talented individuals who are passionate about preserving Kotagede's silver legacy. Explore our available positions below.",
+      "emptyTitle": "No active openings",
+      "emptyDescription": "We don't have any open positions at the moment, but we're always looking for new talent. Feel free to drop your CV in our Talent Pool below.",
       "labels": {
         "location": "Location",
         "type": "Work type"

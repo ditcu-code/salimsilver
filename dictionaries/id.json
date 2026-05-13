@@ -371,6 +371,8 @@
       "eyebrow": "Lowongan Aktif",
       "title": "Bergabung dengan Tim Kami",
       "description": "Kami selalu mencari individu berbakat yang ingin melestarikan warisan perak Kotagede. Jelajahi posisi yang tersedia di bawah ini.",
+      "emptyTitle": "Belum ada lowongan aktif",
+      "emptyDescription": "Saat ini kami belum memiliki posisi terbuka, namun kami selalu terbuka untuk talenta baru. Silakan kirimkan CV Anda ke Talent Pool kami di bawah.",
       "labels": {
         "location": "Lokasi",
         "type": "Tipe kerja"
