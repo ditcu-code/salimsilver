@@ -21,6 +21,7 @@ const navigationConfig: NavItem[] = [
   { key: "catalog", href: "/catalog" },
   { key: "collections", href: "/collections" },
   { key: "workshop", href: "/workshop" },
+  { key: "careers", href: "/career" },
   { key: "about", href: "/about" },
   // { key: "contact", href: "/contact" },
   { key: "journal", href: "/blog" },

@@ -50,8 +50,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     0.9,
   )
 
-  const mainPages = ["/catalog", "/collections", "/workshop"].flatMap((route) =>
-    generateEntries(route, new Date(), "weekly", 0.8),
+  const mainPages = ["/catalog", "/collections", "/workshop", "/career"].flatMap(
+    (route) => generateEntries(route, new Date(), "weekly", 0.8),
   )
 
   const supportPages = ["/about", "/contact", "/store-location"].flatMap(

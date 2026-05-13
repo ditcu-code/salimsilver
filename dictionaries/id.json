@@ -357,6 +357,73 @@
       }
     }
   },
+  "CareerPage": {
+    "Metadata": {
+      "title": "Karir di Salim Silver",
+      "description": "Temukan peluang karir di Salim Silver dan bergabunglah dengan tim penjaga tradisi perak Kotagede."
+    },
+    "Hero": {
+      "eyebrow": "Karir",
+      "title": "Berkarya bersama penjaga tradisi perak Kotagede",
+      "description": "Kami membuka ruang bagi orang yang teliti, hangat, dan ingin tumbuh bersama workshop perak keluarga di Yogyakarta."
+    },
+    "Jobs": {
+      "eyebrow": "Lowongan Aktif",
+      "title": "Bergabung dengan Tim Kami",
+      "description": "Kami selalu mencari individu berbakat yang ingin melestarikan warisan perak Kotagede. Jelajahi posisi yang tersedia di bawah ini.",
+      "labels": {
+        "location": "Lokasi",
+        "type": "Tipe kerja"
+      },
+      "items": {
+        "silversmith": {
+          "title": "Junior Silversmith",
+          "description": "Membantu proses dasar pembuatan perhiasan perak, mulai dari persiapan material, pembentukan, hingga finishing dengan arahan pengrajin senior.",
+          "location": "Kotagede, Yogyakarta",
+          "type": "Full-time"
+        },
+        "studioAssistant": {
+          "title": "Studio & Workshop Assistant",
+          "description": "Mendukung aktivitas harian workshop, menyambut tamu, menyiapkan sesi workshop, dan membantu tim menjaga alur operasional tetap rapi.",
+          "location": "Kotagede, Yogyakarta",
+          "type": "Full-time"
+        },
+        "contentCreative": {
+          "title": "Content Creative Intern",
+          "description": "Membantu dokumentasi proses kriya, membuat ide konten singkat, dan merapikan aset visual untuk media sosial Salim Silver.",
+          "location": "Hybrid",
+          "type": "Internship"
+        }
+      }
+    },
+    "StudentInternship": {
+      "eyebrow": "Untuk Mahasiswa",
+      "title": "Terbuka untuk pengajuan magang dan internship",
+      "description": "Mahasiswa yang ingin belajar langsung di lingkungan workshop perak bisa mengirim CV, surat pengantar kampus, atau tautan portofolio. Kami akan meninjau kecocokan jadwal, durasi, dan area belajar yang tersedia.",
+      "ctaLabel": "Ajukan Magang",
+      "message": "Halo Salim Silver, saya mahasiswa yang ingin mengajukan magang/internship. Nama kampus, jurusan, periode magang, dan tautan CV/portfolio saya adalah:",
+      "items": {
+        "schedule": {
+          "title": "Jadwal dibicarakan",
+          "description": "Periode magang bisa disesuaikan dengan kebutuhan kampus dan ketersediaan tim."
+        },
+        "documents": {
+          "title": "Dokumen sederhana",
+          "description": "Cantumkan CV, surat kampus jika ada, dan portofolio atau contoh karya yang relevan."
+        },
+        "learning": {
+          "title": "Belajar lintas area",
+          "description": "Peluang belajar dapat mencakup workshop, operasional, dokumentasi konten, atau layanan tamu."
+        }
+      }
+    },
+    "TalentPool": {
+      "title": "Belum ada lowongan yang cocok?",
+      "description": "Tetap kirim CV atau tautan portofolio Anda. Jika nanti ada posisi yang sesuai, tim kami akan menghubungi Anda melalui kontak yang dicantumkan.",
+      "ctaLabel": "Drop CV untuk Nanti",
+      "message": "Halo Salim Silver, saya ingin menitipkan CV untuk dipertimbangkan jika nanti ada lowongan yang cocok. Berikut tautan CV/portfolio saya:"
+    }
+  },
   "CatalogPage": {
     "Metadata": {
       "title": "Katalog Perhiasan",
@@ -473,6 +540,7 @@
       "catalog": "Katalog",
       "collections": "Koleksi",
       "workshop": "Workshop",
+      "careers": "Career",
       "storeLocation": "Kunjungi Kami",
       "about": "Tentang",
       "journal": "Jurnal"
@@ -493,6 +561,7 @@
       "catalog": "Katalog",
       "collections": "Koleksi",
       "workshop": "Workshop",
+      "careers": "Career",
       "storeLocation": "Lokasi Toko",
       "silverPrice": "Harga Perak",
       "goldPrice": "Harga Emas",

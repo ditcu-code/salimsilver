@@ -357,6 +357,73 @@
       }
     }
   },
+  "CareerPage": {
+    "Metadata": {
+      "title": "Careers at Salim Silver",
+      "description": "Discover career opportunities at Salim Silver and join the team preserving Kotagede's silver heritage."
+    },
+    "Hero": {
+      "eyebrow": "Careers",
+      "title": "Build with the keepers of Kotagede silver craft",
+      "description": "We make room for thoughtful, detail-minded people who want to grow inside a family silver workshop in Yogyakarta."
+    },
+    "Jobs": {
+      "eyebrow": "Current Openings",
+      "title": "Join Our Team",
+      "description": "We are always looking for talented individuals who are passionate about preserving Kotagede's silver legacy. Explore our available positions below.",
+      "labels": {
+        "location": "Location",
+        "type": "Work type"
+      },
+      "items": {
+        "silversmith": {
+          "title": "Junior Silversmith",
+          "description": "Support the basic stages of silver jewelry making, from material preparation and forming to finishing under senior artisan guidance.",
+          "location": "Kotagede, Yogyakarta",
+          "type": "Full-time"
+        },
+        "studioAssistant": {
+          "title": "Studio & Workshop Assistant",
+          "description": "Support daily workshop activity, welcome guests, prepare workshop sessions, and help the team keep operations organized.",
+          "location": "Kotagede, Yogyakarta",
+          "type": "Full-time"
+        },
+        "contentCreative": {
+          "title": "Content Creative Intern",
+          "description": "Help document craft processes, shape short-form content ideas, and organize visual assets for Salim Silver social channels.",
+          "location": "Hybrid",
+          "type": "Internship"
+        }
+      }
+    },
+    "StudentInternship": {
+      "eyebrow": "For Students",
+      "title": "Open to internship applications",
+      "description": "Students who want to learn inside a working silver studio can send a CV, campus recommendation letter, or portfolio link. We will review schedule fit, internship duration, and available learning areas.",
+      "ctaLabel": "Apply for Internship",
+      "message": "Hello Salim Silver, I am a student interested in applying for an internship. My campus, major, internship period, and CV/portfolio link are:",
+      "items": {
+        "schedule": {
+          "title": "Flexible discussion",
+          "description": "Internship periods can be discussed based on campus requirements and team availability."
+        },
+        "documents": {
+          "title": "Simple documents",
+          "description": "Include your CV, campus letter if available, and a relevant portfolio or work sample."
+        },
+        "learning": {
+          "title": "Cross-area learning",
+          "description": "Learning areas may include workshop practice, operations, content documentation, or guest service."
+        }
+      }
+    },
+    "TalentPool": {
+      "title": "No matching opening yet?",
+      "description": "Send your CV or portfolio link anyway. If a suitable role opens later, our team will contact you through the details you provide.",
+      "ctaLabel": "Drop Your CV",
+      "message": "Hello Salim Silver, I would like to share my CV for future opportunities. Here is my CV/portfolio link:"
+    }
+  },
   "CatalogPage": {
     "Metadata": {
       "title": "Jewelry Catalog",
@@ -473,6 +540,7 @@
       "catalog": "Catalog",
       "collections": "Collections",
       "workshop": "Workshop",
+      "careers": "Careers",
       "storeLocation": "Visit Us",
       "about": "About",
       "journal": "Journal"
@@ -493,6 +561,7 @@
       "catalog": "Catalog",
       "collections": "Collections",
       "workshop": "Workshop",
+      "careers": "Careers",
       "storeLocation": "Store Location",
       "silverPrice": "Silver Price",
       "goldPrice": "Gold Price",
