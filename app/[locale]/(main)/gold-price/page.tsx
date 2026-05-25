@@ -106,27 +106,6 @@ export default async function GoldPricePage({ params }: Props) {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Product",
-        name: "Gold Price per Gram",
-        description:
-          "Current price of fine gold (999) per gram in Indonesian Rupiah (IDR).",
-        image: "https://salimsilver.com/api/og/gold-price",
-        brand: {
-          "@type": "Brand",
-          name: "Salim Silver",
-        },
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "IDR",
-          price: displayPrices ? Math.round(displayPrices.currentPrice) : "0",
-          availability: "https://schema.org/InStock",
-          priceValidUntil: new Date(
-            Date.now() + 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          url: constructCanonicalUrl(locale, "/gold-price"),
-        },
-      },
-      {
         "@type": "FAQPage",
         mainEntity: GOLD_FAQ_ITEMS.map((item) => ({
           "@type": "Question",

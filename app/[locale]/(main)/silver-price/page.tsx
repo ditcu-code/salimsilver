@@ -106,27 +106,6 @@ export default async function SilverPricePage({ params }: Props) {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Product",
-        name: "Silver Price per Gram",
-        description:
-          "Current price of fine silver (999) per gram in Indonesian Rupiah (IDR).",
-        image: "https://salimsilver.com/api/og/silver-price",
-        brand: {
-          "@type": "Brand",
-          name: "Salim Silver",
-        },
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "IDR",
-          price: displayPrices ? Math.round(displayPrices.currentPrice) : "0",
-          availability: "https://schema.org/InStock",
-          priceValidUntil: new Date(
-            Date.now() + 24 * 60 * 60 * 1000,
-          ).toISOString(),
-          url: constructCanonicalUrl(locale, "/silver-price"),
-        },
-      },
-      {
         "@type": "FAQPage",
         mainEntity: SILVER_FAQ_ITEMS.map((item) => ({
           "@type": "Question",
