@@ -12,14 +12,14 @@ interface MetalPriceHeaderProps {
 export function MetalPriceHeader({
   title,
   description,
-  className,
+  className
 }: MetalPriceHeaderProps) {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   return (
-    <div className={cn("mb-5 space-y-2 text-center", className)}>
+    <div className={cn("mb-8 space-y-2 text-center", className)}>
       <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
         {title}
       </h1>
