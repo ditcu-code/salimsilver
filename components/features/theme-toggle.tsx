@@ -31,7 +31,9 @@ export function ThemeToggle() {
     // Determine effective theme
     let effectiveTheme = newTheme
     if (newTheme === "system") {
-      effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+      effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
     }
 
     // Find or create the theme-color meta tag for Safari
@@ -43,7 +45,10 @@ export function ThemeToggle() {
     }
 
     // Update color based on theme
-    metaThemeColor.setAttribute("content", effectiveTheme === "dark" ? "#000000" : "#ffffff")
+    metaThemeColor.setAttribute(
+      "content",
+      effectiveTheme === "dark" ? "#000000" : "#ffffff"
+    )
   }
 
   const handleThemeChange = (newTheme: Theme) => {
@@ -59,7 +64,7 @@ export function ThemeToggle() {
   const options: { value: Theme; icon: typeof Sun; label: string }[] = [
     { value: "light", icon: Sun, label: "Light" },
     { value: "system", icon: Monitor, label: "System" },
-    { value: "dark", icon: Moon, label: "Dark" },
+    { value: "dark", icon: Moon, label: "Dark" }
   ]
 
   return (

@@ -20,7 +20,9 @@ export function WorkshopDetails() {
             <Clock className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("hours.title")}</h4>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">
+              {t("hours.title")}
+            </h4>
             <p className="text-sm text-stone-600 dark:text-stone-400">
               {t("hours.days")}
               <br />
@@ -36,7 +38,9 @@ export function WorkshopDetails() {
             <Hammer className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("includes.title")}</h4>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">
+              {t("includes.title")}
+            </h4>
             <p className="text-sm text-stone-600 dark:text-stone-400">
               {t("includes.description")}
             </p>
@@ -48,7 +52,9 @@ export function WorkshopDetails() {
             <Sparkles className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("flexible.title")}</h4>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">
+              {t("flexible.title")}
+            </h4>
             <p className="text-sm text-stone-600 dark:text-stone-400">
               {t("flexible.description")}
             </p>
@@ -60,8 +66,12 @@ export function WorkshopDetails() {
             <CreditCard className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-50">{t("payment.title")}</h4>
-            <p className="text-sm text-stone-600 dark:text-stone-400">{t("payment.description")}</p>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">
+              {t("payment.title")}
+            </h4>
+            <p className="text-sm text-stone-600 dark:text-stone-400">
+              {t("payment.description")}
+            </p>
           </div>
         </div>
       </div>

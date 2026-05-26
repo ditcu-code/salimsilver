@@ -10,7 +10,10 @@ export default function IntroductionSection() {
   const t = useTranslations("HomePage.Introduction")
 
   return (
-    <section id="introduction" className="mx-auto mt-32 mb-20 max-w-7xl px-4 py-20 sm:py-0 md:px-8">
+    <section
+      id="introduction"
+      className="mx-auto mt-32 mb-20 max-w-7xl px-4 py-20 sm:py-0 md:px-8"
+    >
       <div className="grid items-center gap-12 md:grid-cols-2">
         <motion.div
           className="order-2 md:order-1"
@@ -19,10 +22,16 @@ export default function IntroductionSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-display mb-6 text-3xl md:text-4xl">{t("title")}</h2>
+          <h2 className="font-display mb-6 text-3xl md:text-4xl">
+            {t("title")}
+          </h2>
           <p className="text-muted-foreground mb-6">{t("description1")}</p>
           <p className="text-muted-foreground mb-8">{t("description2")}</p>
-          <AnimatedButton href="/about" variant="outline" icon={<ArrowRight size={16} />}>
+          <AnimatedButton
+            href="/about"
+            variant="outline"
+            icon={<ArrowRight size={16} />}
+          >
             {t("cta")}
           </AnimatedButton>
         </motion.div>

@@ -6,7 +6,7 @@ import { getAllCollections } from "@/lib/collections"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 export const revalidate = 86400
 
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({
     locale,
-    namespace: "CollectionsPage.Metadata",
+    namespace: "CollectionsPage.Metadata"
   })
   const canonicalUrl = constructCanonicalUrl(locale, "/collections")
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/collections"),
+      languages: getAlternates("/collections")
     },
     openGraph: {
       type: "website",
@@ -35,13 +35,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
-      description: t("description"),
-    },
+      description: t("description")
+    }
   }
 }
 
@@ -64,8 +64,8 @@ export default async function CollectionsPage({ params }: Props) {
             "@type": "CollectionPage",
             name: t("title"),
             description: t("description"),
-            url: constructCanonicalUrl(locale, "/collections"),
-          }),
+            url: constructCanonicalUrl(locale, "/collections")
+          })
         }}
       />
     </>

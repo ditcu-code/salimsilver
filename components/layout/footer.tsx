@@ -18,7 +18,7 @@ const motionSettings = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
-  viewport: { once: true },
+  viewport: { once: true }
 }
 
 const quickLinksConfig = [
@@ -31,33 +31,33 @@ const quickLinksConfig = [
   { href: "/gold-price", key: "goldPrice" },
   { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
-  { href: "/blog", key: "journal" },
+  { href: "/blog", key: "journal" }
 ]
 
 const contactLinksConfig = [
   {
     key: "email",
     href: "mailto:hello@salimsilver.com",
-    display: "hello@salimsilver.com",
-  },
+    display: "hello@salimsilver.com"
+  }
 ]
 
 const socialLinks = [
   {
     href: "https://web.facebook.com/SalimSilverArt",
     label: "Facebook",
-    Icon: Facebook,
+    Icon: Facebook
   },
   {
     href: "https://www.instagram.com/salimsilverofficial/",
     label: "Instagram",
-    Icon: Instagram,
+    Icon: Instagram
   },
   {
     href: "/api/whatsapp",
     label: "WhatsApp",
-    Icon: WhatsApp,
-  },
+    Icon: WhatsApp
+  }
 ]
 
 type AnimatedSectionProps = {
@@ -159,7 +159,7 @@ export default function Footer() {
                   onClick={() =>
                     sendGAEvent("event", "social_click", {
                       network: label,
-                      url: href,
+                      url: href
                     })
                   }
                 >

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test"
 
 test("opengraph image is accessible and has correct content type", async ({
-  request,
+  request
 }) => {
   const response = await request.get("/opengraph-image")
 

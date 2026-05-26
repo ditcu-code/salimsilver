@@ -25,11 +25,11 @@ export function ViewCounter({ postId }: ViewCounterProps) {
         const response = await fetch("/api/blog/views", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({ postId }),
           cache: "no-store",
-          keepalive: true,
+          keepalive: true
         })
 
         if (!response.ok) {

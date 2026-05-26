@@ -18,7 +18,7 @@ export default function ContactFormSection() {
       setTimeout(() => {
         sectionRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "center",
+          block: "center"
         })
       }, 100)
     }

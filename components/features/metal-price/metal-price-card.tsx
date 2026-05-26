@@ -5,7 +5,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
 import { Triangle } from "lucide-react"
 
@@ -22,7 +22,7 @@ interface MetalPriceCardProps {
 export function MetalPriceCard({
   currentPriceDisplay,
   previousPriceDisplay,
-  lastUpdated,
+  lastUpdated
 }: MetalPriceCardProps) {
   const { priceChange, percentageChange, isUp, isSame, showPercentage } =
     usePriceTrend(currentPriceDisplay, previousPriceDisplay)
@@ -98,7 +98,7 @@ export function MetalPriceCard({
                             transition={{
                               type: "spring",
                               stiffness: 300,
-                              damping: 30,
+                              damping: 30
                             }}
                             className="block tabular-nums"
                           >
@@ -113,7 +113,7 @@ export function MetalPriceCard({
                             transition={{
                               type: "spring",
                               stiffness: 300,
-                              damping: 30,
+                              damping: 30
                             }}
                             className="block tabular-nums"
                           >
@@ -155,14 +155,14 @@ export function MetalPriceCard({
                 day: "numeric",
                 month: "short",
                 year: "numeric",
-                timeZone: "Asia/Jakarta",
+                timeZone: "Asia/Jakarta"
               })}
             </div>
             <div className="text-muted-foreground -mt-1 text-xs">
               {new Date(lastUpdated).toLocaleTimeString("id-ID", {
                 hour: "2-digit",
                 minute: "2-digit",
-                timeZone: "Asia/Jakarta",
+                timeZone: "Asia/Jakarta"
               })}{" "}
               WIB
             </div>
@@ -180,7 +180,7 @@ interface PriceFallbackCardProps {
 
 export function PriceFallbackCard({
   title,
-  description,
+  description
 }: PriceFallbackCardProps) {
   return (
     <Card className="border-border/50 bg-card shadow-xl">

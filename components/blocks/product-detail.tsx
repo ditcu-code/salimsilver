@@ -30,7 +30,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     width: 800, // Aspect ratio proxy
     height: 800,
     alt: product.title,
-    key: img.id || `img-${index}`,
+    key: img.id || `img-${index}`
   }))
 
   return (
@@ -45,14 +45,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     label: product.collectionSlug
                       .split("-")
                       .map(
-                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
                       )
                       .join(" "),
-                    href: `/collections/${product.collectionSlug}`,
-                  },
+                    href: `/collections/${product.collectionSlug}`
+                  }
                 ]
               : []),
-            { label: product.title },
+            { label: product.title }
           ]}
         />
       </div>
@@ -126,7 +126,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               }
               onPrevious={() =>
                 setCurrentPhotoIndex(
-                  (prev) => (prev - 1 + photos.length) % photos.length,
+                  (prev) => (prev - 1 + photos.length) % photos.length
                 )
               }
               onSelect={setCurrentPhotoIndex}
@@ -181,7 +181,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           <div className="mt-12">
             <AnimatedButton
               href={`/contact?message=${encodeURIComponent(
-                `Hello, I am interested in the ${product.title}. Could you please provide more information regarding its availability and pricing? Thank you.`,
+                `Hello, I am interested in the ${product.title}. Could you please provide more information regarding its availability and pricing? Thank you.`
               )}`}
               variant="outline"
               icon={<ArrowRight size={16} />}
@@ -197,7 +197,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
 function InfoItem({
   label,
-  value,
+  value
 }: {
   label: string
   value?: string | number

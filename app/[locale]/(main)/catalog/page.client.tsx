@@ -13,7 +13,9 @@ interface CatalogPageClientProps {
   collections: Collection[]
 }
 
-export default function CatalogPageClient({ collections }: CatalogPageClientProps) {
+export default function CatalogPageClient({
+  collections
+}: CatalogPageClientProps) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -30,14 +32,16 @@ export default function CatalogPageClient({ collections }: CatalogPageClientProp
   const categories = useMemo(
     () => [
       { id: "all", label: t("all") },
-      ...collections.map((c) => ({ id: c.slug, label: c.title })),
+      ...collections.map((c) => ({ id: c.slug, label: c.title }))
     ],
     [collections, t]
   )
 
   const filteredJewelry = useMemo(() => {
     if (activeCategory === "all") return allJewelry
-    const collection = collections.find((collection) => collection.slug === activeCategory)
+    const collection = collections.find(
+      (collection) => collection.slug === activeCategory
+    )
     return collection ? collection.jewelryList || [] : []
   }, [activeCategory, allJewelry, collections])
 

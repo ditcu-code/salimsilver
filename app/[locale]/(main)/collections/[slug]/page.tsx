@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server"
 import {
   getCollection,
   getFeaturedCollections,
-  getJewelryBySlug,
+  getJewelryBySlug
 } from "@/lib/collections"
 import { BASE_URL } from "@/lib/constants"
 import { getAlternates, getOpenGraphLocale } from "@/lib/seo"
@@ -25,7 +25,7 @@ interface Props {
 
 export async function generateMetadata({
   params,
-  searchParams,
+  searchParams
 }: Props): Promise<Metadata> {
   const { slug, locale } = await params
   const { jewelry } = await searchParams
@@ -48,7 +48,7 @@ export async function generateMetadata({
         description,
         alternates: {
           canonical: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
-          languages: getAlternates(`/collections/${slug}?jewelry=${jewelry}`),
+          languages: getAlternates(`/collections/${slug}?jewelry=${jewelry}`)
         },
         openGraph: {
           title,
@@ -56,14 +56,14 @@ export async function generateMetadata({
           images,
           url: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
           siteName: "Salim Silver",
-          locale: getOpenGraphLocale(locale),
+          locale: getOpenGraphLocale(locale)
         },
         twitter: {
           card: "summary_large_image",
           title,
           description,
-          images,
-        },
+          images
+        }
       }
     }
   }
@@ -84,7 +84,7 @@ export async function generateMetadata({
       description,
       alternates: {
         canonical: `${BASE_URL}/collections/${slug}`,
-        languages: getAlternates(`/collections/${slug}`),
+        languages: getAlternates(`/collections/${slug}`)
       },
       openGraph: {
         title,
@@ -92,19 +92,19 @@ export async function generateMetadata({
         images,
         url: `${BASE_URL}/collections/${slug}`,
         siteName: "Salim Silver",
-        locale: getOpenGraphLocale(locale),
+        locale: getOpenGraphLocale(locale)
       },
       twitter: {
         card: "summary_large_image",
         title,
         description,
-        images,
-      },
+        images
+      }
     }
   }
 
   return {
-    title: "Collection Not Found",
+    title: "Collection Not Found"
   }
 }
 
@@ -143,10 +143,10 @@ export default async function CollectionPage({ params, searchParams }: Props) {
                   position: index + 1,
                   url: `${BASE_URL}/catalog?jewelry=${item.slug}`,
                   name: item.title,
-                  image: item.coverImage,
-                })) || [],
-            },
-          }),
+                  image: item.coverImage
+                })) || []
+            }
+          })
         }}
       />
       <script
@@ -160,16 +160,16 @@ export default async function CollectionPage({ params, searchParams }: Props) {
                 "@type": "ListItem",
                 position: 1,
                 name: t("collections"),
-                item: `${BASE_URL}/collections`,
+                item: `${BASE_URL}/collections`
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: collection.title,
-                item: `${BASE_URL}/collections/${collection.slug}`,
-              },
-            ],
-          }),
+                item: `${BASE_URL}/collections/${collection.slug}`
+              }
+            ]
+          })
         }}
       />
     </>

@@ -29,7 +29,7 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "center"
   },
   overlay: {
     position: "absolute",
@@ -37,7 +37,7 @@ const styles = {
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    backgroundColor: "rgba(0, 0, 0, 0.6)"
   },
   contentWrapper: {
     position: "relative",
@@ -46,34 +46,34 @@ const styles = {
     width: "100%",
     height: "100%",
     padding: "80px 96px",
-    zIndex: 10,
+    zIndex: 10
   },
   contentInner: {
     display: "flex",
     flexDirection: "column",
     gap: 26,
-    maxWidth: 780,
+    maxWidth: 780
   },
   brand: {
     fontFamily: '"Lato", sans-serif',
     fontSize: 22,
     letterSpacing: 6,
     textTransform: "uppercase",
-    color: "rgba(253, 251, 247, 0.85)",
+    color: "rgba(253, 251, 247, 0.85)"
   },
   title: {
     fontFamily: '"Cormorant Garamond", serif',
     fontSize: 80,
     lineHeight: 1,
     fontWeight: 700,
-    textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+    textShadow: "0 2px 10px rgba(0,0,0,0.3)"
   },
   description: {
     fontFamily: '"Lato", sans-serif',
     fontSize: 28,
     lineHeight: 1.35,
     color: "rgba(253, 251, 247, 0.95)",
-    textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+    textShadow: "0 2px 4px rgba(0,0,0,0.3)"
   },
   footer: {
     fontFamily: '"Lato", sans-serif',
@@ -83,13 +83,13 @@ const styles = {
     marginTop: 12,
     color: "rgba(253, 251, 247, 0.9)",
     fontSize: 22,
-    letterSpacing: 2,
+    letterSpacing: 2
   },
   footerLine: {
     width: 60,
     height: 2,
-    backgroundColor: "rgba(253, 251, 247, 0.6)",
-  },
+    backgroundColor: "rgba(253, 251, 247, 0.6)"
+  }
 } as const
 
 export async function generateOgImage(
@@ -103,7 +103,7 @@ export async function generateOgImage(
   const bgBuffer = await sharp(fileBuffer)
     .resize(1200, 630, {
       fit: "cover",
-      position: "center",
+      position: "center"
     })
     .jpeg({ quality: 80 })
     .toBuffer()
@@ -112,14 +112,17 @@ export async function generateOgImage(
   // Load fonts
   const [cormorantFont, latoFont] = await Promise.all([
     loadGoogleFont("Cormorant Garamond:wght@700", title),
-    loadGoogleFont("Lato:wght@400", `Salim Silver ${description} Kotagede - Yogyakarta`),
+    loadGoogleFont(
+      "Lato:wght@400",
+      `Salim Silver ${description} Kotagede - Yogyakarta`
+    )
   ])
 
   const imageResponse = new ImageResponse(
     <div
       style={{
         ...styles.container,
-        backgroundImage: `url(${bgBase64})`,
+        backgroundImage: `url(${bgBase64})`
       }}
     >
       {/* Dark Overlay */}
@@ -149,15 +152,15 @@ export async function generateOgImage(
           name: "Cormorant Garamond",
           data: cormorantFont,
           style: "normal",
-          weight: 700,
+          weight: 700
         },
         {
           name: "Lato",
           data: latoFont,
           style: "normal",
-          weight: 400,
-        },
-      ],
+          weight: 400
+        }
+      ]
     }
   )
 
@@ -169,7 +172,7 @@ export async function generateOgImage(
   return new Response(compressedBuffer as unknown as BodyInit, {
     headers: {
       "Content-Type": "image/jpeg",
-      "Cache-Control": "public, immutable, no-transform, max-age=31536000",
-    },
+      "Cache-Control": "public, immutable, no-transform, max-age=31536000"
+    }
   })
 }

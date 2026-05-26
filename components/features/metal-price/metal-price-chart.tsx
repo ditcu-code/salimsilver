@@ -7,7 +7,7 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
+  YAxis
 } from "recharts"
 
 import { Button } from "@/components/ui/button"
@@ -28,13 +28,13 @@ interface MetalPriceChartProps {
 const compactFormatterGold = new Intl.NumberFormat("id-ID", {
   notation: "compact",
   compactDisplay: "short",
-  maximumFractionDigits: 1,
+  maximumFractionDigits: 1
 })
 
 const compactFormatterSilver = new Intl.NumberFormat("id-ID", {
   notation: "compact",
   compactDisplay: "short",
-  maximumFractionDigits: 0,
+  maximumFractionDigits: 0
 })
 
 export function MetalPriceChart({
@@ -42,11 +42,13 @@ export function MetalPriceChart({
   color = "#d4af37",
   latestPrice,
   data: initialData,
-  className,
+  className
 }: MetalPriceChartProps) {
   const [period, setPeriod] = useState<"1w" | "1m">("1w")
   const isGold = type === "gold"
-  const compactFormatter = isGold ? compactFormatterGold : compactFormatterSilver
+  const compactFormatter = isGold
+    ? compactFormatterGold
+    : compactFormatterSilver
 
   /**
    * Memoize the sorted data array. Previously, `[...initialData]` spread +
@@ -58,9 +60,7 @@ export function MetalPriceChart({
     if (latestPrice && arr.length > 0) {
       arr.push({ date: new Date().toISOString(), price: latestPrice })
     }
-    arr.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    )
+    arr.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     return arr
   }, [initialData, latestPrice])
 
@@ -102,7 +102,7 @@ export function MetalPriceChart({
           // Check for day change in WIB (UTC+7)
           const options: Intl.DateTimeFormatOptions = {
             timeZone: "Asia/Jakarta",
-            day: "numeric",
+            day: "numeric"
           }
 
           const prevDay = prevDate.toLocaleString("en-US", options)
@@ -110,13 +110,13 @@ export function MetalPriceChart({
 
           return prevDay !== currDay
         }),
-    [filteredData],
+    [filteredData]
   )
 
   // Stable callback for Y-axis formatter — avoids creating new closure each render
   const yAxisFormatter = useCallback(
     (value: number) => compactFormatter.format(value),
-    [compactFormatter],
+    [compactFormatter]
   )
 
   // Stable callback for X-axis formatter
@@ -124,7 +124,7 @@ export function MetalPriceChart({
     return new Date(date).toLocaleDateString("id-ID", {
       day: "numeric",
       month: "numeric",
-      timeZone: "Asia/Jakarta",
+      timeZone: "Asia/Jakarta"
     })
   }, [])
 
@@ -143,7 +143,7 @@ export function MetalPriceChart({
               size="sm"
               className={cn(
                 "h-7 px-3 text-xs",
-                period === "1w" && "bg-background text-foreground shadow-sm",
+                period === "1w" && "bg-background text-foreground shadow-sm"
               )}
               onClick={() => startTransition(() => setPeriod("1w"))}
             >
@@ -154,7 +154,7 @@ export function MetalPriceChart({
               size="sm"
               className={cn(
                 "h-7 px-3 text-xs",
-                period === "1m" && "bg-background text-foreground shadow-sm",
+                period === "1m" && "bg-background text-foreground shadow-sm"
               )}
               onClick={() => startTransition(() => setPeriod("1m"))}
             >
@@ -209,20 +209,20 @@ export function MetalPriceChart({
                             month: "short",
                             year: "numeric",
                             hour: "2-digit",
-                            minute: "2-digit",
+                            minute: "2-digit"
                           })}
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-foreground font-bold tabular-nums text-sm">
                             Rp{" "}
                             {Math.round(
-                              payload[0].value as number,
+                              payload[0].value as number
                             ).toLocaleString("id-ID")}
                           </div>
                           {(() => {
                             const currentPrice = payload[0].value as number
                             const currentIndex = data.findIndex(
-                              (item) => item.date === label,
+                              (item) => item.date === label
                             )
                             const prevItem =
                               currentIndex > 0 ? data[currentIndex - 1] : null

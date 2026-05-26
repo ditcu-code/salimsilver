@@ -4,7 +4,7 @@ import TradingView from "npm:@mathieuc/tradingview"
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
+    "authorization, x-client-info, apikey, content-type"
 }
 
 interface FetchResult {
@@ -17,13 +17,13 @@ interface FetchResult {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", {
-      headers: corsHeaders,
+      headers: corsHeaders
     })
   }
 
   const supabaseClient = createClient(
     Deno.env.get("SUPABASE_URL") ?? "",
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
   )
 
   const messages: string[] = []
@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
   async function fetchPrice(
     type: "silver" | "gold",
     tvSymbol: string, // FX_IDC:XAGIDRK or FX_IDC:XAUIDRK
-    metalDevKey: string, // silver or gold (API key is same, but response key differs)
+    metalDevKey: string // silver or gold (API key is same, but response key differs)
   ): Promise<FetchResult> {
     let priceIDR = 0
     let source = "tradingview"
@@ -93,7 +93,7 @@ Deno.serve(async (req) => {
         }
         console.log(`[${type}] Attempting GoldPrice.org...`)
         const response = await fetch(
-          "https://data-asg.goldprice.org/dbXRates/IDR",
+          "https://data-asg.goldprice.org/dbXRates/IDR"
         )
         if (!response.ok) throw new Error("Fetch failed")
 
@@ -136,7 +136,7 @@ Deno.serve(async (req) => {
           }
 
           const response = await fetch(
-            `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=kg`,
+            `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=kg`
           )
           const data = await response.json()
 
@@ -150,7 +150,7 @@ Deno.serve(async (req) => {
             price: 0,
             timestamp: "",
             source: "",
-            error: mdevError.message,
+            error: mdevError.message
           }
         }
       }
@@ -184,7 +184,7 @@ Deno.serve(async (req) => {
     const insertPayload = {
       price_idr: result.price,
       updated_at: result.timestamp,
-      source: result.source,
+      source: result.source
     }
 
     const { error: insertError } = await supabaseClient
@@ -201,7 +201,7 @@ Deno.serve(async (req) => {
       const now = new Date()
       const getHistoricalPrice = async (daysAgo: number) => {
         const targetDate = new Date(
-          now.getTime() - daysAgo * 24 * 60 * 60 * 1000,
+          now.getTime() - daysAgo * 24 * 60 * 60 * 1000
         ).toISOString()
         const { data } = await supabaseClient
           .from(tableHistory)
@@ -219,7 +219,7 @@ Deno.serve(async (req) => {
           getHistoricalPrice(7),
           getHistoricalPrice(30),
           getHistoricalPrice(180),
-          getHistoricalPrice(365),
+          getHistoricalPrice(365)
         ])
 
       const summaryPayload = {
@@ -230,7 +230,7 @@ Deno.serve(async (req) => {
         price_30d_ago: price30d,
         price_180d_ago: price180d,
         price_1y_ago: price1y,
-        updated_at: result.timestamp,
+        updated_at: result.timestamp
       }
 
       const { error: summaryError } = await supabaseClient
@@ -249,7 +249,7 @@ Deno.serve(async (req) => {
 
   await Promise.all([
     updateDatabase("silver", silverResult),
-    updateDatabase("gold", goldResult),
+    updateDatabase("gold", goldResult)
   ])
 
   // --- REVALIDATION ---
@@ -268,14 +268,14 @@ Deno.serve(async (req) => {
         console.log(`Triggering revalidation for tag: ${tag}...`)
         const revalidateRes = await fetch(
           `https://www.salimsilver.com/api/revalidate?tag=${tag}&secret=${secret}`,
-          { method: "POST" },
+          { method: "POST" }
         )
 
         if (revalidateRes.ok) {
           console.log(`Revalidation request successful for tag: ${tag}`)
         } else {
           console.error(
-            `Revalidation failed for ${tag}: ${revalidateRes.status} ${revalidateRes.statusText}`,
+            `Revalidation failed for ${tag}: ${revalidateRes.status} ${revalidateRes.statusText}`
           )
           errors[`revalidation_${tag}`] =
             `Failed: ${revalidateRes.status} ${revalidateRes.statusText}`
@@ -294,12 +294,12 @@ Deno.serve(async (req) => {
       errors,
       data: {
         silver: silverResult,
-        gold: goldResult,
-      },
+        gold: goldResult
+      }
     }),
     {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: Object.keys(errors).length > 0 ? 500 : 200,
-    },
+      status: Object.keys(errors).length > 0 ? 500 : 200
+    }
   )
 })

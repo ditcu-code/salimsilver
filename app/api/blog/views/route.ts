@@ -17,19 +17,19 @@ export async function POST(request: Request) {
   if (!supabaseUrl || !serviceRoleKey) {
     return NextResponse.json(
       { message: "Supabase service role is not configured" },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
   const supabase = createClient(supabaseUrl, serviceRoleKey, {
     auth: {
       persistSession: false,
-      autoRefreshToken: false,
-    },
+      autoRefreshToken: false
+    }
   })
 
   const { error } = await supabase.rpc("increment_post_views", {
-    post_id: postId,
+    post_id: postId
   })
 
   if (error) {

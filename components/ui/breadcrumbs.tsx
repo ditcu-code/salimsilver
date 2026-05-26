@@ -18,7 +18,10 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className={cn("text-muted-foreground flex flex-wrap items-center text-sm", className)}
+      className={cn(
+        "text-muted-foreground flex flex-wrap items-center text-sm",
+        className
+      )}
     >
       <Link
         href="/"
@@ -35,11 +38,19 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
           <React.Fragment key={index}>
             <ChevronRight className="text-muted-foreground/50 mx-2 h-4 w-4" />
             {item.href && !isLast ? (
-              <Link href={item.href} className="hover:text-foreground transition-colors">
+              <Link
+                href={item.href}
+                className="hover:text-foreground transition-colors"
+              >
                 {item.label}
               </Link>
             ) : (
-              <span className={cn("text-foreground font-medium", isLast && "truncate")}>
+              <span
+                className={cn(
+                  "text-foreground font-medium",
+                  isLast && "truncate"
+                )}
+              >
                 {item.label}
               </span>
             )}

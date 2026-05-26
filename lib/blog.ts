@@ -4,7 +4,10 @@ import type { Post } from "./types"
 export async function getAllPosts(includeDrafts = false): Promise<Post[]> {
   const supabase = await createClient()
 
-  let query = supabase.from("posts").select("*").order("published_at", { ascending: false })
+  let query = supabase
+    .from("posts")
+    .select("*")
+    .order("published_at", { ascending: false })
 
   if (!includeDrafts) {
     query = query.eq("published", true)
@@ -30,7 +33,10 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
     .single()
 
   if (error) {
-    console.error("Error fetching post by slug:", JSON.stringify(error, null, 2))
+    console.error(
+      "Error fetching post by slug:",
+      JSON.stringify(error, null, 2)
+    )
     return undefined
   }
 

@@ -9,7 +9,7 @@ import CatalogPageClient from "./page.client"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 
 export async function generateMetadata({
   params,
-  searchParams,
+  searchParams
 }: Props): Promise<Metadata> {
   const { locale } = await params
   const { jewelry } = await searchParams
@@ -43,18 +43,18 @@ export async function generateMetadata({
           images,
           url: productUrl,
           siteName: "Salim Silver",
-          locale: getOpenGraphLocale(locale),
+          locale: getOpenGraphLocale(locale)
         },
         twitter: {
           card: "summary_large_image",
           title,
           description,
-          images,
+          images
         },
         alternates: {
           canonical: productUrl,
-          languages: getAlternates(`/product/${item.slug}`),
-        },
+          languages: getAlternates(`/product/${item.slug}`)
+        }
       }
     }
   }
@@ -66,7 +66,7 @@ export async function generateMetadata({
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/catalog"),
+      languages: getAlternates("/catalog")
     },
     openGraph: {
       type: "website",
@@ -74,13 +74,13 @@ export async function generateMetadata({
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
-      description: t("description"),
-    },
+      description: t("description")
+    }
   }
 }
 
@@ -101,8 +101,8 @@ export default async function CatalogPage({ params }: Props) {
             "@type": "CollectionPage",
             name: t("title"),
             description: t("description"),
-            url: constructCanonicalUrl(locale, "/catalog"),
-          }),
+            url: constructCanonicalUrl(locale, "/catalog")
+          })
         }}
       />
     </>

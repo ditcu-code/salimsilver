@@ -28,10 +28,11 @@ export default function CTASection({
   icon = <ArrowRight size={18} />,
   sectionClassName,
   paddingClassName,
-  containerClassName = "max-w-7xl mx-auto text-center",
+  containerClassName = "max-w-7xl mx-auto text-center"
 }: CTASectionProps) {
   const resolvedSectionClasses =
-    sectionClassName ?? "min-w-[90%] justify-self-center mr-4 ml-4 py-12 my-12 md:py-20 md:my-20"
+    sectionClassName ??
+    "min-w-[90%] justify-self-center mr-4 ml-4 py-12 my-12 md:py-20 md:my-20"
   const resolvedPaddingClasses = paddingClassName ?? "px-4 md:px-8"
 
   return (
@@ -50,7 +51,9 @@ export default function CTASection({
         viewport={{ once: true }}
       >
         <h2 className="font-display mb-6 text-3xl md:text-4xl">{title}</h2>
-        <p className="text-muted-foreground mx-auto mb-8 max-w-2xl">{description}</p>
+        <p className="text-muted-foreground mx-auto mb-8 max-w-2xl">
+          {description}
+        </p>
         <AnimatedButton href={ctaHref} variant={buttonVariant} icon={icon}>
           {ctaLabel}
         </AnimatedButton>

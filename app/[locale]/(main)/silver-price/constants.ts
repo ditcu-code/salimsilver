@@ -3,13 +3,13 @@ export const SILVER_FAQ_ITEMS = [
     value: "item-2",
     question: "Seberapa sering harga perak diperbarui?",
     answer:
-      "Sistem kami memantau pergerakan harga perak dunia dan melakukan pembaruan data secara berkala setiap 30 menit sekali untuk memastikan Anda mendapatkan informasi yang paling relevan dengan kondisi pasar saat ini.",
+      "Sistem kami memantau pergerakan harga perak dunia dan melakukan pembaruan data secara berkala setiap 30 menit sekali untuk memastikan Anda mendapatkan informasi yang paling relevan dengan kondisi pasar saat ini."
   },
   {
     value: "item-source",
     question: "Dari mana sumber data harga perak ini?",
     answer:
-      "Data harga kami bersumber langsung dari data pasar spot internasional (XAG/USD) yang dikonversi ke Rupiah secara real-time untuk memastikan akurasi nilai tukar terkini.",
+      "Data harga kami bersumber langsung dari data pasar spot internasional (XAG/USD) yang dikonversi ke Rupiah secara real-time untuk memastikan akurasi nilai tukar terkini."
   },
   // {
   //   value: "item-3",
@@ -28,6 +28,6 @@ export const SILVER_FAQ_ITEMS = [
     question:
       "Mengapa harga perak murni lokal terkadang berbeda dengan harga internasional?",
     answer:
-      "Perbedaan harga antara perak lokal dan internasional disebabkan oleh beberapa faktor, meliputi biaya pengiriman, margin/keuntungan pedagang, biaya pemurnian (refining), serta kebijakan pajak dan regulasi setempat. Selain itu, fluktuasi nilai tukar Rupiah terhadap Dolar AS juga mempengaruhi harga perak di pasar lokal.",
-  },
+      "Perbedaan harga antara perak lokal dan internasional disebabkan oleh beberapa faktor, meliputi biaya pengiriman, margin/keuntungan pedagang, biaya pemurnian (refining), serta kebijakan pajak dan regulasi setempat. Selain itu, fluktuasi nilai tukar Rupiah terhadap Dolar AS juga mempengaruhi harga perak di pasar lokal."
+  }
 ]

@@ -12,7 +12,7 @@ import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 
 type Props = {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/about"),
+      languages: getAlternates("/about")
     },
     openGraph: {
       type: "website",
@@ -43,16 +43,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: "/opengraph-image",
           width: 1200,
           height: 630,
-          alt: t("title"),
-        },
-      ],
+          alt: t("title")
+        }
+      ]
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/opengraph-image"],
-    },
+      images: ["/opengraph-image"]
+    }
   }
 }
 
@@ -94,10 +94,10 @@ export default async function AboutPage({ params }: Props) {
                 addressLocality: "Yogyakarta City",
                 addressRegion: "Special Region of Yogyakarta",
                 postalCode: "55173",
-                addressCountry: "ID",
-              },
-            },
-          }),
+                addressCountry: "ID"
+              }
+            }
+          })
         }}
       />
     </div>

@@ -23,8 +23,8 @@ export const getGoldPriceSummary = unstable_cache(
   ["gold-price-summary"],
   {
     tags: ["gold-price"],
-    revalidate: 3600, // Fallback revalidate every hour
-  },
+    revalidate: 3600 // Fallback revalidate every hour
+  }
 )
 
 export const getGoldPriceHistory = unstable_cache(
@@ -48,7 +48,7 @@ export const getGoldPriceHistory = unstable_cache(
     // Map directly to PriceHistoryItem format (no downsampling)
     const dailyData: PriceHistoryItem[] = reversedData.map((item) => ({
       date: item.updated_at,
-      price: item.price_idr,
+      price: item.price_idr
     }))
 
     return dailyData
@@ -56,8 +56,8 @@ export const getGoldPriceHistory = unstable_cache(
   ["gold-price-history"],
   {
     tags: ["gold-price"],
-    revalidate: 3600,
-  },
+    revalidate: 3600
+  }
 )
 
 export interface DisplayPrices {
@@ -71,7 +71,7 @@ export interface DisplayPrices {
 }
 
 export function calculateDisplayPrices(
-  summary: GoldPriceSummary | null,
+  summary: GoldPriceSummary | null
 ): DisplayPrices | null {
   if (!summary) return null
 
@@ -97,6 +97,6 @@ export function calculateDisplayPrices(
     price30d,
     price180d,
     price1y,
-    lastUpdated: summary.updated_at,
+    lastUpdated: summary.updated_at
   }
 }

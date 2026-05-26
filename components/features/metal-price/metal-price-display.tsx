@@ -33,7 +33,7 @@ interface MetalPriceDisplayProps {
 export function MetalPriceDisplay({
   displayPrices,
   chartData,
-  relatedMetal,
+  relatedMetal
 }: MetalPriceDisplayProps) {
   const {
     currentPrice,
@@ -42,7 +42,7 @@ export function MetalPriceDisplay({
     price30d,
     price180d,
     price1y,
-    lastUpdated,
+    lastUpdated
   } = displayPrices
 
   return (
@@ -103,7 +103,7 @@ export function MetalPriceDisplay({
               href={relatedMetal.href}
               onClick={() => {
                 sendGAEvent("event", "click_related_metal_price", {
-                  metal: relatedMetal.name,
+                  metal: relatedMetal.name
                 })
               }}
             >

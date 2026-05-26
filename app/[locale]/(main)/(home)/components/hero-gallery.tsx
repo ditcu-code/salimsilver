@@ -6,7 +6,11 @@ import Image from "next/image"
 import { type ReactNode, useRef } from "react"
 
 import { BentoGrid } from "@/components/blocks/hero-gallery-scroll-animation"
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem
+} from "@/components/ui/carousel"
 import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
@@ -20,11 +24,17 @@ const CONTENT = {
     pagodaRing: `${SUPABASE_CATALOG_URL}/silver-pagoda-ring-pearl-salimsilver.webp`,
     brooch: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
     coupleRings: `${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`,
-    locket: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`,
-  },
+    locket: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`
+  }
 } as const
 
-function FullBentoCell({ children, className }: { children: ReactNode; className?: string }) {
+function FullBentoCell({
+  children,
+  className
+}: {
+  children: ReactNode
+  className?: string
+}) {
   return (
     <motion.div
       className={cn("relative", className)}
@@ -41,7 +51,10 @@ function HeroDesktop() {
   const t = useTranslations("HomePage.Hero")
 
   return (
-    <BentoGrid variant="hero" className="hidden h-full min-h-[400px] w-full gap-4 md:grid md:gap-6">
+    <BentoGrid
+      variant="hero"
+      className="hidden h-full min-h-[400px] w-full gap-4 md:grid md:gap-6"
+    >
       {/* Cell 1: Title */}
       <FullBentoCell className="bg-background flex flex-col items-start justify-center rounded-3xl p-8 md:p-12">
         <div className="w-full">
@@ -92,7 +105,9 @@ function HeroDesktop() {
         </FullBentoCell>
 
         <FullBentoCell className="bg-secondary flex flex-1 items-center justify-center rounded-3xl px-6">
-          <div className="text-primary text-center text-sm md:text-base">{t("description")}</div>
+          <div className="text-primary text-center text-sm md:text-base">
+            {t("description")}
+          </div>
         </FullBentoCell>
       </div>
     </BentoGrid>
@@ -161,7 +176,9 @@ function HeroMobile() {
         <div className="mt-4 flex justify-center gap-1" />
       </Carousel>
 
-      <div className="text-primary px-4 text-center text-sm">{t("description")}</div>
+      <div className="text-primary px-4 text-center text-sm">
+        {t("description")}
+      </div>
     </div>
   )
 }

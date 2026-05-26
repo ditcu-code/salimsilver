@@ -16,7 +16,7 @@ const initialState = {
   errors: undefined,
   fields: undefined,
   resetTurnstile: false,
-  success: false,
+  success: false
 }
 
 export function ContactForm({ className }: ContactFormProps) {
@@ -27,7 +27,7 @@ export function ContactForm({ className }: ContactFormProps) {
   const [turnstileResetKey, setTurnstileResetKey] = useState(0)
   const [state, formAction, isPending] = useActionState(
     submitContactForm,
-    initialState,
+    initialState
   )
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -112,7 +112,9 @@ export function ContactForm({ className }: ContactFormProps) {
           className="border-border focus:border-primary focus:ring-primary bg-card mt-1 block w-full rounded-xl border px-3 py-2 focus:ring-1 focus:outline-none"
         />
         {state?.errors?.whatsapp && (
-          <p className="mt-1 text-sm text-red-500">{state.errors.whatsapp[0]}</p>
+          <p className="mt-1 text-sm text-red-500">
+            {state.errors.whatsapp[0]}
+          </p>
         )}
       </div>
 
@@ -128,7 +130,11 @@ export function ContactForm({ className }: ContactFormProps) {
         />
       </div>
       <input type="hidden" name="_startedAt" value={startedAt} />
-      <input type="hidden" name="cf-turnstile-response" value={turnstileToken} />
+      <input
+        type="hidden"
+        name="cf-turnstile-response"
+        value={turnstileToken}
+      />
       <div>
         <label
           htmlFor="message"
@@ -170,7 +176,7 @@ export function ContactForm({ className }: ContactFormProps) {
           className={cn(
             "bg-primary dark:text-primary-foreground hover:bg-primary/90 focus:ring-primary w-full cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-white shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none",
             (isPending || (turnstileEnabled && !turnstileToken)) &&
-              "cursor-not-allowed opacity-50",
+              "cursor-not-allowed opacity-50"
           )}
         >
           {isPending ? "Sending..." : "Send Message"}

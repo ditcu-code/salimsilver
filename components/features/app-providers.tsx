@@ -5,7 +5,7 @@ import dynamic from "next/dynamic"
 import { ReactNode } from "react"
 
 const SoundEffects = dynamic(() => import("@/hooks/use-hammer-sound"), {
-  ssr: false,
+  ssr: false
 })
 
 export function AppProviders({ children }: { children: ReactNode }) {

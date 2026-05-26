@@ -30,24 +30,24 @@ export default function ContactInfo() {
             opacity: 1,
             transition: {
               staggerChildren: 0.1,
-              delayChildren: 0.3,
-            },
-          },
+              delayChildren: 0.3
+            }
+          }
         }}
       >
         {[
           {
             icon: <Mail className="text-primary mt-1" size={20} />,
             title: t("Email"),
-            content: <ObfuscatedEmail user="hello" domain="salimsilver.com" />,
-          },
+            content: <ObfuscatedEmail user="hello" domain="salimsilver.com" />
+          }
         ].map((item) => (
           <motion.div
             key={item.title}
             className="flex items-start gap-4"
             variants={{
               hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
+              visible: { opacity: 1, y: 0 }
             }}
           >
             {item.icon}
@@ -70,14 +70,18 @@ export default function ContactInfo() {
             {
               icon: <Facebook size={26} />,
               label: "Facebook",
-              href: "https://web.facebook.com/SalimSilverArt",
+              href: "https://web.facebook.com/SalimSilverArt"
             },
             {
               icon: <Instagram size={26} />,
               label: "Instagram",
-              href: "https://www.instagram.com/salimsilverofficial/",
+              href: "https://www.instagram.com/salimsilverofficial/"
             },
-            { icon: <WhatsApp size={26} />, label: "WhatsApp", href: "/api/whatsapp" },
+            {
+              icon: <WhatsApp size={26} />,
+              label: "WhatsApp",
+              href: "/api/whatsapp"
+            }
           ].map((item) => (
             <motion.a
               key={item.label}

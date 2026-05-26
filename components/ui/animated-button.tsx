@@ -26,10 +26,13 @@ export default function AnimatedButton({
   onClick,
   type = "button",
   target,
-  rel,
+  rel
 }: AnimatedButtonProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const [hoverOrigin, setHoverOrigin] = useState<{ x: number; y: number } | null>(null)
+  const [hoverOrigin, setHoverOrigin] = useState<{
+    x: number
+    y: number
+  } | null>(null)
   const baseStyles =
     "btn inline-flex items-center gap-2 rounded-full transition-colors relative overflow-hidden"
   const { playHammerSound } = useHammerSound()
@@ -40,7 +43,7 @@ export default function AnimatedButton({
     secondary:
       "bg-secondary text-black hover:bg-white/90 hover:text-black dark:bg-gray-800 dark:text-white dark:hover:bg-gray/90 px-6 py-3",
     outline:
-      "border border-primary bg-transparent text-primary hover:text-primary-foreground hover:border-secondary px-6 py-3",
+      "border border-primary bg-transparent text-primary hover:text-primary-foreground hover:border-secondary px-6 py-3"
   }
 
   const handleClick = () => {
@@ -71,7 +74,9 @@ export default function AnimatedButton({
   const content = (
     <>
       <span className="relative z-10">{children}</span>
-      {icon && <span className="btn-icon relative z-10 overflow-hidden">{icon}</span>}
+      {icon && (
+        <span className="btn-icon relative z-10 overflow-hidden">{icon}</span>
+      )}
       <AnimatePresence>
         {isHovered && hoverOrigin && variant === "outline" && (
           <motion.span
@@ -90,7 +95,7 @@ export default function AnimatedButton({
               borderRadius: "50%",
               backgroundColor: "var(--color-primary)", // Use CSS variable for primary color
               pointerEvents: "none",
-              zIndex: 0,
+              zIndex: 0
             }}
           />
         )}
@@ -102,7 +107,7 @@ export default function AnimatedButton({
     className: sharedClasses,
     onClick: handleClick,
     onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
+    onMouseLeave: handleMouseLeave
   }
 
   if (href) {

@@ -10,7 +10,7 @@ import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 
 type Props = {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({
     locale,
-    namespace: "StoreLocationPage.Metadata",
+    namespace: "StoreLocationPage.Metadata"
   })
   const canonicalUrl = constructCanonicalUrl(locale, "/store-location")
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/store-location"),
+      languages: getAlternates("/store-location")
     },
     openGraph: {
       type: "website",
@@ -38,13 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
-      description: t("description"),
-    },
+      description: t("description")
+    }
   }
 }
 
@@ -135,12 +135,12 @@ export default async function StoreLocationPage({ params }: Props) {
               addressLocality: "Yogyakarta City",
               addressRegion: "Special Region of Yogyakarta",
               postalCode: "55173",
-              addressCountry: "ID",
+              addressCountry: "ID"
             },
             geo: {
               "@type": "GeoCoordinates",
               latitude: -7.8273171,
-              longitude: 110.4019932,
+              longitude: 110.4019932
             },
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
@@ -150,12 +150,12 @@ export default async function StoreLocationPage({ params }: Props) {
                 "Wednesday",
                 "Thursday",
                 "Friday",
-                "Saturday",
+                "Saturday"
               ],
               opens: "08:00",
-              closes: "16:30",
-            },
-          }),
+              closes: "16:30"
+            }
+          })
         }}
       />
     </div>

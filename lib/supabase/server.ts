@@ -8,8 +8,8 @@ export async function createClient() {
       cookies: {
         getAll() {
           return []
-        },
-      },
+        }
+      }
     }
   )
 }

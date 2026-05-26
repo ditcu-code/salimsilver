@@ -11,7 +11,7 @@ interface MetalPriceAboutProps {
 export function MetalPriceAbout({
   title,
   children,
-  className,
+  className
 }: MetalPriceAboutProps) {
   return (
     <section className={cn(className)}>

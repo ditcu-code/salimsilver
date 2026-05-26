@@ -15,7 +15,8 @@ function buildSharePayload(photo: AlbumJewelry) {
   return {
     shareUrl: url.toString(),
     shareTitle: photo.title || "Salim Silver Jewelry",
-    shareText: photo.description || "Check out this beautiful jewelry from Salim Silver.",
+    shareText:
+      photo.description || "Check out this beautiful jewelry from Salim Silver."
   }
 }
 
@@ -42,7 +43,7 @@ export function JewelryLightbox({
   onBackgroundClick,
   onImageError,
   lightboxRef,
-  thumbnailsRef,
+  thumbnailsRef
 }: JewelryLightboxProps) {
   const currentPhoto = photos[currentIndex]
   const nextIndex = (currentIndex + 1) % photos.length
@@ -62,7 +63,7 @@ export function JewelryLightbox({
         await navigator.share({
           title: shareTitle,
           text: shareText,
-          url: shareUrl,
+          url: shareUrl
         })
         return
       }
@@ -82,9 +83,13 @@ export function JewelryLightbox({
 
   const infoContent = (
     <div className="flex flex-col items-end text-right">
-      {currentPhoto.title && <p className="text-md font-serif text-white">{currentPhoto.title}</p>}
+      {currentPhoto.title && (
+        <p className="text-md font-serif text-white">{currentPhoto.title}</p>
+      )}
       {currentPhoto.description && (
-        <p className="text-xs text-white/70 md:w-2/3">{currentPhoto.description}</p>
+        <p className="text-xs text-white/70 md:w-2/3">
+          {currentPhoto.description}
+        </p>
       )}
     </div>
   )
@@ -231,7 +236,7 @@ function LightboxImage({
   alt,
   width,
   height,
-  onImageError,
+  onImageError
 }: {
   src: string
   alt: string

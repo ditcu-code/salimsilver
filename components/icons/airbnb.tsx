@@ -1,6 +1,6 @@
 export const Airbnb = ({
   size = 24,
-  className = "",
+  className = ""
 }: {
   size?: number | string
   className?: string

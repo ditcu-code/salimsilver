@@ -9,15 +9,15 @@ const getCachedOgImageBuffer = unstable_cache(
   async (formattedPrice: string, date: string) => {
     const response = await generateOgImage(
       `Harga Emas Hari Ini: ${formattedPrice} per gram`,
-      `Update Terbaru ${date}. Cek detail harga emas murni hari ini di Salim Silver.`,
+      `Update Terbaru ${date}. Cek detail harga emas murni hari ini di Salim Silver.`
     )
     return response.arrayBuffer()
   },
   ["gold-price-og-image"],
   {
     tags: ["gold-price"],
-    revalidate: 3600, // Fallback
-  },
+    revalidate: 3600 // Fallback
+  }
 )
 
 export async function GET() {
@@ -28,7 +28,7 @@ export async function GET() {
     style: "currency",
     currency: "IDR",
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 0
   })
 
   const formattedPrice = formatter.format(price / 1000)
@@ -41,7 +41,7 @@ export async function GET() {
   const dateStr = updateTime.toLocaleDateString("id-ID", {
     day: "numeric",
     month: "long",
-    year: "numeric",
+    year: "numeric"
   })
 
   const imageBuffer = await getCachedOgImageBuffer(formattedPrice, dateStr)
@@ -50,7 +50,7 @@ export async function GET() {
     headers: {
       "Content-Type": "image/jpeg",
       // Tell browsers/CDNs to check often (max-age=3600), but serve stale for a day if needed
-      "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
-    },
+      "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400"
+    }
   })
 }

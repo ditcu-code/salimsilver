@@ -8,11 +8,11 @@ export const studentsImages = [
   "/workshop-students/workshop-student-07.webp",
   "/workshop-students/workshop-student-08.webp",
   "/workshop-students/workshop-student-09.webp",
-  "/workshop-students/workshop-student-10.webp",
+  "/workshop-students/workshop-student-10.webp"
 ]
 
 export const reels = [
   "https://www.instagram.com/reel/DEoZ7RFSORY/",
   "https://www.instagram.com/reel/DErmKOjyZ3t/",
-  "https://www.instagram.com/reel/DEq2UFBPMZv/",
+  "https://www.instagram.com/reel/DEq2UFBPMZv/"
 ]

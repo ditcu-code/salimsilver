@@ -42,14 +42,16 @@ function validateContactForm(data: ContactFormData): string[] {
  * @param data The form data to submit
  * @returns A response indicating success or failure
  */
-export async function submitContactForm(data: ContactFormData): Promise<ContactFormResponse> {
+export async function submitContactForm(
+  data: ContactFormData
+): Promise<ContactFormResponse> {
   try {
     // Validate form data
     const errors = validateContactForm(data)
     if (errors.length > 0) {
       return {
         success: false,
-        message: errors.join("\n"),
+        message: errors.join("\n")
       }
     }
 
@@ -59,13 +61,14 @@ export async function submitContactForm(data: ContactFormData): Promise<ContactF
 
     return {
       success: true,
-      message: "Thank you for your message! We will get back to you soon.",
+      message: "Thank you for your message! We will get back to you soon."
     }
   } catch (error) {
     console.error("Error submitting contact form:", error)
     return {
       success: false,
-      message: "An error occurred while submitting the form. Please try again later.",
+      message:
+        "An error occurred while submitting the form. Please try again later."
     }
   }
 }

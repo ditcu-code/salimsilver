@@ -11,7 +11,7 @@ const commentSchema = z.object({
     .min(1, "Comment cannot be empty")
     .max(1000, "Comment is too long"),
   guestName: z.string().optional(),
-  guestEmail: z.string().email("Invalid email").optional().or(z.literal("")),
+  guestEmail: z.string().email("Invalid email").optional().or(z.literal(""))
 })
 
 export type CommentFormState = {
@@ -26,7 +26,7 @@ export type CommentFormState = {
 
 export async function addComment(
   prevState: CommentFormState,
-  formData: FormData,
+  formData: FormData
 ): Promise<CommentFormState> {
   const supabase = await createClient()
 
@@ -34,14 +34,14 @@ export async function addComment(
     postId: formData.get("postId"),
     content: formData.get("content"),
     guestName: formData.get("guestName"),
-    guestEmail: formData.get("guestEmail"),
+    guestEmail: formData.get("guestEmail")
   })
 
   if (!validatedFields.success) {
     return {
       success: false,
       errors: validatedFields.error.flatten().fieldErrors,
-      message: "Please fix the errors below.",
+      message: "Please fix the errors below."
     }
   }
 
@@ -49,7 +49,7 @@ export async function addComment(
 
   // Check if user is authenticated
   const {
-    data: { user },
+    data: { user }
   } = await supabase.auth.getUser()
 
   const commentData = {
@@ -57,7 +57,7 @@ export async function addComment(
     content,
     user_id: user?.id,
     guest_name: user ? user.user_metadata.full_name : guestName,
-    guest_email: user ? user.email : guestEmail || null,
+    guest_email: user ? user.email : guestEmail || null
   }
 
   const { error } = await supabase.from("blog_comments").insert(commentData)
@@ -66,7 +66,7 @@ export async function addComment(
     console.error("Error adding comment:", error)
     return {
       success: false,
-      message: "Failed to add comment. Please try again.",
+      message: "Failed to add comment. Please try again."
     }
   }
 
@@ -74,7 +74,7 @@ export async function addComment(
 
   return {
     success: true,
-    message: "Comment added successfully!",
+    message: "Comment added successfully!"
   }
 }
 

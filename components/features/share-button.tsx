@@ -23,12 +23,12 @@ export function ShareButton({ title, text, url }: ShareButtonProps) {
         await navigator.share({
           title,
           text,
-          url: shareUrl,
+          url: shareUrl
         })
         sendGAEvent("event", "share", {
           method: "navigator",
           content_type: "url",
-          item_id: shareUrl,
+          item_id: shareUrl
         })
         return
       } catch (error) {
@@ -49,7 +49,7 @@ export function ShareButton({ title, text, url }: ShareButtonProps) {
       sendGAEvent("event", "share", {
         method: "clipboard",
         content_type: "url",
-        item_id: textToCopy,
+        item_id: textToCopy
       })
       setTimeout(() => setCopied(false), 2000)
     })

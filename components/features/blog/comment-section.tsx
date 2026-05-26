@@ -12,7 +12,7 @@ export async function CommentSection({ postId }: CommentSectionProps) {
   const comments = await getComments(postId)
   const supabase = await createClient()
   const {
-    data: { user },
+    data: { user }
   } = await supabase.auth.getUser()
   const t = await getTranslations("Blog.Comments")
 

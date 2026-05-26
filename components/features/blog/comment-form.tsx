@@ -15,14 +15,14 @@ interface CommentFormProps {
 
 const initialState: CommentFormState = {
   message: "",
-  errors: {},
+  errors: {}
 }
 
 export function CommentForm({ postId, userJson }: CommentFormProps) {
   const t = useTranslations("Blog.Comments")
   const [state, formAction, isPending] = useActionState(
     addComment,
-    initialState,
+    initialState
   )
   const formRef = useRef<HTMLFormElement>(null)
 

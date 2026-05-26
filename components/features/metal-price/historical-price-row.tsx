@@ -10,7 +10,7 @@ import { AnimatedCurrency } from "./animated-currency"
 export function HistoricalPriceRow({
   label,
   historicalPrice,
-  currentPrice,
+  currentPrice
 }: {
   label: string
   historicalPrice: number

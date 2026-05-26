@@ -8,7 +8,7 @@ interface CollectionGalleryProps {
 }
 
 export default function CollectionGallery({
-  jewelryList,
+  jewelryList
 }: CollectionGalleryProps) {
   return (
     <section className="mx-auto my-20 max-w-[90%] md:px-8">

@@ -25,7 +25,7 @@ export function PageHero({
   imageTitle,
   priority = true,
   className,
-  children,
+  children
 }: PageHeroProps) {
   return (
     <section
@@ -55,8 +55,12 @@ export function PageHero({
             {eyebrow}
           </p>
         )}
-        <h1 className="font-display mb-4 text-4xl text-white md:text-5xl">{title}</h1>
-        {subtitle && <p className="max-w-2xl text-lg text-white/90">{subtitle}</p>}
+        <h1 className="font-display mb-4 text-4xl text-white md:text-5xl">
+          {title}
+        </h1>
+        {subtitle && (
+          <p className="max-w-2xl text-lg text-white/90">{subtitle}</p>
+        )}
         {children && <div className="mt-8">{children}</div>}
       </motion.div>
     </section>

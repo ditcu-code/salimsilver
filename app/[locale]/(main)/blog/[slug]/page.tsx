@@ -8,7 +8,7 @@ import { BASE_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 import { formatDate } from "@/lib/utils"
 import { Eye } from "lucide-react"
@@ -19,7 +19,7 @@ import { notFound } from "next/navigation"
 
 function isSameMonth(
   date1?: string | Date | null,
-  date2?: string | Date | null,
+  date2?: string | Date | null
 ) {
   if (!date1 || !date2) return false
   const d1 = new Date(date1)
@@ -37,7 +37,7 @@ interface BlogPostPageProps {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug, locale } = await params
   const t = await getTranslations("JournalDetailPage.Metadata")
@@ -45,7 +45,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: t("notFound"),
+      title: t("notFound")
     }
   }
 
@@ -58,7 +58,7 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: constructCanonicalUrl(locale, `/blog/${slug}`),
-      languages: getAlternates(`/blog/${slug}`),
+      languages: getAlternates(`/blog/${slug}`)
     },
     openGraph: {
       title,
@@ -69,9 +69,9 @@ export async function generateMetadata({
       images: post.cover_image_url
         ? [post.cover_image_url]
         : ["/opengraph-image"],
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
-    keywords: post.tags,
+    keywords: post.tags
   }
 }
 
@@ -206,21 +206,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             dateModified: post.updated_at || post.published_at,
             author: {
               "@type": "Person",
-              name: "Salim Silver",
+              name: "Salim Silver"
             },
             publisher: {
               "@type": "Organization",
               name: "Salim Silver",
               logo: {
                 "@type": "ImageObject",
-                url: "https://salimsilver.com/images/logo-salimsilver.webp",
-              },
+                url: "https://salimsilver.com/images/logo-salimsilver.webp"
+              }
             },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://salimsilver.com/blog/${post.slug}`,
-            },
-          }),
+              "@id": `https://salimsilver.com/blog/${post.slug}`
+            }
+          })
         }}
       />
       <script
@@ -234,16 +234,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 "@type": "ListItem",
                 position: 1,
                 name: tb("journal"),
-                item: `${BASE_URL}/blog`,
+                item: `${BASE_URL}/blog`
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: post.title,
-                item: `${BASE_URL}/blog/${post.slug}`,
-              },
-            ],
-          }),
+                item: `${BASE_URL}/blog/${post.slug}`
+              }
+            ]
+          })
         }}
       />
     </article>

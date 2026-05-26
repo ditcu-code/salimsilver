@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion.",
   alternates: {
-    canonical: `${BASE_URL}/gmaps-review`,
+    canonical: `${BASE_URL}/gmaps-review`
   },
   openGraph: {
     type: "website",
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     description:
       "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion.",
     url: `${BASE_URL}/gmaps-review`,
-    siteName: "Salim Silver",
+    siteName: "Salim Silver"
   },
   twitter: {
     card: "summary_large_image",
     title: "Salim would love your feedback!",
     description:
-      "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion.",
-  },
+      "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion."
+  }
 }
 
 export default function ReviewRedirectPage() {

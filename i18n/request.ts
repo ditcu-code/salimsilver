@@ -5,12 +5,12 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale
 
   // Ensure that a valid locale is used
-  if (!locale || !["en", "id"].includes(locale)) {
+  if (!locale || !["en", "id", "nl"].includes(locale)) {
     locale = "en"
   }
 
   return {
     locale,
-    messages: (await import(`../dictionaries/${locale}.json`)).default,
+    messages: (await import(`../dictionaries/${locale}.json`)).default
   }
 })

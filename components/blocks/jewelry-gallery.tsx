@@ -6,7 +6,7 @@ import { useCallback, useMemo, useState } from "react"
 import type {
   ComponentsProps,
   RenderExtras,
-  RenderImage,
+  RenderImage
 } from "react-photo-album"
 import PhotoAlbum from "react-photo-album"
 import "react-photo-album/masonry.css"
@@ -54,7 +54,7 @@ const PhotoMetadataOverlay = ({ photo }: { photo: AlbumJewelry }) => {
 
 export function JewelryGallery({
   jewelryList,
-  className,
+  className
 }: JewelryGalleryProps) {
   const [error, setError] = useState<string | null>(null)
 
@@ -74,7 +74,7 @@ export function JewelryGallery({
         }
         return true
       }),
-    [jewelryList],
+    [jewelryList]
   )
 
   const albumPhotos = useMemo<AlbumJewelry[]>(
@@ -85,9 +85,9 @@ export function JewelryGallery({
         src: photo.coverImage || photo.images?.[0]?.src || "/placeholder.svg",
         width: 800, // Mock dimensions since DB doesn't store them
         height: 800, // Square aspect ratio for now
-        alt: photo.title,
+        alt: photo.title
       })),
-    [validPhotos],
+    [validPhotos]
   )
 
   const renderImage: RenderImage<AlbumJewelry> = useCallback(
@@ -121,26 +121,26 @@ export function JewelryGallery({
         </motion.div>
       )
     },
-    [],
+    []
   )
 
   const renderExtras: RenderExtras<AlbumJewelry> = useCallback(
     (_, { photo }) => <PhotoMetadataOverlay photo={photo} />,
-    [],
+    []
   )
 
   const componentsProps = useMemo<ComponentsProps<AlbumJewelry>>(
     () => ({
       wrapper: {
-        className: "group relative overflow-hidden rounded-2xl",
+        className: "group relative overflow-hidden rounded-2xl"
       },
       image: {
         className:
           "rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]",
-        onError: handlePhotoError,
-      },
+        onError: handlePhotoError
+      }
     }),
-    [handlePhotoError],
+    [handlePhotoError]
   )
 
   if (error) {

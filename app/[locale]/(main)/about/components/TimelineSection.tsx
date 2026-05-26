@@ -18,7 +18,9 @@ export default function TimelineSection() {
         className="mb-16 text-center"
       >
         <h2 className="font-display mb-4 text-4xl md:text-5xl">{t("title")}</h2>
-        <p className="text-muted-foreground mx-auto max-w-2xl">{t("description")}</p>
+        <p className="text-muted-foreground mx-auto max-w-2xl">
+          {t("description")}
+        </p>
       </motion.div>
 
       <div className="relative">

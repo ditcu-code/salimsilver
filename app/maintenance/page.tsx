@@ -9,8 +9,8 @@ export const metadata: Metadata = {
     "Our digital storefront is currently undergoing a transformation to bring you an even more exquisite experience. We will be back shortly with our latest collections.",
   robots: {
     index: false,
-    follow: false,
-  },
+    follow: false
+  }
 }
 
 export default function MaintenancePage() {

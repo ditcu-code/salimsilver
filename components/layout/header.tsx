@@ -1,5 +1,6 @@
 "use client"
 
+import { routing } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion, type Transition } from "framer-motion"
 import { Menu, X } from "lucide-react"
@@ -25,19 +26,35 @@ const navigationConfig: NavItem[] = [
   { key: "about", href: "/about" },
   // { key: "contact", href: "/contact" },
   { key: "journal", href: "/blog" },
-  { key: "storeLocation", href: "/store-location", mobileOnly: true },
+  { key: "storeLocation", href: "/store-location", mobileOnly: true }
 ]
 
 const mobileMenuTransition: Transition = {
   type: "spring",
   damping: 25,
-  stiffness: 300,
+  stiffness: 300
+}
+
+type Locale = (typeof routing.locales)[number]
+
+function getPathLocale(pathname: string): Locale | undefined {
+  const localeSegment = pathname.split("/")[1] as Locale | undefined
+  return localeSegment && routing.locales.includes(localeSegment)
+    ? localeSegment
+    : undefined
+}
+
+function stripLocalePrefix(pathname: string) {
+  const locale = getPathLocale(pathname)
+  if (!locale) return pathname || "/"
+
+  return pathname.slice(locale.length + 1) || "/"
 }
 
 function getLocalizedPath(path: string, currentPathname: string) {
-  const isId = currentPathname.startsWith("/id")
-  if (isId) {
-    return `/id${path === "/" ? "" : path}`
+  const locale = getPathLocale(currentPathname)
+  if (locale && locale !== routing.defaultLocale) {
+    return `/${locale}${path === "/" ? "" : path}`
   }
   return path
 }
@@ -72,7 +89,7 @@ export default function Header() {
     setIsMenuOpen(false)
   }, [pathname])
 
-  const isHome = pathname === "/" || pathname === "/id"
+  const isHome = stripLocalePrefix(pathname) === "/"
 
   return (
     <header
@@ -80,7 +97,7 @@ export default function Header() {
         "header-height fixed top-5 right-4 left-4 z-50 transition-all duration-500 ease-in-out md:right-8 md:left-8",
         isScrolled
           ? "bg-background border-border border"
-          : "border border-transparent bg-transparent",
+          : "border border-transparent bg-transparent"
       )}
     >
       <div className="max-w-8xl mx-auto h-full px-4 sm:px-6">
@@ -123,15 +140,15 @@ export default function Header() {
 
 function Brand({
   isScrolled,
-  pathname,
+  pathname
 }: {
   isScrolled: boolean
   pathname: string
 }) {
-  const pathWithoutLocale = pathname.replace(/^\/id(?=\/|$)/, "") || "/"
+  const pathWithoutLocale = stripLocalePrefix(pathname)
   const isDarkHeroPage =
     ["/contact", "/about", "/store-location", "/workshop"].includes(
-      pathWithoutLocale,
+      pathWithoutLocale
     ) ||
     pathWithoutLocale.startsWith("/collections/") ||
     pathWithoutLocale.startsWith("/blog/")
@@ -143,7 +160,7 @@ function Brand({
         href={getLocalizedPath("/", pathname)}
         className={cn(
           "flex items-center justify-center transition-all duration-300",
-          isScrolled ? "scale-90" : "scale-100",
+          isScrolled ? "scale-90" : "scale-100"
         )}
       >
         <Image
@@ -153,7 +170,7 @@ function Brand({
           height={36}
           className={cn(
             "h-8 object-contain transition-all duration-300 dark:invert-0",
-            shouldInvert ? "invert" : "invert-0",
+            shouldInvert ? "invert" : "invert-0"
           )}
           style={{ width: "auto" }}
           priority
@@ -166,7 +183,7 @@ function Brand({
 function DesktopNavigation({
   isHome,
   isScrolled,
-  pathname,
+  pathname
 }: {
   isHome: boolean
   isScrolled: boolean
@@ -179,7 +196,7 @@ function DesktopNavigation({
     <nav
       className={cn(
         "hidden h-10 items-center justify-center space-x-8 rounded-3xl px-6 transition-all duration-300 md:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2",
-        isScrolled ? "bg-transparent" : "bg-background",
+        isScrolled ? "bg-transparent" : "bg-background"
       )}
     >
       {navigationConfig
@@ -197,7 +214,7 @@ function DesktopNavigation({
                 baseTone,
                 isActive
                   ? "text-primary border-primary/50 font-semibold"
-                  : "hover:text-primary/80 hover:scale-102",
+                  : "hover:text-primary/80 hover:scale-102"
               )}
             >
               {t(item.key)}
@@ -211,7 +228,7 @@ function DesktopNavigation({
 function MobileMenuButton({
   isOpen,
   isScrolled,
-  onOpen,
+  onOpen
 }: {
   isOpen: boolean
   isScrolled: boolean
@@ -223,7 +240,7 @@ function MobileMenuButton({
     <div
       className={cn(
         "text-primary flex h-10 items-center justify-center rounded-3xl transition-all duration-300 md:hidden",
-        isScrolled ? "bg-transparent" : "bg-background",
+        isScrolled ? "bg-transparent" : "bg-background"
       )}
     >
       <motion.button
@@ -244,7 +261,7 @@ function MobileMenuButton({
 function MobileMenu({
   isOpen,
   pathname,
-  onClose,
+  onClose
 }: {
   isOpen: boolean
   pathname: string
@@ -291,7 +308,7 @@ function MobileMenu({
                     "font-display block px-8 py-3 text-4xl transition-all duration-300",
                     isActive
                       ? "text-primary border-border scale-110 border-b-2 font-medium"
-                      : "text-foreground/80 hover:text-primary hover:scale-105",
+                      : "text-foreground/80 hover:text-primary hover:scale-105"
                   )}
                   onClick={onClose}
                 >

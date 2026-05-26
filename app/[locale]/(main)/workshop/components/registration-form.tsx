@@ -20,7 +20,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {
@@ -28,7 +28,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from "@/components/ui/select"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
@@ -37,7 +37,12 @@ import { toast } from "sonner"
 // Custom Input for DatePicker
 const DatePickerCustomInput = React.forwardRef<
   HTMLButtonElement,
-  { value?: string; onClick?: () => void; className?: string; placeholder?: string }
+  {
+    value?: string
+    onClick?: () => void
+    className?: string
+    placeholder?: string
+  }
 >(({ value, onClick, className, placeholder }, ref) => (
   <Button
     variant="outline"
@@ -66,12 +71,12 @@ export function RegistrationForm() {
   // Schema with localization
   const formSchema = z.object({
     name: z.string().min(2, {
-      message: t("Validation.nameLength"),
+      message: t("Validation.nameLength")
     }),
     date: z.date(),
     session: z.enum(["morning", "afternoon"]),
     participantType: z.enum(["single", "group"]),
-    participantCount: z.number().min(1),
+    participantCount: z.number().min(1)
   })
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -79,13 +84,19 @@ export function RegistrationForm() {
     defaultValues: {
       name: "",
       participantType: "single",
-      participantCount: 1,
-    },
+      participantCount: 1
+    }
   })
 
   // Watch values for price calculation
-  const participantType = useWatch({ control: form.control, name: "participantType" })
-  const participantCount = useWatch({ control: form.control, name: "participantCount" })
+  const participantType = useWatch({
+    control: form.control,
+    name: "participantType"
+  })
+  const participantCount = useWatch({
+    control: form.control,
+    name: "participantCount"
+  })
 
   // Calculate price
   const totalPrice = React.useMemo(() => {
@@ -99,10 +110,14 @@ export function RegistrationForm() {
     startTransition(() => {
       // Construct WhatsApp Message
       const dateLocale = locale === "id" ? id : enUS
-      const dateStr = format(values.date, "EEEE, d MMMM yyyy", { locale: dateLocale })
+      const dateStr = format(values.date, "EEEE, d MMMM yyyy", {
+        locale: dateLocale
+      })
 
       const sessionLabel =
-        values.session === "morning" ? t("fields.session.morning") : t("fields.session.afternoon")
+        values.session === "morning"
+          ? t("fields.session.morning")
+          : t("fields.session.afternoon")
 
       // Strip the time part from the session label if needed, or keep it.
       // The label in dictionary is "Morning (08:30-11:30)", might be too long.
@@ -110,7 +125,10 @@ export function RegistrationForm() {
       // The user's original code used specifically "Morning (08:30)" vs "Pagi (08:30-11:30)"
       // Let's stick to using the dictionary label for simplicity as it's clear enough.
 
-      const count = values.participantType === "single" ? 1 : Math.max(2, values.participantCount)
+      const count =
+        values.participantType === "single"
+          ? 1
+          : Math.max(2, values.participantCount)
 
       const message = `${t("WhatsApp.greeting")}
 
@@ -129,7 +147,7 @@ ${t("WhatsApp.closing")}`
       sendGAEvent("event", "generate_lead", {
         value: totalPrice,
         currency: "IDR",
-        lead_type: "workshop_booking",
+        lead_type: "workshop_booking"
       })
 
       // Redirect
@@ -154,7 +172,10 @@ ${t("WhatsApp.closing")}`
               <FormItem>
                 <FormLabel>{t("fields.name.label")}</FormLabel>
                 <FormControl>
-                  <Input placeholder={t("fields.name.placeholder")} {...field} />
+                  <Input
+                    placeholder={t("fields.name.placeholder")}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -176,7 +197,9 @@ ${t("WhatsApp.closing")}`
                       minDate={new Date()}
                       filterDate={(date: Date) => date.getDay() !== 0}
                       customInput={
-                        <DatePickerCustomInput placeholder={t("fields.date.placeholder")} />
+                        <DatePickerCustomInput
+                          placeholder={t("fields.date.placeholder")}
+                        />
                       }
                       wrapperClassName="w-full"
                     />
@@ -192,15 +215,24 @@ ${t("WhatsApp.closing")}`
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t("fields.session.label")}</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder={t("fields.session.placeholder")} />
+                        <SelectValue
+                          placeholder={t("fields.session.placeholder")}
+                        />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="morning">{t("fields.session.morning")}</SelectItem>
-                      <SelectItem value="afternoon">{t("fields.session.afternoon")}</SelectItem>
+                      <SelectItem value="morning">
+                        {t("fields.session.morning")}
+                      </SelectItem>
+                      <SelectItem value="afternoon">
+                        {t("fields.session.afternoon")}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -230,7 +262,9 @@ ${t("WhatsApp.closing")}`
                     <div className="h-2 w-2 rounded-full bg-neutral-900 dark:bg-neutral-50" />
                   )}
                 </div>
-                <div className="font-semibold">{t("fields.participants.single.title")}</div>
+                <div className="font-semibold">
+                  {t("fields.participants.single.title")}
+                </div>
                 <div className="text-muted-foreground text-xs">
                   {t("fields.participants.single.price")}
                 </div>
@@ -256,7 +290,9 @@ ${t("WhatsApp.closing")}`
                     <div className="h-2 w-2 rounded-full bg-neutral-900 dark:bg-neutral-50" />
                   )}
                 </div>
-                <div className="font-semibold">{t("fields.participants.group.title")}</div>
+                <div className="font-semibold">
+                  {t("fields.participants.group.title")}
+                </div>
                 <div className="text-muted-foreground text-xs">
                   {t("fields.participants.group.price")}
                 </div>
@@ -279,7 +315,9 @@ ${t("WhatsApp.closing")}`
                           min={2}
                           className="w-20"
                           {...field}
-                          onChange={(e) => field.onChange(parseInt(e.target.value))}
+                          onChange={(e) =>
+                            field.onChange(parseInt(e.target.value))
+                          }
                         />
                       </FormControl>
                     </div>
@@ -292,12 +330,14 @@ ${t("WhatsApp.closing")}`
 
           <div className="my-4 rounded-lg bg-neutral-100 p-4 dark:bg-neutral-900">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground">{t("totalEstimate")}</span>
+              <span className="text-muted-foreground">
+                {t("totalEstimate")}
+              </span>
               <span className="text-lg font-bold">
                 {new Intl.NumberFormat("id-ID", {
                   style: "currency",
                   currency: "IDR",
-                  maximumFractionDigits: 0,
+                  maximumFractionDigits: 0
                 }).format(totalPrice)}
               </span>
             </div>
@@ -331,7 +371,9 @@ ${t("WhatsApp.closing")}`
             type="button"
             variant="outline"
             className="w-full border-[#FF385C] text-[#FF385C] hover:bg-[#FF385C] hover:text-white"
-            onClick={() => window.open("https://airbnb.com/x/craft-in-kotagede", "_blank")}
+            onClick={() =>
+              window.open("https://airbnb.com/x/craft-in-kotagede", "_blank")
+            }
           >
             <Airbnb className="mr-2 h-4 w-4" />
             {t("airbnbLink")}

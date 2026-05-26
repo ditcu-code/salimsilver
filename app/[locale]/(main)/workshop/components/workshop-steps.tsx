@@ -14,40 +14,40 @@ const steps: Step[] = [
   {
     id: 1,
     key: "step1",
-    image: "/images/workshop-steps/step-1.webp",
+    image: "/images/workshop-steps/step-1.webp"
   },
   {
     id: 2,
     key: "step2",
-    image: "/images/workshop-steps/step-2.webp",
+    image: "/images/workshop-steps/step-2.webp"
   },
   {
     id: 3,
     key: "step3",
-    image: "/images/workshop-steps/step-3.webp",
+    image: "/images/workshop-steps/step-3.webp"
   },
   {
     id: 4,
     key: "step4",
     image: "/images/workshop-steps/step-4.webp",
-    detailCount: 5,
+    detailCount: 5
   },
   {
     id: 5,
     key: "step5",
-    image: "/images/workshop-steps/step-5.webp",
+    image: "/images/workshop-steps/step-5.webp"
   },
   {
     id: 6,
     key: "step6",
     image: "/images/workshop-steps/step-6.webp",
-    detailCount: 3,
+    detailCount: 3
   },
   {
     id: 7,
     key: "step7",
-    image: "/images/workshop-steps/step-7.webp",
-  },
+    image: "/images/workshop-steps/step-7.webp"
+  }
 ]
 
 export function WorkshopSteps() {
@@ -61,7 +61,9 @@ export function WorkshopSteps() {
             <span className="font-bold">{step.id}</span>
           </div>
           <div className="flex-1">
-            <h3 className="my-2 text-2xl leading-none font-semibold!">{t(`${step.key}.title`)}</h3>
+            <h3 className="my-2 text-2xl leading-none font-semibold!">
+              {t(`${step.key}.title`)}
+            </h3>
             <p className="mb-4 max-w-prose text-sm text-neutral-600 dark:text-neutral-400">
               {t(`${step.key}.description`)}
             </p>

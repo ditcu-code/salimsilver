@@ -100,10 +100,10 @@ export async function getAllCollections(): Promise<Collection[]> {
             jewelryId: item.id,
             src: img.src,
             displayOrder: img.display_order,
-            createdBy: img.created_by,
+            createdBy: img.created_by
           })),
           coverImage: cover,
-          createdBy: item.created_by,
+          createdBy: item.created_by
         }
       })
 
@@ -116,7 +116,7 @@ export async function getAllCollections(): Promise<Collection[]> {
       coverImageId: col.cover_image_id,
       coverImage: coverImagesMap[col.cover_image_id] || "",
       jewelryList: colJewelry,
-      createdBy: col.created_by,
+      createdBy: col.created_by
     }
   })
 }
@@ -159,12 +159,12 @@ export async function getFeaturedCollections(): Promise<Collection[]> {
     description: col.description,
     featured: col.featured,
     coverImageId: col.cover_image_id,
-    coverImage: coverImagesMap[col.cover_image_id] || "",
+    coverImage: coverImagesMap[col.cover_image_id] || ""
   }))
 }
 
 export async function getCollection(
-  slug: string,
+  slug: string
 ): Promise<Collection | undefined> {
   const supabase = await createClient()
 
@@ -224,7 +224,7 @@ export async function getCollection(
 
     mappedJewelry = jewelryItems.map((item: any) => {
       const itemImages = (jewelryImagesMap[item.id] || []).sort(
-        (a: any, b: any) => a.display_order - b.display_order,
+        (a: any, b: any) => a.display_order - b.display_order
       )
       const itemCover = itemImages[0]?.src || ""
 
@@ -246,10 +246,10 @@ export async function getCollection(
           jewelryId: item.id,
           src: img.src,
           displayOrder: img.display_order,
-          createdBy: img.created_by,
+          createdBy: img.created_by
         })),
         coverImage: itemCover,
-        createdBy: item.created_by,
+        createdBy: item.created_by
       }
     })
   }
@@ -263,12 +263,12 @@ export async function getCollection(
     coverImageId: collection.cover_image_id,
     coverImage: coverImage,
     jewelryList: mappedJewelry,
-    createdBy: collection.created_by,
+    createdBy: collection.created_by
   }
 }
 
 export async function getJewelryBySlug(
-  slug: string,
+  slug: string
 ): Promise<Jewelry | undefined> {
   const supabase = await createClient()
   const { data: item, error } = await supabase
@@ -295,7 +295,7 @@ export async function getJewelryBySlug(
     jewelryId: item.id,
     src: img.src,
     displayOrder: img.display_order,
-    createdBy: img.created_by,
+    createdBy: img.created_by
   }))
 
   const cover = itemImages[0]?.src || ""
@@ -316,7 +316,7 @@ export async function getJewelryBySlug(
     images: itemImages,
     coverImage: cover,
     collectionSlug: item.collections?.slug,
-    createdBy: item.created_by,
+    createdBy: item.created_by
   }
 }
 
@@ -337,7 +337,7 @@ export async function getAllCollectionsMetadata(): Promise<
 
   return (collections || []).map((col: any) => ({
     slug: col.slug,
-    updated_at: col.updated_at || col.created_at,
+    updated_at: col.updated_at || col.created_at
   }))
 }
 
@@ -358,6 +358,6 @@ export async function getAllJewelry(): Promise<
 
   return (jewelry || []).map((item: any) => ({
     slug: item.slug,
-    updated_at: item.updated_at || item.created_at,
+    updated_at: item.updated_at || item.created_at
   }))
 }

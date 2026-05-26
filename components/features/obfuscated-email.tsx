@@ -15,7 +15,7 @@ export function ObfuscatedEmail({
   user,
   domain,
   className,
-  showIcon = false,
+  showIcon = false
 }: ObfuscatedEmailProps) {
   const [email, setEmail] = useState<string>("")
 
@@ -32,7 +32,10 @@ export function ObfuscatedEmail({
   // Initial render (server/bot): renders a span with no email data
   if (!email) {
     return (
-      <span className={cn("inline-block", className)} aria-label="Email loading">
+      <span
+        className={cn("inline-block", className)}
+        aria-label="Email loading"
+      >
         Loading...
       </span>
     )
@@ -46,7 +49,7 @@ export function ObfuscatedEmail({
       onClick={() =>
         sendGAEvent("event", "contact_click", {
           method: "email",
-          value: email,
+          value: email
         })
       }
     >

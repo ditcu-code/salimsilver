@@ -6,7 +6,7 @@ import { ReelsGallery } from "@/components/blocks/reels-gallery"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopDetails } from "./components/workshop-details"
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({
     locale,
-    namespace: "WorkshopPage.Metadata",
+    namespace: "WorkshopPage.Metadata"
   })
   const canonicalUrl = constructCanonicalUrl(locale, "/workshop")
 
@@ -32,19 +32,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/workshop"),
+      languages: getAlternates("/workshop")
     },
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
-      description: t("description"),
+      description: t("description")
     },
     keywords: [
       "Silversmithing Workshop",
@@ -59,8 +59,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Yogyakarta Course",
       "Workshop Perhiasan Perak",
       "Kursus Perhiasan Perak",
-      "Workshop Perak Kotagede",
-    ],
+      "Workshop Perak Kotagede"
+    ]
   }
 }
 
@@ -136,7 +136,7 @@ export default async function WorkshopPage({ params }: Props) {
             provider: {
               "@type": "Organization",
               name: "Salim Silver",
-              sameAs: "https://salimsilver.com",
+              sameAs: "https://salimsilver.com"
             },
             educationalLevel: "Beginner",
             teaches: "Traditional Javanese Silversmithing",
@@ -149,8 +149,8 @@ export default async function WorkshopPage({ params }: Props) {
               priceCurrency: "IDR",
               seller: {
                 "@type": "Organization",
-                name: "Salim Silver",
-              },
+                name: "Salim Silver"
+              }
             },
             hasCourseInstance: {
               "@type": "CourseInstance",
@@ -166,11 +166,11 @@ export default async function WorkshopPage({ params }: Props) {
                   addressLocality: "Yogyakarta City",
                   addressRegion: "Special Region of Yogyakarta",
                   postalCode: "55173",
-                  addressCountry: "ID",
-                },
-              },
-            },
-          }),
+                  addressCountry: "ID"
+                }
+              }
+            }
+          })
         }}
       />
     </div>

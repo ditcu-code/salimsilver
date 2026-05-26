@@ -32,22 +32,24 @@ export default function BioSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-display mb-6 text-3xl md:text-4xl">{t("title")}</h2>
+          <h2 className="font-display mb-6 text-3xl md:text-4xl">
+            {t("title")}
+          </h2>
           <div className="text-muted-foreground mb-6 space-y-4">
             <p>{t("p1")}</p>
             <p>
               {t.rich("p2", {
-                bold: (chunks) => <strong>{chunks}</strong>,
+                bold: (chunks) => <strong>{chunks}</strong>
               })}
             </p>
             <p>
               {t.rich("p3", {
-                italic: (chunks) => <em>{chunks}</em>,
+                italic: (chunks) => <em>{chunks}</em>
               })}
             </p>
             <p>
               {t.rich("p4", {
-                bold: (chunks) => <strong>{chunks}</strong>,
+                bold: (chunks) => <strong>{chunks}</strong>
               })}
             </p>
           </div>

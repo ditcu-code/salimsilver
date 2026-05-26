@@ -3,7 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
+    "authorization, x-client-info, apikey, content-type"
 }
 
 // Import TradingView API wrapper from npm
@@ -12,13 +12,13 @@ import TradingView from "npm:@mathieuc/tradingview"
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", {
-      headers: corsHeaders,
+      headers: corsHeaders
     })
   }
 
   const supabaseClient = createClient(
     Deno.env.get("SUPABASE_URL") ?? "",
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
   )
 
   let priceIDR = 0
@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
       let timeoutId: number
 
       chart.setMarket("FX_IDC:XAGIDRK", {
-        timeframe: "1D",
+        timeframe: "1D"
       })
 
       chart.onUpdate(() => {
@@ -77,7 +77,7 @@ Deno.serve(async (req) => {
   } catch (tvError: any) {
     console.error(
       "Primary (TradingView) fetch failed, switching to Fallback 1 (GoldPrice.org):",
-      tvError.message,
+      tvError.message
     )
     errors.tradingview = tvError.message
 
@@ -85,11 +85,11 @@ Deno.serve(async (req) => {
     try {
       console.log("Attempting to fetch from goldprice.org...")
       const response = await fetch(
-        "https://data-asg.goldprice.org/dbXRates/IDR",
+        "https://data-asg.goldprice.org/dbXRates/IDR"
       )
       if (!response.ok) {
         throw new Error(
-          `GoldPrice fetch failed: ${response.status} ${response.statusText}`,
+          `GoldPrice fetch failed: ${response.status} ${response.statusText}`
         )
       }
       const data = await response.json()
@@ -118,7 +118,7 @@ Deno.serve(async (req) => {
     } catch (gpError: any) {
       console.error(
         "Fallback 1 (GoldPrice) failed, switching to Fallback 2 (Metals.dev):",
-        gpError.message,
+        gpError.message
       )
       errors.goldprice = gpError.message
 
@@ -138,7 +138,7 @@ Deno.serve(async (req) => {
 
         console.log("Fetching from metals.dev API...")
         const response = await fetch(
-          `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=kg`,
+          `https://api.metals.dev/v1/latest?api_key=${selectedApiKey}&currency=IDR&unit=kg`
         )
         const data = await response.json()
 
@@ -170,15 +170,15 @@ Deno.serve(async (req) => {
         return new Response(
           JSON.stringify({
             error: "All fetch methods failed",
-            details: errors,
+            details: errors
           }),
           {
             headers: {
               ...corsHeaders,
-              "Content-Type": "application/json",
+              "Content-Type": "application/json"
             },
-            status: 500,
-          },
+            status: 500
+          }
         )
       }
     }
@@ -189,7 +189,7 @@ Deno.serve(async (req) => {
     const insertPayload = {
       price_idr: priceIDR,
       updated_at: timestamp,
-      source: source,
+      source: source
     }
 
     const { error } = await supabaseClient
@@ -206,14 +206,14 @@ Deno.serve(async (req) => {
       const now = new Date()
       const getHistoricalPrice = async (daysAgo: number) => {
         const targetDate = new Date(
-          now.getTime() - daysAgo * 24 * 60 * 60 * 1000,
+          now.getTime() - daysAgo * 24 * 60 * 60 * 1000
         ).toISOString()
         const { data } = await supabaseClient
           .from("silver_prices")
           .select("price_idr")
           .lte("updated_at", targetDate)
           .order("updated_at", {
-            ascending: false,
+            ascending: false
           })
           .limit(1)
           .single()
@@ -226,7 +226,7 @@ Deno.serve(async (req) => {
           getHistoricalPrice(7),
           getHistoricalPrice(30),
           getHistoricalPrice(180),
-          getHistoricalPrice(365),
+          getHistoricalPrice(365)
         ])
 
       const summaryPayload = {
@@ -237,7 +237,7 @@ Deno.serve(async (req) => {
         price_30d_ago: price30d,
         price_180d_ago: price180d,
         price_1y_ago: price1y,
-        updated_at: timestamp,
+        updated_at: timestamp
       }
 
       const { error: summaryError } = await supabaseClient
@@ -258,14 +258,14 @@ Deno.serve(async (req) => {
             console.log("Triggering Next.js revalidation...")
             const revalidateRes = await fetch(
               `https://www.salimsilver.com/api/revalidate?tag=silver-price&secret=${secret}`,
-              { method: "POST" },
+              { method: "POST" }
             )
 
             if (revalidateRes.ok) {
               console.log("Revalidation request successful")
             } else {
               console.error(
-                `Revalidation failed: ${revalidateRes.status} ${revalidateRes.statusText}`,
+                `Revalidation failed: ${revalidateRes.status} ${revalidateRes.statusText}`
               )
             }
           } catch (revalError) {
@@ -273,7 +273,7 @@ Deno.serve(async (req) => {
           }
         } else {
           console.warn(
-            "No 'secret' query param found, skipping revalidation trigger.",
+            "No 'secret' query param found, skipping revalidation trigger."
           )
         }
       }
@@ -284,30 +284,30 @@ Deno.serve(async (req) => {
     return new Response(
       JSON.stringify({
         success: true,
-        data: insertPayload,
+        data: insertPayload
       }),
       {
         headers: {
           ...corsHeaders,
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        status: 200,
-      },
+        status: 200
+      }
     )
   } catch (dbError: any) {
     console.error("Database insert failed:", dbError)
     return new Response(
       JSON.stringify({
         error: dbError.message,
-        details: "Likely enum constraint error if migration not run",
+        details: "Likely enum constraint error if migration not run"
       }),
       {
         headers: {
           ...corsHeaders,
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        status: 400,
-      },
+        status: 400
+      }
     )
   }
 })

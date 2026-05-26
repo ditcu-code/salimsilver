@@ -12,19 +12,19 @@ import "./globals.css"
 const lato = Lato({
   weight: ["300", "400", "700"],
   subsets: ["latin"],
-  variable: "--font-lato",
+  variable: "--font-lato"
 })
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-display"
 })
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: "Salim Silver | Handcrafted Javanese Jewelry",
-    template: "%s | Salim Silver",
+    template: "%s | Salim Silver"
   },
   description:
     "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
@@ -42,19 +42,19 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Salim Silver | Handcrafted Javanese Jewelry",
-        type: "image/jpeg",
-      },
-    ],
+        type: "image/jpeg"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Salim Silver | Handcrafted Javanese Jewelry",
     description:
       "Discover the elegance of handcrafted silver jewelry from Kotagede, Yogyakarta. Rings, necklaces, and bracelets made with tradition and passion.",
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image"]
   },
   other: {
-    "og:logo": `${BASE_URL}/images/logo-salimsilver.webp`,
+    "og:logo": `${BASE_URL}/images/logo-salimsilver.webp`
   },
   keywords: [
     "Javanese Jewelry",
@@ -62,37 +62,37 @@ export const metadata: Metadata = {
     "Handcrafted Jewelry",
     "Yogyakarta Silver",
     "Kotagede Silver",
-    "Salim Silver",
+    "Salim Silver"
   ],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/icons/icon-white.png", type: "image/png", sizes: "512x512" },
+      { url: "/icons/icon-white.png", type: "image/png", sizes: "512x512" }
     ],
-    apple: "/apple-touch-icon.png",
+    apple: "/apple-touch-icon.png"
   },
   authors: [{ name: "Salim Silver", url: BASE_URL }],
   robots: {
     index: true,
-    follow: true,
+    follow: true
   },
   verification: {
     other: {
       "facebook-domain-verification": "wenmk7vlpgfbu5tzqn444a2utztajd",
-      "fb:pages": "100063782388858",
-    },
-  },
+      "fb:pages": "100063782388858"
+    }
+  }
 }
 
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#FDFBF7" },
-    { media: "(prefers-color-scheme: dark)", color: "#1A1A1A" },
-  ],
+    { media: "(prefers-color-scheme: dark)", color: "#1A1A1A" }
+  ]
 }
 
 export default async function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {

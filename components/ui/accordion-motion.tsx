@@ -10,7 +10,7 @@ const AccordionContext = React.createContext<{
   setOpenItem: (value: string | null) => void
 }>({
   openItem: null,
-  setOpenItem: () => {},
+  setOpenItem: () => {}
 })
 
 interface AccordionProps {
@@ -34,7 +34,11 @@ interface AccordionItemProps {
   className?: string
 }
 
-export function AccordionItem({ value, children, className }: AccordionItemProps) {
+export function AccordionItem({
+  value,
+  children,
+  className
+}: AccordionItemProps) {
   // Pass the value down to children implicitly via context or just wrap them
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -53,7 +57,11 @@ interface AccordionTriggerProps {
   itemValue?: string // Injected by Item
 }
 
-export function AccordionTrigger({ children, className, itemValue }: AccordionTriggerProps) {
+export function AccordionTrigger({
+  children,
+  className,
+  itemValue
+}: AccordionTriggerProps) {
   const { openItem, setOpenItem } = React.useContext(AccordionContext)
   const isOpen = openItem === itemValue
 
@@ -67,7 +75,10 @@ export function AccordionTrigger({ children, className, itemValue }: AccordionTr
     >
       {children}
       <ChevronDown
-        className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180")}
+        className={cn(
+          "h-4 w-4 shrink-0 transition-transform duration-200",
+          isOpen && "rotate-180"
+        )}
       />
     </button>
   )
@@ -79,7 +90,11 @@ interface AccordionContentProps {
   itemValue?: string // Injected by Item
 }
 
-export function AccordionContent({ children, className, itemValue }: AccordionContentProps) {
+export function AccordionContent({
+  children,
+  className,
+  itemValue
+}: AccordionContentProps) {
   const { openItem } = React.useContext(AccordionContext)
   const isOpen = openItem === itemValue
 

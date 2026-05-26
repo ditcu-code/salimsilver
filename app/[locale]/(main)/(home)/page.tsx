@@ -14,7 +14,7 @@ import { BASE_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 
 interface Props {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates(),
+      languages: getAlternates()
     },
     openGraph: {
       type: "website",
@@ -45,16 +45,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: "/opengraph-image",
           width: 1200,
           height: 630,
-          alt: t("title"),
-        },
-      ],
+          alt: t("title")
+        }
+      ]
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/opengraph-image"],
-    },
+      images: ["/opengraph-image"]
+    }
   }
 }
 
@@ -110,13 +110,13 @@ export default async function Home({ params }: Props) {
               addressLocality: "Yogyakarta City",
               addressRegion: "Special Region of Yogyakarta",
               postalCode: "55173",
-              addressCountry: "ID",
+              addressCountry: "ID"
             },
             sameAs: ["https://www.instagram.com/salimsilverofficial/"],
             geo: {
               "@type": "GeoCoordinates",
               latitude: -7.8273171,
-              longitude: 110.4019932,
+              longitude: 110.4019932
             },
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
@@ -126,12 +126,12 @@ export default async function Home({ params }: Props) {
                 "Wednesday",
                 "Thursday",
                 "Friday",
-                "Saturday",
+                "Saturday"
               ],
               opens: "08:00",
-              closes: "16:30",
-            },
-          }),
+              closes: "16:30"
+            }
+          })
         }}
       />
     </div>

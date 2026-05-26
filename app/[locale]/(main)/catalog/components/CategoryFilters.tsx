@@ -17,7 +17,7 @@ interface CategoryFiltersProps {
 export default function CategoryFilters({
   categories,
   activeCategory,
-  onCategoryChange,
+  onCategoryChange
 }: CategoryFiltersProps) {
   return (
     <motion.div
@@ -27,7 +27,7 @@ export default function CategoryFilters({
       transition={{ duration: 0.5 }}
       style={{
         msOverflowStyle: "none",
-        scrollbarWidth: "none",
+        scrollbarWidth: "none"
       }}
     >
       {categories.map((category) => (

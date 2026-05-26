@@ -59,7 +59,7 @@ export function usePriceTrend(currentPrice: number, previousPrice: number) {
   const showPercentage = useSyncExternalStore(
     subscribe,
     getSnapshot,
-    getSnapshot, // Server snapshot: always false
+    getSnapshot // Server snapshot: always false
   )
 
   return {
@@ -67,6 +67,6 @@ export function usePriceTrend(currentPrice: number, previousPrice: number) {
     percentageChange,
     isUp,
     isSame,
-    showPercentage,
+    showPercentage
   }
 }

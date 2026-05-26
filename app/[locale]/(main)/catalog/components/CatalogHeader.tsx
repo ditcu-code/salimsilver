@@ -14,7 +14,9 @@ export default function CatalogHeader() {
       transition={{ duration: 0.6 }}
     >
       <h1 className="font-display mb-4 text-4xl md:text-5xl">{t("title")}</h1>
-      <p className="text-muted-foreground mx-auto max-w-2xl">{t("description")}</p>
+      <p className="text-muted-foreground mx-auto max-w-2xl">
+        {t("description")}
+      </p>
     </motion.div>
   )
 }

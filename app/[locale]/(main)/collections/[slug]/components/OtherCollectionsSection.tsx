@@ -26,7 +26,9 @@ export default function OtherCollectionsSection({ collections }: Props) {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary font-display mb-4 text-3xl md:text-4xl">{t("title")}</h2>
+          <h2 className="text-primary font-display mb-4 text-3xl md:text-4xl">
+            {t("title")}
+          </h2>
           <p className="text-primary mx-auto max-w-2xl">{t("subtitle")}</p>
         </motion.div>
         <FeaturedCollections collections={collections} />
@@ -37,7 +39,11 @@ export default function OtherCollectionsSection({ collections }: Props) {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <AnimatedButton href="/catalog" variant="primary" icon={<ArrowRight size={18} />}>
+          <AnimatedButton
+            href="/catalog"
+            variant="primary"
+            icon={<ArrowRight size={18} />}
+          >
             {t("cta")}
           </AnimatedButton>
         </motion.div>

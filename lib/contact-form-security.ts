@@ -3,7 +3,8 @@ const MAX_FORM_AGE_MS = 1000 * 60 * 60 * 24
 const RATE_LIMIT_WINDOW_MS = 1000 * 60 * 10
 const RATE_LIMIT_MAX_SUBMISSIONS = 5
 const MAX_LINKS_PER_MESSAGE = 2
-const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+const TURNSTILE_VERIFY_URL =
+  "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 
 type SubmissionTimestamps = number[]
 
@@ -24,7 +25,7 @@ export function extractClientIp(headerList: Headers) {
     "cf-connecting-ip",
     "x-real-ip",
     "x-forwarded-for",
-    "x-vercel-forwarded-for",
+    "x-vercel-forwarded-for"
   ]
 
   for (const headerName of possibleHeaders) {
@@ -44,7 +45,9 @@ export function extractClientIp(headerList: Headers) {
   return "unknown"
 }
 
-export function getSubmissionTimingState(startedAtValue: FormDataEntryValue | null) {
+export function getSubmissionTimingState(
+  startedAtValue: FormDataEntryValue | null
+) {
   const startedAt = Number(startedAtValue)
 
   if (!Number.isFinite(startedAt)) {
@@ -67,7 +70,7 @@ export function getSubmissionTimingState(startedAtValue: FormDataEntryValue | nu
 export function consumeContactFormAttempt(ip: string) {
   const now = Date.now()
   const recentAttempts = (rateLimitStore.get(ip) ?? []).filter(
-    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS,
+    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS
   )
 
   if (recentAttempts.length >= RATE_LIMIT_MAX_SUBMISSIONS) {
@@ -75,7 +78,7 @@ export function consumeContactFormAttempt(ip: string) {
 
     return {
       allowed: false,
-      retryAfterMs: RATE_LIMIT_WINDOW_MS - (now - recentAttempts[0]),
+      retryAfterMs: RATE_LIMIT_WINDOW_MS - (now - recentAttempts[0])
     }
   }
 
@@ -84,7 +87,7 @@ export function consumeContactFormAttempt(ip: string) {
 
   return {
     allowed: true,
-    retryAfterMs: 0,
+    retryAfterMs: 0
   }
 }
 
@@ -115,7 +118,7 @@ interface TurnstileValidationResult {
 
 export async function validateTurnstileToken(
   tokenValue: FormDataEntryValue | null,
-  clientIp: string,
+  clientIp: string
 ): Promise<TurnstileValidationResult> {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
   const secretKey = process.env.TURNSTILE_SECRET_KEY
@@ -141,16 +144,16 @@ export async function validateTurnstileToken(
     const body = new URLSearchParams({
       secret: secretKey,
       response: token,
-      remoteip: clientIp,
+      remoteip: clientIp
     })
 
     const response = await fetch(TURNSTILE_VERIFY_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/x-www-form-urlencoded"
       },
       body,
-      signal: controller.signal,
+      signal: controller.signal
     })
 
     const result = (await response.json()) as {
@@ -160,14 +163,14 @@ export async function validateTurnstileToken(
 
     return {
       success: Boolean(response.ok && result.success),
-      errorCodes: result["error-codes"] ?? [],
+      errorCodes: result["error-codes"] ?? []
     }
   } catch (error) {
     console.error("Turnstile validation error:", error)
 
     return {
       success: false,
-      errorCodes: ["internal-error"],
+      errorCodes: ["internal-error"]
     }
   } finally {
     clearTimeout(timeoutId)

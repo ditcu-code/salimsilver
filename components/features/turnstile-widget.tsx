@@ -23,7 +23,10 @@ interface TurnstileRenderOptions {
 declare global {
   interface Window {
     turnstile?: {
-      render: (container: HTMLElement, options: TurnstileRenderOptions) => string
+      render: (
+        container: HTMLElement,
+        options: TurnstileRenderOptions
+      ) => string
       reset: (widgetId?: string) => void
       remove: (widgetId?: string) => void
     }
@@ -35,7 +38,7 @@ const TURNSTILE_SCRIPT_URL =
 
 export function TurnstileWidget({
   onTokenChange,
-  resetKey,
+  resetKey
 }: TurnstileWidgetProps) {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
   const { resolvedTheme } = useTheme()
@@ -50,7 +53,12 @@ export function TurnstileWidget({
   }, [onTokenChange])
 
   const renderWidget = useCallback(() => {
-    if (!siteKey || !scriptReady || !containerRef.current || !window.turnstile) {
+    if (
+      !siteKey ||
+      !scriptReady ||
+      !containerRef.current ||
+      !window.turnstile
+    ) {
       return
     }
 
@@ -66,7 +74,7 @@ export function TurnstileWidget({
       callback: onTokenChange,
       "error-callback": handleTokenCleared,
       "expired-callback": handleTokenCleared,
-      "timeout-callback": handleTokenCleared,
+      "timeout-callback": handleTokenCleared
     })
   }, [handleTokenCleared, onTokenChange, scriptReady, siteKey, turnstileTheme])
 

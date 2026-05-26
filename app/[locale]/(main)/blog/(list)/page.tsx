@@ -5,7 +5,7 @@ import { getAllPosts } from "@/lib/blog"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 import { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/blog"),
+      languages: getAlternates("/blog")
     },
     openGraph: {
       type: "website",
@@ -32,13 +32,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
-      description: t("description"),
-    },
+      description: t("description")
+    }
   }
 }
 
@@ -93,9 +93,9 @@ export default async function BlogPage({ params }: Props) {
               headline: post.title,
               url: constructCanonicalUrl(locale, `/blog/${post.slug}`),
               datePublished: post.published_at,
-              image: post.cover_image_url,
-            })),
-          }),
+              image: post.cover_image_url
+            }))
+          })
         }}
       />
     </div>

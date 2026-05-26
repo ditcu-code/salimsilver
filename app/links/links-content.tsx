@@ -4,7 +4,14 @@ import { Facebook } from "@/components/icons/facebook"
 import { Instagram } from "@/components/icons/instagram"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { Globe, Hammer, Mail, MapPin, MessageCircle, ShoppingBag } from "lucide-react"
+import {
+  Globe,
+  Hammer,
+  Mail,
+  MapPin,
+  MessageCircle,
+  ShoppingBag
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -14,50 +21,50 @@ export function LinksContent() {
       label: "Visit Our Website",
       href: "/",
       icon: Globe,
-      variant: "default" as const,
+      variant: "default" as const
     },
     {
       label: "See Our Collections",
       href: "/collections",
       icon: ShoppingBag,
-      variant: "outline" as const,
+      variant: "outline" as const
     },
     {
       label: "Book a Workshop",
       href: "/workshop",
       icon: Hammer,
-      variant: "outline" as const,
+      variant: "outline" as const
     },
     {
       label: "Chat with Us",
       href: "https://wa.me/6289671977699",
       icon: MessageCircle,
-      variant: "outline" as const,
+      variant: "outline" as const
     },
     {
       label: "Find Us on Google Maps",
       href: "https://maps.google.com/maps/dir//Salim+Silver+Kebohan+KG+3%2F547+Purbayan+Kotagede,+Yogyakarta+City,+Special+Region+of+Yogyakarta+55173/@-7.8272881,110.4018794,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x2e7a571440134b63:0x5c7989d8a5177cca",
       icon: MapPin,
-      variant: "outline" as const,
-    },
+      variant: "outline" as const
+    }
   ]
 
   const socials = [
     {
       label: "Instagram",
       href: "https://www.instagram.com/salimsilverofficial/",
-      icon: Instagram,
+      icon: Instagram
     },
     {
       label: "Facebook",
       href: "https://web.facebook.com/SalimSilverArt",
-      icon: Facebook,
+      icon: Facebook
     },
     {
       label: "Email",
       href: "mailto:salim@salimsilver.com",
-      icon: Mail,
-    },
+      icon: Mail
+    }
   ]
 
   const containerVariants = {
@@ -65,9 +72,9 @@ export function LinksContent() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-      },
-    },
+        staggerChildren: 0.1
+      }
+    }
   }
 
   const itemVariants = {
@@ -75,8 +82,8 @@ export function LinksContent() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring" as const, stiffness: 100 },
-    },
+      transition: { type: "spring" as const, stiffness: 100 }
+    }
   }
 
   return (
@@ -136,10 +143,14 @@ export function LinksContent() {
                     <span className="flex items-center gap-3">
                       <Icon
                         className={`h-5 w-5 transition-colors ${
-                          link.variant === "default" ? "text-primary-foreground" : "text-primary"
+                          link.variant === "default"
+                            ? "text-primary-foreground"
+                            : "text-primary"
                         }`}
                       />
-                      <span className="text-base font-medium">{link.label}</span>
+                      <span className="text-base font-medium">
+                        {link.label}
+                      </span>
                     </span>
                     {/* Arrow or visual indicator */}
                   </Link>
@@ -150,7 +161,10 @@ export function LinksContent() {
         </div>
 
         {/* Socials Section */}
-        <motion.div variants={itemVariants} className="flex justify-center gap-4 pt-4">
+        <motion.div
+          variants={itemVariants}
+          className="flex justify-center gap-4 pt-4"
+        >
           {socials.map((social) => {
             const Icon = social.icon
             return (

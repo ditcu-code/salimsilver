@@ -76,7 +76,7 @@ export default function StoreLocationSection() {
               onClick={() =>
                 sendGAEvent("event", "get_directions", {
                   method: "google_maps",
-                  location: "store_location_section",
+                  location: "store_location_section"
                 })
               }
             >

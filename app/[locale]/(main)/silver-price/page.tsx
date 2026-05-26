@@ -1,12 +1,12 @@
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 import {
   calculateDisplayPrices,
   getSilverPriceHistory,
-  getSilverPriceSummary,
+  getSilverPriceSummary
 } from "@/lib/silver-price"
 import type { Metadata } from "next"
 
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: {
       absolute:
-        "Harga Perak Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
+        "Harga Perak Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver"
     },
     description:
       "Pantau harga perak murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
@@ -46,11 +46,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Harga Perak Minggu Lalu",
       "Harga Perak Bulan Lalu",
       "Harga Perak 6 Bulan Lalu",
-      "Harga Perak 1 Tahun Lalu",
+      "Harga Perak 1 Tahun Lalu"
     ],
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/silver-price"),
+      languages: getAlternates("/silver-price")
     },
     openGraph: {
       title: "Harga Perak Hari Ini | Update Terbaru per Gram (IDR)",
@@ -64,10 +64,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: "/api/og/silver-price",
           width: 1200,
           height: 630,
-          alt: "Harga Perak Hari Ini di Salim Silver",
-        },
-      ],
-    },
+          alt: "Harga Perak Hari Ini di Salim Silver"
+        }
+      ]
+    }
   }
 }
 
@@ -96,7 +96,7 @@ export default async function SilverPricePage({ params }: Props) {
         chartData={chartData}
         relatedMetal={{
           name: "Emas",
-          href: constructLocalizedPath(locale, "/gold-price"),
+          href: constructLocalizedPath(locale, "/gold-price")
         }}
       />
     )
@@ -112,11 +112,11 @@ export default async function SilverPricePage({ params }: Props) {
           name: item.question,
           acceptedAnswer: {
             "@type": "Answer",
-            text: item.answer,
-          },
-        })),
-      },
-    ],
+            text: item.answer
+          }
+        }))
+      }
+    ]
   }
 
   return (

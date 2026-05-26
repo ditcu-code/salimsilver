@@ -52,7 +52,7 @@ export default function ReviewRedirect() {
                 delay: i * 0.1,
                 type: "spring",
                 stiffness: 200,
-                damping: 15,
+                damping: 15
               }}
             >
               <Star className="h-8 w-8 fill-yellow-400" />
@@ -70,8 +70,8 @@ export default function ReviewRedirect() {
           </p>
 
           <p className="text-muted-foreground mx-auto max-w-xl text-lg leading-relaxed text-balance md:text-xl">
-            We would be honored by a 5-star review. Your support keeps our tradition of Javanese
-            craftsmanship alive.
+            We would be honored by a 5-star review. Your support keeps our
+            tradition of Javanese craftsmanship alive.
           </p>
         </div>
 

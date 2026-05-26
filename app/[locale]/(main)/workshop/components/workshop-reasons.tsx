@@ -8,16 +8,16 @@ import { cn } from "@/lib/utils"
 const reasons = [
   {
     key: "storyteller",
-    icon: BookOpen,
+    icon: BookOpen
   },
   {
     key: "venue",
-    icon: Landmark,
+    icon: Landmark
   },
   {
     key: "masters",
-    icon: Medal,
-  },
+    icon: Medal
+  }
 ]
 
 export function WorkshopReasons({ className }: { className?: string }) {

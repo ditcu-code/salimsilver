@@ -16,7 +16,11 @@ export default function BlogReadMore() {
       transition={{ duration: 0.6, delay: 0.4 }}
       viewport={{ once: true }}
     >
-      <AnimatedButton href="/blog" variant="primary" icon={<ArrowRight size={18} />}>
+      <AnimatedButton
+        href="/blog"
+        variant="primary"
+        icon={<ArrowRight size={18} />}
+      >
         {t("readMore")}
       </AnimatedButton>
     </motion.div>

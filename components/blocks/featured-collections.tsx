@@ -26,12 +26,12 @@ export default function FeaturedCollections({
   ctaHref,
   sectionClassName,
   containerClassName = "max-w-7xl mx-auto",
-  collections = [],
+  collections = []
 }: FeaturedCollectionsProps = {}) {
   const { playHammerSound } = useHammerSound()
 
   const shouldRenderSection = Boolean(
-    title || description || (ctaLabel && ctaHref),
+    title || description || (ctaLabel && ctaHref)
   )
 
   const grid = (

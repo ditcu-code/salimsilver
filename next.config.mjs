@@ -4,7 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin"
 const nextConfig = {
   poweredByHeader: false,
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true
   },
   images: {
     formats: ["image/avif", "image/webp"],
@@ -15,21 +15,21 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.supabase.co",
+        hostname: "**.supabase.co"
       },
       {
         protocol: "http",
         hostname: "127.0.0.1",
-        port: "64321",
+        port: "64321"
       },
       {
         protocol: "http",
         hostname: "localhost",
-        port: "64321",
-      },
+        port: "64321"
+      }
     ],
-    unoptimized: process.env.NODE_ENV === "development",
-  },
+    unoptimized: process.env.NODE_ENV === "development"
+  }
 }
 
 const withNextIntl = createNextIntlPlugin()

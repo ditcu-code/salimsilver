@@ -1,0 +1,574 @@
+{
+  "HomePage": {
+    "Hero": {
+      "title": "Handgemaakte zilveren sieraden die een verhaal vertellen van elegantie en traditie",
+      "description": "Gemaakt door Salim-ambachtslieden, elk stuk vertaalt Javaans erfgoed in verfijnde, moderne elegantie."
+    },
+    "Introduction": {
+      "title": "De kunst van het zilveren vakmanschap",
+      "description1": "Bij Salim Silver geloven we dat een sieraad meer is dan alleen een accessoire; het is een uitdrukking van kunst en traditie. Onze stukken worden met de hand gemaakt door bekwame ambachtslieden in Kotagede, Yogyakarta, waarbij een erfgoed van vernieuwing en design behouden blijft.",
+      "description2": "Van ingewikkelde filigraan ringen tot gedurfde statement kettingen, elke creatie in onze collectie vertelt een uniek verhaal.",
+      "cta": "Ontdek ons erfgoed"
+    },
+    "CTA": {
+      "title": "Ontwerpen op maat & Groothandel",
+      "description": "Op zoek naar een uniek stuk of geïnteresseerd in de verkoop van onze sieraden? We bieden ontwerpservices op maat en groothandelspartnerschappen.",
+      "ctaLabel": "Nu aanvragen"
+    },
+    "Featured": {
+      "title": "Uitgelichte collecties",
+      "description": "Ontdek onze zorgvuldig geselecteerde handgemaakte zilveren sieraden",
+      "ctaLabel": "Bekijk alle collecties"
+    },
+    "LayoutGrid": {
+      "card1": {
+        "title": "Handgemaakte ringen",
+        "description": "Ontdek onze collectie ingewikkelde zilveren ringen, elk stuk vertelt een verhaal van Javaanse traditie.",
+        "alt": "Handgemaakte zilveren ringen"
+      },
+      "card2": {
+        "title": "Ambachtelijke kettingen",
+        "description": "Elegante zilveren kettingen met gedurfde hangers en delicate schakels, perfect voor elke gelegenheid.",
+        "alt": "Ambachtelijke kettingen"
+      },
+      "card3": {
+        "title": "Zilveren armbanden",
+        "description": "Handgeweven en massief zilveren armbanden die moderne stijl combineren met tijdloos vakmanschap.",
+        "alt": "Zilveren armbanden"
+      },
+      "card4": {
+        "title": "Statement oorbellen",
+        "description": "Van subtiele knopjes tot dramatische hangers, onze oorbellen zijn ontworpen om te boeien en te inspireren.",
+        "alt": "Statement oorbellen"
+      }
+    },
+    "Metadata": {
+      "title": "Handgemaakte Javaanse zilveren sieraden",
+      "description": "Ontdek de handgemaakte ringen, kettingen en armbanden van Salim Silver, geïnspireerd op Javaans erfgoed en gemaakt in Kotagede, Yogyakarta."
+    }
+  },
+  "AboutPage": {
+    "Hero": {
+      "title": "Ons verhaal",
+      "description": "Tijdloze elegantie sinds 1930"
+    },
+    "Bio": {
+      "imageAlt": "Priyana Jatmika Salim kijkt naar zilveren ring met zijn loep",
+      "title": "Het erfgoed",
+      "p1": "Salim Silver is een hoeder van erfgoed in Kotagede, Yogyakarta, de historische hoofdstad van het Mataram-sultanaat. Ons atelier is een levend museum waar de eeuwenoude kunst van het Javaanse zilverbewerken behouden en vernieuwd wordt.",
+      "p2": "Onze reis begon in 1930 met Karto Oetomo, gevolgd door zijn zoon Salim Widardjo in 1952. Als vertegenwoordiger van de derde generatie trad <bold>Priyo Salim</bold> in 1985 toe tot het familie-erfgoed.",
+      "p3": "In 1987, geïnspireerd door het boek <italic>Power and Gold</italic>, verlegde Priyo de focus van het atelier naar handgemaakte zilveren sieraden. Sindsdien heeft hij zijn leven gewijd aan het behouden en revitaliseren van de ingewikkelde Javaanse technieken van drijven (repoussé) en filigraan.",
+      "p4": "Vandaag is de <bold>4e generatie</bold> aangetreden om dit erfgoed te verfijnen en naar een hoger niveau te tillen. We blijven stukken creëren die niet zomaar sieraden zijn, maar draagbare kunst die ons verleden eert en tegelijkertijd de toekomst van design omarmt.",
+      "badges": {
+        "craftsmanship": "Meesterlijk vakmanschap",
+        "ethical": "Ethisch geproduceerd",
+        "collective": "Evolutie van traditie"
+      }
+    },
+    "Timeline": {
+      "title": "Onze reis",
+      "description": "Van een bescheiden familieatelier tot een hoeder van het Kotagede zilvererfgoed.",
+      "items": {
+        "1930": {
+          "title": "Het begin",
+          "description": "Karto Oetomo, de grootvader van Priyo Salim, legt de basis door te starten met 'KD', een zilverbedrijf gericht op fijn huishoudelijk zilverwerk. Deze vroege geschiedenis is gedocumenteerd in 'Yogya Silver: Renewal of a Javanese Handicraft' (2005) van Pienke W.H. Kal."
+        },
+        "1952": {
+          "title": "Een nieuw erfgoed",
+          "description": "Bouwend op het werk van zijn vader, richt Salim Widardjo 'Salim' Silver op. Hij breidt het ambacht uit door ingewikkelde zilveren miniaturen te introduceren—waaronder becaks, andongs en traditionele beelden—waarmee hij een nieuwe norm stelt voor detail."
+        },
+        "1985": {
+          "title": "De derde generatie",
+          "description": "Het erfgoed wordt voortgezet wanneer Priyo Salim toetreedt tot het familiebedrijf. Terwijl hij Cartografie studeert aan de Universitas Gadjah Mada, brengt hij een frisse blik in het traditionele atelier."
+        },
+        "1987": {
+          "title": "De omslag",
+          "description": "Een bepalend moment breekt aan. Geïnspireerd door het boek 'Power and Gold' stuurt Priyo Salim het atelier in een nieuwe richting: handgemaakte Javaanse zilveren sieraden, die traditie combineren met draagbare kunst."
+        },
+        "1990": {
+          "title": "Wereldwijd bereik",
+          "description": "De inzet voor kwaliteit loont wanneer Salim Silver de wereldmarkt betreedt en zijn handgemaakte sieraden exporteert naar klanten in de Verenigde Staten, Azië en Europa."
+        },
+        "2017": {
+          "title": "Modernisering",
+          "description": "De 4e generatie treedt naar voren om de fakkel te dragen. Ze beginnen de bedrijfsvoering te moderniseren, zodat de eeuwenoude technieken ook in het digitale tijdperk gedijen."
+        },
+        "Present": {
+          "title": "Een levend museum",
+          "description": "Tegenwoordig staat Salim Silver bekend als een hoeder van erfgoed. Ons atelier blijft een levend museum, open voor iedereen die getuige wil zijn van de creatie van 'kunst voor de toekomst' die het verleden eert."
+        }
+      }
+    },
+    "Values": {
+      "title": "Onze waarden",
+      "items": {
+        "tradition": {
+          "title": "Traditie",
+          "description": "We zijn toegewijd aan de vernieuwing van de zilvertradities van Kotagede, om ervoor te zorgen dat deze vaardigheden niet alleen behouden blijven, maar ook meegroeien met de toekomst."
+        },
+        "quality": {
+          "title": "Kwaliteit",
+          "description": "We gebruiken alleen het beste 925 sterling zilver en ethisch verkregen edelstenen. Elk stuk wordt geïnspecteerd om te garanderen dat het aan onze hoge normen voldoet."
+        },
+        "sustainability": {
+          "title": "Duurzaamheid",
+          "description": "We zetten ons in voor duurzame praktijken, van verantwoorde inkoop van materialen tot het minimaliseren van afval in ons atelier."
+        }
+      }
+    },
+    "CTA": {
+      "title": "Maak je eigen zilveren sieraden",
+      "description": "Dompel jezelf onder in de traditie van Kotagede. Neem deel aan onze praktijkgerichte workshop om de kunst van het zilverbewerken te leren en je eigen unieke stuk te maken.",
+      "ctaLabel": "Boek een les"
+    },
+    "Metadata": {
+      "title": "Salim Silver: Hoeders van het Kotagede zilvererfgoed",
+      "description": "Ontdek het verhaal van Salim Silver, die het Kotagede zilvervakmanschap sinds 1930 behoudt. Een reis van meesterlijk vakmanschap en de evolutie van traditie.",
+      "schemaDescription": "Zilverambachtslieden uit Kotagede die voorouderlijk erfgoed behouden door modern, hoogwaardig sieraadontwerp."
+    }
+  },
+  "WorkshopPage": {
+    "Metadata": {
+      "title": "Workshop zilversmeden in Kotagede, Yogyakarta",
+      "description": "Neem deel aan onze 3 uur durende workshop zilversmeden in Kotagede, Yogyakarta. Leer de stappen voor het maken van traditionele zilveren sieraden van meester-ambachtslieden."
+    },
+    "Hero": {
+      "title": "Workshop zilversmeden",
+      "description": "Ervaar de kunst van het Javaanse zilversmeden. Creëer je eigen meesterwerk in het hart van Kotagede, exclusief begeleid door de meester.",
+      "imageAlt": "Een ring graveren op pek",
+      "imageTitle": "Laten we uw unieke sieraad creëren"
+    },
+    "Reasons": {
+      "storyteller": {
+        "title": "Ontmoet Salim, de verhalenverteller",
+        "description": "Hij deelt niet alleen technieken, maar weeft ook verhalen over onze familiegeschiedenis en het rijke erfgoed van zilver in Kotagede."
+      },
+      "venue": {
+        "title": "De authentieke plek!",
+        "description": "Creëer in dezelfde authentieke studio waar ons familie-erfgoed meer dan een eeuw geleden begon, omringd door levende geschiedenis."
+      },
+      "masters": {
+        "title": "Begeleid door meesters",
+        "description": "Je meesterwerk wordt begeleid door ervaren ambachtslieden met tientallen jaren expertise, wat kwaliteit en traditie in elke stap garandeert."
+      }
+    },
+    "Steps": {
+      "title": "Hoe het werkt",
+      "subtitle": "Begin aan een drie uur durende creatieve reis waarin je de fundamentele fasen van het traditionele zilvervakmanschap onder de knie krijgt.",
+      "list": {
+        "step1": {
+          "title": "Reservering & Planning",
+          "description": "Stel je plek voor de workshop veilig via onze online reservering."
+        },
+        "step2": {
+          "title": "Ontwerponderzoek",
+          "description": "Giet je creativiteit in een echte schets. Je bent vrij om je eigen ontwerp mee te nemen of te kiezen uit de klassieke motieven van Salim Silver."
+        },
+        "step3": {
+          "title": "Nauwkeurige meting",
+          "description": "Tijd om je vingergrootte nauwkeurig op te meten, zodat je handgemaakte ring comfortabel past."
+        },
+        "step4": {
+          "title": "De kunst van het graveren (Repoussé)",
+          "description": "Duik in de kenmerkende metaalgraveertechniek van Kotagede. Je leert 5 gedetailleerde fasen met onze experts:",
+          "details": [
+            "Eerste schets: De basisomtrek van het motief graveren",
+            "Drijven (Wudulan): 3D-volume creëren vanaf de achterkant",
+            "Detaillering: Details en textuur scherper maken",
+            "Gladmaken: Het reliëfoppervlak verfijnen",
+            "Uitsnijden (Tatasan): Doorsteektechniek om het silhouet te versterken"
+          ]
+        },
+        "step5": {
+          "title": "Solderen",
+          "description": "Het samenvoegen van de zilveren plaat tot een complete ringvorm. Je kunt het zelf doen of onze experts laten helpen."
+        },
+        "step6": {
+          "title": "De afwerking",
+          "description": "Laat je creatie glanzen. Dit proces bepaalt de uiteindelijke glans en het karakter van je sieraad:",
+          "details": [
+            "Schuren voor een glad oppervlak",
+            "Polijsten voor maximale glans",
+            "Oxideren (optioneel) voor een elegante antieke look"
+          ]
+        },
+        "step7": {
+          "title": "Klaar!",
+          "description": "Je handgemaakte zilveren ring is klaar om gedragen en mee naar huis genomen te worden."
+        }
+      }
+    },
+    "Details": {
+      "title": "Belangrijke details",
+      "hours": {
+        "title": "Openingstijden",
+        "days": "Maandag - Zaterdag",
+        "morning": "Ochtend: 08:30 - 11:30",
+        "afternoon": "Middag: 12:30 - 15:30"
+      },
+      "includes": {
+        "title": "Inclusief",
+        "description": "Volledig gebruik van apparatuur en 5 gram zilver. Extra zilver is beschikbaar voor Rp 70.000 per gram."
+      },
+      "flexible": {
+        "title": "Flexibele ontwerpen",
+        "description": "Maak ringen, hangers, armbanden of een ontwerp op maat. We werken graag met je samen om jouw unieke idee tot leven te brengen."
+      },
+      "payment": {
+        "title": "Betaling",
+        "description": "Contant, bankoverschrijving, QRIS, creditcard/betaalpas (bij voltooiing)"
+      }
+    },
+    "Registration": {
+      "title": "Boek je sessie",
+      "subtitle": "Vul de details in om de beschikbaarheid te controleren via WhatsApp.",
+      "startNow": "Nu starten",
+      "secureSlot": "Beveilig je plek voor een onvergetelijke ervaring.",
+      "fields": {
+        "name": {
+          "label": "Volledige naam",
+          "placeholder": "Je naam"
+        },
+        "date": {
+          "label": "Datum",
+          "placeholder": "Kies een datum"
+        },
+        "session": {
+          "label": "Sessie",
+          "placeholder": "Selecteer",
+          "morning": "Ochtend (08:30 - 11:30)",
+          "afternoon": "Middag (12:30 - 15:30)"
+        },
+        "participants": {
+          "label": "Aantal deelnemers",
+          "single": {
+            "title": "1 persoon",
+            "price": "Rp 550.000"
+          },
+          "group": {
+            "title": "2+ personen",
+            "price": "Rp 500k/pax"
+          },
+          "totalLabel": "Totaal aantal personen:"
+        }
+      },
+      "totalEstimate": "Geschat totaal:",
+      "submit": "Doorgaan naar WhatsApp",
+      "airbnbLabel": "Ook beschikbaar op Airbnb",
+      "airbnbLink": "Boeken op Airbnb",
+      "toast": "Doorverwijzen naar WhatsApp...",
+      "mobileButton": "Boek je workshop",
+      "Validation": {
+        "nameLength": "Naam moet ten minste 2 tekens bevatten"
+      },
+      "WhatsApp": {
+        "greeting": "Hallo Salim Silver,",
+        "name": "Naam",
+        "intro": "Ik wil graag een workshop zilversmeden boeken:",
+        "date": "Datum",
+        "session": "Sessie",
+        "participants": "Deelnemers",
+        "people": "personen",
+        "closing": "Laat me alstublieft de beschikbaarheid weten."
+      }
+    },
+    "Reels": {
+      "title": "Vastgelegde momenten"
+    },
+    "PolaroidGallery": {
+      "title": "Onze blije studenten",
+      "studentAlt": "Student van workshop zilveren sieraden maken bij Salim Silver"
+    }
+  },
+  "StoreLocationPage": {
+    "Metadata": {
+      "title": "Bezoek onze winkel & atelier",
+      "description": "Bezoek onze winkel en ons atelier in Kotagede. Koop onze handgemaakte zilvercollectie en zie de ambachtslieden aan het werk op één locatie."
+    },
+    "Hero": {
+      "subtitle": "Winkel & Atelier",
+      "title": "Bezoek ons in Kotagede",
+      "description": "Zie waar ons zilver wordt gemaakt en koop de collectie in ons historische atelier & winkel.",
+      "ctaLabel": "Routebeschrijving"
+    },
+    "Content": {
+      "title": "Het atelier & de winkel",
+      "description": "Verscholen van de drukke winkelstraten nodigen we je uit in een traditioneel Javaans complex dat fungeert als een 'levend museum', waarin een woonhuis naadloos samensmelt met een actief zilveratelier."
+    },
+    "Expectations": {
+      "title": "Wat kun je verwachten",
+      "items": {
+        "browse": "Bekijk onze volledige collectie kant-en-klare sieraden",
+        "works": "Zie lopend werk en de creatie van unieke stukken",
+        "consult": "Pas sieraden en overleg met ons team over ontwerpen op maat"
+      }
+    },
+    "LocationSection": {
+      "title": "Locatiegegevens",
+      "description": "We zijn gevestigd in het hart van Kotagede, de historische zilverwijk van Yogyakarta.",
+      "ctaLabel": "Routebeschrijving",
+      "mapTitle": "Salim Silver Locatie"
+    },
+    "CTA": {
+      "title": "Plan je bezoek",
+      "description": "Laat ons weten wanneer je langs wilt komen, dan zorgen wij dat het atelier voor je klaarstaat.",
+      "ctaLabel": "Neem contact op met het atelier"
+    }
+  },
+  "ContactPage": {
+    "Metadata": {
+      "title": "Neem contact met ons op",
+      "description": "Neem contact op met Salim Silver for ontwerpen op maat, groothandelsaanvragen of atelierbezoeken in Kotagede, Yogyakarta."
+    },
+    "Hero": {
+      "title": "Contact",
+      "subtitle": "We horen graag van je"
+    },
+    "Info": {
+      "title": "Neem contact op",
+      "description": "Of je nu een vraag hebt over een sieraad, een ontwerp op maat wilt bespreken, of gewoon even hallo wilt zeggen, we zijn er om te helpen.",
+      "Email": "E-mail",
+      "Follow": "Volg ons"
+    },
+    "Form": {
+      "title": "Stuur een bericht",
+      "description": "Je ontvangt binnen 24 uur een reactie."
+    },
+    "FAQs": {
+      "title": "Veelgestelde vragen",
+      "items": {
+        "custom": {
+          "question": "Bieden jullie ontwerpen op maat aan?",
+          "answer": "Ja, we zijn gespecialiseerd in sieraadontwerp op maat. Neem contact met ons op met je ideeën, dan kunnen we samenwerken aan een uniek stuk."
+        },
+        "shipping": {
+          "question": "Verzenden jullie internationaal?",
+          "answer": "Ja, we verzenden wereldwijd. Verzendtijden en -kosten variëren afhankelijk van de bestemming."
+        },
+        "care": {
+          "question": "Hoe verzorg ik mijn zilveren sieraden?",
+          "answer": "We raden aan om je zilver op een koele, droge plaats te bewaren. Regelmatig poetsen met een zachte doek helpt de glans te behouden."
+        },
+        "wholesale": {
+          "question": "Bieden jullie groothandel aan?",
+          "answer": "Ja, we verwelkomen groothandelsaanvragen. Neem contact met ons op voor meer informatie over ons groothandelsprogramma."
+        }
+      }
+    }
+  },
+  "CareerPage": {
+    "Metadata": {
+      "title": "Werken bij Salim Silver",
+      "description": "Ontdek carrièremogelijkheden bij Salim Silver en word lid van het team dat het zilvererfgoed van Kotagede behoudt."
+    },
+    "Hero": {
+      "eyebrow": "Carrières",
+      "title": "Bouw mee met de hoeders van het Kotagede zilverambacht",
+      "description": "We maken ruimte voor attente, detailgerichte mensen die willen groeien binnen een zilveratelier van een familie in Yogyakarta."
+    },
+    "Jobs": {
+      "eyebrow": "Actuele vacatures",
+      "title": "Sluit je aan bij ons team",
+      "description": "We zijn altijd op zoek naar getalenteerde individuen die gepassioneerd zijn over het behouden van het zilvererfgoed van Kotagede. Bekijk onze beschikbare functies hieronder.",
+      "emptyTitle": "Geen actieve vacatures",
+      "emptyDescription": "We hebben momenteel geen openstaande vacatures, maar we zijn altijd op zoek naar nieuw talent. Laat gerust je cv achter in onze Talent Pool hieronder.",
+      "labels": {
+        "location": "Locatie",
+        "type": "Dienstverband"
+      },
+      "items": {
+        "silversmith": {
+          "title": "Junior Zilversmid",
+          "description": "Ondersteun de basisfasen van het maken van zilveren sieraden, van materiaalvoorbereiding en vormgeving tot afwerking onder begeleiding van een senior ambachtsvakman.",
+          "location": "Kotagede, Yogyakarta",
+          "type": "Fulltime"
+        },
+        "studioAssistant": {
+          "title": "Studio- & Atelierassistent",
+          "description": "Ondersteun de dagelijkse activiteiten in het atelier, ontvang gasten, bereid workshopsessies voor en help het team de bedrijfsvoering georganiseerd te houden.",
+          "location": "Kotagede, Yogyakarta",
+          "type": "Fulltime"
+        },
+        "contentCreative": {
+          "title": "Stagiair Content Creative",
+          "description": "Help bij het documenteren van het ambachtsproces, bedenk ideeën voor short-form content en organiseer visueel materiaal voor de sociale kanalen van Salim Silver.",
+          "location": "Hybride",
+          "type": "Stage"
+        }
+      }
+    },
+    "StudentInternship": {
+      "eyebrow": "Voor studenten",
+      "title": "Open voor stage-aanvragen",
+      "description": "Studenten die willen leren binnen een actief zilveratelier kunnen hun cv, een aanbevelingsbrief van de onderwijsinstelling of een portfoliolink sturen. We beoordelen de planning, stageduur en beschikbare leergebieden.",
+      "ctaLabel": "Solliciteer voor een stage",
+      "message": "Hallo Salim Silver, ik ben een student die geïnteresseerd is in een stage. Mijn onderwijsinstelling, studierichting, stageperiode en cv/portfoliolink zijn:",
+      "items": {
+        "schedule": {
+          "title": "Flexibel overleg",
+          "description": "Stageperiodes kunnen worden besproken op basis van de vereisten van je opleiding en de beschikbaarheid van het team."
+        },
+        "documents": {
+          "title": "Eenvoudige documenten",
+          "description": "Stuur je cv mee, eventueel een brief van je opleiding, en een relevant portfolio of werkvoorbeeld."
+        },
+        "learning": {
+          "title": "Leren op verschillende gebieden",
+          "description": "Leergebieden kunnen zijn: atelierpraktijk, bedrijfsvoering, contentdocumentatie of gastenontvangst."
+        }
+      }
+    },
+    "TalentPool": {
+      "title": "Nog geen passende vacature?",
+      "description": "Stuur toch je cv of portfoliolink op. Als er later een geschikte rol vrijkomt, neemt ons team contact met je op via de door jou verstrekte gegevens.",
+      "ctaLabel": "Laat je CV achter",
+      "message": "Hallo Salim Silver, ik wil graag mijn cv delen voor toekomstige mogelijkheden. Hier is de link naar mijn cv/portfolio:"
+    }
+  },
+  "CatalogPage": {
+    "Metadata": {
+      "title": "Sieradencatalogus",
+      "description": "Bekijk de volledige catalogus van handgemaakte zilveren ringen, kettingen, armbanden en accessoires van Salim Silver.",
+      "fallbackDescription": "Handgemaakte zilveren sieraden van Salim Silver."
+    },
+    "Header": {
+      "title": "Sieradencatalogus",
+      "description": "Ontdek onze volledige collectie handgemaakte zilveren sieraden."
+    },
+    "Filters": {
+      "all": "Alle sieraden"
+    }
+  },
+  "CollectionsPage": {
+    "Metadata": {
+      "title": "Collecties",
+      "description": "Blader door de samengestelde collecties van handgemaakte ringen, kettingen, armbanden en meer van Salim Silver."
+    },
+    "Header": {
+      "title": "Onze collecties",
+      "description": "Ontdek onze handgemaakte series, die elk een uniek verhaal vertellen van traditie en kunstenaarschap."
+    }
+  },
+  "CollectionDetailPage": {
+    "Metadata": {
+      "fallbackDescription": "Ontdek onze {title} collectie."
+    },
+    "OtherCollections": {
+      "title": "Uitgelichte collecties",
+      "subtitle": "Ontdek onze andere handgemaakte collecties",
+      "cta": "Bekijk alle collecties"
+    },
+    "Breadcrumbs": {
+      "collections": "Collecties"
+    }
+  },
+  "JournalPage": {
+    "Metadata": {
+      "title": "Journal",
+      "description": "Lees over ons vakmanschap, materialen en de verhalen achter de Javaanse zilveren sieraden."
+    },
+    "Header": {
+      "title": "Het Journal",
+      "description": "Van het hart van Kotagede naar jouw handen.\nOntdek de geschiedenis, technieken en verhalen achter ons handgemaakte zilvererfgoed."
+    },
+    "Hero": {
+      "featured": "Uitgelicht verhaal",
+      "readFull": "Lees het volledige verhaal"
+    },
+    "Fallback": {
+      "noStories": "Nog geen verhalen gepubliceerd. We werken aan iets speciaals."
+    }
+  },
+  "JournalDetailPage": {
+    "Metadata": {
+      "notFound": "Bericht niet gevonden"
+    },
+    "UI": {
+      "backToJournal": "Terug naar het Journal",
+      "recentlyPublished": "Recent gepubliceerd",
+      "updated": "Bijgewerkt {date}",
+      "share": "Deel dit verhaal",
+      "readMore": "Lees meer verhalen",
+      "journal": "Journal"
+    },
+    "Breadcrumbs": {
+      "journal": "Journal"
+    }
+  },
+  "ProductPage": {
+    "Metadata": {
+      "notFound": "Product niet gevonden",
+      "fallbackDescription": "Handgemaakte zilveren sieraden van Salim Silver."
+    },
+    "Breadcrumbs": {
+      "collections": "Collecties"
+    },
+    "Detail": {
+      "labels": {
+        "material": "Materiaal",
+        "purity": "Gehalte",
+        "weight": "Gewicht",
+        "craftingTime": "Productietijd"
+      },
+      "suffixes": {
+        "hours": "uur",
+        "grams": "g"
+      },
+      "fallbackDescription": "Geen beschrijving beschikbaar.",
+      "inquireButton": "Informeer naar dit sieraad"
+    }
+  },
+  "Blog": {
+    "Comments": {
+      "title": "Reacties",
+      "leaveComment": "Schrijf een reactie",
+      "commentsCount": "{count, plural, =0 {} one {1 reactie} other {# reacties}}",
+      "noComments": "Nog geen reacties. Deel als eerste je gedachten!",
+      "namePlaceholder": "Je naam",
+      "nameLabel": "Naam",
+      "emailPlaceholder": "Je e-mailadres (optioneel)",
+      "emailLabel": "E-mailadres",
+      "commentPlaceholder": "Schrijf hier je reactie...",
+      "commentLabel": "Reactie",
+      "submit": "Reactie plaatsen",
+      "submitting": "Plaatsen...",
+      "success": "Reactie succesvol geplaatst!",
+      "error": "Reactie plaatsen mislukt. Probeer het opnieuw."
+    }
+  },
+  "Header": {
+    "nav": {
+      "catalog": "Catalogus",
+      "collections": "Collecties",
+      "workshop": "Workshop",
+      "careers": "Carrières",
+      "storeLocation": "Bezoek ons",
+      "about": "Over ons",
+      "journal": "Journal"
+    },
+    "mobile": {
+      "open": "Menu openen",
+      "close": "Menu sluiten"
+    }
+  },
+  "Footer": {
+    "brandDescription": "Erfgoed met de hand gesmeed",
+    "quickLinks": "Snelle links",
+    "contact": "Contact",
+    "email": "E-mail",
+    "followUs": "Volg ons",
+    "rights": "Alle rechten voorbehouden.",
+    "links": {
+      "catalog": "Catalogus",
+      "collections": "Collecties",
+      "workshop": "Workshop",
+      "careers": "Carrières",
+      "storeLocation": "Winkellocatie",
+      "silverPrice": "Zilverprijs",
+      "goldPrice": "Goudprijs",
+      "about": "Over ons",
+      "contact": "Contact",
+      "journal": "Journal"
+    }
+  }
+}

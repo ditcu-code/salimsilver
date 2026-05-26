@@ -1,16 +1,17 @@
+import { routing } from "@/i18n/navigation"
 import { BASE_URL } from "@/lib/constants"
 
 /**
  * Constructs a canonical URL with the correct locale prefix.
- * @param locale The current locale (e.g., 'en', 'id')
+ * @param locale The current locale (e.g., 'en', 'id', 'nl')
  * @param path The path to the page (e.g., '/blog', '/about'). Should start with / if not empty.
  * @returns The full canonical URL.
  */
 export function constructCanonicalUrl(
   locale: string,
-  path: string = "",
+  path: string = ""
 ): string {
-  const isDefaultLocale = locale === "en"
+  const isDefaultLocale = locale === routing.defaultLocale
   const localePath = isDefaultLocale ? "" : `/${locale}`
 
   // Ensure path starts with / if it's not empty
@@ -25,30 +26,35 @@ export function constructCanonicalUrl(
   }
 
   // If path is just "/" or empty, we don't need to append anything if it's default locale
-  // But if it's non-default locale (e.g. /id), we want /id
+  // But if it's non-default locale (e.g. /id or /nl), we want the locale root.
 
   // HOWEVER, valid URLs are:
   // https://salimsilver.com (en home)
   // https://salimsilver.com/id (id home)
+  // https://salimsilver.com/nl (nl home)
   // https://salimsilver.com/catalog (en catalog)
   // https://salimsilver.com/id/catalog (id catalog)
+  // https://salimsilver.com/nl/catalog (nl catalog)
 
   return `${BASE_URL}${localePath}${normalizedPath}`
 }
 
-const LOCALE_MAP: Record<string, string> = {
+type Locale = (typeof routing.locales)[number]
+
+const LOCALE_MAP = {
   en: "en_US",
   id: "id_ID",
-}
+  nl: "nl_NL"
+} satisfies Record<Locale, string>
 
 /**
- * Returns the Open Graph locale string (e.g., 'en_US', 'id_ID') for a given locale code.
+ * Returns the Open Graph locale string (e.g., 'en_US', 'id_ID', 'nl_NL') for a given locale code.
  * Defaults to 'en_US' if not found.
- * @param locale The short locale code (e.g., 'en', 'id')
+ * @param locale The short locale code (e.g., 'en', 'id', 'nl')
  * @returns The full Open Graph locale string.
  */
 export function getOpenGraphLocale(locale: string): string {
-  return LOCALE_MAP[locale] || "en_US"
+  return LOCALE_MAP[locale as Locale] || LOCALE_MAP[routing.defaultLocale]
 }
 
 /**
@@ -57,9 +63,15 @@ export function getOpenGraphLocale(locale: string): string {
  * @param path The path to the page (e.g., '/about', '/product/slug').
  */
 export function getAlternates(path: string = "") {
-  return {
-    en: constructCanonicalUrl("en", path),
-    id: constructCanonicalUrl("id", path),
-    "x-default": constructCanonicalUrl("en", path),
-  }
+  const alternates = routing.locales.reduce<Record<string, string>>(
+    (languages, locale) => {
+      languages[locale] = constructCanonicalUrl(locale, path)
+      return languages
+    },
+    {}
+  )
+
+  alternates["x-default"] = constructCanonicalUrl(routing.defaultLocale, path)
+
+  return alternates
 }

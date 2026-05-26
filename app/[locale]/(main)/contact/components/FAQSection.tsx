@@ -9,20 +9,20 @@ export default function FAQSection() {
   const FAQ_ITEMS = [
     {
       question: t("items.custom.question"),
-      answer: t("items.custom.answer"),
+      answer: t("items.custom.answer")
     },
     {
       question: t("items.shipping.question"),
-      answer: t("items.shipping.answer"),
+      answer: t("items.shipping.answer")
     },
     {
       question: t("items.care.question"),
-      answer: t("items.care.answer"),
+      answer: t("items.care.answer")
     },
     {
       question: t("items.wholesale.question"),
-      answer: t("items.wholesale.answer"),
-    },
+      answer: t("items.wholesale.answer")
+    }
   ]
 
   return (

@@ -6,7 +6,7 @@ const soundFiles = [
   "/sounds/metal-plate-hit-1.mp3",
   "/sounds/metal-plate-hit-2.mp3",
   "/sounds/metal-plate-hit-3.mp3",
-  "/sounds/metal-plate-hit-4.mp3",
+  "/sounds/metal-plate-hit-4.mp3"
 ]
 
 // Helper function to detect mobile devices
@@ -14,8 +14,9 @@ function isMobileDevice() {
   if (typeof window === "undefined") return false
 
   return (
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-    window.innerWidth <= 768
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    ) || window.innerWidth <= 768
   )
 }
 
@@ -24,7 +25,9 @@ let globalAudioElements: HTMLAudioElement[] = []
 let globalAudioContainer: HTMLDivElement | null = null
 let setupComplete = false
 
-function getRandomAudioElement(audioElements: HTMLAudioElement[] | null): HTMLAudioElement | null {
+function getRandomAudioElement(
+  audioElements: HTMLAudioElement[] | null
+): HTMLAudioElement | null {
   if (!audioElements?.length) return null
 
   const randomIndex = Math.floor(Math.random() * audioElements.length)

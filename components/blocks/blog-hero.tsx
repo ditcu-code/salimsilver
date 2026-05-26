@@ -26,7 +26,9 @@ export function BlogHero({ post }: { post: Post }) {
               />
             ) : (
               <div className="bg-muted flex h-full w-full items-center justify-center">
-                <span className="text-muted-foreground/20 font-serif text-6xl">S</span>
+                <span className="text-muted-foreground/20 font-serif text-6xl">
+                  S
+                </span>
               </div>
             )}
             <div className="absolute inset-0 bg-black/10 transition-colors duration-500 group-hover:bg-black/0" />

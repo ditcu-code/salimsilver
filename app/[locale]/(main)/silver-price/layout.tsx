@@ -4,7 +4,7 @@ import { MetalPriceHeader } from "@/components/features/metal-price/metal-price-
 import { SILVER_FAQ_ITEMS } from "./constants"
 
 export default function SilverPriceLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {

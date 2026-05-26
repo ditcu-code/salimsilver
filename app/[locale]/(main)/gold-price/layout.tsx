@@ -4,7 +4,7 @@ import { MetalPriceHeader } from "@/components/features/metal-price/metal-price-
 import { GOLD_FAQ_ITEMS } from "./constants"
 
 export default function GoldPriceLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {

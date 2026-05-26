@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react"
 const LANGUAGES = [
   { code: "en", label: "English", flag: "🇺🇸" },
   { code: "id", label: "Bahasa Indonesia", flag: "🇮🇩" },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱" }
 ]
 
 export function LanguageSwitcher() {
@@ -45,7 +46,7 @@ export function LanguageSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors",
-          isOpen && "ring-primary ring-2 ring-offset-2",
+          isOpen && "ring-primary ring-2 ring-offset-2"
         )}
         aria-label="Change Language"
       >
@@ -70,7 +71,7 @@ export function LanguageSwitcher() {
                   onClick={() => switchLanguage(lang.code)}
                   className={cn(
                     "hover:bg-accent hover:text-accent-foreground flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
-                    currentLocale === lang.code && "bg-accent/50 font-medium",
+                    currentLocale === lang.code && "bg-accent/50 font-medium"
                   )}
                 >
                   <span className="flex items-center gap-2">

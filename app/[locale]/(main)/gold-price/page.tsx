@@ -1,12 +1,12 @@
 import {
   calculateDisplayPrices,
   getGoldPriceHistory,
-  getGoldPriceSummary,
+  getGoldPriceSummary
 } from "@/lib/gold-price"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 import type { Metadata } from "next"
 
@@ -24,8 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: {
-      absolute:
-        "Harga Emas Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
+      absolute: "Harga Emas Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver"
     },
     description:
       "Pantau harga emas murni 24 karat terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
@@ -46,11 +45,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Harga Emas Bulan Lalu",
       "Harga Emas 6 Bulan Lalu",
       "Harga Emas 1 Tahun Lalu",
-      "Harga Emas 24 Karat",
+      "Harga Emas 24 Karat"
     ],
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/gold-price"),
+      languages: getAlternates("/gold-price")
     },
     openGraph: {
       title: "Harga Emas Hari Ini | Update Terbaru per Gram (IDR)",
@@ -64,10 +63,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: "/api/og/gold-price",
           width: 1200,
           height: 630,
-          alt: "Harga Emas Hari Ini di Salim Silver",
-        },
-      ],
-    },
+          alt: "Harga Emas Hari Ini di Salim Silver"
+        }
+      ]
+    }
   }
 }
 
@@ -96,7 +95,7 @@ export default async function GoldPricePage({ params }: Props) {
         chartData={chartData}
         relatedMetal={{
           name: "Perak",
-          href: constructLocalizedPath(locale, "/silver-price"),
+          href: constructLocalizedPath(locale, "/silver-price")
         }}
       />
     )
@@ -112,11 +111,11 @@ export default async function GoldPricePage({ params }: Props) {
           name: item.question,
           acceptedAnswer: {
             "@type": "Answer",
-            text: item.answer,
-          },
-        })),
-      },
-    ],
+            text: item.answer
+          }
+        }))
+      }
+    ]
   }
 
   return (

@@ -7,7 +7,7 @@ import { getJewelryBySlug } from "@/lib/collections"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 export const revalidate = 86400
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: t("notFound"),
+      title: t("notFound")
     }
   }
 
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates(`/product/${slug}`),
+      languages: getAlternates(`/product/${slug}`)
     },
     openGraph: {
       title,
@@ -51,14 +51,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images,
       url: canonicalUrl,
       type: "website",
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images,
-    },
+      images
+    }
   }
 }
 
@@ -90,21 +90,21 @@ export default async function ProductPage({ params }: Props) {
               ? {
                   "@type": "QuantitativeValue",
                   value: product.weightGrams,
-                  unitCode: "GRM",
+                  unitCode: "GRM"
                 }
               : undefined,
             material: product.material,
             sku: product.slug,
             brand: {
               "@type": "Brand",
-              name: "Salim Silver",
+              name: "Salim Silver"
             },
             offers: {
               "@type": "Offer",
               availability: "https://schema.org/InStock",
-              url: productUrl,
-            },
-          }),
+              url: productUrl
+            }
+          })
         }}
       />
       <script
@@ -118,7 +118,7 @@ export default async function ProductPage({ params }: Props) {
                 "@type": "ListItem",
                 position: 1,
                 name: t("collections"),
-                item: collectionsUrl,
+                item: collectionsUrl
               },
               ...(product.collectionSlug
                 ? [
@@ -128,32 +128,31 @@ export default async function ProductPage({ params }: Props) {
                       name: product.collectionSlug
                         .split("-")
                         .map(
-                          (word) =>
-                            word.charAt(0).toUpperCase() + word.slice(1),
+                          (word) => word.charAt(0).toUpperCase() + word.slice(1)
                         )
                         .join(" "),
                       item: constructCanonicalUrl(
                         locale,
-                        `/collections/${product.collectionSlug}`,
-                      ),
+                        `/collections/${product.collectionSlug}`
+                      )
                     },
                     {
                       "@type": "ListItem",
                       position: 3,
                       name: product.title,
-                      item: productUrl,
-                    },
+                      item: productUrl
+                    }
                   ]
                 : [
                     {
                       "@type": "ListItem",
                       position: 2,
                       name: product.title,
-                      item: productUrl,
-                    },
-                  ]),
-            ],
-          }),
+                      item: productUrl
+                    }
+                  ])
+            ]
+          })
         }}
       />
     </>

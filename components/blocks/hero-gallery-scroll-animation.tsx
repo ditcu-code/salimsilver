@@ -9,7 +9,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
   useScroll,
-  useTransform,
+  useTransform
 } from "framer-motion"
 import Image from "next/image"
 import * as React from "react"
@@ -45,26 +45,28 @@ const bentoGridVariants = cva(
           [&>*:nth-child(2)]:col-span-1 md:[&>*:nth-child(2)]:col-span-1 md:[&>*:nth-child(2)]:row-span-2
           [&>*:nth-child(3)]:col-span-1 md:[&>*:nth-child(3)]:col-span-1 md:[&>*:nth-child(3)]:row-span-1
           [&>*:nth-child(4)]:col-span-1 md:[&>*:nth-child(4)]:col-span-1 md:[&>*:nth-child(4)]:row-span-1
-        `,
-      },
+        `
+      }
     },
 
     defaultVariants: {
-      variant: "default",
-    },
+      variant: "default"
+    }
   }
 )
 
 interface ContainerScrollContextValue {
   scrollYProgress: MotionValue<number>
 }
-const ContainerScrollContext = React.createContext<ContainerScrollContextValue | undefined>(
-  undefined
-)
+const ContainerScrollContext = React.createContext<
+  ContainerScrollContextValue | undefined
+>(undefined)
 function useContainerScrollContext() {
   const context = React.useContext(ContainerScrollContext)
   if (!context) {
-    throw new Error("useContainerScrollContext must be used within a ContainerScroll Component")
+    throw new Error(
+      "useContainerScrollContext must be used within a ContainerScroll Component"
+    )
   }
   return context
 }
@@ -73,10 +75,12 @@ const ContainerScroll = ({
   className,
   onProgressChange,
   ...props
-}: React.HTMLAttributes<HTMLDivElement> & { onProgressChange?: (value: number) => void }) => {
+}: React.HTMLAttributes<HTMLDivElement> & {
+  onProgressChange?: (value: number) => void
+}) => {
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
-    target: scrollRef,
+    target: scrollRef
   })
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -85,7 +89,11 @@ const ContainerScroll = ({
 
   return (
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
-      <div ref={scrollRef} className={cn("relative min-h-screen w-full", className)} {...props}>
+      <div
+        ref={scrollRef}
+        className={cn("relative min-h-screen w-full", className)}
+        {...props}
+      >
         {children}
       </div>
     </ContainerScrollContext.Provider>
@@ -96,21 +104,31 @@ const BentoGrid = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof bentoGridVariants>
 >(({ variant, className, ...props }, ref) => {
-  return <div ref={ref} className={cn(bentoGridVariants({ variant }), className)} {...props} />
+  return (
+    <div
+      ref={ref}
+      className={cn(bentoGridVariants({ variant }), className)}
+      {...props}
+    />
+  )
 })
 BentoGrid.displayName = "BentoGrid"
 
 const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
   ({ className, style, ...props }, ref) => {
     const { scrollYProgress } = useContainerScrollContext()
-    const translate = useTransform(scrollYProgress, [0, 0.9], ["0%", "-35%"], { clamp: true })
-    const baseScale = useTransform(scrollYProgress, [0, 0.9], [1, 0.5], { clamp: true })
+    const translate = useTransform(scrollYProgress, [0, 0.9], ["0%", "-35%"], {
+      clamp: true
+    })
+    const baseScale = useTransform(scrollYProgress, [0, 0.9], [1, 0.5], {
+      clamp: true
+    })
     const appearProgress = useMotionValue(0)
 
     React.useEffect(() => {
       const controls = animate(appearProgress, 1, {
         duration: 0.8,
-        ease: "easeOut",
+        ease: "easeOut"
       })
 
       return () => controls.stop()
@@ -131,7 +149,7 @@ const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
           translate,
           scale,
           opacity,
-          ...style,
+          ...style
         }}
         {...props}
       ></motion.div>
@@ -148,39 +166,52 @@ const ContainerScale = React.forwardRef<HTMLDivElement, ContainerScaleProps>(
   ({ className, style, appearAt, ...props }, ref) => {
     const { scrollYProgress } = useContainerScrollContext()
     const clampedAppearAt =
-      typeof appearAt === "number" ? Math.min(Math.max(appearAt, 0), 1) : undefined
+      typeof appearAt === "number"
+        ? Math.min(Math.max(appearAt, 0), 1)
+        : undefined
 
     const opacityRange =
       clampedAppearAt !== undefined
-        ? [Math.max(0, clampedAppearAt - 0.05), Math.min(1, clampedAppearAt + 0.05)]
+        ? [
+            Math.max(0, clampedAppearAt - 0.05),
+            Math.min(1, clampedAppearAt + 0.05)
+          ]
         : [0, 0.5]
     const opacityOutput = clampedAppearAt !== undefined ? [0, 1] : [1, 0]
 
     const scaleRange =
       clampedAppearAt !== undefined
-        ? [Math.max(0, clampedAppearAt - 0.05), Math.min(1, clampedAppearAt + 0.25)]
+        ? [
+            Math.max(0, clampedAppearAt - 0.05),
+            Math.min(1, clampedAppearAt + 0.25)
+          ]
         : [0, 0.5]
     const scaleOutput = clampedAppearAt !== undefined ? [0.9, 1] : [1, 0]
 
     const opacity = useTransform(scrollYProgress, opacityRange, opacityOutput, {
-      clamp: true,
+      clamp: true
     })
     const scale = useTransform(scrollYProgress, scaleRange, scaleOutput, {
-      clamp: true,
+      clamp: true
     })
 
-    const position = useTransform(scrollYProgress, (pos) => (pos >= 0.6 ? "absolute" : "fixed"))
+    const position = useTransform(scrollYProgress, (pos) =>
+      pos >= 0.6 ? "absolute" : "fixed"
+    )
 
     return (
       <motion.div
         ref={ref}
-        className={cn("top-1/2 left-1/2 size-fit will-change-transform", className)}
+        className={cn(
+          "top-1/2 left-1/2 size-fit will-change-transform",
+          className
+        )}
         style={{
           translate: "-50% -50%",
           scale,
           position,
           opacity,
-          ...style,
+          ...style
         }}
         {...props}
       />
@@ -208,7 +239,7 @@ export function ScrollAnimation({
     <motion.div
       className={className}
       style={{
-        y: useTransform(progress, [0, 1], [0, -100]),
+        y: useTransform(progress, [0, 1], [0, -100])
       }}
       {...props}
     >
@@ -240,7 +271,7 @@ export function ParallaxImage({
     <motion.div
       className={cn("relative", className)}
       style={{
-        y: useTransform(progress, [0, 1], [0, -100 * position]),
+        y: useTransform(progress, [0, 1], [0, -100 * position])
       }}
       {...props}
     >

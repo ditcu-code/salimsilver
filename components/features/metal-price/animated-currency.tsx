@@ -6,7 +6,7 @@ import { memo, useMemo } from "react"
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
   currency: "IDR",
-  maximumFractionDigits: 0,
+  maximumFractionDigits: 0
 })
 
 export function useFormattedCurrency(val: number) {
@@ -26,13 +26,13 @@ export function useFormattedCurrency(val: number) {
  * and instant price updates are better UX for financial data.
  */
 export const AnimatedCurrency = memo(function AnimatedCurrency({
-  value,
+  value
 }: {
   value: number
 }) {
   const formatted = useMemo(
     () => currencyFormatter.format(Math.round(value)),
-    [value],
+    [value]
   )
 
   return <span>{formatted}</span>

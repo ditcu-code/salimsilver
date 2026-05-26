@@ -3,13 +3,13 @@ import { NextRequest, NextResponse } from "next/server"
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
-  locales: ["en", "id"],
+  locales: ["en", "id", "nl"],
 
   // Used when no locale matches
   defaultLocale: "en",
 
   // The default locale is not prefixed
-  localePrefix: "as-needed",
+  localePrefix: "as-needed"
 })
 
 const NON_LOCALIZED_PATHNAMES = ["/links", "/gmaps-review", "/maintenance"]
@@ -18,7 +18,7 @@ export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Detect locale
-  const locale = pathname.match(/^\/(id|en)/)?.[1] || "en"
+  const locale = pathname.match(/^\/(id|en|nl)/)?.[1] || "en"
 
   // Clone request headers and set X-Locale
   const requestHeaders = new Headers(request.headers)
@@ -26,7 +26,7 @@ export default async function proxy(request: NextRequest) {
 
   // Create a new request with updated headers
   const localizedRequest = new NextRequest(request, {
-    headers: requestHeaders,
+    headers: requestHeaders
   })
 
   // Skip next-intl for API routes and non-localized paths
@@ -45,6 +45,6 @@ export const config = {
   // - … if they start with `/api`, `/_next` or `/_vercel`
   // - … the ones containing a dot (e.g. `favicon.ico`)
   matcher: [
-    "/((?!api|_next|_vercel|opengraph-image|twitter-image|icon|.*\\..*).*)",
-  ],
+    "/((?!api|_next|_vercel|opengraph-image|twitter-image|icon|.*\\..*).*)"
+  ]
 }

@@ -5,7 +5,7 @@ import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
-  getOpenGraphLocale,
+  getOpenGraphLocale
 } from "@/lib/seo"
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
@@ -13,7 +13,7 @@ import ContactInfo from "./components/ContactInfo"
 import FAQSection from "./components/FAQSection"
 
 export async function generateMetadata({
-  params,
+  params
 }: {
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
@@ -26,7 +26,7 @@ export async function generateMetadata({
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/contact"),
+      languages: getAlternates("/contact")
     },
     openGraph: {
       type: "website",
@@ -34,13 +34,13 @@ export async function generateMetadata({
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale),
+      locale: getOpenGraphLocale(locale)
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
-      description: t("description"),
-    },
+      description: t("description")
+    }
   }
 }
 
@@ -51,20 +51,20 @@ export default async function ContactPage() {
   const faqItems = [
     {
       question: tFaq("items.custom.question"),
-      answer: tFaq("items.custom.answer"),
+      answer: tFaq("items.custom.answer")
     },
     {
       question: tFaq("items.shipping.question"),
-      answer: tFaq("items.shipping.answer"),
+      answer: tFaq("items.shipping.answer")
     },
     {
       question: tFaq("items.care.question"),
-      answer: tFaq("items.care.answer"),
+      answer: tFaq("items.care.answer")
     },
     {
       question: tFaq("items.wholesale.question"),
-      answer: tFaq("items.wholesale.answer"),
-    },
+      answer: tFaq("items.wholesale.answer")
+    }
   ]
 
   const jsonLd = {
@@ -82,7 +82,7 @@ export default async function ContactPage() {
             telephone: "+62 896 7197 7699",
             contactType: "customer service",
             areaServed: "ID",
-            availableLanguage: ["English", "Indonesian"],
+            availableLanguage: ["English", "Indonesian"]
           },
           address: {
             "@type": "PostalAddress",
@@ -90,9 +90,9 @@ export default async function ContactPage() {
             addressLocality: "Yogyakarta City",
             addressRegion: "Special Region of Yogyakarta",
             postalCode: "55173",
-            addressCountry: "ID",
-          },
-        },
+            addressCountry: "ID"
+          }
+        }
       },
       {
         "@type": "FAQPage",
@@ -101,11 +101,11 @@ export default async function ContactPage() {
           name: item.question,
           acceptedAnswer: {
             "@type": "Answer",
-            text: item.answer,
-          },
-        })),
-      },
-    ],
+            text: item.answer
+          }
+        }))
+      }
+    ]
   }
 
   return (
@@ -125,7 +125,7 @@ export default async function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd),
+          __html: JSON.stringify(jsonLd)
         }}
       />
     </div>

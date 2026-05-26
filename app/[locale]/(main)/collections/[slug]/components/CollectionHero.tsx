@@ -11,7 +11,7 @@ interface CollectionHeroProps {
 export default function CollectionHero({
   title,
   description,
-  coverImage,
+  coverImage
 }: CollectionHeroProps) {
   return (
     <section className="relative right-1/2 left-1/2 -mr-[50vw] -ml-[50vw] h-[50vh] w-screen">

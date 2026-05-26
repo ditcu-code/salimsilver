@@ -15,7 +15,7 @@ export function formatDate(dateString: string): string {
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "numeric"
   })
 }
 
@@ -59,7 +59,7 @@ export function formatNumber(num: number): string {
  */
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number,
+  wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout
 

@@ -126,7 +126,7 @@ export function LayoutGridDemo() {
       ),
       className: "md:col-span-2",
       thumbnail: `${SUPABASE_CATALOG_URL}/hand-carved-silver-rings-couple-salimsilver.webp`,
-      alt: t("card1.alt"),
+      alt: t("card1.alt")
     },
     {
       id: 2,
@@ -142,7 +142,7 @@ export function LayoutGridDemo() {
       ),
       className: "col-span-1",
       thumbnail: `${SUPABASE_CATALOG_URL}/silver-hibiscus-locket-purple-stone-pendant-necklace-salimsilver.webp`,
-      alt: t("card2.alt"),
+      alt: t("card2.alt")
     },
     {
       id: 3,
@@ -158,7 +158,7 @@ export function LayoutGridDemo() {
       ),
       className: "col-span-1",
       thumbnail: `${SUPABASE_CATALOG_URL}/silver-filigree-ruby-cuff-bracelet-salimsilver.webp`,
-      alt: t("card3.alt"),
+      alt: t("card3.alt")
     },
     {
       id: 4,
@@ -174,8 +174,8 @@ export function LayoutGridDemo() {
       ),
       className: "md:col-span-2",
       thumbnail: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-      alt: t("card4.alt"),
-    },
+      alt: t("card4.alt")
+    }
   ]
 
   return (

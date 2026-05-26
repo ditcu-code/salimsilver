@@ -8,16 +8,16 @@ const config = [
       "**/build/**",
       "**/dist/**",
       "**/node_modules/**",
-      "next-env.d.ts",
-    ],
+      "next-env.d.ts"
+    ]
   },
   ...nextConfig,
   {
     rules: {
       "react-hooks/purity": "off",
-      "react-hooks/set-state-in-effect": "off",
-    },
-  },
+      "react-hooks/set-state-in-effect": "off"
+    }
+  }
 ]
 
 export default config

@@ -22,8 +22,8 @@ export const getSilverPriceSummary = unstable_cache(
   ["silver-price-summary"],
   {
     tags: ["silver-price"],
-    revalidate: 3600, // Fallback revalidate every hour
-  },
+    revalidate: 3600 // Fallback revalidate every hour
+  }
 )
 
 export const getSilverPriceHistory = unstable_cache(
@@ -47,7 +47,7 @@ export const getSilverPriceHistory = unstable_cache(
     // Map directly to PriceHistoryItem format (no downsampling)
     const dailyData: PriceHistoryItem[] = reversedData.map((item) => ({
       date: item.updated_at,
-      price: item.price_idr / 1000,
+      price: item.price_idr / 1000
     }))
 
     return dailyData
@@ -55,8 +55,8 @@ export const getSilverPriceHistory = unstable_cache(
   ["silver-price-history"],
   {
     tags: ["silver-price"],
-    revalidate: 3600,
-  },
+    revalidate: 3600
+  }
 )
 
 export interface DisplayPrices {
@@ -70,7 +70,7 @@ export interface DisplayPrices {
 }
 
 export function calculateDisplayPrices(
-  summary: SilverPriceSummary | null,
+  summary: SilverPriceSummary | null
 ): DisplayPrices | null {
   if (!summary) return null
 
@@ -102,6 +102,6 @@ export function calculateDisplayPrices(
     price30d,
     price180d,
     price1y,
-    lastUpdated: summary.updated_at,
+    lastUpdated: summary.updated_at
   }
 }

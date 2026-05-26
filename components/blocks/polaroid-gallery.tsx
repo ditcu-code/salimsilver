@@ -15,7 +15,7 @@ export function PolaroidGallery({
   images,
   className,
   title = "Our Happy Students",
-  studentAlt = "Salim Silver Jewelry Making Workshop Student",
+  studentAlt = "Salim Silver Jewelry Making Workshop Student"
 }: PolaroidGalleryProps) {
   return (
     <section className={cn("py-12", className)}>
