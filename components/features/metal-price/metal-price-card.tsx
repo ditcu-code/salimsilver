@@ -10,6 +10,7 @@ import {
 import { Triangle } from "lucide-react"
 
 import { AnimatePresence, m as motion } from "framer-motion"
+import { useTranslations, useLocale } from "next-intl"
 import { AnimatedCurrency } from "./animated-currency"
 import { usePriceTrend } from "./use-price-trend"
 
@@ -24,6 +25,11 @@ export function MetalPriceCard({
   previousPriceDisplay,
   lastUpdated
 }: MetalPriceCardProps) {
+  const t = useTranslations("MetalPrice.Card")
+  const locale = useLocale()
+  const dateLocale = locale === "id" ? "id-ID" : locale === "nl" ? "nl-NL" : "en-US"
+  const timezoneLabel = locale === "id" ? "WIB" : "WIB (UTC+7)"
+
   const { priceChange, percentageChange, isUp, isSame, showPercentage } =
     usePriceTrend(currentPriceDisplay, previousPriceDisplay)
 
@@ -65,7 +71,7 @@ export function MetalPriceCard({
                 <AnimatedCurrency value={currentPriceDisplay} />
               </span>
               <span className="text-muted-foreground text-lg font-medium sm:text-xl">
-                / gram
+                / {t("gram")}
               </span>
             </div>
           </div>
@@ -83,10 +89,10 @@ export function MetalPriceCard({
               )}
               <div className="flex gap-1 font-sans font-bold">
                 {isSame ? (
-                  "Harga Stabil"
+                  t("stable")
                 ) : (
                   <>
-                    <span>{isUp ? "Naik" : "Turun"}</span>
+                    <span>{isUp ? t("up") : t("down")}</span>
                     <div className="relative h-5 overflow-hidden">
                       <AnimatePresence mode="popLayout" initial={false}>
                         {showPercentage ? (
@@ -140,7 +146,7 @@ export function MetalPriceCard({
         <div className="grid grid-cols-2 md:gap-8 gap-4 pt-6">
           <div className="space-y-1 text-center">
             <p className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
-              Harga Kemarin
+              {t("yesterdayPrice")}
             </p>
             <p className="text-xl font-semibold tracking-tight tabular-nums">
               <AnimatedCurrency value={previousPriceDisplay} />
@@ -148,10 +154,10 @@ export function MetalPriceCard({
           </div>
           <div className="space-y-1 text-center">
             <p className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
-              Update Terakhir
+              {t("lastUpdate")}
             </p>
             <div className="text-foreground text-sm font-medium">
-              {new Date(lastUpdated).toLocaleDateString("id-ID", {
+              {new Date(lastUpdated).toLocaleDateString(dateLocale, {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
@@ -159,12 +165,12 @@ export function MetalPriceCard({
               })}
             </div>
             <div className="text-muted-foreground -mt-1 text-xs">
-              {new Date(lastUpdated).toLocaleTimeString("id-ID", {
+              {new Date(lastUpdated).toLocaleTimeString(dateLocale, {
                 hour: "2-digit",
                 minute: "2-digit",
                 timeZone: "Asia/Jakarta"
               })}{" "}
-              WIB
+              {timezoneLabel}
             </div>
           </div>
         </div>

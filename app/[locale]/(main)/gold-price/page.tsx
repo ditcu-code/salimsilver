@@ -9,10 +9,10 @@ import {
   getOpenGraphLocale
 } from "@/lib/seo"
 import type { Metadata } from "next"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { PriceFallbackCard } from "@/components/features/metal-price/metal-price-card"
 import { MetalPriceDisplay } from "@/components/features/metal-price/metal-price-display"
-import { GOLD_FAQ_ITEMS } from "./constants"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -20,14 +20,14 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "GoldPricePage.Metadata" })
   const canonicalUrl = constructCanonicalUrl(locale, "/gold-price")
 
   return {
     title: {
-      absolute: "Harga Emas Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver"
+      absolute: t("title")
     },
-    description:
-      "Pantau harga emas murni 24 karat terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
+    description: t("description"),
     keywords: [
       "Harga Emas Hari Ini",
       "Harga Emas per Gram",
@@ -52,9 +52,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: getAlternates("/gold-price")
     },
     openGraph: {
-      title: "Harga Emas Hari Ini | Update Terbaru per Gram (IDR)",
-      description:
-        "Cek harga emas murni hari ini dalam Rupiah. Data terupdate real-time untuk panduan beli dan investasi emas Anda.",
+      title: t("ogTitle"),
+      description: t("ogDescription"),
       url: canonicalUrl,
       locale: getOpenGraphLocale(locale),
       type: "website",
@@ -63,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: "/api/og/gold-price",
           width: 1200,
           height: 630,
-          alt: "Harga Emas Hari Ini di Salim Silver"
+          alt: t("ogAlt")
         }
       ]
     }
@@ -74,6 +73,9 @@ import { constructLocalizedPath } from "@/lib/utils"
 
 export default async function GoldPricePage({ params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
+
+  const t = await getTranslations("GoldPricePage")
   const summaryData = await getGoldPriceSummary()
   const displayPrices = calculateDisplayPrices(summaryData)
   const chartData = await getGoldPriceHistory(30)
@@ -84,8 +86,8 @@ export default async function GoldPricePage({ params }: Props) {
     // Fallback if cache is empty
     priceContent = (
       <PriceFallbackCard
-        title="Harga Emas"
-        description="Kami saat ini tidak dapat mengambil harga emas terbaru. Silakan periksa kembali nanti."
+        title={t("page.fallbackTitle")}
+        description={t("page.fallbackDescription")}
       />
     )
   } else {
@@ -94,19 +96,38 @@ export default async function GoldPricePage({ params }: Props) {
         displayPrices={displayPrices}
         chartData={chartData}
         relatedMetal={{
-          name: "Perak",
+          name: t("page.relatedMetalName"),
           href: constructLocalizedPath(locale, "/silver-price")
         }}
       />
     )
   }
 
+  const faqItems = [
+    {
+      question: t("FAQs.updateFrequency.question"),
+      answer: t("FAQs.updateFrequency.answer")
+    },
+    {
+      question: t("FAQs.source.question"),
+      answer: t("FAQs.source.answer")
+    },
+    {
+      question: t("FAQs.difference.question"),
+      answer: t("FAQs.difference.answer")
+    },
+    {
+      question: t("FAQs.buyPhysical.question"),
+      answer: t("FAQs.buyPhysical.answer")
+    }
+  ]
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "FAQPage",
-        mainEntity: GOLD_FAQ_ITEMS.map((item) => ({
+        mainEntity: faqItems.map((item) => ({
           "@type": "Question",
           name: item.question,
           acceptedAnswer: {

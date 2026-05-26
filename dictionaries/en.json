@@ -571,5 +571,102 @@
       "contact": "Contact",
       "journal": "Journal"
     }
+  },
+  "MetalPrice": {
+    "Display": {
+      "oneWeekAgo": "1 Week Ago",
+      "oneMonthAgo": "1 Month Ago",
+      "sixMonthsAgo": "6 Months Ago",
+      "oneYearAgo": "1 Year Ago",
+      "viewPriceOf": "View {metal} Price",
+      "chartTitle": "{metal} Price Chart"
+    },
+    "Card": {
+      "stable": "Price Stable",
+      "up": "Up",
+      "down": "Down",
+      "yesterdayPrice": "Yesterday's Price",
+      "gram": "gram",
+      "lastUpdate": "Last Updated"
+    },
+    "Chart": {
+      "oneWeek": "1 Week",
+      "oneMonth": "1 Month"
+    }
+  },
+  "SilverPricePage": {
+    "Metadata": {
+      "title": "Silver Price Today per Gram in Indonesian Rupiah (IDR) | Salim Silver",
+      "description": "Track the latest pure silver price today in Indonesian Rupiah (IDR). Accurate and updated price per gram data for your investment.",
+      "ogTitle": "Silver Price Today | Latest Updates per Gram (IDR)",
+      "ogDescription": "Check the pure silver price today in Rupiah. Real-time updated data to guide your silver purchase and investment.",
+      "ogAlt": "Silver Price Today at Salim Silver"
+    },
+    "layout": {
+      "title": "Silver Price Today",
+      "description": "Latest pure silver price updates in Rupiah.",
+      "aboutTitle": "About Silver Price Today",
+      "aboutDescription": "Our price data refers to international precious metal market standards (Fine Silver 999) and is converted to Rupiah (IDR) in real-time. This information is intended as an accurate reference for investors, collectors, and silversmiths, especially in the silver crafting center of Kotagede, Yogyakarta. Make sure to monitor price trends before making transactions for the best decisions."
+    },
+    "page": {
+      "fallbackTitle": "Silver Price",
+      "fallbackDescription": "We are currently unable to fetch the latest silver price. Please check back later.",
+      "metalName": "Silver",
+      "relatedMetalName": "Gold"
+    },
+    "FAQs": {
+      "updateFrequency": {
+        "question": "How often is the silver price updated?",
+        "answer": "Our system monitors international silver price movements and updates the data regularly every 30 minutes to ensure you get the most relevant information for current market conditions."
+      },
+      "source": {
+        "question": "Where does this silver price data come from?",
+        "answer": "Our price data is sourced directly from international spot market data (XAG/USD) converted into Rupiah in real-time to ensure the latest exchange rate accuracy."
+      },
+      "localVsInternational": {
+        "question": "Why is the local pure silver price sometimes different from the international price?",
+        "answer": "The difference between local and international silver prices is caused by several factors, including shipping costs, dealer margins/profits, refining costs, as well as local tax policies and regulations. In addition, fluctuations in the Rupiah exchange rate against the US Dollar also affect silver prices in the local market."
+      }
+    }
+  },
+  "GoldPricePage": {
+    "Metadata": {
+      "title": "Gold Price Today per Gram in Indonesian Rupiah (IDR) | Salim Silver",
+      "description": "Track the latest 24 carat pure gold price today in Indonesian Rupiah (IDR). Accurate and updated price per gram data for your investment.",
+      "ogTitle": "Gold Price Today | Latest Updates per Gram (IDR)",
+      "ogDescription": "Check the pure gold price today in Rupiah. Real-time updated data to guide your gold purchase and investment.",
+      "ogAlt": "Gold Price Today at Salim Silver"
+    },
+    "layout": {
+      "title": "Gold Price Today",
+      "description": "Latest pure gold price updates in Rupiah.",
+      "aboutTitle": "About Gold Price Today",
+      "aboutDescriptionParagraph1": "Salim Silver presents pure gold (Fine Gold .999) price data sourced from the international commodity market. This price is a transparent and accurate baseline reference (spot price).",
+      "aboutDescriptionParagraph2": "Please note that this price differs from physical gold prices (Antam/Pegadaian) as it does not include minting costs, retail margins, and related taxes. Use this data as a reference for your investment and market analysis."
+    },
+    "page": {
+      "fallbackTitle": "Gold Price",
+      "fallbackDescription": "We are currently unable to fetch the latest gold price. Please check back later.",
+      "metalName": "Gold",
+      "relatedMetalName": "Silver"
+    },
+    "FAQs": {
+      "updateFrequency": {
+        "question": "How often is the gold price updated?",
+        "answer": "Our system monitors international gold price movements and updates the data every 30 minutes to ensure you get the most relevant information for current market conditions."
+      },
+      "source": {
+        "question": "Where does this gold price data come from?",
+        "answer": "Our price data is sourced directly from international spot market data (XAU/USD) converted into Rupiah in real-time to ensure the latest exchange rate accuracy."
+      },
+      "difference": {
+        "question": "Why is the price different from local gold stores (Antam/Pegadaian)?",
+        "answer": "The price displayed here is the 'Spot Price' (raw pure gold material price on the world market). The price at physical stores is usually 3-10% higher because it includes minting fees, certificates, distribution costs, store margins, and taxes (VAT/income tax) imposed on physical gold products."
+      },
+      "buyPhysical": {
+        "question": "Can I buy physical gold at Salim Silver?",
+        "answer": "Currently, Salim Silver focuses on silver craftsmanship (Sterling Silver 925). However, we can accommodate custom orders for gold jewelry (wedding rings, etc.) by request. Please contact us for more information."
+      }
+    }
   }
 }

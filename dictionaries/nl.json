@@ -570,5 +570,102 @@
       "contact": "Contact",
       "journal": "Journal"
     }
+  },
+  "MetalPrice": {
+    "Display": {
+      "oneWeekAgo": "1 Week Geleden",
+      "oneMonthAgo": "1 Maand Geleden",
+      "sixMonthsAgo": "6 Maanden Geleden",
+      "oneYearAgo": "1 Jaar Geleden",
+      "viewPriceOf": "Bekijk Prijs van {metal}",
+      "chartTitle": "Grafiek van {metal}prijs"
+    },
+    "Card": {
+      "stable": "Prijs Stabiel",
+      "up": "Stijging",
+      "down": "Daling",
+      "yesterdayPrice": "Prijs van Gisteren",
+      "gram": "gram",
+      "lastUpdate": "Laatste Update"
+    },
+    "Chart": {
+      "oneWeek": "1 Week",
+      "oneMonth": "1 Maand"
+    }
+  },
+  "SilverPricePage": {
+    "Metadata": {
+      "title": "Zilverprijs per gram in Indonesische Rupiah (IDR) van vandaag | Salim Silver",
+      "description": "Volg de actuele zilverprijs per gram in Indonesische Rupiah (IDR). Nauwkeurige en bijgewerkte prijsgegevens per gram voor uw investering.",
+      "ogTitle": "Zilverprijs vandaag | Actuele updates per gram (IDR)",
+      "ogDescription": "Bekijk de actuele zilverprijs in Rupiah. Real-time bijgewerkte gegevens voor uw zilveren aankopen en investeringen.",
+      "ogAlt": "Zilverprijs vandaag bij Salim Silver"
+    },
+    "layout": {
+      "title": "Zilverprijs Vandaag",
+      "description": "Actuele updates van de zilverprijs in Rupiah.",
+      "aboutTitle": "Over de Zilverprijs van Vandaag",
+      "aboutDescription": "Onze prijsgegevens verwijzen naar internationale standaarden voor edelmetalen (Fine Silver 999) en worden real-time omgerekend naar Rupiah (IDR). Deze informatie is bedoeld als een nauwweurige referentie voor investeerders, verzamelaars en zilversmeden, met name in het zilvercentrum Kotagede, Yogyakarta. Volg de prijsontwikkelingen om de beste beslissingen te nemen."
+    },
+    "page": {
+      "fallbackTitle": "Zilverprijs",
+      "fallbackDescription": "We kunnen de actuele zilverprijs momenteel niet ophalen. Probeer het later opnieuw.",
+      "metalName": "Zilver",
+      "relatedMetalName": "Goud"
+    },
+    "FAQs": {
+      "updateFrequency": {
+        "question": "Hoe vaak wordt de zilverprijs bijgewerkt?",
+        "answer": "Ons systeem volgt de internationale zilverprijsbewegingen en werkt de gegevens regelmatig elke 30 minuten bij om ervoor te zorgen dat u de meest relevante informatie krijgt voor de huidige marktomstandigheden."
+      },
+      "source": {
+        "question": "Waar komen deze zilverprijsgegevens vandaan?",
+        "answer": "Onze prijsgegevens zijn rechtstreeks afkomstig van internationale spotmarktgegevens (XAG/USD) en worden real-time omgeerekend naar Rupiah om de nauwkeurigheid van de wisselkoers te garanderen."
+      },
+      "localVsInternational": {
+        "question": "Waarom verschilt de lokale zilverprijs soms van de internationale prijs?",
+        "answer": "Het verschil tussen lokale en internationale zilverprijzen wordt veroorzaakt door verschillende factoren, waaronder verzendkosten, marges/winsten van handelaren, raffinagekosten en lokaal belastingbeleid en regelgeving. Daarnaast beïnvloeden schommelingen in de wisselkoers van de Rupiah ten opzichte van de Amerikaanse dollar de zilverprijzen op de lokale markt."
+      }
+    }
+  },
+  "GoldPricePage": {
+    "Metadata": {
+      "title": "Goudprijs per gram in Indonesische Rupiah (IDR) van vandaag | Salim Silver",
+      "description": "Volg de actuele 24-karaats goudprijs per gram in Indonesische Rupiah (IDR). Nauwkeurige en bijgewerkte prijsgegevens per gram voor uw investering.",
+      "ogTitle": "Goudprijs vandaag | Actuele updates per gram (IDR)",
+      "ogDescription": "Bekijk de actuele goudprijs in Rupiah. Real-time bijgewerkte gegevens voor uw gouden aankopen en investeringen.",
+      "ogAlt": "Goudprijs vandaag bij Salim Silver"
+    },
+    "layout": {
+      "title": "Goudprijs Vandaag",
+      "description": "Actuele updates van de goudprijs in Rupiah.",
+      "aboutTitle": "Over de Goudprijs van Vandaag",
+      "aboutDescriptionParagraph1": "Salim Silver presenteert goudprijsgegevens (Fine Gold .999) afkomstig van de internationale grondstoffenmarkt. Deze prijs is een transparante en nauwkeurige referentieprijs (spotprijs).",
+      "aboutDescriptionParagraph2": "Houd er rekening mee dat deze prijs verschilt van de fysieke goudprijzen (Antam/Pegadaian) omdat deze exclusief productiekosten, winkelmarges en gerelateerde belastingen is. Gebruik deze gegevens als referentie voor uw investering en marktanalyse."
+    },
+    "page": {
+      "fallbackTitle": "Goudprijs",
+      "fallbackDescription": "We kunnen de actuele goudprijs momenteel niet ophalen. Probeer het later opnieuw.",
+      "metalName": "Goud",
+      "relatedMetalName": "Zilver"
+    },
+    "FAQs": {
+      "updateFrequency": {
+        "question": "Hoe vaak wordt de goudprijs bijgewerkt?",
+        "answer": "Ons systeem volgt de internationale goudprijsbewegingen en werkt de gegevens elke 30 minuten bij om ervoor te zorgen dat u de meest relevante informatie krijgt voor de huidige marktomstandigheden."
+      },
+      "source": {
+        "question": "Waar komen deze goudprijsgegevens vandaan?",
+        "answer": "Onze prijsgegevens zijn rechtstreeks afkomstig van internationale spotmarktgegevens (XAU/USD) en worden real-time omgeerekend naar Rupiah om de nauwkeurigheid van de wisselkoers te garanderen."
+      },
+      "difference": {
+        "question": "Waarom verschilt de prijs van lokale goudwinkels (Antam/Pegadaian)?",
+        "answer": "De hier getoonde prijs is de 'Spotprijs' (de prijs van ruw goud op de wereldmarkt). De prijs in fysieke winkels ligt meestal 3-10% hoger omdat deze inclusief productiekosten, certificaten, distributiekosten, winkelmarges en belastingen (btw/inkomstenbelasting) op fysieke goudproducten is."
+      },
+      "buyPhysical": {
+        "question": "Kan ik fysiek goud kopen bij Salim Silver?",
+        "answer": "Momenteel richt Salim Silver zich op zilveren vakmanschap (Sterling Silver 925). We kunnen echter op verzoek bestellingen op maat maken voor gouden sieraden (trouwringen, enz.). Neem contact met ons op voor meer informatie."
+      }
+    }
   }
 }

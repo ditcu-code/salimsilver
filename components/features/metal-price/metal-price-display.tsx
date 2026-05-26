@@ -5,11 +5,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { PriceHistoryItem } from "@/lib/types"
 import { sendGAEvent } from "@next/third-parties/google"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { HistoricalPriceRow } from "./historical-price-row"
 import { MetalPriceCard } from "./metal-price-card"
 import { MetalPriceChart } from "./metal-price-chart"
-
-// ...
 
 export interface DisplayPrices {
   currentPrice: number
@@ -35,6 +34,7 @@ export function MetalPriceDisplay({
   chartData,
   relatedMetal
 }: MetalPriceDisplayProps) {
+  const t = useTranslations("MetalPrice.Display")
   const {
     currentPrice,
     previousPrice,
@@ -45,13 +45,16 @@ export function MetalPriceDisplay({
     lastUpdated
   } = displayPrices
 
+  // Safely infer if the current page is for gold or silver price, independent of language translation
+  const isGold = relatedMetal?.href.includes("silver-price") ?? false
+
   return (
     <div className="w-full space-y-6">
       <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-3">
         {/* Left Column: Chart (Takes 2/3 width) - Order 3 on Mobile, Order 1 on Desktop */}
         <div className="order-3 lg:order-1 lg:col-span-2">
           <MetalPriceChart
-            type={relatedMetal?.name === "Perak" ? "gold" : "silver"}
+            type={isGold ? "gold" : "silver"}
             color={"#b0714a"}
             data={chartData}
             latestPrice={currentPrice}
@@ -71,22 +74,22 @@ export function MetalPriceDisplay({
             <CardContent className="space-y-2 p-0 px-6 py-3">
               <div className="divide-muted divide-y">
                 <HistoricalPriceRow
-                  label="1 Minggu Lalu"
+                  label={t("oneWeekAgo")}
                   historicalPrice={price7d}
                   currentPrice={currentPrice}
                 />
                 <HistoricalPriceRow
-                  label="1 Bulan Lalu"
+                  label={t("oneMonthAgo")}
                   historicalPrice={price30d}
                   currentPrice={currentPrice}
                 />
                 <HistoricalPriceRow
-                  label="6 Bulan Lalu"
+                  label={t("sixMonthsAgo")}
                   historicalPrice={price180d}
                   currentPrice={currentPrice}
                 />
                 <HistoricalPriceRow
-                  label="1 Tahun Lalu"
+                  label={t("oneYearAgo")}
                   historicalPrice={price1y}
                   currentPrice={currentPrice}
                 />
@@ -107,7 +110,7 @@ export function MetalPriceDisplay({
                 })
               }}
             >
-              Lihat Harga {relatedMetal.name}
+              {t("viewPriceOf", { metal: relatedMetal.name })}
             </Link>
           </Button>
         </div>

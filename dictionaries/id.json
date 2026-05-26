@@ -571,5 +571,102 @@
       "contact": "Kontak",
       "journal": "Jurnal"
     }
+  },
+  "MetalPrice": {
+    "Display": {
+      "oneWeekAgo": "1 Minggu Lalu",
+      "oneMonthAgo": "1 Bulan Lalu",
+      "sixMonthsAgo": "6 Bulan Lalu",
+      "oneYearAgo": "1 Tahun Lalu",
+      "viewPriceOf": "Lihat Harga {metal}",
+      "chartTitle": "Grafik Harga {metal}"
+    },
+    "Card": {
+      "stable": "Harga Stabil",
+      "up": "Naik",
+      "down": "Turun",
+      "yesterdayPrice": "Harga Kemarin",
+      "gram": "gram",
+      "lastUpdate": "Update Terakhir"
+    },
+    "Chart": {
+      "oneWeek": "1 Minggu",
+      "oneMonth": "1 Bulan"
+    }
+  },
+  "SilverPricePage": {
+    "Metadata": {
+      "title": "Harga Perak Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
+      "description": "Pantau harga perak murni terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
+      "ogTitle": "Harga Perak Hari Ini | Update Terbaru per Gram (IDR)",
+      "ogDescription": "Cek harga perak murni hari ini dalam Rupiah. Data terupdate real-time untuk panduan beli dan investasi perak Anda.",
+      "ogAlt": "Harga Perak Hari Ini di Salim Silver"
+    },
+    "layout": {
+      "title": "Harga Perak Hari Ini",
+      "description": "Update harga perak murni terkini dalam Rupiah.",
+      "aboutTitle": "Tentang Harga Perak Hari Ini",
+      "aboutDescription": "Data harga kami mengacu pada standar pasar logam mulia internasional (Fine Silver 999) dan dikonversi ke Rupiah (IDR) secara real-time. Informasi ini ditujukan sebagai referensi akurat bagi investor, kolektor, dan pengrajin perak, khususnya di pusat kerajinan perak Kotagede, Yogyakarta. Pastikan Anda memantau tren harga sebelum bertransaksi untuk keputusan terbaik."
+    },
+    "page": {
+      "fallbackTitle": "Harga Perak",
+      "fallbackDescription": "Kami saat ini tidak dapat mengambil harga perak terbaru. Silakan periksa kembali nanti.",
+      "metalName": "Perak",
+      "relatedMetalName": "Emas"
+    },
+    "FAQs": {
+      "updateFrequency": {
+        "question": "Seberapa sering harga perak diperbarui?",
+        "answer": "Sistem kami memantau pergerakan harga perak dunia dan melakukan pembaruan data secara berkala setiap 30 menit sekali untuk memastikan Anda mendapatkan informasi yang paling relevan dengan kondisi pasar saat ini."
+      },
+      "source": {
+        "question": "Dari mana sumber data harga perak ini?",
+        "answer": "Data harga kami bersumber langsung dari data pasar spot internasional (XAG/USD) yang dikonversi ke Rupiah secara real-time untuk memastikan akurasi nilai tukar terkini."
+      },
+      "localVsInternational": {
+        "question": "Mengapa harga perak murni lokal terkadang berbeda dengan harga internasional?",
+        "answer": "Perbedaan harga antara perak lokal dan internasional disebabkan oleh beberapa faktor, meliputi biaya pengiriman, margin/keuntungan pedagang, biaya pemurnian (refining), serta kebijakan pajak dan regulasi setempat. Selain itu, fluktuasi nilai tukar Rupiah terhadap Dolar AS juga mempengaruhi harga perak di pasar lokal."
+      }
+    }
+  },
+  "GoldPricePage": {
+    "Metadata": {
+      "title": "Harga Emas Hari Ini per Gram dalam Rupiah (IDR) | Salim Silver",
+      "description": "Pantau harga emas murni 24 karat terbaru hari ini dalam Rupiah (IDR). Data harga per gram yang akurat dan terupdate untuk investasi Anda.",
+      "ogTitle": "Harga Emas Hari Ini | Update Terbaru per Gram (IDR)",
+      "ogDescription": "Cek harga emas murni hari ini dalam Rupiah. Data terupdate real-time untuk panduan beli dan investasi emas Anda.",
+      "ogAlt": "Harga Emas Hari Ini di Salim Silver"
+    },
+    "layout": {
+      "title": "Harga Emas Hari Ini",
+      "description": "Update harga emas murni terkini dalam Rupiah.",
+      "aboutTitle": "Tentang Harga Emas Hari Ini",
+      "aboutDescriptionParagraph1": "Salim Silver menyajikan data harga emas murni (Fine Gold .999) yang bersumber dari pasar komoditas internasional. Harga ini adalah acuan dasar (spot price) yang transparan dan akurat.",
+      "aboutDescriptionParagraph2": "Harap dicatat bahwa harga ini berbeda dengan harga emas fisik (Antam/Pegadaian) karena belum termasuk biaya cetak, margin toko, dan pajak terkait. Gunakan data ini sebagai referensi investasi dan analisis pasar Anda."
+    },
+    "page": {
+      "fallbackTitle": "Harga Emas",
+      "fallbackDescription": "Kami saat ini tidak dapat mengambil harga emas terbaru. Silakan periksa kembali nanti.",
+      "metalName": "Emas",
+      "relatedMetalName": "Perak"
+    },
+    "FAQs": {
+      "updateFrequency": {
+        "question": "Seberapa sering harga emas diperbarui?",
+        "answer": "Sistem kami memantau pergerakan harga emas dunia dan melakukan pembaruan data setiap 30 menit untuk memastikan Anda mendapatkan informasi yang paling relevan dengan kondisi pasar saat ini."
+      },
+      "source": {
+        "question": "Dari mana sumber data harga emas ini?",
+        "answer": "Data harga kami bersumber langsung dari data pasar spot internasional (XAU/USD) yang dikonversi ke Rupiah secara real-time untuk memastikan akurasi nilai tukar terkini."
+      },
+      "difference": {
+        "question": "Mengapa harganya berbeda dengan toko emas lokal (Antam/Pegadaian)?",
+        "answer": "Harga yang ditampilkan di sini adalah 'Harga Spot' (harga bahan baku emas murni di pasar dunia). Harga di toko fisik biasanya lebih tinggi 3-10% karena mencakup biaya cetak (minting), sertifikat, biaya distribusi, margin toko, dan pajak (PPN/PPh) yang dikenakan pada produk emas fisik."
+      },
+      "buyPhysical": {
+        "question": "Apakah saya bisa membeli emas fisik di Salim Silver?",
+        "answer": "Saat ini, Salim Silver berfokus pada kerajinan perak (Sterling Silver 925). Namun, kami dapat melayani pesanan khusus perhiasan emas (cincin kawin, dsb) by request. Silakan hubungi kami untuk informasi lebih lanjut."
+      }
+    }
   }
 }

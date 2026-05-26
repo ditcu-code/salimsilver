@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { PriceHistoryItem } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { ArrowDown, ArrowUp, Minus } from "lucide-react"
+import { useTranslations, useLocale } from "next-intl"
 import { startTransition, useCallback, useMemo, useState } from "react"
 
 interface MetalPriceChartProps {
@@ -25,17 +26,41 @@ interface MetalPriceChartProps {
 }
 
 // Reuse Intl formatters — constructing them is expensive
-const compactFormatterGold = new Intl.NumberFormat("id-ID", {
-  notation: "compact",
-  compactDisplay: "short",
-  maximumFractionDigits: 1
-})
+const formattersGold: Record<string, Intl.NumberFormat> = {
+  id: new Intl.NumberFormat("id-ID", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 1
+  }),
+  nl: new Intl.NumberFormat("nl-NL", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 1
+  }),
+  en: new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 1
+  })
+}
 
-const compactFormatterSilver = new Intl.NumberFormat("id-ID", {
-  notation: "compact",
-  compactDisplay: "short",
-  maximumFractionDigits: 0
-})
+const formattersSilver: Record<string, Intl.NumberFormat> = {
+  id: new Intl.NumberFormat("id-ID", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 0
+  }),
+  nl: new Intl.NumberFormat("nl-NL", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 0
+  }),
+  en: new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 0
+  })
+}
 
 export function MetalPriceChart({
   type,
@@ -44,11 +69,16 @@ export function MetalPriceChart({
   data: initialData,
   className
 }: MetalPriceChartProps) {
+  const t = useTranslations("MetalPrice.Chart")
+  const tDisplay = useTranslations("MetalPrice.Display")
+  const locale = useLocale()
+  const dateLocale = locale === "id" ? "id-ID" : locale === "nl" ? "nl-NL" : "en-US"
+
   const [period, setPeriod] = useState<"1w" | "1m">("1w")
   const isGold = type === "gold"
   const compactFormatter = isGold
-    ? compactFormatterGold
-    : compactFormatterSilver
+    ? (formattersGold[locale] || formattersGold.en)
+    : (formattersSilver[locale] || formattersSilver.en)
 
   /**
    * Memoize the sorted data array. Previously, `[...initialData]` spread +
@@ -121,12 +151,12 @@ export function MetalPriceChart({
 
   // Stable callback for X-axis formatter
   const xAxisFormatter = useCallback((date: string) => {
-    return new Date(date).toLocaleDateString("id-ID", {
+    return new Date(date).toLocaleDateString(dateLocale, {
       day: "numeric",
       month: "numeric",
       timeZone: "Asia/Jakarta"
     })
-  }, [])
+  }, [dateLocale])
 
   if (filteredData.length === 0) return null
 
@@ -134,7 +164,19 @@ export function MetalPriceChart({
     <Card className={cn("border-border/50 bg-card shadow-sm", className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-base font-normal">
-          Grafik Harga {isGold ? "Emas" : "Perak"}
+          {tDisplay("chartTitle", {
+            metal: isGold
+              ? locale === "id"
+                ? "Emas"
+                : locale === "nl"
+                  ? "Goud"
+                  : "Gold"
+              : locale === "id"
+                ? "Perak"
+                : locale === "nl"
+                  ? "Zilver"
+                  : "Silver"
+          })}
         </CardTitle>
         <div className="flex items-center">
           <div className="flex items-center p-1 bg-muted rounded-lg gap-1">
@@ -147,7 +189,7 @@ export function MetalPriceChart({
               )}
               onClick={() => startTransition(() => setPeriod("1w"))}
             >
-              1 Minggu
+              {t("oneWeek")}
             </Button>
             <Button
               variant={period === "1m" ? "secondary" : "ghost"}
@@ -158,7 +200,7 @@ export function MetalPriceChart({
               )}
               onClick={() => startTransition(() => setPeriod("1m"))}
             >
-              1 Bulan
+              {t("oneMonth")}
             </Button>
           </div>
         </div>
@@ -203,13 +245,14 @@ export function MetalPriceChart({
                     return (
                       <div className="bg-popover border-border rounded-lg border p-3 shadow-xl">
                         <div className="text-muted-foreground text-xs font-medium mb-1">
-                          {new Date(label as string).toLocaleString("id-ID", {
+                          {new Date(label as string).toLocaleString(dateLocale, {
                             weekday: "long",
                             day: "numeric",
                             month: "short",
                             year: "numeric",
                             hour: "2-digit",
-                            minute: "2-digit"
+                            minute: "2-digit",
+                            timeZone: "Asia/Jakarta"
                           })}
                         </div>
                         <div className="flex items-center gap-3">
@@ -217,7 +260,7 @@ export function MetalPriceChart({
                             Rp{" "}
                             {Math.round(
                               payload[0].value as number
-                            ).toLocaleString("id-ID")}
+                            ).toLocaleString(dateLocale)}
                           </div>
                           {(() => {
                             const currentPrice = payload[0].value as number
