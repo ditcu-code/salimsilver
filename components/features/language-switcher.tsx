@@ -8,8 +8,8 @@ import { useLocale } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
 const LANGUAGES = [
-  { code: "en", label: "English", flag: "🇺🇸" },
   { code: "id", label: "Bahasa Indonesia", flag: "🇮🇩" },
+  { code: "en", label: "English", flag: "🇺🇸" },
   { code: "nl", label: "Nederlands", flag: "🇳🇱" }
 ]
 

@@ -8,10 +8,7 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-export default async function SilverPriceLayout({
-  children,
-  params
-}: Props) {
+export default async function SilverPriceLayout({ children, params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)
 

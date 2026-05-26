@@ -72,13 +72,14 @@ export function MetalPriceChart({
   const t = useTranslations("MetalPrice.Chart")
   const tDisplay = useTranslations("MetalPrice.Display")
   const locale = useLocale()
-  const dateLocale = locale === "id" ? "id-ID" : locale === "nl" ? "nl-NL" : "en-US"
+  const dateLocale =
+    locale === "id" ? "id-ID" : locale === "nl" ? "nl-NL" : "en-US"
 
   const [period, setPeriod] = useState<"1w" | "1m">("1w")
   const isGold = type === "gold"
   const compactFormatter = isGold
-    ? (formattersGold[locale] || formattersGold.en)
-    : (formattersSilver[locale] || formattersSilver.en)
+    ? formattersGold[locale] || formattersGold.en
+    : formattersSilver[locale] || formattersSilver.en
 
   /**
    * Memoize the sorted data array. Previously, `[...initialData]` spread +
@@ -150,13 +151,16 @@ export function MetalPriceChart({
   )
 
   // Stable callback for X-axis formatter
-  const xAxisFormatter = useCallback((date: string) => {
-    return new Date(date).toLocaleDateString(dateLocale, {
-      day: "numeric",
-      month: "numeric",
-      timeZone: "Asia/Jakarta"
-    })
-  }, [dateLocale])
+  const xAxisFormatter = useCallback(
+    (date: string) => {
+      return new Date(date).toLocaleDateString(dateLocale, {
+        day: "numeric",
+        month: "numeric",
+        timeZone: "Asia/Jakarta"
+      })
+    },
+    [dateLocale]
+  )
 
   if (filteredData.length === 0) return null
 
@@ -245,15 +249,18 @@ export function MetalPriceChart({
                     return (
                       <div className="bg-popover border-border rounded-lg border p-3 shadow-xl">
                         <div className="text-muted-foreground text-xs font-medium mb-1">
-                          {new Date(label as string).toLocaleString(dateLocale, {
-                            weekday: "long",
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            timeZone: "Asia/Jakarta"
-                          })}
+                          {new Date(label as string).toLocaleString(
+                            dateLocale,
+                            {
+                              weekday: "long",
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              timeZone: "Asia/Jakarta"
+                            }
+                          )}
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-foreground font-bold tabular-nums text-sm">

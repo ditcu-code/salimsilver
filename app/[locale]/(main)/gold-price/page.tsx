@@ -20,7 +20,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: "GoldPricePage.Metadata" })
+  const t = await getTranslations({
+    locale,
+    namespace: "GoldPricePage.Metadata"
+  })
   const canonicalUrl = constructCanonicalUrl(locale, "/gold-price")
 
   return {

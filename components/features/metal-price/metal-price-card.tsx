@@ -27,7 +27,8 @@ export function MetalPriceCard({
 }: MetalPriceCardProps) {
   const t = useTranslations("MetalPrice.Card")
   const locale = useLocale()
-  const dateLocale = locale === "id" ? "id-ID" : locale === "nl" ? "nl-NL" : "en-US"
+  const dateLocale =
+    locale === "id" ? "id-ID" : locale === "nl" ? "nl-NL" : "en-US"
   const timezoneLabel = locale === "id" ? "WIB" : "WIB (UTC+7)"
 
   const { priceChange, percentageChange, isUp, isSame, showPercentage } =

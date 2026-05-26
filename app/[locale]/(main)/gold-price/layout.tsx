@@ -8,10 +8,7 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-export default async function GoldPriceLayout({
-  children,
-  params
-}: Props) {
+export default async function GoldPriceLayout({ children, params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)
 
@@ -53,12 +50,8 @@ export default async function GoldPriceLayout({
       <div className="mx-auto mt-20 max-w-2xl space-y-12">
         <FaqSection items={faqItems} className={"mt-20"} />
         <MetalPriceAbout title={t("layout.aboutTitle")}>
-          <p>
-            {t("layout.aboutDescriptionParagraph1")}
-          </p>
-          <p className="mt-2">
-            {t("layout.aboutDescriptionParagraph2")}
-          </p>
+          <p>{t("layout.aboutDescriptionParagraph1")}</p>
+          <p className="mt-2">{t("layout.aboutDescriptionParagraph2")}</p>
         </MetalPriceAbout>
       </div>
     </div>
