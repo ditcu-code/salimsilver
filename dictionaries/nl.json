@@ -204,11 +204,12 @@
         "title": "Openingstijden",
         "days": "Maandag - Zaterdag",
         "morning": "Ochtend: 08:30 - 11:30",
-        "afternoon": "Middag: 12:30 - 15:30"
+        "afternoon": "Middag: 12:30 - 15:30",
+        "fullday": "Volledige dag: 08:30 - 15:30"
       },
       "includes": {
         "title": "Inclusief",
-        "description": "Volledig gebruik van apparatuur en 5 gram zilver. Extra zilver is beschikbaar voor Rp 70.000 per gram."
+        "description": "Volledig gebruik van apparatuur en 5 gram zilver (10 gram voor Volledige dag). Extra zilver is beschikbaar voor Rp 70.000 per gram."
       },
       "flexible": {
         "title": "Flexibele ontwerpen",
@@ -237,17 +238,20 @@
           "label": "Sessie",
           "placeholder": "Selecteer",
           "morning": "Ochtend (08:30 - 11:30)",
-          "afternoon": "Middag (12:30 - 15:30)"
+          "afternoon": "Middag (12:30 - 15:30)",
+          "fullday": "Volledige dag (08:30 - 15:30)"
         },
         "participants": {
           "label": "Aantal deelnemers",
           "single": {
             "title": "1 persoon",
-            "price": "Rp 550.000"
+            "price": "Rp 550.000",
+            "priceFullDay": "Rp 1.000.000"
           },
           "group": {
             "title": "2+ personen",
-            "price": "Rp 500k/pax"
+            "price": "Rp 500k/pax",
+            "priceFullDay": "Rp 1.000.000/pax"
           },
           "totalLabel": "Totaal aantal personen:"
         }

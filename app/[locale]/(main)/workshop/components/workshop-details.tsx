@@ -29,6 +29,8 @@ export function WorkshopDetails() {
               {t("hours.morning")}
               <br />
               {t("hours.afternoon")}
+              <br />
+              {t("hours.fullday")}
             </p>
           </div>
         </div>

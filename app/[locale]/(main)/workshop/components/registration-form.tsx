@@ -74,7 +74,7 @@ export function RegistrationForm() {
       message: t("Validation.nameLength")
     }),
     date: z.date(),
-    session: z.enum(["morning", "afternoon"]),
+    session: z.enum(["morning", "afternoon", "fullday"]),
     participantType: z.enum(["single", "group"]),
     participantCount: z.number().min(1)
   })
@@ -89,6 +89,10 @@ export function RegistrationForm() {
   })
 
   // Watch values for price calculation
+  const session = useWatch({
+    control: form.control,
+    name: "session"
+  })
   const participantType = useWatch({
     control: form.control,
     name: "participantType"
@@ -100,11 +104,16 @@ export function RegistrationForm() {
 
   // Calculate price
   const totalPrice = React.useMemo(() => {
+    if (session === "fullday") {
+      const count =
+        participantType === "single" ? 1 : Math.max(2, participantCount)
+      return count * 1000000
+    }
     if (participantType === "single") return 550000
     // Group: 500k per person, min 2 people
     const count = Math.max(2, participantCount)
     return count * 500000
-  }, [participantType, participantCount])
+  }, [session, participantType, participantCount])
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(() => {
@@ -117,7 +126,9 @@ export function RegistrationForm() {
       const sessionLabel =
         values.session === "morning"
           ? t("fields.session.morning")
-          : t("fields.session.afternoon")
+          : values.session === "afternoon"
+            ? t("fields.session.afternoon")
+            : t("fields.session.fullday")
 
       // Strip the time part from the session label if needed, or keep it.
       // The label in dictionary is "Morning (08:30-11:30)", might be too long.
@@ -233,6 +244,9 @@ ${t("WhatsApp.closing")}`
                       <SelectItem value="afternoon">
                         {t("fields.session.afternoon")}
                       </SelectItem>
+                      <SelectItem value="fullday">
+                        {t("fields.session.fullday")}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -266,7 +280,9 @@ ${t("WhatsApp.closing")}`
                   {t("fields.participants.single.title")}
                 </div>
                 <div className="text-muted-foreground text-xs">
-                  {t("fields.participants.single.price")}
+                  {session === "fullday"
+                    ? t("fields.participants.single.priceFullDay")
+                    : t("fields.participants.single.price")}
                 </div>
               </div>
 
@@ -294,7 +310,9 @@ ${t("WhatsApp.closing")}`
                   {t("fields.participants.group.title")}
                 </div>
                 <div className="text-muted-foreground text-xs">
-                  {t("fields.participants.group.price")}
+                  {session === "fullday"
+                    ? t("fields.participants.group.priceFullDay")
+                    : t("fields.participants.group.price")}
                 </div>
               </div>
             </div>
