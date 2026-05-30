@@ -1,15 +1,49 @@
 import { createClient } from "@/lib/supabase/server"
 import type { Post } from "./types"
 
-export async function getAllPosts(includeDrafts = false): Promise<Post[]> {
+/**
+ * Dynamically overrides standard fields with localized versions if they exist
+ * and the requested locale is not Indonesian (id).
+ */
+export function localizePost(post: Post, locale?: string): Post {
+  if (locale === "id") return post
+
+  const title = post.title_en || post.title
+  const excerpt = post.excerpt_en || post.excerpt
+  const content = post.content_en || post.content
+  const meta_title = post.meta_title_en || post.meta_title || title
+  const meta_description = post.meta_description_en || post.meta_description || excerpt
+
+  return {
+    ...post,
+    title,
+    excerpt: excerpt || undefined,
+    content: content || undefined,
+    meta_title: meta_title || undefined,
+    meta_description: meta_description || undefined
+  }
+}
+
+export async function getAllPosts(
+  localeOrIncludeDrafts?: string | boolean,
+  includeDrafts = false
+): Promise<Post[]> {
   const supabase = await createClient()
+  let locale: string | undefined = undefined
+  let drafts = includeDrafts
+
+  if (typeof localeOrIncludeDrafts === "boolean") {
+    drafts = localeOrIncludeDrafts
+  } else {
+    locale = localeOrIncludeDrafts
+  }
 
   let query = supabase
     .from("posts")
     .select("*")
     .order("published_at", { ascending: false })
 
-  if (!includeDrafts) {
+  if (!drafts) {
     query = query.eq("published", true)
   }
 
@@ -20,10 +54,14 @@ export async function getAllPosts(includeDrafts = false): Promise<Post[]> {
     return []
   }
 
-  return data as Post[]
+  const posts = data as Post[]
+  return posts.map((post) => localizePost(post, locale))
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | undefined> {
+export async function getPostBySlug(
+  slug: string,
+  locale?: string
+): Promise<Post | undefined> {
   const supabase = await createClient()
 
   const { data, error } = await supabase
@@ -40,11 +78,22 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
     return undefined
   }
 
-  return data as Post
+  return localizePost(data as Post, locale)
 }
 
-export async function getRecentPosts(limit = 3): Promise<Post[]> {
+export async function getRecentPosts(
+  limitOrLocale?: number | string,
+  locale?: string
+): Promise<Post[]> {
   const supabase = await createClient()
+  let limit = 3
+  let activeLocale = locale
+
+  if (typeof limitOrLocale === "string") {
+    activeLocale = limitOrLocale
+  } else if (typeof limitOrLocale === "number") {
+    limit = limitOrLocale
+  }
 
   const { data, error } = await supabase
     .from("posts")
@@ -58,5 +107,6 @@ export async function getRecentPosts(limit = 3): Promise<Post[]> {
     return []
   }
 
-  return data as Post[]
+  const posts = data as Post[]
+  return posts.map((post) => localizePost(post, activeLocale))
 }

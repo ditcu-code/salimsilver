@@ -197,6 +197,11 @@ export type Database = {
           tags: string[] | null
           title: string
           updated_at: string | null
+          title_en: string | null
+          excerpt_en: string | null
+          content_en: string | null
+          meta_title_en: string | null
+          meta_description_en: string | null
         }
         Insert: {
           author_id?: string | null
@@ -214,6 +219,11 @@ export type Database = {
           tags?: string[] | null
           title: string
           updated_at?: string | null
+          title_en?: string | null
+          excerpt_en?: string | null
+          content_en?: string | null
+          meta_title_en?: string | null
+          meta_description_en?: string | null
         }
         Update: {
           author_id?: string | null
@@ -231,6 +241,11 @@ export type Database = {
           tags?: string[] | null
           title?: string
           updated_at?: string | null
+          title_en?: string | null
+          excerpt_en?: string | null
+          content_en?: string | null
+          meta_title_en?: string | null
+          meta_description_en?: string | null
         }
         Relationships: []
       }

@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations("JournalPage")
-  const posts = await getAllPosts(false)
+  const posts = await getAllPosts(locale, false)
   const featuredPost = posts.find((p) => p.featured)
   const remainingPosts = featuredPost
     ? posts.filter((p) => p.id !== featuredPost.id)

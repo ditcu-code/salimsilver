@@ -129,6 +129,13 @@ export interface Post {
   /** Number of views */
   views?: number
   author?: User
+
+  // Translation fields
+  title_en?: string
+  excerpt_en?: string
+  content_en?: string
+  meta_title_en?: string
+  meta_description_en?: string
 }
 
 export interface User {

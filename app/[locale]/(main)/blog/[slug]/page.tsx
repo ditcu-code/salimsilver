@@ -41,7 +41,7 @@ export async function generateMetadata({
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug, locale } = await params
   const t = await getTranslations("JournalDetailPage.Metadata")
-  const post = await getPostBySlug(slug)
+  const post = await getPostBySlug(slug, locale)
 
   if (!post) {
     return {
@@ -76,10 +76,10 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const t = await getTranslations("JournalDetailPage.UI")
   const tb = await getTranslations("JournalDetailPage.Breadcrumbs")
-  const post = await getPostBySlug(slug)
+  const post = await getPostBySlug(slug, locale)
 
   if (!post || !post.published) {
     notFound()
