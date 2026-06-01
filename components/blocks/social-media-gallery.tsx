@@ -3,15 +3,15 @@
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import { InstagramEmbed } from "react-social-media-embed"
+import { InstagramEmbed, TikTokEmbed } from "react-social-media-embed"
 
-interface ReelsGalleryProps {
-  reels: string[]
+interface SocialMediaGalleryProps {
+  urls: string[]
   className?: string
   title?: string
 }
 
-export function ReelsGallery({ reels, className, title }: ReelsGalleryProps) {
+export function SocialMediaGallery({ urls, className, title }: SocialMediaGalleryProps) {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export function ReelsGallery({ reels, className, title }: ReelsGalleryProps) {
           {title}
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {reels.map((url, index) => (
+          {urls.map((url, index) => (
             <motion.div
               key={url}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -36,7 +36,11 @@ export function ReelsGallery({ reels, className, title }: ReelsGalleryProps) {
               viewport={{ once: true }}
               className="group relative flex justify-center hover:z-10"
             >
-              <InstagramEmbed url={url} width={328} />
+              {url.includes("tiktok.com") ? (
+                <TikTokEmbed url={url} width={328} />
+              ) : (
+                <InstagramEmbed url={url} width={328} />
+              )}
             </motion.div>
           ))}
         </div>

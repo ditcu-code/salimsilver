@@ -12,6 +12,9 @@ export const studentsImages = [
 ]
 
 export const reels = [
+  "https://www.tiktok.com/@experiencejogja/video/7631175893511179540",
+  "https://www.tiktok.com/@experiencejogja/video/7644545194871835924",
+  "https://www.tiktok.com/@experiencejogja/video/7630290092782849301",
   "https://www.instagram.com/reel/DEoZ7RFSORY/",
   "https://www.instagram.com/reel/DErmKOjyZ3t/",
   "https://www.instagram.com/reel/DEq2UFBPMZv/"

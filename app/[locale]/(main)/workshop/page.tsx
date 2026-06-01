@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { PolaroidGallery } from "@/components/blocks/polaroid-gallery"
-import { ReelsGallery } from "@/components/blocks/reels-gallery"
+import { SocialMediaGallery } from "@/components/blocks/social-media-gallery"
 import {
   constructCanonicalUrl,
   getAlternates,
@@ -124,7 +124,15 @@ export default async function WorkshopPage({ params }: Props) {
         title={t("PolaroidGallery.title")}
         studentAlt={t("PolaroidGallery.studentAlt")}
       />
-      <ReelsGallery reels={reels} className="mb-12" title={t("Reels.title")} />
+      <SocialMediaGallery 
+        urls={reels.filter((url) => 
+          locale === "id" 
+            ? url.includes("instagram.com") 
+            : url.includes("tiktok.com")
+        )} 
+        className="mb-12" 
+        title={t("Reels.title")} 
+      />
 
       <script
         type="application/ld+json"
