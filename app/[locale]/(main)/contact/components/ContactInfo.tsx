@@ -4,6 +4,7 @@ import { ObfuscatedEmail } from "@/components/features/obfuscated-email"
 import { Facebook } from "@/components/icons/facebook"
 import { Instagram } from "@/components/icons/instagram"
 import { WhatsApp } from "@/components/icons/whatsapp"
+import { TikTok } from "@/components/icons/tiktok"
 import { motion } from "framer-motion"
 import { Mail } from "lucide-react"
 import { useTranslations } from "next-intl"
@@ -76,6 +77,11 @@ export default function ContactInfo() {
               icon: <Instagram size={26} />,
               label: "Instagram",
               href: "https://www.instagram.com/salimsilverofficial/"
+            },
+            {
+              icon: <TikTok size={26} />,
+              label: "TikTok",
+              href: "https://www.tiktok.com/@experiencejogja"
             },
             {
               icon: <WhatsApp size={26} />,

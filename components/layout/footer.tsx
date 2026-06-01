@@ -13,6 +13,7 @@ import { Instagram } from "../icons/instagram"
 import useProtectImages from "@/hooks/useProtectImages"
 import { ThemeToggle } from "../features/theme-toggle"
 import { WhatsApp } from "../icons/whatsapp"
+import { TikTok } from "../icons/tiktok"
 
 const motionSettings = {
   initial: { opacity: 0, y: 20 },
@@ -52,6 +53,11 @@ const socialLinks = [
     href: "https://www.instagram.com/salimsilverofficial/",
     label: "Instagram",
     Icon: Instagram
+  },
+  {
+    href: "https://www.tiktok.com/@experiencejogja",
+    label: "TikTok",
+    Icon: TikTok
   },
   {
     href: "/api/whatsapp",
