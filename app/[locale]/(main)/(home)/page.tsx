@@ -102,7 +102,7 @@ export default async function Home({ params }: Props) {
             image: `${BASE_URL}/images/hero-background.png`,
             "@id": constructCanonicalUrl(locale, "/"),
             url: constructCanonicalUrl(locale, "/"),
-            telephone: "+62 896 7197 7699",
+            telephone: "+62 8997 90 50 30",
             address: {
               "@type": "PostalAddress",
               streetAddress:

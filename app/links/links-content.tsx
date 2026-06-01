@@ -37,7 +37,7 @@ export function LinksContent() {
     },
     {
       label: "Chat with Us",
-      href: "https://wa.me/6289671977699",
+      href: "https://wa.me/628997905030",
       icon: MessageCircle,
       variant: "outline" as const
     },

@@ -76,10 +76,10 @@ export default async function ContactPage() {
           "@type": "JewelryStore",
           name: "Salim Silver",
           image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-          telephone: "+62 896 7197 7699",
+          telephone: "+62 8997 90 50 30",
           contactPoint: {
             "@type": "ContactPoint",
-            telephone: "+62 896 7197 7699",
+            telephone: "+62 8997 90 50 30",
             contactType: "customer service",
             areaServed: "ID",
             availableLanguage: ["English", "Indonesian"]

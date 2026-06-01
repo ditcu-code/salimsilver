@@ -127,7 +127,7 @@ export default async function StoreLocationPage({ params }: Props) {
             image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
             "@id": `${BASE_URL}/store-location`,
             url: `${BASE_URL}/store-location`,
-            telephone: "+62 896 7197 7699",
+            telephone: "+62 8997 90 50 30",
             address: {
               "@type": "PostalAddress",
               streetAddress:

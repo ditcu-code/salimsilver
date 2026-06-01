@@ -86,7 +86,7 @@ export default async function AboutPage({ params }: Props) {
               name: "Salim Silver",
               description: tMeta("schemaDescription"),
               image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-              telephone: "+62 896 7197 7699",
+              telephone: "+62 8997 90 50 30",
               address: {
                 "@type": "PostalAddress",
                 streetAddress:
