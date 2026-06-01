@@ -207,6 +207,10 @@
         "afternoon": "Middag: 12:30 - 15:30",
         "fullday": "Volledige dag: 08:30 - 15:30"
       },
+      "language": {
+        "title": "Instructietaal",
+        "description": "Engels & Indonesisch"
+      },
       "includes": {
         "title": "Inclusief",
         "description": "Volledig gebruik van apparatuur en 5 gram zilver (10 gram voor Volledige dag). Extra zilver is beschikbaar voor Rp 70.000 per gram."

@@ -1,6 +1,6 @@
 "use client"
 
-import { Clock, CreditCard, Hammer, Sparkles } from "lucide-react"
+import { Clock, CreditCard, Hammer, Languages, Sparkles } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 export function WorkshopDetails() {
@@ -31,6 +31,20 @@ export function WorkshopDetails() {
               {t("hours.afternoon")}
               <br />
               {t("hours.fullday")}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-stone-200/50 text-stone-600 dark:bg-stone-800/50 dark:text-stone-400">
+            <Languages className="h-5 w-5" />
+          </div>
+          <div>
+            <h4 className="font-medium text-stone-900 dark:text-stone-50">
+              {t("language.title")}
+            </h4>
+            <p className="text-sm text-stone-600 dark:text-stone-400">
+              {t("language.description")}
             </p>
           </div>
         </div>

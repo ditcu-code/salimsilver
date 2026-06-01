@@ -207,6 +207,10 @@
         "afternoon": "Afternoon: 12:30 - 15:30",
         "fullday": "Full Day: 08:30 - 15:30"
       },
+      "language": {
+        "title": "Language of Instruction",
+        "description": "English & Indonesian"
+      },
       "includes": {
         "title": "Includes",
         "description": "Full equipment usage and 5 grams of silver (10 grams for Full Day). Additional silver is available at Rp 70,000 per gram."

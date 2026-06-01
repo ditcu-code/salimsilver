@@ -207,6 +207,10 @@
         "afternoon": "Siang: 12:30 - 15:30",
         "fullday": "Full Day: 08:30 - 15:30"
       },
+      "language": {
+        "title": "Bahasa Pengantar",
+        "description": "Bahasa Indonesia & Inggris"
+      },
       "includes": {
         "title": "Termasuk",
         "description": "Penggunaan peralatan lengkap dan 5 gram perak (10 gram untuk Full Day). Tambahan perak tersedia seharga Rp 70.000 per gram."
