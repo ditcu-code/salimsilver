@@ -6,12 +6,13 @@ import CTASection from "@/components/blocks/cta-section"
 import StoreLocationSection from "@/components/blocks/store-location-section"
 import StoreHero from "./components/StoreHero"
 
-import { BASE_URL, SUPABASE_CATALOG_URL } from "@/lib/constants"
+import { BASE_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
   getOpenGraphLocale
 } from "@/lib/seo"
+import { getJewelryStoreSchema } from "@/lib/structured-data"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -122,39 +123,10 @@ export default async function StoreLocationPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "JewelryStore",
-            name: "Salim Silver",
-            image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-            "@id": `${BASE_URL}/store-location`,
-            url: `${BASE_URL}/store-location`,
-            telephone: "+62 8997 90 50 30",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress:
-                "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
-              addressLocality: "Yogyakarta City",
-              addressRegion: "Special Region of Yogyakarta",
-              postalCode: "55173",
-              addressCountry: "ID"
-            },
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: -7.8273171,
-              longitude: 110.4019932
-            },
-            openingHoursSpecification: {
-              "@type": "OpeningHoursSpecification",
-              dayOfWeek: [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              opens: "08:00",
-              closes: "16:30"
-            }
+            ...getJewelryStoreSchema({
+              "@id": `${BASE_URL}/store-location`,
+              url: `${BASE_URL}/store-location`
+            })
           })
         }}
       />

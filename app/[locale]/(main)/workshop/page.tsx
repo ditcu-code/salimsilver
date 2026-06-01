@@ -8,6 +8,7 @@ import {
   getAlternates,
   getOpenGraphLocale
 } from "@/lib/seo"
+import { BUSINESS_INFO } from "@/lib/structured-data"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopDetails } from "./components/workshop-details"
 import { WorkshopHero } from "./components/workshop-hero"
@@ -135,8 +136,8 @@ export default async function WorkshopPage({ params }: Props) {
             description: tMeta("description"),
             provider: {
               "@type": "Organization",
-              name: "Salim Silver",
-              sameAs: "https://salimsilver.com"
+              name: BUSINESS_INFO.name,
+              sameAs: BUSINESS_INFO.url
             },
             educationalLevel: "Beginner",
             teaches: "Traditional Javanese Silversmithing",
@@ -149,7 +150,7 @@ export default async function WorkshopPage({ params }: Props) {
               priceCurrency: "IDR",
               seller: {
                 "@type": "Organization",
-                name: "Salim Silver"
+                name: BUSINESS_INFO.name
               }
             },
             hasCourseInstance: {
@@ -159,15 +160,7 @@ export default async function WorkshopPage({ params }: Props) {
               location: {
                 "@type": "Place",
                 name: "Salim Silver Workshop",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress:
-                    "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
-                  addressLocality: "Yogyakarta City",
-                  addressRegion: "Special Region of Yogyakarta",
-                  postalCode: "55173",
-                  addressCountry: "ID"
-                }
+                address: BUSINESS_INFO.address
               }
             }
           })

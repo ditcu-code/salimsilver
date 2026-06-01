@@ -206,7 +206,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             dateModified: post.updated_at || post.published_at,
             author: {
               "@type": "Person",
-              name: "Salim Silver"
+              name: post.author?.full_name || "Salim Silver"
             },
             publisher: {
               "@type": "Organization",
@@ -218,7 +218,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://salimsilver.com/blog/${post.slug}`
+              "@id": constructCanonicalUrl(locale, `/blog/${post.slug}`)
             }
           })
         }}

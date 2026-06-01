@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
   getOpenGraphLocale
 } from "@/lib/seo"
+import { BUSINESS_INFO } from "@/lib/structured-data"
 import ContactFormSection from "./components/ContactFormSection"
 import ContactHero from "./components/ContactHero"
 import ContactInfo from "./components/ContactInfo"
@@ -74,24 +74,17 @@ export default async function ContactPage() {
         "@type": "ContactPage",
         mainEntity: {
           "@type": "JewelryStore",
-          name: "Salim Silver",
-          image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-          telephone: "+62 8997 90 50 30",
+          name: BUSINESS_INFO.name,
+          image: BUSINESS_INFO.image,
+          telephone: BUSINESS_INFO.telephone,
           contactPoint: {
             "@type": "ContactPoint",
-            telephone: "+62 8997 90 50 30",
+            telephone: BUSINESS_INFO.telephone,
             contactType: "customer service",
             areaServed: "ID",
             availableLanguage: ["English", "Indonesian"]
           },
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
-            addressLocality: "Yogyakarta City",
-            addressRegion: "Special Region of Yogyakarta",
-            postalCode: "55173",
-            addressCountry: "ID"
-          }
+          address: BUSINESS_INFO.address
         }
       },
       {

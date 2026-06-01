@@ -95,13 +95,20 @@ export default async function ProductPage({ params }: Props) {
               : undefined,
             material: product.material,
             sku: product.slug,
+            itemCondition: "https://schema.org/NewCondition",
             brand: {
               "@type": "Brand",
               name: "Salim Silver"
             },
             offers: {
               "@type": "Offer",
-              availability: "https://schema.org/InStock",
+              availability:
+                product.status === "sold"
+                  ? "https://schema.org/SoldOut"
+                  : product.status === "reserved"
+                    ? "https://schema.org/LimitedAvailability"
+                    : "https://schema.org/PreOrder",
+              itemCondition: "https://schema.org/NewCondition",
               url: productUrl
             }
           })

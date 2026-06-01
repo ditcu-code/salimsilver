@@ -8,12 +8,12 @@ import HeroSection from "./components/HeroSection"
 import TimelineSection from "./components/TimelineSection"
 import ValuesSection from "./components/ValuesSection"
 
-import { SUPABASE_CATALOG_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
   getOpenGraphLocale
 } from "@/lib/seo"
+import { BUSINESS_INFO } from "@/lib/structured-data"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -83,19 +83,11 @@ export default async function AboutPage({ params }: Props) {
             "@type": "AboutPage",
             mainEntity: {
               "@type": "JewelryStore",
-              name: "Salim Silver",
+              name: BUSINESS_INFO.name,
               description: tMeta("schemaDescription"),
-              image: `${SUPABASE_CATALOG_URL}/baroque-pearl-citrine-silver-brooch.webp`,
-              telephone: "+62 8997 90 50 30",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress:
-                  "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
-                addressLocality: "Yogyakarta City",
-                addressRegion: "Special Region of Yogyakarta",
-                postalCode: "55173",
-                addressCountry: "ID"
-              }
+              image: BUSINESS_INFO.image,
+              telephone: BUSINESS_INFO.telephone,
+              address: BUSINESS_INFO.address
             }
           })
         }}

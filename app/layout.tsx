@@ -4,6 +4,7 @@ import SafariThemeColor from "@/components/features/safari-theme-color"
 import { ThemeProvider } from "@/components/features/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { BASE_URL } from "@/lib/constants"
+import { getOrganizationSchema, getWebSiteSchema } from "@/lib/structured-data"
 import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Lato } from "next/font/google"
 import { headers } from "next/headers"
@@ -112,6 +113,18 @@ export default async function RootLayout({
           <Toaster />
         </ThemeProvider>
         <AnalyticsWrapper />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getOrganizationSchema())
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getWebSiteSchema())
+          }}
+        />
       </body>
     </html>
   )

@@ -10,12 +10,12 @@ import { getFeaturedCollections } from "@/lib/collections"
 import { HeroGallery } from "./components/hero-gallery"
 import IntroductionSection from "./components/introduction-section"
 
-import { BASE_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
   getOpenGraphLocale
 } from "@/lib/seo"
+import { getJewelryStoreSchema } from "@/lib/structured-data"
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -95,42 +95,11 @@ export default async function Home({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "JewelryStore",
-            name: "Salim Silver",
-            priceRange: "$$",
-            description: t("Metadata.description"),
-            image: `${BASE_URL}/images/hero-background.png`,
-            "@id": constructCanonicalUrl(locale, "/"),
-            url: constructCanonicalUrl(locale, "/"),
-            telephone: "+62 8997 90 50 30",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress:
-                "Gg. Platina KG 3/547 - Kebohan, Purbayan, Kotagede",
-              addressLocality: "Yogyakarta City",
-              addressRegion: "Special Region of Yogyakarta",
-              postalCode: "55173",
-              addressCountry: "ID"
-            },
-            sameAs: ["https://www.instagram.com/salimsilverofficial/"],
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: -7.8273171,
-              longitude: 110.4019932
-            },
-            openingHoursSpecification: {
-              "@type": "OpeningHoursSpecification",
-              dayOfWeek: [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              opens: "08:00",
-              closes: "16:30"
-            }
+            ...getJewelryStoreSchema({
+              "@id": constructCanonicalUrl(locale, "/"),
+              url: constructCanonicalUrl(locale, "/"),
+              description: t("Metadata.description")
+            })
           })
         }}
       />
