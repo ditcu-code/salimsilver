@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
+import { sendGAEvent } from "@next/third-parties/google"
 import { AnimatePresence, motion } from "framer-motion"
 import { Check } from "lucide-react"
 import { useLocale } from "next-intl"
@@ -35,6 +36,10 @@ export function LanguageSwitcher() {
   }, [])
 
   const switchLanguage = (locale: string) => {
+    sendGAEvent("event", "change_language", {
+      from_language: currentLocale,
+      to_language: locale,
+    })
     router.replace(pathname, { locale })
     setIsOpen(false)
   }
