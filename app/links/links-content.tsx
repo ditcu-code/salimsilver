@@ -2,6 +2,7 @@
 
 import { Facebook } from "@/components/icons/facebook"
 import { Instagram } from "@/components/icons/instagram"
+import { TikTok } from "@/components/icons/tiktok"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import {
@@ -59,6 +60,11 @@ export function LinksContent() {
       label: "Facebook",
       href: "https://web.facebook.com/SalimSilverArt",
       icon: Facebook
+    },
+    {
+      label: "TikTok",
+      href: "https://www.tiktok.com/@experiencejogja",
+      icon: TikTok
     },
     {
       label: "Email",
