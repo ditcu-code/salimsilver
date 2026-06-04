@@ -3,6 +3,7 @@
 import { Facebook } from "@/components/icons/facebook"
 import { Instagram } from "@/components/icons/instagram"
 import { TikTok } from "@/components/icons/tiktok"
+import { WhatsApp } from "@/components/icons/whatsapp"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import {
@@ -10,7 +11,6 @@ import {
   Hammer,
   Mail,
   MapPin,
-  MessageCircle,
   ShoppingBag
 } from "lucide-react"
 import Image from "next/image"
@@ -39,7 +39,7 @@ export function LinksContent() {
     {
       label: "Chat with Us",
       href: "https://wa.me/628997905030",
-      icon: MessageCircle,
+      icon: WhatsApp,
       variant: "outline" as const
     },
     {
