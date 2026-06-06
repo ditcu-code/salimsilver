@@ -676,5 +676,19 @@
         "answer": "Currently, Salim Silver focuses on silver craftsmanship (Sterling Silver 925). However, we can accommodate custom orders for gold jewelry (wedding rings, etc.) by request. Please contact us for more information."
       }
     }
+  },
+  "NotFoundPage": {
+    "title": "A Hidden Gem?",
+    "subtitle": "404 - Page Not Found",
+    "description": "The piece you are looking for has either been acquired, moved, or is still waiting to be crafted in our workshop. Let us guide you back to our collection.",
+    "homeButton": "Return Home",
+    "catalogButton": "Explore Catalog",
+    "suggestedTitle": "Or explore our popular collections:",
+    "collections": {
+      "rings": "Handcrafted Rings",
+      "necklaces": "Artisan Necklaces",
+      "bracelets": "Silver Bracelets",
+      "workshop": "Silversmith Class"
+    }
   }
 }

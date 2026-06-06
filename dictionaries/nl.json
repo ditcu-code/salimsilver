@@ -675,5 +675,19 @@
         "answer": "Momenteel richt Salim Silver zich op zilveren vakmanschap (Sterling Silver 925). We kunnen echter op verzoek bestellingen op maat maken voor gouden sieraden (trouwringen, enz.). Neem contact met ons op voor meer informatie."
       }
     }
+  },
+  "NotFoundPage": {
+    "title": "Een verborgen juweel?",
+    "subtitle": "404 - Pagina niet gevonden",
+    "description": "Het sieraad dat u zoekt is verkocht, verplaatst of moet nog worden gesmeed in ons atelier. Laat ons u terugleiden naar onze zilvercollectie.",
+    "homeButton": "Terug naar Home",
+    "catalogButton": "Bekijk Catalogus",
+    "suggestedTitle": "Of ontdek onze populaire collecties:",
+    "collections": {
+      "rings": "Handgemaakte Ringen",
+      "necklaces": "Ambachtelijke Kettingen",
+      "bracelets": "Zilveren Armbanden",
+      "workshop": "Workshop Zilversmeden"
+    }
   }
 }

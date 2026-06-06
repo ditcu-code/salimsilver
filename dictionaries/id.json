@@ -676,5 +676,19 @@
         "answer": "Saat ini, Salim Silver berfokus pada kerajinan perak (Sterling Silver 925). Namun, kami dapat melayani pesanan khusus perhiasan emas (cincin kawin, dsb) by request. Silakan hubungi kami untuk informasi lebih lanjut."
       }
     }
+  },
+  "NotFoundPage": {
+    "title": "Permata Tersembunyi?",
+    "subtitle": "404 - Halaman Tidak Ditemukan",
+    "description": "Perhiasan yang Anda cari mungkin telah terjual, dipindahkan, atau masih menunggu untuk ditempa di workshop kami. Mari kami pandu Anda kembali ke koleksi kami.",
+    "homeButton": "Kembali ke Beranda",
+    "catalogButton": "Jelajahi Katalog",
+    "suggestedTitle": "Atau jelajahi koleksi populer kami:",
+    "collections": {
+      "rings": "Cincin Perak Tatah",
+      "necklaces": "Kalung Berkarakter",
+      "bracelets": "Gelang Perak Anyam",
+      "workshop": "Kelas Perak Kotagede"
+    }
   }
 }
