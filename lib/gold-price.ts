@@ -27,38 +27,42 @@ export const getGoldPriceSummary = unstable_cache(
   }
 )
 
-export const getGoldPriceHistory = unstable_cache(
-  async (days: number = 30): Promise<PriceHistoryItem[]> => {
-    const supabase = await createClient()
+export const getGoldPriceHistory = async (days: number = 30): Promise<PriceHistoryItem[]> => {
+  const fetcher = unstable_cache(
+    async () => {
+      const supabase = await createClient()
 
-    // Calculate the date from 'days' ago
-    const date = new Date()
-    date.setDate(date.getDate() - days)
-    const fromDate = date.toISOString()
+      // Calculate the date from 'days' ago
+      const date = new Date()
+      date.setDate(date.getDate() - days)
+      const fromDate = date.toISOString()
 
-    const { data } = await supabase
-      .from("gold_prices")
-      .select("price_idr, updated_at")
-      .gte("updated_at", fromDate)
-      .order("updated_at", { ascending: false })
-      .limit(2000)
+      const { data } = await supabase
+        .from("gold_prices")
+        .select("price_idr, updated_at")
+        .gte("updated_at", fromDate)
+        .order("updated_at", { ascending: false })
+        .limit(2000)
 
-    const reversedData = data ? [...data].reverse() : []
+      const reversedData = data ? [...data].reverse() : []
 
-    // Map directly to PriceHistoryItem format (no downsampling)
-    const dailyData: PriceHistoryItem[] = reversedData.map((item) => ({
-      date: item.updated_at,
-      price: item.price_idr
-    }))
+      // Map directly to PriceHistoryItem format (no downsampling)
+      const dailyData: PriceHistoryItem[] = reversedData.map((item) => ({
+        date: item.updated_at,
+        price: item.price_idr
+      }))
 
-    return dailyData
-  },
-  ["gold-price-history"],
-  {
-    tags: ["gold-price"],
-    revalidate: 3600
-  }
-)
+      return dailyData
+    },
+    ["gold-price-history", String(days)],
+    {
+      tags: ["gold-price"],
+      revalidate: 3600
+    }
+  )
+
+  return fetcher()
+}
 
 export interface DisplayPrices {
   currentPrice: number
