@@ -82,8 +82,8 @@ export const getGoldPriceHistory = async (days: number = 30): Promise<PriceHisto
           const [datePart, timePart] = item.updated_at.split("T")
           const hour = parseInt(timePart.split(":")[0], 10)
           
-          // Group into two 12-hour buckets per day
-          const bucket = `${datePart}-${hour < 12 ? "AM" : "PM"}`
+          // Group into four 6-hour buckets per day (00:00-05:59, 06:00-11:59, etc.)
+          const bucket = `${datePart}-Q${Math.floor(hour / 6)}`
 
           if (bucket !== lastBucket) {
             dailyData.push({

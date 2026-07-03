@@ -112,18 +112,18 @@ export function MetalPriceChart({
     let filtered = data.filter((item) => new Date(item.date) >= cutoffDate)
     
     // For the 6-month view, we uniformly downsample the ENTIRE array (including the last 30 days)
-    // to 2 points per day (AM/PM) so the line density is visually consistent from start to finish.
+    // to 4 points per day (every 6 hours) so the line density is visually consistent from start to finish.
     if (period === "6m") {
       const downsampled: typeof filtered = []
       let lastBucket = ""
       
       for (const item of filtered) {
         const dateObj = new Date(item.timestamp)
-        // Group by local day and AM/PM bucket
+        // Group by local day and 6-hour bucket
         const datePart = dateObj.toLocaleDateString("en-US", { timeZone: "Asia/Jakarta" })
         const hour = parseInt(dateObj.toLocaleString("en-US", { hour: "numeric", hour12: false, timeZone: "Asia/Jakarta" }), 10)
         
-        const bucket = `${datePart}-${hour < 12 ? "AM" : "PM"}`
+        const bucket = `${datePart}-Q${Math.floor(hour / 6)}`
         
         if (bucket !== lastBucket) {
           downsampled.push(item)
