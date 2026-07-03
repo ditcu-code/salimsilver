@@ -109,7 +109,31 @@ export function MetalPriceChart({
     cutoffDate.setDate(now.getDate() - daysToSubtract)
     cutoffDate.setHours(0, 0, 0, 0)
 
-    return data.filter((item) => new Date(item.date) >= cutoffDate)
+    let filtered = data.filter((item) => new Date(item.date) >= cutoffDate)
+    
+    // For the 6-month view, we uniformly downsample the ENTIRE array (including the last 30 days)
+    // to 2 points per day (AM/PM) so the line density is visually consistent from start to finish.
+    if (period === "6m") {
+      const downsampled: typeof filtered = []
+      let lastBucket = ""
+      
+      for (const item of filtered) {
+        const dateObj = new Date(item.timestamp)
+        // Group by local day and AM/PM bucket
+        const datePart = dateObj.toLocaleDateString("en-US", { timeZone: "Asia/Jakarta" })
+        const hour = parseInt(dateObj.toLocaleString("en-US", { hour: "numeric", hour12: false, timeZone: "Asia/Jakarta" }), 10)
+        
+        const bucket = `${datePart}-${hour < 12 ? "AM" : "PM"}`
+        
+        if (bucket !== lastBucket) {
+          downsampled.push(item)
+          lastBucket = bucket
+        }
+      }
+      filtered = downsampled
+    }
+    
+    return filtered
   }, [data, period])
 
   // Memoize Y-axis domain calculation
