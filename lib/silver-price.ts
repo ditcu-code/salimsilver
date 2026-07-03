@@ -41,15 +41,36 @@ export const getSilverPriceHistory = async (days: number = 30): Promise<PriceHis
         .select("price_idr, updated_at")
         .gte("updated_at", fromDate)
         .order("updated_at", { ascending: false })
-        .limit(2000)
+        .limit(15000) // Increased limit to ensure we capture the full 6-month window
 
       const reversedData = data ? [...data].reverse() : []
 
-      // Map directly to PriceHistoryItem format (no downsampling)
-      const dailyData: PriceHistoryItem[] = reversedData.map((item) => ({
-        date: item.updated_at,
-        price: item.price_idr / 1000
-      }))
+      const dailyData: PriceHistoryItem[] = []
+      const now = new Date().getTime()
+      let lastPushedDay = ""
+
+      // Smart downsampling: keep full resolution for the last 30 days,
+      // but downsample to 1 point per day for older data to keep the payload/chart fast.
+      for (const item of reversedData) {
+        const itemTime = new Date(item.updated_at).getTime()
+        const daysOld = (now - itemTime) / (1000 * 60 * 60 * 24)
+
+        if (daysOld <= 30) {
+          dailyData.push({
+            date: item.updated_at,
+            price: item.price_idr / 1000 // Convert kg to gram
+          })
+        } else {
+          const day = item.updated_at.split("T")[0]
+          if (day !== lastPushedDay) {
+            dailyData.push({
+              date: item.updated_at,
+              price: item.price_idr / 1000 // Convert kg to gram
+            })
+            lastPushedDay = day
+          }
+        }
+      }
 
       return dailyData
     },
