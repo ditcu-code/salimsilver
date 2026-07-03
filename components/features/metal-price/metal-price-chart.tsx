@@ -151,10 +151,11 @@ export function MetalPriceChart({
   const ticks = useMemo(
     () =>
       filteredData
-        .filter((item, index) => {
+        .map((item) => item.date)
+        .filter((date, index) => {
           if (index === 0) return false
           const prevDate = new Date(filteredData[index - 1].date)
-          const currDate = new Date(item.date)
+          const currDate = new Date(date)
 
           // Check for day change in WIB (UTC+7)
           const options: Intl.DateTimeFormatOptions = {
@@ -166,8 +167,7 @@ export function MetalPriceChart({
           const currDay = currDate.toLocaleString("en-US", options)
 
           return prevDay !== currDay
-        })
-        .map(item => item.timestamp),
+        }),
     [filteredData]
   )
 
@@ -179,8 +179,8 @@ export function MetalPriceChart({
 
   // Stable callback for X-axis formatter
   const xAxisFormatter = useCallback(
-    (timestamp: number) => {
-      return new Date(timestamp).toLocaleDateString(dateLocale, {
+    (date: string) => {
+      return new Date(date).toLocaleDateString(dateLocale, {
         day: "numeric",
         month: "numeric",
         timeZone: "Asia/Jakarta"
@@ -264,10 +264,7 @@ export function MetalPriceChart({
                 </linearGradient>
               </defs>
               <XAxis
-                dataKey="timestamp"
-                type="number"
-                scale="time"
-                domain={['dataMin', 'dataMax']}
+                dataKey="date"
                 ticks={ticks}
                 tickFormatter={xAxisFormatter}
                 stroke="#888888"
@@ -290,7 +287,7 @@ export function MetalPriceChart({
                     return (
                       <div className="bg-popover border-border rounded-lg border p-3 shadow-xl">
                         <div className="text-muted-foreground text-xs font-medium mb-1">
-                          {new Date(label as number).toLocaleString(
+                          {new Date(label as string).toLocaleString(
                             dateLocale,
                             {
                               weekday: "long",
@@ -313,7 +310,7 @@ export function MetalPriceChart({
                           {(() => {
                             const currentPrice = payload[0].value as number
                             const currentIndex = data.findIndex(
-                              (item) => item.timestamp === label
+                              (item) => item.date === label
                             )
                             const prevItem =
                               currentIndex > 0 ? data[currentIndex - 1] : null
