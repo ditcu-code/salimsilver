@@ -75,7 +75,7 @@ export function MetalPriceChart({
   const dateLocale =
     locale === "id" ? "id-ID" : locale === "nl" ? "nl-NL" : "en-US"
 
-  const [period, setPeriod] = useState<"1w" | "1m">("1w")
+  const [period, setPeriod] = useState<"1w" | "1m" | "6m">("1w")
   const isGold = type === "gold"
   const compactFormatter = isGold
     ? formattersGold[locale] || formattersGold.en
@@ -100,7 +100,7 @@ export function MetalPriceChart({
     if (!data.length) return []
 
     const now = new Date()
-    const daysToSubtract = period === "1w" ? 7 : 30
+    const daysToSubtract = period === "1w" ? 7 : period === "1m" ? 30 : 180
 
     const cutoffDate = new Date()
     cutoffDate.setDate(now.getDate() - daysToSubtract)
@@ -205,6 +205,17 @@ export function MetalPriceChart({
               onClick={() => startTransition(() => setPeriod("1m"))}
             >
               {t("oneMonth")}
+            </Button>
+            <Button
+              variant={period === "6m" ? "secondary" : "ghost"}
+              size="sm"
+              className={cn(
+                "h-7 px-3 text-xs",
+                period === "6m" && "bg-background text-foreground shadow-sm"
+              )}
+              onClick={() => startTransition(() => setPeriod("6m"))}
+            >
+              {t("sixMonths")}
             </Button>
           </div>
         </div>

@@ -598,7 +598,8 @@
     },
     "Chart": {
       "oneWeek": "1 Week",
-      "oneMonth": "1 Maand"
+      "oneMonth": "1 Maand",
+      "sixMonths": "6 Maanden"
     }
   },
   "SilverPricePage": {

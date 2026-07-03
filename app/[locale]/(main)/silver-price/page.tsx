@@ -80,7 +80,7 @@ export default async function SilverPricePage({ params }: Props) {
   const t = await getTranslations("SilverPricePage")
   const summaryData = await getSilverPriceSummary()
   const displayPrices = calculateDisplayPrices(summaryData)
-  const chartData = await getSilverPriceHistory(30)
+  const chartData = await getSilverPriceHistory(180)
 
   let priceContent
 

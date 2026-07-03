@@ -599,7 +599,8 @@
     },
     "Chart": {
       "oneWeek": "1 Week",
-      "oneMonth": "1 Month"
+      "oneMonth": "1 Month",
+      "sixMonths": "6 Months"
     }
   },
   "SilverPricePage": {

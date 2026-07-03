@@ -81,7 +81,7 @@ export default async function GoldPricePage({ params }: Props) {
   const t = await getTranslations("GoldPricePage")
   const summaryData = await getGoldPriceSummary()
   const displayPrices = calculateDisplayPrices(summaryData)
-  const chartData = await getGoldPriceHistory(30)
+  const chartData = await getGoldPriceHistory(180)
 
   let priceContent
 
