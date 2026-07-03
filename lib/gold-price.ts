@@ -64,29 +64,22 @@ export const getGoldPriceHistory = async (days: number = 30): Promise<PriceHisto
       const reversedData = allData.reverse()
 
       const dailyData: PriceHistoryItem[] = []
-      const now = new Date().getTime()
-      let lastPushedDay = ""
+      let lastBucket = ""
 
-      // Smart downsampling: keep full resolution for the last 30 days,
-      // but downsample to 1 point per day for older data to keep the payload/chart fast.
+      // Uniform downsampling: 2 points per day (AM and PM) for the entire 6 months
       for (const item of reversedData) {
-        const itemTime = new Date(item.updated_at).getTime()
-        const daysOld = (now - itemTime) / (1000 * 60 * 60 * 24)
+        const [datePart, timePart] = item.updated_at.split("T")
+        const hour = parseInt(timePart.split(":")[0], 10)
+        
+        // Group into two 12-hour buckets per day
+        const bucket = `${datePart}-${hour < 12 ? "AM" : "PM"}`
 
-        if (daysOld <= 30) {
+        if (bucket !== lastBucket) {
           dailyData.push({
             date: item.updated_at,
             price: item.price_idr
           })
-        } else {
-          const day = item.updated_at.split("T")[0]
-          if (day !== lastPushedDay) {
-            dailyData.push({
-              date: item.updated_at,
-              price: item.price_idr
-            })
-            lastPushedDay = day
-          }
+          lastBucket = bucket
         }
       }
 
