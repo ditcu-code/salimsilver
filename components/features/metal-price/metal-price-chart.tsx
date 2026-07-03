@@ -166,7 +166,7 @@ export function MetalPriceChart({
 
   return (
     <Card className={cn("border-border/50 bg-card shadow-sm", className)}>
-      <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 space-y-0 pb-2">
+      <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0 space-y-0 pb-2">
         <CardTitle className="text-base font-normal">
           {tDisplay("chartTitle", {
             metal: isGold

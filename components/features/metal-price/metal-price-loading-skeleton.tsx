@@ -8,11 +8,14 @@ export function MetalPriceLoadingSkeleton() {
         {/* Left Column: Chart (Takes 2/3 width) */}
         <div className="order-3 lg:order-1 lg:col-span-2">
           <Card className="border-border/50 bg-card shadow-sm h-full max-h-[500px]">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0 space-y-0 pb-2">
               <Skeleton className="h-6 w-32" />
-              <div className="flex items-center p-1 bg-muted/50 rounded-lg gap-1">
-                <Skeleton className="h-7 w-20" />
-                <Skeleton className="h-7 w-20" />
+              <div className="flex items-center">
+                <div className="flex items-center p-1 bg-muted/50 rounded-lg gap-1">
+                  <Skeleton className="h-7 w-16" />
+                  <Skeleton className="h-7 w-16" />
+                  <Skeleton className="h-7 w-20" />
+                </div>
               </div>
             </CardHeader>
             <CardContent className="pl-0 pb-4 px-6">

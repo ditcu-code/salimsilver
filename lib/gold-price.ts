@@ -37,14 +37,31 @@ export const getGoldPriceHistory = async (days: number = 30): Promise<PriceHisto
       date.setDate(date.getDate() - days)
       const fromDate = date.toISOString()
 
-      const { data } = await supabase
-        .from("gold_prices")
-        .select("price_idr, updated_at")
-        .gte("updated_at", fromDate)
-        .order("updated_at", { ascending: false })
-        .limit(15000) // Increased limit to ensure we capture the full 6-month window
+      let allData: any[] = []
+      let lastDate = new Date().toISOString()
+      
+      while (true) {
+        const { data } = await supabase
+          .from("gold_prices")
+          .select("price_idr, updated_at")
+          .gte("updated_at", fromDate)
+          .lte("updated_at", lastDate)
+          .order("updated_at", { ascending: false })
+          .limit(1000)
 
-      const reversedData = data ? [...data].reverse() : []
+        if (!data || data.length === 0) break
+
+        allData = allData.concat(data)
+
+        if (data.length < 1000) break
+
+        // Use the oldest date in this batch for the next iteration (subtract 1ms to avoid overlap)
+        const oldestInBatch = new Date(data[data.length - 1].updated_at)
+        oldestInBatch.setMilliseconds(oldestInBatch.getMilliseconds() - 1)
+        lastDate = oldestInBatch.toISOString()
+      }
+
+      const reversedData = allData.reverse()
 
       const dailyData: PriceHistoryItem[] = []
       const now = new Date().getTime()
