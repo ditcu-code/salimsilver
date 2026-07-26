@@ -117,7 +117,7 @@ export default function Footer() {
 
         <AnimatedSection className="md:col-span-5">
           <h3 className="section-title mb-2 text-2xl">{t("quickLinks")}</h3>
-          <ul className="grid grid-cols-1 gap-1 md:grid-cols-3">
+          <ul className="grid grid-cols-2 gap-1 md:grid-cols-3">
             {quickLinksConfig.map(({ href, key }) => (
               <li key={href}>
                 <Link

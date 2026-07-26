@@ -1,6 +1,5 @@
 "use client"
 
-import AnimatedButton from "@/components/ui/animated-button"
 import { motion, Variants } from "framer-motion"
 import {
   ArrowRight,
@@ -136,10 +135,10 @@ export default function CareerContent({
                 <Image
                   src="/images/career-hero-craftsman.png"
                   alt="Ilustrasi Pengrajin Perak Kotagede"
-                  width={500}
-                  height={500}
+                  width={600}
+                  height={600}
                   priority
-                  className="h-full w-full object-contain filter drop-shadow-xs"
+                  className="h-full w-full object-contain filter drop-shadow-xs opacity-90"
                 />
               </div>
             </motion.div>
