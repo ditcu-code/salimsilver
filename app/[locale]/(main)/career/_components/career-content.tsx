@@ -15,6 +15,7 @@ import {
   Users
 } from "lucide-react"
 import { useTranslations } from "next-intl"
+import Image from "next/image"
 import { useState } from "react"
 import CareerApplicationDialog from "./career-application-dialog"
 
@@ -65,7 +66,7 @@ export default function CareerContent({
 
   const handleOpenApplication = (positionKey: string) => {
     setSelectedPosition(positionKey)
-    setApplicationSession((current) => current + 1)
+    setApplicationSession((prev) => prev + 1)
     setIsDialogOpen(true)
   }
 
@@ -107,22 +108,42 @@ export default function CareerContent({
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl"
-          >
-            <span className="text-primary mb-6 block text-sm font-semibold tracking-[0.3em] uppercase">
-              {t("Hero.eyebrow")}
-            </span>
-            <h1 className="font-display text-5xl leading-[1.1] md:text-7xl">
-              {t("Hero.title")}
-            </h1>
-            <p className="text-muted-foreground mt-8 max-w-2xl text-xl leading-relaxed">
-              {t("Hero.description")}
-            </p>
-          </motion.div>
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:col-span-7"
+            >
+              <span className="text-primary mb-6 block text-sm font-semibold tracking-[0.3em] uppercase">
+                {t("Hero.eyebrow")}
+              </span>
+              <h1 className="font-display text-5xl leading-[1.1] md:text-7xl">
+                {t("Hero.title")}
+              </h1>
+              <p className="text-muted-foreground mt-8 max-w-2xl text-xl leading-relaxed">
+                {t("Hero.description")}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+              className="relative hidden lg:col-span-5 lg:block"
+            >
+              <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden">
+                <Image
+                  src="/images/career-hero-craftsman.png"
+                  alt="Ilustrasi Pengrajin Perak Kotagede"
+                  width={500}
+                  height={500}
+                  priority
+                  className="h-full w-full object-contain filter drop-shadow-xs"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
