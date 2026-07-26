@@ -12,8 +12,8 @@ import { Instagram } from "../icons/instagram"
 
 import useProtectImages from "@/hooks/useProtectImages"
 import { ThemeToggle } from "../features/theme-toggle"
-import { WhatsApp } from "../icons/whatsapp"
 import { TikTok } from "../icons/tiktok"
+import { WhatsApp } from "../icons/whatsapp"
 
 const motionSettings = {
   initial: { opacity: 0, y: 20 },
@@ -26,12 +26,12 @@ const quickLinksConfig = [
   { href: "/catalog", key: "catalog" },
   { href: "/collections", key: "collections" },
   { href: "/workshop", key: "workshop" },
-  { href: "/career", key: "careers" },
   { href: "/store-location", key: "storeLocation" },
   { href: "/silver-price", key: "silverPrice" },
   { href: "/gold-price", key: "goldPrice" },
   { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
+  { href: "/career", key: "careers" },
   { href: "/blog", key: "journal" }
 ]
 
