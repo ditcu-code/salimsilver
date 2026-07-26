@@ -92,14 +92,28 @@ export function consumeContactFormAttempt(ip: string) {
 }
 
 export function getMessageSpamError(message: string) {
-  if (/<\/?[a-z][\s\S]*>/i.test(message)) {
+  const reason = getMessageSpamReason(message)
+
+  if (reason === "html") {
     return "Please remove HTML tags from the message."
+  }
+
+  if (reason === "too_many_links") {
+    return "Please remove most links from the message and try again."
+  }
+
+  return null
+}
+
+export function getMessageSpamReason(message: string) {
+  if (/<\/?[a-z][\s\S]*>/i.test(message)) {
+    return "html" as const
   }
 
   const links = message.match(/\b(?:https?:\/\/|www\.)\S+/gi) ?? []
 
   if (links.length > MAX_LINKS_PER_MESSAGE) {
-    return "Please remove most links from the message and try again."
+    return "too_many_links" as const
   }
 
   return null

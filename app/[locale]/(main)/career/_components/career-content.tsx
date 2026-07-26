@@ -5,27 +5,31 @@ import { motion, Variants } from "framer-motion"
 import {
   ArrowRight,
   CalendarDays,
+  Camera,
   Clock,
   FileText,
   GraduationCap,
   MapPin,
+  Share2,
   Sparkles,
   Users
 } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { useState } from "react"
+import CareerApplicationDialog from "./career-application-dialog"
 
 const jobs = [
-  {
-    key: "silversmith",
-    icon: Sparkles
-  },
   {
     key: "studioAssistant",
     icon: Users
   },
   {
+    key: "socialMediaIntern",
+    icon: Share2
+  },
+  {
     key: "contentCreative",
-    icon: Clock
+    icon: Camera
   }
 ] as const
 
@@ -54,6 +58,17 @@ export default function CareerContent({
   studentMessage
 }: CareerContentProps) {
   const t = useTranslations("CareerPage")
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [selectedPosition, setSelectedPosition] = useState<string>("talentPool")
+  const [applicationSession, setApplicationSession] = useState(0)
+
+  const handleOpenApplication = (positionKey: string) => {
+    setSelectedPosition(positionKey)
+    setApplicationSession((current) => current + 1)
+    setIsDialogOpen(true)
+  }
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -78,6 +93,14 @@ export default function CareerContent({
 
   return (
     <div className="min-h-screen selection:bg-primary selection:text-primary-foreground">
+      {/* Application Dialog Modal */}
+      <CareerApplicationDialog
+        key={applicationSession}
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        defaultPosition={selectedPosition}
+      />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-muted/40 border-border border-b px-4 pt-36 pb-16 md:px-8 md:pt-48 md:pb-32">
         <div className="absolute top-0 right-0 -mr-20 -mt-20 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
@@ -150,7 +173,7 @@ export default function CareerContent({
                     {t(`Jobs.items.${key}.description`)}
                   </p>
                 </div>
-                <dl className="mt-auto flex flex-wrap gap-x-6 gap-y-3 border-t pt-6 text-sm font-medium">
+                <dl className="mb-6 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium">
                   <div className="flex items-center gap-2">
                     <MapPin className="text-primary/60 h-4 w-4" />
                     <dd>{t(`Jobs.items.${key}.location`)}</dd>
@@ -160,6 +183,16 @@ export default function CareerContent({
                     <dd>{t(`Jobs.items.${key}.type`)}</dd>
                   </div>
                 </dl>
+                <div className="mt-auto border-t pt-6">
+                  <button
+                    type="button"
+                    onClick={() => handleOpenApplication(key)}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary/10 py-3 text-sm font-semibold text-primary transition-all group-hover:bg-primary group-hover:text-primary-foreground"
+                  >
+                    <span>{t("ApplyNow")}</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
               </motion.article>
             ))}
           </motion.div>
@@ -203,13 +236,14 @@ export default function CareerContent({
               {t("StudentInternship.description")}
             </p>
             <div className="mt-10">
-              <AnimatedButton
-                href={`/contact?message=${encodeURIComponent(studentMessage)}`}
-                variant="primary"
-                icon={<ArrowRight className="h-4 w-4" />}
+              <button
+                type="button"
+                onClick={() => handleOpenApplication("studentInternship")}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
               >
-                {t("StudentInternship.ctaLabel")}
-              </AnimatedButton>
+                <span>{t("StudentInternship.ctaLabel")}</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </motion.div>
 
@@ -264,14 +298,14 @@ export default function CareerContent({
               </p>
             </div>
             <div className="shrink-0">
-              <AnimatedButton
-                href={`/contact?message=${encodeURIComponent(talentPoolMessage)}`}
-                variant="secondary"
-                className="bg-white text-primary hover:bg-white/90 px-10 py-5 text-lg font-semibold"
-                icon={<ArrowRight className="h-5 w-5" />}
+              <button
+                type="button"
+                onClick={() => handleOpenApplication("talentPool")}
+                className="inline-flex items-center gap-2 rounded-full bg-white px-10 py-5 text-lg font-semibold text-primary shadow-md transition-all hover:bg-white/90 hover:shadow-lg"
               >
-                {t("TalentPool.ctaLabel")}
-              </AnimatedButton>
+                <span>{t("TalentPool.ctaLabel")}</span>
+                <ArrowRight className="h-5 w-5" />
+              </button>
             </div>
           </div>
         </motion.div>

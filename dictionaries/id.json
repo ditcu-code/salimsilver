@@ -386,17 +386,17 @@
         "type": "Tipe kerja"
       },
       "items": {
-        "silversmith": {
-          "title": "Junior Silversmith",
-          "description": "Membantu proses dasar pembuatan perhiasan perak, mulai dari persiapan material, pembentukan, hingga finishing dengan arahan pengrajin senior.",
-          "location": "Kotagede, Yogyakarta",
-          "type": "Full-time"
-        },
         "studioAssistant": {
-          "title": "Studio & Workshop Assistant",
+          "title": "Studio & Workshop Assistant Intern",
           "description": "Mendukung aktivitas harian workshop, menyambut tamu, menyiapkan sesi workshop, dan membantu tim menjaga alur operasional tetap rapi.",
           "location": "Kotagede, Yogyakarta",
-          "type": "Full-time"
+          "type": "Internship"
+        },
+        "socialMediaIntern": {
+          "title": "Social Media Specialist Intern",
+          "description": "Mengelola dan merencanakan konten harian di platform media sosial Salim Silver, mengunggah pembaruan produk/kriya, serta berinteraksi dengan audiens.",
+          "location": "Hybrid",
+          "type": "Internship"
         },
         "contentCreative": {
           "title": "Content Creative Intern",
@@ -432,6 +432,76 @@
       "description": "Tetap kirim CV atau tautan portofolio Anda. Jika nanti ada posisi yang sesuai, tim kami akan menghubungi Anda melalui kontak yang dicantumkan.",
       "ctaLabel": "Drop CV untuk Nanti",
       "message": "Halo Salim Silver, saya ingin menitipkan CV untuk dipertimbangkan jika nanti ada lowongan yang cocok. Berikut tautan CV/portfolio saya:"
+    },
+    "ApplyNow": "Lamar Posisi Ini",
+    "ApplicationForm": {
+      "eyebrow": "Karier Salim Silver",
+      "title": "Formulir Lamaran Kerja",
+      "description": "Lengkapi data diri dan unggah CV Anda untuk melamar posisi di Salim Silver.",
+      "honeypotLabel": "Jangan isi kolom ini",
+      "fullName": "Nama Lengkap",
+      "fullNamePlaceholder": "Nama lengkap Anda",
+      "email": "Alamat Email",
+      "emailPlaceholder": "nama@email.com",
+      "whatsapp": "Nomor WhatsApp",
+      "whatsappPlaceholder": "081234567890",
+      "location": "Kota Domisili",
+      "locationPlaceholder": "Yogyakarta",
+      "position": "Posisi yang Dilamar",
+      "positions": {
+        "studioAssistant": "Studio & Workshop Assistant Intern",
+        "socialMediaIntern": "Social Media Specialist Intern",
+        "contentCreative": "Content Creative Intern",
+        "studentInternship": "Student Internship / Magang",
+        "talentPool": "Talent Pool (Posisi Lain)"
+      },
+      "cvUploadLabel": "Unggah CV (PDF)",
+      "cvUploadHint": "Format PDF saja, ukuran maksimal 10MB.",
+      "selectPdf": "Pilih PDF",
+      "replaceFile": "Ganti File",
+      "portfolioUrl": "Tautan Portofolio / Drive (Opsional)",
+      "portfolioUrlPlaceholder": "https://drive.google.com/... atau link portofolio",
+      "coverLetter": "Pesan Pengantar / Cover Letter",
+      "coverLetterPlaceholder": "Ceritakan singkat tentang diri Anda dan alasan tertarik bergabung...",
+      "submitButton": "Kirim Lamaran",
+      "submitting": "Mengirim...",
+      "turnstilePrompt": "Selesaikan verifikasi sebelum mengirim lamaran.",
+      "successTitle": "Lamaran Berhasil Terkirim!",
+      "successMessage": "Terima kasih telah melamar. Tim Salim Silver akan meninjau lamaran Anda dan menghubungi Anda melalui WhatsApp atau Email.",
+      "closeButton": "Tutup",
+      "messages": {
+        "formExpired": "Formulir ini telah kedaluwarsa. Buka kembali lalu coba lagi.",
+        "validationFailed": "Periksa kembali data pada formulir.",
+        "rateLimited": "Terlalu banyak lamaran dari koneksi ini. Tunggu sekitar {minutes} menit lalu coba lagi.",
+        "turnstileRequired": "Selesaikan verifikasi lalu coba lagi.",
+        "turnstileExpired": "Verifikasi telah kedaluwarsa. Silakan coba lagi.",
+        "turnstileUnavailable": "Verifikasi sementara tidak tersedia. Silakan coba lagi nanti.",
+        "turnstileFailed": "Verifikasi gagal. Silakan coba lagi.",
+        "sendFailed": "Lamaran gagal dikirim. Silakan coba lagi."
+      },
+      "errors": {
+        "fullNameRequired": "Nama lengkap wajib diisi.",
+        "fullNameTooLong": "Nama lengkap terlalu panjang.",
+        "emailRequired": "Alamat email wajib diisi.",
+        "emailTooLong": "Alamat email terlalu panjang.",
+        "invalidEmail": "Masukkan alamat email yang valid.",
+        "whatsappRequired": "Nomor WhatsApp wajib diisi.",
+        "whatsappTooLong": "Nomor WhatsApp terlalu panjang.",
+        "invalidWhatsapp": "Masukkan nomor WhatsApp yang valid.",
+        "locationRequired": "Kota domisili wajib diisi.",
+        "locationTooLong": "Kota domisili terlalu panjang.",
+        "positionRequired": "Pilih posisi yang dilamar.",
+        "invalidPosition": "Pilih posisi yang valid.",
+        "portfolioUrlTooLong": "Tautan portofolio atau Drive terlalu panjang.",
+        "coverLetterTooLong": "Pesan pengantar terlalu panjang.",
+        "coverLetterHtmlNotAllowed": "Hapus tag HTML dari pesan pengantar.",
+        "coverLetterTooManyLinks": "Hapus sebagian besar tautan dari pesan pengantar lalu coba lagi.",
+        "cvFileRequired": "CV dalam format PDF wajib diunggah.",
+        "invalidFileType": "Format file harus PDF (.pdf).",
+        "fileTooLarge": "Ukuran file melebihi batas 10MB.",
+        "invalidPdfContent": "File yang diunggah bukan PDF yang valid.",
+        "cvReadFailed": "File CV tidak dapat dibaca. Silakan coba lagi."
+      }
     }
   },
   "CatalogPage": {
@@ -550,7 +620,7 @@
       "catalog": "Katalog",
       "collections": "Koleksi",
       "workshop": "Workshop",
-      "careers": "Career",
+      "careers": "Karir",
       "storeLocation": "Kunjungi Kami",
       "about": "Tentang",
       "journal": "Jurnal"
@@ -571,7 +641,7 @@
       "catalog": "Katalog",
       "collections": "Koleksi",
       "workshop": "Workshop",
-      "careers": "Career",
+      "careers": "Karir",
       "storeLocation": "Lokasi Toko",
       "silverPrice": "Harga Perak",
       "goldPrice": "Harga Emas",

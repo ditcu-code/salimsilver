@@ -385,17 +385,17 @@
         "type": "Dienstverband"
       },
       "items": {
-        "silversmith": {
-          "title": "Junior Zilversmid",
-          "description": "Ondersteun de basisfasen van het maken van zilveren sieraden, van materiaalvoorbereiding en vormgeving tot afwerking onder begeleiding van een senior ambachtsvakman.",
-          "location": "Kotagede, Yogyakarta",
-          "type": "Fulltime"
-        },
         "studioAssistant": {
-          "title": "Studio- & Atelierassistent",
+          "title": "Stagiair Studio- & Atelierassistent",
           "description": "Ondersteun de dagelijkse activiteiten in het atelier, ontvang gasten, bereid workshopsessies voor en help het team de bedrijfsvoering georganiseerd te houden.",
           "location": "Kotagede, Yogyakarta",
-          "type": "Fulltime"
+          "type": "Stage"
+        },
+        "socialMediaIntern": {
+          "title": "Stagiair Social Media Specialist",
+          "description": "Beheer en plan dagelijkse content op de sociale mediakanalen van Salim Silver, publiceer ambachts- en productupdates en ga in gesprek met de online community.",
+          "location": "Hybride",
+          "type": "Stage"
         },
         "contentCreative": {
           "title": "Stagiair Content Creative",
@@ -431,6 +431,76 @@
       "description": "Stuur toch je cv of portfoliolink op. Als er later een geschikte rol vrijkomt, neemt ons team contact met je op via de door jou verstrekte gegevens.",
       "ctaLabel": "Laat je CV achter",
       "message": "Hallo Salim Silver, ik wil graag mijn cv delen voor toekomstige mogelijkheden. Hier is de link naar mijn cv/portfolio:"
+    },
+    "ApplyNow": "Solliciteer voor deze functie",
+    "ApplicationForm": {
+      "eyebrow": "Werken bij Salim Silver",
+      "title": "Sollicitatieformulier",
+      "description": "Vul je gegevens in en upload je cv om te solliciteren bij Salim Silver.",
+      "honeypotLabel": "Vul dit veld niet in",
+      "fullName": "Volledige naam",
+      "fullNamePlaceholder": "Je volledige naam",
+      "email": "E-mailadres",
+      "emailPlaceholder": "naam@email.com",
+      "whatsapp": "WhatsApp-nummer",
+      "whatsappPlaceholder": "+6281234567890",
+      "location": "Woonplaats",
+      "locationPlaceholder": "Yogyakarta",
+      "position": "Functie waarvoor je solliciteert",
+      "positions": {
+        "studioAssistant": "Stagiair Studio- & Atelierassistent",
+        "socialMediaIntern": "Stagiair Social Media Specialist",
+        "contentCreative": "Stagiair Content Creative",
+        "studentInternship": "Stage voor studenten",
+        "talentPool": "Talent Pool (Toekomstige functies)"
+      },
+      "cvUploadLabel": "CV uploaden (PDF)",
+      "cvUploadHint": "Alleen PDF-formaat, maximale grootte 10MB.",
+      "selectPdf": "PDF kiezen",
+      "replaceFile": "Bestand vervangen",
+      "portfolioUrl": "Portfolio- / Drive-link (Optioneel)",
+      "portfolioUrlPlaceholder": "https://drive.google.com/... of portfoliolink",
+      "coverLetter": "Motivatiebrief / Bericht",
+      "coverLetterPlaceholder": "Vertel kort over jezelf en waarom je bij ons wilt werken...",
+      "submitButton": "Sollicitatie versturen",
+      "submitting": "Versturen...",
+      "turnstilePrompt": "Voltooi de verificatie voordat je je sollicitatie verstuurt.",
+      "successTitle": "Sollicitatie succesvol verzonden!",
+      "successMessage": "Bedankt voor je sollicitatie. Het Salim Silver-team zal je sollicitatie beoordelen en contact met je opnemen via WhatsApp of e-mail.",
+      "closeButton": "Sluiten",
+      "messages": {
+        "formExpired": "Dit formulier is verlopen. Open het opnieuw en probeer het nogmaals.",
+        "validationFailed": "Controleer het formulier op fouten.",
+        "rateLimited": "Er zijn te veel sollicitaties vanaf deze verbinding. Wacht ongeveer {minutes, plural, one {# minuut} other {# minuten}} en probeer het opnieuw.",
+        "turnstileRequired": "Voltooi de verificatie en probeer het opnieuw.",
+        "turnstileExpired": "De verificatie is verlopen. Probeer het opnieuw.",
+        "turnstileUnavailable": "De verificatie is tijdelijk niet beschikbaar. Probeer het later opnieuw.",
+        "turnstileFailed": "De verificatie is mislukt. Probeer het opnieuw.",
+        "sendFailed": "Je sollicitatie kon niet worden verzonden. Probeer het opnieuw."
+      },
+      "errors": {
+        "fullNameRequired": "Volledige naam is verplicht.",
+        "fullNameTooLong": "Volledige naam is te lang.",
+        "emailRequired": "E-mailadres is verplicht.",
+        "emailTooLong": "E-mailadres is te lang.",
+        "invalidEmail": "Voer een geldig e-mailadres in.",
+        "whatsappRequired": "WhatsApp-nummer is verplicht.",
+        "whatsappTooLong": "WhatsApp-nummer is te lang.",
+        "invalidWhatsapp": "Voer een geldig WhatsApp-nummer in.",
+        "locationRequired": "Woonplaats is verplicht.",
+        "locationTooLong": "Woonplaats is te lang.",
+        "positionRequired": "Selecteer een functie.",
+        "invalidPosition": "Selecteer een geldige functie.",
+        "portfolioUrlTooLong": "De portfolio- of Drive-link is te lang.",
+        "coverLetterTooLong": "De motivatiebrief is te lang.",
+        "coverLetterHtmlNotAllowed": "Verwijder HTML-tags uit de motivatiebrief.",
+        "coverLetterTooManyLinks": "Verwijder de meeste links uit de motivatiebrief en probeer het opnieuw.",
+        "cvFileRequired": "Een cv in PDF-formaat is verplicht.",
+        "invalidFileType": "Bestandsformaat moet PDF (.pdf) zijn.",
+        "fileTooLarge": "Het bestand is groter dan de limiet van 10MB.",
+        "invalidPdfContent": "Het geüploade bestand is geen geldige PDF.",
+        "cvReadFailed": "Het cv kon niet worden gelezen. Probeer het opnieuw."
+      }
     }
   },
   "CatalogPage": {

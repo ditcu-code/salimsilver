@@ -3,6 +3,11 @@ import createNextIntlPlugin from "next-intl/plugin"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "11mb"
+    }
+  },
   typescript: {
     ignoreBuildErrors: true
   },

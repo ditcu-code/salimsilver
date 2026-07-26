@@ -386,17 +386,17 @@
         "type": "Work type"
       },
       "items": {
-        "silversmith": {
-          "title": "Junior Silversmith",
-          "description": "Support the basic stages of silver jewelry making, from material preparation and forming to finishing under senior artisan guidance.",
-          "location": "Kotagede, Yogyakarta",
-          "type": "Full-time"
-        },
         "studioAssistant": {
-          "title": "Studio & Workshop Assistant",
+          "title": "Studio & Workshop Assistant Intern",
           "description": "Support daily workshop activity, welcome guests, prepare workshop sessions, and help the team keep operations organized.",
           "location": "Kotagede, Yogyakarta",
-          "type": "Full-time"
+          "type": "Internship"
+        },
+        "socialMediaIntern": {
+          "title": "Social Media Specialist Intern",
+          "description": "Manage and plan daily content across Salim Silver social media channels, publish craft & product updates, and engage with the online community.",
+          "location": "Hybrid",
+          "type": "Internship"
         },
         "contentCreative": {
           "title": "Content Creative Intern",
@@ -432,6 +432,76 @@
       "description": "Send your CV or portfolio link anyway. If a suitable role opens later, our team will contact you through the details you provide.",
       "ctaLabel": "Drop Your CV",
       "message": "Hello Salim Silver, I would like to share my CV for future opportunities. Here is my CV/portfolio link:"
+    },
+    "ApplyNow": "Apply for Position",
+    "ApplicationForm": {
+      "eyebrow": "Salim Silver Careers",
+      "title": "Job Application Form",
+      "description": "Complete your details and upload your CV to apply for a role at Salim Silver.",
+      "honeypotLabel": "Do not fill in this field",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "name@email.com",
+      "whatsapp": "WhatsApp Number",
+      "whatsappPlaceholder": "+6281234567890",
+      "location": "Current City / Domicile",
+      "locationPlaceholder": "Yogyakarta",
+      "position": "Position Applied For",
+      "positions": {
+        "studioAssistant": "Studio & Workshop Assistant Intern",
+        "socialMediaIntern": "Social Media Specialist Intern",
+        "contentCreative": "Content Creative Intern",
+        "studentInternship": "Student Internship",
+        "talentPool": "Talent Pool (Future Openings)"
+      },
+      "cvUploadLabel": "Upload CV (PDF)",
+      "cvUploadHint": "PDF format only, maximum size 10MB.",
+      "selectPdf": "Choose PDF",
+      "replaceFile": "Replace File",
+      "portfolioUrl": "Portfolio / Drive Link (Optional)",
+      "portfolioUrlPlaceholder": "https://drive.google.com/... or portfolio link",
+      "coverLetter": "Cover Letter / Motivation",
+      "coverLetterPlaceholder": "Tell us briefly about yourself and why you want to join us...",
+      "submitButton": "Submit Application",
+      "submitting": "Submitting...",
+      "turnstilePrompt": "Complete the verification challenge before submitting your application.",
+      "successTitle": "Application Sent Successfully!",
+      "successMessage": "Thank you for applying. The Salim Silver team will review your application and contact you via WhatsApp or Email.",
+      "closeButton": "Close",
+      "messages": {
+        "formExpired": "This form has expired. Please reopen it and try again.",
+        "validationFailed": "Please check the form for errors.",
+        "rateLimited": "Too many applications from this connection. Please wait about {minutes, plural, one {# minute} other {# minutes}} and try again.",
+        "turnstileRequired": "Please complete the verification challenge and try again.",
+        "turnstileExpired": "Verification expired. Please try again.",
+        "turnstileUnavailable": "Verification is temporarily unavailable. Please try again later.",
+        "turnstileFailed": "Verification failed. Please try again.",
+        "sendFailed": "Failed to send your application. Please try again."
+      },
+      "errors": {
+        "fullNameRequired": "Full name is required.",
+        "fullNameTooLong": "Full name is too long.",
+        "emailRequired": "Email address is required.",
+        "emailTooLong": "Email address is too long.",
+        "invalidEmail": "Enter a valid email address.",
+        "whatsappRequired": "WhatsApp number is required.",
+        "whatsappTooLong": "WhatsApp number is too long.",
+        "invalidWhatsapp": "Enter a valid WhatsApp number.",
+        "locationRequired": "Current city or domicile is required.",
+        "locationTooLong": "Current city or domicile is too long.",
+        "positionRequired": "Select a position.",
+        "invalidPosition": "Select a valid position.",
+        "portfolioUrlTooLong": "Portfolio or Drive link is too long.",
+        "coverLetterTooLong": "Cover letter is too long.",
+        "coverLetterHtmlNotAllowed": "Remove HTML tags from the cover letter.",
+        "coverLetterTooManyLinks": "Remove most links from the cover letter and try again.",
+        "cvFileRequired": "A PDF CV is required.",
+        "invalidFileType": "File format must be PDF (.pdf).",
+        "fileTooLarge": "File size exceeds the 10MB limit.",
+        "invalidPdfContent": "The uploaded file is not a valid PDF.",
+        "cvReadFailed": "The CV could not be read. Please try again."
+      }
     }
   },
   "CatalogPage": {
