@@ -187,7 +187,7 @@ export default function CareerContent({
                   <button
                     type="button"
                     onClick={() => handleOpenApplication(key)}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary/10 py-3 text-sm font-semibold text-primary transition-all group-hover:bg-primary group-hover:text-primary-foreground"
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary/10 py-3 text-sm font-semibold text-primary transition-all group-hover:bg-primary group-hover:text-primary-foreground"
                   >
                     <span>{t("ApplyNow")}</span>
                     <ArrowRight className="h-4 w-4" />
@@ -239,7 +239,7 @@ export default function CareerContent({
               <button
                 type="button"
                 onClick={() => handleOpenApplication("studentInternship")}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
               >
                 <span>{t("StudentInternship.ctaLabel")}</span>
                 <ArrowRight className="h-4 w-4" />
@@ -301,7 +301,7 @@ export default function CareerContent({
               <button
                 type="button"
                 onClick={() => handleOpenApplication("talentPool")}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-10 py-5 text-lg font-semibold text-primary shadow-md transition-all hover:bg-white/90 hover:shadow-lg"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-10 py-5 text-lg font-semibold text-primary shadow-md transition-all hover:bg-white/90 hover:shadow-lg"
               >
                 <span>{t("TalentPool.ctaLabel")}</span>
                 <ArrowRight className="h-5 w-5" />

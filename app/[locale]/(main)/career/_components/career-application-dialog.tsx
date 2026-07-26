@@ -154,7 +154,7 @@ export default function CareerApplicationDialog({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-5 top-5 rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              className="absolute right-5 top-5 cursor-pointer rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
               aria-label={t("closeButton")}
             >
               <X className="h-5 w-5" />
@@ -173,7 +173,7 @@ export default function CareerApplicationDialog({
                   <button
                     type="button"
                     onClick={onClose}
-                    className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 shadow-md"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 shadow-md"
                   >
                     {t("closeButton")}
                   </button>
@@ -482,7 +482,7 @@ export default function CareerApplicationDialog({
                     <button
                       type="submit"
                       disabled={submitDisabled}
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {isPending ? (
                         <>
