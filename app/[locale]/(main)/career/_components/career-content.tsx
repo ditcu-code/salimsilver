@@ -138,7 +138,7 @@ export default function CareerContent({
                   width={600}
                   height={600}
                   priority
-                  className="h-full w-full object-contain filter drop-shadow-xs opacity-90"
+                  className="h-full w-full object-contain filter drop-shadow-xs opacity-80"
                 />
               </div>
             </motion.div>
