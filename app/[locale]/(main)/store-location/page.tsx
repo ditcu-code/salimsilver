@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import CTASection from "@/components/blocks/cta-section"
 import StoreLocationSection from "@/components/blocks/store-location-section"
+import LocationVisualGuide from "./components/LocationVisualGuide"
 import StoreHero from "./components/StoreHero"
 
 import { BASE_URL } from "@/lib/constants"
@@ -106,6 +107,9 @@ export default async function StoreLocationPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Visual Directions / Guide Section */}
+      <LocationVisualGuide />
 
       <div id="location">
         <StoreLocationSection />

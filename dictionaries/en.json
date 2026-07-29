@@ -311,6 +311,28 @@
         "consult": "Try on pieces and consult with our team on custom designs"
       }
     },
+    "VisualGuide": {
+      "subtitle": "Visual Guide",
+      "title": "Finding Our Workshop",
+      "description": "Navigating through the historic alleys of Kotagede is easy with this step-by-step visual guide.",
+      "steps": {
+        "step1": {
+          "badge": "Step 1",
+          "title": "Main Road Landmark",
+          "description": "From the main street of Kotagede, look for the Salim Silver sign & Kampung Sokowaten / Gg. Platina sign next to Toko Loka Jaya Electronic."
+        },
+        "step2": {
+          "badge": "Step 2",
+          "title": "Through Historic Alleys",
+          "description": "Enter Gg. Platina and stroll down the authentic, peaceful brick alleyways of Kotagede."
+        },
+        "step3": {
+          "badge": "Step 3",
+          "title": "Workshop Entrance",
+          "description": "Follow the path until you reach the carved Javanese wooden doorway and the hanging Salim Silver Art sign on your left."
+        }
+      }
+    },
 
     "LocationSection": {
       "title": "Location Details",

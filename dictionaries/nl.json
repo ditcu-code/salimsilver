@@ -311,6 +311,28 @@
         "consult": "Pas sieraden en overleg met ons team over ontwerpen op maat"
       }
     },
+    "VisualGuide": {
+      "subtitle": "Visuele gids",
+      "title": "Onze werkplaats vinden",
+      "description": "Navigeren door de historische steegjes van Kotagede is eenvoudig met deze visuele gids.",
+      "steps": {
+        "step1": {
+          "badge": "Stap 1",
+          "title": "Herkenningspunt op de hoofdstraat",
+          "description": "Zoek vanaf de hoofdstraat in Kotagede naar het Salim Silver-bord en het Kampung Sokowaten / Gg. Platina-bord naast Toko Loka Jaya Electronic."
+        },
+        "step2": {
+          "badge": "Stap 2",
+          "title": "Door historische steegjes",
+          "description": "Ga Gg. Platina in en wandel door de authentieke, rustige bakstenen steegjes van Kotagede."
+        },
+        "step3": {
+          "badge": "Stap 3",
+          "title": "Ingang van het atelier",
+          "description": "Volg het pad tot je bij de gesneden Javaanse houten deur en het hangende Salim Silver Art-bord aan je linkerhand komt."
+        }
+      }
+    },
     "LocationSection": {
       "title": "Locatiegegevens",
       "description": "We zijn gevestigd in het hart van Kotagede, de historische zilverwijk van Yogyakarta.",

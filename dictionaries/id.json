@@ -311,6 +311,28 @@
         "consult": "Coba perhiasan dan konsultasikan desain kustom dengan tim kami"
       }
     },
+    "VisualGuide": {
+      "subtitle": "Panduan Visual",
+      "title": "Petunjuk Menuju Workshop Kami",
+      "description": "Menemukan lokasi kami di antara gang-gang bersejarah Kotagede sangatlah mudah dengan panduan visual ini.",
+      "steps": {
+        "step1": {
+          "badge": "Langkah 1",
+          "title": "Patokan Jalan Utama",
+          "description": "Dari jalan utama Kotagede, cari plang nama Salim Silver & penanda Kampung Sokowaten / Gg. Platina di samping Toko Loka Jaya Electronic."
+        },
+        "step2": {
+          "badge": "Langkah 2",
+          "title": "Menyusuri Gang Bersejarah",
+          "description": "Masuki Gg. Platina dan nikmati suasana gang bata otentik Kotagede yang tenang dan asri."
+        },
+        "step3": {
+          "badge": "Langkah 3",
+          "title": "Pintu Masuk Workshop",
+          "description": "Ikuti jalan kecil hingga menemukan pintu ukir kayu khas dan plang gantung Salim Silver Art di sebelah kiri."
+        }
+      }
+    },
 
     "LocationSection": {
       "title": "Detail Lokasi",
