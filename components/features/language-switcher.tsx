@@ -9,7 +9,7 @@ import { useLocale } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
 const LANGUAGES = [
-  { code: "id", label: "Bahasa Indonesia", flag: "🇮🇩" },
+  { code: "id", label: "Indonesia", flag: "🇮🇩" },
   { code: "en", label: "English", flag: "🇺🇸" },
   { code: "nl", label: "Nederlands", flag: "🇳🇱" }
 ]
