@@ -24,7 +24,7 @@ Salim Silver is a multilingual Next.js application for handcrafted Javanese silv
 - `/blog` and `/blog/[slug]`: blog listing, post detail, views, and comments
 - `/about`, `/contact`, `/career`, `/workshop`, `/store-location`
 - `/gold-price` and `/silver-price`: live metal price pages with Open Graph image routes
-- `/links`, `/gmaps-review`, `/maintenance`: utility and campaign pages
+- `/links`, `/review`, `/maintenance`: utility and campaign pages
 
 The default locale is English. Indonesian and Dutch are served with locale prefixes.
 
