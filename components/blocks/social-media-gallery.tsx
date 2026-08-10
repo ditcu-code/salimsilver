@@ -11,8 +11,14 @@ interface SocialMediaGalleryProps {
   title?: string
 }
 
-export function SocialMediaGallery({ urls, className, title }: SocialMediaGalleryProps) {
+export function SocialMediaGallery({
+  urls,
+  className,
+  title
+}: SocialMediaGalleryProps) {
   const [isMounted, setIsMounted] = useState(false)
+  // TikTok's global embed script processes every blockquote on the page.
+  const firstTikTokIndex = urls.findIndex((url) => url.includes("tiktok.com"))
 
   useEffect(() => {
     setIsMounted(true)
@@ -37,7 +43,12 @@ export function SocialMediaGallery({ urls, className, title }: SocialMediaGaller
               className="group relative flex justify-center hover:z-10"
             >
               {url.includes("tiktok.com") ? (
-                <TikTokEmbed url={url} width={328} />
+                <TikTokEmbed
+                  url={url}
+                  width={328}
+                  scriptLoadDisabled={index !== firstTikTokIndex}
+                  retryDisabled
+                />
               ) : (
                 <InstagramEmbed url={url} width={328} />
               )}
