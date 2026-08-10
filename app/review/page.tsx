@@ -5,9 +5,9 @@ import {
   type ReviewPlatform
 } from "./components/review-selection"
 
-const title = "Share Your Salim Silver Experience"
+const title = "Salim would love your feedback!"
 const description =
-  "Share your experience at Salim Silver on Google Reviews or TripAdvisor and help others discover Javanese silver craftsmanship."
+  "Share your experience with Salim Silver. Your feedback helps us continue crafting heritage jewelry with passion."
 
 export const metadata: Metadata = {
   title,

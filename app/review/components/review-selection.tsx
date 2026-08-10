@@ -84,11 +84,10 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
     : { duration: 0.45, ease: "easeOut" as const }
 
   return (
-    <main className="bg-background text-foreground relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 py-12 sm:px-6">
+    <main className="bg-background text-foreground relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 py-6 sm:px-6 sm:py-12">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="bg-primary/10 absolute -top-32 -left-24 h-96 w-96 rounded-full blur-3xl" />
         <div className="bg-accent/20 absolute right-0 -bottom-40 h-120 w-120 rounded-full blur-3xl" />
-        <div className="border-border/50 absolute inset-x-0 top-1/2 border-t" />
       </div>
 
       <motion.div
@@ -97,40 +96,49 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={animation}
       >
-        <header className="mx-auto mb-10 max-w-2xl text-center">
+        <header className="mx-auto mb-5 max-w-2xl text-center sm:mb-8">
           <div
-            className="text-primary mb-5 flex justify-center gap-1.5"
+            className="mb-2.5 flex justify-center gap-1.5 sm:mb-4 sm:gap-2"
             aria-hidden="true"
           >
             {[0, 1, 2, 3, 4].map((star) => (
-              <motion.span
+              <motion.div
                 key={star}
-                initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  ...animation,
-                  delay: shouldReduceMotion ? 0 : star * 0.08
+                initial={{
+                  opacity: 0,
+                  scale: shouldReduceMotion ? 1 : 0,
+                  rotate: shouldReduceMotion ? 0 : -180
                 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : {
+                        duration: 0.5,
+                        delay: star * 0.1,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15
+                      }
+                }
               >
-                <Star className="size-6 fill-current sm:size-7" />
-              </motion.span>
+                <Star className="size-6 fill-yellow-400 text-yellow-400 sm:size-8" />
+              </motion.div>
             ))}
           </div>
 
-          <p className="text-primary mb-3 text-sm font-semibold tracking-[0.18em] uppercase">
-            Thank you for visiting
-          </p>
-          <h1 className="font-display text-4xl leading-tight font-semibold text-balance sm:text-5xl">
-            Share your experience
+          <h1 className="font-display text-3xl font-semibold leading-tight text-balance sm:text-4xl md:text-5xl">
+            A Heartfelt Thank You
           </h1>
-          <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-base leading-relaxed text-balance sm:text-lg">
-            Your feedback helps others discover Salim Silver and supports the
-            tradition of Javanese craftsmanship.
+          <p className="text-muted-foreground mx-auto mt-2 max-w-xl text-sm leading-relaxed text-balance sm:text-base md:text-lg">
+            Thank you for spending time with us at Salim Silver. We would be
+            honored by a 5-star review. Your support keeps our tradition of
+            Javanese craftsmanship alive.
           </p>
         </header>
 
         <section
-          className="grid gap-4 md:grid-cols-2"
+          className="grid gap-3 sm:gap-4 md:grid-cols-2"
           aria-label="Choose a review platform"
         >
           {platforms.map(([platform, details], index) => {
@@ -145,7 +153,7 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
                 data-state={isSelected ? "selected" : "idle"}
                 onClick={stopAutoRedirect}
                 className={cn(
-                  "group bg-card text-card-foreground focus-visible:ring-ring relative flex min-h-64 flex-col rounded-3xl border p-7 shadow-sm transition-[border-color,box-shadow,transform] hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                  "group bg-card text-card-foreground focus-visible:ring-ring relative flex min-h-0 flex-col rounded-2xl border p-4 shadow-sm transition-[border-color,box-shadow,transform] hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:min-h-64 sm:rounded-3xl sm:p-7",
                   isSelected
                     ? "border-primary ring-primary/15 ring-4"
                     : "border-border hover:border-primary/45"
@@ -157,12 +165,17 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
                   delay: shouldReduceMotion ? 0 : 0.18 + index * 0.1
                 }}
               >
-                <div className="mb-8 flex items-start justify-between gap-4">
-                  <div className="border-border bg-background flex size-16 items-center justify-center rounded-2xl border shadow-sm">
-                    <Icon className="size-10" aria-hidden="true" />
+                <div className="mb-2.5 flex items-center justify-between gap-3 sm:mb-8 sm:items-start sm:gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="border-border bg-background flex size-11 shrink-0 items-center justify-center rounded-xl border shadow-sm sm:size-16 sm:rounded-2xl">
+                      <Icon className="size-6.5 sm:size-10" aria-hidden="true" />
+                    </div>
+                    <h2 className="font-display text-lg font-semibold leading-tight sm:hidden">
+                      {details.name}
+                    </h2>
                   </div>
                   {isSelected ? (
-                    <span className="bg-primary text-primary-foreground flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold">
+                    <span className="bg-primary text-primary-foreground flex shrink-0 items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold sm:gap-1.5 sm:px-3 sm:py-1">
                       <Check className="size-3.5" />
                       Selected
                     </span>
@@ -170,13 +183,13 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
                 </div>
 
                 <div className="mt-auto">
-                  <h2 className="font-display text-2xl font-semibold">
+                  <h2 className="font-display hidden text-2xl font-semibold sm:block">
                     {details.name}
                   </h2>
-                  <p className="text-muted-foreground mt-2 leading-relaxed">
+                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed sm:mt-2 sm:text-base">
                     {details.description}
                   </p>
-                  <span className="text-primary mt-5 inline-flex items-center gap-2 text-sm font-semibold">
+                  <span className="text-primary mt-3 inline-flex items-center gap-1.5 text-sm font-semibold sm:mt-5 sm:gap-2">
                     Leave a review
                     <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </span>
@@ -188,15 +201,15 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
 
         {initialPlatform && autoRedirectEnabled && countdown !== null ? (
           <motion.div
-            className="border-border bg-card/90 mx-auto mt-6 flex max-w-xl flex-col items-center justify-between gap-4 rounded-2xl border p-4 text-center shadow-sm backdrop-blur sm:flex-row sm:text-left"
+            className="border-border bg-card/90 mx-auto mt-4 flex max-w-xl flex-col items-center justify-between gap-3 rounded-xl border p-3 text-center shadow-sm backdrop-blur sm:mt-6 sm:flex-row sm:rounded-2xl sm:p-4 sm:text-left"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={animation}
             aria-live="polite"
           >
-            <div className="flex items-center gap-3">
-              <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-full">
-                <Clock3 className="size-5" aria-hidden="true" />
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <span className="bg-primary/10 text-primary flex size-8 shrink-0 items-center justify-center rounded-full sm:size-10">
+                <Clock3 className="size-4 sm:size-5" aria-hidden="true" />
               </span>
               <p className="text-sm leading-relaxed">
                 Redirecting to {platformDetails[initialPlatform].shortName} in{" "}
@@ -213,7 +226,7 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
             </Button>
           </motion.div>
         ) : (
-          <p className="text-muted-foreground mt-6 text-center text-sm">
+          <p className="text-muted-foreground mt-4 text-center text-xs sm:mt-6 sm:text-sm">
             Choose the platform you prefer. You will continue in the same tab.
           </p>
         )}

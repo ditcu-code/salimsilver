@@ -5,7 +5,7 @@ test("review page offers both review platforms", async ({ page }) => {
   await page.goto("/review")
 
   await expect(
-    page.getByRole("heading", { name: "Share your experience" })
+    page.getByRole("heading", { name: "A Heartfelt Thank You" })
   ).toBeVisible()
   await expect(
     page.getByRole("link", { name: "Leave a review on Google Reviews" })
