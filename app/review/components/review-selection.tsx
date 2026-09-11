@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { GOOGLE_REVIEW_URL, TRIPADVISOR_REVIEW_URL } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowUpRight, Check, Clock3, Star } from "lucide-react"
+import { Star } from "lucide-react"
 import { useEffect, useState, type ComponentType, type SVGProps } from "react"
 
 export type ReviewPlatform = "google" | "tripadvisor"
@@ -16,7 +16,6 @@ interface ReviewSelectionProps {
 interface PlatformDetails {
   name: string
   shortName: string
-  description: string
   href: string
   icon: ComponentType<SVGProps<SVGSVGElement>>
 }
@@ -25,14 +24,12 @@ const platformDetails: Record<ReviewPlatform, PlatformDetails> = {
   google: {
     name: "Google Reviews",
     shortName: "Google Reviews",
-    description: "Share your visit with people searching for us on Google.",
     href: GOOGLE_REVIEW_URL,
     icon: GoogleIcon
   },
   tripadvisor: {
     name: "TripAdvisor",
     shortName: "TripAdvisor",
-    description: "Help travelers discover our workshop and showroom.",
     href: TRIPADVISOR_REVIEW_URL,
     icon: TripAdvisorIcon
   }
@@ -84,24 +81,19 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
     : { duration: 0.45, ease: "easeOut" as const }
 
   return (
-    <main className="bg-background text-foreground relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 py-6 sm:px-6 sm:py-12">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="bg-primary/10 absolute -top-32 -left-24 h-96 w-96 rounded-full blur-3xl" />
-        <div className="bg-accent/20 absolute right-0 -bottom-40 h-120 w-120 rounded-full blur-3xl" />
-      </div>
-
+    <main className="flex min-h-screen w-full flex-col items-center justify-center px-4 py-10 text-center">
       <motion.div
-        className="mx-auto w-full max-w-4xl"
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-2xl space-y-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={animation}
       >
-        <header className="mx-auto mb-5 max-w-2xl text-center sm:mb-8">
+        <header className="space-y-4">
           <div
-            className="mb-2.5 flex justify-center gap-1.5 sm:mb-4 sm:gap-2"
+            className="text-primary flex justify-center gap-2"
             aria-hidden="true"
           >
-            {[0, 1, 2, 3, 4].map((star) => (
+            {[1, 2, 3, 4, 5].map((star, index) => (
               <motion.div
                 key={star}
                 initial={{
@@ -115,30 +107,36 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
                     ? { duration: 0 }
                     : {
                         duration: 0.5,
-                        delay: star * 0.1,
+                        delay: index * 0.1,
                         type: "spring",
                         stiffness: 200,
                         damping: 15
                       }
                 }
               >
-                <Star className="size-6 fill-yellow-400 text-yellow-400 sm:size-8" />
+                <Star className="h-8 w-8 fill-yellow-400" />
               </motion.div>
             ))}
           </div>
 
-          <h1 className="font-display text-3xl font-semibold leading-tight text-balance sm:text-4xl md:text-5xl">
-            A Heartfelt Thank You
-          </h1>
-          <p className="text-muted-foreground mx-auto mt-2 max-w-xl text-sm leading-relaxed text-balance sm:text-base md:text-lg">
-            Thank you for spending time with us at Salim Silver. We would be
-            honored by a 5-star review. Your support keeps our tradition of
-            Javanese craftsmanship alive.
-          </p>
+          <div className="space-y-4">
+            <h1 className="text-primary font-serif text-4xl font-medium text-balance md:text-5xl">
+              A Heartfelt Thank You
+            </h1>
+
+            <p className="text-muted-foreground mx-auto max-w-xl text-lg leading-relaxed text-balance md:text-xl">
+              Thank you for spending time with us at Salim Silver.
+            </p>
+
+            <p className="text-muted-foreground mx-auto max-w-xl text-lg leading-relaxed text-balance md:text-xl">
+              We would be honored by a 5-star review. Your support keeps our
+              tradition of Javanese craftsmanship alive.
+            </p>
+          </div>
         </header>
 
         <section
-          className="grid gap-3 sm:gap-4 md:grid-cols-2"
+          className="mx-auto grid max-w-xl gap-5 sm:grid-cols-2"
           aria-label="Choose a review platform"
         >
           {platforms.map(([platform, details], index) => {
@@ -146,18 +144,9 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
             const isSelected = initialPlatform === platform
 
             return (
-              <motion.a
+              <motion.div
                 key={platform}
-                href={details.href}
-                aria-label={`Leave a review on ${details.name}`}
-                data-state={isSelected ? "selected" : "idle"}
-                onClick={stopAutoRedirect}
-                className={cn(
-                  "group bg-card text-card-foreground focus-visible:ring-ring relative flex min-h-0 flex-col rounded-2xl border p-4 shadow-sm transition-[border-color,box-shadow,transform] hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:min-h-64 sm:rounded-3xl sm:p-7",
-                  isSelected
-                    ? "border-primary ring-primary/15 ring-4"
-                    : "border-border hover:border-primary/45"
-                )}
+                className="space-y-2"
                 initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -165,60 +154,44 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
                   delay: shouldReduceMotion ? 0 : 0.18 + index * 0.1
                 }}
               >
-                <div className="mb-2.5 flex items-center justify-between gap-3 sm:mb-8 sm:items-start sm:gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="border-border bg-background flex size-11 shrink-0 items-center justify-center rounded-xl border shadow-sm sm:size-16 sm:rounded-2xl">
-                      <Icon className="size-6.5 sm:size-10" aria-hidden="true" />
-                    </div>
-                    <h2 className="font-display text-lg font-semibold leading-tight sm:hidden">
-                      {details.name}
-                    </h2>
-                  </div>
-                  {isSelected ? (
-                    <span className="bg-primary text-primary-foreground flex shrink-0 items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold sm:gap-1.5 sm:px-3 sm:py-1">
-                      <Check className="size-3.5" />
-                      Selected
-                    </span>
-                  ) : null}
-                </div>
-
-                <div className="mt-auto">
-                  <h2 className="font-display hidden text-2xl font-semibold sm:block">
-                    {details.name}
-                  </h2>
-                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed sm:mt-2 sm:text-base">
-                    {details.description}
-                  </p>
-                  <span className="text-primary mt-3 inline-flex items-center gap-1.5 text-sm font-semibold sm:mt-5 sm:gap-2">
-                    Leave a review
-                    <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <motion.a
+                  href={details.href}
+                  aria-label={`Leave a review on ${details.name}`}
+                  data-state={isSelected ? "selected" : "idle"}
+                  onClick={stopAutoRedirect}
+                  whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+                  className={cn(
+                    "bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring flex min-h-16 w-full items-center justify-center gap-3 rounded-full px-5 py-3 text-base font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                    isSelected && "ring-primary/20 ring-4"
+                  )}
+                >
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
+                    <Icon className="size-6" aria-hidden="true" />
                   </span>
-                </div>
-              </motion.a>
+                  <span>{details.name}</span>
+                </motion.a>
+              </motion.div>
             )
           })}
         </section>
 
         {initialPlatform && autoRedirectEnabled && countdown !== null ? (
           <motion.div
-            className="border-border bg-card/90 mx-auto mt-4 flex max-w-xl flex-col items-center justify-between gap-3 rounded-xl border p-3 text-center shadow-sm backdrop-blur sm:mt-6 sm:flex-row sm:rounded-2xl sm:p-4 sm:text-left"
+            className="space-y-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={animation}
-            aria-live="polite"
           >
-            <div className="flex items-center gap-2.5 sm:gap-3">
-              <span className="bg-primary/10 text-primary flex size-8 shrink-0 items-center justify-center rounded-full sm:size-10">
-                <Clock3 className="size-4 sm:size-5" aria-hidden="true" />
-              </span>
-              <p className="text-sm leading-relaxed">
-                Redirecting to {platformDetails[initialPlatform].shortName} in{" "}
-                <strong>{countdown} seconds</strong>.
-              </p>
-            </div>
+            <p
+              className="text-muted-foreground animate-pulse text-sm"
+              aria-live="polite"
+            >
+              Redirecting to {platformDetails[initialPlatform].shortName} in{" "}
+              {countdown} seconds.
+            </p>
             <Button
               type="button"
-              variant="ghost"
+              variant="link"
               size="sm"
               onClick={cancelAutoRedirect}
             >
@@ -226,7 +199,7 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
             </Button>
           </motion.div>
         ) : (
-          <p className="text-muted-foreground mt-4 text-center text-xs sm:mt-6 sm:text-sm">
+          <p className="text-muted-foreground text-sm">
             Choose the platform you prefer. You will continue in the same tab.
           </p>
         )}
