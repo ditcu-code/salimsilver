@@ -3,15 +3,6 @@ import createNextIntlPlugin from "next-intl/plugin"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
-  async redirects() {
-    return [
-      {
-        source: "/gmaps-review",
-        destination: "/review?platform=google",
-        statusCode: 301
-      }
-    ]
-  },
   experimental: {
     serverActions: {
       bodySizeLimit: "11mb"

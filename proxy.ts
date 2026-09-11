@@ -12,7 +12,12 @@ const intlMiddleware = createMiddleware({
   localePrefix: "as-needed"
 })
 
-const NON_LOCALIZED_PATHNAMES = ["/links", "/review", "/maintenance"]
+const NON_LOCALIZED_PATHNAMES = [
+  "/links",
+  "/review",
+  "/gmaps-review",
+  "/maintenance"
+]
 
 export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
