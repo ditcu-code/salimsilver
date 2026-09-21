@@ -124,14 +124,16 @@ export default async function WorkshopPage({ params }: Props) {
         title={t("PolaroidGallery.title")}
         studentAlt={t("PolaroidGallery.studentAlt")}
       />
-      <SocialMediaGallery 
-        urls={reels.filter((url) => 
-          locale === "id" 
-            ? url.includes("instagram.com") 
+      <SocialMediaGallery
+        urls={reels.filter((url) =>
+          locale === "id"
+            ? url.includes("instagram.com")
             : url.includes("tiktok.com")
-        )} 
-        className="mb-12" 
-        title={t("Reels.title")} 
+        )}
+        className="mb-12"
+        title={t("Reels.title")}
+        previousLabel={t("Reels.previousLabel")}
+        nextLabel={t("Reels.nextLabel")}
       />
 
       <script

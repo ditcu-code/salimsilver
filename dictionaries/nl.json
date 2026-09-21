@@ -281,7 +281,9 @@
       }
     },
     "Reels": {
-      "title": "Vastgelegde momenten"
+      "title": "Vastgelegde momenten",
+      "previousLabel": "Vorige video",
+      "nextLabel": "Volgende video"
     },
     "PolaroidGallery": {
       "title": "Onze blije studenten",

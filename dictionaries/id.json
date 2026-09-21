@@ -281,7 +281,9 @@
       }
     },
     "Reels": {
-      "title": "Momen Terabadikan"
+      "title": "Momen Terabadikan",
+      "previousLabel": "Video sebelumnya",
+      "nextLabel": "Video berikutnya"
     },
     "PolaroidGallery": {
       "title": "Murid-murid Bahagia",

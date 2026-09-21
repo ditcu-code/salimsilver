@@ -281,7 +281,9 @@
       }
     },
     "Reels": {
-      "title": "Captured Moments"
+      "title": "Captured Moments",
+      "previousLabel": "Previous video",
+      "nextLabel": "Next video"
     },
     "PolaroidGallery": {
       "title": "Our Happy Students",
