@@ -24,10 +24,7 @@ test.describe("Instagram oEmbed", () => {
   test("returns validated official markup and requests a cached script-free embed", async () => {
     let requestedUrl = ""
     let requestedInit: RequestInit | undefined
-    const fetcher = (async (
-      input: RequestInfo | URL,
-      init?: RequestInit
-    ) => {
+    const fetcher = (async (input: RequestInfo | URL, init?: RequestInit) => {
       requestedUrl = String(input)
       requestedInit = init
 
@@ -51,14 +48,18 @@ test.describe("Instagram oEmbed", () => {
         instagramResponse({ provider_name: "Unexpected provider" })
       )) as typeof fetch
 
-    await expect(getInstagramEmbedHtml(instagramUrl, fetcher)).resolves.toBeNull()
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
   })
 
   test("rejects malformed responses", async () => {
     const fetcher = (async () =>
       Response.json(instagramResponse({ html: null }))) as typeof fetch
 
-    await expect(getInstagramEmbedHtml(instagramUrl, fetcher)).resolves.toBeNull()
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
   })
 
   test("rejects markup containing a script", async () => {
@@ -69,14 +70,18 @@ test.describe("Instagram oEmbed", () => {
         })
       )) as typeof fetch
 
-    await expect(getInstagramEmbedHtml(instagramUrl, fetcher)).resolves.toBeNull()
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
   })
 
   test("returns null for an unsuccessful response", async () => {
     const fetcher = (async () =>
       new Response("rate limited", { status: 429 })) as typeof fetch
 
-    await expect(getInstagramEmbedHtml(instagramUrl, fetcher)).resolves.toBeNull()
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
   })
 
   test("returns null when the network request fails", async () => {
@@ -84,6 +89,8 @@ test.describe("Instagram oEmbed", () => {
       throw new TypeError("network unavailable")
     }) as typeof fetch
 
-    await expect(getInstagramEmbedHtml(instagramUrl, fetcher)).resolves.toBeNull()
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
   })
 })
