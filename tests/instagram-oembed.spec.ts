@@ -4,7 +4,13 @@ import { getInstagramEmbedHtml } from "@/lib/instagram-oembed"
 
 const instagramUrl = "https://www.instagram.com/reel/DEoZ7RFSORY/"
 const officialHtml =
-  '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DEoZ7RFSORY/"></blockquote>'
+  '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DEoZ7RFSORY/?utm_source=ig_embed" data-instgrm-version="14"><div><a href="https://www.instagram.com/reel/DEoZ7RFSORY/">View this post on Instagram</a></div></blockquote>'
+
+const getInstagramEmbedHtmlWithTimeout = getInstagramEmbedHtml as (
+  url: string,
+  fetcher: typeof fetch,
+  timeoutMs: number
+) => Promise<string | null>
 
 function instagramResponse(overrides: Record<string, unknown> = {}) {
   return {
@@ -75,6 +81,62 @@ test.describe("Instagram oEmbed", () => {
     ).resolves.toBeNull()
   })
 
+  test("rejects slash-delimited script markup", async () => {
+    const fetcher = (async () =>
+      Response.json(
+        instagramResponse({
+          html: `${officialHtml}<script/>globalThis.__oembedExecuted = true</script>`
+        })
+      )) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
+  test("rejects event-handler attributes", async () => {
+    const fetcher = (async () =>
+      Response.json(
+        instagramResponse({
+          html: officialHtml.replace(
+            "<blockquote",
+            '<blockquote onclick="globalThis.__oembedExecuted = true"'
+          )
+        })
+      )) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
+  test("rejects unsafe URL schemes", async () => {
+    const fetcher = (async () =>
+      Response.json(
+        instagramResponse({
+          html: officialHtml.replace(
+            'href="https://www.instagram.com/reel/DEoZ7RFSORY/"',
+            'href="javascript:globalThis.__oembedExecuted = true"'
+          )
+        })
+      )) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
+  test("rejects non-Instagram embed markup", async () => {
+    const fetcher = (async () =>
+      Response.json(
+        instagramResponse({ html: "<div>Not an Instagram embed</div>" })
+      )) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
   test("returns null for an unsuccessful response", async () => {
     const fetcher = (async () =>
       new Response("rate limited", { status: 429 })) as typeof fetch
@@ -91,6 +153,32 @@ test.describe("Instagram oEmbed", () => {
 
     await expect(
       getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
+  test("returns null when fetching exceeds the deadline", async () => {
+    const fetcher = (async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50))
+      return Response.json(instagramResponse())
+    }) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtmlWithTimeout(instagramUrl, fetcher, 10)
+    ).resolves.toBeNull()
+  })
+
+  test("returns null when reading the response exceeds the deadline", async () => {
+    const fetcher = (async () =>
+      ({
+        ok: true,
+        json: async () => {
+          await new Promise((resolve) => setTimeout(resolve, 50))
+          return instagramResponse()
+        }
+      }) as Response) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtmlWithTimeout(instagramUrl, fetcher, 10)
     ).resolves.toBeNull()
   })
 })
