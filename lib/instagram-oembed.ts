@@ -21,7 +21,6 @@ const URL_ATTRIBUTES = new Set([
   "src",
   "xlink:href"
 ])
-const UNSAFE_URL_SCHEME = /^\s*(?:data|javascript|vbscript):/i
 const UNSAFE_STYLE_VALUE =
   /(?:expression\s*\(|url\s*\(\s*["']?\s*(?:data|javascript|vbscript):)/i
 
@@ -34,6 +33,22 @@ function normalizePathname(pathname: string) {
   return pathname.replace(/\/+$/, "")
 }
 
+function isInstagramHostname(hostname: string) {
+  return hostname === "instagram.com" || hostname.endsWith(".instagram.com")
+}
+
+function isSafeInstagramUrl(value: string) {
+  try {
+    const parsedUrl = new URL(value)
+
+    return (
+      parsedUrl.protocol === "https:" && isInstagramHostname(parsedUrl.hostname)
+    )
+  } catch {
+    return false
+  }
+}
+
 function isOfficialInstagramPermalink(
   permalink: string | undefined,
   requestedUrl: string
@@ -43,13 +58,11 @@ function isOfficialInstagramPermalink(
   try {
     const parsedPermalink = new URL(permalink)
     const parsedRequestedUrl = new URL(requestedUrl)
-    const isInstagramHost = ["instagram.com", "www.instagram.com"].includes(
-      parsedPermalink.hostname
-    )
 
     return (
-      parsedPermalink.protocol === "https:" &&
-      isInstagramHost &&
+      isSafeInstagramUrl(permalink) &&
+      parsedRequestedUrl.protocol === "https:" &&
+      isInstagramHostname(parsedRequestedUrl.hostname) &&
       normalizePathname(parsedPermalink.pathname) ===
         normalizePathname(parsedRequestedUrl.pathname)
     )
@@ -93,7 +106,7 @@ function isValidInstagramEmbedHtml(html: string, requestedUrl: string) {
       if (attributeName.startsWith("on")) return false
       if (
         URL_ATTRIBUTES.has(attributeName) &&
-        UNSAFE_URL_SCHEME.test(attributeValue)
+        !isSafeInstagramUrl(attributeValue)
       ) {
         return false
       }
@@ -117,9 +130,16 @@ export async function getInstagramEmbedHtml(
   fetcher: typeof fetch = fetch,
   timeoutMs = INSTAGRAM_OEMBED_TIMEOUT_MS
 ): Promise<string | null> {
-  const endpoint = new URL(
-    process.env.INSTAGRAM_OEMBED_ENDPOINT ?? DEFAULT_INSTAGRAM_OEMBED_ENDPOINT
-  )
+  let endpoint: URL
+
+  try {
+    endpoint = new URL(
+      process.env.INSTAGRAM_OEMBED_ENDPOINT ?? DEFAULT_INSTAGRAM_OEMBED_ENDPOINT
+    )
+  } catch {
+    return null
+  }
+
   endpoint.searchParams.set("url", url)
   endpoint.searchParams.set("omitscript", "true")
   endpoint.searchParams.set("maxwidth", "540")

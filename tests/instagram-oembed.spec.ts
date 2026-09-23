@@ -126,6 +126,38 @@ test.describe("Instagram oEmbed", () => {
     ).resolves.toBeNull()
   })
 
+  test("rejects control-character-obfuscated unsafe URL schemes", async () => {
+    const fetcher = (async () =>
+      Response.json(
+        instagramResponse({
+          html: officialHtml.replace(
+            'href="https://www.instagram.com/reel/DEoZ7RFSORY/"',
+            'href="java&#x0A;script:globalThis.__oembedExecuted = true"'
+          )
+        })
+      )) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
+  test("rejects embed links to non-Instagram hosts", async () => {
+    const fetcher = (async () =>
+      Response.json(
+        instagramResponse({
+          html: officialHtml.replace(
+            'href="https://www.instagram.com/reel/DEoZ7RFSORY/"',
+            'href="https://example.com/phishing"'
+          )
+        })
+      )) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
   test("rejects non-Instagram embed markup", async () => {
     const fetcher = (async () =>
       Response.json(
@@ -154,6 +186,25 @@ test.describe("Instagram oEmbed", () => {
     await expect(
       getInstagramEmbedHtml(instagramUrl, fetcher)
     ).resolves.toBeNull()
+  })
+
+  test("returns null when the configured endpoint is malformed", async () => {
+    const previousEndpoint = process.env.INSTAGRAM_OEMBED_ENDPOINT
+    process.env.INSTAGRAM_OEMBED_ENDPOINT = "not a valid URL"
+
+    const fetcher = (async () =>
+      Response.json(instagramResponse())) as typeof fetch
+
+    try {
+      const result = await getInstagramEmbedHtml(instagramUrl, fetcher)
+      expect(result).toBeNull()
+    } finally {
+      if (previousEndpoint === undefined) {
+        delete process.env.INSTAGRAM_OEMBED_ENDPOINT
+      } else {
+        process.env.INSTAGRAM_OEMBED_ENDPOINT = previousEndpoint
+      }
+    }
   })
 
   test("returns null when fetching exceeds the deadline", async () => {

@@ -47,14 +47,14 @@ export default defineConfig({
     {
       command: "node tests/fixtures/instagram-oembed-server.mjs",
       url: "http://127.0.0.1:3100/health",
-      reuseExistingServer: !process.env.CI,
+      reuseExistingServer: false,
       timeout: 30 * 1000
     },
     {
       command:
         "INSTAGRAM_OEMBED_ENDPOINT=http://127.0.0.1:3100/instagram_oembed yarn dev",
       url: "http://localhost:3000",
-      reuseExistingServer: !process.env.CI,
+      reuseExistingServer: false,
       timeout: 120 * 1000
     }
   ]
