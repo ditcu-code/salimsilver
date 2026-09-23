@@ -5,15 +5,30 @@ const DEFAULT_INSTAGRAM_OEMBED_ENDPOINT =
 const INSTAGRAM_OEMBED_REVALIDATE_SECONDS = 86_400
 const INSTAGRAM_OEMBED_TIMEOUT_MS = 5_000
 
-const ALLOWED_INSTAGRAM_EMBED_TAGS = new Set([
-  "a",
-  "blockquote",
-  "div",
-  "g",
-  "p",
-  "path",
-  "svg"
-])
+const ALLOWED_INSTAGRAM_EMBED_ATTRIBUTES: Readonly<
+  Record<string, ReadonlySet<string>>
+> = {
+  a: new Set(["href", "style", "target"]),
+  blockquote: new Set([
+    "class",
+    "data-instgrm-captioned",
+    "data-instgrm-permalink",
+    "data-instgrm-version",
+    "style"
+  ]),
+  div: new Set(["style"]),
+  g: new Set(["fill", "fill-rule", "stroke", "stroke-width", "transform"]),
+  p: new Set(["style"]),
+  path: new Set(["d"]),
+  svg: new Set([
+    "height",
+    "version",
+    "viewbox",
+    "width",
+    "xmlns",
+    "xmlns:xlink"
+  ])
+}
 const URL_ATTRIBUTES = new Set([
   "action",
   "formaction",
@@ -98,12 +113,15 @@ function isValidInstagramEmbedHtml(html: string, requestedUrl: string) {
   }
 
   for (const element of elements) {
-    if (!ALLOWED_INSTAGRAM_EMBED_TAGS.has(element.name)) return false
+    const allowedAttributes = ALLOWED_INSTAGRAM_EMBED_ATTRIBUTES[element.name]
+
+    if (!allowedAttributes) return false
 
     for (const [attributeName, attributeValue] of Object.entries(
       element.attribs
     )) {
       if (attributeName.startsWith("on")) return false
+      if (!allowedAttributes.has(attributeName)) return false
       if (
         URL_ATTRIBUTES.has(attributeName) &&
         !isSafeInstagramUrl(attributeValue)

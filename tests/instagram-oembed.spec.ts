@@ -158,6 +158,22 @@ test.describe("Instagram oEmbed", () => {
     ).resolves.toBeNull()
   })
 
+  test("rejects unsupported URL-bearing attributes", async () => {
+    const fetcher = (async () =>
+      Response.json(
+        instagramResponse({
+          html: officialHtml.replace(
+            "<a href=",
+            '<a ping="https://example.com/track" href='
+          )
+        })
+      )) as typeof fetch
+
+    await expect(
+      getInstagramEmbedHtml(instagramUrl, fetcher)
+    ).resolves.toBeNull()
+  })
+
   test("rejects non-Instagram embed markup", async () => {
     const fetcher = (async () =>
       Response.json(
