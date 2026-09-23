@@ -2,7 +2,11 @@ import type { Metadata } from "next"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { PolaroidGallery } from "@/components/blocks/polaroid-gallery"
-import { SocialMediaGallery } from "@/components/blocks/social-media-gallery"
+import {
+  SocialMediaGallery,
+  type SocialMediaItem
+} from "@/components/blocks/social-media-gallery"
+import { getInstagramEmbedHtml } from "@/lib/instagram-oembed"
 import {
   constructCanonicalUrl,
   getAlternates,
@@ -14,7 +18,7 @@ import { WorkshopDetails } from "./components/workshop-details"
 import { WorkshopHero } from "./components/workshop-hero"
 import { WorkshopReasons } from "./components/workshop-reasons"
 import { WorkshopSteps } from "./components/workshop-steps"
-import { reels, studentsImages } from "./constants"
+import { instagramReels, studentsImages, tiktokReels } from "./constants"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -72,6 +76,20 @@ export default async function WorkshopPage({ params }: Props) {
   const t = await getTranslations("WorkshopPage")
   const tMeta = await getTranslations("WorkshopPage.Metadata")
   const workshopUrl = constructCanonicalUrl(locale, "/workshop")
+  const socialMediaItems: SocialMediaItem[] =
+    locale === "id"
+      ? await Promise.all(
+          instagramReels.map(async (url) => ({
+            platform: "instagram" as const,
+            url,
+            embedHtml: await getInstagramEmbedHtml(url)
+          }))
+        )
+      : tiktokReels.map(({ url, videoId }) => ({
+          platform: "tiktok" as const,
+          url,
+          videoId
+        }))
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -125,15 +143,10 @@ export default async function WorkshopPage({ params }: Props) {
         studentAlt={t("PolaroidGallery.studentAlt")}
       />
       <SocialMediaGallery
-        urls={reels.filter((url) =>
-          locale === "id"
-            ? url.includes("instagram.com")
-            : url.includes("tiktok.com")
-        )}
+        items={socialMediaItems}
         className="mb-12"
         title={t("Reels.title")}
-        previousLabel={t("Reels.previousLabel")}
-        nextLabel={t("Reels.nextLabel")}
+        instagramFallbackLabel={t("Reels.instagramFallbackLabel")}
       />
 
       <script

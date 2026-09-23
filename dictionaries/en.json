@@ -282,8 +282,7 @@
     },
     "Reels": {
       "title": "Captured Moments",
-      "previousLabel": "Previous video",
-      "nextLabel": "Next video"
+      "instagramFallbackLabel": "View on Instagram"
     },
     "PolaroidGallery": {
       "title": "Our Happy Students",

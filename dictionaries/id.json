@@ -282,8 +282,7 @@
     },
     "Reels": {
       "title": "Momen Terabadikan",
-      "previousLabel": "Video sebelumnya",
-      "nextLabel": "Video berikutnya"
+      "instagramFallbackLabel": "Lihat di Instagram"
     },
     "PolaroidGallery": {
       "title": "Murid-murid Bahagia",

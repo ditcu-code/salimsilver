@@ -282,8 +282,7 @@
     },
     "Reels": {
       "title": "Vastgelegde momenten",
-      "previousLabel": "Vorige video",
-      "nextLabel": "Volgende video"
+      "instagramFallbackLabel": "Bekijk op Instagram"
     },
     "PolaroidGallery": {
       "title": "Onze blije studenten",

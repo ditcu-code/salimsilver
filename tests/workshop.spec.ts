@@ -6,79 +6,102 @@ const tiktokVideoIds = [
   "7630290092782849301"
 ]
 
-async function stubTikTokEmbedScript(page: Page) {
-  await page.route("https://www.tiktok.com/embed.js**", (route) =>
+const instagramUrls = [
+  "https://www.instagram.com/reel/DEoZ7RFSORY/",
+  "https://www.instagram.com/reel/DbM0f2HzMt2/",
+  "https://www.instagram.com/reel/DEq2UFBPMZv/"
+]
+
+async function stubTikTokPlayers(page: Page) {
+  await page.route("https://www.tiktok.com/player/v1/**", (route) =>
+    route.fulfill({ contentType: "text/html", body: "<html></html>" })
+  )
+}
+
+async function stubInstagramEmbedScript(page: Page) {
+  await page.route("https://www.instagram.com/embed.js**", (route) =>
     route.fulfill({
       contentType: "application/javascript",
-      body: ""
+      body: `
+        window.instgrm = {
+          Embeds: {
+            process: function () {
+              window.__instagramProcessCalls =
+                (window.__instagramProcessCalls || 0) + 1;
+            }
+          }
+        };
+      `
     })
   )
 }
 
 test.describe("Workshop social media gallery", () => {
-  test("mounts only the selected TikTok embed", async ({ page }) => {
-    await stubTikTokEmbedScript(page)
+  test("renders every TikTok video with the official minimal player", async ({
+    page
+  }) => {
+    await stubTikTokPlayers(page)
     await page.goto("/workshop")
 
     const gallery = page
       .getByRole("heading", { name: "Captured Moments" })
       .locator("xpath=ancestor::section")
-    const embeds = gallery.locator(".rsme-tiktok-embed")
+    const players = gallery.locator('iframe[data-social-platform="tiktok"]')
 
-    await expect(embeds).toHaveCount(1)
-    await expect(embeds.locator("blockquote.tiktok-embed")).toHaveAttribute(
-      "data-video-id",
-      tiktokVideoIds[0]
-    )
-    await expect(gallery.getByText("1 / 3", { exact: true })).toBeVisible()
+    await expect(players).toHaveCount(3)
 
-    await gallery.getByRole("button", { name: "Next video" }).click()
+    for (const [index, videoId] of tiktokVideoIds.entries()) {
+      await expect(players.nth(index)).toHaveAttribute(
+        "src",
+        `https://www.tiktok.com/player/v1/${videoId}?controls=1&progress_bar=0&timestamp=0&music_info=0&description=0&rel=0&autoplay=0&loop=0`
+      )
+      await expect(players.nth(index)).toHaveAttribute(
+        "title",
+        `Captured Moments ${index + 1}`
+      )
+      await expect(players.nth(index)).toHaveAttribute("loading", "lazy")
+    }
 
-    await expect(embeds).toHaveCount(1)
-    await expect(embeds.locator("blockquote.tiktok-embed")).toHaveAttribute(
-      "data-video-id",
-      tiktokVideoIds[1]
-    )
-    await expect(gallery.getByText("2 / 3", { exact: true })).toBeVisible()
-
-    await gallery.getByRole("button", { name: "Previous video" }).click()
-
-    await expect(embeds.locator("blockquote.tiktok-embed")).toHaveAttribute(
-      "data-video-id",
-      tiktokVideoIds[0]
-    )
+    await expect(gallery.getByRole("region")).toHaveCount(0)
+    await expect(gallery.getByRole("button")).toHaveCount(0)
+    await expect(gallery.locator('[class*="rsme-"]')).toHaveCount(0)
   })
 
-  test("localizes the TikTok carousel controls", async ({ page }) => {
-    await stubTikTokEmbedScript(page)
-    await page.goto("/nl/workshop")
-
-    const gallery = page
-      .getByRole("heading", { name: "Vastgelegde momenten" })
-      .locator("xpath=ancestor::section")
-
-    await expect(
-      gallery.getByRole("button", { name: "Vorige video" })
-    ).toBeVisible()
-    await expect(
-      gallery.getByRole("button", { name: "Volgende video" })
-    ).toBeVisible()
-  })
-
-  test("keeps the Indonesian Instagram gallery as a grid", async ({ page }) => {
-    await page.route("https://www.instagram.com/embed.js", (route) =>
-      route.fulfill({
-        contentType: "application/javascript",
-        body: ""
-      })
-    )
+  test("renders the Indonesian Instagram grid with one official script", async ({
+    page
+  }) => {
+    await stubInstagramEmbedScript(page)
     await page.goto("/id/workshop")
 
     const gallery = page
       .getByRole("heading", { name: "Momen Terabadikan" })
       .locator("xpath=ancestor::section")
+    const items = gallery.locator('[data-social-platform="instagram"]')
 
-    await expect(gallery.locator(".rsme-instagram-embed")).toHaveCount(3)
+    await expect(items).toHaveCount(3)
+    await expect(
+      page.locator('script[src="https://www.instagram.com/embed.js"]')
+    ).toHaveCount(1)
+
+    for (const [index, url] of instagramUrls.entries()) {
+      await expect(
+        items.nth(index).locator(`a[href^="${url}"]`).first()
+      ).toBeVisible()
+    }
+
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () =>
+            (
+              window as Window & {
+                __instagramProcessCalls?: number
+              }
+            ).__instagramProcessCalls ?? 0
+        )
+      )
+      .toBeGreaterThan(0)
     await expect(gallery.getByRole("region")).toHaveCount(0)
+    await expect(gallery.locator('[class*="rsme-"]')).toHaveCount(0)
   })
 })
