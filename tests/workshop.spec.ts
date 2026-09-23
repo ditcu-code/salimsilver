@@ -21,14 +21,11 @@ async function stubTikTokPlayers(page: Page) {
 async function stubInstagramEmbedScript(page: Page) {
   let requestCount = 0
 
-  await page.route("https://www.instagram.com/embed.js**", (route) =>
-    route.fulfill(
-      (() => {
-        requestCount += 1
-
-        return {
-          contentType: "application/javascript",
-          body: `
+  await page.route("https://www.instagram.com/embed.js**", (route) => {
+    requestCount += 1
+    route.fulfill({
+      contentType: "application/javascript",
+      body: `
             window.instgrm = {
               Embeds: {
                 process: function () {
@@ -40,10 +37,8 @@ async function stubInstagramEmbedScript(page: Page) {
               }
             };
           `
-        }
-      })()
-    )
-  )
+    })
+  })
 
   return () => requestCount
 }
