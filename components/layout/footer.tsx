@@ -1,10 +1,10 @@
 "use client"
 
+import { Link } from "@/i18n/navigation"
 import { sendGAEvent } from "@next/third-parties/google"
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
-import Link from "next/link"
 import { type ReactNode } from "react"
 import { ObfuscatedEmail } from "../features/obfuscated-email"
 import { Facebook } from "../icons/facebook"

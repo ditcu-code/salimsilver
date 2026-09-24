@@ -40,28 +40,20 @@ test.describe("Catalog Page", () => {
     }
   })
 
-  test("product lightbox navigation", async ({ page }) => {
-    // Wait for at least one photo to be visible
-    const firstImage = page.locator(".react-photo-album img").first()
-    await expect(firstImage).toBeVisible()
+  test("product card navigation", async ({ page }) => {
+    const firstProduct = page
+      .locator('.react-photo-album a[href^="/product/"]')
+      .first()
+    await expect(firstProduct).toBeVisible()
 
-    // Click the first product image
-    await firstImage.click()
+    const href = await firstProduct.getAttribute("href")
+    if (!href) throw new Error("Product card is missing its href")
+    await firstProduct.click()
 
-    // Expect lightbox to open (role="dialog")
-    const lightbox = page.getByRole("dialog", { name: "Jewelry photo viewer" })
-    await expect(lightbox).toBeVisible()
-
-    // Expect URL to update with query param
-    await expect(page).toHaveURL(/\?jewelry=/)
-
-    // Close the lightbox
-    await page.getByRole("button", { name: "Close" }).click()
-
-    // Expect lightbox to close
-    await expect(lightbox).toBeHidden()
-
-    // Expect URL to revert (query param removed)
-    await expect(page).not.toHaveURL(/\?jewelry=/)
+    await expect(page).toHaveURL(new RegExp(`${href}$`))
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      `https://salimsilver.com${href}`
+    )
   })
 })

@@ -1,8 +1,8 @@
 "use client"
 
 import { useHammerSound } from "@/hooks/use-hammer-sound"
+import { Link } from "@/i18n/navigation"
 import { AnimatePresence, motion } from "framer-motion"
-import Link from "next/link"
 import { type MouseEvent, type ReactNode, useState } from "react"
 
 interface AnimatedButtonProps {

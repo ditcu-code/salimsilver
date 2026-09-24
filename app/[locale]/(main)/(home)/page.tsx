@@ -24,7 +24,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "HomePage.Metadata" })
-  const canonicalUrl = constructCanonicalUrl(locale, "/")
+  const canonicalUrl = constructCanonicalUrl(locale)
 
   return {
     title: t("title"),
@@ -96,8 +96,8 @@ export default async function Home({ params }: Props) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             ...getJewelryStoreSchema({
-              "@id": constructCanonicalUrl(locale, "/"),
-              url: constructCanonicalUrl(locale, "/"),
+              "@id": constructCanonicalUrl(locale),
+              url: constructCanonicalUrl(locale),
               description: t("Metadata.description")
             })
           })

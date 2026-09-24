@@ -50,6 +50,10 @@ export const config = {
   // - … if they start with `/api`, `/_next` or `/_vercel`
   // - … the ones containing a dot (e.g. `favicon.ico`)
   matcher: [
-    "/((?!api|_next|_vercel|opengraph-image|twitter-image|icon|.*\\..*).*)"
+    "/((?!api|_next|_vercel|opengraph-image|twitter-image|icon|.*\\..*).*)",
+    "/product/:path*",
+    "/id/product/:path*",
+    "/en/product/:path*",
+    "/nl/product/:path*"
   ]
 }

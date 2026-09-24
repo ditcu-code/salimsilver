@@ -4,12 +4,11 @@ import { ViewCounter } from "@/components/features/blog/view-counter"
 import { ShareButton } from "@/components/features/share-button"
 import BackButton from "@/components/ui/back-button"
 import { getPostBySlug } from "@/lib/blog"
-import { BASE_URL } from "@/lib/constants"
 import {
-  constructCanonicalUrl,
-  getAlternates,
-  getOpenGraphLocale
-} from "@/lib/seo"
+  getCanonicalUrl,
+  getSeoAlternates,
+  getSeoOpenGraphLocale
+} from "@/lib/seo-indexing"
 import { formatDate } from "@/lib/utils"
 import { Eye } from "lucide-react"
 import { Metadata } from "next"
@@ -51,14 +50,15 @@ export async function generateMetadata({
 
   const title = post.meta_title || post.title
   const description = post.meta_description || post.excerpt
-  const url = `${BASE_URL}/blog/${slug}`
+  const postPath = `/blog/${slug}`
+  const url = getCanonicalUrl("blog", locale, postPath)
 
   return {
     title,
     description,
     alternates: {
-      canonical: constructCanonicalUrl(locale, `/blog/${slug}`),
-      languages: getAlternates(`/blog/${slug}`)
+      canonical: url,
+      languages: getSeoAlternates("blog", postPath)
     },
     openGraph: {
       title,
@@ -69,7 +69,7 @@ export async function generateMetadata({
       images: post.cover_image_url
         ? [post.cover_image_url]
         : ["/opengraph-image"],
-      locale: getOpenGraphLocale(locale)
+      locale: getSeoOpenGraphLocale("blog", locale)
     },
     keywords: post.tags
   }
@@ -84,6 +84,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post || !post.published) {
     notFound()
   }
+
+  const blogUrl = getCanonicalUrl("blog", locale, "/blog")
+  const postUrl = getCanonicalUrl("blog", locale, `/blog/${post.slug}`)
 
   return (
     <article className="min-h-screen pb-20">
@@ -218,7 +221,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": constructCanonicalUrl(locale, `/blog/${post.slug}`)
+              "@id": postUrl
             }
           })
         }}
@@ -234,13 +237,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 "@type": "ListItem",
                 position: 1,
                 name: tb("journal"),
-                item: `${BASE_URL}/blog`
+                item: blogUrl
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: post.title,
-                item: `${BASE_URL}/blog/${post.slug}`
+                item: postUrl
               }
             ]
           })

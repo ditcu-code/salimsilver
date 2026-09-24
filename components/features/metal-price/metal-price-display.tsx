@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Link } from "@/i18n/navigation"
 import { PriceHistoryItem } from "@/lib/types"
 import { sendGAEvent } from "@next/third-parties/google"
-import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { HistoricalPriceRow } from "./historical-price-row"
 import { MetalPriceCard } from "./metal-price-card"

@@ -39,7 +39,7 @@ export function constructCanonicalUrl(
   return `${BASE_URL}${localePath}${normalizedPath}`
 }
 
-type Locale = (typeof routing.locales)[number]
+export type Locale = (typeof routing.locales)[number]
 
 const LOCALE_MAP = {
   en: "en_US",
@@ -62,8 +62,11 @@ export function getOpenGraphLocale(locale: string): string {
  * Used for the `alternates.languages` metadata property to generate hreflang tags.
  * @param path The path to the page (e.g., '/about', '/product/slug').
  */
-export function getAlternates(path: string = "") {
-  const alternates = routing.locales.reduce<Record<string, string>>(
+export function getAlternates(
+  path: string = "",
+  locales: readonly Locale[] = routing.locales
+) {
+  const alternates = locales.reduce<Record<string, string>>(
     (languages, locale) => {
       languages[locale] = constructCanonicalUrl(locale, path)
       return languages
@@ -71,7 +74,10 @@ export function getAlternates(path: string = "") {
     {}
   )
 
-  alternates["x-default"] = constructCanonicalUrl(routing.defaultLocale, path)
+  alternates["x-default"] = constructCanonicalUrl(
+    locales[0] ?? routing.defaultLocale,
+    path
+  )
 
   return alternates
 }

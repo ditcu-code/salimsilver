@@ -5,10 +5,10 @@ import { notFound } from "next/navigation"
 import ProductDetail from "@/components/blocks/product-detail"
 import { getJewelryBySlug } from "@/lib/collections"
 import {
-  constructCanonicalUrl,
-  getAlternates,
-  getOpenGraphLocale
-} from "@/lib/seo"
+  getCanonicalUrl,
+  getSeoAlternates,
+  getSeoOpenGraphLocale
+} from "@/lib/seo-indexing"
 export const revalidate = 86400
 
 interface Props {
@@ -36,14 +36,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? [product.images[0].src]
       : ["/opengraph-image"]
 
-  const canonicalUrl = constructCanonicalUrl(locale, `/product/${slug}`)
+  const productPath = `/product/${slug}`
+  const canonicalUrl = getCanonicalUrl("product", locale, productPath)
 
   return {
     title,
     description,
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates(`/product/${slug}`)
+      languages: getSeoAlternates("product", productPath)
     },
     openGraph: {
       title,
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images,
       url: canonicalUrl,
       type: "website",
-      locale: getOpenGraphLocale(locale)
+      locale: getSeoOpenGraphLocale("product", locale)
     },
     twitter: {
       card: "summary_large_image",
@@ -71,8 +72,12 @@ export default async function ProductPage({ params }: Props) {
     notFound()
   }
 
-  const productUrl = constructCanonicalUrl(locale, `/product/${product.slug}`)
-  const collectionsUrl = constructCanonicalUrl(locale, "/collections")
+  const productUrl = getCanonicalUrl(
+    "product",
+    locale,
+    `/product/${product.slug}`
+  )
+  const collectionsUrl = getCanonicalUrl("collection", locale, "/collections")
 
   return (
     <>
@@ -138,7 +143,8 @@ export default async function ProductPage({ params }: Props) {
                           (word) => word.charAt(0).toUpperCase() + word.slice(1)
                         )
                         .join(" "),
-                      item: constructCanonicalUrl(
+                      item: getCanonicalUrl(
+                        "collection",
                         locale,
                         `/collections/${product.collectionSlug}`
                       )

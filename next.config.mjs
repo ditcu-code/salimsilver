@@ -3,6 +3,15 @@ import createNextIntlPlugin from "next-intl/plugin"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/product-catalog",
+        destination: "/catalog",
+        permanent: true
+      }
+    ]
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: "11mb"

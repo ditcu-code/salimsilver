@@ -7,10 +7,10 @@ export const revalidate = 86400
 import CatalogPageClient from "./page.client"
 
 import {
-  constructCanonicalUrl,
-  getAlternates,
-  getOpenGraphLocale
-} from "@/lib/seo"
+  getCanonicalUrl,
+  getSeoAlternates,
+  getSeoOpenGraphLocale
+} from "@/lib/seo-indexing"
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -32,7 +32,8 @@ export async function generateMetadata({
       const description = item.description || t("fallbackDescription")
       const images =
         item.images && item.images.length > 0 ? [item.images[0].src] : []
-      const productUrl = constructCanonicalUrl(locale, `/product/${item.slug}`)
+      const productPath = `/product/${item.slug}`
+      const productUrl = getCanonicalUrl("product", locale, productPath)
 
       return {
         title,
@@ -43,7 +44,7 @@ export async function generateMetadata({
           images,
           url: productUrl,
           siteName: "Salim Silver",
-          locale: getOpenGraphLocale(locale)
+          locale: getSeoOpenGraphLocale("product", locale)
         },
         twitter: {
           card: "summary_large_image",
@@ -53,20 +54,20 @@ export async function generateMetadata({
         },
         alternates: {
           canonical: productUrl,
-          languages: getAlternates(`/product/${item.slug}`)
+          languages: getSeoAlternates("product", productPath)
         }
       }
     }
   }
 
-  const canonicalUrl = constructCanonicalUrl(locale, "/catalog")
+  const canonicalUrl = getCanonicalUrl("product", locale, "/catalog")
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/catalog")
+      languages: getSeoAlternates("product", "/catalog")
     },
     openGraph: {
       type: "website",
@@ -74,7 +75,7 @@ export async function generateMetadata({
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale)
+      locale: getSeoOpenGraphLocale("product", locale)
     },
     twitter: {
       card: "summary_large_image",
@@ -101,7 +102,7 @@ export default async function CatalogPage({ params }: Props) {
             "@type": "CollectionPage",
             name: t("title"),
             description: t("description"),
-            url: constructCanonicalUrl(locale, "/catalog")
+            url: getCanonicalUrl("product", locale, "/catalog")
           })
         }}
       />

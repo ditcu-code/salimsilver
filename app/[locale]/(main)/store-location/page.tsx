@@ -7,7 +7,6 @@ import StoreLocationSection from "@/components/blocks/store-location-section"
 import LocationVisualGuide from "./components/LocationVisualGuide"
 import StoreHero from "./components/StoreHero"
 
-import { BASE_URL } from "@/lib/constants"
 import {
   constructCanonicalUrl,
   getAlternates,
@@ -54,6 +53,7 @@ export default async function StoreLocationPage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations("StoreLocationPage")
+  const canonicalUrl = constructCanonicalUrl(locale, "/store-location")
 
   return (
     <div className="min-h-screen">
@@ -128,8 +128,8 @@ export default async function StoreLocationPage({ params }: Props) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             ...getJewelryStoreSchema({
-              "@id": `${BASE_URL}/store-location`,
-              url: `${BASE_URL}/store-location`
+              "@id": canonicalUrl,
+              url: canonicalUrl
             })
           })
         }}

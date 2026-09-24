@@ -6,8 +6,11 @@ import {
   getFeaturedCollections,
   getJewelryBySlug
 } from "@/lib/collections"
-import { BASE_URL } from "@/lib/constants"
-import { getAlternates, getOpenGraphLocale } from "@/lib/seo"
+import {
+  getCanonicalUrl,
+  getSeoAlternates,
+  getSeoOpenGraphLocale
+} from "@/lib/seo-indexing"
 import { notFound } from "next/navigation"
 export const revalidate = 86400
 
@@ -43,20 +46,23 @@ export async function generateMetadata({
           ? [item.images[0].src]
           : ["/opengraph-image"]
 
+      const productPath = `/product/${item.slug}`
+      const productUrl = getCanonicalUrl("product", locale, productPath)
+
       return {
         title,
         description,
         alternates: {
-          canonical: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
-          languages: getAlternates(`/collections/${slug}?jewelry=${jewelry}`)
+          canonical: productUrl,
+          languages: getSeoAlternates("product", productPath)
         },
         openGraph: {
           title,
           description,
           images,
-          url: `${BASE_URL}/collections/${slug}?jewelry=${jewelry}`,
+          url: productUrl,
           siteName: "Salim Silver",
-          locale: getOpenGraphLocale(locale)
+          locale: getSeoOpenGraphLocale("product", locale)
         },
         twitter: {
           card: "summary_large_image",
@@ -79,20 +85,23 @@ export async function generateMetadata({
       ? [collection.coverImage]
       : ["/opengraph-image"]
 
+    const collectionPath = `/collections/${slug}`
+    const collectionUrl = getCanonicalUrl("collection", locale, collectionPath)
+
     return {
       title,
       description,
       alternates: {
-        canonical: `${BASE_URL}/collections/${slug}`,
-        languages: getAlternates(`/collections/${slug}`)
+        canonical: collectionUrl,
+        languages: getSeoAlternates("collection", collectionPath)
       },
       openGraph: {
         title,
         description,
         images,
-        url: `${BASE_URL}/collections/${slug}`,
+        url: collectionUrl,
         siteName: "Salim Silver",
-        locale: getOpenGraphLocale(locale)
+        locale: getSeoOpenGraphLocale("collection", locale)
       },
       twitter: {
         card: "summary_large_image",
@@ -110,7 +119,7 @@ export async function generateMetadata({
 
 export default async function CollectionPage({ params, searchParams }: Props) {
   // Ensure params is properly awaited
-  const { slug } = await params
+  const { slug, locale } = await params
   const t = await getTranslations("CollectionDetailPage.Breadcrumbs")
   const collection = await getCollection(slug)
   const featuredCollections = await getFeaturedCollections()
@@ -118,6 +127,13 @@ export default async function CollectionPage({ params, searchParams }: Props) {
   if (!collection) {
     notFound()
   }
+
+  const collectionUrl = getCanonicalUrl(
+    "collection",
+    locale,
+    `/collections/${collection.slug}`
+  )
+  const collectionsUrl = getCanonicalUrl("collection", locale, "/collections")
 
   return (
     <>
@@ -133,7 +149,7 @@ export default async function CollectionPage({ params, searchParams }: Props) {
             "@type": "CollectionPage",
             name: collection.title,
             description: collection.description,
-            url: `${BASE_URL}/collections/${collection.slug}`,
+            url: collectionUrl,
             image: collection.coverImage ? [collection.coverImage] : [],
             mainEntity: {
               "@type": "ItemList",
@@ -141,7 +157,11 @@ export default async function CollectionPage({ params, searchParams }: Props) {
                 collection.jewelryList?.map((item, index) => ({
                   "@type": "ListItem",
                   position: index + 1,
-                  url: `${BASE_URL}/catalog?jewelry=${item.slug}`,
+                  url: getCanonicalUrl(
+                    "product",
+                    locale,
+                    `/product/${item.slug}`
+                  ),
                   name: item.title,
                   image: item.coverImage
                 })) || []
@@ -160,13 +180,13 @@ export default async function CollectionPage({ params, searchParams }: Props) {
                 "@type": "ListItem",
                 position: 1,
                 name: t("collections"),
-                item: `${BASE_URL}/collections`
+                item: collectionsUrl
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: collection.title,
-                item: `${BASE_URL}/collections/${collection.slug}`
+                item: collectionUrl
               }
             ]
           })

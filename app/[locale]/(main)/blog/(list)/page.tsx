@@ -3,10 +3,10 @@ import { BlogHeaderSection } from "@/components/blocks/blog-header-section"
 import { BlogHero } from "@/components/blocks/blog-hero"
 import { getAllPosts } from "@/lib/blog"
 import {
-  constructCanonicalUrl,
-  getAlternates,
-  getOpenGraphLocale
-} from "@/lib/seo"
+  getCanonicalUrl,
+  getSeoAlternates,
+  getSeoOpenGraphLocale
+} from "@/lib/seo-indexing"
 import { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
@@ -17,14 +17,14 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "JournalPage.Metadata" })
-  const canonicalUrl = constructCanonicalUrl(locale, "/blog")
+  const canonicalUrl = getCanonicalUrl("blog", locale, "/blog")
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/blog")
+      languages: getSeoAlternates("blog", "/blog")
     },
     openGraph: {
       type: "website",
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale)
+      locale: getSeoOpenGraphLocale("blog", locale)
     },
     twitter: {
       card: "summary_large_image",
@@ -51,7 +51,7 @@ export default async function BlogPage({ params }: Props) {
     ? posts.filter((p) => p.id !== featuredPost.id)
     : posts
 
-  const canonicalUrl = constructCanonicalUrl(locale, "/blog")
+  const canonicalUrl = getCanonicalUrl("blog", locale, "/blog")
 
   if (posts.length === 0) {
     return (
@@ -91,7 +91,7 @@ export default async function BlogPage({ params }: Props) {
             blogPost: posts.map((post) => ({
               "@type": "BlogPosting",
               headline: post.title,
-              url: constructCanonicalUrl(locale, `/blog/${post.slug}`),
+              url: getCanonicalUrl("blog", locale, `/blog/${post.slug}`),
               datePublished: post.published_at,
               image: post.cover_image_url
             }))

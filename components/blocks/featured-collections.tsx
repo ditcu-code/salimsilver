@@ -2,12 +2,12 @@
 
 import AnimatedButton from "@/components/ui/animated-button"
 import { useHammerSound } from "@/hooks/use-hammer-sound"
+import { Link } from "@/i18n/navigation"
 import type { Collection } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 
 interface FeaturedCollectionsProps {
   title?: string

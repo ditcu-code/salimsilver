@@ -1,18 +1,23 @@
 "use client"
 
-import { usePathname, useRouter } from "@/i18n/navigation"
+import { routing, usePathname, useRouter } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { sendGAEvent } from "@next/third-parties/google"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { Check } from "lucide-react"
 import { useLocale } from "next-intl"
-import { useEffect, useRef, useState } from "react"
+import {
+  type MouseEvent as ReactMouseEvent,
+  useEffect,
+  useRef,
+  useState
+} from "react"
 
 const LANGUAGES = [
   { code: "id", label: "Indonesia", flag: "🇮🇩" },
   { code: "en", label: "English", flag: "🇺🇸" },
   { code: "nl", label: "Nederlands", flag: "🇳🇱" }
-]
+] as const
 
 export function LanguageSwitcher() {
   const pathname = usePathname()
@@ -35,13 +40,26 @@ export function LanguageSwitcher() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  const switchLanguage = (locale: string) => {
+  const switchLanguage = (
+    event: ReactMouseEvent<HTMLAnchorElement>,
+    locale: (typeof LANGUAGES)[number]["code"]
+  ) => {
     sendGAEvent("event", "change_language", {
       from_language: currentLocale,
-      to_language: locale,
+      to_language: locale
     })
-    router.replace(pathname, { locale })
     setIsOpen(false)
+
+    if (
+      event.button === 0 &&
+      !event.metaKey &&
+      !event.ctrlKey &&
+      !event.shiftKey &&
+      !event.altKey
+    ) {
+      event.preventDefault()
+      router.replace(pathname, { locale })
+    }
   }
 
   return (
@@ -60,38 +78,45 @@ export function LanguageSwitcher() {
         </span>
       </motion.button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="border-border bg-popover text-popover-foreground absolute top-12 right-0 z-50 w-48 min-w-[200px] overflow-hidden rounded-xl border p-1 shadow-md"
-          >
-            <div className="flex flex-col gap-1">
-              {LANGUAGES.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => switchLanguage(lang.code)}
-                  className={cn(
-                    "hover:bg-accent hover:text-accent-foreground flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
-                    currentLocale === lang.code && "bg-accent/50 font-medium"
-                  )}
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="text-base">{lang.flag}</span>
-                    {lang.label}
-                  </span>
-                  {currentLocale === lang.code && (
-                    <Check className="text-primary h-4 w-4" />
-                  )}
-                </button>
-              ))}
-            </div>
-          </motion.div>
+      <div
+        role="menu"
+        aria-label="Language options"
+        aria-hidden={!isOpen}
+        className={cn(
+          "border-border bg-popover text-popover-foreground absolute top-12 right-0 z-50 w-48 min-w-[200px] overflow-hidden rounded-xl border p-1 shadow-md transition-all duration-200",
+          isOpen
+            ? "visible translate-y-0 scale-100 opacity-100"
+            : "invisible pointer-events-none translate-y-2 scale-95 opacity-0"
         )}
-      </AnimatePresence>
+      >
+        <div className="flex flex-col gap-1">
+          {LANGUAGES.map((lang) => (
+            <a
+              key={lang.code}
+              href={
+                lang.code === routing.defaultLocale
+                  ? pathname
+                  : `/${lang.code}${pathname === "/" ? "" : pathname}`
+              }
+              role="menuitem"
+              tabIndex={isOpen ? undefined : -1}
+              onClick={(event) => switchLanguage(event, lang.code)}
+              className={cn(
+                "hover:bg-accent hover:text-accent-foreground flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
+                currentLocale === lang.code && "bg-accent/50 font-medium"
+              )}
+            >
+              <span className="flex items-center gap-2">
+                <span className="text-base">{lang.flag}</span>
+                {lang.label}
+              </span>
+              {currentLocale === lang.code && (
+                <Check className="text-primary h-4 w-4" />
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

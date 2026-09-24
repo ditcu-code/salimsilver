@@ -1,8 +1,8 @@
 "use client"
 
+import { Link } from "@/i18n/navigation"
 import { motion } from "framer-motion"
 import { MapPin } from "lucide-react"
-import Link from "next/link"
 
 export function StoreLocationButton() {
   return (

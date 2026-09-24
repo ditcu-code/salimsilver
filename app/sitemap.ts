@@ -1,103 +1,76 @@
 import { getAllPosts } from "@/lib/blog"
 import { getAllCollectionsMetadata, getAllJewelry } from "@/lib/collections"
-import { BASE_URL } from "@/lib/constants"
-import { MetadataRoute } from "next"
+import {
+  getCanonicalUrl,
+  getIndexableLocales,
+  type SeoRouteFamily
+} from "@/lib/seo-indexing"
+import type { MetadataRoute } from "next"
 
-export const revalidate = 86400 // Revalidate every day
+export const revalidate = 86400
+
+function generateEntries(
+  family: SeoRouteFamily,
+  path: string,
+  lastModified?: Date
+): MetadataRoute.Sitemap {
+  return getIndexableLocales(family).map((locale) => ({
+    url: getCanonicalUrl(family, locale, path),
+    ...(lastModified ? { lastModified } : {})
+  }))
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await getAllPosts(false)
-  const collections = await getAllCollectionsMetadata()
-  const jewelry = await getAllJewelry()
+  const [posts, collections, jewelry] = await Promise.all([
+    getAllPosts(false),
+    getAllCollectionsMetadata(),
+    getAllJewelry()
+  ])
 
-  // Helper to generate localized entries
-  const generateEntries = (
-    path: string,
-    lastModified: Date,
-    changeFrequency:
-      | "always"
-      | "hourly"
-      | "daily"
-      | "weekly"
-      | "monthly"
-      | "yearly"
-      | "never" = "daily",
-    priority: number = 0.5
-  ) => {
-    // English (default)
-    const enUrl = `${BASE_URL}${path}`
-    // Indonesian
-    const idUrl = `${BASE_URL}/id${path}`
-    // Dutch
-    const nlUrl = `${BASE_URL}/nl${path}`
-
-    return [
-      { url: enUrl, lastModified, changeFrequency, priority },
-      { url: idUrl, lastModified, changeFrequency, priority },
-      { url: nlUrl, lastModified, changeFrequency, priority }
-    ]
-  }
-
-  // 1. Static Routes
-  const homeEntries = generateEntries("", new Date(), "daily", 1.0)
-  const silverPriceEntries = generateEntries(
+  const informationalEntries = [
+    "",
     "/silver-price",
-    new Date(),
-    "hourly",
-    0.9
-  )
-  const goldPriceEntries = generateEntries(
     "/gold-price",
-    new Date(),
-    "hourly",
-    0.9
-  )
+    "/workshop",
+    "/about",
+    "/career",
+    "/contact",
+    "/store-location"
+  ].flatMap((path) => generateEntries("static", path))
 
-  const mainPages = ["/catalog", "/collections", "/workshop"].flatMap((route) =>
-    generateEntries(route, new Date(), "weekly", 0.8)
-  )
+  const indexEntries = [
+    ...generateEntries("product", "/catalog"),
+    ...generateEntries("collection", "/collections"),
+    ...generateEntries("blog", "/blog")
+  ]
 
-  const supportPages = ["/about", "/contact", "/store-location"].flatMap(
-    (route) => generateEntries(route, new Date(), "monthly", 0.7)
-  )
-
-  const blogIndex = generateEntries("/blog", new Date(), "weekly", 0.8)
-
-  // 2. Dynamic Routes
   const blogEntries = posts.flatMap((post) =>
     generateEntries(
+      "blog",
       `/blog/${post.slug}`,
-      new Date(post.updated_at || post.created_at),
-      "monthly",
-      0.6
+      new Date(post.updated_at || post.created_at)
     )
   )
 
   const collectionEntries = collections.flatMap((collection) =>
     generateEntries(
+      "collection",
       `/collections/${collection.slug}`,
-      new Date(collection.updated_at),
-      "weekly",
-      0.7
+      new Date(collection.updated_at)
     )
   )
 
   const jewelryEntries = jewelry.flatMap((item) =>
     generateEntries(
+      "product",
       `/product/${item.slug}`,
-      new Date(item.updated_at),
-      "weekly",
-      0.8
+      new Date(item.updated_at)
     )
   )
 
   return [
-    ...homeEntries,
-    ...silverPriceEntries,
-    ...goldPriceEntries,
-    ...mainPages,
-    ...supportPages,
-    ...blogIndex,
+    ...informationalEntries,
+    ...indexEntries,
     ...blogEntries,
     ...collectionEntries,
     ...jewelryEntries

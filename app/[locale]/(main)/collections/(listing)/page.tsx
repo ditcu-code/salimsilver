@@ -4,10 +4,10 @@ import { getTranslations } from "next-intl/server"
 import FeaturedCollections from "@/components/blocks/featured-collections"
 import { getAllCollections } from "@/lib/collections"
 import {
-  constructCanonicalUrl,
-  getAlternates,
-  getOpenGraphLocale
-} from "@/lib/seo"
+  getCanonicalUrl,
+  getSeoAlternates,
+  getSeoOpenGraphLocale
+} from "@/lib/seo-indexing"
 export const revalidate = 86400
 
 type Props = {
@@ -20,14 +20,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     namespace: "CollectionsPage.Metadata"
   })
-  const canonicalUrl = constructCanonicalUrl(locale, "/collections")
+  const canonicalUrl = getCanonicalUrl("collection", locale, "/collections")
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
-      languages: getAlternates("/collections")
+      languages: getSeoAlternates("collection", "/collections")
     },
     openGraph: {
       type: "website",
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t("description"),
       url: canonicalUrl,
       siteName: "Salim Silver",
-      locale: getOpenGraphLocale(locale)
+      locale: getSeoOpenGraphLocale("collection", locale)
     },
     twitter: {
       card: "summary_large_image",
@@ -64,7 +64,7 @@ export default async function CollectionsPage({ params }: Props) {
             "@type": "CollectionPage",
             name: t("title"),
             description: t("description"),
-            url: constructCanonicalUrl(locale, "/collections")
+            url: getCanonicalUrl("collection", locale, "/collections")
           })
         }}
       />
