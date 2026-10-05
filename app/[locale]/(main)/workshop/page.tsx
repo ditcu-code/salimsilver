@@ -16,6 +16,7 @@ import { BUSINESS_INFO } from "@/lib/structured-data"
 import { RegistrationForm } from "./components/registration-form"
 import { WorkshopDetails } from "./components/workshop-details"
 import { WorkshopHero } from "./components/workshop-hero"
+import { WorkshopMarketplaces } from "./components/workshop-marketplaces"
 import { WorkshopReasons } from "./components/workshop-reasons"
 import { WorkshopSteps } from "./components/workshop-steps"
 import { instagramReels, studentsImages, tiktokReels } from "./constants"
@@ -127,6 +128,8 @@ export default async function WorkshopPage({ params }: Props) {
           </div>
         </div>
       </div>
+
+      <WorkshopMarketplaces title={t("Marketplaces.title")} />
 
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-stone-200 bg-white/80 p-4 backdrop-blur-md md:hidden dark:border-stone-800 dark:bg-stone-900/80">
         <a

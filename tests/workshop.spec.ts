@@ -169,3 +169,42 @@ test.describe("Workshop social media gallery", () => {
     await expect(gallery.locator('[class*="rsme-"]')).toHaveCount(0)
   })
 })
+
+test.describe("Workshop booking marketplaces", () => {
+  test("links the Airbnb and GetYourGuide logos to their booking pages", async ({
+    page
+  }) => {
+    await stubTikTokPlayers(page)
+    await page.goto("/workshop")
+
+    const marketplaces = page
+      .getByRole("heading", { name: "Also Available On" })
+      .locator("xpath=ancestor::section")
+    const airbnb = marketplaces.getByRole("link", { name: "Airbnb" })
+    const getYourGuide = marketplaces.getByRole("link", {
+      name: "GetYourGuide"
+    })
+
+    await expect(airbnb).toHaveAttribute(
+      "href",
+      "https://airbnb.com/x/craft-in-kotagede"
+    )
+    await expect(getYourGuide).toHaveAttribute(
+      "href",
+      "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-javanese-authentic-silver-jewelry-making-class-t1494967/"
+    )
+
+    for (const marketplace of [airbnb, getYourGuide]) {
+      await expect(marketplace).toHaveAttribute("target", "_blank")
+      await expect(marketplace).toHaveAttribute("rel", "noopener noreferrer")
+    }
+
+    const airbnbLogo = airbnb.locator('img[alt=""]')
+    await expect(airbnbLogo).toHaveAttribute(
+      "src",
+      "/images/logos/airbnb-belo.svg"
+    )
+    await expect(airbnbLogo).toBeVisible()
+    await expect(getYourGuide.locator("svg")).toBeVisible()
+  })
+})
