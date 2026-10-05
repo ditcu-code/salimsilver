@@ -1,13 +1,18 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { GOOGLE_REVIEW_URL, TRIPADVISOR_REVIEW_URL } from "@/lib/constants"
+import { GetYourGuide } from "@/components/icons/get-your-guide"
+import {
+  GETYOURGUIDE_REVIEW_URL,
+  GOOGLE_REVIEW_URL,
+  TRIPADVISOR_REVIEW_URL
+} from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { motion, useReducedMotion } from "framer-motion"
 import { Star } from "lucide-react"
 import { useEffect, useState, type ComponentType, type SVGProps } from "react"
 
-export type ReviewPlatform = "google" | "tripadvisor"
+export type ReviewPlatform = "getyourguide" | "google" | "tripadvisor"
 
 interface ReviewSelectionProps {
   initialPlatform: ReviewPlatform | null
@@ -21,6 +26,12 @@ interface PlatformDetails {
 }
 
 const platformDetails: Record<ReviewPlatform, PlatformDetails> = {
+  getyourguide: {
+    name: "GetYourGuide",
+    shortName: "GetYourGuide",
+    href: GETYOURGUIDE_REVIEW_URL,
+    icon: GetYourGuide
+  },
   google: {
     name: "Google Reviews",
     shortName: "Google Reviews",
@@ -136,7 +147,7 @@ export function ReviewSelection({ initialPlatform }: ReviewSelectionProps) {
         </header>
 
         <section
-          className="mx-auto grid max-w-xl gap-5 sm:grid-cols-2"
+          className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-3"
           aria-label="Choose a review platform"
         >
           {platforms.map(([platform, details], index) => {

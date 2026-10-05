@@ -38,7 +38,11 @@ interface ReviewPageProps {
 export default async function ReviewPage({ searchParams }: ReviewPageProps) {
   const { platform } = await searchParams
   const initialPlatform: ReviewPlatform | null =
-    platform === "google" || platform === "tripadvisor" ? platform : null
+    platform === "getyourguide" ||
+    platform === "google" ||
+    platform === "tripadvisor"
+      ? platform
+      : null
 
   return <ReviewSelection initialPlatform={initialPlatform} />
 }

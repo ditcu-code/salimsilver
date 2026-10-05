@@ -1,7 +1,10 @@
 import { expect, test } from "@playwright/test"
 import { GOOGLE_REVIEW_URL, TRIPADVISOR_REVIEW_URL } from "../lib/constants"
 
-test("review page offers both review platforms", async ({ page }) => {
+const GETYOURGUIDE_REVIEW_URL =
+  "https://www.getyourguide.com/scan-review-qr?activity_id=1494967&utm_medium=offline&utm_source=supplier_review_link&utm_campaign=supplier_review_qrcode&utm_content=1494967"
+
+test("review page offers every review platform", async ({ page }) => {
   await page.goto("/review")
 
   await expect(
@@ -13,6 +16,9 @@ test("review page offers both review platforms", async ({ page }) => {
   await expect(
     page.getByRole("link", { name: "Leave a review on TripAdvisor" })
   ).toHaveAttribute("href", TRIPADVISOR_REVIEW_URL)
+  await expect(
+    page.getByRole("link", { name: "Leave a review on GetYourGuide" })
+  ).toHaveAttribute("href", GETYOURGUIDE_REVIEW_URL)
   await expect(page.getByText(/Redirecting to/)).toHaveCount(0)
 })
 
@@ -38,6 +44,19 @@ test("targeted platform automatically navigates after five seconds", async ({
   await page.goto("/review?platform=google")
 
   const reviewRequest = page.waitForRequest(GOOGLE_REVIEW_URL)
+  await page.clock.fastForward(5000)
+
+  await reviewRequest
+})
+
+test("targeted GetYourGuide platform automatically navigates after five seconds", async ({
+  page
+}) => {
+  await page.clock.install()
+  await page.route(GETYOURGUIDE_REVIEW_URL, (route) => route.abort())
+  await page.goto("/review?platform=getyourguide")
+
+  const reviewRequest = page.waitForRequest(GETYOURGUIDE_REVIEW_URL)
   await page.clock.fastForward(5000)
 
   await reviewRequest
