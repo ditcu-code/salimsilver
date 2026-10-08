@@ -171,9 +171,7 @@ test.describe("Workshop social media gallery", () => {
 })
 
 test.describe("Workshop booking marketplaces", () => {
-  test("links the Airbnb and GetYourGuide logos to their booking pages", async ({
-    page
-  }) => {
+  test("links each marketplace logo to its booking page", async ({ page }) => {
     await stubTikTokPlayers(page)
     await page.goto("/workshop")
 
@@ -184,6 +182,9 @@ test.describe("Workshop booking marketplaces", () => {
     const getYourGuide = marketplaces.getByRole("link", {
       name: "GetYourGuide"
     })
+    const tripAdvisor = marketplaces.getByRole("link", {
+      name: "TripAdvisor"
+    })
 
     await expect(airbnb).toHaveAttribute(
       "href",
@@ -193,8 +194,12 @@ test.describe("Workshop booking marketplaces", () => {
       "href",
       "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-javanese-authentic-silver-jewelry-making-class-t1494967/"
     )
+    await expect(tripAdvisor).toHaveAttribute(
+      "href",
+      "https://www.tripadvisor.com/Attraction_Review-g14782503-d34570158-Reviews-Salim_Silver-Yogyakarta_Yogyakarta_Region_Java.html"
+    )
 
-    for (const marketplace of [airbnb, getYourGuide]) {
+    for (const marketplace of [airbnb, getYourGuide, tripAdvisor]) {
       await expect(marketplace).toHaveAttribute("target", "_blank")
       await expect(marketplace).toHaveAttribute("rel", "noopener noreferrer")
     }
@@ -206,5 +211,12 @@ test.describe("Workshop booking marketplaces", () => {
     )
     await expect(airbnbLogo).toBeVisible()
     await expect(getYourGuide.locator("svg")).toBeVisible()
+
+    const tripAdvisorLogo = tripAdvisor.locator('img[alt=""]')
+    await expect(tripAdvisorLogo).toHaveAttribute(
+      "src",
+      "/images/logos/tripadvisor.svg"
+    )
+    await expect(tripAdvisorLogo).toBeVisible()
   })
 })

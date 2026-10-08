@@ -12,6 +12,11 @@ const marketplaces = [
     name: "GetYourGuide",
     href: "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-javanese-authentic-silver-jewelry-making-class-t1494967/",
     logo: "get-your-guide"
+  },
+  {
+    name: "TripAdvisor",
+    href: "https://www.tripadvisor.com/Attraction_Review-g14782503-d34570158-Reviews-Salim_Silver-Yogyakarta_Yogyakarta_Region_Java.html",
+    logo: "tripadvisor"
   }
 ]
 
@@ -29,7 +34,7 @@ export function WorkshopMarketplaces({ title }: { title: string }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={marketplace.name}
-            className="flex h-28 w-full max-w-60 items-center justify-center rounded-2xl border border-stone-200 bg-white px-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-stone-900 dark:border-stone-800 dark:bg-stone-900 dark:focus-visible:outline-stone-100"
+            className="flex h-28 w-full max-w-60 items-center justify-center rounded-2xl border border-stone-200 bg-white px-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-stone-900 dark:border-stone-700 dark:focus-visible:outline-stone-100"
           >
             {marketplace.logo === "airbnb" ? (
               <Image
@@ -38,6 +43,15 @@ export function WorkshopMarketplaces({ title }: { title: string }) {
                 width={320}
                 height={100}
                 className="h-auto w-full max-w-40"
+                unoptimized
+              />
+            ) : marketplace.logo === "tripadvisor" ? (
+              <Image
+                src="/images/logos/tripadvisor.svg"
+                alt=""
+                width={3354}
+                height={713}
+                className="h-auto w-full max-w-44"
                 unoptimized
               />
             ) : (
