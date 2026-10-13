@@ -59,8 +59,60 @@ async function getInstagramState(page: Page) {
 
 async function switchLanguage(page: Page, language: string) {
   await page.getByRole("button", { name: "Change Language" }).click()
-  await page.getByRole("button", { name: new RegExp(language) }).click()
+  await page.getByRole("menuitem", { name: new RegExp(language) }).click()
 }
+
+test("labels session times as the workshop schedule in every locale", async ({
+  page
+}) => {
+  const locales = [
+    { path: "/workshop", heading: "Workshop Schedule" },
+    { path: "/id/workshop", heading: "Jadwal Workshop" },
+    { path: "/nl/workshop", heading: "Workshopschema" }
+  ]
+
+  for (const locale of locales) {
+    await page.goto(locale.path)
+    await expect(
+      page.getByRole("heading", { name: locale.heading })
+    ).toBeVisible()
+  }
+})
+
+test("presents the fourth-generation hosts as a personal experience", async ({
+  page
+}) => {
+  const locales = [
+    {
+      path: "/workshop",
+      heading: "Meet the Fourth Generation",
+      description:
+        "Enjoy a personal silversmithing experience led directly by the fourth generation of the Salim family, with hands-on guidance throughout your creative journey."
+    },
+    {
+      path: "/id/workshop",
+      heading: "Bertemu Generasi Keempat",
+      description:
+        "Nikmati pengalaman membuat perhiasan perak yang personal, dipandu langsung oleh generasi keempat keluarga Salim dengan pendampingan di sepanjang proses kreatif Anda."
+    },
+    {
+      path: "/nl/workshop",
+      heading: "Ontmoet de vierde generatie",
+      description:
+        "Beleef een persoonlijke workshop zilversmeden, rechtstreeks geleid door de vierde generatie van de familie Salim, met praktische begeleiding tijdens je hele creatieve proces."
+    }
+  ]
+
+  for (const locale of locales) {
+    await page.goto(locale.path)
+    await expect(
+      page.getByRole("heading", { name: locale.heading })
+    ).toBeVisible()
+    await expect(
+      page.getByText(locale.description, { exact: true })
+    ).toBeVisible()
+  }
+})
 
 test.describe("Workshop social media gallery", () => {
   test("renders every TikTok video with the official minimal player", async ({

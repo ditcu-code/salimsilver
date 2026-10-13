@@ -140,8 +140,8 @@
     },
     "Reasons": {
       "storyteller": {
-        "title": "Meet Salim, The Storyteller",
-        "description": "He will share not just techniques, but weave tales of our family history and the rich legacy of silver in Kotagede."
+        "title": "Meet the Fourth Generation",
+        "description": "Enjoy a personal silversmithing experience led directly by the fourth generation of the Salim family, with hands-on guidance throughout your creative journey."
       },
       "venue": {
         "title": "The Legit Place!",
@@ -201,7 +201,7 @@
     "Details": {
       "title": "Important Details",
       "hours": {
-        "title": "Opening Hours",
+        "title": "Workshop Schedule",
         "days": "Monday - Saturday",
         "morning": "Morning: 08:30 - 11:30",
         "afternoon": "Afternoon: 12:30 - 15:30",
