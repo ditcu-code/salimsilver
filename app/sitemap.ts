@@ -35,7 +35,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/about",
     "/career",
     "/contact",
-    "/store-location"
+    "/store-location",
+    "/kotagede-guide"
   ].flatMap((path) => generateEntries("static", path))
 
   const indexEntries = [

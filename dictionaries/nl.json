@@ -347,6 +347,124 @@
       "ctaLabel": "Neem contact op met het atelier"
     }
   },
+  "KotagedeGuidePage": {
+    "Metadata": {
+      "title": "Wandelkaart & Erfgoedgids Kotagede | Salim Silver",
+      "description": "Verken het historische Kotagede te voet met onze interactieve wandelkaart. Ontdek koninklijke Mataram-moskeeën, Between Two Gates, koopmanshuizen en traditionele culinaire plekjes vanaf Salim Silver."
+    },
+    "Hero": {
+      "badge": "Wandelgids Kotagede",
+      "title": "Verken Kotagede te Voet",
+      "description": "Stap vanuit ons atelier rechtstreeks in 500 jaar levende geschiedenis. Volg onze wandelroutes door eeuwenoude steegjes, koninklijke monumenten en traditionele lekkernijen."
+    },
+    "MapControls": {
+      "all": "Alle Hoogtepunten",
+      "heritage": "Koninklijk Erfgoed",
+      "architecture": "Architectuur",
+      "culinary": "Traditionele Keuken",
+      "craft": "Zilverambacht",
+      "selectTrail": "Kies een Wandelroute",
+      "clearTrail": "Bekijk Alle Plekken",
+      "stops": "haltes",
+      "walkingTime": "{minutes} min lopen",
+      "experienceTime": "{minimum}–{maximum} min bezoek",
+      "distanceKilometers": "{distance} km",
+      "places": "{count} plekken",
+      "roundTrip": "Rondwandeling",
+      "minsWalkShort": "min lopen",
+      "fromSalim": "{minutes} min lopen vanaf Salim Silver ({distance}m)",
+      "openInGoogleMaps": "Openen in Google Maps",
+      "culturalTip": "Bezoekerstip",
+      "trailStops": "Routebeschrijving",
+      "allSpots": "Alle Erfgoedplekken",
+      "locations": "locaties",
+      "base": "Startpunt",
+      "startingBase": "Start- & Eindpunt",
+      "royalComplexBadge": "Koninklijk Mataram-complex",
+      "royalComplexTitle": "Eén Ommuurd Koninklijk Erfgoedcomplex",
+      "royalComplexDescription": "De grote moskee, de koninklijke graven en Sendang Seliran bevinden zich binnen hetzelfde ommuurde heiligdom. Zodra u de hoofdpoort binnengaat, kunt u alle drie te voet bezoeken zonder het terrein te verlaten."
+    },
+    "Trails": {
+      "royal": {
+        "title": "Koninklijke Mataram-kernroute",
+        "description": "Wandel vanaf Pasar Legi door het complex van de Grote Moskee, de koninklijke graven en Sendang Seliran, en keer terug via de woonpassage Between Two Gates."
+      },
+      "merchant": {
+        "title": "Koopmanshuizen & Erfgoedsteegjes",
+        "description": "Bezoek Museum Kotagede in een Rumah Kalang uit 1931, ga verder naar het gerestaureerde Omah UGM en keer terug door de levende erfgoedsteeg Gang Soka."
+      },
+      "culinary": {
+        "title": "Markten & Traditionele Snacks",
+        "description": "Proef Kembang Waru, ontdek de traditionele eetstalletjes op Pasar Legi en sluit af met vers gegrilde Kipo voordat u terugkeert naar Salim Silver."
+      }
+    },
+    "POIs": {
+      "salimSilver": {
+        "name": "Salim Silver",
+        "description": "Ons familie-atelier voor zilverfiligrein in een historisch Javaans complex in Purbayan. Het ideale start- en eindpunt voor uw wandeling.",
+        "tips": "Mineraalwater en rustruimte beschikbaar voor onze workshopgasten voor en na de wandeling."
+      },
+      "betweenTwoGates": {
+        "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",
+        "description": "Een rustige gedeelde passage die lokaal bekendstaat als Gang Rukunan in Kampung Alun-alun, met historische Javaanse huizen langs een stenen laan tussen twee poorten.",
+        "tips": "Rustige woonwijk. Gelieve zacht te praten en fietsen met de hand te leiden."
+      },
+      "masjidGedhe": {
+        "name": "Grote Moskee van Mataram Kotagede (1587)",
+        "description": "De oudste koninklijke moskee van Yogyakarta met roodstenen poorten in hindoe-Javaanse overgangsstijl en eeuwenoude waringinbomen. Dient als de hoofdtoegang tot het ommuurde koninklijke complex dat tevens de graven en Sendang Seliran omvat.",
+        "tips": "Gepaste kleding verplicht. Doe uw schoenen uit voor het betreden van het binnenplein. De graven en heilige bronnen bevinden zich op hetzelfde omheinde terrein."
+      },
+      "makamRaja": {
+        "name": "Koninklijke Graven van Mataram (Hastana Kitha Ageng)",
+        "description": "Het gewijde koninklijke grafcomplex en de laatste rustplaats van Ki Ageng Pemanahan, Panembahan Senopati en Sultan Hadiwijaya. Gelegen binnen hetzelfde ommuurde heiligdom direct ten westen van het binnenplein van de moskee.",
+        "tips": "Voor toegang tot de binnenste grafkamer is traditionele Javaanse hofkleding verplicht (te huur bij het kantoor). Geen schoeisel, sieraden of fotografie toegestaan binnen."
+      },
+      "sendangSeliran": {
+        "name": "Heilige Bronnen van Sendang Seliran",
+        "description": "Eeuwenoude zoetwaterbronnen uit de 16e eeuw in de zuidelijke vleugel van hetzelfde ommuurde complex (Sendang Kakung voor mannen en Sendang Putri voor vrouwen). Direct bereikbaar via stenen wandelpaden vanaf de moskee en graven.",
+        "tips": "Bezoekers mogen hun handen en gezicht wassen met het heilige bronwater. Rechtstreeks te bezoeken vanuit het moskeeplein of het grafcomplex zonder de straat op te hoeven."
+      },
+      "pasarLegi": {
+        "name": "Pasar Legi Kotagede (Pasar Gede)",
+        "description": "De oudste traditionele markt van Yogyakarta, actief sinds de 16e eeuw. Beroemd om specerijen, traditionele kruidendranken en ochtendhapjes.",
+        "tips": "Het best te bezoeken in de ochtend of op de Legi-marktdag van de Javaanse kalender."
+      },
+      "omahUgm": {
+        "name": "Omah UGM (Erfgoedhuis Purbayan)",
+        "description": "Een fraai 19e-eeuws Javaans Joglo-huis, na de aardbeving van 2006 hersteld als centrum voor erfgoedbehoud en buurtontmoetingen.",
+        "tips": "Controleer de actuele bezoeksmogelijkheden ter plaatse en respecteer sluitingsborden; de buitenzijde blijft zichtbaar vanaf de openbare steeg."
+      },
+      "gangSoka": {
+        "name": "Gang Soka (Tumenggungan Erfgoedsteeg)",
+        "description": "Een schilderachtig, lommerrijk levend erfgoedsteegje omzoomd met vintage Javaanse Limasan- en Joglo-huizen en historische relikwieën uit de jaren 30 van het Surakarta-hof, waaronder het verhoogde gebedshuis (Langgar Dhuwur) en de voormalige Pos Malang-wachtpost.",
+        "tips": "Een rustige woonwijk. Gelieve bewoners vriendelijk te groeten, zacht te praten, van de fiets af te stappen en toestemming te vragen voor foto's van privéwoningen."
+      },
+      "museumKotagede": {
+        "name": "Museum Kotagede (Intro Living Museum)",
+        "description": "Een inleidend cultuurmuseum gevestigd in de schitterende Rumah Kalang-villa uit 1931 van Ibu H. Noerijah. Combineert Javaanse houtarchitectuur met Europees gebrandschilderd glas en toont 500 jaar Kotagede-geschiedenis, Mataram-erfgoed en traditioneel zilverambacht.",
+        "tips": "Controleer vóór vertrek de actuele openingstijden en sluitingen op feestdagen."
+      },
+      "kipoBuDjito": {
+        "name": "Kipo Bu Djito",
+        "description": "De geboorteplaats van Kipo, de karakteristieke groene Kotagede-lekkernij van kleefrijst, pandan en geraspte kokos op houtskool geroosterd.",
+        "tips": "Dagelijks vers gemaakt in kleine hoeveelheden. Vers en warm het allerlekkerst!"
+      },
+      "kembangWaru": {
+        "name": "Bakkerij Kembang Waru (Pak Basiyan)",
+        "description": "Traditioneel koninklijk gebak in de vorm van een hibiscusbloem met acht bloemblaadjes, gebakken in zware gietijzeren vormen.",
+        "tips": "Heerlijk bij Javaanse thee of koffie en blijft goed houdbaar als souvenir."
+      },
+      "bentengCepuri": {
+        "name": "Restanten Vesting Cepuri & Bokong Semar",
+        "description": "Overgebleven bakstenen muren van de 16e-eeuwse binnenvesting van het voormalige Mataram-paleis.",
+        "tips": "Let op de karakteristieke ronde hoek die bekendstaat als 'Bokong Semar'."
+      }
+    },
+    "CulturalTips": {
+      "title": "Respect in de Steegjes van Kotagede",
+      "description": "De steegjes van Kotagede vormen een levendige woongemeenschap. Groet bewoners vriendelijk, zet bromfietsen uit in Between Two Gates en kleed u respectvol bij een bezoek aan de moskee en graven."
+    }
+  },
   "ContactPage": {
     "Metadata": {
       "title": "Neem contact met ons op",
@@ -666,6 +784,7 @@
       "workshop": "Workshop",
       "careers": "Carrières",
       "storeLocation": "Winkellocatie",
+      "kotagedeGuide": "Kotagede Gids",
       "silverPrice": "Zilverprijs",
       "goldPrice": "Goudprijs",
       "about": "Over ons",

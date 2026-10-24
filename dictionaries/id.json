@@ -348,6 +348,124 @@
       "ctaLabel": "Booking Workshop"
     }
   },
+  "KotagedeGuidePage": {
+    "Metadata": {
+      "title": "Peta Interaktif & Panduan Jalan Kaki Kotagede | Salim Silver",
+      "description": "Jelajahi kawasan bersejarah Kotagede dengan peta jalan kaki interaktif kami. Temukan masjid kerajaan Mataram, Between Two Gates, Rumah Kalang, dan kuliner tradisional mulai dari Salim Silver."
+    },
+    "Hero": {
+      "badge": "Panduan Jalan Kaki Kotagede",
+      "title": "Jelajahi Kotagede dengan Berjalan Kaki",
+      "description": "Melangkahlah dari workshop kami menuju 500 tahun jejak sejarah Mataram. Ikuti rute jalan kaki pilihan melintasi lorong bata kuno, cagar budaya bersejarah, dan sudut jajanan legendaris."
+    },
+    "MapControls": {
+      "all": "Semua Titik",
+      "heritage": "Sejarah Kerajaan",
+      "architecture": "Arsitektur",
+      "culinary": "Kuliner Tradisional",
+      "craft": "Kerajinan Perak",
+      "selectTrail": "Pilih Rute Jalan Kaki",
+      "clearTrail": "Jelajahi Semua Titik",
+      "stops": "titik",
+      "walkingTime": "{minutes} mnt jalan",
+      "experienceTime": "{minimum}–{maximum} mnt kunjungan",
+      "distanceKilometers": "{distance} km",
+      "places": "{count} tempat",
+      "roundTrip": "Rute melingkar",
+      "minsWalkShort": "menit jalan",
+      "fromSalim": "{minutes} menit jalan kaki dari Salim Silver ({distance}m)",
+      "openInGoogleMaps": "Buka di Google Maps",
+      "culturalTip": "Tips Pengunjung",
+      "trailStops": "Rangkaian Rute",
+      "allSpots": "Semua Lokasi Bersejarah",
+      "locations": "lokasi",
+      "base": "Titik Awal",
+      "startingBase": "Titik Awal & Akhir",
+      "royalComplexBadge": "Satu Kompleks Mataram",
+      "royalComplexTitle": "Satu Kompleks Cagar Budaya Berpagar",
+      "royalComplexDescription": "Masjid Gedhe, Makam Raja, dan Sendang Seliran berada di dalam satu kawasan bertembok yang sama. Begitu Anda melewati gerbang utama masjid, Anda dapat mengunjungi ketiganya sekaligus tanpa perlu keluar ke jalan umum."
+    },
+    "Trails": {
+      "royal": {
+        "title": "Inti Kerajaan Mataram",
+        "description": "Berjalan dari Pasar Legi menuju kompleks Masjid Gedhe, Makam Raja, dan Sendang Seliran, lalu kembali melalui lorong permukiman Between Two Gates."
+      },
+      "merchant": {
+        "title": "Rumah Saudagar & Lorong Pusaka",
+        "description": "Kunjungi Museum Kotagede di Rumah Kalang tahun 1931, lanjutkan ke Omah UGM yang telah dipugar, lalu kembali melalui lorong pusaka Gang Soka."
+      },
+      "culinary": {
+        "title": "Pasar & Jajanan Tradisional",
+        "description": "Cicipi Kembang Waru, jelajahi jajanan tradisional di Pasar Legi, lalu nikmati Kipo yang baru dipanggang sebelum kembali ke Salim Silver."
+      }
+    },
+    "POIs": {
+      "salimSilver": {
+        "name": "Salim Silver",
+        "description": "Atelier dan workshop perak filigri keluarga kami di dalam pekarangan rumah tradisional Purbayan. Titik awal dan akhir ideal untuk perjalanan jalan kaki Anda.",
+        "tips": "Air mineral dan ruang istirahat tersedia untuk peserta workshop sebelum maupun sesudah berjalan kaki."
+      },
+      "betweenTwoGates": {
+        "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",
+        "description": "Lorong bersama yang tenang, dikenal sebagai Gang Rukunan di Kampung Alun-alun, dengan rumah-rumah Jawa bersejarah yang menghadap jalan batu di antara dua gerbang.",
+        "tips": "Kawasan pemukiman tenang. Harap menjaga kesopanan suara dan menuntun sepeda saat melintas."
+      },
+      "masjidGedhe": {
+        "name": "Masjid Gedhe Mataram Kotagede (1587)",
+        "description": "Masjid tertua di Yogyakarta dengan gerbang paduraksa bata merah khas peralihan Hindu-Jawa, pohon beringin tua, dan bedug bersejarah. Merupakan pintu masuk utama ke kompleks cagar budaya berpagar yang juga menaungi Makam Raja dan Sendang Seliran.",
+        "tips": "Pakaian sopan diwajibkan. Buka alas kaki sebelum memasuki pelataran dalam masjid. Makam raja dan sendang berada di dalam satu area kompleks yang sama."
+      },
+      "makamRaja": {
+        "name": "Makam Raja-Raja Mataram (Hastana Kitha Ageng)",
+        "description": "Kompleks pemakaman leluhur pendiri Mataram Islam, peristirahatan Ki Ageng Pemanahan, Panembahan Senopati, dan Sultan Hadiwijaya. Berada di dalam satu kawasan bertembok yang sama, tepat di sebelah barat pelataran Masjid Gedhe.",
+        "tips": "Untuk ziarah ke cungkup makam utama, pengunjung wajib mengenakan busana adat Jawa pranakan/kemben (tersedia penyewaan di kantor sekretariat makam). Dilarang memakai alas kaki dan memotret di dalam cungkup."
+      },
+      "sendangSeliran": {
+        "name": "Sendang Seliran",
+        "description": "Pemandian mata air suci peninggalan abad ke-16 di sayap selatan kompleks cagar budaya yang sama, terbagi menjadi Sendang Kakung (pria) dan Sendang Putri (wanita). Dapat diakses langsung melalui jalan setapak dan tangga batu dari masjid maupun makam.",
+        "tips": "Pengunjung diperkenankan membasuh muka atau berwudhu dengan air sendang. Akses menyatu dengan pelataran makam dan masjid tanpa perlu keluar kompleks."
+      },
+      "pasarLegi": {
+        "name": "Pasar Legi Kotagede (Pasar Gede)",
+        "description": "Pasar tradisional tertua di Yogyakarta sejak abad ke-16. Sangat semarak dengan rempah tradisional, racikan jamu gendong, dan jajanan pasar pagi.",
+        "tips": "Waktu terbaik berkunjung adalah pagi hari atau bertepatan dengan pasaran Legi pada kalender Jawa."
+      },
+      "omahUgm": {
+        "name": "Omah UGM (Rumah Cagar Budaya Purbayan)",
+        "description": "Rumah Joglo abad ke-19 yang dipugar kembali pascagempa 2006 sebagai pusat konservasi budaya dan ruang temu komunitas.",
+        "tips": "Konfirmasikan akses kunjungan terkini di lokasi dan patuhi tanda penutupan; bagian luar rumah cagar budaya tetap dapat dilihat dari lorong umum."
+      },
+      "gangSoka": {
+        "name": "Gang Soka (Lorong Heritage Tumenggungan)",
+        "description": "Lorong pemukiman cagar budaya yang asri dan fotogenik dengan deretan rumah tradisional Limasan dan Joglo beraksen Indis tempo dulu. Kawasan ini menyimpan peninggalan era Sunan Pakubuwono X Surakarta (1930-an) untuk Tumenggung Mertalaya, termasuk Langgar Dhuwur kayu dan eks Pos Malang.",
+        "tips": "Merupakan lingkungan pemukiman warga yang tenang. Mohon menjaga kesopanan suara, menuntun sepeda, dan meminta izin sebelum memotret halaman atau rumah pribadi."
+      },
+      "museumKotagede": {
+        "name": "Museum Kotagede (Intro Living Museum)",
+        "description": "Museum cagar budaya pengantar yang menempati kemegahan Rumah Kalang tahun 1931 milik Ibu H. Noerijah. Memadukan arsitektur kayu Jawa dengan kaca patri Eropa, memamerkan 500 tahun sejarah Kotagede, asal-usul Mataram Islam, serta keahlian kriya perak tradisional.",
+        "tips": "Periksa kembali jam buka museum dan jadwal libur terbaru sebelum berangkat."
+      },
+      "kipoBuDjito": {
+        "name": "Kipo Bu Djito",
+        "description": "Tempat lahirnya Kipo, jajanan khas Kotagede berukuran mungil dari tepung ketan, daun pandan, dan unti kelapa yang dipanggang di atas wajan tanah liat.",
+        "tips": "Dibuat segar setiap hari dalam jumlah terbatas. Paling nikmat disantap hangat di hari yang sama!"
+      },
+      "kembangWaru": {
+        "name": "Kue Kembang Waru (Pak Basiyan)",
+        "description": "Kue tradisi kraton Mataram berbentuk daun/bunga waru berkelopak delapan, dipanggang dengan cetakan besi tempa tebal warisan turun-temurun.",
+        "tips": "Sangat cocok dinikmati bersama seduhan teh atau kopi, dan awet untuk oleh-oleh."
+      },
+      "bentengCepuri": {
+        "name": "Situs Benteng Cepuri & Bokong Semar",
+        "description": "Sisa benteng batu bata keraton Mataram abad ke-16 yang masih kokoh berdiri di tengah pemukiman warga.",
+        "tips": "Perhatikan sudut benteng melengkung unik yang populer disebut 'Bokong Semar'."
+      }
+    },
+    "CulturalTips": {
+      "title": "Etika Berkeliling Lorong Kotagede",
+      "description": "Lorong-lorong Kotagede adalah ruang hidup warga setempat. Sambut warga dengan senyuman ramah, matikan mesin motor atau tuntun sepeda di Between Two Gates, serta kenakan pakaian sopan saat mengunjungi masjid dan makam raja."
+    }
+  },
   "ContactPage": {
     "Metadata": {
       "title": "Hubungi Kami",
@@ -667,6 +785,7 @@
       "workshop": "Workshop",
       "careers": "Karir",
       "storeLocation": "Lokasi Toko",
+      "kotagedeGuide": "Panduan Kotagede",
       "silverPrice": "Harga Perak",
       "goldPrice": "Harga Emas",
       "about": "Tentang Kami",

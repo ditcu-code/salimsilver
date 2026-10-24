@@ -348,6 +348,124 @@
       "ctaLabel": "Contact the Workshop"
     }
   },
+  "KotagedeGuidePage": {
+    "Metadata": {
+      "title": "Kotagede Walking Map & Heritage Guide | Salim Silver",
+      "description": "Explore historic Kotagede on foot with our interactive walking map. Discover royal Mataram mosques, Between Two Gates, merchant mansions, and traditional culinary spots starting from Salim Silver."
+    },
+    "Hero": {
+      "badge": "Kotagede Walking Companion",
+      "title": "Explore Kotagede on Foot",
+      "description": "Step out of our workshop into 500 years of living history. Follow our curated walking loops through ancient pedestrian alleys, royal heritage landmarks, and traditional snack corners."
+    },
+    "MapControls": {
+      "all": "All Highlights",
+      "heritage": "Royal Heritage",
+      "architecture": "Architecture",
+      "culinary": "Traditional Culinary",
+      "craft": "Silver Craft",
+      "selectTrail": "Choose a Walking Loop",
+      "clearTrail": "Explore All Spots",
+      "stops": "stops",
+      "walkingTime": "{minutes} min walk",
+      "experienceTime": "{minimum}–{maximum} min visit",
+      "distanceKilometers": "{distance} km",
+      "places": "{count, plural, one {# place} other {# places}}",
+      "roundTrip": "Round trip",
+      "minsWalkShort": "min walk",
+      "fromSalim": "{minutes} min walk from Salim Silver ({distance}m)",
+      "openInGoogleMaps": "Open in Google Maps",
+      "culturalTip": "Visitor Tip",
+      "trailStops": "Trail Itinerary",
+      "allSpots": "All Heritage Spots",
+      "locations": "locations",
+      "base": "Start Base",
+      "startingBase": "Starting & Return Point",
+      "royalComplexBadge": "Mataram Royal Complex",
+      "royalComplexTitle": "Single Walled Heritage Complex",
+      "royalComplexDescription": "Masjid Gedhe, Makam Raja, and Sendang Seliran are all situated within the same enclosed royal sanctuary. Once you enter the complex through the main gate, you can visit all three on foot without leaving the compound."
+    },
+    "Trails": {
+      "royal": {
+        "title": "Royal Mataram Core",
+        "description": "Walk from Pasar Legi through the Masjid Gedhe complex, Makam Raja, and Sendang Seliran, then return via the residential passage Between Two Gates."
+      },
+      "merchant": {
+        "title": "Merchant Houses & Heritage Alleys",
+        "description": "Visit Museum Kotagede in a 1931 Rumah Kalang, continue to the restored Omah UGM, and return through the living heritage lane of Gang Soka."
+      },
+      "culinary": {
+        "title": "Markets & Traditional Snacks",
+        "description": "Sample Kembang Waru, browse the traditional food stalls at Pasar Legi, and finish with freshly grilled Kipo before returning to Salim Silver."
+      }
+    },
+    "POIs": {
+      "salimSilver": {
+        "name": "Salim Silver",
+        "description": "Our family-run silver filigree atelier and workshop tucked inside a historic Javanese compound in Purbayan. The perfect starting and finishing base for your walk.",
+        "tips": "Complimentary mineral water and rest area available for workshop guests before and after walking."
+      },
+      "betweenTwoGates": {
+        "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",
+        "description": "A quiet shared passage known locally as Gang Rukunan in Kampung Alun-alun, where historic Javanese houses face a stone-paved lane linking two gated ends.",
+        "tips": "A quiet residential sanctuary. Please keep voices down and dismount any bicycles."
+      },
+      "masjidGedhe": {
+        "name": "Masjid Gedhe Mataram Kotagede (1587)",
+        "description": "Yogyakarta's oldest royal mosque, constructed with Hindu-Javanese red brick paduraksa gates, centuries-old waringin trees, and ancient bedug drums. Serves as the main gateway into the enclosed royal complex containing the mosque, Makam Raja, and Sendang Seliran.",
+        "tips": "Modest attire required. Footwear must be removed before entering the inner prayer courtyard. The adjacent royal cemetery and Sendang Seliran can be reached directly from within this compound."
+      },
+      "makamRaja": {
+        "name": "Makam Raja-Raja Mataram (Hastana Kitha Ageng)",
+        "description": "The sacred royal cemetery complex and solemn resting place of Ki Ageng Pemanahan, Panembahan Senopati (founder of Islamic Mataram), and Sultan Hadiwijaya (Joko Tingkir). Located directly inside the same walled compound, through the inner courtyard gate to the west of Masjid Gedhe.",
+        "tips": "To enter the inner tomb chamber, traditional Javanese royal attire (Pranakan / jarik / kemben) is required (available for hire at the visitor pavilion). No footwear, jewelry, or photography inside."
+      },
+      "sendangSeliran": {
+        "name": "Sendang Seliran Sacred Baths",
+        "description": "Ancient freshwater spring pools established in the 16th century, divided into Sendang Kakung (men's bath) and Sendang Putri (women's bath). Situated in the southern wing of the same walled royal complex, reached via internal stone walkways from the mosque and tombs.",
+        "tips": "Visitors can wash their hands and face with the sacred cool spring water. Accessible directly from the mosque courtyard or royal tombs without exiting to the street."
+      },
+      "pasarLegi": {
+        "name": "Pasar Legi Kotagede (Pasar Gede)",
+        "description": "The oldest traditional market in Yogyakarta, dating back to the 16th century. Vibrant with traditional spices, Javanese herbal drinks (jamu), and morning street food.",
+        "tips": "Best visited in the morning or on Legi days of the Javanese 5-day market cycle."
+      },
+      "omahUgm": {
+        "name": "Omah UGM (Purbayan Heritage House)",
+        "description": "A beautifully restored 19th-century Javanese Joglo house revitalized after the 2006 earthquake as a living conservation museum and community hub.",
+        "tips": "Confirm current visitor access on site and respect closure signs; the heritage exterior can still be viewed from the public lane."
+      },
+      "gangSoka": {
+        "name": "Gang Soka (Tumenggungan Heritage Alley)",
+        "description": "A picturesque, shaded living heritage corridor lined with vintage Javanese Limasan and Joglo houses, lush potted greens, and historical relics from the 1930s Kasunanan Surakarta era, including the elevated prayer house (Langgar Dhuwur) and former Pos Malang guard post.",
+        "tips": "An active and quiet residential sanctuary. Please greet residents courteously, keep voices down, dismount bicycles, and ask permission before taking close-up photos of private homes."
+      },
+      "museumKotagede": {
+        "name": "Museum Kotagede (Intro Living Museum)",
+        "description": "An introductory cultural museum housed inside the magnificent 1931 Rumah Kalang mansion of Ibu H. Noerijah. Fuses Javanese timber architecture with European stained glass, showcasing Kotagede's 500-year history, royal Mataram roots, and traditional silver craftsmanship.",
+        "tips": "Check the museum's current opening hours and holiday closures before setting out."
+      },
+      "kipoBuDjito": {
+        "name": "Kipo Bu Djito",
+        "description": "The birthplace of Kipo, Kotagede's signature green delicacy made from glutinous rice, pandan, and caramelized grated coconut grilled over clay embers.",
+        "tips": "Freshly prepared daily in small batches. Best enjoyed warm on the same day!"
+      },
+      "kembangWaru": {
+        "name": "Kembang Waru Bakery (Pak Basiyan)",
+        "description": "Historic royal ceremonial pastry shaped like an 8-petal hibiscus flower, baked in heavy cast-iron molds using an age-old Mataram palace recipe.",
+        "tips": "Great companion for Javanese tea or coffee, and keeps well as a souvenir."
+      },
+      "bentengCepuri": {
+        "name": "Benteng Cepuri & Bokong Semar",
+        "description": "Surviving brick and stone remnants of the original 16th-century inner palace fortress of the Mataram Kingdom.",
+        "tips": "Notice the curved corner wall famously known as 'Bokong Semar'."
+      }
+    },
+    "CulturalTips": {
+      "title": "Respecting Kotagede's Alleys",
+      "description": "Kotagede's alleys are active living residential spaces. Greet locals with a warm smile, keep motorbike engines off or push bicycles through Between Two Gates, and dress modestly when visiting the royal cemetery and mosque."
+    }
+  },
   "ContactPage": {
     "Metadata": {
       "title": "Contact Us",
@@ -667,6 +785,7 @@
       "workshop": "Workshop",
       "careers": "Careers",
       "storeLocation": "Store Location",
+      "kotagedeGuide": "Kotagede Guide",
       "silverPrice": "Silver Price",
       "goldPrice": "Gold Price",
       "about": "About Us",

@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import CTASection from "@/components/blocks/cta-section"
+import KotagedeWalkBanner from "@/components/blocks/kotagede-walk-banner"
 import StoreLocationSection from "@/components/blocks/store-location-section"
 import LocationVisualGuide from "./components/LocationVisualGuide"
 import StoreHero from "./components/StoreHero"
@@ -114,6 +115,9 @@ export default async function StoreLocationPage({ params }: Props) {
       <div id="location">
         <StoreLocationSection />
       </div>
+
+      {/* Kotagede Walking Guide Banner */}
+      <KotagedeWalkBanner />
 
       <CTASection
         title={t("CTA.title")}
