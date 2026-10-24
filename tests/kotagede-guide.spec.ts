@@ -3,7 +3,7 @@ import * as guideData from "../lib/data/kotagede-guide"
 
 type TrailMetric = (trail: guideData.WalkingTrail) => number
 
-const EXPECTED_TRAIL_STOPS = {
+const EXPECTED_ROUTE_STOPS = {
   royal: [
     "salim-silver",
     "pasar-legi",
@@ -12,7 +12,17 @@ const EXPECTED_TRAIL_STOPS = {
     "sendang-seliran",
     "between-two-gates"
   ],
-  merchant: ["salim-silver", "museum-kotagede", "omah-ugm", "gang-soka"],
+  heritage: [
+    "salim-silver",
+    "pasar-legi",
+    "masjid-gedhe-mataram",
+    "makam-raja",
+    "sendang-seliran",
+    "between-two-gates",
+    "omah-ugm",
+    "gang-soka",
+    "museum-kotagede"
+  ],
   culinary: ["salim-silver", "kembang-waru", "pasar-legi", "kipo-bu-djito"]
 } as const
 
@@ -39,9 +49,13 @@ function getTrailMetric(name: string) {
 }
 
 async function openGuide(page: Page, path = "/kotagede-guide") {
-  await page.goto(path)
+  await page.goto(path, { waitUntil: "domcontentloaded" })
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
-  await expect(page.getByTestId("kotagede-guide")).toBeVisible()
+  await expect(page.getByTestId("kotagede-guide")).toHaveAttribute(
+    "data-hydrated",
+    "true",
+    { timeout: 20_000 }
+  )
 }
 
 async function expectNoDocumentOverflow(page: Page) {
@@ -69,10 +83,27 @@ async function useEmptyMapStyle(page: Page) {
 }
 
 test.describe("Kotagede walking trail data", () => {
-  test("uses the approved unique destination order for every loop", () => {
+  test("uses three Salim-led routes and keeps the royal complex together", () => {
+    expect(guideData.WALKING_TRAILS.map((trail) => trail.id)).toEqual([
+      "royal",
+      "heritage",
+      "culinary"
+    ])
     for (const trail of guideData.WALKING_TRAILS) {
-      expect(trail.stopIds).toEqual(EXPECTED_TRAIL_STOPS[trail.id])
+      expect(trail.stopIds).toEqual(EXPECTED_ROUTE_STOPS[trail.id])
+      expect(trail.stopIds[0]).toBe("salim-silver")
+      expect(trail.endStopId).toBe(trail.stopIds.at(-1))
       expect(new Set(trail.stopIds).size).toBe(trail.stopIds.length)
+      const complexStops = trail.stopIds.filter((id) =>
+        ["masjid-gedhe-mataram", "makam-raja", "sendang-seliran"].includes(id)
+      )
+      if (complexStops.length) {
+        expect(trail.stopIds.slice(2, 5)).toEqual([
+          "masjid-gedhe-mataram",
+          "makam-raja",
+          "sendang-seliran"
+        ])
+      }
     }
   })
 
@@ -94,7 +125,7 @@ test.describe("Kotagede walking trail data", () => {
     expect(omahUgm?.coordinates).toEqual([110.39633445816, -7.8291468025372])
   })
 
-  test("keeps every route closed and within 30 metres of its stops", () => {
+  test("starts at Salim and ends beside each final stop without a return leg", () => {
     const getTrailPois = (guideData as unknown as Record<string, unknown>)
       .getTrailPois
     expect(getTrailPois, "getTrailPois must be exported").toBeInstanceOf(
@@ -109,9 +140,16 @@ test.describe("Kotagede walking trail data", () => {
       expect(
         haversineMeters(coordinates[0], guideData.SALIM_SILVER_LOCATION)
       ).toBeLessThanOrEqual(2)
+      const finish = guideData.KOTAGEDE_POIS.find(
+        (poi) => poi.id === trail.endStopId
+      )
+      expect(finish).toBeDefined()
+      expect(
+        haversineMeters(coordinates.at(-1)!, finish!.coordinates)
+      ).toBeLessThanOrEqual(30)
       expect(
         haversineMeters(coordinates.at(-1)!, guideData.SALIM_SILVER_LOCATION)
-      ).toBeLessThanOrEqual(2)
+      ).toBeGreaterThan(30)
 
       for (const poi of (
         getTrailPois as (trail: guideData.WalkingTrail) => guideData.POI[]
@@ -329,24 +367,27 @@ test.describe("Kotagede guide responsive layout", () => {
   })
 })
 
-test.describe("Kotagede walking loop experience", () => {
+test.describe("Kotagede walking route experience", () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 })
     await openGuide(page)
   })
 
-  test("renders Merchant stops in the approved walking order", async ({
+  test("renders the longer Heritage walk with the Royal complex together", async ({
     page
   }) => {
-    await page.getByTestId("trail-merchant").click()
+    await page.getByTestId("trail-heritage").click()
 
     const stops = page.getByTestId("poi-itinerary").locator("[data-poi-id]")
-    await expect(stops).toHaveCount(4)
+    await expect(stops).toHaveCount(9)
     expect(
       await stops.evaluateAll((items) =>
         items.map((item) => item.getAttribute("data-poi-id"))
       )
-    ).toEqual(["salim-silver", "museum-kotagede", "omah-ugm", "gang-soka"])
+    ).toEqual(EXPECTED_ROUTE_STOPS.heritage)
+    await expect(stops.last()).toHaveAttribute("data-route-finish", "true")
+    await expect(stops.last()).toContainText("Finish")
+    await expect(page.getByTestId("trail-merchant")).toHaveCount(0)
   })
 
   test("shows route description and geometry-derived trip metadata", async ({
@@ -354,18 +395,40 @@ test.describe("Kotagede walking loop experience", () => {
   }) => {
     await expect(page.getByTestId("trail-description-royal")).toBeVisible()
     await expect(page.getByTestId("trail-walking-royal")).toHaveText(
-      "25 min walk"
+      `${guideData.getTrailWalkingMinutes(guideData.WALKING_TRAILS[0])} min walk`
     )
     await expect(page.getByTestId("trail-experience-royal")).toHaveText(
       "75–120 min visit"
     )
     await expect(page.getByTestId("trail-places-royal")).toHaveText("6 places")
-    await expect(page.getByTestId("trail-round-trip-royal")).toHaveText(
-      "Round trip"
+    await expect(page.getByTestId("trail-route-endpoints-royal")).toHaveText(
+      "Starts at Salim Silver · Ends at Between Two Gates (Gang Rukunan, Kampung Alun-alun)"
     )
+    await expect(page.getByTestId("trail-round-trip-royal")).toHaveCount(0)
   })
 
-  test("resets a hidden selection when a category replaces the active loop", async ({
+  test("advertises the three walks in structured data", async ({ page }) => {
+    const names = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll((scripts) => {
+        const graphs = scripts.flatMap(
+          (script) => JSON.parse(script.textContent || "{}")["@graph"] || []
+        )
+        const trip = graphs.find(
+          (item: { "@type": string }) => item["@type"] === "TouristTrip"
+        )
+        return trip.itinerary.itemListElement.map(
+          (item: { name: string }) => item.name
+        )
+      })
+    expect(names).toEqual([
+      "Royal Mataram Walk",
+      "Kotagede Heritage Walk",
+      "Kotagede Food Walk"
+    ])
+  })
+
+  test("resets a hidden selection when a category replaces the active route", async ({
     page
   }) => {
     await page.getByRole("button", { name: "Explore All Spots" }).click()
@@ -412,34 +475,35 @@ test.describe("Kotagede walking loop experience", () => {
     await expect(details.locator('img[alt*="Pasar Legi"]')).toHaveCount(0)
   })
 
-  test("uses accurate loop and Between Two Gates copy in every locale", async ({
+  test("uses the approved route names and Between Two Gates copy in every locale", async ({
     page
   }) => {
+    test.setTimeout(90_000)
     const locales = [
       {
         path: "/kotagede-guide",
         titles: [
-          "Royal Mataram Core",
-          "Merchant Houses & Heritage Alleys",
-          "Markets & Traditional Snacks"
+          "Royal Mataram Walk",
+          "Kotagede Heritage Walk",
+          "Kotagede Food Walk"
         ],
         betweenTwoGates: "Between Two Gates (Gang Rukunan, Kampung Alun-alun)"
       },
       {
         path: "/id/kotagede-guide",
         titles: [
-          "Inti Kerajaan Mataram",
-          "Rumah Saudagar & Lorong Pusaka",
-          "Pasar & Jajanan Tradisional"
+          "Jelajah Kerajaan Mataram",
+          "Jelajah Warisan Kotagede",
+          "Jelajah Kuliner Kotagede"
         ],
         betweenTwoGates: "Between Two Gates (Gang Rukunan, Kampung Alun-alun)"
       },
       {
         path: "/nl/kotagede-guide",
         titles: [
-          "Koninklijke Mataram-kernroute",
-          "Koopmanshuizen & Erfgoedsteegjes",
-          "Markten & Traditionele Snacks"
+          "Koninklijke Mataram-wandeling",
+          "Kotagede-erfgoedwandeling",
+          "Kotagede-culinaire wandeling"
         ],
         betweenTwoGates: "Between Two Gates (Gang Rukunan, Kampung Alun-alun)"
       }
@@ -450,7 +514,7 @@ test.describe("Kotagede walking loop experience", () => {
       await expect(page.getByTestId("trail-royal")).toContainText(
         locale.titles[0]
       )
-      await expect(page.getByTestId("trail-merchant")).toContainText(
+      await expect(page.getByTestId("trail-heritage")).toContainText(
         locale.titles[1]
       )
       await expect(page.getByTestId("trail-culinary")).toContainText(
@@ -467,7 +531,11 @@ test.describe("Kotagede walking loop experience", () => {
     }
   })
 
-  test("shows complete loop descriptions in every locale", async ({ page }) => {
+  test("shows complete route descriptions and endpoints in every locale", async ({
+    page
+  }) => {
+    test.setTimeout(60_000)
+    await page.setViewportSize({ width: 320, height: 720 })
     for (const path of [
       "/kotagede-guide",
       "/id/kotagede-guide",
@@ -475,7 +543,7 @@ test.describe("Kotagede walking loop experience", () => {
     ]) {
       await openGuide(page, path)
 
-      for (const trail of ["royal", "merchant", "culinary"]) {
+      for (const trail of ["royal", "heritage", "culinary"]) {
         const dimensions = await page
           .getByTestId(`trail-description-${trail}`)
           .evaluate((element) => ({
@@ -487,7 +555,11 @@ test.describe("Kotagede walking loop experience", () => {
           dimensions.scrollHeight,
           `${path} ${trail} description must not be clipped`
         ).toBeLessThanOrEqual(dimensions.clientHeight)
+        await expect(
+          page.getByTestId(`trail-route-endpoints-${trail}`)
+        ).toBeVisible()
       }
+      await expectNoDocumentOverflow(page)
     }
   })
 })

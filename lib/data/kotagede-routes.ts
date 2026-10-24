@@ -1,7 +1,7 @@
 // High-precision pedestrian walking tracks for Kotagede heritage trails
 // Routed along OpenStreetMap roads, living streets, and pedestrian alleys
 
-export const ROYAL_ROUTE_COORDINATES: [number, number][] = [
+const ROYAL_LOOP_COORDINATES: [number, number][] = [
   // 1. From Salim Silver west along Jl. Kebohan
   [110.401989, -7.827316],
   [110.401953, -7.82745],
@@ -87,7 +87,7 @@ export const ROYAL_ROUTE_COORDINATES: [number, number][] = [
   [110.401989, -7.827316] // Return to Salim Silver
 ]
 
-export const MERCHANT_ROUTE_COORDINATES: [number, number][] = [
+const MERCHANT_LEGACY_ROUTE_COORDINATES: [number, number][] = [
   [110.401989, -7.827316],
   [110.401953, -7.82745],
   [110.40191, -7.827622],
@@ -314,159 +314,9 @@ export const MERCHANT_ROUTE_COORDINATES: [number, number][] = [
   [110.401989, -7.827316]
 ]
 
-export const CULINARY_ROUTE_COORDINATES: [number, number][] = [
-  [110.401989, -7.827316],
-  [110.401953, -7.82745],
-  [110.40191, -7.827622],
-  [110.402404, -7.827694],
-  [110.402769, -7.827737],
-  [110.402703, -7.828138],
-  [110.402702, -7.82815],
-  [110.402679, -7.828312],
-  [110.402619, -7.828649],
-  [110.402597, -7.828819],
-  [110.402593, -7.82886],
-  [110.402588, -7.828905],
-  [110.402592, -7.828944],
-  [110.402613, -7.829017],
-  [110.402644, -7.829128],
-  [110.402662, -7.829213],
-  [110.402716, -7.829421],
-  [110.402792, -7.829632],
-  [110.402725, -7.829628],
-  [110.402408, -7.829505],
-  [110.402359, -7.829495],
-  [110.402333, -7.829495],
-  [110.402307, -7.829499],
-  [110.402234, -7.829511],
-  [110.402059, -7.829514],
-  [110.401891, -7.829524],
-  [110.401879, -7.829532],
-  [110.401866, -7.829574],
-  [110.401853, -7.829581],
-  [110.401843, -7.829582],
-  [110.40163, -7.82954],
-  [110.401324, -7.829487],
-  [110.401343, -7.829402],
-  [110.401039, -7.82931],
-  [110.401014, -7.829298],
-  [110.400735, -7.829216],
-  [110.400502, -7.829152],
-  [110.400319, -7.829116],
-  [110.400148, -7.829086],
-  [110.400139, -7.829076],
-  [110.400138, -7.829063],
-  [110.400152, -7.828941],
-  [110.399958, -7.828911],
-  [110.399922, -7.828905],
-  [110.399904, -7.828893],
-  [110.399891, -7.828874],
-  [110.39986, -7.828828],
-  [110.39977, -7.828857],
-  [110.399616, -7.828863],
-  [110.399506, -7.828831],
-  [110.399541, -7.82869],
-  [110.399558, -7.828451],
-  [110.399543, -7.828271],
-  [110.39953, -7.828121],
-  [110.39947, -7.827782],
-  [110.399074, -7.82769],
-  [110.398913, -7.827643],
-  [110.398663, -7.827574],
-  [110.398051, -7.827438],
-  [110.398103, -7.827166],
-  [110.39811, -7.827125],
-  [110.398104, -7.827081],
-  [110.39808, -7.827057],
-  [110.398011, -7.827041],
-  [110.397713, -7.826998],
-  [110.397743, -7.826872],
-  [110.397822, -7.826548],
-  [110.39772, -7.826523],
-  [110.397432, -7.826456],
-  [110.397111, -7.826383],
-  [110.397033, -7.826371],
-  [110.397028, -7.826367],
-  [110.397028, -7.826361],
-  [110.397038, -7.826265],
-  [110.397034, -7.826261],
-  [110.396835, -7.826243],
-  [110.39679, -7.826228],
-  [110.396745, -7.82622],
-  [110.396709, -7.826211],
-  [110.396642, -7.826178],
-  [110.396571, -7.826165],
-  [110.396556, -7.826234],
-  [110.396531, -7.8263],
-  [110.396477, -7.826294],
-  [110.396404, -7.826278],
-  [110.396344, -7.826263],
-  [110.396215, -7.826243],
-  [110.396186, -7.826236],
-  [110.396171, -7.826217],
-  [110.396166, -7.826188],
-  [110.396165, -7.826152],
-  [110.396095, -7.825606],
-  [110.396, -7.825597],
-  [110.395592, -7.825559],
-  [110.395391, -7.825538],
-  [110.395335, -7.825834],
-  [110.395391, -7.825538],
-  [110.395592, -7.825559],
-  [110.396, -7.825597],
-  [110.396095, -7.825606],
-  [110.396095, -7.825578],
-  [110.396256, -7.82558],
-  [110.396389, -7.825565],
-  [110.396394, -7.825568],
-  [110.396864, -7.825721],
-  [110.396854, -7.825864],
-  [110.397315, -7.825927],
-  [110.3974, -7.825946],
-  [110.397506, -7.825949],
-  [110.397652, -7.82595],
-  [110.39793, -7.825957],
-  [110.397919, -7.826079],
-  [110.397917, -7.826193],
-  [110.398211, -7.826223],
-  [110.398204, -7.826384],
-  [110.398365, -7.826391],
-  [110.398566, -7.826435],
-  [110.398646, -7.826454],
-  [110.399249, -7.826627],
-  [110.399269, -7.826596],
-  [110.399322, -7.826498],
-  [110.399344, -7.826463],
-  [110.399368, -7.826442],
-  [110.399391, -7.826432],
-  [110.399417, -7.82643],
-  [110.399485, -7.82646],
-  [110.399664, -7.826481],
-  [110.399919, -7.826515],
-  [110.400155, -7.826548],
-  [110.400393, -7.826544],
-  [110.400397, -7.826725],
-  [110.400406, -7.827074],
-  [110.400604, -7.827075],
-  [110.400919, -7.827108],
-  [110.400914, -7.827182],
-  [110.400915, -7.827252],
-  [110.400911, -7.827353],
-  [110.400905, -7.827538],
-  [110.401147, -7.827537],
-  [110.401279, -7.827538],
-  [110.40131, -7.827541],
-  [110.401467, -7.827556],
-  [110.401576, -7.827573],
-  [110.401627, -7.827581],
-  [110.40191, -7.827622],
-  [110.401953, -7.82745],
-  [110.401989, -7.827316]
-]
-
-// Stage 1 merchant loop: Salim Silver → Museum Kotagede → Omah UGM →
-// Gang Soka → Salim Silver. Generated against OpenStreetMap pedestrian ways.
-export const MERCHANT_CORE_ROUTE_COORDINATES: [number, number][] = [
+// Previously mapped merchant streets; the outward Heritage route reuses
+// verified segments from this source track.
+const MERCHANT_CORE_ROUTE_COORDINATES: [number, number][] = [
   [110.401989, -7.827316],
   [110.401953, -7.82745],
   [110.40191, -7.827622],
@@ -604,9 +454,8 @@ export const MERCHANT_CORE_ROUTE_COORDINATES: [number, number][] = [
   [110.401989, -7.827316]
 ]
 
-// Stage 1 culinary loop: Salim Silver → Kembang Waru → Pasar Legi →
-// Kipo Bu Djito → Salim Silver. Generated against OpenStreetMap pedestrian ways.
-export const CULINARY_CORE_ROUTE_COORDINATES: [number, number][] = [
+// Previously mapped culinary streets; the Food route stops at Kipo Bu Djito.
+const CULINARY_CORE_ROUTE_COORDINATES: [number, number][] = [
   [110.401989, -7.827316],
   [110.401953, -7.82745],
   [110.40191, -7.827622],
@@ -697,3 +546,100 @@ export const CULINARY_CORE_ROUTE_COORDINATES: [number, number][] = [
   [110.401953, -7.82745],
   [110.401989, -7.827316]
 ]
+
+// Reuse the pedestrian segments above for the outward routes. The heritage
+// path briefly retraces the public Masjid Besar approach after the royal
+// complex, then joins the already mapped northern and western streets.
+function pointIndex(
+  points: [number, number][],
+  longitude: number,
+  latitude: number,
+  from = 0
+): number {
+  const index = points.findIndex(
+    ([lng, lat], position) =>
+      position >= from && lng === longitude && lat === latitude
+  )
+  if (index < 0)
+    throw new Error(`Missing pedestrian waypoint ${longitude}, ${latitude}`)
+  return index
+}
+
+const royalFinish = pointIndex(ROYAL_LOOP_COORDINATES, 110.39908, -7.83094)
+export const ROYAL_ROUTE_COORDINATES = ROYAL_LOOP_COORDINATES.slice(
+  0,
+  royalFinish + 1
+)
+
+const firstJunction = pointIndex(ROYAL_LOOP_COORDINATES, 110.399095, -7.829702)
+const returnJunction = pointIndex(
+  ROYAL_LOOP_COORDINATES,
+  110.399095,
+  -7.829702,
+  firstJunction + 1
+)
+const northApproach = pointIndex(ROYAL_LOOP_COORDINATES, 110.399543, -7.828271)
+const merchantStreet = pointIndex(
+  MERCHANT_CORE_ROUTE_COORDINATES,
+  110.39947,
+  -7.827782
+)
+const museumBranch = pointIndex(
+  MERCHANT_CORE_ROUTE_COORDINATES,
+  110.396488,
+  -7.827377,
+  merchantStreet
+)
+const afterMuseumBranch = pointIndex(
+  MERCHANT_CORE_ROUTE_COORDINATES,
+  110.396488,
+  -7.827377,
+  museumBranch + 1
+)
+const gangSoka = pointIndex(
+  MERCHANT_CORE_ROUTE_COORDINATES,
+  110.396329,
+  -7.82949,
+  afterMuseumBranch
+)
+const legacyMuseum = pointIndex(
+  MERCHANT_LEGACY_ROUTE_COORDINATES,
+  110.392195,
+  -7.826296
+)
+const legacyGang = pointIndex(
+  MERCHANT_LEGACY_ROUTE_COORDINATES,
+  110.396329,
+  -7.82949,
+  legacyMuseum
+)
+
+export const KOTAGEDE_HERITAGE_ROUTE_COORDINATES: [number, number][] = [
+  ...ROYAL_ROUTE_COORDINATES,
+  ...ROYAL_LOOP_COORDINATES.slice(returnJunction, royalFinish + 1)
+    .reverse()
+    .slice(1),
+  ...ROYAL_LOOP_COORDINATES.slice(northApproach, firstJunction + 1)
+    .reverse()
+    .slice(1),
+  [110.39953, -7.828121],
+  [110.39947, -7.827782],
+  ...MERCHANT_CORE_ROUTE_COORDINATES.slice(
+    merchantStreet + 1,
+    museumBranch + 1
+  ),
+  ...MERCHANT_CORE_ROUTE_COORDINATES.slice(afterMuseumBranch + 1, gangSoka + 1),
+  ...MERCHANT_LEGACY_ROUTE_COORDINATES.slice(legacyMuseum, legacyGang + 1)
+    .reverse()
+    .slice(1)
+]
+
+const culinaryFinish = pointIndex(
+  CULINARY_CORE_ROUTE_COORDINATES,
+  110.397743,
+  -7.826872
+)
+export const CULINARY_ROUTE_COORDINATES = CULINARY_CORE_ROUTE_COORDINATES.slice(
+  0,
+  culinaryFinish + 1
+)

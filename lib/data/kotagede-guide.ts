@@ -1,7 +1,7 @@
 import {
   ROYAL_ROUTE_COORDINATES,
-  MERCHANT_CORE_ROUTE_COORDINATES,
-  CULINARY_CORE_ROUTE_COORDINATES
+  KOTAGEDE_HERITAGE_ROUTE_COORDINATES,
+  CULINARY_ROUTE_COORDINATES
 } from "./kotagede-routes"
 
 export type POICategory = "heritage" | "architecture" | "culinary" | "craft"
@@ -20,11 +20,11 @@ export interface POI {
 }
 
 export interface WalkingTrail {
-  id: "royal" | "merchant" | "culinary"
+  id: "royal" | "heritage" | "culinary"
   nameKey: string
   descriptionKey: string
   experienceMinutes: readonly [minimum: number, maximum: number]
-  returnsToStart: boolean
+  endStopId: string
   stopIds: string[]
   color: string
   routeGeoJson: GeoJSON.Feature<GeoJSON.LineString>
@@ -160,7 +160,7 @@ export const WALKING_TRAILS: WalkingTrail[] = [
     nameKey: "royal",
     descriptionKey: "royal",
     experienceMinutes: [75, 120],
-    returnsToStart: true,
+    endStopId: "between-two-gates",
     color: "#b45309", // Warm amber / royal bronze
     stopIds: [
       "salim-silver",
@@ -180,19 +180,29 @@ export const WALKING_TRAILS: WalkingTrail[] = [
     }
   },
   {
-    id: "merchant",
-    nameKey: "merchant",
-    descriptionKey: "merchant",
-    experienceMinutes: [90, 150],
-    returnsToStart: true,
+    id: "heritage",
+    nameKey: "heritage",
+    descriptionKey: "heritage",
+    experienceMinutes: [120, 180],
+    endStopId: "museum-kotagede",
     color: "#0f766e", // Deep teal / heritage patinated silver
-    stopIds: ["salim-silver", "museum-kotagede", "omah-ugm", "gang-soka"],
+    stopIds: [
+      "salim-silver",
+      "pasar-legi",
+      "masjid-gedhe-mataram",
+      "makam-raja",
+      "sendang-seliran",
+      "between-two-gates",
+      "omah-ugm",
+      "gang-soka",
+      "museum-kotagede"
+    ],
     routeGeoJson: {
       type: "Feature",
-      properties: { trailId: "merchant" },
+      properties: { trailId: "heritage" },
       geometry: {
         type: "LineString",
-        coordinates: MERCHANT_CORE_ROUTE_COORDINATES
+        coordinates: KOTAGEDE_HERITAGE_ROUTE_COORDINATES
       }
     }
   },
@@ -201,7 +211,7 @@ export const WALKING_TRAILS: WalkingTrail[] = [
     nameKey: "culinary",
     descriptionKey: "culinary",
     experienceMinutes: [60, 90],
-    returnsToStart: true,
+    endStopId: "kipo-bu-djito",
     color: "#be185d", // Rich berry / traditional culinary warm rose
     stopIds: ["salim-silver", "kembang-waru", "pasar-legi", "kipo-bu-djito"],
     routeGeoJson: {
@@ -209,7 +219,7 @@ export const WALKING_TRAILS: WalkingTrail[] = [
       properties: { trailId: "culinary" },
       geometry: {
         type: "LineString",
-        coordinates: CULINARY_CORE_ROUTE_COORDINATES
+        coordinates: CULINARY_ROUTE_COORDINATES
       }
     }
   }

@@ -350,13 +350,14 @@
   },
   "KotagedeGuidePage": {
     "Metadata": {
-      "title": "Kotagede Walking Map & Heritage Guide | Salim Silver",
-      "description": "Explore historic Kotagede on foot with our interactive walking map. Discover royal Mataram mosques, Between Two Gates, merchant mansions, and traditional culinary spots starting from Salim Silver."
+      "title": "Kotagede Walking Map & Heritage Guide",
+      "description": "Explore historic Kotagede on foot with our interactive walking map. Discover royal Mataram mosques, Between Two Gates, merchant mansions, and traditional culinary spots starting from Salim Silver.",
+      "keywords": "Kotagede walking tour, Kotagede walking map, Kotagede heritage trail, Masjid Gedhe Mataram, Between Two Gates, Salim Silver Kotagede, Yogyakarta walking guide"
     },
     "Hero": {
       "badge": "Kotagede Walking Companion",
       "title": "Explore Kotagede on Foot",
-      "description": "Step out of our workshop into 500 years of living history. Follow our curated walking loops through ancient pedestrian alleys, royal heritage landmarks, and traditional snack corners."
+      "description": "Step out of our workshop into 500 years of living history. Follow three walking routes from Salim Silver through heritage lanes, royal landmarks, and traditional snack corners."
     },
     "MapControls": {
       "all": "All Highlights",
@@ -364,14 +365,15 @@
       "architecture": "Architecture",
       "culinary": "Traditional Culinary",
       "craft": "Silver Craft",
-      "selectTrail": "Choose a Walking Loop",
+      "selectTrail": "Choose a Walking Route",
       "clearTrail": "Explore All Spots",
       "stops": "stops",
       "walkingTime": "{minutes} min walk",
       "experienceTime": "{minimum}–{maximum} min visit",
       "distanceKilometers": "{distance} km",
       "places": "{count, plural, one {# place} other {# places}}",
-      "roundTrip": "Round trip",
+      "routeStartEnd": "Starts at Salim Silver · Ends at {destination}",
+      "finish": "Finish",
       "minsWalkShort": "min walk",
       "fromSalim": "{minutes} min walk from Salim Silver ({distance}m)",
       "openInGoogleMaps": "Open in Google Maps",
@@ -380,30 +382,30 @@
       "allSpots": "All Heritage Spots",
       "locations": "locations",
       "base": "Start Base",
-      "startingBase": "Starting & Return Point",
+      "startingBase": "Route Starting Point",
       "royalComplexBadge": "Mataram Royal Complex",
       "royalComplexTitle": "Single Walled Heritage Complex",
       "royalComplexDescription": "Masjid Gedhe, Makam Raja, and Sendang Seliran are all situated within the same enclosed royal sanctuary. Once you enter the complex through the main gate, you can visit all three on foot without leaving the compound."
     },
     "Trails": {
       "royal": {
-        "title": "Royal Mataram Core",
-        "description": "Walk from Pasar Legi through the Masjid Gedhe complex, Makam Raja, and Sendang Seliran, then return via the residential passage Between Two Gates."
+        "title": "Royal Mataram Walk",
+        "description": "From Salim Silver, visit Pasar Legi, then explore Masjid Gedhe, Makam Raja, and Sendang Seliran together. Finish at the residential passage Between Two Gates."
       },
-      "merchant": {
-        "title": "Merchant Houses & Heritage Alleys",
-        "description": "Visit Museum Kotagede in a 1931 Rumah Kalang, continue to the restored Omah UGM, and return through the living heritage lane of Gang Soka."
+      "heritage": {
+        "title": "Kotagede Heritage Walk",
+        "description": "Follow the Royal Mataram stops from Salim Silver, then continue through Omah UGM and Gang Soka to finish at Museum Kotagede. Check museum hours before setting out."
       },
       "culinary": {
-        "title": "Markets & Traditional Snacks",
-        "description": "Sample Kembang Waru, browse the traditional food stalls at Pasar Legi, and finish with freshly grilled Kipo before returning to Salim Silver."
+        "title": "Kotagede Food Walk",
+        "description": "From Salim Silver, sample Kembang Waru, browse the traditional food stalls at Pasar Legi, and finish at Kipo Bu Djito. Stock and opening times can vary."
       }
     },
     "POIs": {
       "salimSilver": {
         "name": "Salim Silver",
-        "description": "Our family-run silver filigree atelier and workshop tucked inside a historic Javanese compound in Purbayan. The perfect starting and finishing base for your walk.",
-        "tips": "Complimentary mineral water and rest area available for workshop guests before and after walking."
+        "description": "Our family-run silver filigree atelier and workshop tucked inside a historic Javanese compound in Purbayan. Your starting point for exploring Kotagede on foot.",
+        "tips": "Complimentary mineral water and rest area available for workshop guests before setting out."
       },
       "betweenTwoGates": {
         "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",

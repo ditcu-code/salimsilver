@@ -3,6 +3,7 @@
 import { Footprints } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import {
+  getTrailPois,
   getTrailDistanceMeters,
   getTrailWalkingMinutes,
   WalkingTrail,
@@ -49,6 +50,7 @@ export function TrailSwitcher({
           const walkingMinutes = getTrailWalkingMinutes(trail)
           const distanceKilometers = getTrailDistanceMeters(trail) / 1000
           const [minimumExperience, maximumExperience] = trail.experienceMinutes
+          const finish = getTrailPois(trail).at(-1)
 
           return (
             <button
@@ -98,12 +100,13 @@ export function TrailSwitcher({
                 >
                   {t("MapControls.places", { count: trail.stopIds.length })}
                 </span>
-                <span>•</span>
                 <span
-                  data-testid={`trail-round-trip-${trail.id}`}
-                  className="whitespace-nowrap"
+                  data-testid={`trail-route-endpoints-${trail.id}`}
+                  className="w-full leading-relaxed"
                 >
-                  {t("MapControls.roundTrip")}
+                  {t("MapControls.routeStartEnd", {
+                    destination: finish ? t(`POIs.${finish.nameKey}.name`) : ""
+                  })}
                 </span>
                 <span
                   data-testid={`trail-experience-${trail.id}`}

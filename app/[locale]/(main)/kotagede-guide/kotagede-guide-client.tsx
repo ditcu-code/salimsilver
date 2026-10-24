@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useTranslations } from "next-intl"
 import { Compass, Info } from "lucide-react"
 import {
@@ -18,13 +18,18 @@ import { CategoryFilter } from "@/components/features/walking-tour/category-filt
 
 export default function KotagedeGuideClient() {
   const t = useTranslations("KotagedeGuidePage")
+  const guideRef = useRef<HTMLDivElement>(null)
   const mapFrameRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    guideRef.current?.setAttribute("data-hydrated", "true")
+  }, [])
 
   const [selectedPoi, setSelectedPoi] = useState<POI | null>(
     KOTAGEDE_POIS[0] // Default to Salim Silver
   )
   const [activeTrail, setActiveTrail] = useState<WalkingTrail | null>(
-    WALKING_TRAILS[0] // Default to Royal & Heritage Loop
+    WALKING_TRAILS[0] // Default to Royal Mataram Walk
   )
   const [selectedCategory, setSelectedCategory] = useState<POICategory | "all">(
     "all"
@@ -71,6 +76,7 @@ export default function KotagedeGuideClient() {
 
   return (
     <div
+      ref={guideRef}
       data-testid="kotagede-guide"
       className="mx-auto min-h-screen min-w-0 max-w-7xl overflow-x-clip px-3 pt-24 pb-10 sm:px-4 sm:pt-28 sm:pb-12 md:px-8 md:pt-32 md:pb-16"
     >
@@ -171,6 +177,11 @@ export default function KotagedeGuideClient() {
                   <button
                     key={poi.id}
                     data-poi-id={poi.id}
+                    data-route-finish={
+                      activeTrail && poi.id === activeTrail.endStopId
+                        ? "true"
+                        : undefined
+                    }
                     onClick={() => setSelectedPoi(poi)}
                     className={`flex min-h-11 w-full cursor-pointer items-center justify-between rounded-xl border p-2.5 text-left transition focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none ${
                       isSelected
@@ -197,6 +208,11 @@ export default function KotagedeGuideClient() {
                         {poi.complexId === "royal-complex" && (
                           <span className="truncate text-[10px] font-medium text-amber-700 dark:text-amber-400">
                             {t("MapControls.royalComplexBadge")}
+                          </span>
+                        )}
+                        {activeTrail?.endStopId === poi.id && (
+                          <span className="text-[10px] font-semibold text-primary">
+                            {t("MapControls.finish")}
                           </span>
                         )}
                       </div>

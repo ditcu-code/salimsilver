@@ -350,8 +350,9 @@
   },
   "KotagedeGuidePage": {
     "Metadata": {
-      "title": "Peta Interaktif & Panduan Jalan Kaki Kotagede | Salim Silver",
-      "description": "Jelajahi kawasan bersejarah Kotagede dengan peta jalan kaki interaktif kami. Temukan masjid kerajaan Mataram, Between Two Gates, Rumah Kalang, dan kuliner tradisional mulai dari Salim Silver."
+      "title": "Peta Interaktif & Panduan Jalan Kaki Kotagede",
+      "description": "Jelajahi kawasan bersejarah Kotagede dengan peta jalan kaki interaktif kami. Temukan masjid kerajaan Mataram, Between Two Gates, Rumah Kalang, dan kuliner tradisional mulai dari Salim Silver.",
+      "keywords": "Wisata jalan kaki Kotagede, peta jalan kaki Kotagede, rute wisata Kotagede, Masjid Gedhe Mataram, Between Two Gates, kerajinan perak Kotagede, panduan wisata Yogyakarta"
     },
     "Hero": {
       "badge": "Panduan Jalan Kaki Kotagede",
@@ -371,7 +372,8 @@
       "experienceTime": "{minimum}–{maximum} mnt kunjungan",
       "distanceKilometers": "{distance} km",
       "places": "{count} tempat",
-      "roundTrip": "Rute melingkar",
+      "routeStartEnd": "Mulai dari Salim Silver · Berakhir di {destination}",
+      "finish": "Titik akhir",
       "minsWalkShort": "menit jalan",
       "fromSalim": "{minutes} menit jalan kaki dari Salim Silver ({distance}m)",
       "openInGoogleMaps": "Buka di Google Maps",
@@ -380,30 +382,30 @@
       "allSpots": "Semua Lokasi Bersejarah",
       "locations": "lokasi",
       "base": "Titik Awal",
-      "startingBase": "Titik Awal & Akhir",
+      "startingBase": "Titik Awal Rute",
       "royalComplexBadge": "Satu Kompleks Mataram",
       "royalComplexTitle": "Satu Kompleks Cagar Budaya Berpagar",
       "royalComplexDescription": "Masjid Gedhe, Makam Raja, dan Sendang Seliran berada di dalam satu kawasan bertembok yang sama. Begitu Anda melewati gerbang utama masjid, Anda dapat mengunjungi ketiganya sekaligus tanpa perlu keluar ke jalan umum."
     },
     "Trails": {
       "royal": {
-        "title": "Inti Kerajaan Mataram",
-        "description": "Berjalan dari Pasar Legi menuju kompleks Masjid Gedhe, Makam Raja, dan Sendang Seliran, lalu kembali melalui lorong permukiman Between Two Gates."
+        "title": "Jelajah Kerajaan Mataram",
+        "description": "Dari Salim Silver, singgah di Pasar Legi, lalu jelajahi Masjid Gedhe, Makam Raja, dan Sendang Seliran dalam satu kompleks. Akhiri di lorong permukiman Between Two Gates."
       },
-      "merchant": {
-        "title": "Rumah Saudagar & Lorong Pusaka",
-        "description": "Kunjungi Museum Kotagede di Rumah Kalang tahun 1931, lanjutkan ke Omah UGM yang telah dipugar, lalu kembali melalui lorong pusaka Gang Soka."
+      "heritage": {
+        "title": "Jelajah Warisan Kotagede",
+        "description": "Ikuti titik-titik Kerajaan Mataram dari Salim Silver, lalu lanjutkan ke Omah UGM dan Gang Soka hingga berakhir di Museum Kotagede. Periksa jam buka museum sebelum berangkat."
       },
       "culinary": {
-        "title": "Pasar & Jajanan Tradisional",
-        "description": "Cicipi Kembang Waru, jelajahi jajanan tradisional di Pasar Legi, lalu nikmati Kipo yang baru dipanggang sebelum kembali ke Salim Silver."
+        "title": "Jelajah Kuliner Kotagede",
+        "description": "Dari Salim Silver, cicipi Kembang Waru, jelajahi jajanan tradisional di Pasar Legi, dan akhiri di Kipo Bu Djito. Stok dan jam buka dapat berubah."
       }
     },
     "POIs": {
       "salimSilver": {
         "name": "Salim Silver",
-        "description": "Atelier dan workshop perak filigri keluarga kami di dalam pekarangan rumah tradisional Purbayan. Titik awal dan akhir ideal untuk perjalanan jalan kaki Anda.",
-        "tips": "Air mineral dan ruang istirahat tersedia untuk peserta workshop sebelum maupun sesudah berjalan kaki."
+        "description": "Atelier dan workshop perak filigri keluarga kami di dalam pekarangan rumah tradisional Purbayan. Titik awal untuk menjelajahi Kotagede dengan berjalan kaki.",
+        "tips": "Air mineral dan ruang istirahat tersedia untuk peserta workshop sebelum memulai perjalanan."
       },
       "betweenTwoGates": {
         "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",

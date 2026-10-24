@@ -349,8 +349,9 @@
   },
   "KotagedeGuidePage": {
     "Metadata": {
-      "title": "Wandelkaart & Erfgoedgids Kotagede | Salim Silver",
-      "description": "Verken het historische Kotagede te voet met onze interactieve wandelkaart. Ontdek koninklijke Mataram-moskeeën, Between Two Gates, koopmanshuizen en traditionele culinaire plekjes vanaf Salim Silver."
+      "title": "Wandelkaart & Erfgoedgids Kotagede",
+      "description": "Verken het historische Kotagede te voet met onze interactieve wandelkaart. Ontdek koninklijke Mataram-moskeeën, Between Two Gates, koopmanshuizen en traditionele culinaire plekjes vanaf Salim Silver.",
+      "keywords": "Kotagede wandeling, wandelkaart Kotagede, erfgoedgids Kotagede, Masjid Gedhe Mataram, Between Two Gates, Salim Silver Kotagede, Yogyakarta wandelroute"
     },
     "Hero": {
       "badge": "Wandelgids Kotagede",
@@ -370,7 +371,8 @@
       "experienceTime": "{minimum}–{maximum} min bezoek",
       "distanceKilometers": "{distance} km",
       "places": "{count} plekken",
-      "roundTrip": "Rondwandeling",
+      "routeStartEnd": "Start bij Salim Silver · Eindigt bij {destination}",
+      "finish": "Eindpunt",
       "minsWalkShort": "min lopen",
       "fromSalim": "{minutes} min lopen vanaf Salim Silver ({distance}m)",
       "openInGoogleMaps": "Openen in Google Maps",
@@ -379,30 +381,30 @@
       "allSpots": "Alle Erfgoedplekken",
       "locations": "locaties",
       "base": "Startpunt",
-      "startingBase": "Start- & Eindpunt",
+      "startingBase": "Startpunt van de route",
       "royalComplexBadge": "Koninklijk Mataram-complex",
       "royalComplexTitle": "Eén Ommuurd Koninklijk Erfgoedcomplex",
       "royalComplexDescription": "De grote moskee, de koninklijke graven en Sendang Seliran bevinden zich binnen hetzelfde ommuurde heiligdom. Zodra u de hoofdpoort binnengaat, kunt u alle drie te voet bezoeken zonder het terrein te verlaten."
     },
     "Trails": {
       "royal": {
-        "title": "Koninklijke Mataram-kernroute",
-        "description": "Wandel vanaf Pasar Legi door het complex van de Grote Moskee, de koninklijke graven en Sendang Seliran, en keer terug via de woonpassage Between Two Gates."
+        "title": "Koninklijke Mataram-wandeling",
+        "description": "Wandel vanaf Salim Silver via Pasar Legi naar het complex van de Grote Moskee, de koninklijke graven en Sendang Seliran. Eindig bij de woonpassage Between Two Gates."
       },
-      "merchant": {
-        "title": "Koopmanshuizen & Erfgoedsteegjes",
-        "description": "Bezoek Museum Kotagede in een Rumah Kalang uit 1931, ga verder naar het gerestaureerde Omah UGM en keer terug door de levende erfgoedsteeg Gang Soka."
+      "heritage": {
+        "title": "Kotagede-erfgoedwandeling",
+        "description": "Volg vanaf Salim Silver de koninklijke Mataram-plekken en wandel dan via Omah UGM en Gang Soka naar Museum Kotagede. Controleer vooraf de openingstijden."
       },
       "culinary": {
-        "title": "Markten & Traditionele Snacks",
-        "description": "Proef Kembang Waru, ontdek de traditionele eetstalletjes op Pasar Legi en sluit af met vers gegrilde Kipo voordat u terugkeert naar Salim Silver."
+        "title": "Kotagede-culinaire wandeling",
+        "description": "Proef vanaf Salim Silver Kembang Waru, ontdek traditionele hapjes op Pasar Legi en eindig bij Kipo Bu Djito. Voorraad en openingstijden kunnen verschillen."
       }
     },
     "POIs": {
       "salimSilver": {
         "name": "Salim Silver",
-        "description": "Ons familie-atelier voor zilverfiligrein in een historisch Javaans complex in Purbayan. Het ideale start- en eindpunt voor uw wandeling.",
-        "tips": "Mineraalwater en rustruimte beschikbaar voor onze workshopgasten voor en na de wandeling."
+        "description": "Ons familie-atelier voor zilverfiligrein in een historisch Javaans complex in Purbayan. Het startpunt om Kotagede te voet te verkennen.",
+        "tips": "Mineraalwater en rustruimte beschikbaar voor onze workshopgasten voor vertrek."
       },
       "betweenTwoGates": {
         "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",
