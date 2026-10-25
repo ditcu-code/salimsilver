@@ -75,4 +75,4 @@ under `public/images/kotagede-guide/`:
 | Benteng Cepuri         | `/images/kotagede-guide/benteng-cepuri.webp`         | Wikimedia Commons `Keraton_Mataram_Kotagede.jpg` (CC BY-SA 3.0)         |
 | Omah UGM               | `/images/kotagede-guide/omah-ugm.webp`               | Wikimedia Commons `Omah_UGM.JPG` (CC BY-SA 3.0)                         |
 | Gang Soka              | `/images/kotagede-guide/gang-soka.webp`              | Wikimedia Commons `Permukiman_di_Kota_Gede.jpg` (CC BY-SA 3.0)          |
-| Museum Kotagede        | `/images/kotagede-guide/museum-kotagede.webp`        | Wikimedia Commons `Ndalem_Natan_from_outside.jpg` (CC BY-SA 4.0)        |
+| Museum Kotagede        | `/images/kotagede-guide/museum-kotagede.webp`        | Indonesia.travel official portal (`museum-kotagede-intro-living-museum.jpg`) |
