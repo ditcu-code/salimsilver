@@ -52,7 +52,9 @@ function getTrailMetric(name: string) {
 async function openGuide(page: Page, path = "/kotagede-guide") {
   await page.goto(path, { waitUntil: "domcontentloaded" })
   // Next's development indicator can cover bottom-sheet buttons during tests.
-  await page.addStyleTag({ content: "nextjs-portal { pointer-events: none !important; }" })
+  await page.addStyleTag({
+    content: "nextjs-portal { pointer-events: none !important; }"
+  })
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
   await expect(page.getByTestId("kotagede-guide")).toHaveAttribute(
     "data-hydrated",
@@ -83,6 +85,27 @@ async function stubEmptyMapStyle(page: Page) {
       })
     }
   )
+}
+
+async function expectSelectedPinClear(page: Page) {
+  await expect
+    .poll(
+      async () => {
+        const [pin, header, panel, cameraState] = await Promise.all([
+          page.locator(".maplibregl-marker:has(.ring-4)").boundingBox(),
+          page.getByRole("banner").boundingBox(),
+          page.getByTestId("mobile-guide-panel").boundingBox(),
+          page.locator("[data-camera-state]").getAttribute("data-camera-state")
+        ])
+        if (!pin || !header || !panel || cameraState !== "idle") return -1000
+        return Math.min(
+          pin.y - (header.y + header.height + 8),
+          panel.y - 8 - (pin.y + pin.height)
+        )
+      },
+      { timeout: 10_000 }
+    )
+    .toBeGreaterThanOrEqual(-0.5)
 }
 
 test.describe("Kotagede walking trail data", () => {
@@ -364,6 +387,7 @@ test.describe("Kotagede guide responsive layout", () => {
     test.setTimeout(90_000)
 
     for (const viewport of [
+      { width: 320, height: 568 },
       { width: 390, height: 844 },
       { width: 768, height: 900 }
     ]) {
@@ -386,23 +410,45 @@ test.describe("Kotagede guide responsive layout", () => {
         .getByTestId("mobile-place-preview")
         .getByRole("button", { name: "Details" })
         .click()
-      await expect(page.locator("[data-camera-state]")).toHaveAttribute(
-        "data-camera-state",
-        "idle",
-        { timeout: 10_000 }
-      )
-
-      const pin = await page
-        .locator(".maplibregl-marker:has(.ring-4)")
-        .boundingBox()
-      const header = await page.getByRole("banner").boundingBox()
-      const panel = await page.getByTestId("mobile-guide-panel").boundingBox()
-      expect(pin).not.toBeNull()
-      expect(header).not.toBeNull()
-      expect(panel).not.toBeNull()
-      expect(pin!.y).toBeGreaterThanOrEqual(header!.y + header!.height + 8)
-      expect(pin!.y + pin!.height).toBeLessThanOrEqual(panel!.y - 8)
+      await expectSelectedPinClear(page)
     }
+  })
+
+  test("moves controls above the panel after desktop-to-phone resize", async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await stubEmptyMapStyle(page)
+    await openGuide(page)
+    await expect(page.locator(".maplibregl-marker").first()).toBeVisible({
+      timeout: 15_000
+    })
+
+    await page.setViewportSize({ width: 390, height: 844 })
+    const panel = await page.getByTestId("mobile-guide-panel").boundingBox()
+    const header = await page.getByRole("banner").boundingBox()
+    for (const name of ["Center on Salim Silver", "Locate me"]) {
+      const button = page.getByRole("button", { name })
+      const box = await button.boundingBox()
+      expect(box).not.toBeNull()
+      expect(box!.y).toBeGreaterThanOrEqual(header!.y + header!.height + 8)
+      expect(box!.y + box!.height).toBeLessThanOrEqual(panel!.y - 8)
+      await button.click({ trial: true })
+    }
+  })
+
+  test("keeps the Salim pin visible with details open on a short phone", async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 320, height: 568 })
+    await stubEmptyMapStyle(page)
+    await openGuide(page)
+    await page.getByRole("button", { name: "Explore all places" }).click()
+    await page
+      .getByTestId("mobile-place-preview")
+      .getByRole("button", { name: "Details" })
+      .click()
+    await expectSelectedPinClear(page)
   })
 
   test("keeps map controls clear of the starting pin", async ({ page }) => {

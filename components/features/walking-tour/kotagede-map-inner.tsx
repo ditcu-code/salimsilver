@@ -110,9 +110,20 @@ export default function KotagedeMapInner({
     if (overlayOcclusion === 0) return 0
 
     const headerOcclusion = getMapHeaderOcclusion()
-    return (
-      Math.round((headerOcclusion - overlayOcclusion) / 2) -
-      MAP_EDGE_CLEARANCE_PX
+    const mapHeight =
+      mapContainerRef.current?.getBoundingClientRect().height ?? 0
+    const markerHeight =
+      mapContainerRef.current
+        ?.querySelector<HTMLElement>(".maplibregl-marker:has(.ring-4)")
+        ?.getBoundingClientRect().height ?? 44
+    const visibleTop = headerOcclusion + MAP_EDGE_CLEARANCE_PX
+    const visibleBottom = mapHeight - overlayOcclusion - MAP_EDGE_CLEARANCE_PX
+    const minAnchor = visibleTop + markerHeight
+    const maxAnchor = visibleBottom
+    const centeredAnchor = (minAnchor + maxAnchor) / 2
+
+    return Math.round(
+      Math.min(Math.max(centeredAnchor, minAnchor), maxAnchor) - mapHeight / 2
     )
   }, [getMapHeaderOcclusion, getMapOverlayOcclusion])
 
@@ -460,7 +471,7 @@ export default function KotagedeMapInner({
     const panel = getFullscreenTarget()?.querySelector<HTMLElement>(
       '[data-map-overlay="mobile-guide-panel"]'
     )
-    if (!panel || panel.getBoundingClientRect().height === 0) return
+    if (!panel) return
 
     let frame = 0
     const reframe = () => {
@@ -469,7 +480,8 @@ export default function KotagedeMapInner({
         const map = mapRef.current
         if (!map) return
         map.resize()
-        if (window.innerWidth < 1024) {
+        const panelVisible = panel.getBoundingClientRect().height > 0
+        if (panelVisible) {
           controlsRef.current?.style.setProperty(
             "bottom",
             `${getMapOverlayOcclusion() + MAP_EDGE_CLEARANCE_PX}px`
@@ -478,6 +490,7 @@ export default function KotagedeMapInner({
           controlsRef.current?.style.removeProperty("bottom")
         }
         if (
+          panelVisible &&
           activeTrail &&
           (panel.dataset.view === "choose" || panel.dataset.view === "route")
         ) {

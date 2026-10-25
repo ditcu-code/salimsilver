@@ -57,7 +57,7 @@ export function MobileGuidePanel({
           view === "place-details" ||
           view === "places" ||
           view === "tips"
-        ? "max-h-[min(72dvh,38rem)]"
+        ? "max-h-[min(72dvh,38rem,calc(100dvh-12rem))]"
         : "max-h-[min(38dvh,16rem)]"
 
   return (
