@@ -93,7 +93,7 @@ export function MobileGuidePanel({
               type="button"
               data-testid="mobile-open-walks"
               onClick={() => onViewChange("choose")}
-              className="min-h-11 shrink-0 rounded-lg px-2 text-xs font-semibold text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              className="min-h-11 shrink-0 cursor-pointer rounded-lg border border-primary/25 bg-primary/5 px-2 text-xs font-semibold text-primary shadow-sm transition-colors hover:bg-primary/10 active:bg-primary/15 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               {t("Mobile.walks")}
             </button>
@@ -104,7 +104,7 @@ export function MobileGuidePanel({
             aria-label={t("Mobile.places")}
             title={t("Mobile.places")}
             onClick={() => onViewChange("places")}
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-primary/25 shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${view === "places" ? "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80" : "bg-primary/5 text-primary hover:bg-primary/10 active:bg-primary/15"}`}
           >
             <MapPin size={18} aria-hidden="true" />
           </button>
@@ -114,7 +114,7 @@ export function MobileGuidePanel({
             aria-label={t("Mobile.visitorTips")}
             title={t("Mobile.visitorTips")}
             onClick={() => onViewChange("tips")}
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-primary/25 shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${view === "tips" ? "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80" : "bg-primary/5 text-primary hover:bg-primary/10 active:bg-primary/15"}`}
           >
             <Info size={18} aria-hidden="true" />
           </button>
@@ -134,7 +134,7 @@ export function MobileGuidePanel({
                   type="button"
                   data-walk-id={trail.id}
                   onClick={() => onSelectWalk(trail)}
-                  className="flex min-h-14 w-full cursor-pointer items-center gap-2 rounded-xl border border-border bg-background px-3 py-2 text-left transition hover:bg-muted/50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  className="flex min-h-14 w-full cursor-pointer items-center gap-2 rounded-xl border border-primary/25 bg-primary/5 px-3 py-2 text-left shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/10 active:bg-primary/15 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                   <span
                     className="h-2.5 w-2.5 shrink-0 rounded-full"
@@ -157,18 +157,16 @@ export function MobileGuidePanel({
                         })}`}
                     </span>
                   </span>
-                  <ChevronRight
-                    size={17}
-                    className="shrink-0 text-muted-foreground"
-                    aria-hidden="true"
-                  />
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm">
+                    <ChevronRight size={17} aria-hidden="true" />
+                  </span>
                 </button>
               )
             })}
             <button
               type="button"
               onClick={onExploreAll}
-              className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 active:bg-primary/80 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               <MapPin size={15} aria-hidden="true" />
               {t("Mobile.exploreAll")}
@@ -200,7 +198,7 @@ export function MobileGuidePanel({
             <button
               type="button"
               onClick={() => onViewChange("stops")}
-              className="flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              className="flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 active:bg-primary/80 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               {t("Mobile.viewStops")}
             </button>
@@ -234,7 +232,7 @@ export function MobileGuidePanel({
                 type="button"
                 data-poi-id={poi.id}
                 onClick={() => onSelectPoi(poi)}
-                className="flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-xl border border-border px-3 py-2 text-left text-xs focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                className="flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-xl border border-primary/25 bg-primary/5 px-3 py-2 text-left text-xs shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/10 active:bg-primary/15 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-bold text-primary">
                   {index + 1}
@@ -247,6 +245,11 @@ export function MobileGuidePanel({
                     {t("MapControls.finish")}
                   </span>
                 )}
+                <ChevronRight
+                  size={16}
+                  className="shrink-0 text-primary"
+                  aria-hidden="true"
+                />
               </button>
             ))}
           </div>
@@ -278,7 +281,7 @@ export function MobileGuidePanel({
               <button
                 type="button"
                 onClick={() => onViewChange("place-details")}
-                className="min-h-11 flex-1 rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                className="min-h-11 flex-1 cursor-pointer rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 active:bg-primary/80 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 {t("Mobile.details")}
               </button>
@@ -286,7 +289,7 @@ export function MobileGuidePanel({
                 <button
                   type="button"
                   onClick={() => onViewChange("stops")}
-                  className="min-h-11 flex-1 rounded-xl border border-border px-3 text-xs font-semibold text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  className="min-h-11 flex-1 cursor-pointer rounded-xl border border-primary/25 bg-primary/5 px-3 text-xs font-semibold text-primary shadow-sm transition-colors hover:bg-primary/10 active:bg-primary/15 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                   {t("Mobile.viewStops")}
                 </button>
@@ -323,7 +326,7 @@ export function MobileGuidePanel({
                   type="button"
                   data-poi-id={poi.id}
                   onClick={() => onSelectPoi(poi)}
-                  className="flex min-h-11 w-full items-center gap-2 rounded-xl border border-border px-3 py-2 text-left text-xs font-medium text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  className="flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-xl border border-primary/25 bg-primary/5 px-3 py-2 text-left text-xs font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/10 active:bg-primary/15 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted text-[11px] font-bold text-muted-foreground">
                     {index + 1}
@@ -333,7 +336,7 @@ export function MobileGuidePanel({
                   </span>
                   <ChevronRight
                     size={16}
-                    className="shrink-0 text-muted-foreground"
+                    className="shrink-0 text-primary"
                     aria-hidden="true"
                   />
                 </button>
@@ -355,7 +358,7 @@ export function MobileGuidePanel({
               onClick={() =>
                 onViewChange(activeTrail ? "route" : "place-preview")
               }
-              className="min-h-11 rounded-xl border border-border px-3 text-xs font-semibold text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              className="min-h-11 cursor-pointer rounded-xl border border-primary/25 bg-primary/5 px-3 text-xs font-semibold text-primary shadow-sm transition-colors hover:bg-primary/10 active:bg-primary/15 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               {t("Mobile.backToMap")}
             </button>
