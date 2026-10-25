@@ -49,12 +49,12 @@ export const KOTAGEDE_POIS: POI[] = [
     id: "kembang-waru",
     nameKey: "kembangWaru",
     category: "culinary",
-    coordinates: [110.4025, -7.82885],
-    walkingMinutesFromSalim: 2,
-    distanceMeters: 180,
+    coordinates: [110.403575, -7.825695],
+    walkingMinutesFromSalim: 5,
+    distanceMeters: 320,
     imageUrl: "/images/kotagede-guide/kembang-waru.webp",
     googleMapsUrl:
-      "https://maps.google.com/?q=Kembang+Waru+Pak+Basiyan+Kotagede"
+      "https://maps.google.com/?q=Roti+Kembang+Waru+Pak+Bas+Kotagede"
   },
   {
     id: "pasar-legi",
@@ -70,9 +70,9 @@ export const KOTAGEDE_POIS: POI[] = [
     id: "kipo-bu-djito",
     nameKey: "kipoBuDjito",
     category: "culinary",
-    coordinates: [110.39765, -7.82685],
-    walkingMinutesFromSalim: 6,
-    distanceMeters: 480,
+    coordinates: [110.396366, -7.827329],
+    walkingMinutesFromSalim: 8,
+    distanceMeters: 650,
     imageUrl: "/images/kotagede-guide/kipo-bu-djito.webp",
     googleMapsUrl: "https://maps.google.com/?q=Kipo+Bu+Djito+Kotagede"
   },
