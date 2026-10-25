@@ -571,67 +571,166 @@ export const ROYAL_ROUTE_COORDINATES = ROYAL_LOOP_COORDINATES.slice(
   royalFinish + 1
 )
 
-const firstJunction = pointIndex(ROYAL_LOOP_COORDINATES, 110.399095, -7.829702)
-const returnJunction = pointIndex(
-  ROYAL_LOOP_COORDINATES,
-  110.399095,
-  -7.829702,
-  firstJunction + 1
-)
-const northApproach = pointIndex(ROYAL_LOOP_COORDINATES, 110.399543, -7.828271)
-const merchantStreet = pointIndex(
-  MERCHANT_CORE_ROUTE_COORDINATES,
-  110.39947,
-  -7.827782
-)
-const museumBranch = pointIndex(
-  MERCHANT_CORE_ROUTE_COORDINATES,
-  110.396488,
-  -7.827377,
-  merchantStreet
-)
-const afterMuseumBranch = pointIndex(
-  MERCHANT_CORE_ROUTE_COORDINATES,
-  110.396488,
-  -7.827377,
-  museumBranch + 1
-)
-const gangSoka = pointIndex(
-  MERCHANT_CORE_ROUTE_COORDINATES,
-  110.396329,
-  -7.82949,
-  afterMuseumBranch
-)
-const legacyMuseum = pointIndex(
-  MERCHANT_LEGACY_ROUTE_COORDINATES,
-  110.392195,
-  -7.826296
-)
-const legacyGang = pointIndex(
-  MERCHANT_LEGACY_ROUTE_COORDINATES,
-  110.396329,
-  -7.82949,
-  legacyMuseum
-)
-
 export const KOTAGEDE_HERITAGE_ROUTE_COORDINATES: [number, number][] = [
-  ...ROYAL_ROUTE_COORDINATES,
-  ...ROYAL_LOOP_COORDINATES.slice(returnJunction, royalFinish + 1)
-    .reverse()
-    .slice(1),
-  ...ROYAL_LOOP_COORDINATES.slice(northApproach, firstJunction + 1)
-    .reverse()
-    .slice(1),
-  [110.39953, -7.828121],
+  // 1. From Salim Silver west along Jl. Kebohan to Pasar Legi
+  [110.401989, -7.827316],
+  [110.401953, -7.82745],
+  [110.40191, -7.827622],
+  [110.401627, -7.827581],
+  [110.401576, -7.827573],
+  [110.401467, -7.827556],
+  [110.40131, -7.827541],
+  [110.401279, -7.827538],
+  [110.401147, -7.827537],
+  [110.400905, -7.827538],
+  [110.400754, -7.827539],
+  [110.400427, -7.827539],
+  [110.400421, -7.827596],
+  [110.400411, -7.827638],
+  [110.400393, -7.827676],
+  [110.400315, -7.827807],
+  [110.399633, -7.827794],
+  [110.399538, -7.82779],
   [110.39947, -7.827782],
-  ...MERCHANT_CORE_ROUTE_COORDINATES.slice(
-    merchantStreet + 1,
-    museumBranch + 1
-  ),
-  ...MERCHANT_CORE_ROUTE_COORDINATES.slice(afterMuseumBranch + 1, gangSoka + 1),
-  ...MERCHANT_LEGACY_ROUTE_COORDINATES.slice(legacyMuseum, legacyGang + 1)
-    .reverse()
-    .slice(1)
+  [110.39953, -7.828121],
+  // 2. Pasar Legi Kotagede
+  [110.3998, -7.82825],
+  // 3. South along Jl. Masjid Besar directly to Between Two Gates
+  [110.399543, -7.828271],
+  [110.399558, -7.828451],
+  [110.399541, -7.82869],
+  [110.399506, -7.828831],
+  [110.399202, -7.829449],
+  [110.399095, -7.829702], // T-junction on Jl. Masjid Besar
+  [110.399068, -7.829795],
+  [110.399025, -7.829894],
+  [110.399044, -7.830098],
+  [110.399075, -7.830427],
+  [110.399082, -7.830566],
+  [110.399042, -7.830928],
+  // Between Two Gates (West Gate)
+  [110.39908, -7.83094],
+  // 4. South along Jl. Masjid Besar towards Watu Gilang
+  [110.399042, -7.830928],
+  [110.399034, -7.830983],
+  [110.399006, -7.831195],
+  [110.39898, -7.831313],
+  [110.398971, -7.831413],
+  [110.398968, -7.831635],
+  [110.398996, -7.831686],
+  [110.399042, -7.831726],
+  // Turn east along paved Watu Gilang lane
+  [110.399205, -7.831764],
+  [110.39922, -7.83177],
+  [110.399223, -7.831784],
+  // South into Watu Gilang heritage pavilion
+  [110.399209, -7.831954],
+  [110.399163, -7.831992],
+  [110.399153, -7.832115],
+  // Situs Watu Gilang & Watu Gatheng pavilion
+  [110.399156, -7.832129],
+  // 5. Retrace north along Watu Gilang lane back to Jl. Masjid Besar
+  [110.399153, -7.832115],
+  [110.399163, -7.831992],
+  [110.399209, -7.831954],
+  [110.399223, -7.831784],
+  [110.39922, -7.83177],
+  [110.399205, -7.831764],
+  [110.399042, -7.831726],
+  [110.398996, -7.831686],
+  [110.398968, -7.831635],
+  // North along Jl. Masjid Besar to Royal Complex access road
+  [110.398971, -7.831413],
+  [110.39898, -7.831313],
+  [110.399006, -7.831195],
+  [110.399034, -7.830983],
+  [110.399042, -7.830928],
+  [110.399082, -7.830566],
+  [110.399075, -7.830427],
+  [110.399044, -7.830098],
+  [110.399025, -7.829894],
+  [110.399068, -7.829795],
+  [110.399095, -7.829702], // T-junction on Jl. Masjid Besar
+  // 6. Enter East Entrance of Royal Complex (way 1066626677)
+  [110.398582, -7.829513], // Eastern Paduraksa gate of the Royal Complex
+  [110.3984, -7.82943], // Inner courtyard plaza
+  // Masjid Gedhe Mataram (main prayer hall / serambi)
+  [110.39821, -7.82937],
+  // Walk west through inner brick gate to Makam Raja (same complex)
+  [110.39795, -7.82937],
+  [110.39768, -7.82937], // Makam Raja-Raja Mataram (Hastana Kitha Ageng)
+  // Walk south down internal stone steps to Sendang Seliran (same complex)
+  [110.39769, -7.82961],
+  [110.3977, -7.82985], // Sendang Seliran (twin spring baths)
+  // Return up stone steps to Makam Raja walkway
+  [110.39769, -7.82961],
+  [110.39768, -7.82937],
+  // Walk east back across mosque courtyard
+  [110.39795, -7.82937],
+  [110.39821, -7.82937],
+  // North courtyard pathway towards North Exit Gate (exactly north of Masjid Gedhe)
+  [110.39823, -7.82922],
+  [110.39826, -7.82912],
+  [110.398307, -7.829036], // Exit Gate of Mataram Royal Complex (exactly north of Masjid Gedhe)
+  // 7. Walk west through paved pedestrian alleys
+  [110.398143, -7.829014],
+  [110.398133, -7.829018],
+  [110.398055, -7.829217],
+  [110.39804, -7.82922],
+  [110.397571, -7.829096],
+  [110.397503, -7.829171],
+  [110.397058, -7.829064],
+  [110.397036, -7.829056],
+  [110.397022, -7.829014],
+  [110.396874, -7.828987],
+  [110.396865, -7.829051],
+  [110.396856, -7.829132],
+  [110.396691, -7.829115],
+  [110.396522, -7.829099],
+  [110.396385, -7.829094],
+  [110.39638, -7.829168],
+  [110.39636, -7.829321],
+  [110.396329, -7.82949],
+  // Gang Soka
+  [110.396287, -7.829483],
+  // 8. North along Gang Soka to Omah UGM
+  [110.396329, -7.82949],
+  [110.39636, -7.829321],
+  [110.39638, -7.829168],
+  [110.396381, -7.82915], // Omah UGM
+  // 9. North-west through historic Kampung Bodon to Jl. Mondorakan
+  [110.396385, -7.829094],
+  [110.396392, -7.829007],
+  [110.396377, -7.828789],
+  [110.395868, -7.828782],
+  [110.395806, -7.828905],
+  [110.395783, -7.828935],
+  [110.395328, -7.828823],
+  [110.395229, -7.828801],
+  [110.395198, -7.828801],
+  [110.39522, -7.82861],
+  [110.395068, -7.828533],
+  [110.394899, -7.828432],
+  [110.394887, -7.828427],
+  [110.394647, -7.828322],
+  [110.394778, -7.827914],
+  [110.394811, -7.8278],
+  [110.394907, -7.827444],
+  [110.39494, -7.8273],
+  // 10. West along Jl. Mondorakan to Museum Kotagede
+  [110.394816, -7.82729],
+  [110.394594, -7.827251],
+  [110.394201, -7.82715],
+  [110.394023, -7.827103],
+  [110.393703, -7.827019],
+  [110.393525, -7.82696],
+  [110.393227, -7.826841],
+  [110.393138, -7.826795],
+  [110.392981, -7.826706],
+  [110.392887, -7.826662],
+  [110.392383, -7.826403],
+  [110.392378, -7.8264],
+  [110.392195, -7.826296] // Museum Kotagede (Intro Living Museum)
 ]
 
 const culinaryFinish = pointIndex(

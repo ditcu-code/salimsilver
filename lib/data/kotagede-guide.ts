@@ -41,7 +41,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.4019932, -7.8273171],
     walkingMinutesFromSalim: 0,
     distanceMeters: 0,
-    imageUrl: "/images/store-front.webp",
+    imageUrl: "/images/kotagede-guide/salim-silver.webp",
     googleMapsUrl:
       "https://maps.google.com/maps/dir//Salim+Silver+Kebohan+KG+3%2F547+Purbayan+Kotagede,+Yogyakarta+City,+Special+Region+of+Yogyakarta+55173/@-7.8272881,110.4018794,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x2e7a571440134b63:0x5c7989d8a5177cca"
   },
@@ -52,6 +52,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.4025, -7.82885],
     walkingMinutesFromSalim: 2,
     distanceMeters: 180,
+    imageUrl: "/images/kotagede-guide/kembang-waru.webp",
     googleMapsUrl:
       "https://maps.google.com/?q=Kembang+Waru+Pak+Basiyan+Kotagede"
   },
@@ -62,6 +63,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.3998, -7.82825],
     walkingMinutesFromSalim: 3,
     distanceMeters: 260,
+    imageUrl: "/images/kotagede-guide/pasar-legi.webp",
     googleMapsUrl: "https://maps.google.com/?q=Pasar+Kotagede+Yogyakarta"
   },
   {
@@ -71,6 +73,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.39765, -7.82685],
     walkingMinutesFromSalim: 6,
     distanceMeters: 480,
+    imageUrl: "/images/kotagede-guide/kipo-bu-djito.webp",
     googleMapsUrl: "https://maps.google.com/?q=Kipo+Bu+Djito+Kotagede"
   },
   {
@@ -80,6 +83,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.39821, -7.82937],
     walkingMinutesFromSalim: 6,
     distanceMeters: 470,
+    imageUrl: "/images/kotagede-guide/masjid-gedhe-mataram.webp",
     googleMapsUrl:
       "https://maps.google.com/?q=Masjid+Gedhe+Mataram+Kotagede+Yogyakarta",
     complexId: "royal-complex"
@@ -91,6 +95,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.39768, -7.82937],
     walkingMinutesFromSalim: 7,
     distanceMeters: 540,
+    imageUrl: "/images/kotagede-guide/makam-raja.webp",
     googleMapsUrl:
       "https://maps.google.com/?q=Makam+Raja-Raja+Mataram+Kotagede",
     complexId: "royal-complex"
@@ -102,6 +107,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.3977, -7.82985],
     walkingMinutesFromSalim: 7,
     distanceMeters: 550,
+    imageUrl: "/images/kotagede-guide/sendang-seliran.webp",
     googleMapsUrl: "https://maps.google.com/?q=Sendang+Seliran+Kotagede",
     complexId: "royal-complex"
   },
@@ -112,7 +118,19 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.39908, -7.83094],
     walkingMinutesFromSalim: 7,
     distanceMeters: 530,
+    imageUrl: "/images/kotagede-guide/between-two-gates.webp",
     googleMapsUrl: "https://maps.google.com/?q=Between+Two+Gates+Kotagede"
+  },
+  {
+    id: "watu-gilang",
+    nameKey: "watuGilang",
+    category: "heritage",
+    coordinates: [110.399156, -7.832129],
+    walkingMinutesFromSalim: 9,
+    distanceMeters: 700,
+    imageUrl: "/images/kotagede-guide/watu-gilang.webp",
+    googleMapsUrl:
+      "https://maps.google.com/?q=Situs+Watu+Gilang+%26+Watu+Gatheng+Kotagede"
   },
   {
     id: "benteng-cepuri",
@@ -121,6 +139,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.40002, -7.83345],
     walkingMinutesFromSalim: 10,
     distanceMeters: 720,
+    imageUrl: "/images/kotagede-guide/benteng-cepuri.webp",
     googleMapsUrl:
       "https://maps.google.com/?q=Situs+Benteng+Cepuri+Bokong+Semar+Kotagede"
   },
@@ -131,6 +150,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.39633445816, -7.8291468025372],
     walkingMinutesFromSalim: 10,
     distanceMeters: 740,
+    imageUrl: "/images/kotagede-guide/omah-ugm.webp",
     googleMapsUrl: "https://maps.google.com/?q=Omah+UGM+Kotagede"
   },
   {
@@ -140,6 +160,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.39628, -7.82952],
     walkingMinutesFromSalim: 11,
     distanceMeters: 820,
+    imageUrl: "/images/kotagede-guide/gang-soka.webp",
     googleMapsUrl: "https://maps.google.com/?q=Gang+Soka+Kotagede+Yogyakarta"
   },
   {
@@ -149,6 +170,7 @@ export const KOTAGEDE_POIS: POI[] = [
     coordinates: [110.39217, -7.82634],
     walkingMinutesFromSalim: 15,
     distanceMeters: 1090,
+    imageUrl: "/images/kotagede-guide/museum-kotagede.webp",
     googleMapsUrl:
       "https://maps.google.com/?q=Museum+Kotagede+Intro+Living+Museum"
   }
@@ -189,12 +211,13 @@ export const WALKING_TRAILS: WalkingTrail[] = [
     stopIds: [
       "salim-silver",
       "pasar-legi",
+      "between-two-gates",
+      "watu-gilang",
       "masjid-gedhe-mataram",
       "makam-raja",
       "sendang-seliran",
-      "between-two-gates",
-      "omah-ugm",
       "gang-soka",
+      "omah-ugm",
       "museum-kotagede"
     ],
     routeGeoJson: {

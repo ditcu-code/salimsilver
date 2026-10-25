@@ -15,12 +15,13 @@ const EXPECTED_ROUTE_STOPS = {
   heritage: [
     "salim-silver",
     "pasar-legi",
+    "between-two-gates",
+    "watu-gilang",
     "masjid-gedhe-mataram",
     "makam-raja",
     "sendang-seliran",
-    "between-two-gates",
-    "omah-ugm",
     "gang-soka",
+    "omah-ugm",
     "museum-kotagede"
   ],
   culinary: ["salim-silver", "kembang-waru", "pasar-legi", "kipo-bu-djito"]
@@ -98,7 +99,10 @@ test.describe("Kotagede walking trail data", () => {
         ["masjid-gedhe-mataram", "makam-raja", "sendang-seliran"].includes(id)
       )
       if (complexStops.length) {
-        expect(trail.stopIds.slice(2, 5)).toEqual([
+        const firstIndex = trail.stopIds.indexOf(complexStops[0])
+        expect(
+          trail.stopIds.slice(firstIndex, firstIndex + complexStops.length)
+        ).toEqual([
           "masjid-gedhe-mataram",
           "makam-raja",
           "sendang-seliran"
@@ -379,7 +383,7 @@ test.describe("Kotagede walking route experience", () => {
     await page.getByTestId("trail-heritage").click()
 
     const stops = page.getByTestId("poi-itinerary").locator("[data-poi-id]")
-    await expect(stops).toHaveCount(9)
+    await expect(stops).toHaveCount(10)
     expect(
       await stops.evaluateAll((items) =>
         items.map((item) => item.getAttribute("data-poi-id"))
@@ -460,7 +464,7 @@ test.describe("Kotagede walking route experience", () => {
     ).toBeVisible()
   })
 
-  test("uses a neutral fallback instead of unrelated destination photography", async ({
+  test("displays authentic destination photography for places", async ({
     page
   }) => {
     await page
@@ -471,8 +475,11 @@ test.describe("Kotagede walking route experience", () => {
     const details = page.locator(
       '[data-testid="poi-details"][data-variant="card"][aria-label*="Pasar Legi"]'
     )
-    await expect(details.getByTestId("poi-image-fallback")).toBeVisible()
-    await expect(details.locator('img[alt*="Pasar Legi"]')).toHaveCount(0)
+    await expect(details.locator('img[alt*="Pasar Legi"]')).toBeVisible()
+    await expect(details.locator('img[alt*="Pasar Legi"]')).toHaveAttribute(
+      "src",
+      /pasar-legi/
+    )
   })
 
   test("uses the approved route names and Between Two Gates copy in every locale", async ({

@@ -394,7 +394,7 @@
       },
       "heritage": {
         "title": "Jelajah Warisan Kotagede",
-        "description": "Ikuti titik-titik Kerajaan Mataram dari Salim Silver, lalu lanjutkan ke Omah UGM dan Gang Soka hingga berakhir di Museum Kotagede. Periksa jam buka museum sebelum berangkat."
+        "description": "Ikuti rute dari Salim Silver melintasi Pasar Legi, Between Two Gates, dan Watu Gilang menuju kompleks Kerajaan Mataram, lalu lanjutkan ke barat melewati Gang Soka dan Omah UGM hingga finis di Museum Kotagede. Periksa jam buka museum sebelum berangkat."
       },
       "culinary": {
         "title": "Jelajah Kuliner Kotagede",
@@ -411,6 +411,11 @@
         "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",
         "description": "Lorong bersama yang tenang, dikenal sebagai Gang Rukunan di Kampung Alun-alun, dengan rumah-rumah Jawa bersejarah yang menghadap jalan batu di antara dua gerbang.",
         "tips": "Kawasan pemukiman tenang. Harap menjaga kesopanan suara dan menuntun sepeda saat melintas."
+      },
+      "watuGilang": {
+        "name": "Situs Watu Gilang",
+        "description": "Lempengan batu andesit persegi bersejarah berinskripsi bahasa Latin, Prancis, Italia, dan Belanda, diyakini sebagai singgasana Panembahan Senopati pendiri Mataram Islam. Terlindung di dalam cungkup cagar budaya bersama Watu Gatheng.",
+        "tips": "Dapat dilihat dari jalan umum melalui cungkup pelindung. Mohon menjaga ketenangan dan kesopanan saat berkunjung."
       },
       "masjidGedhe": {
         "name": "Masjid Gedhe Mataram Kotagede (1587)",

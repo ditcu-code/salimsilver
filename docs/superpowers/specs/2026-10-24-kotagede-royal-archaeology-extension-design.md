@@ -15,16 +15,25 @@ unlicensed photographs represent a destination.
 
 ## What we know
 
-- The DIY heritage registry records [Watu Gilang](https://jogjacagar.jogjaprov.go.id/detail/4376/watu-gilang-kotagede)
-  as a protected heritage object in a small protective structure within a
-  residential setting; it notes that the location is crossed by a public road.
+- The DIY heritage registry gives Watu Gilang's recorded point as
+  `110.3991604, -7.8322298`, identifies the stones' protective building, and
+  says the surrounding road is public. This confirms identity and map
+  placement, but not current opening or visitor access. See [Watu Gilang
+  Kotagede](https://jogjacagar.jogjaprov.go.id/detail/4376/watu-gilang-kotagede).
 - The [Kotagede heritage-area record](https://jogjacagar.jogjaprov.go.id/detail/915/kawasan-cagar-budaya-kotagede)
   identifies the inner Cepuri, remaining fortification structures, and the
-  southeast "Bokong Semar" corner as parts of the royal landscape.
-- A cultural-office heritage exploration used the sequence Museum Kotagede →
-  mosque and tomb complex → Cepuri (Tembok Jebol) → Cungkup Watu Gilang →
-  Bokong Semar, which supports the thematic relationship but is not a
-  substitute for a visitor-safe route beginning at Salim Silver.
+  rounded southeast "Bokong Semar" corner. It describes surviving east and
+  south wall sections, but does not define visitor viewpoints or access.
+- The current app's `benteng-cepuri` point matches the provincial record for
+  Jagang Cepuri (`110.40002, -7.83345`), not a confirmed viewing point on
+  Bokong Semar or a specific wall section. See [Jagang Cepuri Keraton
+  Kotagede](https://jogjacagar.jogjaprov.go.id/detail/3954/displayrecords-i-nama-warisan).
+- A 2023 cultural-office cycling exploration used the sequence Museum
+  Kotagede → mosque and tomb complex → Cepuri (Tembok Jebol) → Cungkup Watu
+  Gilang → Bokong Semar → Museum Kotagede. This supports the thematic
+  relationship and a past guided cycling visit; it does not establish a
+  one-way walking route or current access. See [Ngepit Ngeksplore Living
+  Kotagede](https://budaya.jogjaprov.go.id/berita/detail/1433-lebih-dekat-dengan-kotagede-melalui-kegiatan-ngepit-ngeksplore-living-kotagede).
 
 ## Chosen approach
 

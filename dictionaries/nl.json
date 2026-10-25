@@ -393,7 +393,7 @@
       },
       "heritage": {
         "title": "Kotagede-erfgoedwandeling",
-        "description": "Volg vanaf Salim Silver de koninklijke Mataram-plekken en wandel dan via Omah UGM en Gang Soka naar Museum Kotagede. Controleer vooraf de openingstijden."
+        "description": "Volg de route vanaf Salim Silver via Pasar Legi, Between Two Gates en Watu Gilang naar het koninklijke Mataram-complex, en wandel vervolgens westwaarts via Gang Soka en Omah UGM naar Museum Kotagede. Controleer vooraf de openingstijden."
       },
       "culinary": {
         "title": "Kotagede-culinaire wandeling",
@@ -410,6 +410,11 @@
         "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",
         "description": "Een rustige gedeelde passage die lokaal bekendstaat als Gang Rukunan in Kampung Alun-alun, met historische Javaanse huizen langs een stenen laan tussen twee poorten.",
         "tips": "Rustige woonwijk. Gelieve zacht te praten en fietsen met de hand te leiden."
+      },
+      "watuGilang": {
+        "name": "Situs Watu Gilang",
+        "description": "Een historische andesietstenen plaat met inscripties in het Latijn, Frans, Italiaans en Nederlands, traditioneel beschouwd als de troon van Panembahan Senopati, stichter van Mataram Islam. Ondergebracht in een beschermend erfgoedpaviljoen (cungkup).",
+        "tips": "Zichtbaar vanaf de openbare weg door de omheining van het paviljoen. Respecteer de rust van deze beschermde historische erfgoedsite."
       },
       "masjidGedhe": {
         "name": "Grote Moskee van Mataram Kotagede (1587)",

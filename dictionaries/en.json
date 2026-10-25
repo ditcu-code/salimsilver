@@ -394,7 +394,7 @@
       },
       "heritage": {
         "title": "Kotagede Heritage Walk",
-        "description": "Follow the Royal Mataram stops from Salim Silver, then continue through Omah UGM and Gang Soka to finish at Museum Kotagede. Check museum hours before setting out."
+        "description": "Follow the trail from Salim Silver through Pasar Legi, Between Two Gates, and Watu Gilang into the Royal Mataram complex, then continue west through Gang Soka and Omah UGM to finish at Museum Kotagede. Check museum hours before setting out."
       },
       "culinary": {
         "title": "Kotagede Food Walk",
@@ -411,6 +411,11 @@
         "name": "Between Two Gates (Gang Rukunan, Kampung Alun-alun)",
         "description": "A quiet shared passage known locally as Gang Rukunan in Kampung Alun-alun, where historic Javanese houses face a stone-paved lane linking two gated ends.",
         "tips": "A quiet residential sanctuary. Please keep voices down and dismount any bicycles."
+      },
+      "watuGilang": {
+        "name": "Situs Watu Gilang",
+        "description": "An enigmatic square volcanic stone slab inscribed with historic European and Latin phrases, believed to be the throne of Panembahan Senopati, founder of Islamic Mataram. Housed inside a small heritage pavilion (Cungkup) beside Watu Gatheng.",
+        "tips": "Visible from the public street through the pavilion enclosure. Please maintain a respectful demeanor as it is a protected cultural heritage site."
       },
       "masjidGedhe": {
         "name": "Masjid Gedhe Mataram Kotagede (1587)",
