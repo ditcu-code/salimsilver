@@ -102,11 +102,7 @@ test.describe("Kotagede walking trail data", () => {
         const firstIndex = trail.stopIds.indexOf(complexStops[0])
         expect(
           trail.stopIds.slice(firstIndex, firstIndex + complexStops.length)
-        ).toEqual([
-          "masjid-gedhe-mataram",
-          "makam-raja",
-          "sendang-seliran"
-        ])
+        ).toEqual(["masjid-gedhe-mataram", "makam-raja", "sendang-seliran"])
       }
     }
   })
@@ -245,6 +241,115 @@ test.describe("Kotagede guide responsive layout", () => {
     expect(
       await page.evaluate(() => document.scrollingElement!.scrollTop)
     ).toBe(0)
+  })
+
+  test("moves from a walk to stops and full place details", async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await openGuide(page)
+
+    await page.locator('[data-walk-id="royal"]').click()
+    await page
+      .getByTestId("mobile-route-summary")
+      .getByRole("button", { name: "View stops" })
+      .click()
+    await expect(
+      page.getByTestId("mobile-stops").locator("[data-poi-id]")
+    ).toHaveCount(6)
+    await page
+      .getByTestId("mobile-stops")
+      .locator('[data-poi-id="pasar-legi"]')
+      .click()
+    await expect(page.getByTestId("mobile-place-preview")).toContainText(
+      "Pasar Legi"
+    )
+    await expect(
+      page
+        .getByTestId("mobile-place-preview")
+        .getByRole("button", { name: "Details" })
+    ).toBeVisible()
+    await page
+      .getByTestId("mobile-place-preview")
+      .getByRole("button", { name: "Details" })
+      .click()
+
+    const details = page.getByTestId("mobile-place-details")
+    await expect(details).toBeVisible()
+    await expect(details.getByRole("img", { name: /Pasar Legi/ })).toBeVisible()
+    await expect(details).toContainText("The oldest traditional market")
+    await expect(details).toContainText("Best visited in the morning")
+    const mapsLink = details.getByRole("link", { name: /Open in Google Maps/ })
+    await expect(mapsLink).toBeVisible()
+    expect((await mapsLink.boundingBox())!.height).toBeGreaterThanOrEqual(44)
+    await expectNoDocumentOverflow(page)
+
+    await details.getByRole("button", { name: "Close details" }).click()
+    await expect(page.getByTestId("mobile-place-preview")).toContainText(
+      "Pasar Legi"
+    )
+    await page
+      .getByTestId("mobile-place-preview")
+      .getByRole("button", { name: "View stops" })
+      .click()
+    await expect(
+      page.getByTestId("mobile-stops").locator("[data-poi-id]")
+    ).toHaveCount(6)
+  })
+
+  test("explores places and visitor tips", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await openGuide(page)
+
+    await page.getByRole("button", { name: "Explore all places" }).click()
+    await expect(page.getByTestId("mobile-open-places")).toBeVisible()
+    await page.getByTestId("mobile-open-places").click()
+    const places = page.getByTestId("mobile-places")
+    await expect(places).toBeVisible()
+    await places.getByRole("button", { name: "Traditional Culinary" }).click()
+    await places.locator('[data-poi-id="kipo-bu-djito"]').click()
+    await expect(page.getByTestId("mobile-place-preview")).toContainText(
+      "Kipo Bu Djito"
+    )
+
+    await page.getByTestId("mobile-open-tips").click()
+    await expect(page.getByTestId("mobile-visitor-tips")).toContainText(
+      "active living residential spaces"
+    )
+  })
+
+  test("keeps localized mobile controls within 320px", async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 568 })
+    const locales = [
+      {
+        path: "/kotagede-guide",
+        title: "Choose a walking route",
+        places: "Places"
+      },
+      {
+        path: "/id/kotagede-guide",
+        title: "Pilih rute jalan kaki",
+        places: "Tempat"
+      },
+      {
+        path: "/nl/kotagede-guide",
+        title: "Kies een wandelroute",
+        places: "Plekken"
+      }
+    ]
+
+    for (const locale of locales) {
+      await openGuide(page, locale.path)
+      await expect(page.getByTestId("mobile-guide-panel")).toContainText(
+        locale.title
+      )
+      await expect(page.getByTestId("mobile-open-places")).toHaveAttribute(
+        "aria-label",
+        locale.places
+      )
+      await page.locator('[data-walk-id="heritage"]').click()
+      await expectNoDocumentOverflow(page)
+    }
   })
 
   test("handles localized copy without horizontal overflow", async ({

@@ -396,7 +396,12 @@
       "exploreAll": "Jelajahi semua tempat",
       "firstStop": "Titik pertama: {destination}",
       "viewStops": "Lihat titik rute",
-      "stopsTitle": "Titik rute"
+      "stopsTitle": "Titik rute",
+      "places": "Tempat",
+      "visitorTips": "Tips pengunjung",
+      "details": "Detail",
+      "closeDetails": "Tutup detail",
+      "backToMap": "Kembali ke peta"
     },
     "Trails": {
       "royal": {

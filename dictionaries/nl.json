@@ -395,7 +395,12 @@
       "exploreAll": "Verken alle plekken",
       "firstStop": "Eerste halte: {destination}",
       "viewStops": "Bekijk haltes",
-      "stopsTitle": "Haltes"
+      "stopsTitle": "Haltes",
+      "places": "Plekken",
+      "visitorTips": "Bezoekerstips",
+      "details": "Details",
+      "closeDetails": "Details sluiten",
+      "backToMap": "Terug naar kaart"
     },
     "Trails": {
       "royal": {

@@ -39,21 +39,15 @@ export function POICard({ poi, onClose, variant = "card" }: POICardProps) {
       className={cn(
         "relative overflow-hidden rounded-2xl border border-border bg-card/95 shadow-xl backdrop-blur transition-all",
         isSheet &&
-          "h-full overflow-y-auto overscroll-contain bg-card/98 shadow-2xl"
+          "h-auto overflow-visible border-0 bg-transparent shadow-none backdrop-blur-none"
       )}
     >
-      {isSheet && (
-        <div className="sticky top-0 z-20 flex h-5 items-center justify-center bg-card/95 backdrop-blur">
-          <span className="h-1 w-10 rounded-full bg-muted-foreground/30" />
-        </div>
-      )}
-
       {/* Close Button */}
       {isSheet && (
         <button
           onClick={onClose}
-          className="absolute top-4 right-2 z-30 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-background/90 text-muted-foreground shadow-sm backdrop-blur transition hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none sm:right-3"
-          aria-label="Close details"
+          className="absolute top-2 right-2 z-30 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-background/90 text-muted-foreground shadow-sm backdrop-blur transition hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none sm:right-3"
+          aria-label={t("Mobile.closeDetails")}
         >
           <X size={18} />
         </button>
@@ -182,7 +176,10 @@ export function POICard({ poi, onClose, variant = "card" }: POICardProps) {
             href={poi.googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-xs font-medium text-primary-foreground shadow transition hover:opacity-95"
+            className={cn(
+              "cursor-pointer inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-xs font-medium text-primary-foreground shadow transition hover:opacity-95",
+              isSheet && "min-h-11"
+            )}
           >
             <Compass size={14} />
             <span>{t("MapControls.openInGoogleMaps")}</span>

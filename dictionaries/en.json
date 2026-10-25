@@ -396,7 +396,12 @@
       "exploreAll": "Explore all places",
       "firstStop": "First stop: {destination}",
       "viewStops": "View stops",
-      "stopsTitle": "Route stops"
+      "stopsTitle": "Route stops",
+      "places": "Places",
+      "visitorTips": "Visitor tips",
+      "details": "Details",
+      "closeDetails": "Close details",
+      "backToMap": "Back to map"
     },
     "Trails": {
       "royal": {
