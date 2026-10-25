@@ -39,6 +39,15 @@ export default function KotagedeGuideClient() {
     "all"
   )
   const [mobileView, setMobileView] = useState<MobileGuideView>("choose")
+  const [mapStatus, setMapStatus] = useState<
+    "loading" | "ready" | "unavailable"
+  >("loading")
+  const [mapAttempt, setMapAttempt] = useState(0)
+
+  const retryMap = () => {
+    setMapStatus("loading")
+    setMapAttempt((attempt) => attempt + 1)
+  }
 
   // Filter POIs based on active trail or selected category
   const filteredPois = useMemo(() => {
@@ -104,6 +113,7 @@ export default function KotagedeGuideClient() {
     <div
       ref={guideRef}
       data-testid="kotagede-guide"
+      data-kotagede-mobile-guide
       className="mx-auto min-h-dvh min-w-0 max-w-none overflow-x-clip lg:min-h-screen lg:max-w-7xl lg:px-8 lg:pt-32 lg:pb-16"
     >
       {/* Top Header */}
@@ -139,12 +149,32 @@ export default function KotagedeGuideClient() {
             className="relative h-dvh min-h-0 w-full overflow-hidden border-0 shadow-none lg:h-[540px] lg:min-h-[450px] lg:rounded-3xl lg:border lg:border-border lg:shadow-lg [&:fullscreen]:h-screen [&:fullscreen]:max-h-none [&:fullscreen]:min-h-screen [&:fullscreen]:w-screen [&:fullscreen]:rounded-none [&:fullscreen]:border-0"
           >
             <KotagedeMap
+              key={mapAttempt}
               pois={filteredPois}
               selectedPoi={selectedPoi}
               onSelectPoi={handleSelectPoi}
               activeTrail={activeTrail}
               fullscreenTargetRef={mapFrameRef}
+              onMapStatusChange={setMapStatus}
             />
+
+            {mapStatus === "unavailable" && (
+              <div
+                data-testid="mobile-map-fallback"
+                className="absolute top-[10.75rem] right-3 left-3 z-10 mx-auto max-w-sm rounded-2xl border border-border bg-card/95 p-4 text-center shadow-lg backdrop-blur lg:hidden"
+              >
+                <p className="text-sm text-foreground">
+                  {t("Mobile.mapUnavailable")}
+                </p>
+                <button
+                  type="button"
+                  onClick={retryMap}
+                  className="mt-3 min-h-11 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                >
+                  {t("Mobile.retryMap")}
+                </button>
+              </div>
+            )}
 
             <div className="pointer-events-none absolute top-24 left-3 z-10 max-w-[40vw] rounded-full border border-border/70 bg-background/90 px-3 py-2 shadow-sm backdrop-blur lg:hidden">
               <span className="block truncate text-xs font-semibold text-foreground">

@@ -274,6 +274,13 @@ body {
   }
 }
 
+/* The walking guide fills one mobile viewport; site navigation remains in the header. */
+@media (max-width: 1023px) {
+  main:has([data-kotagede-mobile-guide]) + footer {
+    display: none;
+  }
+}
+
 /* Force immediate theme changes */
 @media (prefers-color-scheme: dark) {
   html[data-theme="dark"] {

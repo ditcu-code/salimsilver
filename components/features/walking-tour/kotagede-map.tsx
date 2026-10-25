@@ -11,6 +11,7 @@ interface KotagedeMapProps {
   onSelectPoi: (poi: POI | null) => void
   activeTrail: WalkingTrail | null
   fullscreenTargetRef?: RefObject<HTMLElement | null>
+  onMapStatusChange?: (status: "ready" | "unavailable") => void
 }
 
 const KotagedeMapInner = dynamic(() => import("./kotagede-map-inner"), {

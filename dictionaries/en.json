@@ -401,7 +401,15 @@
       "visitorTips": "Visitor tips",
       "details": "Details",
       "closeDetails": "Close details",
-      "backToMap": "Back to map"
+      "backToMap": "Back to map",
+      "centerSalim": "Center on Salim Silver",
+      "locateMe": "Locate me",
+      "stopLocation": "Stop location tracking",
+      "openFullscreen": "Open fullscreen map",
+      "exitFullscreen": "Exit fullscreen map",
+      "locationUnsupported": "Location is unavailable in this browser.",
+      "mapUnavailable": "Map unavailable. You can still choose walks and read place details.",
+      "retryMap": "Retry map"
     },
     "Trails": {
       "royal": {

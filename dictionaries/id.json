@@ -401,7 +401,15 @@
       "visitorTips": "Tips pengunjung",
       "details": "Detail",
       "closeDetails": "Tutup detail",
-      "backToMap": "Kembali ke peta"
+      "backToMap": "Kembali ke peta",
+      "centerSalim": "Pusatkan ke Salim Silver",
+      "locateMe": "Temukan lokasi saya",
+      "stopLocation": "Hentikan pelacakan lokasi",
+      "openFullscreen": "Buka peta layar penuh",
+      "exitFullscreen": "Keluar dari peta layar penuh",
+      "locationUnsupported": "Lokasi tidak tersedia di peramban ini.",
+      "mapUnavailable": "Peta tidak tersedia. Anda tetap dapat memilih rute dan membaca detail tempat.",
+      "retryMap": "Coba lagi peta"
     },
     "Trails": {
       "royal": {

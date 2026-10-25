@@ -400,7 +400,15 @@
       "visitorTips": "Bezoekerstips",
       "details": "Details",
       "closeDetails": "Details sluiten",
-      "backToMap": "Terug naar kaart"
+      "backToMap": "Terug naar kaart",
+      "centerSalim": "Centreer op Salim Silver",
+      "locateMe": "Vind mijn locatie",
+      "stopLocation": "Locatie volgen stoppen",
+      "openFullscreen": "Kaart op volledig scherm",
+      "exitFullscreen": "Volledig scherm sluiten",
+      "locationUnsupported": "Locatie is niet beschikbaar in deze browser.",
+      "mapUnavailable": "Kaart niet beschikbaar. U kunt nog steeds wandelingen kiezen en plekken bekijken.",
+      "retryMap": "Kaart opnieuw proberen"
     },
     "Trails": {
       "royal": {

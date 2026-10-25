@@ -64,6 +64,7 @@ export function MobileGuidePanel({
     <section
       data-testid="mobile-guide-panel"
       data-map-overlay="mobile-guide-panel"
+      data-view={view}
       aria-label={t("Mobile.panelLabel")}
       className={`absolute inset-x-2 bottom-[max(0.5rem,env(safe-area-inset-bottom))] z-20 flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-card/98 shadow-2xl backdrop-blur lg:hidden ${heightClass}`}
     >

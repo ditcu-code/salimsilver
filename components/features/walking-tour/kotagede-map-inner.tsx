@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react"
+import { useTranslations } from "next-intl"
 import * as maplibregl from "maplibre-gl"
 import type { Map as MapLibreMap, Marker } from "maplibre-gl"
 
@@ -29,6 +30,7 @@ interface KotagedeMapInnerProps {
   onSelectPoi: (poi: POI | null) => void
   activeTrail: WalkingTrail | null
   fullscreenTargetRef?: RefObject<HTMLElement | null>
+  onMapStatusChange?: (status: "ready" | "unavailable") => void
 }
 
 const CARTO_STYLE =
@@ -40,13 +42,21 @@ export default function KotagedeMapInner({
   selectedPoi,
   onSelectPoi,
   activeTrail,
-  fullscreenTargetRef
+  fullscreenTargetRef,
+  onMapStatusChange
 }: KotagedeMapInnerProps) {
+  const t = useTranslations("KotagedeGuidePage.Mobile")
   const mapContainerRef = useRef<HTMLDivElement>(null)
+  const controlsRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MapLibreMap | null>(null)
   const markersRef = useRef<Marker[]>([])
   const userMarkerRef = useRef<Marker | null>(null)
   const watchIdRef = useRef<number | null>(null)
+  const onMapStatusChangeRef = useRef(onMapStatusChange)
+
+  useEffect(() => {
+    onMapStatusChangeRef.current = onMapStatusChange
+  }, [onMapStatusChange])
 
   const [isMapLoaded, setIsMapLoaded] = useState(false)
   const [isLocating, setIsLocating] = useState(false)
@@ -65,7 +75,7 @@ export default function KotagedeMapInner({
   const getMapOverlayOcclusion = useCallback(() => {
     const mapContainer = mapContainerRef.current
     const overlay = getFullscreenTarget()?.querySelector<HTMLElement>(
-      '[data-map-overlay="poi-details"]'
+      '[data-map-overlay="mobile-guide-panel"]'
     )
     if (!mapContainer || !overlay) return 0
 
@@ -80,8 +90,20 @@ export default function KotagedeMapInner({
     const header = document.querySelector<HTMLElement>("header")
     if (!header || document.fullscreenElement) return 0
 
-    return Math.max(0, Math.ceil(header.getBoundingClientRect().bottom))
+    const mapTop = mapContainerRef.current?.getBoundingClientRect().top ?? 0
+    return Math.max(
+      0,
+      Math.ceil(header.getBoundingClientRect().bottom - mapTop)
+    )
   }, [])
+
+  const getMotionDuration = useCallback(
+    (duration: number) =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? 0
+        : duration,
+    []
+  )
 
   const getSelectedPoiOffset = useCallback(() => {
     const overlayOcclusion = getMapOverlayOcclusion()
@@ -93,6 +115,36 @@ export default function KotagedeMapInner({
       MAP_EDGE_CLEARANCE_PX
     )
   }, [getMapHeaderOcclusion, getMapOverlayOcclusion])
+
+  const fitTrailToVisibleMap = useCallback(
+    (trail: WalkingTrail, duration = 1000) => {
+      const map = mapRef.current
+      const coords = trail.routeGeoJson.geometry.coordinates
+      if (!map || coords.length === 0) return
+
+      const bounds = new maplibregl.LngLatBounds()
+      coords.forEach((coordinate) =>
+        bounds.extend(coordinate as [number, number])
+      )
+      const overlayOcclusion = getMapOverlayOcclusion()
+      const headerOcclusion = getMapHeaderOcclusion()
+      map.setPadding({ top: 0, right: 0, bottom: 0, left: 0 })
+      map.fitBounds(bounds, {
+        padding:
+          overlayOcclusion > 0
+            ? {
+                top: headerOcclusion + 16,
+                bottom: overlayOcclusion + 24,
+                left: 32,
+                right: 32
+              }
+            : { top: 80, bottom: 80, left: 60, right: 60 },
+        maxZoom: 17,
+        duration: getMotionDuration(duration)
+      })
+    },
+    [getMapHeaderOcclusion, getMapOverlayOcclusion, getMotionDuration]
+  )
 
   // Initialize MapLibre
   useEffect(() => {
@@ -116,10 +168,36 @@ export default function KotagedeMapInner({
       "bottom-right"
     )
 
+    let initialStatus: "loading" | "ready" | "unavailable" = "loading"
+    const reportInitialStatus = (status: "ready" | "unavailable") => {
+      if (
+        initialStatus === status ||
+        (initialStatus === "ready" && status === "unavailable")
+      ) {
+        return
+      }
+      initialStatus = status
+      onMapStatusChangeRef.current?.(status)
+    }
+    const readyTimeout = window.setTimeout(
+      () => reportInitialStatus("unavailable"),
+      10_000
+    )
+
     map.on("load", () => {
+      window.clearTimeout(readyTimeout)
       mapRef.current = map
       setIsMapLoaded(true)
+      reportInitialStatus("ready")
     })
+
+    const handleInitialError = () => {
+      if (initialStatus === "loading") {
+        window.clearTimeout(readyTimeout)
+        reportInitialStatus("unavailable")
+      }
+    }
+    map.on("error", handleInitialError)
 
     const handleMoveStart = () => setCameraState("moving")
     const handleMoveEnd = () => setCameraState("idle")
@@ -127,11 +205,13 @@ export default function KotagedeMapInner({
     map.on("moveend", handleMoveEnd)
 
     return () => {
+      window.clearTimeout(readyTimeout)
       if (watchIdRef.current !== null) {
         navigator.geolocation?.clearWatch(watchIdRef.current)
       }
       map.off("movestart", handleMoveStart)
       map.off("moveend", handleMoveEnd)
+      map.off("error", handleInitialError)
       map.remove()
       mapRef.current = null
     }
@@ -338,35 +418,25 @@ export default function KotagedeMapInner({
         }
       })
 
-      // Fit bounds to trail coordinates
-      const coords = activeTrail.routeGeoJson.geometry.coordinates
-      if (coords.length > 0) {
-        const bounds = new maplibregl.LngLatBounds()
-        coords.forEach((c) => bounds.extend(c as [number, number]))
-        const overlayOcclusion = getMapOverlayOcclusion()
-        const headerOcclusion = getMapHeaderOcclusion()
-        map.setPadding({ top: 0, right: 0, bottom: 0, left: 0 })
-        map.fitBounds(bounds, {
-          padding:
-            overlayOcclusion > 0
-              ? {
-                  top: headerOcclusion + 16,
-                  bottom: overlayOcclusion + 24,
-                  left: 32,
-                  right: 32
-                }
-              : { top: 80, bottom: 80, left: 60, right: 60 },
-          maxZoom: 17,
-          duration: 1000
-        })
-      }
+      fitTrailToVisibleMap(activeTrail)
     }
-  }, [activeTrail, getMapHeaderOcclusion, getMapOverlayOcclusion, isMapLoaded])
+  }, [activeTrail, fitTrailToVisibleMap, isMapLoaded])
 
   // Center camera on selected POI
   useEffect(() => {
     const map = mapRef.current
-    if (!map || !selectedPoi) return
+    if (!map || !selectedPoi || !isMapLoaded) return
+
+    const panel = getFullscreenTarget()?.querySelector<HTMLElement>(
+      '[data-map-overlay="mobile-guide-panel"]'
+    )
+    if (
+      panel?.getBoundingClientRect().height &&
+      activeTrail &&
+      (panel.dataset.view === "choose" || panel.dataset.view === "route")
+    ) {
+      return
+    }
 
     map.flyTo({
       center: selectedPoi.coordinates,
@@ -374,9 +444,78 @@ export default function KotagedeMapInner({
       pitch: 35,
       offset: [0, getSelectedPoiOffset()],
       essential: true,
-      duration: 800
+      duration: getMotionDuration(800)
     })
-  }, [getSelectedPoiOffset, selectedPoi])
+  }, [
+    activeTrail,
+    getFullscreenTarget,
+    getMotionDuration,
+    getSelectedPoiOffset,
+    isMapLoaded,
+    selectedPoi
+  ])
+
+  useEffect(() => {
+    if (!isMapLoaded) return
+    const panel = getFullscreenTarget()?.querySelector<HTMLElement>(
+      '[data-map-overlay="mobile-guide-panel"]'
+    )
+    if (!panel || panel.getBoundingClientRect().height === 0) return
+
+    let frame = 0
+    const reframe = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const map = mapRef.current
+        if (!map) return
+        map.resize()
+        if (window.innerWidth < 1024) {
+          controlsRef.current?.style.setProperty(
+            "bottom",
+            `${getMapOverlayOcclusion() + MAP_EDGE_CLEARANCE_PX}px`
+          )
+        } else {
+          controlsRef.current?.style.removeProperty("bottom")
+        }
+        if (
+          activeTrail &&
+          (panel.dataset.view === "choose" || panel.dataset.view === "route")
+        ) {
+          fitTrailToVisibleMap(activeTrail, 0)
+        } else if (selectedPoi) {
+          map.easeTo({
+            center: selectedPoi.coordinates,
+            offset: [0, getSelectedPoiOffset()],
+            duration: getMotionDuration(250)
+          })
+        }
+      })
+    }
+
+    const resizeObserver = new ResizeObserver(reframe)
+    resizeObserver.observe(panel)
+    const mutationObserver = new MutationObserver(reframe)
+    mutationObserver.observe(panel, {
+      attributes: true,
+      attributeFilter: ["data-view"]
+    })
+    window.addEventListener("resize", reframe)
+    return () => {
+      cancelAnimationFrame(frame)
+      resizeObserver.disconnect()
+      mutationObserver.disconnect()
+      window.removeEventListener("resize", reframe)
+    }
+  }, [
+    activeTrail,
+    fitTrailToVisibleMap,
+    getFullscreenTarget,
+    getMapOverlayOcclusion,
+    getMotionDuration,
+    getSelectedPoiOffset,
+    isMapLoaded,
+    selectedPoi
+  ])
 
   // Geolocation handler
   const handleToggleLocate = useCallback(() => {
@@ -384,7 +523,7 @@ export default function KotagedeMapInner({
     if (!map) return
 
     if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser.")
+      alert(t("locationUnsupported"))
       return
     }
 
@@ -428,7 +567,8 @@ export default function KotagedeMapInner({
         map.flyTo({
           center: coords,
           zoom: 17.5,
-          duration: 600
+          offset: [0, getSelectedPoiOffset()],
+          duration: getMotionDuration(600)
         })
       },
       (err) => {
@@ -441,7 +581,7 @@ export default function KotagedeMapInner({
         timeout: 10000
       }
     )
-  }, [isLocating])
+  }, [getMotionDuration, getSelectedPoiOffset, isLocating, t])
 
   const handleResetToSalim = useCallback(() => {
     const map = mapRef.current
@@ -451,10 +591,10 @@ export default function KotagedeMapInner({
       zoom: 16.5,
       pitch: 28,
       offset: [0, getSelectedPoiOffset()],
-      duration: 800
+      duration: getMotionDuration(800)
     })
     onSelectPoi(pois.find((p) => p.id === "salim-silver") || null)
-  }, [getSelectedPoiOffset, onSelectPoi, pois])
+  }, [getMotionDuration, getSelectedPoiOffset, onSelectPoi, pois])
 
   const toggleFullscreen = () => {
     const fullscreenTarget = getFullscreenTarget()
@@ -479,13 +619,16 @@ export default function KotagedeMapInner({
       <div className="absolute inset-0 h-full w-full" />
 
       {/* Floating Control Buttons */}
-      <div className="absolute top-24 right-2 z-10 flex flex-row gap-2 lg:top-4 lg:right-4 lg:flex-col">
+      <div
+        ref={controlsRef}
+        className="absolute right-2 bottom-2 z-10 flex flex-row gap-2 lg:top-4 lg:right-4 lg:bottom-auto lg:flex-col"
+      >
         {/* Reset to Salim Silver */}
         <button
           onClick={handleResetToSalim}
           className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-border bg-background/90 text-foreground shadow-md backdrop-blur transition hover:scale-105 hover:bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-          title="Center on Salim Silver"
-          aria-label="Center on Salim Silver"
+          title={t("centerSalim")}
+          aria-label={t("centerSalim")}
         >
           <RotateCcw size={18} />
         </button>
@@ -498,8 +641,8 @@ export default function KotagedeMapInner({
               ? "animate-pulse border-blue-500 bg-blue-600 text-white"
               : "border-border bg-background/90 text-foreground hover:bg-background"
           }`}
-          title={isLocating ? "Stop GPS" : "Locate Me"}
-          aria-label={isLocating ? "Stop location tracking" : "Locate me"}
+          title={isLocating ? t("stopLocation") : t("locateMe")}
+          aria-label={isLocating ? t("stopLocation") : t("locateMe")}
         >
           <LocateFixed size={18} />
         </button>
@@ -508,10 +651,10 @@ export default function KotagedeMapInner({
         {canFullscreen && (
           <button
             onClick={toggleFullscreen}
-            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-border bg-background/90 text-foreground shadow-md backdrop-blur transition hover:scale-105 hover:bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-            title={isFullscreen ? "Exit Fullscreen" : "Fullscreen Map"}
+            className="hidden h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-border bg-background/90 text-foreground shadow-md backdrop-blur transition hover:scale-105 hover:bg-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none lg:flex"
+            title={isFullscreen ? t("exitFullscreen") : t("openFullscreen")}
             aria-label={
-              isFullscreen ? "Exit fullscreen map" : "Open fullscreen map"
+              isFullscreen ? t("exitFullscreen") : t("openFullscreen")
             }
           >
             {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}

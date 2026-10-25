@@ -51,6 +51,8 @@ function getTrailMetric(name: string) {
 
 async function openGuide(page: Page, path = "/kotagede-guide") {
   await page.goto(path, { waitUntil: "domcontentloaded" })
+  // Next's development indicator can cover bottom-sheet buttons during tests.
+  await page.addStyleTag({ content: "nextjs-portal { pointer-events: none !important; }" })
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
   await expect(page.getByTestId("kotagede-guide")).toHaveAttribute(
     "data-hydrated",
@@ -68,7 +70,7 @@ async function expectNoDocumentOverflow(page: Page) {
   expect(dimensions.documentWidth).toBeLessThanOrEqual(dimensions.viewportWidth)
 }
 
-async function useEmptyMapStyle(page: Page) {
+async function stubEmptyMapStyle(page: Page) {
   await page.route(
     "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
     async (route) => {
@@ -188,6 +190,11 @@ test.describe("Kotagede guide responsive layout", () => {
     await openGuide(page)
 
     await expectNoDocumentOverflow(page)
+    const verticalExtent = await page.evaluate(() => ({
+      viewport: window.innerHeight,
+      page: document.documentElement.scrollHeight
+    }))
+    expect(verticalExtent.page).toBeLessThanOrEqual(verticalExtent.viewport + 1)
 
     const guideBox = await page.getByTestId("kotagede-guide").boundingBox()
     expect(guideBox).not.toBeNull()
@@ -247,6 +254,7 @@ test.describe("Kotagede guide responsive layout", () => {
     page
   }) => {
     await page.setViewportSize({ width: 390, height: 844 })
+    await stubEmptyMapStyle(page)
     await openGuide(page)
 
     await page.locator('[data-walk-id="royal"]').click()
@@ -350,6 +358,182 @@ test.describe("Kotagede guide responsive layout", () => {
       await page.locator('[data-walk-id="heritage"]').click()
       await expectNoDocumentOverflow(page)
     }
+  })
+
+  test("keeps the selected pin in visible map space", async ({ page }) => {
+    test.setTimeout(90_000)
+
+    for (const viewport of [
+      { width: 390, height: 844 },
+      { width: 768, height: 900 }
+    ]) {
+      await page.setViewportSize(viewport)
+      await stubEmptyMapStyle(page)
+      await openGuide(page)
+      await expect(page.locator(".maplibregl-marker").first()).toBeVisible({
+        timeout: 15_000
+      })
+      await page.locator('[data-walk-id="heritage"]').click()
+      await page
+        .getByTestId("mobile-route-summary")
+        .getByRole("button", { name: "View stops" })
+        .click()
+      await page
+        .getByTestId("mobile-stops")
+        .locator('[data-poi-id="pasar-legi"]')
+        .click()
+      await page
+        .getByTestId("mobile-place-preview")
+        .getByRole("button", { name: "Details" })
+        .click()
+      await expect(page.locator("[data-camera-state]")).toHaveAttribute(
+        "data-camera-state",
+        "idle",
+        { timeout: 10_000 }
+      )
+
+      const pin = await page
+        .locator(".maplibregl-marker:has(.ring-4)")
+        .boundingBox()
+      const header = await page.getByRole("banner").boundingBox()
+      const panel = await page.getByTestId("mobile-guide-panel").boundingBox()
+      expect(pin).not.toBeNull()
+      expect(header).not.toBeNull()
+      expect(panel).not.toBeNull()
+      expect(pin!.y).toBeGreaterThanOrEqual(header!.y + header!.height + 8)
+      expect(pin!.y + pin!.height).toBeLessThanOrEqual(panel!.y - 8)
+    }
+  })
+
+  test("keeps map controls clear of the starting pin", async ({ page }) => {
+    for (const viewport of [
+      { width: 320, height: 568 },
+      { width: 390, height: 844 }
+    ]) {
+      await page.setViewportSize(viewport)
+      await stubEmptyMapStyle(page)
+      await openGuide(page)
+      const pin = page.locator(".maplibregl-marker:has(.ring-4)")
+      await expect(pin).toBeVisible({ timeout: 15_000 })
+      const pinBox = await pin.boundingBox()
+      for (const name of ["Center on Salim Silver", "Locate me"]) {
+        const controlBox = await page
+          .getByRole("button", { name })
+          .boundingBox()
+        expect(controlBox).not.toBeNull()
+        const overlaps =
+          controlBox!.x < pinBox!.x + pinBox!.width &&
+          controlBox!.x + controlBox!.width > pinBox!.x &&
+          controlBox!.y < pinBox!.y + pinBox!.height &&
+          controlBox!.y + controlBox!.height > pinBox!.y
+        expect(overlaps).toBe(false)
+      }
+    }
+  })
+
+  test("keeps guide content usable when the basemap fails", async ({
+    page
+  }) => {
+    test.setTimeout(60_000)
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.route(
+      "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+      (route) => route.abort()
+    )
+    await openGuide(page)
+
+    await expect(page.getByTestId("mobile-map-fallback")).toBeVisible({
+      timeout: 15_000
+    })
+    await page.locator('[data-walk-id="royal"]').click()
+    await page
+      .getByTestId("mobile-route-summary")
+      .getByRole("button", { name: "View stops" })
+      .click()
+    await expect(
+      page.getByTestId("mobile-stops").locator("[data-poi-id]")
+    ).toHaveCount(6)
+    await page
+      .getByTestId("mobile-stops")
+      .locator('[data-poi-id="pasar-legi"]')
+      .click()
+    await page
+      .getByTestId("mobile-place-preview")
+      .getByRole("button", { name: "Details" })
+      .click()
+    await expect(page.getByTestId("mobile-place-details")).toContainText(
+      "The oldest traditional market"
+    )
+    await expect(
+      page.getByTestId("mobile-place-details").getByRole("link", {
+        name: /Open in Google Maps/
+      })
+    ).toBeVisible()
+
+    await page
+      .getByTestId("mobile-place-details")
+      .getByRole("button", { name: "Close details" })
+      .click()
+    await page.unroute(
+      "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
+    )
+    await stubEmptyMapStyle(page)
+    await page.getByRole("button", { name: "Retry map" }).click()
+    await expect(page.getByTestId("mobile-map-fallback")).toHaveCount(0)
+    await expect(page.locator(".maplibregl-marker").first()).toBeVisible()
+  })
+
+  test("waits for Locate Me before requesting GPS", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.addInitScript(() => {
+      let calls = 0
+      Object.defineProperty(navigator, "geolocation", {
+        configurable: true,
+        value: {
+          watchPosition: () => {
+            calls += 1
+            return 1
+          },
+          clearWatch: () => {}
+        }
+      })
+      Object.defineProperty(window, "__geoCallCount", { get: () => calls })
+    })
+    await stubEmptyMapStyle(page)
+    await openGuide(page)
+    await expect(page.locator(".maplibregl-marker").first()).toBeVisible({
+      timeout: 15_000
+    })
+
+    expect(
+      await page.evaluate(() => Reflect.get(window, "__geoCallCount"))
+    ).toBe(0)
+    const locate = page.getByRole("button", { name: "Locate me" })
+    const reset = page.getByRole("button", { name: "Center on Salim Silver" })
+    await expect(locate).toBeVisible()
+    await expect(reset).toBeVisible()
+    const header = await page.getByRole("banner").boundingBox()
+    const panel = await page.getByTestId("mobile-guide-panel").boundingBox()
+    for (const control of [locate, reset]) {
+      const box = await control.boundingBox()
+      expect(box!.width).toBeGreaterThanOrEqual(44)
+      expect(box!.height).toBeGreaterThanOrEqual(44)
+      expect(box!.y).toBeGreaterThanOrEqual(header!.y + header!.height + 8)
+      expect(box!.y + box!.height).toBeLessThanOrEqual(panel!.y - 8)
+    }
+    await locate.click()
+    expect(
+      await page.evaluate(() => Reflect.get(window, "__geoCallCount"))
+    ).toBe(1)
+    await expect(
+      page.getByRole("button", { name: "Open fullscreen map" })
+    ).toBeHidden()
+
+    await page.setViewportSize({ width: 1280, height: 900 })
+    await openGuide(page)
+    await expect(
+      page.getByRole("button", { name: "Open fullscreen map" })
+    ).toBeVisible()
   })
 
   test("handles localized copy without horizontal overflow", async ({
