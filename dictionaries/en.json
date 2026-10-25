@@ -391,7 +391,7 @@
       "panelLabel": "Kotagede walking guide",
       "mapTitle": "Kotagede Walks",
       "chooseTitle": "Choose a walking route",
-      "walks": "Walks",
+      "walks": "Routes",
       "endsAt": "Ends at {destination}",
       "exploreAll": "Explore all places",
       "firstStop": "First stop: {destination}",
