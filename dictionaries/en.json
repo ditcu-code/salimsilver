@@ -387,6 +387,17 @@
       "royalComplexTitle": "Single Walled Heritage Complex",
       "royalComplexDescription": "Masjid Gedhe, Makam Raja, and Sendang Seliran are all situated within the same enclosed royal sanctuary. Once you enter the complex through the main gate, you can visit all three on foot without leaving the compound."
     },
+    "Mobile": {
+      "panelLabel": "Kotagede walking guide",
+      "mapTitle": "Kotagede Walks",
+      "chooseTitle": "Choose a walking route",
+      "walks": "Walks",
+      "endsAt": "Ends at {destination}",
+      "exploreAll": "Explore all places",
+      "firstStop": "First stop: {destination}",
+      "viewStops": "View stops",
+      "stopsTitle": "Route stops"
+    },
     "Trails": {
       "royal": {
         "title": "Royal Mataram Walk",

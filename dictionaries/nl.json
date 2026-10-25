@@ -386,6 +386,17 @@
       "royalComplexTitle": "Eén Ommuurd Koninklijk Erfgoedcomplex",
       "royalComplexDescription": "De grote moskee, de koninklijke graven en Sendang Seliran bevinden zich binnen hetzelfde ommuurde heiligdom. Zodra u de hoofdpoort binnengaat, kunt u alle drie te voet bezoeken zonder het terrein te verlaten."
     },
+    "Mobile": {
+      "panelLabel": "Wandelgids Kotagede",
+      "mapTitle": "Wandelen in Kotagede",
+      "chooseTitle": "Kies een wandelroute",
+      "walks": "Routes",
+      "endsAt": "Eindigt bij {destination}",
+      "exploreAll": "Verken alle plekken",
+      "firstStop": "Eerste halte: {destination}",
+      "viewStops": "Bekijk haltes",
+      "stopsTitle": "Haltes"
+    },
     "Trails": {
       "royal": {
         "title": "Koninklijke Mataram-wandeling",

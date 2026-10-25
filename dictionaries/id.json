@@ -387,6 +387,17 @@
       "royalComplexTitle": "Satu Kompleks Cagar Budaya Berpagar",
       "royalComplexDescription": "Masjid Gedhe, Makam Raja, dan Sendang Seliran berada di dalam satu kawasan bertembok yang sama. Begitu Anda melewati gerbang utama masjid, Anda dapat mengunjungi ketiganya sekaligus tanpa perlu keluar ke jalan umum."
     },
+    "Mobile": {
+      "panelLabel": "Panduan jalan kaki Kotagede",
+      "mapTitle": "Jelajah Kotagede",
+      "chooseTitle": "Pilih rute jalan kaki",
+      "walks": "Rute",
+      "endsAt": "Berakhir di {destination}",
+      "exploreAll": "Jelajahi semua tempat",
+      "firstStop": "Titik pertama: {destination}",
+      "viewStops": "Lihat titik rute",
+      "stopsTitle": "Titik rute"
+    },
     "Trails": {
       "royal": {
         "title": "Jelajah Kerajaan Mataram",

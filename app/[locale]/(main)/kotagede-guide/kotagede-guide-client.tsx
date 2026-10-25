@@ -15,6 +15,10 @@ import KotagedeMap from "@/components/features/walking-tour/kotagede-map"
 import { POICard } from "@/components/features/walking-tour/poi-card"
 import { TrailSwitcher } from "@/components/features/walking-tour/trail-switcher"
 import { CategoryFilter } from "@/components/features/walking-tour/category-filter"
+import {
+  MobileGuidePanel,
+  type MobileGuideView
+} from "@/components/features/walking-tour/mobile-guide-panel"
 
 export default function KotagedeGuideClient() {
   const t = useTranslations("KotagedeGuidePage")
@@ -34,6 +38,7 @@ export default function KotagedeGuideClient() {
   const [selectedCategory, setSelectedCategory] = useState<POICategory | "all">(
     "all"
   )
+  const [mobileView, setMobileView] = useState<MobileGuideView>("choose")
 
   // Filter POIs based on active trail or selected category
   const filteredPois = useMemo(() => {
@@ -74,14 +79,35 @@ export default function KotagedeGuideClient() {
     )
   }
 
+  const handleMobileWalkChoice = (trail: WalkingTrail) => {
+    setActiveTrail(trail)
+    setSelectedCategory("all")
+    setSelectedPoi(
+      KOTAGEDE_POIS.find((poi) => poi.id === trail.stopIds[0]) ?? null
+    )
+    setMobileView("route")
+  }
+
+  const handleMobileExploreAll = () => {
+    setActiveTrail(null)
+    setSelectedCategory("all")
+    setSelectedPoi(KOTAGEDE_POIS[0])
+    setMobileView("place-preview")
+  }
+
+  const handleSelectPoi = (poi: POI | null) => {
+    setSelectedPoi(poi)
+    if (poi) setMobileView("place-preview")
+  }
+
   return (
     <div
       ref={guideRef}
       data-testid="kotagede-guide"
-      className="mx-auto min-h-screen min-w-0 max-w-7xl overflow-x-clip px-3 pt-24 pb-10 sm:px-4 sm:pt-28 sm:pb-12 md:px-8 md:pt-32 md:pb-16"
+      className="mx-auto min-h-dvh min-w-0 max-w-none overflow-x-clip lg:min-h-screen lg:max-w-7xl lg:px-8 lg:pt-32 lg:pb-16"
     >
       {/* Top Header */}
-      <div className="mb-5 max-w-3xl sm:mb-8">
+      <div className="sr-only max-w-3xl lg:not-sr-only lg:mb-8">
         <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
           <Compass size={14} />
           <span>{t("Hero.badge")}</span>
@@ -95,45 +121,53 @@ export default function KotagedeGuideClient() {
       </div>
 
       {/* Main Interactive Guide Layout */}
-      <div className="grid min-w-0 gap-5 sm:gap-6 lg:grid-cols-12">
+      <div className="grid min-w-0 gap-0 lg:grid-cols-12 lg:gap-6">
         {/* Left Column: Filter + Map + Trail Switcher (7 cols on desktop) */}
-        <div className="min-w-0 space-y-3 sm:space-y-4 lg:col-span-7 xl:col-span-8">
+        <div className="min-w-0 lg:col-span-7 lg:space-y-4 xl:col-span-8">
           {/* Category Filter Pills */}
-          <CategoryFilter
-            selectedCategory={selectedCategory}
-            onSelectCategory={handleCategoryChange}
-          />
+          <div className="hidden lg:block">
+            <CategoryFilter
+              selectedCategory={selectedCategory}
+              onSelectCategory={handleCategoryChange}
+            />
+          </div>
 
           {/* Interactive Vector Map (MapLibre GL) */}
           <div
             ref={mapFrameRef}
             data-testid="kotagede-map-frame"
-            className="relative h-[min(68svh,32rem)] min-h-[430px] w-full overflow-hidden rounded-2xl border border-border shadow-lg sm:h-[500px] sm:min-h-[450px] sm:rounded-3xl md:h-[540px] [&:fullscreen]:h-screen [&:fullscreen]:max-h-none [&:fullscreen]:min-h-screen [&:fullscreen]:w-screen [&:fullscreen]:rounded-none [&:fullscreen]:border-0"
+            className="relative h-dvh min-h-0 w-full overflow-hidden border-0 shadow-none lg:h-[540px] lg:min-h-[450px] lg:rounded-3xl lg:border lg:border-border lg:shadow-lg [&:fullscreen]:h-screen [&:fullscreen]:max-h-none [&:fullscreen]:min-h-screen [&:fullscreen]:w-screen [&:fullscreen]:rounded-none [&:fullscreen]:border-0"
           >
             <KotagedeMap
               pois={filteredPois}
               selectedPoi={selectedPoi}
-              onSelectPoi={setSelectedPoi}
+              onSelectPoi={handleSelectPoi}
               activeTrail={activeTrail}
               fullscreenTargetRef={mapFrameRef}
             />
 
-            {selectedPoi && (
-              <div
-                data-map-overlay="poi-details"
-                className="absolute inset-x-2 bottom-2 z-20 h-[min(62%,22rem)] lg:hidden"
-              >
-                <POICard
-                  poi={selectedPoi}
-                  onClose={() => setSelectedPoi(null)}
-                  variant="sheet"
-                />
-              </div>
-            )}
+            <div className="pointer-events-none absolute top-24 left-3 z-10 max-w-[40vw] rounded-full border border-border/70 bg-background/90 px-3 py-2 shadow-sm backdrop-blur lg:hidden">
+              <span className="block truncate text-xs font-semibold text-foreground">
+                {t("Mobile.mapTitle")}
+              </span>
+            </div>
+
+            <MobileGuidePanel
+              view={mobileView}
+              activeTrail={activeTrail}
+              selectedPoi={selectedPoi}
+              pois={filteredPois}
+              category={selectedCategory}
+              onViewChange={setMobileView}
+              onSelectWalk={handleMobileWalkChoice}
+              onExploreAll={handleMobileExploreAll}
+              onSelectPoi={handleSelectPoi}
+              onSelectCategory={handleCategoryChange}
+            />
           </div>
 
           {/* Trail Switcher Presets */}
-          <div className="rounded-2xl border border-border bg-card p-4 shadow-xs">
+          <div className="hidden rounded-2xl border border-border bg-card p-4 shadow-xs lg:block">
             <TrailSwitcher
               activeTrail={activeTrail}
               onSelectTrail={handleTrailChange}
@@ -142,7 +176,7 @@ export default function KotagedeGuideClient() {
         </div>
 
         {/* Right Column: Selected POI Details & Stop List (5 cols on desktop) */}
-        <div className="min-w-0 space-y-4 sm:space-y-6 lg:col-span-5 xl:col-span-4">
+        <div className="hidden min-w-0 space-y-6 lg:col-span-5 lg:block xl:col-span-4">
           {/* Active POI Detail Card */}
           <div className="hidden lg:block">
             <POICard

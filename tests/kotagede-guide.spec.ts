@@ -199,125 +199,52 @@ test.describe("Kotagede guide responsive layout", () => {
     expect(guideBox!.x + guideBox!.width).toBeLessThanOrEqual(320)
   })
 
-  test("shows dismisses and reopens mobile place details", async ({ page }) => {
+  test("opens with three walk choices", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
     await openGuide(page)
 
     const map = page.getByTestId("kotagede-map-frame")
-    const mobileDetails = page.locator(
-      '[data-testid="poi-details"][data-variant="sheet"]'
-    )
-
     await expect(map).toBeVisible()
-    await expect(mobileDetails).toBeVisible()
-
     const mapBox = await map.boundingBox()
-    const detailsBox = await mobileDetails.boundingBox()
     expect(mapBox).not.toBeNull()
-    expect(detailsBox).not.toBeNull()
-    expect(detailsBox!.y).toBeGreaterThan(mapBox!.y)
-    expect(detailsBox!.y + detailsBox!.height).toBeLessThanOrEqual(
-      mapBox!.y + mapBox!.height + 1
-    )
-
-    await mobileDetails.getByRole("button", { name: "Close details" }).click()
-    await expect(mobileDetails).toHaveCount(0)
-
-    await page.getByTestId("poi-itinerary").getByRole("button").nth(1).click()
-    await expect(mobileDetails).toBeVisible()
+    expect(mapBox!.height).toBeGreaterThanOrEqual(843)
+    await expect(
+      page.getByTestId("mobile-walk-picker").locator("[data-walk-id]")
+    ).toHaveCount(3)
+    await page.locator('[data-walk-id="royal"]').click()
+    const summary = page.getByTestId("mobile-route-summary")
+    await expect(summary).toContainText("Royal Mataram Walk")
+    await expect(summary).toContainText("6 places")
+    await summary.getByRole("button", { name: "View stops" }).click()
+    await expect(
+      page.getByTestId("mobile-stops").locator("[data-poi-id]")
+    ).toHaveCount(6)
+    expect(
+      await page.evaluate(() => document.scrollingElement!.scrollTop)
+    ).toBe(0)
   })
 
-  test("keeps map controls available on phones", async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 })
+  test("keeps choices reachable on a short phone", async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 568 })
     await openGuide(page)
 
-    const map = page.getByTestId("kotagede-map-frame")
-    const header = page.getByRole("banner")
-    const reset = page.getByRole("button", { name: "Center on Salim Silver" })
-    const locate = page.getByRole("button", { name: "Locate me" })
-
-    await page
-      .locator("[data-camera-state]")
-      .waitFor({ state: "attached", timeout: 15_000 })
-    await expect(reset).toBeVisible()
-    await expect(locate).toBeVisible()
-    await map.evaluate((element) => element.scrollIntoView({ block: "start" }))
-
-    const mapBox = await map.boundingBox()
-    const headerBox = await header.boundingBox()
-    const resetBox = await reset.boundingBox()
-    const locateBox = await locate.boundingBox()
-    expect(mapBox).not.toBeNull()
-    expect(headerBox).not.toBeNull()
-    expect(resetBox).not.toBeNull()
-    expect(locateBox).not.toBeNull()
-    expect(resetBox!.width).toBeGreaterThanOrEqual(44)
-    expect(resetBox!.height).toBeGreaterThanOrEqual(44)
-    expect(resetBox!.x + resetBox!.width).toBeLessThanOrEqual(
-      mapBox!.x + mapBox!.width
+    await page.locator('[data-walk-id="culinary"]').click()
+    await expect(page.getByTestId("mobile-route-summary")).toContainText(
+      "Kotagede Food Walk"
     )
-    const headerBottom = headerBox!.y + headerBox!.height
-    expect(resetBox!.y).toBeGreaterThanOrEqual(headerBottom + 8)
-    expect(locateBox!.y).toBeGreaterThanOrEqual(headerBottom + 8)
-  })
+    expect(
+      await page.evaluate(() => document.scrollingElement!.scrollTop)
+    ).toBe(0)
 
-  test("keeps selected tablet marker between the header and details sheet", async ({
-    page
-  }) => {
-    await page.setViewportSize({ width: 768, height: 900 })
-    await useEmptyMapStyle(page)
     await openGuide(page)
-
-    const map = page.getByTestId("kotagede-map-frame")
-    const mapCamera = page.locator("[data-camera-state]")
-    await expect(page.locator(".maplibregl-marker").first()).toBeVisible({
-      timeout: 15_000
-    })
-    await expect(mapCamera).toHaveAttribute("data-camera-state", "idle")
-    await page.getByTestId("poi-itinerary").getByRole("button").nth(1).click()
-    await expect(mapCamera).toHaveAttribute("data-camera-state", "moving")
-    await expect(mapCamera).toHaveAttribute("data-camera-state", "idle", {
-      timeout: 5_000
-    })
-
-    const selectedMarker = page.locator(".maplibregl-marker:has(.ring-4)")
-    const mobileDetails = page.locator(
-      '[data-testid="poi-details"][data-variant="sheet"]'
+    await page.getByRole("button", { name: "Explore all places" }).click()
+    await expect(page.getByTestId("mobile-place-preview")).toContainText(
+      "Salim Silver"
     )
-    await expect(selectedMarker).toHaveCount(1)
-    await expect(mobileDetails).toBeVisible()
-    await map.evaluate((element) => element.scrollIntoView({ block: "start" }))
-
-    const markerBox = await selectedMarker.boundingBox()
-    const detailsBox = await mobileDetails.boundingBox()
-    const headerBox = await page.getByRole("banner").boundingBox()
-    expect(markerBox).not.toBeNull()
-    expect(detailsBox).not.toBeNull()
-    expect(headerBox).not.toBeNull()
-    expect(markerBox!.y).toBeGreaterThanOrEqual(
-      headerBox!.y + headerBox!.height + 8
-    )
-    expect(markerBox!.y + markerBox!.height).toBeLessThanOrEqual(
-      detailsBox!.y - 8
-    )
-  })
-
-  test("keeps mobile place details inside fullscreen map", async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 })
-    await openGuide(page)
-
-    await page.getByRole("button", { name: "Open fullscreen map" }).click()
-    await expect
-      .poll(() => page.evaluate(() => document.fullscreenElement !== null))
-      .toBe(true)
-
-    const fullscreenContainsDetails = await page.evaluate(() => {
-      const details = document.querySelector(
-        '[data-testid="poi-details"][data-variant="sheet"]'
-      )
-      return Boolean(details && document.fullscreenElement?.contains(details))
-    })
-    expect(fullscreenContainsDetails).toBe(true)
+    await expect(page.getByTestId("mobile-route-summary")).toHaveCount(0)
+    expect(
+      await page.evaluate(() => document.scrollingElement!.scrollTop)
+    ).toBe(0)
   })
 
   test("handles localized copy without horizontal overflow", async ({
@@ -353,6 +280,18 @@ test.describe("Kotagede guide responsive layout", () => {
     expect(mapBox).not.toBeNull()
     expect(detailsBox).not.toBeNull()
     expect(detailsBox!.x).toBeGreaterThan(mapBox!.x + mapBox!.width)
+  })
+
+  test("preserves desktop at the lg boundary", async ({ page }) => {
+    for (const width of [1024, 1280]) {
+      await page.setViewportSize({ width, height: 900 })
+      await openGuide(page)
+      await expect(page.getByTestId("mobile-guide-panel")).toBeHidden()
+      await expect(page.getByTestId("trail-royal")).toBeVisible()
+      await expect(
+        page.locator('[data-testid="poi-details"][data-variant="card"]')
+      ).toBeVisible()
+    }
   })
 
   test("hides the place-details dismiss control on desktop", async ({
@@ -551,8 +490,13 @@ test.describe("Kotagede walking route experience", () => {
       await openGuide(page, path)
 
       for (const trail of ["royal", "heritage", "culinary"]) {
+        await page.locator(`[data-walk-id="${trail}"]`).click()
+        await page
+          .getByTestId("mobile-route-summary")
+          .getByRole("button")
+          .click()
         const dimensions = await page
-          .getByTestId(`trail-description-${trail}`)
+          .getByTestId(`mobile-trail-description-${trail}`)
           .evaluate((element) => ({
             clientHeight: element.clientHeight,
             scrollHeight: element.scrollHeight
@@ -563,8 +507,9 @@ test.describe("Kotagede walking route experience", () => {
           `${path} ${trail} description must not be clipped`
         ).toBeLessThanOrEqual(dimensions.clientHeight)
         await expect(
-          page.getByTestId(`trail-route-endpoints-${trail}`)
+          page.getByTestId(`mobile-trail-endpoints-${trail}`)
         ).toBeVisible()
+        await page.getByTestId("mobile-open-walks").click()
       }
       await expectNoDocumentOverflow(page)
     }
