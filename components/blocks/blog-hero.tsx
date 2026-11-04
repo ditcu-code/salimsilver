@@ -11,7 +11,7 @@ export function BlogHero({ post }: { post: Post }) {
   const t = useTranslations("JournalPage.Hero")
 
   return (
-    <section className="relative mb-16 w-full md:mb-24">
+    <section className="relative mt-8 mb-16 w-full md:mb-24">
       <Link href={`/blog/${post.slug}`} className="group block">
         <div className="grid items-center gap-6 md:grid-cols-12">
           {/* Image Side */}
