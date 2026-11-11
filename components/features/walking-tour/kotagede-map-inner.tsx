@@ -37,6 +37,11 @@ const CARTO_STYLE =
   "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
 const MAP_EDGE_CLEARANCE_PX = 8
 
+/** Wraps Lucide SVG inner elements for standard 16x16 map marker pins. */
+function createMarkerIconSvg(paths: string): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`
+}
+
 export default function KotagedeMapInner({
   pois,
   selectedPoi,
@@ -260,6 +265,7 @@ export default function KotagedeMapInner({
 
       const el = document.createElement("div")
       el.className = "cursor-pointer group transition-transform duration-200"
+      el.dataset.markerPoiId = poi.id
 
       if (isSalim) {
         // Prominent Salim Silver marker with downward needle tip
@@ -289,19 +295,29 @@ export default function KotagedeMapInner({
         if (poi.category === "heritage") {
           badgeBg = "bg-amber-700"
           triangleBorder = "border-t-amber-700"
-          iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11H9z"/></svg>`
+          iconSvg = createMarkerIconSvg(
+            '<path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11H9z"/>'
+          )
         } else if (poi.category === "architecture") {
           badgeBg = "bg-teal-700"
           triangleBorder = "border-t-teal-700"
-          iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
+          iconSvg = createMarkerIconSvg(
+            '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'
+          )
         } else if (poi.category === "culinary") {
           badgeBg = "bg-rose-700"
           triangleBorder = "border-t-rose-700"
-          iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" x2="6" y1="1" y2="4"/><line x1="10" x2="10" y1="1" y2="4"/><line x1="14" x2="14" y1="1" y2="4"/></svg>`
+          iconSvg = createMarkerIconSvg(
+            poi.id === "pasar-legi"
+              ? '<path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/>'
+              : '<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" x2="6" y1="1" y2="4"/><line x1="10" x2="10" y1="1" y2="4"/><line x1="14" x2="14" y1="1" y2="4"/>'
+          )
         } else {
           badgeBg = "bg-indigo-700"
           triangleBorder = "border-t-indigo-700"
-          iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 12-8.5 8.5a2.12 2.12 0 1 1-3-3L11 9"/><path d="M15 13 9 7l4-4 6 6z"/></svg>`
+          iconSvg = createMarkerIconSvg(
+            '<path d="m14 12-8.5 8.5a2.12 2.12 0 1 1-3-3L11 9"/><path d="M15 13 9 7l4-4 6 6z"/>'
+          )
         }
 
         el.innerHTML = `

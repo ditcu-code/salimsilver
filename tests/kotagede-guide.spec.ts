@@ -756,6 +756,23 @@ test.describe("Kotagede walking route experience", () => {
     )
   })
 
+  test("uses a store marker icon for Pasar Legi instead of the cafe cup", async ({
+    page
+  }) => {
+    await stubEmptyMapStyle(page)
+    await openGuide(page)
+    const pasarLegiMarker = page.locator(
+      '.maplibregl-marker[data-marker-poi-id="pasar-legi"]'
+    )
+    await expect(pasarLegiMarker).toBeVisible({ timeout: 15_000 })
+    await expect(
+      pasarLegiMarker.locator('svg path[d^="M15 21v-5"]')
+    ).toHaveCount(1)
+    await expect(pasarLegiMarker.locator('svg path[d^="M18 8h1"]')).toHaveCount(
+      0
+    )
+  })
+
   test("uses the approved route names and Between Two Gates copy in every locale", async ({
     page
   }) => {
